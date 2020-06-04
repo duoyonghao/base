@@ -184,6 +184,7 @@
 								<li><label>13、<input name="Consultation" type="checkbox" value="牙周治疗" />牙周治疗</label></li>
 								<li><label>14、<input name="Consultation" type="checkbox" value="检验：血常规、血糖、感染性疾病、凝血4项" />检验：血常规、血糖、感染性疾病、凝血4项</label></li>
 								<!-- <li><label><input name="before_Modulo_bite" id="before_Modulo_bite" type="checkbox" value="15、术前取模、定咬合关系"/>15、术前取模、定咬合关系</label></li> -->
+								<li><label>222、<input name="Consultation" type="checkbox" value="人工种植牙知情同意书" /><font class="dentalImplant">人工种植牙知情同意书</font></label></li> 
 							</ul>
 						</div>	
 					</td>
@@ -214,8 +215,8 @@
 										</div>
 									</div>
 								</li>
-							    <!-- <li><label><input name="Consultation" type="checkbox" value="告知通知书" /><font class="inform">19、告知通知书</font></label></li>
-							    <li><label><input name="Consultation" type="checkbox" value="诊疗方案" /><font class="case">20、诊疗方案</font></label></li> -->
+							   <li><label><input name="Consultation" type="checkbox" value="告知通知书" /><font class="inform">19、告知通知书</font></label></li>
+							    <li><label><input name="Consultation" type="checkbox" value="诊疗方案" /><font class="case">20、诊疗方案</font></label></li> 
 							</ul>
 						</div>
 					</td>
@@ -673,7 +674,7 @@
 			}
 	  });
 		
-		/* 告知通知书
+		//告知通知书
 		var gztzsurl = contextPath + '/HUDH_NotificationAct/findNotificationByLcljId.act';
 		$.ajax({
 			url: gztzsurl,
@@ -689,8 +690,12 @@
 					$(".inform").prev().attr("checked","checked").attr("disabled","disabled");
 				}
 			}
-	  }); 
-		诊疗方案
+
+	  });
+
+
+
+		//诊疗方案
 		var zlfaurl = contextPath + '/HUDH_LcljCaseAct/select.act';
 		$.ajax({
 			url: zlfaurl,
@@ -704,7 +709,8 @@
 					$(".case").prev().attr("checked","checked").attr("disabled","disabled");
 				}
 			}
-	  }); */
+	  }); 
+
 }
 
 	//告知通知书
@@ -730,6 +736,23 @@
 	  		type:2,
 	  		closeBtn:1,
 	  		content:contextPath + "/ZzblViewAct/toExamineDiagnoseCase.act?status="+notification,
+	  		area:['70%','80%'],
+	  		cancel: function(){
+	  		},
+	  		end:function(){
+	  			window.location.reload();//刷新本页面
+	  		}
+	  	}); 
+	  });
+	  
+	  
+	//人工种植牙知情同意书
+	  $(".dentalImplant").click(function(){
+	  	parent.layer.open({
+	  		title:"人工种植牙知情同意书",
+	  		type:2,
+	  		closeBtn:1,
+	  		content:contextPath + "/ZzblViewAct/toExamineDentalImplant.act",
 	  		area:['70%','80%'],
 	  		cancel: function(){
 	  		},

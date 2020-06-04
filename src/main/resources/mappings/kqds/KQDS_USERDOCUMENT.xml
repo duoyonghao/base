@@ -69,6 +69,8 @@
 		<result column="barcode" jdbcType="CLOB" property="barcode" />
 		<result column="headPic" jdbcType="CLOB" property="headPic" />
 		<result column="photoDisplay" jdbcType="CLOB" property="photoDisplay" />
+		<result column="emergencyContact" jdbcType="VARCHAR" property="emergencyContact"/>
+		<result column="emergencyPhone" jdbcType="VARCHAR" property="emergencyPhone" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		SEQ_ID, UserCode, UserName, Sex, BirthDay, Age, Profession, IDCardNo, PhoneNumber1,
@@ -78,7 +80,7 @@
 		organization, medicalhistory, drugllergy, remark, experience, habit, email, type,
 		xueli, qq, doctor, important, nexttype, totalpay, developer, doorstatus, glr, glrremark,
 		xgr, xgtime, town, kefu, usersort, openid, bindstatus, pym, integral, blcode, familyship, area, hobby, activity, introduce,iscreateLclj,clipAddress
-		area, hobby, activity, introduce, iscreateLclj,accepttool,headPic, photoDisplay
+		area, hobby, activity, introduce, iscreateLclj,accepttool,headPic, photoDisplay,emergencyContact,emergencyPhone
 	</sql>
 	<sql id="Blob_Column_List">
 		barcode
