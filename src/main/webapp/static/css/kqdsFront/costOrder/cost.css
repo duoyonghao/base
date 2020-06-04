@@ -1,0 +1,231 @@
+@CHARSET "UTF-8";
+html,body,.checkoutContainer{
+	width:100%;
+	color:#333;
+}
+.checkoutContainer{/* 结账页面的container */
+	padding:10px 0 90px;
+}
+a{
+	text-decoration:none;
+	color:#333;
+}
+a:hover{
+	text-decoration:none;
+}
+
+.tableLayout{/*table布局 */
+	border-collapse:separate;
+	font-size:12px;
+}
+
+
+		/* input textarea select 用户体验效果  */
+		
+input[type="text"]:focus,select:focus,textarea:focus{
+    box-shadow: 0 0 8px rgb(49, 165, 247);
+    border-color:transparent;
+}
+input[readonly]:focus{
+    box-shadow: none;
+    border-color:#ddd;
+}
+input[readonly],input[disabled]{/*只读的input*/
+	background:rgba(246, 246, 246, 0.42);
+	cursor:not-allowed;
+}
+input[type="text"].greyInp{/* 灰色输入框 */
+	background:#eee;
+	cursor:pointer;
+}
+input[type="text"].whiteInp{/*白色输入框 */
+	cursor:pointer;
+}
+input[readonly]{
+	cursor: not-allowed;
+}
+
+select[disabled]{
+	cursor: not-allowed;
+}
+
+		/* 本页面 所有按钮的基础样式 */
+		
+.aBtn{
+	display:inline-block;
+	color:#0E7CC9;
+	background:#fff;
+	height:28px;
+	line-height:28px;
+	border-radius:16px;
+	text-align:center;
+	padding:0 8px;
+	border:1px solid #0E7CC9;
+	margin:0 10px;
+	font-size:13px;
+}
+.search{
+	color:#fff;
+	background:#0E7CC9;
+}
+.aBtn:hover{
+	cursor:pointer;
+	color:#fff;
+	background:#0E7CC9;
+}
+
+.table-striped > tbody > tr:nth-child(odd) {/* 清单中信息 奇数行为蓝色底   */
+    background: #eef9fe;
+}
+
+			/* header部分 客户相关信息的展示 */
+header{
+	
+}
+.commonText{	/*信息数据项 样式 */
+	display:block;
+	margin-left:28px;
+	text-align:right;
+	position:relative;
+	padding-right:5px;
+}
+header .tableLayout{	/* header中的table布局宽 890px */
+	width:95%;
+	border-bottom:1px solid #0E7CC9;
+	margin:0 auto;
+}
+header .tableLayout tr{	/* 行高 */
+	height:40px;
+}
+header tr td:first-child span.commonText{/*操作区每行 第一个数据项的左外边距固定为零 */
+	margin-left:10px;
+}
+header .tableLayout select,header input[type="text"]{
+	width:140px;
+}
+header tr:last-child input[type="text"],header tr:last-child span.commonText{
+	margin-bottom:15px;
+}
+
+							/* section */
+section .tableBox{	/*  */
+	width:95%;
+	margin:0 auto;	
+}
+section .tableBox p.tableTitle{
+	margin:10px 0 5px;
+	color:#FA711A;
+	font-size:14px;
+}
+section .operateDiv{
+	width:95%;
+	margin:10px auto 50px;
+	
+	/* overflow:hidden; */
+}
+section div.operateDiv:after{
+	content:"";
+	display:block;
+	clear:both;
+}
+section .operateDiv table.tableLayoutLeft{
+	float:left;
+}
+section .operateDiv table.tableLayoutRight{
+	float:right;
+}
+section table.tableLayoutRight input[type="text"]{
+	width:90px;
+}
+section table.tableLayoutRight select{
+	width:90px;
+}
+
+
+						/* section 左边table */
+section .operateDiv .tableLayoutLeft{
+	
+}
+section .operateDiv .tableLayoutLeft input[type="text"]{
+	width:120px;
+}
+section .operateDiv .tableLayoutLeft select{
+	width:120px;
+}
+section .operateDiv .tableLayoutLeft span.commonText{
+	margin:0;
+}
+span.highLightText{
+	position:absolute;
+	color:red;
+	top:33px;
+	left:54px;
+	font-size:11px;
+}
+section .operateDiv .tableLayoutLeft .aBtn{/*预交金使用按钮  */
+	display:block;
+	border-radius:3px;
+	padding:0 5px;
+	height:26px;
+	line-height:26px;
+	width:100px;
+}
+section .operateDiv .tableLayoutLeft tr{/*左侧table区的行高  */
+	height:41px;
+}
+section .tableLayoutLeft input[type="text"].remark{/* 备注行  */
+	width:270px;
+}
+					/* section 右边table */
+section .operateDiv table.tableLayoutRight{
+	margin-right:10px;
+	min-width:380px;
+}					
+		
+table.tableLayoutRight tr{
+	height:40px;
+}
+table.tableLayoutRight tr .btn-sm{/* "+""-"按钮  */
+	padding:3px 7px;
+	position:relative;
+	top:-1px;
+}
+					
+					
+									/* footer */
+								/*底部固定定位的div 存放三个按钮*/
+.fixedBottomDiv{
+	position:fixed;
+	bottom:0;
+	width:100%;
+	box-sizing:border-box;
+	background:#fff;
+	height:50px;
+	text-align:center;
+	padding-top:10px;
+	border-top:1px solid #ddd;
+}
+.fixedBottomDiv>.aBtn{/* 清空 确认 取消 按钮样式 */
+	display:inline-block;
+	color:#0E7CC9;
+	background:#fff;
+	height:28px;
+	width:90px;
+	line-height:28px;
+	border-radius:16px;
+	text-align:center;
+	padding:0 5px;
+	border:1px solid #0E7CC9;
+	margin:0 10px;
+	font-size:12px;
+}
+.fixedBottomDiv>.search{
+	color:#fff;
+	background:#0E7CC9;
+}
+.fixedBottomDiv>.aBtn:hover{
+	cursor:pointer;
+	color:#fff;
+	background:#0E7CC9;
+}
+

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_LOG">
+
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsLog">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="LOG_TYPE" jdbcType="INTEGER" property="logType" />
+		<result column="requesttoken" jdbcType="VARCHAR" property="requesttoken" />
+		<result column="USER_CODE" jdbcType="VARCHAR" property="userCode" />
+		<result column="TABLE_NAME" jdbcType="VARCHAR" property="tableName" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="sessiontoken" jdbcType="VARCHAR" property="sessiontoken" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.base.KqdsLog">
+		<result column="REQUEST_URL" jdbcType="CLOB" property="requestUrl" />
+		<result column="REQUEST_PARAM" jdbcType="CLOB" property="requestParam" />
+		<result column="INSERT_OBJECT" jdbcType="CLOB" property="insertObject" />
+		<result column="BEFORE_OBJECT" jdbcType="CLOB" property="beforeObject" />
+		<result column="AFTER_OBJECT" jdbcType="CLOB" property="afterObject" />
+		<result column="DELETE_OBJECT" jdbcType="CLOB" property="deleteObject" />
+		<result column="UPDATE_SQL" jdbcType="CLOB" property="updateSql" />
+		<result column="DELETE_SQL" jdbcType="CLOB" property="deleteSql" />
+		<result column="QUERY_SQL" jdbcType="CLOB" property="querySql" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, LOG_TYPE, requesttoken, USER_CODE, TABLE_NAME, createuser, createtime, sessiontoken
+	</sql>
+	<sql id="Blob_Column_List">
+		REQUEST_URL, REQUEST_PARAM, INSERT_OBJECT, BEFORE_OBJECT, AFTER_OBJECT, DELETE_OBJECT,
+		UPDATE_SQL, DELETE_SQL, QUERY_SQL
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from KQDS_LOG
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_LOG
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsLog">
+		insert into KQDS_LOG (SEQ_ID, LOG_TYPE, requesttoken,
+		USER_CODE, TABLE_NAME, createuser,
+		createtime, sessiontoken, REQUEST_URL,
+		REQUEST_PARAM, INSERT_OBJECT, BEFORE_OBJECT,
+		AFTER_OBJECT, DELETE_OBJECT, UPDATE_SQL,
+		DELETE_SQL, QUERY_SQL)
+		values (#{seqId,jdbcType=VARCHAR}, #{logType,jdbcType=INTEGER},
+		#{requesttoken,jdbcType=VARCHAR},
+		#{userCode,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR},
+		#{createtime,jdbcType=VARCHAR},
+		#{sessiontoken,jdbcType=VARCHAR}, #{requestUrl,jdbcType=CLOB},
+		#{requestParam,jdbcType=CLOB}, #{insertObject,jdbcType=CLOB}, #{beforeObject,jdbcType=CLOB},
+		#{afterObject,jdbcType=CLOB}, #{deleteObject,jdbcType=CLOB}, #{updateSql,jdbcType=CLOB},
+		#{deleteSql,jdbcType=CLOB}, #{querySql,jdbcType=CLOB})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsLog">
+		insert into KQDS_LOG
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="logType != null">
+				LOG_TYPE,
+			</if>
+			<if test="requesttoken != null">
+				requesttoken,
+			</if>
+			<if test="userCode != null">
+				USER_CODE,
+			</if>
+			<if test="tableName != null">
+				TABLE_NAME,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="sessiontoken != null">
+				sessiontoken,
+			</if>
+			<if test="requestUrl != null">
+				REQUEST_URL,
+			</if>
+			<if test="requestParam != null">
+				REQUEST_PARAM,
+			</if>
+			<if test="insertObject != null">
+				INSERT_OBJECT,
+			</if>
+			<if test="beforeObject != null">
+				BEFORE_OBJECT,
+			</if>
+			<if test="afterObject != null">
+				AFTER_OBJECT,
+			</if>
+			<if test="deleteObject != null">
+				DELETE_OBJECT,
+			</if>
+			<if test="updateSql != null">
+				UPDATE_SQL,
+			</if>
+			<if test="deleteSql != null">
+				DELETE_SQL,
+			</if>
+			<if test="querySql != null">
+				QUERY_SQL,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="logType != null">
+				#{logType,jdbcType=INTEGER},
+			</if>
+			<if test="requesttoken != null">
+				#{requesttoken,jdbcType=VARCHAR},
+			</if>
+			<if test="userCode != null">
+				#{userCode,jdbcType=VARCHAR},
+			</if>
+			<if test="tableName != null">
+				#{tableName,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="sessiontoken != null">
+				#{sessiontoken,jdbcType=VARCHAR},
+			</if>
+			<if test="requestUrl != null">
+				#{requestUrl,jdbcType=CLOB},
+			</if>
+			<if test="requestParam != null">
+				#{requestParam,jdbcType=CLOB},
+			</if>
+			<if test="insertObject != null">
+				#{insertObject,jdbcType=CLOB},
+			</if>
+			<if test="beforeObject != null">
+				#{beforeObject,jdbcType=CLOB},
+			</if>
+			<if test="afterObject != null">
+				#{afterObject,jdbcType=CLOB},
+			</if>
+			<if test="deleteObject != null">
+				#{deleteObject,jdbcType=CLOB},
+			</if>
+			<if test="updateSql != null">
+				#{updateSql,jdbcType=CLOB},
+			</if>
+			<if test="deleteSql != null">
+				#{deleteSql,jdbcType=CLOB},
+			</if>
+			<if test="querySql != null">
+				#{querySql,jdbcType=CLOB},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsLog">
+		update KQDS_LOG
+		<set>
+			<if test="logType != null">
+				LOG_TYPE = #{logType,jdbcType=INTEGER},
+			</if>
+			<if test="requesttoken != null">
+				requesttoken = #{requesttoken,jdbcType=VARCHAR},
+			</if>
+			<if test="userCode != null">
+				USER_CODE = #{userCode,jdbcType=VARCHAR},
+			</if>
+			<if test="tableName != null">
+				TABLE_NAME = #{tableName,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="sessiontoken != null">
+				sessiontoken = #{sessiontoken,jdbcType=VARCHAR},
+			</if>
+			<if test="requestUrl != null">
+				REQUEST_URL = #{requestUrl,jdbcType=CLOB},
+			</if>
+			<if test="requestParam != null">
+				REQUEST_PARAM = #{requestParam,jdbcType=CLOB},
+			</if>
+			<if test="insertObject != null">
+				INSERT_OBJECT = #{insertObject,jdbcType=CLOB},
+			</if>
+			<if test="beforeObject != null">
+				BEFORE_OBJECT = #{beforeObject,jdbcType=CLOB},
+			</if>
+			<if test="afterObject != null">
+				AFTER_OBJECT = #{afterObject,jdbcType=CLOB},
+			</if>
+			<if test="deleteObject != null">
+				DELETE_OBJECT = #{deleteObject,jdbcType=CLOB},
+			</if>
+			<if test="updateSql != null">
+				UPDATE_SQL = #{updateSql,jdbcType=CLOB},
+			</if>
+			<if test="deleteSql != null">
+				DELETE_SQL = #{deleteSql,jdbcType=CLOB},
+			</if>
+			<if test="querySql != null">
+				QUERY_SQL = #{querySql,jdbcType=CLOB},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.kqds.entity.base.KqdsLog">
+		update KQDS_LOG
+		set LOG_TYPE = #{logType,jdbcType=INTEGER},
+		requesttoken = #{requesttoken,jdbcType=VARCHAR},
+		USER_CODE =
+		#{userCode,jdbcType=VARCHAR},
+		TABLE_NAME = #{tableName,jdbcType=VARCHAR},
+		createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		sessiontoken =
+		#{sessiontoken,jdbcType=VARCHAR},
+		REQUEST_URL = #{requestUrl,jdbcType=CLOB},
+		REQUEST_PARAM = #{requestParam,jdbcType=CLOB},
+		INSERT_OBJECT = #{insertObject,jdbcType=CLOB},
+		BEFORE_OBJECT = #{beforeObject,jdbcType=CLOB},
+		AFTER_OBJECT = #{afterObject,jdbcType=CLOB},
+		DELETE_OBJECT = #{deleteObject,jdbcType=CLOB},
+		UPDATE_SQL = #{updateSql,jdbcType=CLOB},
+		DELETE_SQL = #{deleteSql,jdbcType=CLOB},
+		QUERY_SQL = #{querySql,jdbcType=CLOB}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsLog">
+		update KQDS_LOG
+		set LOG_TYPE = #{logType,jdbcType=INTEGER},
+		requesttoken = #{requesttoken,jdbcType=VARCHAR},
+		USER_CODE =
+		#{userCode,jdbcType=VARCHAR},
+		TABLE_NAME = #{tableName,jdbcType=VARCHAR},
+		createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		sessiontoken =
+		#{sessiontoken,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_LOG
+	</sql>
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsLog">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+</mapper>

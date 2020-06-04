@@ -1,0 +1,270 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0px;
+	padding: 0px;
+	font-size: 16px;
+	line-height: 30px;
+}
+/* 内容 */
+#repair_continer{
+   margin: 14px;
+}
+
+#repair_continer ul,ol{
+	margin: 0px;
+	padding: 0px;
+}
+#repair_continer label{
+	margin-bottom: 0px; 
+}
+/* 字体设置 */
+#repair_continer span{
+	/* font-weight: normal; */
+}
+/*行*/
+#repair_continer>.row{
+	width:100%;
+	margin: 0px;
+	padding: 0px;
+	/* 	margin-bottom: 5px; */
+	overflow: hidden;
+}
+
+#repair_continer>.patient{
+	/* margin: 10px 0; */
+	border-bottom: 2px solid #776c6c;
+}
+#repair_continer>.restore{
+	border-bottom: 2px solid #776c6c;
+	/* margin-top: 50px; */
+}
+
+#repair_continer>.map{
+	background: #f5f5f5;
+	
+}
+.entiretybg{
+	font-weight:600;
+}
+/* 栅格布局自定义样式 */
+#repair_continer>.row>.colDefined{
+	/* height:50px; */
+	float:left;
+	display:flex;
+	flex-direction: row;
+	margin: 0px;
+	padding: 0px;
+}
+.overstriking{
+	font-weight:600;
+}
+/* 输入框 */
+#repair_continer input[type="text"]{
+	height:30px;
+	background-color: transparent;
+	border: 1px solid #c3c3c3;
+	vertical-align: middle;
+	-webkit-appearance: none;
+	outline: none;
+	text-align: center;
+	font-weight: bold;
+}
+/* 多选框 */
+#repair_continer input[type="checkbox"]{
+	background-color: transparent;
+	width:15px;
+	height:15px;
+	/* vertical-align: sub; */
+	outline: none;
+}
+/* 单选框 */
+#repair_continer input[type="radio"]{
+	background-color: transparent;
+	width:15px;
+	height:15px;
+	vertical-align: sub;
+	outline: none;
+}
+
+#repair_continer .bigtitle{
+	width:100%;
+	/* text-align: center; */
+	font-size: 26px;
+	line-height: 26px;
+  	margin: 50px auto 0;
+  	letter-spacing: 1px;
+  	font-weight: bold;
+}
+/* 信息输入组合框 */
+#repair_continer .rpInfo_import{
+	width:100%;
+}
+#repair_continer .rpInfo_import>span{
+	/* margin-right: 5%; */
+}
+#repair_continer .rpInfo_import>input{
+	width: 30%;
+    color: #00a6c0;
+	border:0px;
+}
+/* 牙位图 */
+#repair_continer .zl_toothMapdiv>span{
+	margin-right: 5%;
+	float: left;
+	margin-top: 18px;
+}
+#repair_continer .zl_toothMapdiv .tooth_map{
+	float:left;
+	display: inline-block;
+	width: 55%;
+    height: 50px;
+}
+#repair_continer .zl_toothMapdiv .tooth_map>li{
+	width:49%;
+	height:25px;
+	float:left;
+}
+#repair_continer .zl_toothMapdiv .tooth_map>li>input{
+	border:0px;
+	width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    height: 25px;
+}
+#repair_continer .zl_toothMapdiv .tooth_map>li:FIRST-CHILD{
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+}
+#repair_continer .zl_toothMapdiv .tooth_map>li:FIRST-CHILD+li{
+	border-bottom: 1px solid black;
+}
+#repair_continer .zl_toothMapdiv .tooth_map>li:FIRST-CHILD+li+li{
+	border-right: 1px solid black;
+}
+/* 牙位组合 */
+#repair_continer .rp_toothGroup{
+	width:100%;
+	overflow: hidden;
+}
+#repair_continer .rp_toothGroup>span{
+	display: block;
+	height:100%;
+	float:left;
+}
+#repair_continer .rp_toothGroup>ul{
+	display: block;
+	width:100%; 
+	/* width:80%; */ 
+	float:left;
+	overflow: hidden;
+}
+#repair_continer .rp_toothGroup>ul>li{
+	width: 28%;
+    margin-left: 4%;
+    min-width: 100px;
+    float: left;
+    /* margin-bottom: 20px; */
+}
+
+/* 文字在上面牙位图 */
+#repair_continer .toothMapdiv_B{
+	width:100%;
+}
+#repair_continer .toothMapdiv_B>span{
+	display:block;
+	width:100%;
+	text-align:center;
+	/* margin-bottom: 10px; */
+}
+#repair_continer .toothMapdiv_B .tooth_map{
+	display: inline-block;
+	width: 100%;
+    height: 50px;
+}
+#repair_continer .toothMapdiv_B .tooth_map>li{
+	width:49%;
+	height:25px;
+	float:left;
+}
+#repair_continer .toothMapdiv_B .tooth_map>li>input{
+	border:0px;
+	width: 96%;
+    text-align: center;
+    margin-left: 2%;
+    height: 25px;
+}
+#repair_continer .toothMapdiv_B .tooth_map>li:FIRST-CHILD{
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+}
+#repair_continer .toothMapdiv_B .tooth_map>li:FIRST-CHILD+li{
+	border-bottom: 1px solid black;
+}
+#repair_continer .toothMapdiv_B .tooth_map>li:FIRST-CHILD+li+li{
+	border-right: 1px solid black;
+}
+/* 多选框 */
+#repair_continer .moreSelect_div{
+	width:100%;
+	overflow: hidden;
+}
+#repair_continer .moreSelect_div>li{
+	float:left;
+	width:14%!important;
+	min-width:125px; 
+	/* margin-bottom: 8px; */
+}
+#repair_continer .moreSelect_div>li>input{
+	margin-right: 2%;
+}
+/* 修复相关需求 */
+#repair_continer .consent_remark>span{
+
+}
+/* 备注输入框 */
+#repair_continer .consent_remark>textarea{
+	width: 98%;
+   	height: 60px;
+   	float: left;
+   	font-size: 16px;
+   	line-height:28px;
+   	background-color: transparent;
+   	border:1px solid #f5f5f5;
+   	font-weight: normal;
+   	margin-top: 5px;
+}
+/* 签名框 */
+#repair_continer .zl_signature{
+	width:100%;
+}
+#repair_continer .zl_signature>div{
+	width:100%;
+	height: 10px; 
+}
+/* 签字时间 */
+#repair_continer .signature_time{
+	width: 50%;
+    text-align: center;
+}
+
+/* 按钮 */
+.btns{
+	width:100%;
+	text-align:center;
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+.btns button{
+   	font-size: 16px;
+   	line-height: 34px;
+   	background-color: #00A6C0;
+   	font-weight: normal;
+   	color: white;
+   	border: 0px;
+   	border-radius: 5px;
+   	padding: 0px 20px;
+   	letter-spacing: 1px;
+}
+.btns #consent_saveBtn{
+	margin-right: 30px;
+}

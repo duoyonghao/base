@@ -1,0 +1,56 @@
+.filterWrap{overflow: hidden;padding:0 0 10px 0;border-bottom: solid 1px #ddd ;}
+.filterWrap .kv{float: left;}
+.filterWrap .daozheng{float: right;}
+.filterWrap .kv > label{margin-right: 10px;}
+.filterWrap .kv-v input[type=text]{width: 150px;}
+.filterWrap .kv-v select{width:100px;vertical-align: top;}
+.filterWrap .kv-v input[type=text]:focus,
+.filterWrap .kv-v select:focus{border-color:#00A6C0 ;}
+
+/*费用清单*/
+.orangeFont{color: #e95b05;}
+.jiuzhen_register-content{width: 800px; margin: 20px 0 0 15px; height: 100%;overflow: hidden;position: relative;padding-bottom: 90px;}
+.tableBox{margin-bottom: 20px;}
+.tableBox .table-title{font-size: 14px;margin: 10px 0 5px 0;}
+
+/*表单*/
+.formBox{overflow: hidden;}
+.formBox .leftForm{float: left;width: 500px;}
+.formBox .rightForm{float: right;width: 380px;}
+.formBox .kv{float: left;margin-bottom: 8px;}
+.formBox .kv > label{margin-right: 10px;}
+
+.leftForm .kv input[type=text],
+.leftForm .kv select{width: 140px;}
+.leftForm .kv .changeBtn{display: inline-block;height: 28px;width:40px;margin:0 5px;border-radius:5px;line-height: 28px;text-align: center;color: #fff;background: #0e7cc9;}
+.leftForm .kv .changeBtn:hover{text-decoration: none;}
+.leftForm .kv .kv-v > label{font-weight: normal;margin: 0 10px 0 0;}
+.leftForm .cardType,.leftForm .hushiKv  {margin-left: 72px;}
+
+
+.rightForm .kv input[type=text],
+.rightForm .kv select{width: 100px;}
+.rightForm .kv{margin-left: 20px;}
+.rightForm .kv > label input[type=checkbox]{vertical-align: -3px;*vertical-align: 0;margin-right: 5px;}
+
+
+
+
+/*底部按钮*/
+.position-bottom{position: fixed;bottom: 0px;right:15px;left: 15px;background: #fff;padding: 20px 0 40px;border-top:solid 1px #00A6C0 ;text-align: center;}
+.position-bottom .aBtn{display: inline-block;width: 100px;height: 30px; margin-right: 10px;line-height: 30px; border: 1px solid #0e7cc9; color: #0e7cc9; border-radius: 15px;text-align: center; }
+.position-bottom .aBtn:hover{color: #fff;background: #117cca;text-decoration: none;}
+.position-bottom .search{color: #fff;background: #117cca;text-decoration: none;}
+
+
+
+/*表格公共*/
+.fixed-table-container{border-radius: 0;font-size: 12px;}
+.fixed-table-body{margin-top: -1px;}
+.fixed-table-header{margin-right:0!important;border-bottom: none; color: #333;font-weight:normal;background: #00A6C0;} 
+.table-striped > tbody > tr:nth-child(odd){background: #eef9fe;}
+.table-striped > tbody > tr{background: #FFF;}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{border-top: none;}
+.table-condensed > thead > tr > th, .table-condensed > tbody > tr > th, .table-condensed > tfoot > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > td{}/* padding: 0px 0px; */
+#table td span.time{display:inline-block;width: 140px;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+#table td span.name{display:inline-block;width: 80px;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }

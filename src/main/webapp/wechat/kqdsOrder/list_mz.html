@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta name="viewport" content="width=device-width,initial-scale=1,mininum-scale=1,maximum-scale=1,user-scalable=no" charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="../../static/css/wechat/weui.css"/>
+<link rel="stylesheet" href="../../static/css/wechat/jquery-weui.min.css"/>
+<link rel="stylesheet" href="../../static/css/wechat/kqdsWeixin.css"/>
+</head>
+<body>
+<div class="kqds-header">
+	<h2 class="titleText">
+		<img src="../../static/image/kqdsFront/wechat/images/back.png" onclick="jump('../userCenter.html')"/>
+		<!-- <i class="icon icon-leftArrow" onclick="jump('../userCenter.html')"></i> -->
+		<span class="titleTextFont">门诊预约查询</span>
+	</h2>
+</div>
+<div class="kqds-content"></div>
+<div class="weui-loadmore">
+	<i class="weui-loading"></i> <span class="weui-loadmore__tips">正在加载</span>
+</div>
+<script type="text/javascript" src="../../static/js/wechat/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="../../static/plugin/layer-v2.4/layer/layer.js"></script>
+<script type="text/javascript" src="../../static/js/wechat/jquery-weui.js"></script>
+<script type="text/javascript" src="../../static/js/kqdsFront/util.js"></script>
+<script type="text/javascript" src="../../static/js/wechat/kqds_wechat.js?version=1.7"></script>
+<script type="text/javascript" src="../../static/js/wechat/kqds_order.js"></script>
+<script type="text/javascript">
+var page_offset = 0;
+var page_limit = 5;
+var page_total = 0;
+$(function() {
+    getPageList();
+
+    $(".weui-loadmore").hide();
+    $(document.body).infinite(10).on("infinite",
+    function() {
+        $(".weui-loadmore").show();
+        getPageList();
+        $(".weui-loadmore").hide();
+    });
+});
+
+function getPageList() {
+    var pageParam = {
+        offset: page_offset * page_limit,
+        limit: page_limit
+    };
+    var url = wxOrderObj.selectPageMz + "&usercode=" + wxObj.usercode;
+
+    if (page_total > 0 && (page_limit * (page_offset - 1)) >= page_total) {
+        /** 已经加载完成则不请求后台  **/
+        return false;
+    }
+    var returnData = getDataFromServer(url, pageParam);
+    if (returnData.retState == 0) {
+        $.each(returnData.rows,
+        function(index) {
+            var html = initCell(returnData.rows[index]);
+            $(".kqds-content").append(html);
+        });
+
+        /** 页数累加 **/
+        page_total = returnData.total;
+        page_offset++;
+    } else {
+        layer.alert('操作失败！', {
+        });
+        return false;
+    }
+}
+
+function initCell(info) {
+    var cell = '';
+    cell += '<div class="kqds-panel" onclick="jump(\'detail_mz.html?seqId=' + info.seqId + '\')" >';
+    cell += ' <div class="kqds-panel-header">';
+    cell += '  <span class="dataName">' + info.organizationname + '</span>';
+    cell += '  <span class="dataValue">' + info.starttime + '</span>';
+    cell += ' </div>';
+    cell += ' <div class="kqds-panel-content">';
+    cell += '  <div>';
+    cell += '   <span class="dataName">预约患者</span>';
+    cell += '   <span class="dataValue">' + info.username + '</span>';
+    cell += '   <span class="dataName">预约医生</span>';
+    cell += '   <span class="dataValue">' + info.askperson + '</span>';
+    cell += '   <span class="dataName">上门状态</span>';
+    cell += '   <span class="dataValue">' + info.orderstatus + '</span>';
+    cell += '   <span class="dataName">预约项目</span>';
+    cell += '   <span class="dataValue">' + info.orderitemtype + '</span>';
+    cell += '  </div>';
+    cell += ' </div>';
+    cell += '</div>';
+
+    return cell;
+}
+</script>
+</body>
+</html>

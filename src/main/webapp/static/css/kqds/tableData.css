@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+#table td{padding:5px;font-size:12px;height:28px;}
+#table td span{display:inline-block;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+#table td span.time{display:inline-block;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+#table td span.name{width:6em;display:inline-block;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+#table td span.remark{width:10em;}/* 备注的长度 */
+#table td span.source{width:8em;}/* 来源子分类 */
+#table td span.money{text-align:center;}
+#table td input[type="text"]{height:21px;} /* 仓库中的input框高度设置 */
+#table td input[type="number"]{height:21px;} /* 仓库中的input框高度设置 */
+/*接待中心-预约挂号  门诊预约*/
+#table1 td{padding:5px;font-size:12px;height:28px;}
+#table1 td span{display:inline-block;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+#table1 td span.time{display:inline-block;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+#table1 td span.name{width:6em;display:inline-block;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+#table1 td span.remark{width:10em;}/* 备注的长度 */
+#table1 td span.source{width:8em;}/* 来源子分类 */
+#table1 td span.money{text-align:center;}
+/*接待中心-预约挂号 网电预约 */
+#table2 td{padding:5px;font-size:12px;height:28px;}
+#table2 td span{display:inline-block;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+#table2 td span.time{display:inline-block;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+#table2 td span.name{width:6em;display:inline-block;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+#table2 td span.remark{width:10em;}/* 备注的长度 */
+#table2 td span.source{width:8em;}/* 来源子分类 */
+#table2 td span.money{text-align:center;}
+/*咨询中心-推广计划  */
+#listTable td{padding:5px;font-size:12px;height:28px;}
+#listTable td span{display:inline-block;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+#listTable td span.time{display:inline-block;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+#listTable td span.name{width:6em;display:inline-block;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+#listTable td span.remark{width:10em;}/* 备注的长度 */
+#listTable td span.source{width:8em;}/* 来源子分类 */
+#listTable td span.money{text-align:center;}
+/*营销中心-工作量统计 咨询统计表 */
+#dykdxm td{padding:5px;font-size:12px;height:28px;}
+#dykdxm td span{display:inline-block;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+#dykdxm td span.time{display:inline-block;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+#dykdxm td span.name{width:6em;display:inline-block;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+#dykdxm td span.remark{width:10em;}/* 备注的长度 */
+#dykdxm td span.source{width:8em;}/* 来源子分类 */
+#dykdxm td span.money{text-align:center;}
+.table-striped > tbody > tr:nth-child(odd) {
+    background: #eef9fe;
+}
+
+

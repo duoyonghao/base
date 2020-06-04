@@ -1,0 +1,98 @@
+@CHARSET "UTF-8";
+.webuploader-pick{/* 导入按钮 中的文字为白色 */
+	color:#fff;
+}
+#toolbar select,#toolbar input[type="text"]{	/* 后台管理界面 中的input select 统一样式 */
+	width:120px;
+}	
+.commonText{	/* 与Input select 成对出现的文本 */
+	display:inline-block;
+	padding-left:10px;
+}
+input[type="text"]:focus,select:focus,textarea:focus{	/*	鼠标移入 input select的效果  */
+    box-shadow: 0 0 8px rgb(49, 165, 247);
+    border-color:transparent;
+}
+	/* table表下面 分页区 */
+.btn-group.dropup button{	/* 显示行数按钮 */
+	height:19px;
+	
+}
+.btn-group.dropup button span{/* 显示行中的数字 */
+	position:relative;
+	top:-7px;
+}
+.fixed-table-pagination>div{/* 去掉分页区 的外边距 */
+	margin:0;
+}
+	/* 表格筛选 按钮 */
+	.keep-open button{
+		height:26px;
+		
+	}
+	input[type="text"]{/*首行输入框与同行按钮等高  */
+		height:26px;
+		line-height:26px;
+		font-size:13px;
+	}
+	.keep-open i{/* 按钮中的图标 */
+		top:1px;
+	}
+	.keep-open .caret{/* 按钮中的图标 */
+		top:-4px;
+		position:relative;
+	}
+	
+#toolbar{
+	padding-top:5px;
+}
+#filePicker{/* 导入按钮样式修改 */
+    padding: 3px 10px 4px 10px;
+}
+.webuploader-pick{/* 导入按钮中字样 的位置 */
+    position: relative;
+    top: -2px;
+    font-size: 12px;
+}
+.titleText{
+	margin:0;
+	text-align:center;
+	font-size:18px;
+	height:40px;
+	line-height:40px;
+	font-weight:bold;
+	border-bottom:1px solid #ddd;
+}
+#table th,#table td{
+	height:30px;
+}
+.layui-tab-content{
+	background:#fff;
+}
+.table-striped > tbody > tr:nth-child(odd){
+	background:#F0FFFF;
+}
+
+/*按钮   数据项显示控制按钮的样式  */
+.keep-open.btn-group>button{/*第三个按钮  数据项显示控制按钮的样式  */
+	width:40px;
+	height:34px;
+}
+.keep-open.btn-group span.caret{	/* 第三个按钮中的向下三角 */
+	top:0px;
+}
+.table-striped > tbody > tr:nth-child(odd){	/* 单行为蓝色背景 */
+	background:#f0ffff;
+}
+.bs-bars{/* 刷新按钮 所在的父元素 */
+	/* width:100%; */
+}
+/*打印设置 排班类型  中按钮的上下margin 去掉*/
+.fixed-table-toolbar .bs-bars, .fixed-table-toolbar .search, .fixed-table-toolbar .columns{
+	margin:0;
+	
+}
+/*打印设置 排班类型 页面中右侧 bootstrapTable自带的两个按钮 位置调整*/
+.fixed-table-toolbar .columns-right{
+	top:5px;
+}

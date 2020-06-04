@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="WX_ORDER">
+
+	<resultMap id="BaseResultMap" type="com.kqds.entity.wx.WXOrder">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="OPENID" jdbcType="VARCHAR" property="openid" />
+		<result column="ORDERDATE" jdbcType="VARCHAR" property="orderdate" />
+		<result column="ORDERTIME" jdbcType="VARCHAR" property="ordertime" />
+		<result column="ORGANIZATION" jdbcType="VARCHAR" property="organization" />
+		<result column="CREATETIME" jdbcType="VARCHAR" property="createtime" />
+		<result column="ORDERSTATUS" jdbcType="INTEGER" property="orderstatus" />
+		<result column="AUDITOR" jdbcType="VARCHAR" property="auditor" />
+		<result column="AUDITORTIME" jdbcType="VARCHAR" property="auditortime" />
+		<result column="AUDITORREMARK" jdbcType="VARCHAR" property="auditorremark" />
+		<result column="CANCELREASON" jdbcType="VARCHAR" property="cancelreason" />
+		<result column="CANCELTIME" jdbcType="VARCHAR" property="canceltime" />
+		<result column="ASKITEM" jdbcType="VARCHAR" property="askitem" />
+		<result column="ASKCONTENT" jdbcType="VARCHAR" property="askcontent" />
+		<result column="phonenumber" jdbcType="VARCHAR" property="phonenumber" />
+		<result column="confirmtime" jdbcType="VARCHAR" property="confirmtime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, OPENID, ORDERDATE, ORDERTIME, ORGANIZATION, CREATETIME, ORDERSTATUS, AUDITOR,
+		AUDITORTIME, AUDITORREMARK, CANCELREASON, CANCELTIME, ASKITEM, ASKCONTENT,
+		phonenumber,
+		confirmtime
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wx_order
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from wx_order
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.wx.WXOrder">
+		insert into wx_order (SEQ_ID, OPENID, ORDERDATE,
+		ORDERTIME, ORGANIZATION, CREATETIME,
+		ORDERSTATUS, AUDITOR, AUDITORTIME,
+		AUDITORREMARK,
+		CANCELREASON, CANCELTIME,
+		ASKITEM, ASKCONTENT, phonenumber,
+		confirmtime)
+		values (#{seqId,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{orderdate,jdbcType=VARCHAR},
+		#{ordertime,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{orderstatus,jdbcType=INTEGER}, #{auditor,jdbcType=VARCHAR},
+		#{auditortime,jdbcType=VARCHAR},
+		#{auditorremark,jdbcType=VARCHAR}, #{cancelreason,jdbcType=VARCHAR}, #{canceltime,jdbcType=VARCHAR},
+		#{askitem,jdbcType=VARCHAR},
+		#{askcontent,jdbcType=VARCHAR}, #{phonenumber,jdbcType=VARCHAR},
+		#{confirmtime,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.wx.WXOrder">
+		insert into wx_order
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="openid != null">
+				OPENID,
+			</if>
+			<if test="orderdate != null">
+				ORDERDATE,
+			</if>
+			<if test="ordertime != null">
+				ORDERTIME,
+			</if>
+			<if test="organization != null">
+				ORGANIZATION,
+			</if>
+			<if test="createtime != null">
+				CREATETIME,
+			</if>
+			<if test="orderstatus != null">
+				ORDERSTATUS,
+			</if>
+			<if test="auditor != null">
+				AUDITOR,
+			</if>
+			<if test="auditortime != null">
+				AUDITORTIME,
+			</if>
+			<if test="auditorremark != null">
+				AUDITORREMARK,
+			</if>
+			<if test="cancelreason != null">
+				CANCELREASON,
+			</if>
+			<if test="canceltime != null">
+				CANCELTIME,
+			</if>
+			<if test="askitem != null">
+				ASKITEM,
+			</if>
+			<if test="askcontent != null">
+				ASKCONTENT,
+			</if>
+			<if test="phonenumber != null">
+				phonenumber,
+			</if>
+			<if test="confirmtime != null">
+				confirmtime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="openid != null">
+				#{openid,jdbcType=VARCHAR},
+			</if>
+			<if test="orderdate != null">
+				#{orderdate,jdbcType=VARCHAR},
+			</if>
+			<if test="ordertime != null">
+				#{ordertime,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="orderstatus != null">
+				#{orderstatus,jdbcType=INTEGER},
+			</if>
+			<if test="auditor != null">
+				#{auditor,jdbcType=VARCHAR},
+			</if>
+			<if test="auditortime != null">
+				#{auditortime,jdbcType=VARCHAR},
+			</if>
+			<if test="auditorremark != null">
+				#{auditorremark,jdbcType=VARCHAR},
+			</if>
+			<if test="cancelreason != null">
+				#{cancelreason,jdbcType=VARCHAR},
+			</if>
+			<if test="canceltime != null">
+				#{canceltime,jdbcType=VARCHAR},
+			</if>
+			<if test="askitem != null">
+				#{askitem,jdbcType=VARCHAR},
+			</if>
+			<if test="askcontent != null">
+				#{askcontent,jdbcType=VARCHAR},
+			</if>
+			<if test="phonenumber != null">
+				#{phonenumber,jdbcType=VARCHAR},
+			</if>
+			<if test="confirmtime != null">
+				#{confirmtime,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.wx.WXOrder">
+		update wx_order
+		<set>
+			<if test="openid != null">
+				OPENID = #{openid,jdbcType=VARCHAR},
+			</if>
+			<if test="orderdate != null">
+				ORDERDATE = #{orderdate,jdbcType=VARCHAR},
+			</if>
+			<if test="ordertime != null">
+				ORDERTIME = #{ordertime,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				ORGANIZATION = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				CREATETIME = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="orderstatus != null">
+				ORDERSTATUS = #{orderstatus,jdbcType=INTEGER},
+			</if>
+			<if test="auditor != null">
+				AUDITOR = #{auditor,jdbcType=VARCHAR},
+			</if>
+			<if test="auditortime != null">
+				AUDITORTIME = #{auditortime,jdbcType=VARCHAR},
+			</if>
+			<if test="auditorremark != null">
+				AUDITORREMARK = #{auditorremark,jdbcType=VARCHAR},
+			</if>
+			<if test="cancelreason != null">
+				CANCELREASON = #{cancelreason,jdbcType=VARCHAR},
+			</if>
+			<if test="canceltime != null">
+				CANCELTIME = #{canceltime,jdbcType=VARCHAR},
+			</if>
+			<if test="askitem != null">
+				ASKITEM = #{askitem,jdbcType=VARCHAR},
+			</if>
+			<if test="askcontent != null">
+				ASKCONTENT = #{askcontent,jdbcType=VARCHAR},
+			</if>
+			<if test="phonenumber != null">
+				phonenumber = #{phonenumber,jdbcType=VARCHAR},
+			</if>
+			<if test="confirmtime != null">
+				confirmtime = #{confirmtime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.wx.WXOrder">
+		update wx_order
+		set OPENID = #{openid,jdbcType=VARCHAR},
+		ORDERDATE = #{orderdate,jdbcType=VARCHAR},
+		ORDERTIME =
+		#{ordertime,jdbcType=VARCHAR},
+		ORGANIZATION = #{organization,jdbcType=VARCHAR},
+		CREATETIME = #{createtime,jdbcType=VARCHAR},
+		ORDERSTATUS = #{orderstatus,jdbcType=INTEGER},
+		AUDITOR =
+		#{auditor,jdbcType=VARCHAR},
+		AUDITORTIME = #{auditortime,jdbcType=VARCHAR},
+		AUDITORREMARK = #{auditorremark,jdbcType=VARCHAR},
+		CANCELREASON = #{cancelreason,jdbcType=VARCHAR},
+		CANCELTIME = #{canceltime,jdbcType=VARCHAR},
+		ASKITEM = #{askitem,jdbcType=VARCHAR},
+		ASKCONTENT = #{askcontent,jdbcType=VARCHAR},
+		phonenumber = #{phonenumber,jdbcType=VARCHAR},
+		confirmtime = #{confirmtime,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+
+	<!--表名 -->
+	<sql id="tableName">
+		WX_ORDER
+	</sql>
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+	<select id="selectBeanListByMap" parameterType="map" resultType="WXOrder">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+
+	<select id="countToday" parameterType="map" resultType="int">
+		select count(1) from WX_ORDER
+		where 1=1 and openid = #{openid} and orderstatus in (0,1) and orderdate = #{orderdate}
+	</select>
+	<select id="selectDetail" parameterType="java.lang.String" resultType="json">
+		select
+		b.*,
+		u.username,
+		kcit4.dict_name as askitemname ,
+		odept.dept_name as organizationname
+		from WX_ORDER
+		b
+		left join KQDS_USERDOCUMENT u on u.openid = b.openid
+		LEFT JOIN SYS_DEPT odept on odept.dept_code = b.organization and odept.dept_parent = '0'
+		LEFT JOIN SYS_DICT kcit4 on
+		b.askitem
+		= kcit4.seq_id
+		where 1=1
+		and b.seq_id = #{_parameter}
+	</select>
+	<select id="selectPage" parameterType="map" resultType="json">
+		select
+		b.*,
+		fs.nickname,
+		u.usercode,
+		u.username,
+		u.phonenumber1,
+		u.phonenumber2,
+		u.openid as useropenid,
+		u.bindstatus,
+		kcit4.dict_name as askitemname ,
+		odept.dept_name as organizationname
+		from WX_ORDER b
+		left join WX_FANS fs on b.openid = fs.openid
+		left join KQDS_USERDOCUMENT u on u.openid = b.openid
+		LEFT JOIN SYS_DEPT odept on odept.dept_code = b.organization
+		and
+		odept.dept_parent = '0'
+		LEFT JOIN SYS_DICT kcit4 on b.askitem = kcit4.seq_id
+		where 1=1
+		<if test="orderdate != null and orderdate !='' ">
+			and b.orderdate = #{orderdate}
+		</if>
+		<if test="confirmdateStart != null and confirmdateStart !='' ">
+			and b.confirmtime <![CDATA[ >= ]]>
+			#{confirmdateStart}
+		</if>
+		<if test="confirmdateEnd != null and confirmdateEnd !='' ">
+			and b.confirmtime <![CDATA[ < ]]>
+			#{confirmdateEnd}
+		</if>
+		<!-- and orderstatus = 1  -->
+		ORDER BY b.createtime desc
+	</select>
+	<select id="selectList" parameterType="map" resultType="json">
+		select
+		b.*,
+		fs.nickname,
+		u.usercode,
+		u.username,
+		u.phonenumber1,
+		u.phonenumber2,
+		u.openid as useropenid,
+		u.bindstatus,
+		kcit4.dict_name as askitemname ,
+		odept.dept_name as organizationname
+		from WX_ORDER b
+		left join WX_FANS fs on b.openid = fs.openid
+		left join KQDS_USERDOCUMENT u on u.openid = b.openid
+		LEFT JOIN SYS_DEPT odept on odept.dept_code = b.organization and odept.dept_parent = '0'
+		LEFT JOIN SYS_DICT kcit4 on b.askitem = kcit4.seq_id
+		where 1=1
+		and b.openid =
+		#{openid}
+		ORDER
+		BY b.createtime desc
+	</select>
+
+</mapper>

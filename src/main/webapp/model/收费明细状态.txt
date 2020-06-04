@@ -1,0 +1,4 @@
+//欠款
+kqdsBigDecimal.compareTo(detail.getY2(), new BigDecimal(0)) > 0
+//还款
+kqdsBigDecimal.compareTo(detail.getY2(), new BigDecimal(0)) <= 0 && detail.getQfbh() != null && !"".equals(detail.getQfbh())

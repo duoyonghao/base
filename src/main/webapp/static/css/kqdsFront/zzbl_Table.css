@@ -1,0 +1,131 @@
+@CHARSET "UTF-8";
+a:hover{
+	text-decoration:none;
+}
+#form1{
+	border:1px solid transparent;
+}
+table{
+	table-layout:fixed;
+	width:99%;
+	margin-bottom:2px;
+}
+table,th,td,input{
+	box-sizing:border-box;
+}
+table th{
+	text-align:center;
+    background: #1F98F0;
+    color: #fff;
+    font-size:13px;
+    padding:5px 0;
+}
+table th.highTh{
+    padding:10px 0;
+    font-size:14px;
+}
+table tr{
+	box-sizing:border-box;
+}
+table td{
+	width:100%;
+	border:1px solid #999;
+	padding:3px 5px;
+	box-sizing:content-box; 
+}
+table input[type="text"],table textarea{
+	width:100%;
+	/* border-radius:6px; */
+	/* border:1px solid transparent; */
+	border:1px solid #999;
+}
+
+table input[type="text"]:focus,table textarea:focus{
+	border:1px solid #4BA7EA;
+	box-shadow:0 0 4px #4BA7EA;
+}
+table input[type="text"]{ /*所有的输入input*/
+	
+	padding:0 5px;
+}
+table input[type="button"]{/* 添加行 删除按钮*/
+	width:40%;
+	height:28px;
+	font-size:13px;
+	display:block;
+	margin:5px;
+	float:left;
+	background:#fff;
+	color: #0E7CC7;
+	border:1px solid #0E7CC7;
+	border-radius:6px;
+}
+table input[type="radio"]{/*所有的单选框位置微调*/
+	position:relative;
+	top:2px;
+}
+/* th.tableFirst{           病案模板选取 按钮所在th
+	background:transparent;
+	padding-top:5px;
+} */
+.solidBtn{ /*病案模板选取 按钮*/
+	width:90px;
+	height:28px;
+	line-height:28px;
+    font-size:13px;
+    font-weight:bold;
+    display:block;
+    /* color:#fff; */
+	background:#fff;
+	color: #0E7CC7;
+	border:1px solid #0E7CC7;
+	border-radius:6px;
+	padding: 0 4px;
+	position:absolute;
+	right:10px;
+	top:5px;
+	
+}
+.submBtnTd{/*最先面两个按钮居中*/								
+	text-align:center;
+}
+.footTable{/*上移2个像素，因为每个table之间有两个像素的下外边距*/                           
+	margin-top:-2px;
+}
+.footTableTr td{/*zhongzhiyiqi_footer.jsp的td去掉上边框  将两个table相接的线 去掉一条*/
+	border-top:none;
+}
+table input.submBtn{/*最下面两个按钮*/
+	width:120px;
+	height:28px;
+	display:inline-block;
+	float:none;
+}
+.submBtnTd :not:first-child{/*最下面两个按钮*/
+	margin-left:50px;
+}
+table input[type="button"]:hover,a.solidBtn:hover{/* 添加行 删除按钮*/
+	background:#0E7CC7;
+	color:#fff;
+}
+input[type="text"].tdHeightD{
+	height:60px;
+}
+input[type="text"].tdHigthM{
+	height:50px;
+}
+input[type="text"].tdHigthS{
+	height:45px;
+}
+textarea.tdHeightD{
+	min-height:65px;
+	padding:5px 10px;
+}
+textarea.tdHigthM{
+	min-height:50px;
+	padding:5px 10px;
+}
+textarea.tdHigthS{
+	min-height:45px;
+	padding:5px 10px;
+}

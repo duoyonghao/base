@@ -1,0 +1,1157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_HOSPITAL_ORDER">
+
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsHospitalOrder">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="orderno" jdbcType="VARCHAR" property="orderno" />
+		<result column="ordertype" jdbcType="VARCHAR" property="ordertype" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="askperson" jdbcType="VARCHAR" property="askperson" />
+		<result column="ordertime" jdbcType="VARCHAR" property="ordertime" />
+		<result column="orderitemtype" jdbcType="VARCHAR" property="orderitemtype" />
+		<result column="orderitemdetail" jdbcType="VARCHAR" property="orderitemdetail" />
+		<result column="starttime" jdbcType="VARCHAR" property="starttime" />
+		<result column="endtime" jdbcType="VARCHAR" property="endtime" />
+		<result column="orderremark" jdbcType="VARCHAR" property="orderremark" />
+		<result column="orderstatus" jdbcType="INTEGER" property="orderstatus" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="regno" jdbcType="VARCHAR" property="regno" />
+		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="delperson" jdbcType="VARCHAR" property="delperson" />
+		<result column="delreason" jdbcType="VARCHAR" property="delreason" />
+		<result column="regdept" jdbcType="VARCHAR" property="regdept" />
+		<result column="cjstatus" jdbcType="INTEGER" property="cjstatus" />
+		<result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+		<result column="order_number" jdbcType="VARCHAR" property="order_number" />
+		<result column="nodeId" jdbcType="VARCHAR" property="nodeId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, createuser, createtime, usercode, orderno, ordertype, organization, askperson,
+		ordertime, orderitemtype, orderitemdetail, starttime, endtime, orderremark,
+		orderstatus,
+		remark, regno, username, delperson, delreason, regdept, cjstatus, isdelete, order_number, nodeId
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_HOSPITAL_ORDER
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_HOSPITAL_ORDER
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsHospitalOrder">
+		insert into KQDS_HOSPITAL_ORDER (SEQ_ID, createuser, createtime,
+		usercode, orderno, ordertype,
+		organization, askperson, ordertime,
+		orderitemtype, orderitemdetail, starttime,
+		endtime, orderremark, orderstatus,
+		remark, regno, username,
+		delperson, delreason, regdept,
+		cjstatus, isdelete)
+		values
+		(#{seqId,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{usercode,jdbcType=VARCHAR}, #{orderno,jdbcType=VARCHAR},
+		#{ordertype,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR}, #{askperson,jdbcType=VARCHAR}, #{ordertime,jdbcType=VARCHAR},
+		#{orderitemtype,jdbcType=VARCHAR},
+		#{orderitemdetail,jdbcType=VARCHAR}, #{starttime,jdbcType=VARCHAR},
+		#{endtime,jdbcType=VARCHAR}, #{orderremark,jdbcType=VARCHAR}, #{orderstatus,jdbcType=INTEGER},
+		#{remark,jdbcType=VARCHAR}, #{regno,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
+		#{delperson,jdbcType=VARCHAR}, #{delreason,jdbcType=VARCHAR}, #{regdept,jdbcType=VARCHAR},
+		#{cjstatus,jdbcType=INTEGER}, #{isdelete,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsHospitalOrder">
+		insert into KQDS_HOSPITAL_ORDER
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="usercode != null">
+				usercode,
+			</if>
+			<if test="orderno != null">
+				orderno,
+			</if>
+			<if test="ordertype != null">
+				ordertype,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="askperson != null">
+				askperson,
+			</if>
+			<if test="ordertime != null">
+				ordertime,
+			</if>
+			<if test="orderitemtype != null">
+				orderitemtype,
+			</if>
+			<if test="orderitemdetail != null">
+				orderitemdetail,
+			</if>
+			<if test="starttime != null">
+				starttime,
+			</if>
+			<if test="endtime != null">
+				endtime,
+			</if>
+			<if test="orderremark != null">
+				orderremark,
+			</if>
+			<if test="orderstatus != null">
+				orderstatus,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="regno != null">
+				regno,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="delperson != null">
+				delperson,
+			</if>
+			<if test="delreason != null">
+				delreason,
+			</if>
+			<if test="regdept != null">
+				regdept,
+			</if>
+			<if test="cjstatus != null">
+				cjstatus,
+			</if>
+			<if test="isdelete != null">
+				isdelete,
+			</if>
+			<if test="order_number != null">
+				order_number,
+			</if>
+			<if test="nodeId != null">
+				nodeId,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="orderno != null">
+				#{orderno,jdbcType=VARCHAR},
+			</if>
+			<if test="ordertype != null">
+				#{ordertype,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="askperson != null">
+				#{askperson,jdbcType=VARCHAR},
+			</if>
+			<if test="ordertime != null">
+				#{ordertime,jdbcType=VARCHAR},
+			</if>
+			<if test="orderitemtype != null">
+				#{orderitemtype,jdbcType=VARCHAR},
+			</if>
+			<if test="orderitemdetail != null">
+				#{orderitemdetail,jdbcType=VARCHAR},
+			</if>
+			<if test="starttime != null">
+				#{starttime,jdbcType=VARCHAR},
+			</if>
+			<if test="endtime != null">
+				#{endtime,jdbcType=VARCHAR},
+			</if>
+			<if test="orderremark != null">
+				#{orderremark,jdbcType=VARCHAR},
+			</if>
+			<if test="orderstatus != null">
+				#{orderstatus,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="regno != null">
+				#{regno,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="delperson != null">
+				#{delperson,jdbcType=VARCHAR},
+			</if>
+			<if test="delreason != null">
+				#{delreason,jdbcType=VARCHAR},
+			</if>
+			<if test="regdept != null">
+				#{regdept,jdbcType=VARCHAR},
+			</if>
+			<if test="cjstatus != null">
+				#{cjstatus,jdbcType=INTEGER},
+			</if>
+			<if test="isdelete != null">
+				#{isdelete,jdbcType=INTEGER},
+			</if>
+			<if test="order_number != null">
+				#{order_number,jdbcType=VARCHAR},
+			</if>
+			<if test="nodeId != null">
+				#{nodeId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsHospitalOrder">
+		update KQDS_HOSPITAL_ORDER
+		<set>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				usercode = #{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="orderno != null">
+				orderno = #{orderno,jdbcType=VARCHAR},
+			</if>
+			<if test="ordertype != null">
+				ordertype = #{ordertype,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="askperson != null">
+				askperson = #{askperson,jdbcType=VARCHAR},
+			</if>
+			<if test="ordertime != null">
+				ordertime = #{ordertime,jdbcType=VARCHAR},
+			</if>
+			<if test="orderitemtype != null">
+				orderitemtype = #{orderitemtype,jdbcType=VARCHAR},
+			</if>
+			<if test="orderitemdetail != null">
+				orderitemdetail = #{orderitemdetail,jdbcType=VARCHAR},
+			</if>
+			<if test="starttime != null">
+				starttime = #{starttime,jdbcType=VARCHAR},
+			</if>
+			<if test="endtime != null">
+				endtime = #{endtime,jdbcType=VARCHAR},
+			</if>
+			<if test="orderremark != null">
+				orderremark = #{orderremark,jdbcType=VARCHAR},
+			</if>
+			<if test="orderstatus != null">
+				orderstatus = #{orderstatus,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="regno != null">
+				regno = #{regno,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="delperson != null">
+				delperson = #{delperson,jdbcType=VARCHAR},
+			</if>
+			<if test="delreason != null">
+				delreason = #{delreason,jdbcType=VARCHAR},
+			</if>
+			<if test="regdept != null">
+				regdept = #{regdept,jdbcType=VARCHAR},
+			</if>
+			<if test="cjstatus != null">
+				cjstatus = #{cjstatus,jdbcType=INTEGER},
+			</if>
+			<if test="isdelete != null">
+				isdelete = #{isdelete,jdbcType=INTEGER},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsHospitalOrder">
+		update KQDS_HOSPITAL_ORDER
+		set createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		usercode = #{usercode,jdbcType=VARCHAR},
+		orderno = #{orderno,jdbcType=VARCHAR},
+		ordertype = #{ordertype,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR},
+		askperson
+		= #{askperson,jdbcType=VARCHAR},
+		ordertime = #{ordertime,jdbcType=VARCHAR},
+		orderitemtype = #{orderitemtype,jdbcType=VARCHAR},
+		orderitemdetail = #{orderitemdetail,jdbcType=VARCHAR},
+		starttime = #{starttime,jdbcType=VARCHAR},
+		endtime = #{endtime,jdbcType=VARCHAR},
+		orderremark = #{orderremark,jdbcType=VARCHAR},
+		orderstatus = #{orderstatus,jdbcType=INTEGER},
+		remark = #{remark,jdbcType=VARCHAR},
+		regno = #{regno,jdbcType=VARCHAR},
+		username = #{username,jdbcType=VARCHAR},
+		delperson = #{delperson,jdbcType=VARCHAR},
+		delreason =
+		#{delreason,jdbcType=VARCHAR},
+		regdept = #{regdept,jdbcType=VARCHAR},
+		cjstatus = #{cjstatus,jdbcType=INTEGER},
+		isdelete = #{isdelete,jdbcType=INTEGER}
+		where SEQ_ID =
+		#{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_HOSPITAL_ORDER
+	</sql>
+
+	<select id="selectCountByMap" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsHospitalOrder">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+
+	<select id="selectPageMz" parameterType="map" resultType="json">
+		select
+		h.cjstatus,
+		dept.DEPT_NAME as organizationname,
+		per1.user_name as askperson,
+		per2.user_name as delperson,
+		per3.user_name as cjr,
+		per4.user_name as jdr,
+		kcit1.dict_name as
+		orderitemtype,
+		h.seq_id,
+		h.orderitemdetail,
+		h.organization,
+		h.orderstatus,
+		h.createtime,
+		h.usercode,
+		h.username,
+		h.starttime,
+		h.endtime,
+		h.ordertime,
+		h.isdelete,
+		h.delreason,
+		h.orderremark,
+		h.remark,
+		u.PhoneNumber1,
+		u.createtime jdsj,
+		u.doorstatus zdoorstatus
+		from KQDS_HOSPITAL_ORDER h
+		LEFT JOIN KQDS_UserDocument u on u.usercode = h.usercode
+		LEFT JOIN SYS_PERSON per1 on
+		per1.SEQ_ID = h.askperson
+		LEFT JOIN SYS_PERSON per2 on per2.SEQ_ID = h.delperson
+		LEFT JOIN SYS_PERSON per3 on per3.SEQ_ID = h.createuser
+		LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID =
+		u.createuser
+		LEFT JOIN SYS_DICT kcit1 on h.orderitemtype = kcit1.seq_id
+		LEFT JOIN SYS_DEPT dept on h.organization = dept.dept_code and dept.dept_parent = '0'
+		where 1=1
+		<if test="usercode != null and usercode !='' ">
+			and h.usercode = #{usercode}
+		</if>
+		<if test="seqId != null and seqId !='' ">
+			and h.seq_id = #{seqId}
+		</if>
+		ORDER BY h.CreateTime desc
+	</select>
+	
+	<select id="selectNoPageNum" parameterType="map" resultType="json">
+		select
+		count(*) as allnum,
+		sum(h.cjstatus) as cjstatus,
+		sum(h.orderstatus) as orderstatus
+		from KQDS_HOSPITAL_ORDER h
+		LEFT JOIN KQDS_UserDocument u on u.usercode = h.usercode
+		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = h.askperson
+		LEFT JOIN sys_person per0 ON per0.SEQ_ID = u.kefu
+		LEFT JOIN SYS_PERSON per2 on per2.SEQ_ID = h.delperson
+		LEFT JOIN SYS_PERSON per3 on per3.SEQ_ID = h.createuser
+		LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID
+		= u.createuser
+		LEFT JOIN SYS_PERSON per5 on per5.SEQ_ID = u.askperson
+		LEFT JOIN SYS_DICT kcit1 on h.orderitemtype = kcit1.seq_id
+		LEFT JOIN SYS_DEPT dept on h.organization =
+		dept.dept_code and dept.dept_parent = '0'
+		where 1=1
+		and h.isdelete=0
+		<if test="starttime != null and starttime !='' ">
+			and h.starttime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and h.endtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="createtime != null and createtime !='' ">
+			and h.createtime = like '%' + #{createtime} + '%'
+		</if>
+		<if test="username != null and username !='' ">
+			and (u.usercode like '%' + #{username} + '%'
+			or u.username like '%' + #{username} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{username} + '%'
+			)
+		</if>
+		<if test="organization != null and organization !='' ">
+			and h.organization = #{organization}
+		</if>
+		<if test="regdept != null and regdept !='' ">
+			and h.regdept = #{regdept}
+		</if>
+		<if test="orderstatus != null and orderstatus !='' ">
+			and h.orderstatus = #{orderstatus}
+		</if>
+		<if test="askperson != null and askperson !='' ">
+			and h.askperson = #{askperson}
+		</if>
+		<if test="firstaskperson != null and firstaskperson !='' ">
+			and u.askperson = #{firstaskperson}
+		</if>
+		<if test="yyxm != null and yyxm !='' ">
+			and h.orderitemtype = #{yyxm}
+		</if>
+		<if test="isdelete != null and isdelete !='' and isdelete ==0">
+			and h.isdelete != '1'
+		</if>
+		<if test="createuser != null and createuser !='' ">
+			and u.createuser = #{createuser}
+		</if>
+		<if test="cjr != null and cjr !='' ">
+			and h.createuser = #{cjr}
+		</if>
+		<if test="visualstaff != null and visualstaff !='' ">
+			and (
+			h.askperson in (${visualstaff})
+			or h.createuser in (${visualstaff})
+			or u.createuser in (${visualstaff})
+			or u.askperson in (${visualstaff})
+			)
+		</if>
+	</select>
+	
+	<select id="selectNoPage" parameterType="map" resultType="json">
+		select
+		u.SEQ_ID AS UID,
+		h.cjstatus,
+		dept.DEPT_NAME as organizationname,
+		per1.user_name as askperson,
+		per2.user_name as delperson,
+		per3.user_name as cjr,
+		per4.user_name as jdr,
+		per5.user_name as
+		firstaskperson,
+		kcit1.dict_name as orderitemtype,
+		h.seq_id,
+		h.organization,
+		h.orderstatus,
+		h.createtime,
+		h.usercode,
+		h.username,
+		h.starttime,
+		h.endtime,
+		h.ordertime,
+		h.isdelete,
+		h.delreason,
+		u.PhoneNumber1,
+		u.createtime jdsj,
+		per0.user_name AS kefu,
+		u.doorstatus zdoorstatus
+		from KQDS_HOSPITAL_ORDER h
+		LEFT JOIN KQDS_UserDocument u on u.usercode = h.usercode
+		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = h.askperson
+		LEFT JOIN sys_person per0 ON per0.SEQ_ID = u.kefu
+		LEFT JOIN SYS_PERSON per2 on per2.SEQ_ID = h.delperson
+		LEFT JOIN SYS_PERSON per3 on per3.SEQ_ID = h.createuser
+		LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID
+		= u.createuser
+		LEFT JOIN SYS_PERSON per5 on per5.SEQ_ID = u.askperson
+		LEFT JOIN SYS_DICT kcit1 on h.orderitemtype = kcit1.seq_id
+		LEFT JOIN SYS_DEPT dept on h.organization =
+		dept.dept_code and dept.dept_parent = '0'
+		where 1=1
+		<if test="starttime != null and starttime !='' ">
+			and h.starttime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and h.endtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="createtime != null and createtime !='' ">
+			and h.createtime = like '%' + #{createtime} + '%'
+		</if>
+		<if test="username != null and username !='' ">
+			and (u.usercode like '%' + #{username} + '%'
+			or u.username like '%' + #{username} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{username} + '%'
+			)
+		</if>
+		<if test="organization != null and organization !='' ">
+			and h.organization = #{organization}
+		</if>
+		<if test="regdept != null and regdept !='' ">
+			and h.regdept = #{regdept}
+		</if>
+		<if test="orderstatus != null and orderstatus !='' ">
+			and h.orderstatus = #{orderstatus}
+		</if>
+		<if test="askperson != null and askperson !='' ">
+			and h.askperson = #{askperson}
+		</if>
+		<if test="firstaskperson != null and firstaskperson !='' ">
+			and u.askperson = #{firstaskperson}
+		</if>
+		<if test="yyxm != null and yyxm !='' ">
+			and h.orderitemtype = #{yyxm}
+		</if>
+		<if test="isdelete != null and isdelete !='' and isdelete ==0">
+			and h.isdelete != '1'
+		</if>
+		<if test="createuser != null and createuser !='' ">
+			and u.createuser = #{createuser}
+		</if>
+		<if test="cjr != null and cjr !='' ">
+			and h.createuser = #{cjr}
+		</if>
+		<if test="visualstaff != null and visualstaff !='' ">
+			and (
+			h.askperson in (${visualstaff})
+			or h.createuser in (${visualstaff})
+			or u.createuser in (${visualstaff})
+			or u.askperson in (${visualstaff})
+			)
+		</if>
+		<if test="sortName != null and sortName != '' ">
+			ORDER BY ${sortName} ${sortOrder}
+		</if>
+		<if test="sortName == null">
+			ORDER BY h.CreateTime desc
+		</if>
+	</select>
+	<select id="selectYyxxByUsercode" parameterType="java.lang.String" resultType="json">
+		select
+		h.cjstatus,
+		dept.DEPT_NAME as organizationname,
+		per1.user_name as askperson,
+		per2.user_name as delperson,
+		per3.user_name as cjr,
+		per4.user_name as jdr,
+		per5.user_name as firstaskperson,
+		kcit1.dict_name as orderitemtype,
+		h.seq_id,
+		h.organization,
+		h.orderstatus,
+		h.createtime,
+		h.usercode,
+		h.username,
+		h.starttime,
+		h.endtime,
+		h.ordertime,
+		h.isdelete,
+		h.delreason,
+		u.PhoneNumber1,
+		u.createtime jdsj,
+		u.doorstatus zdoorstatus
+		from KQDS_HOSPITAL_ORDER h
+		LEFT JOIN KQDS_UserDocument u on u.usercode = h.usercode
+		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = h.askperson
+		LEFT JOIN SYS_PERSON per2 on per2.SEQ_ID = h.delperson
+		LEFT JOIN
+		SYS_PERSON per3 on per3.SEQ_ID = h.createuser
+		LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID = u.createuser
+		LEFT JOIN SYS_PERSON per5 on per5.SEQ_ID = u.askperson
+		LEFT JOIN SYS_DICT kcit1
+		on h.orderitemtype = kcit1.seq_id
+		LEFT JOIN SYS_DEPT dept on h.organization = dept.dept_code and dept.dept_parent = '0'
+		where 1=1
+		and h.usercode =#{_parameter}
+		ORDER BY
+		h.CreateTime
+		desc
+	</select>
+	<select id="selectHospitalOrderList" parameterType="map" resultType="json">
+		<bind name="temp_dbType" value="${system_dbType}" />
+		select
+		odept.dept_name as organizationname,
+		(select per.user_name from KQDS_REG r LEFT JOIN SYS_PERSON per on per.seq_id = r.receiveno where r.SEQ_ID = h.regno) as receiveno,
+		h.seq_id,
+		h.cjstatus,
+		h.orderstatus,
+		h.starttime,
+		h.endtime,
+		h.usercode,
+		h.username,
+		h.askperson,
+		per1.user_name as askpersonname,
+		h.orderitemtype,
+		kcit1.dict_name as orderitemtypename,
+		h.ordertype,
+		kcit2.dict_name as ordertypename,
+		u.doorstatus zdoorstatus,
+		u.iscreatelclj,
+		u.familyship
+		from KQDS_HOSPITAL_ORDER h
+		left join KQDS_UserDocument u on u.usercode = h.usercode
+		LEFT JOIN SYS_DEPT
+		odept on
+		odept.dept_code = h.organization and odept.dept_parent = '0'
+		LEFT JOIN SYS_PERSON per1 on per1.seq_id = h.askperson
+		LEFT JOIN SYS_DICT kcit1 on h.orderitemtype =
+		kcit1.seq_id
+		LEFT
+		JOIN SYS_DICT kcit2 on h.ordertype = kcit2.seq_id
+		where 1=1
+		<if test="temp_dbType == 0">
+			and to_days(h.starttime) = to_days(now())
+		</if>
+		<if test="temp_dbType == 1">
+			and datediff(day, h.starttime,getdate())=0
+		</if>
+		and h.isdelete !=1
+		and h.organization = #{organization}
+		<if test="visualstaff != null and visualstaff !='' ">
+			and h.askperson in (${visualstaff})
+		</if>
+		<if test="searchValue != null and searchValue !='' ">
+			and (u.usercode like '%' + #{searchValue} + '%'
+			or u.username like '%' + #{searchValue} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{searchValue} + '%'
+			)
+		</if>
+		<if test="sortName != null and sortName != '' ">
+			ORDER BY ${sortName} ${sortOrder}
+		</if>
+		<if test="sortName == null">		
+			ORDER BY h.starttime desc
+		</if>
+	</select>
+	
+	<select id="selectHospitalOrderListNum" parameterType="map" resultType="json">
+		<bind name="temp_dbType" value="${system_dbType}" />
+		select
+		sum(h.cjstatus) as cjs,
+		sum(h.orderstatus) as sms
+		from KQDS_HOSPITAL_ORDER h
+		left join KQDS_UserDocument u on u.usercode = h.usercode
+		LEFT JOIN SYS_DEPT odept on odept.dept_code = h.organization and odept.dept_parent = '0'
+		where 1=1
+		<if test="temp_dbType == 0">
+			and to_days(h.starttime) = to_days(now())
+		</if>
+		<if test="temp_dbType == 1">
+			and datediff(day, h.starttime,getdate())=0
+		</if>
+		and h.isdelete !=1
+		and h.organization = #{organization}
+		<if test="visualstaff != null and visualstaff !='' ">
+			and h.askperson in (${visualstaff})
+		</if>
+		<if test="searchValue != null and searchValue !='' ">
+			and (u.usercode like '%' + #{searchValue} + '%'
+			or u.username like '%' + #{searchValue} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{searchValue} + '%'
+			)
+		</if>
+	</select>
+	<select id="getTopHosOrderCurrDay" parameterType="java.lang.String" resultType="json">
+		<bind name="temp_dbType" value="${system_dbType}" />
+		<if test="temp_dbType == 0">
+			SELECT * from KQDS_HOSPITAL_ORDER h where to_days(h.starttime) = to_days(now()) and h.usercode = #{_parameter} order by h.starttime desc limit 0,1
+		</if>
+		<if test="temp_dbType == 1">
+			SELECT TOP 1 * from KQDS_HOSPITAL_ORDER h where datediff(day, h.starttime,getdate())=0 and h.usercode = #{_parameter} order by h.starttime desc
+		</if>
+	</select>
+	<select id="getCountIndex" parameterType="map" resultType="int">
+		<bind name="temp_dbType" value="${system_dbType}" />
+		SELECT count(1) from KQDS_HOSPITAL_ORDER n
+		left join KQDS_UserDocument u on u.usercode = n.usercode
+		where 1=1
+		<if test="temp_dbType == 0">
+			and to_days(n.starttime) = to_days(now())
+		</if>
+		<if test="temp_dbType == 1">
+			and datediff(day, n.starttime,getdate())=0
+		</if>
+
+		and n.isdelete !=1
+		and n.organization = #{organization}
+		<if test="visualstaff != null and visualstaff !='' ">
+			and n.askperson in (${visualstaff})
+		</if>
+		<if test="searchValue != null and searchValue !='' ">
+			and (u.usercode like '%' + #{searchValue} + '%'
+			or u.username like '%' + #{searchValue} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{searchValue} + '%'
+			)
+		</if>
+	</select>
+	<select id="yycx" parameterType="map" resultType="json">
+		select * from KQDS_HOSPITAL_ORDER
+		where askperson = #{doctors}
+		and (
+		(startTime <![CDATA[ <= ]]>
+		#{startime1} AND endTime <![CDATA[ >= ]]>
+		#{endTime1})
+		OR (startTime <![CDATA[ <= ]]>
+		#{startime1} AND endTime <![CDATA[ < ]]>
+		#{endTime1} and endTime <![CDATA[ > ]]>
+		#{startime1})
+		OR (startTime <![CDATA[ >= ]]>
+		#{startime1} AND endTime <![CDATA[ >= ]]>
+		#{endTime1} and startTime <![CDATA[ < ]]>
+		#{endTime1})
+		OR (startTime <![CDATA[ >= ]]>
+		#{startime1} AND endTime <![CDATA[ <= ]]>
+		#{endTime1} )
+		)
+		and isdelete != 1
+	</select>
+	<select id="yycxUser" parameterType="map" resultType="json">
+		select * from KQDS_HOSPITAL_ORDER
+		where usercode = #{usercode}
+		and (
+		(startTime <![CDATA[ <= ]]>
+		#{startime1} AND endTime <![CDATA[ >= ]]>
+		#{endTime1})
+		OR (startTime <![CDATA[ <= ]]>
+		#{startime1} AND endTime <![CDATA[ < ]]>
+		#{endTime1} and endTime <![CDATA[ > ]]>
+		#{startime1})
+		OR (startTime <![CDATA[ >= ]]>
+		#{startime1} AND endTime <![CDATA[ >= ]]>
+		#{endTime1} and startTime <![CDATA[ < ]]>
+		#{endTime1})
+		OR (startTime <![CDATA[ >= ]]>
+		#{startime1} AND endTime <![CDATA[ <= ]]>
+		#{endTime1} )
+		)
+		and isdelete != 1
+		order by createtime
+	</select>
+	<select id="selectList" parameterType="map" resultType="json">
+		select
+		h.SEQ_ID,
+		h.regdept,
+		h.usercode,
+		h.username,
+		h.createuser,
+		per2.user_name as createusername,
+		h.createtime,
+		h.ordertype,
+		kcit2.dict_name as ordertypename,
+		h.orderitemdetail,
+		h.orderitemtype,
+		kcit1.dict_name as orderitemtypename,
+		h.askperson,
+		per1.user_name as askpersonname,
+		h.remark,
+		h.orderstatus,
+		h.starttime,
+		h.endtime,
+		h.orderremark,
+		u.blcode
+		from KQDS_HOSPITAL_ORDER h
+		LEFT JOIN SYS_DEPT odept on odept.dept_code = h.organization and odept.dept_parent = '0'
+		LEFT JOIN SYS_PERSON per1 on per1.seq_id = h.askperson
+		LEFT JOIN SYS_PERSON per2 on per2.seq_id = h.createuser
+		LEFT JOIN SYS_DICT kcit1 on h.orderitemtype = kcit1.seq_id
+		LEFT JOIN SYS_DICT kcit2 on h.ordertype = kcit2.seq_id
+		LEFT JOIN KQDS_UserDocument u on h.usercode = u.usercode
+		where 1=1 and
+		h.isdelete != 1
+		<if test="starttime != null and starttime !='' ">
+			and h.starttime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and h.endtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="orderitemtype != null and orderitemtype !='' ">
+			and h.orderitemtype = #{orderitemtype}
+		</if>
+		<if test="regdept != null and regdept !='' ">
+			and h.regdept = #{regdept}
+		</if>
+		<if test="askperson != null and askperson !='' ">
+			and h.askperson = #{askperson}
+		</if>
+		<if test="visualstaff != null and visualstaff !='' ">
+			and (h.askperson in (${visualstaff}) or h.createuser in (${visualstaff}) )
+		</if>
+		<if test="organization != null and organization !='' ">
+			and h.organization = #{organization}
+		</if>
+		order by h.createtime desc
+	</select>
+	<select id="checkYy" parameterType="map" resultType="int">
+		select count(1) num from KQDS_Paiban
+		where 1=1
+		and organization = #{organization}
+		<if test="askperson != null and askperson !='' ">
+			and personid = #{askperson}
+		</if>
+		<if test="starttimeShort != null and starttimeShort !='' ">
+			and enddate like + #{starttime} + '%'
+			and enddate != #{starttimeShort}
+		</if>
+		<if test="starttimeLong != null and starttimeLong !='' ">
+			and enddate <![CDATA[ >= ]]>
+			#{starttime}
+			and startdate <![CDATA[ <= ]]>
+			#{starttime}
+			and enddate like + #{starttimeLong} + '%'
+		</if>
+	</select>
+	<select id="orderstatusString" parameterType="map" resultType="json">
+		select * from KQDS_Paiban where 1=1
+		<if test="starttime != null and starttime !='' ">
+			and enddate like '%' + #{starttime} + '%'
+		</if>
+		<if test="askperson != null and askperson !='' ">
+			and personid = #{askperson}
+		</if>
+	</select>
+	<select id="checkHz" parameterType="map" resultType="json">
+		select * from KQDS_HOSPITAL_ORDER where 1=1 and isdelete!='1'
+		<if test="starttime != null and starttime !='' ">
+			and endtime like '%' + #{starttime} + '%'
+		</if>
+		<if test="usercode != null and usercode !='' ">
+			and usercode = #{usercode}
+		</if>
+	</select>
+	<select id="selectPerson" parameterType="map" resultType="json">
+		<bind name="temp_dbType" value="${system_dbType}" />
+		select DISTINCT p.seq_id,p.user_name from SYS_PERSON p
+		left join SYS_DEPT d on p.dept_id = d.seq_id or p.xy_dept = d.seq_id
+		where 1=1
+		and p.is_leave != 1
+		<if test="organization != null and organization !='' ">
+			and d.dept_code = #{organization}
+		</if>
+		<if test="dept_id != null and dept_id !='' ">
+			and p.dept_id = #{dept_id} or p.xy_dept=#{dept_id}
+		</if>
+		<if test="seq_id != null and seq_id !='' ">
+			and p.seq_id = #{seq_id}
+		</if>
+		<if test="sdate != null and sdate !='' ">
+			and EXISTS( select askperson from KQDS_HOSPITAL_ORDER where
+			p.seq_id=askperson
+			and askperson in (${visualstaffYyrl})
+			<if test="yydate != null and yydate !='' ">
+				and starttime like '%' + #{yydate} + '%')
+			</if>
+			<if test="!(yydate != null and yydate !='') ">
+				<if test="temp_dbType == 0">
+					and to_days(starttime) = to_days(now()))
+				</if>
+				<if test="temp_dbType == 1">
+					and datediff(day, starttime,getdate())=0)
+				</if>
+			</if>
+			or p.seq_id = #{sdate}
+		</if>
+	</select>
+	<select id="getSml" parameterType="map" resultType="json">
+		<bind name="temp_dbType" value="${system_dbType}" />
+		select
+		<if test="temp_dbType == 0">
+			Round(a.col1/IFNULL(b.col1,0),4)*100 sml
+		</if>
+		<if test="temp_dbType == 1">
+			Round(convert(float,a.col1)/NULLIF(b.col1,0),4)*100 sml
+		</if>
+		from
+		( select count(1) col1 from kqds_hospital_order
+		where orderstatus = 1 and starttime <![CDATA[ >= ]]>
+		#{starttime}
+		and endtime <![CDATA[ <= ]]>
+		#{endtime}
+		<if test="yytype != null and yytype !='' ">
+			and ordertype = #{yytype}
+		</if>
+		and organization = #{organization}
+		) a,
+		( select count(1) col1 from kqds_hospital_order
+		where 1=1 and isdelete != 1 and starttime <![CDATA[ >= ]]>
+		#{starttime}
+		and endtime <![CDATA[ <= ]]>
+		#{endtime}
+		<if test="yytype != null and yytype !='' ">
+			and ordertype = #{yytype}
+		</if>
+		) b
+	</select>
+	<select id="getCountYy" parameterType="map" resultType="int">
+		select count(1) from kqds_hospital_order
+		where 1=1 and organization = #{organization}
+		and starttime <![CDATA[ >= ]]>
+		#{starttime}
+		and endtime <![CDATA[ <= ]]>
+		#{endtime}
+		<if test="yytype != null and yytype !='' ">
+			and ordertype = #{yytype}
+		</if>
+		<if test="isdelete != null and isdelete !='' ">
+			and isdelete = '1'
+		</if>
+	</select>
+	<select id="getCountYysm" parameterType="map" resultType="int">
+		select count(1) nums from kqds_hospital_order
+		where 1=1 and organization = #{organization}
+		and starttime <![CDATA[ >= ]]>
+		#{starttime}
+		and endtime <![CDATA[ <= ]]>
+		#{endtime}
+		<if test="yytype != null and yytype !='' ">
+			and ordertype = #{yytype}
+		</if>
+	</select>
+	<select id="coutYYPerson" parameterType="map" resultType="int">
+		select count(1) from KQDS_HOSPITAL_ORDER
+		where askperson = #{doctors}
+		and (
+		(startTime <![CDATA[ <= ]]>
+		#{starttime} AND endTime <![CDATA[ >= ]]>
+		#{endtime})
+		OR (startTime <![CDATA[ <= ]]>
+		#{starttime} AND endTime <![CDATA[ < ]]>
+		#{endtime} and endTime <![CDATA[ > ]]>
+		#{starttime})
+		OR (startTime <![CDATA[ >= ]]>
+		#{starttime} AND endTime <![CDATA[ >= ]]>
+		#{endtime} and startTime <![CDATA[ < ]]>
+		#{endtime})
+		OR (startTime <![CDATA[ >= ]]>
+		#{starttime} AND endTime <![CDATA[ <= ]]>
+		#{endtime} )
+		)
+		and isdelete != 1
+		<if test="seqId != null and seqId !='' ">
+			and seq_id != #{seqId}
+		</if>
+	</select>
+	<select id="getCountMz" parameterType="map" resultType="int">
+		select count(1) from KQDS_HOSPITAL_ORDER n
+		where 1=1
+		and n.askperson in (${visualstaff})
+		and n.isdelete != 1
+		<if test="starttime != null and starttime !='' ">
+			${starttime}
+		</if>
+		<if test="organization != null and organization !='' ">
+			and n.organization=#{organization}
+		</if>
+	</select>
+	<select id="getMzListByUsercode" parameterType="map" resultType="json">
+		select odept.dept_name as organizationname,kcit1.dict_name as orderitemtypename,kcit2.dict_name as
+		ordertypename,u.age,u.sex,per1.user_name as askpersonname,n.* from KQDS_HOSPITAL_ORDER n
+		left join KQDS_USERDOCUMENT u on u.usercode = n.usercode
+		LEFT JOIN SYS_PERSON per1 on
+		per1.SEQ_ID = n.askperson
+		LEFT JOIN SYS_DICT kcit1 on n.orderitemtype = kcit1.seq_id
+		LEFT JOIN SYS_DICT kcit2 on n.ordertype = kcit2.seq_id
+		LEFT JOIN SYS_DEPT odept on
+		odept.dept_code = n.organization and odept.dept_parent = '0'
+		where 1=1
+		and u.usercode = #{usercode}
+		and n.organization = #{organization}
+	</select>
+	<select id="getMzList" parameterType="map" resultType="json">
+		select odept.dept_name as organizationname,kcit1.dict_name as orderitemtypename,kcit2.dict_name as
+		ordertypename,u.age,u.sex,per1.user_name as askpersonname,n.* from KQDS_HOSPITAL_ORDER n
+		left join KQDS_USERDOCUMENT u on u.usercode = n.usercode
+		LEFT JOIN SYS_PERSON per1 on
+		per1.SEQ_ID = n.askperson
+		LEFT JOIN SYS_DICT kcit1 on n.orderitemtype = kcit1.seq_id
+		LEFT JOIN SYS_DICT kcit2 on n.ordertype = kcit2.seq_id
+		LEFT JOIN SYS_DEPT odept on
+		odept.dept_code = n.organization and odept.dept_parent = '0'
+		where 1=1
+		and n.askperson in (${visualstaff})
+		and n.isdelete != 1
+		${starttime}
+		and n.organization = #{organization}
+	</select>
+	<select id="getMzListPage" parameterType="map" resultType="json">
+		<bind name="temp_dbType" value="${system_dbType}" />
+		<if test="temp_dbType == 0">
+			select
+		</if>
+		<if test="temp_dbType == 1">
+			select top ${num1} * from
+			(select row_number() over(order by n.createtime desc) as rownumber,
+		</if>
+		odept.dept_name as organizationname,kcit1.dict_name as orderitemtypename,kcit2.dict_name as ordertypename,u.age,u.sex,per1.user_name as askpersonname,n.* from KQDS_HOSPITAL_ORDER
+		n
+		left join KQDS_USERDOCUMENT u on u.usercode = n.usercode
+		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = n.askperson
+		LEFT JOIN SYS_DICT kcit1 on n.orderitemtype = kcit1.seq_id
+		LEFT JOIN
+		SYS_DICT kcit2 on n.ordertype = kcit2.seq_id
+		LEFT JOIN SYS_DEPT odept on odept.dept_code = n.organization and odept.dept_parent = '0'
+		where 1=1
+		and n.askperson in
+		(${visualstaff})
+		and n.isdelete != 1
+		and n.organization = #{organization}
+		<if test="askperson != null and askperson !='' ">
+			and n.askperson=#{askperson}
+		</if>
+		<if test="starttime != null and starttime !='' ">
+			and n.starttime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and n.endtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="search != null and search !='' ">
+			and (u.usercode like '%' + #{search} + '%'
+			or u.username like '%' + #{search} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{search} + '%'
+			)
+		</if>
+		<if test="temp_dbType == 0">
+			order by n.starttime desc limit ${num1},${num2}
+		</if>
+		<if test="temp_dbType == 1">
+			order by n.starttime desc ) as u1 where 1=1 and rownumber > ${num2}
+		</if>
+	</select>
+	<select id="getMzListPageTotal" parameterType="map" resultType="int">
+		select count(1) from KQDS_HOSPITAL_ORDER n
+		left join KQDS_USERDOCUMENT u on u.usercode = n.usercode
+		where 1=1
+		and n.askperson in (${visualstaff})
+		and n.isdelete != 1
+		and
+		n.organization = #{organization}
+		<if test="askperson != null and askperson !='' ">
+			and n.askperson=#{askperson}
+		</if>
+		<if test="starttime != null and starttime !='' ">
+			and n.starttime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and n.endtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="search != null and search !='' ">
+			and (u.usercode like '%' + #{search} + '%'
+			or u.username like '%' + #{search} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{search} + '%'
+			)
+		</if>
+		order by n.starttime desc
+	</select>
+	<select id="getMzListPageTotal2" parameterType="map" resultType="int">
+		select count(1) from KQDS_HOSPITAL_ORDER n
+		left join KQDS_USERDOCUMENT u on u.usercode = n.usercode
+		where 1=1
+		and n.askperson in (${visualstaff})
+		and n.isdelete != 1
+		and
+		n.organization = #{organization}
+		and n.orderstatus=1
+		<if test="askperson != null and askperson !='' ">
+			and n.askperson=#{askperson}
+		</if>
+		<if test="starttime != null and starttime !='' ">
+			and n.starttime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and n.endtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="search != null and search !='' ">
+			and (u.usercode like '%' + #{search} + '%'
+			or u.username like '%' + #{search} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{search} + '%'
+			)
+		</if>
+		order by n.starttime desc
+	</select>
+	<!-- 根据临床路径编号和节点id查询预约信息 -->
+	<select id="findHospitalOrderByOrdernumAndnodeId" parameterType="map" resultType="json">
+		select * from KQDS_HOSPITAL_ORDER where order_number = #{order_number} and nodeId = #{nodeId}
+	</select>
+	
+	<select id="selectHospitalOrderByUsercodeAndTime" parameterType="map" resultType="json">
+		select o.*,s.USER_NAME as doctorname from KQDS_HOSPITAL_ORDER o
+		left join sys_person s on o.askperson=s.SEQ_ID
+		where o.usercode = #{usercode} 
+		and o.starttime <![CDATA[ >= ]]> #{starttime}
+		and o.endtime  <![CDATA[ <= ]]> #{endtime}
+		and o.isdelete!=1
+		and o.orderstatus!=1
+	</select>
+	
+</mapper>

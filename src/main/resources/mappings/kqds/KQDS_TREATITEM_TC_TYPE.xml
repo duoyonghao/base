@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_TREATITEM_TC_TYPE">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsTreatitemTcType">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="isOpen" jdbcType="INTEGER" property="isopen" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="parentid" jdbcType="VARCHAR" property="parentid" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, name, isOpen, organization, parentid, createtime, createuser
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_TREATITEM_TC_TYPE
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_TREATITEM_TC_TYPE
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsTreatitemTcType">
+		insert into KQDS_TREATITEM_TC_TYPE (SEQ_ID, name, isOpen,
+		organization, parentid, createtime,
+		createuser)
+		values (#{seqId,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR}, #{isopen,jdbcType=INTEGER},
+		#{organization,jdbcType=VARCHAR}, #{parentid,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{createuser,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsTreatitemTcType">
+		insert into KQDS_TREATITEM_TC_TYPE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="isopen != null">
+				isOpen,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="parentid != null">
+				parentid,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="isopen != null">
+				#{isopen,jdbcType=INTEGER},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="parentid != null">
+				#{parentid,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsTreatitemTcType">
+		update KQDS_TREATITEM_TC_TYPE
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="isopen != null">
+				isOpen = #{isopen,jdbcType=INTEGER},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="parentid != null">
+				parentid = #{parentid,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsTreatitemTcType">
+		update KQDS_TREATITEM_TC_TYPE
+		set name = #{name,jdbcType=VARCHAR},
+		isOpen = #{isopen,jdbcType=INTEGER},
+		organization =
+		#{organization,jdbcType=VARCHAR},
+		parentid = #{parentid,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		createuser = #{createuser,jdbcType=VARCHAR}
+		where SEQ_ID =
+		#{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_TREATITEM_TC_TYPE
+	</sql>
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsTreatitemTcType">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+	<select id="selectCountByMap" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+</mapper>

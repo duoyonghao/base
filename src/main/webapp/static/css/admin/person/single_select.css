@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+.fixed-table-header thead th{
+	background:#00A6C0;
+	color:#fff;
+}
+.table-striped > tbody > tr:nth-child(odd){
+	background:#f0ffff;
+}

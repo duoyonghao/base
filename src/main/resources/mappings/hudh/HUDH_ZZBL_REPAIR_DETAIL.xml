@@ -1,0 +1,916 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_ZZBL_REPAIR_DETAIL" >
+  <resultMap id="BaseResultMap" type="com.hudh.zzbl.entity.RepairSchemeConfirm" >
+    <id column="SEQ_ID" jdbcType="VARCHAR"  property="seqId"/>
+    <result column="createtime" property="createtime" jdbcType="VARCHAR" />
+    <result column="createuser" property="createuser" jdbcType="VARCHAR" />
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="order_number" property="order_number" jdbcType="VARCHAR" />
+    <result column="tprgLeftUp" property="tprgleftup" jdbcType="VARCHAR" />
+    <result column="tprgLeftDown" property="tprgleftdown" jdbcType="VARCHAR" />
+    <result column="tprgRightUp" property="tprgrightup" jdbcType="VARCHAR" />
+    <result column="tprgRightDown" property="tprgrightdown" jdbcType="VARCHAR" />
+    <result column="plantThisTime" property="plantthistime" jdbcType="VARCHAR" />
+    <result column="dentiumLeftUp" property="dentiumleftup" jdbcType="VARCHAR" />
+    <result column="dentiumLeftDown" property="dentiumleftdown" jdbcType="VARCHAR" />
+    <result column="dentiumRightUp" property="dentiumrightup" jdbcType="VARCHAR" />
+    <result column="dentiumRightDown" property="dentiumrightdown" jdbcType="VARCHAR" />
+    <result column="icxLeftUp" property="icxleftup" jdbcType="VARCHAR" />
+    <result column="icxLeftDown" property="icxleftdown" jdbcType="VARCHAR" />
+    <result column="icxRightUp" property="icxrightup" jdbcType="VARCHAR" />
+    <result column="icxRightDown" property="icxrightdown" jdbcType="VARCHAR" />
+    <result column="nobelActiveLeftUp" property="nobelactiveleftup" jdbcType="VARCHAR" />
+    <result column="nobelActiveLeftDown" property="nobelactiveleftdown" jdbcType="VARCHAR" />
+    <result column="nobelActiveRightUp" property="nobelactiverightup" jdbcType="VARCHAR" />
+    <result column="nobelActiveRightDown" property="nobelactiverightdown" jdbcType="VARCHAR" />
+    <result column="camlogLeftUp" property="camlogleftup" jdbcType="VARCHAR" />
+    <result column="camlogLeftDown" property="camlogleftdown" jdbcType="VARCHAR" />
+    <result column="camlogRightUp" property="camlogrightup" jdbcType="VARCHAR" />
+    <result column="camlogRightDown" property="camlogrightdown" jdbcType="VARCHAR" />
+    <result column="hiossenLeftUp" property="hiossenleftup" jdbcType="VARCHAR" />
+    <result column="hiossenLeftDown" property="hiossenleftdown" jdbcType="VARCHAR" />
+    <result column="hiossenRightUp" property="hiossenrightup" jdbcType="VARCHAR" />
+    <result column="hiossenRightDown" property="hiossenrightdown" jdbcType="VARCHAR" />
+    <result column="rbrdLeftUp" property="rbrdleftup" jdbcType="VARCHAR" />
+    <result column="rbrdLeftDown" property="rbrdleftdown" jdbcType="VARCHAR" />
+    <result column="rbrdRigthUp" property="rbrdrigthup" jdbcType="VARCHAR" />
+    <result column="rbrdRigthDown" property="rbrdrigthdown" jdbcType="VARCHAR" />
+    <result column="inviDenLeftUp" property="invidenleftup" jdbcType="VARCHAR" />
+    <result column="inviDenLeftDown" property="invidenleftdown" jdbcType="VARCHAR" />
+    <result column="inviDenRightUp" property="invidenrightup" jdbcType="VARCHAR" />
+    <result column="inviDenRightDown" property="invidenrightdown" jdbcType="VARCHAR" />
+    <result column="locatorLeftUp" property="locatorleftup" jdbcType="VARCHAR" />
+    <result column="locatorLeftDown" property="locatorleftdown" jdbcType="VARCHAR" />
+    <result column="locatorRightUp" property="locatorrightup" jdbcType="VARCHAR" />
+    <result column="locatorRightDown" property="locatorrightdown" jdbcType="VARCHAR" />
+    <result column="srrLeftUp" property="srrleftup" jdbcType="VARCHAR" />
+    <result column="srrLeftDown" property="srrleftdown" jdbcType="VARCHAR" />
+    <result column="srrRightUp" property="srrrightup" jdbcType="VARCHAR" />
+    <result column="srrRightDown" property="srrrightdown" jdbcType="VARCHAR" />
+    <result column="retainerLeftUp" property="retainerleftup" jdbcType="VARCHAR" />
+    <result column="retainerLeftDown" property="retainerleftdown" jdbcType="VARCHAR" />
+    <result column="retainerRightUp" property="retainerrightup" jdbcType="VARCHAR" />
+    <result column="retainerRightDown" property="retainerrightdown" jdbcType="VARCHAR" />
+    <result column="singleCompLeftUp" property="singlecompleftup" jdbcType="VARCHAR" />
+    <result column="singleCompLeftDown" property="singlecompleftdown" jdbcType="VARCHAR" />
+    <result column="singleCompRightUp" property="singlecomprightup" jdbcType="VARCHAR" />
+    <result column="singleCompRightDown" property="singlecomprightdown" jdbcType="VARCHAR" />
+    <result column="singleCompSelect" property="singlecompselect" jdbcType="VARCHAR" />
+    <result column="sfSinComLeftUp" property="sfsincomleftup" jdbcType="VARCHAR" />
+    <result column="sfSinComLeftDown" property="sfsincomleftdown" jdbcType="VARCHAR" />
+    <result column="sfSinComRightUp" property="sfsincomrightup" jdbcType="VARCHAR" />
+    <result column="sfSinComRightDown" property="sfsincomrightdown" jdbcType="VARCHAR" />
+    <result column="sfSinComSelect" property="sfsincomselect" jdbcType="VARCHAR" />
+    <result column="localPlantLeftUp" property="localplantleftup" jdbcType="VARCHAR" />
+    <result column="localPlantLeftDown" property="localplantleftdown" jdbcType="VARCHAR" />
+    <result column="localPlantRightUp" property="localplantrightup" jdbcType="VARCHAR" />
+    <result column="localPlantRightDown" property="localplantrightdown" jdbcType="VARCHAR" />
+    <result column="localPlantSelect" property="localplantselect" jdbcType="VARCHAR" />
+    <result column="requireRestor" property="requirerestor" jdbcType="VARCHAR" />
+    <result column="organization" property="organization" jdbcType="VARCHAR" />
+    
+    <result column="operationDoctorTime" property="operationDoctorTime" jdbcType="VARCHAR" />
+    <result column="serviceTime" property="serviceTime" jdbcType="VARCHAR" />
+    <result column="servicesignature" property="servicesignature" jdbcType="VARCHAR" />
+    <result column="operationDoctorsignature" property="operationDoctorsignature" jdbcType="VARCHAR" />
+    <result column="repairDoctorsignature" property="repairDoctorsignature" jdbcType="VARCHAR" />
+    <result column="patientsignature" property="patientsignature" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="VARCHAR" />
+    <result column="doctorTime" property="doctorTime" jdbcType="VARCHAR" />
+    <result column="patientTime" property="patientTime" jdbcType="VARCHAR" />
+    
+    <result column="nobelpmcleftup" property="nobelpmcleftup" jdbcType="VARCHAR" />
+    <result column="nobelpmcleftdown" property="nobelpmcleftdown" jdbcType="VARCHAR" />
+    <result column="nobelpmcrightup" property="nobelpmcrightup" jdbcType="VARCHAR" />
+    <result column="nobelpmcrightdown" property="nobelpmcrightdown" jdbcType="VARCHAR" />
+    <result column="zimmerleftup" property="zimmerleftup" jdbcType="VARCHAR" />
+    <result column="zimmerleftdown" property="zimmerleftdown" jdbcType="VARCHAR" />
+    <result column="zimmerrightup" property="zimmerrightup" jdbcType="VARCHAR" />
+    <result column="zimmerrightdown" property="zimmerrightdown" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SEQ_ID, createtime, createuser, id, order_number, tprgLeftUp, tprgLeftDown, tprgRightUp, 
+    tprgRightDown, plantThisTime, dentiumLeftUp, dentiumLeftDown, dentiumRightUp, dentiumRightDown, 
+    icxLeftUp, icxLeftDown, icxRightUp, icxRightDown, nobelActiveLeftUp, nobelActiveLeftDown, 
+    nobelActiveRightUp, nobelActiveRightDown, camlogLeftUp, camlogLeftDown, camlogRightUp, 
+    camlogRightDown, hiossenLeftUp, hiossenLeftDown, hiossenRightUp, hiossenRightDown, 
+    rbrdLeftUp, rbrdLeftDown, rbrdRigthUp, rbrdRigthDown, inviDenLeftUp, inviDenLeftDown, 
+    inviDenRightUp, inviDenRightDown, locatorLeftUp, locatorLeftDown, locatorRightUp, 
+    locatorRightDown, srrLeftUp, srrLeftDown, srrRightUp, srrRightDown, retainerLeftUp, 
+    retainerLeftDown, retainerRightUp, retainerRightDown, singleCompLeftUp, singleCompLeftDown, 
+    singleCompRightUp, singleCompRightDown, singleCompSelect, sfSinComLeftUp, sfSinComLeftDown, 
+    sfSinComRightUp, sfSinComRightDown, sfSinComSelect, localPlantLeftUp, localPlantLeftDown, 
+    localPlantRightUp, localPlantRightDown, localPlantSelect, requireRestor, organization,
+    operationDoctorTime, serviceTime, servicesignature, operationDoctorsignature, repairDoctorsignature,
+    patientsignature, username, sex, age, patientTime, doctorTime, nobelpmcleftup, nobelpmcleftdown,
+    nobelpmcrightup, nobelpmcrightdown, zimmerleftup, zimmerleftdown, zimmerrightup, zimmerrightdown,status
+  </sql>
+  <select id="findRepairInforById" resultType="json" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from HUDH_ZZBL_REPAIR_DETAIL
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectRepairInforById" parameterType="String" resultType="json">
+  	select 
+    <include refid="Base_Column_List" />
+    from HUDH_ZZBL_REPAIR_DETAIL
+    where SEQ_ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectRepairSchemeConfirmById" parameterType="String" resultType="com.hudh.zzbl.entity.RepairSchemeConfirm">
+  	select 
+    <include refid="Base_Column_List" />
+    from HUDH_ZZBL_REPAIR_DETAIL
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="findReapirInforAll" resultType="json">
+  	select 
+    <include refid="Base_Column_List" />
+    from HUDH_ZZBL_REPAIR_DETAIL
+  </select>
+  <delete id="deleteRepairInforById" parameterType="java.lang.String" >
+    delete from HUDH_ZZBL_REPAIR_DETAIL
+    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="saveRepairSchemeConfirmInfro" parameterType="com.hudh.zzbl.entity.RepairSchemeConfirm" >
+    insert into HUDH_ZZBL_REPAIR_DETAIL (SEQ_ID, createtime, createuser, 
+      id, order_number, tprgLeftUp, 
+      tprgLeftDown, tprgRightUp, tprgRightDown, 
+      plantThisTime, dentiumLeftUp, dentiumLeftDown, 
+      dentiumRightUp, dentiumRightDown, icxLeftUp, 
+      icxLeftDown, icxRightUp, icxRightDown, 
+      nobelActiveLeftUp, nobelActiveLeftDown, 
+      nobelActiveRightUp, nobelActiveRightDown, 
+      camlogLeftUp, camlogLeftDown, camlogRightUp, 
+      camlogRightDown, hiossenLeftUp, hiossenLeftDown, 
+      hiossenRightUp, hiossenRightDown, rbrdLeftUp, 
+      rbrdLeftDown, rbrdRigthUp, rbrdRigthDown, 
+      inviDenLeftUp, inviDenLeftDown, inviDenRightUp, 
+      inviDenRightDown, locatorLeftUp, locatorLeftDown, 
+      locatorRightUp, locatorRightDown, srrLeftUp, 
+      srrLeftDown, srrRightUp, srrRightDown, 
+      retainerLeftUp, retainerLeftDown, retainerRightUp, 
+      retainerRightDown, singleCompLeftUp, singleCompLeftDown, 
+      singleCompRightUp, singleCompRightDown, 
+      singleCompSelect, sfSinComLeftUp, sfSinComLeftDown, 
+      sfSinComRightUp, sfSinComRightDown, sfSinComSelect, 
+      localPlantLeftUp, localPlantLeftDown, localPlantRightUp, 
+      localPlantRightDown, localPlantSelect, 
+      requireRestor, organization,operationDoctorTime, serviceTime, 
+      servicesignature, operationDoctorsignature, repairDoctorsignature,
+      patientsignature, username, sex, age, patientTime, doctorTime, nobelpmcleftup, nobelpmcleftdown,
+    nobelpmcrightup, nobelpmcrightdown, zimmerleftup, zimmerleftdown, zimmerrightup, zimmerrightdown,status)
+    values (#{seqId,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, 
+      #{id,jdbcType=VARCHAR}, #{order_number,jdbcType=VARCHAR}, #{tprgleftup,jdbcType=VARCHAR}, 
+      #{tprgleftdown,jdbcType=VARCHAR}, #{tprgrightup,jdbcType=VARCHAR}, #{tprgrightdown,jdbcType=VARCHAR}, 
+      #{plantthistime,jdbcType=VARCHAR}, #{dentiumleftup,jdbcType=VARCHAR}, #{dentiumleftdown,jdbcType=VARCHAR}, 
+      #{dentiumrightup,jdbcType=VARCHAR}, #{dentiumrightdown,jdbcType=VARCHAR}, #{icxleftup,jdbcType=VARCHAR}, 
+      #{icxleftdown,jdbcType=VARCHAR}, #{icxrightup,jdbcType=VARCHAR}, #{icxrightdown,jdbcType=VARCHAR}, 
+      #{nobelactiveleftup,jdbcType=VARCHAR}, #{nobelactiveleftdown,jdbcType=VARCHAR}, 
+      #{nobelactiverightup,jdbcType=VARCHAR}, #{nobelactiverightdown,jdbcType=VARCHAR}, 
+      #{camlogleftup,jdbcType=VARCHAR}, #{camlogleftdown,jdbcType=VARCHAR}, #{camlogrightup,jdbcType=VARCHAR}, 
+      #{camlogrightdown,jdbcType=VARCHAR}, #{hiossenleftup,jdbcType=VARCHAR}, #{hiossenleftdown,jdbcType=VARCHAR}, 
+      #{hiossenrightup,jdbcType=VARCHAR}, #{hiossenrightdown,jdbcType=VARCHAR}, #{rbrdleftup,jdbcType=VARCHAR}, 
+      #{rbrdleftdown,jdbcType=VARCHAR}, #{rbrdrigthup,jdbcType=VARCHAR}, #{rbrdrigthdown,jdbcType=VARCHAR}, 
+      #{invidenleftup,jdbcType=VARCHAR}, #{invidenleftdown,jdbcType=VARCHAR}, #{invidenrightup,jdbcType=VARCHAR}, 
+      #{invidenrightdown,jdbcType=VARCHAR}, #{locatorleftup,jdbcType=VARCHAR}, #{locatorleftdown,jdbcType=VARCHAR}, 
+      #{locatorrightup,jdbcType=VARCHAR}, #{locatorrightdown,jdbcType=VARCHAR}, #{srrleftup,jdbcType=VARCHAR}, 
+      #{srrleftdown,jdbcType=VARCHAR}, #{srrrightup,jdbcType=VARCHAR}, #{srrrightdown,jdbcType=VARCHAR}, 
+      #{retainerleftup,jdbcType=VARCHAR}, #{retainerleftdown,jdbcType=VARCHAR}, #{retainerrightup,jdbcType=VARCHAR}, 
+      #{retainerrightdown,jdbcType=VARCHAR}, #{singlecompleftup,jdbcType=VARCHAR}, #{singlecompleftdown,jdbcType=VARCHAR}, 
+      #{singlecomprightup,jdbcType=VARCHAR}, #{singlecomprightdown,jdbcType=VARCHAR}, 
+      #{singlecompselect,jdbcType=VARCHAR}, #{sfsincomleftup,jdbcType=VARCHAR}, #{sfsincomleftdown,jdbcType=VARCHAR}, 
+      #{sfsincomrightup,jdbcType=VARCHAR}, #{sfsincomrightdown,jdbcType=VARCHAR}, #{sfsincomselect,jdbcType=VARCHAR}, 
+      #{localplantleftup,jdbcType=VARCHAR}, #{localplantleftdown,jdbcType=VARCHAR}, #{localplantrightup,jdbcType=VARCHAR}, 
+      #{localplantrightdown,jdbcType=VARCHAR}, #{localplantselect,jdbcType=VARCHAR}, 
+      #{requirerestor,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}
+      , #{operationDoctorTime,jdbcType=VARCHAR}, #{serviceTime,jdbcType=VARCHAR}, #{servicesignature,jdbcType=VARCHAR}, 
+      #{operationDoctorsignature,jdbcType=VARCHAR}
+      , #{repairDoctorsignature,jdbcType=VARCHAR}, #{patientsignature,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
+       #{sex,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, #{patientTime,jdbcType=VARCHAR}, #{doctorTime,jdbcType=VARCHAR}, 
+       #{nobelpmcleftup,jdbcType=VARCHAR}, #{nobelpmcleftdown,jdbcType=VARCHAR}, #{nobelpmcrightup,jdbcType=VARCHAR}, #{nobelpmcrightdown,jdbcType=VARCHAR}, 
+       #{zimmerleftup,jdbcType=VARCHAR}, #{zimmerleftdown,jdbcType=VARCHAR}, #{zimmerrightup,jdbcType=VARCHAR}, #{zimmerrightdown,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hudh.zzbl.entity.RepairSchemeConfirm" >
+    insert into HUDH_ZZBL_REPAIR_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="seqId != null" >
+        SEQ_ID,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="createuser != null" >
+        createuser,
+      </if>
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderNumber != null" >
+        order_number,
+      </if>
+      <if test="tprgleftup != null" >
+        tprgLeftUp,
+      </if>
+      <if test="tprgleftdown != null" >
+        tprgLeftDown,
+      </if>
+      <if test="tprgrightup != null" >
+        tprgRightUp,
+      </if>
+      <if test="tprgrightdown != null" >
+        tprgRightDown,
+      </if>
+      <if test="plantthistime != null" >
+        plantThisTime,
+      </if>
+      <if test="dentiumleftup != null" >
+        dentiumLeftUp,
+      </if>
+      <if test="dentiumleftdown != null" >
+        dentiumLeftDown,
+      </if>
+      <if test="dentiumrightup != null" >
+        dentiumRightUp,
+      </if>
+      <if test="dentiumrightdown != null" >
+        dentiumRightDown,
+      </if>
+      <if test="icxleftup != null" >
+        icxLeftUp,
+      </if>
+      <if test="icxleftdown != null" >
+        icxLeftDown,
+      </if>
+      <if test="icxrightup != null" >
+        icxRightUp,
+      </if>
+      <if test="icxrightdown != null" >
+        icxRightDown,
+      </if>
+      <if test="nobelactiveleftup != null" >
+        nobelActiveLeftUp,
+      </if>
+      <if test="nobelactiveleftdown != null" >
+        nobelActiveLeftDown,
+      </if>
+      <if test="nobelactiverightup != null" >
+        nobelActiveRightUp,
+      </if>
+      <if test="nobelactiverightdown != null" >
+        nobelActiveRightDown,
+      </if>
+      <if test="camlogleftup != null" >
+        camlogLeftUp,
+      </if>
+      <if test="camlogleftdown != null" >
+        camlogLeftDown,
+      </if>
+      <if test="camlogrightup != null" >
+        camlogRightUp,
+      </if>
+      <if test="camlogrightdown != null" >
+        camlogRightDown,
+      </if>
+      <if test="hiossenleftup != null" >
+        hiossenLeftUp,
+      </if>
+      <if test="hiossenleftdown != null" >
+        hiossenLeftDown,
+      </if>
+      <if test="hiossenrightup != null" >
+        hiossenRightUp,
+      </if>
+      <if test="hiossenrightdown != null" >
+        hiossenRightDown,
+      </if>
+      <if test="rbrdleftup != null" >
+        rbrdLeftUp,
+      </if>
+      <if test="rbrdleftdown != null" >
+        rbrdLeftDown,
+      </if>
+      <if test="rbrdrigthup != null" >
+        rbrdRigthUp,
+      </if>
+      <if test="rbrdrigthdown != null" >
+        rbrdRigthDown,
+      </if>
+      <if test="invidenleftup != null" >
+        inviDenLeftUp,
+      </if>
+      <if test="invidenleftdown != null" >
+        inviDenLeftDown,
+      </if>
+      <if test="invidenrightup != null" >
+        inviDenRightUp,
+      </if>
+      <if test="invidenrightdown != null" >
+        inviDenRightDown,
+      </if>
+      <if test="locatorleftup != null" >
+        locatorLeftUp,
+      </if>
+      <if test="locatorleftdown != null" >
+        locatorLeftDown,
+      </if>
+      <if test="locatorrightup != null" >
+        locatorRightUp,
+      </if>
+      <if test="locatorrightdown != null" >
+        locatorRightDown,
+      </if>
+      <if test="srrleftup != null" >
+        srrLeftUp,
+      </if>
+      <if test="srrleftdown != null" >
+        srrLeftDown,
+      </if>
+      <if test="srrrightup != null" >
+        srrRightUp,
+      </if>
+      <if test="srrrightdown != null" >
+        srrRightDown,
+      </if>
+      <if test="retainerleftup != null" >
+        retainerLeftUp,
+      </if>
+      <if test="retainerleftdown != null" >
+        retainerLeftDown,
+      </if>
+      <if test="retainerrightup != null" >
+        retainerRightUp,
+      </if>
+      <if test="retainerrightdown != null" >
+        retainerRightDown,
+      </if>
+      <if test="singlecompleftup != null" >
+        singleCompLeftUp,
+      </if>
+      <if test="singlecompleftdown != null" >
+        singleCompLeftDown,
+      </if>
+      <if test="singlecomprightup != null" >
+        singleCompRightUp,
+      </if>
+      <if test="singlecomprightdown != null" >
+        singleCompRightDown,
+      </if>
+      <if test="singlecompselect != null" >
+        singleCompSelect,
+      </if>
+      <if test="sfsincomleftup != null" >
+        sfSinComLeftUp,
+      </if>
+      <if test="sfsincomleftdown != null" >
+        sfSinComLeftDown,
+      </if>
+      <if test="sfsincomrightup != null" >
+        sfSinComRightUp,
+      </if>
+      <if test="sfsincomrightdown != null" >
+        sfSinComRightDown,
+      </if>
+      <if test="sfsincomselect != null" >
+        sfSinComSelect,
+      </if>
+      <if test="localplantleftup != null" >
+        localPlantLeftUp,
+      </if>
+      <if test="localplantleftdown != null" >
+        localPlantLeftDown,
+      </if>
+      <if test="localplantrightup != null" >
+        localPlantRightUp,
+      </if>
+      <if test="localplantrightdown != null" >
+        localPlantRightDown,
+      </if>
+      <if test="localplantselect != null" >
+        localPlantSelect,
+      </if>
+      <if test="requirerestor != null" >
+        requireRestor,
+      </if>
+      <if test="organization != null" >
+        organization,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="seqId != null" >
+        #{seqId,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNumber != null" >
+        #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tprgleftup != null" >
+        #{tprgleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="tprgleftdown != null" >
+        #{tprgleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="tprgrightup != null" >
+        #{tprgrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="tprgrightdown != null" >
+        #{tprgrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="plantthistime != null" >
+        #{plantthistime,jdbcType=VARCHAR},
+      </if>
+      <if test="dentiumleftup != null" >
+        #{dentiumleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="dentiumleftdown != null" >
+        #{dentiumleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="dentiumrightup != null" >
+        #{dentiumrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="dentiumrightdown != null" >
+        #{dentiumrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="icxleftup != null" >
+        #{icxleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="icxleftdown != null" >
+        #{icxleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="icxrightup != null" >
+        #{icxrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="icxrightdown != null" >
+        #{icxrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelactiveleftup != null" >
+        #{nobelactiveleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelactiveleftdown != null" >
+        #{nobelactiveleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelactiverightup != null" >
+        #{nobelactiverightup,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelactiverightdown != null" >
+        #{nobelactiverightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="camlogleftup != null" >
+        #{camlogleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="camlogleftdown != null" >
+        #{camlogleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="camlogrightup != null" >
+        #{camlogrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="camlogrightdown != null" >
+        #{camlogrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="hiossenleftup != null" >
+        #{hiossenleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="hiossenleftdown != null" >
+        #{hiossenleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="hiossenrightup != null" >
+        #{hiossenrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="hiossenrightdown != null" >
+        #{hiossenrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="rbrdleftup != null" >
+        #{rbrdleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="rbrdleftdown != null" >
+        #{rbrdleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="rbrdrigthup != null" >
+        #{rbrdrigthup,jdbcType=VARCHAR},
+      </if>
+      <if test="rbrdrigthdown != null" >
+        #{rbrdrigthdown,jdbcType=VARCHAR},
+      </if>
+      <if test="invidenleftup != null" >
+        #{invidenleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="invidenleftdown != null" >
+        #{invidenleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="invidenrightup != null" >
+        #{invidenrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="invidenrightdown != null" >
+        #{invidenrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="locatorleftup != null" >
+        #{locatorleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="locatorleftdown != null" >
+        #{locatorleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="locatorrightup != null" >
+        #{locatorrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="locatorrightdown != null" >
+        #{locatorrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="srrleftup != null" >
+        #{srrleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="srrleftdown != null" >
+        #{srrleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="srrrightup != null" >
+        #{srrrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="srrrightdown != null" >
+        #{srrrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="retainerleftup != null" >
+        #{retainerleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="retainerleftdown != null" >
+        #{retainerleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="retainerrightup != null" >
+        #{retainerrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="retainerrightdown != null" >
+        #{retainerrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="singlecompleftup != null" >
+        #{singlecompleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="singlecompleftdown != null" >
+        #{singlecompleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="singlecomprightup != null" >
+        #{singlecomprightup,jdbcType=VARCHAR},
+      </if>
+      <if test="singlecomprightdown != null" >
+        #{singlecomprightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="singlecompselect != null" >
+        #{singlecompselect,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsincomleftup != null" >
+        #{sfsincomleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsincomleftdown != null" >
+        #{sfsincomleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsincomrightup != null" >
+        #{sfsincomrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsincomrightdown != null" >
+        #{sfsincomrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsincomselect != null" >
+        #{sfsincomselect,jdbcType=VARCHAR},
+      </if>
+      <if test="localplantleftup != null" >
+        #{localplantleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="localplantleftdown != null" >
+        #{localplantleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="localplantrightup != null" >
+        #{localplantrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="localplantrightdown != null" >
+        #{localplantrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="localplantselect != null" >
+        #{localplantselect,jdbcType=VARCHAR},
+      </if>
+      <if test="requirerestor != null" >
+        #{requirerestor,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null" >
+        #{organization,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateRepairInforById" parameterType="com.hudh.zzbl.entity.RepairSchemeConfirm" >
+    update HUDH_ZZBL_REPAIR_DETAIL
+    <set >
+      <if test="operationDoctorTime != null" >
+        operationDoctorTime = #{operationDoctorTime,jdbcType=VARCHAR},
+      </if>
+      <if test="patientTime != null" >
+        patientTime = #{patientTime,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorTime != null" >
+        doctorTime = #{doctorTime,jdbcType=VARCHAR},
+      </if>
+      <if test="tprgleftup != null" >
+        tprgLeftUp = #{tprgleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="tprgleftdown != null" >
+        tprgLeftDown = #{tprgleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="tprgrightup != null" >
+        tprgRightUp = #{tprgrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="tprgrightdown != null" >
+        tprgRightDown = #{tprgrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="plantthistime != null" >
+        plantThisTime = #{plantthistime,jdbcType=VARCHAR},
+      </if>
+      <if test="dentiumleftup != null" >
+        dentiumLeftUp = #{dentiumleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="dentiumleftdown != null" >
+        dentiumLeftDown = #{dentiumleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="dentiumrightup != null" >
+        dentiumRightUp = #{dentiumrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="dentiumrightdown != null" >
+        dentiumRightDown = #{dentiumrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="icxleftup != null" >
+        icxLeftUp = #{icxleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="icxleftdown != null" >
+        icxLeftDown = #{icxleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="icxrightup != null" >
+        icxRightUp = #{icxrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="icxrightdown != null" >
+        icxRightDown = #{icxrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelactiveleftup != null" >
+        nobelActiveLeftUp = #{nobelactiveleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelactiveleftdown != null" >
+        nobelActiveLeftDown = #{nobelactiveleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelactiverightup != null" >
+        nobelActiveRightUp = #{nobelactiverightup,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelactiverightdown != null" >
+        nobelActiveRightDown = #{nobelactiverightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="camlogleftup != null" >
+        camlogLeftUp = #{camlogleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="camlogleftdown != null" >
+        camlogLeftDown = #{camlogleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="camlogrightup != null" >
+        camlogRightUp = #{camlogrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="camlogrightdown != null" >
+        camlogRightDown = #{camlogrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="hiossenleftup != null" >
+        hiossenLeftUp = #{hiossenleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="hiossenleftdown != null" >
+        hiossenLeftDown = #{hiossenleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="hiossenrightup != null" >
+        hiossenRightUp = #{hiossenrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="hiossenrightdown != null" >
+        hiossenRightDown = #{hiossenrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="rbrdleftup != null" >
+        rbrdLeftUp = #{rbrdleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="rbrdleftdown != null" >
+        rbrdLeftDown = #{rbrdleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="rbrdrigthup != null" >
+        rbrdRigthUp = #{rbrdrigthup,jdbcType=VARCHAR},
+      </if>
+      <if test="rbrdrigthdown != null" >
+        rbrdRigthDown = #{rbrdrigthdown,jdbcType=VARCHAR},
+      </if>
+      <if test="invidenleftup != null" >
+        inviDenLeftUp = #{invidenleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="invidenleftdown != null" >
+        inviDenLeftDown = #{invidenleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="invidenrightup != null" >
+        inviDenRightUp = #{invidenrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="invidenrightdown != null" >
+        inviDenRightDown = #{invidenrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="locatorleftup != null" >
+        locatorLeftUp = #{locatorleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="locatorleftdown != null" >
+        locatorLeftDown = #{locatorleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="locatorrightup != null" >
+        locatorRightUp = #{locatorrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="locatorrightdown != null" >
+        locatorRightDown = #{locatorrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="srrleftup != null" >
+        srrLeftUp = #{srrleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="srrleftdown != null" >
+        srrLeftDown = #{srrleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="srrrightup != null" >
+        srrRightUp = #{srrrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="srrrightdown != null" >
+        srrRightDown = #{srrrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="retainerleftup != null" >
+        retainerLeftUp = #{retainerleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="retainerleftdown != null" >
+        retainerLeftDown = #{retainerleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="retainerrightup != null" >
+        retainerRightUp = #{retainerrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="retainerrightdown != null" >
+        retainerRightDown = #{retainerrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="singlecompleftup != null" >
+        singleCompLeftUp = #{singlecompleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="singlecompleftdown != null" >
+        singleCompLeftDown = #{singlecompleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="singlecomprightup != null" >
+        singleCompRightUp = #{singlecomprightup,jdbcType=VARCHAR},
+      </if>
+      <if test="singlecomprightdown != null" >
+        singleCompRightDown = #{singlecomprightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="singlecompselect != null" >
+        singleCompSelect = #{singlecompselect,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsincomleftup != null" >
+        sfSinComLeftUp = #{sfsincomleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsincomleftdown != null" >
+        sfSinComLeftDown = #{sfsincomleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsincomrightup != null" >
+        sfSinComRightUp = #{sfsincomrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsincomrightdown != null" >
+        sfSinComRightDown = #{sfsincomrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsincomselect != null" >
+        sfSinComSelect = #{sfsincomselect,jdbcType=VARCHAR},
+      </if>
+      <if test="localplantleftup != null" >
+        localPlantLeftUp = #{localplantleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="localplantleftdown != null" >
+        localPlantLeftDown = #{localplantleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="localplantrightup != null" >
+        localPlantRightUp = #{localplantrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="localplantrightdown != null" >
+        localPlantRightDown = #{localplantrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="localplantselect != null" >
+        localPlantSelect = #{localplantselect,jdbcType=VARCHAR},
+      </if>
+      <if test="requirerestor != null" >
+        requireRestor = #{requirerestor,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelpmcleftup != null" >
+        nobelpmcleftup = #{nobelpmcleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelpmcleftdown != null" >
+        nobelpmcleftdown = #{nobelpmcleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelpmcrightup != null" >
+        nobelpmcrightup = #{nobelpmcrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelpmcrightdown != null" >
+        nobelpmcrightdown = #{nobelpmcrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="zimmerleftup != null" >
+        zimmerleftup = #{zimmerleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="zimmerleftdown != null" >
+        zimmerleftdown = #{zimmerleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="zimmerrightup != null" >
+        zimmerrightup = #{zimmerrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="zimmerrightdown != null" >
+        zimmerrightdown = #{zimmerrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="operationDoctorsignature != null" >
+        operationDoctorsignature = #{operationDoctorsignature,jdbcType=VARCHAR},
+      </if>
+      <if test="repairDoctorsignature != null" >
+        repairDoctorsignature = #{repairDoctorsignature,jdbcType=VARCHAR},
+      </if>
+      <if test="patientsignature != null" >
+        patientsignature = #{patientsignature,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hudh.zzbl.entity.RepairSchemeConfirm" >
+    update HUDH_ZZBL_REPAIR_DETAIL
+    set createtime = #{createtime,jdbcType=VARCHAR},
+      createuser = #{createuser,jdbcType=VARCHAR},
+      id = #{id,jdbcType=VARCHAR},
+      order_number = #{orderNumber,jdbcType=VARCHAR},
+      tprgLeftUp = #{tprgleftup,jdbcType=VARCHAR},
+      tprgLeftDown = #{tprgleftdown,jdbcType=VARCHAR},
+      tprgRightUp = #{tprgrightup,jdbcType=VARCHAR},
+      tprgRightDown = #{tprgrightdown,jdbcType=VARCHAR},
+      plantThisTime = #{plantthistime,jdbcType=VARCHAR},
+      dentiumLeftUp = #{dentiumleftup,jdbcType=VARCHAR},
+      dentiumLeftDown = #{dentiumleftdown,jdbcType=VARCHAR},
+      dentiumRightUp = #{dentiumrightup,jdbcType=VARCHAR},
+      dentiumRightDown = #{dentiumrightdown,jdbcType=VARCHAR},
+      icxLeftUp = #{icxleftup,jdbcType=VARCHAR},
+      icxLeftDown = #{icxleftdown,jdbcType=VARCHAR},
+      icxRightUp = #{icxrightup,jdbcType=VARCHAR},
+      icxRightDown = #{icxrightdown,jdbcType=VARCHAR},
+      nobelActiveLeftUp = #{nobelactiveleftup,jdbcType=VARCHAR},
+      nobelActiveLeftDown = #{nobelactiveleftdown,jdbcType=VARCHAR},
+      nobelActiveRightUp = #{nobelactiverightup,jdbcType=VARCHAR},
+      nobelActiveRightDown = #{nobelactiverightdown,jdbcType=VARCHAR},
+      camlogLeftUp = #{camlogleftup,jdbcType=VARCHAR},
+      camlogLeftDown = #{camlogleftdown,jdbcType=VARCHAR},
+      camlogRightUp = #{camlogrightup,jdbcType=VARCHAR},
+      camlogRightDown = #{camlogrightdown,jdbcType=VARCHAR},
+      hiossenLeftUp = #{hiossenleftup,jdbcType=VARCHAR},
+      hiossenLeftDown = #{hiossenleftdown,jdbcType=VARCHAR},
+      hiossenRightUp = #{hiossenrightup,jdbcType=VARCHAR},
+      hiossenRightDown = #{hiossenrightdown,jdbcType=VARCHAR},
+      rbrdLeftUp = #{rbrdleftup,jdbcType=VARCHAR},
+      rbrdLeftDown = #{rbrdleftdown,jdbcType=VARCHAR},
+      rbrdRigthUp = #{rbrdrigthup,jdbcType=VARCHAR},
+      rbrdRigthDown = #{rbrdrigthdown,jdbcType=VARCHAR},
+      inviDenLeftUp = #{invidenleftup,jdbcType=VARCHAR},
+      inviDenLeftDown = #{invidenleftdown,jdbcType=VARCHAR},
+      inviDenRightUp = #{invidenrightup,jdbcType=VARCHAR},
+      inviDenRightDown = #{invidenrightdown,jdbcType=VARCHAR},
+      locatorLeftUp = #{locatorleftup,jdbcType=VARCHAR},
+      locatorLeftDown = #{locatorleftdown,jdbcType=VARCHAR},
+      locatorRightUp = #{locatorrightup,jdbcType=VARCHAR},
+      locatorRightDown = #{locatorrightdown,jdbcType=VARCHAR},
+      srrLeftUp = #{srrleftup,jdbcType=VARCHAR},
+      srrLeftDown = #{srrleftdown,jdbcType=VARCHAR},
+      srrRightUp = #{srrrightup,jdbcType=VARCHAR},
+      srrRightDown = #{srrrightdown,jdbcType=VARCHAR},
+      retainerLeftUp = #{retainerleftup,jdbcType=VARCHAR},
+      retainerLeftDown = #{retainerleftdown,jdbcType=VARCHAR},
+      retainerRightUp = #{retainerrightup,jdbcType=VARCHAR},
+      retainerRightDown = #{retainerrightdown,jdbcType=VARCHAR},
+      singleCompLeftUp = #{singlecompleftup,jdbcType=VARCHAR},
+      singleCompLeftDown = #{singlecompleftdown,jdbcType=VARCHAR},
+      singleCompRightUp = #{singlecomprightup,jdbcType=VARCHAR},
+      singleCompRightDown = #{singlecomprightdown,jdbcType=VARCHAR},
+      singleCompSelect = #{singlecompselect,jdbcType=VARCHAR},
+      sfSinComLeftUp = #{sfsincomleftup,jdbcType=VARCHAR},
+      sfSinComLeftDown = #{sfsincomleftdown,jdbcType=VARCHAR},
+      sfSinComRightUp = #{sfsincomrightup,jdbcType=VARCHAR},
+      sfSinComRightDown = #{sfsincomrightdown,jdbcType=VARCHAR},
+      sfSinComSelect = #{sfsincomselect,jdbcType=VARCHAR},
+      localPlantLeftUp = #{localplantleftup,jdbcType=VARCHAR},
+      localPlantLeftDown = #{localplantleftdown,jdbcType=VARCHAR},
+      localPlantRightUp = #{localplantrightup,jdbcType=VARCHAR},
+      localPlantRightDown = #{localplantrightdown,jdbcType=VARCHAR},
+      localPlantSelect = #{localplantselect,jdbcType=VARCHAR},
+      requireRestor = #{requirerestor,jdbcType=VARCHAR},
+      organization = #{organization,jdbcType=VARCHAR}
+    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </update>
+    <update id="selectedRepairProjectInfor" parameterType="map">
+  	UPDATE HUDH_ZZBL_REPAIR_DETAIL
+	  	<set>
+	  		status = #{status}
+	  	</set>
+	 Where 1=1
+	 AND SEQ_ID = #{id}
+  </update>
+</mapper>

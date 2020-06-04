@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_LLTJ_DETAIL">
+
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsLltjDetail">
+		<id column="seq_id" jdbcType="VARCHAR" property="seqId" />
+		<result column="lltjid" jdbcType="VARCHAR" property="lltjid" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="itemno" jdbcType="VARCHAR" property="itemno" />
+		<result column="unit" jdbcType="VARCHAR" property="unit" />
+		<result column="nums" jdbcType="INTEGER" property="nums" />
+		<result column="goods" jdbcType="VARCHAR" property="goods" />
+		<result column="goodsunit" jdbcType="VARCHAR" property="goodsunit" />
+		<result column="goodsnums" jdbcType="INTEGER" property="goodsnums" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="iszl" jdbcType="INTEGER" property="iszl" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="sshouse" jdbcType="VARCHAR" property="sshouse" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		seq_id, lltjid, usercode, username, itemno, unit, nums, goods, goodsunit, goodsnums,
+		createuser, createtime, iszl, organization, sshouse
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_LLTJ_DETAIL
+		where seq_id = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_LLTJ_DETAIL
+		where seq_id = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsLltjDetail">
+		insert into KQDS_LLTJ_DETAIL (seq_id, lltjid, usercode,
+		username, itemno, unit,
+		nums, goods, goodsunit,
+		goodsnums, createuser, createtime,
+		iszl, organization, sshouse
+		)
+		values (#{seqId,jdbcType=VARCHAR}, #{lltjid,jdbcType=VARCHAR}, #{usercode,jdbcType=VARCHAR},
+		#{username,jdbcType=VARCHAR}, #{itemno,jdbcType=VARCHAR},
+		#{unit,jdbcType=VARCHAR},
+		#{nums,jdbcType=INTEGER}, #{goods,jdbcType=VARCHAR}, #{goodsunit,jdbcType=VARCHAR},
+		#{goodsnums,jdbcType=INTEGER}, #{createuser,jdbcType=VARCHAR},
+		#{createtime,jdbcType=VARCHAR},
+		#{iszl,jdbcType=INTEGER}, #{organization,jdbcType=VARCHAR}, #{sshouse,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsLltjDetail">
+		insert into KQDS_LLTJ_DETAIL
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				seq_id,
+			</if>
+			<if test="lltjid != null">
+				lltjid,
+			</if>
+			<if test="usercode != null">
+				usercode,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="itemno != null">
+				itemno,
+			</if>
+			<if test="unit != null">
+				unit,
+			</if>
+			<if test="nums != null">
+				nums,
+			</if>
+			<if test="goods != null">
+				goods,
+			</if>
+			<if test="goodsunit != null">
+				goodsunit,
+			</if>
+			<if test="goodsnums != null">
+				goodsnums,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="iszl != null">
+				iszl,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="sshouse != null">
+				sshouse,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="lltjid != null">
+				#{lltjid,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="itemno != null">
+				#{itemno,jdbcType=VARCHAR},
+			</if>
+			<if test="unit != null">
+				#{unit,jdbcType=VARCHAR},
+			</if>
+			<if test="nums != null">
+				#{nums,jdbcType=INTEGER},
+			</if>
+			<if test="goods != null">
+				#{goods,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsunit != null">
+				#{goodsunit,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsnums != null">
+				#{goodsnums,jdbcType=INTEGER},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="iszl != null">
+				#{iszl,jdbcType=INTEGER},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="sshouse != null">
+				#{sshouse,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsLltjDetail">
+		update KQDS_LLTJ_DETAIL
+		<set>
+			<if test="lltjid != null">
+				lltjid = #{lltjid,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				usercode = #{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="itemno != null">
+				itemno = #{itemno,jdbcType=VARCHAR},
+			</if>
+			<if test="unit != null">
+				unit = #{unit,jdbcType=VARCHAR},
+			</if>
+			<if test="nums != null">
+				nums = #{nums,jdbcType=INTEGER},
+			</if>
+			<if test="goods != null">
+				goods = #{goods,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsunit != null">
+				goodsunit = #{goodsunit,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsnums != null">
+				goodsnums = #{goodsnums,jdbcType=INTEGER},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="iszl != null">
+				iszl = #{iszl,jdbcType=INTEGER},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="sshouse != null">
+				sshouse = #{sshouse,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where seq_id = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsLltjDetail">
+		update KQDS_LLTJ_DETAIL
+		set lltjid = #{lltjid,jdbcType=VARCHAR},
+		usercode = #{usercode,jdbcType=VARCHAR},
+		username =
+		#{username,jdbcType=VARCHAR},
+		itemno = #{itemno,jdbcType=VARCHAR},
+		unit = #{unit,jdbcType=VARCHAR},
+		nums = #{nums,jdbcType=INTEGER},
+		goods = #{goods,jdbcType=VARCHAR},
+		goodsunit =
+		#{goodsunit,jdbcType=VARCHAR},
+		goodsnums = #{goodsnums,jdbcType=INTEGER},
+		createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		iszl =
+		#{iszl,jdbcType=INTEGER},
+		organization = #{organization,jdbcType=VARCHAR},
+		sshouse = #{sshouse,jdbcType=VARCHAR}
+		where seq_id = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_LLTJ_DETAIL
+	</sql>
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsLltjDetail">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectList" parameterType="map" resultType="json">
+		select d.*,item.treatitemname,tcode.dict_name,detail.goodsname from KQDS_LLTJ_DETAIL d
+		LEFT JOIN KQDS_TREATITEM item on d.itemno = item.treatitemno
+		LEFT JOIN SYS_DICT tcode on
+		tcode.seq_id = item.basetype
+		LEFT JOIN KQDS_CK_GOODS_DETAIL detail on d.goods = detail.seq_id
+		where 1=1
+		<if test="starttime != null and starttime !='' ">
+			and d.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and d.createtime <![CDATA[ <= ]]>
+			#{ghsj2}
+		</if>
+		<if test="queryinput != null and queryinput !='' ">
+			and (u.usercode like '%' + #{usercodeorname} + '%'
+			or u.username like '%' + #{usercodeorname} + '%'
+			or u.pym like '%' + #{usercodeorname} + '%'
+			)
+		</if>
+		<if test="lltjid != null and lltjid !='' ">
+			and d.lltjid = #{lltjid}
+		</if>
+		<if test="organization != null and organization !='' ">
+			and d.organization = #{organization}
+		</if>
+		order by d.createtime asc
+	</select>
+
+</mapper>

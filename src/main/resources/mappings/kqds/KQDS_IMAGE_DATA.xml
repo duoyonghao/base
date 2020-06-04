@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_IMAGE_DATA">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsImageData">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="regno" jdbcType="VARCHAR" property="regno" />
+		<result column="attachmentid" jdbcType="VARCHAR" property="attachmentid" />
+		<result column="attachmentname" jdbcType="VARCHAR" property="attachmentname" />
+		<result column="yxfl" jdbcType="VARCHAR" property="yxfl" />
+		<result column="infosort" jdbcType="VARCHAR" property="infosort" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, createuser, createtime, usercode, username, regno, attachmentid, attachmentname,
+		yxfl, infosort, organization
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_IMAGE_DATA
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_IMAGE_DATA
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsImageData">
+		insert into KQDS_IMAGE_DATA (SEQ_ID, createuser, createtime,
+		usercode, username, regno,
+		attachmentid, attachmentname, yxfl,
+		infosort,
+		organization)
+		values (#{seqId,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{usercode,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
+		#{regno,jdbcType=VARCHAR},
+		#{attachmentid,jdbcType=VARCHAR}, #{attachmentname,jdbcType=VARCHAR}, #{yxfl,jdbcType=VARCHAR},
+		#{infosort,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsImageData">
+		insert into KQDS_IMAGE_DATA
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="usercode != null">
+				usercode,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="regno != null">
+				regno,
+			</if>
+			<if test="attachmentid != null">
+				attachmentid,
+			</if>
+			<if test="attachmentname != null">
+				attachmentname,
+			</if>
+			<if test="yxfl != null">
+				yxfl,
+			</if>
+			<if test="infosort != null">
+				infosort,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="regno != null">
+				#{regno,jdbcType=VARCHAR},
+			</if>
+			<if test="attachmentid != null">
+				#{attachmentid,jdbcType=VARCHAR},
+			</if>
+			<if test="attachmentname != null">
+				#{attachmentname,jdbcType=VARCHAR},
+			</if>
+			<if test="yxfl != null">
+				#{yxfl,jdbcType=VARCHAR},
+			</if>
+			<if test="infosort != null">
+				#{infosort,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsImageData">
+		update KQDS_IMAGE_DATA
+		<set>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				usercode = #{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="regno != null">
+				regno = #{regno,jdbcType=VARCHAR},
+			</if>
+			<if test="attachmentid != null">
+				attachmentid = #{attachmentid,jdbcType=VARCHAR},
+			</if>
+			<if test="attachmentname != null">
+				attachmentname = #{attachmentname,jdbcType=VARCHAR},
+			</if>
+			<if test="yxfl != null">
+				yxfl = #{yxfl,jdbcType=VARCHAR},
+			</if>
+			<if test="infosort != null">
+				infosort = #{infosort,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsImageData">
+		update KQDS_IMAGE_DATA
+		set createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		usercode =
+		#{usercode,jdbcType=VARCHAR},
+		username = #{username,jdbcType=VARCHAR},
+		regno = #{regno,jdbcType=VARCHAR},
+		attachmentid = #{attachmentid,jdbcType=VARCHAR},
+		attachmentname =
+		#{attachmentname,jdbcType=VARCHAR},
+		yxfl = #{yxfl,jdbcType=VARCHAR},
+		infosort = #{infosort,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR}
+		where SEQ_ID =
+		#{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_IMAGE_DATA
+	</sql>
+
+	<select id="selectCountByMap" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsImageData">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+</mapper>

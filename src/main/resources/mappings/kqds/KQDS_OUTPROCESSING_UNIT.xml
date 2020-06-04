@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_OUTPROCESSING_UNIT">
+
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsOutprocessingUnit">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="code" jdbcType="VARCHAR" property="code" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
+		<result column="phone" jdbcType="VARCHAR" property="phone" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="useflag" jdbcType="INTEGER" property="useflag" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, createuser, createtime, code, name, address, phone, remark, organization,
+		useflag
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_OUTPROCESSING_UNIT
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_OUTPROCESSING_UNIT
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsOutprocessingUnit">
+		insert into KQDS_OUTPROCESSING_UNIT (SEQ_ID, createuser, createtime,
+		code, name, address,
+		phone, remark, organization,
+		useflag)
+		values
+		(#{seqId,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR},
+		#{useflag,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsOutprocessingUnit">
+		insert into KQDS_OUTPROCESSING_UNIT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="code != null">
+				code,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="useflag != null">
+				useflag,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				#{code,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="useflag != null">
+				#{useflag,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsOutprocessingUnit">
+		update KQDS_OUTPROCESSING_UNIT
+		<set>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				code = #{code,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="useflag != null">
+				useflag = #{useflag,jdbcType=INTEGER},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsOutprocessingUnit">
+		update KQDS_OUTPROCESSING_UNIT
+		set createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		code = #{code,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR},
+		useflag = #{useflag,jdbcType=INTEGER}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+
+	<!--#################################### auto create ################################# -->
+
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_OUTPROCESSING_UNIT
+	</sql>
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsOutprocessingUnit">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="getUnitCodeListBySeqIds" parameterType="java.lang.String" resultType="json">
+		select code from KQDS_OUTPROCESSING_UNIT where seq_id in(#{_parameter})
+	</select>
+	<select id="countByCode" parameterType="KqdsOutprocessingUnit" resultType="int">
+		select count(1) from KQDS_OUTPROCESSING_UNIT where code =#{code}
+		<if test="seqId != null">
+			and seq_id != #{seqId}
+		</if>
+	</select>
+	<select id="checkCode" parameterType="map" resultType="int">
+		select count(1) as num from KQDS_OUTPROCESSING_UNIT where 1=1
+		<if test="seqId != null and seqId !='' ">
+			and seq_id not in(#{seqId})
+		</if>
+		<if test="code != null and code !='' ">
+			and code = #{code}
+		</if>
+	</select>
+	<select id="countByOrgAndName" parameterType="KqdsOutprocessingType" resultType="int">
+		select count(1) from KQDS_OUTPROCESSING_UNIT where name =#{name}
+		and organization =#{organization}
+		<if test="seqId != null and seqId !='' ">
+			and seq_id != #{seqId}
+		</if>
+	</select>
+	<select id="selectWithPage" parameterType="map" resultType="json">
+		select
+		tc.seq_id,
+		tc.code,
+		tc.address,
+		tc.phone,
+		tc.remark,
+		tc.name,
+		tc.useflag,
+		tc.createuser,
+		p.user_name as createusername,
+		tc.createtime
+		from KQDS_OUTPROCESSING_UNIT tc
+		LEFT JOIN
+		SYS_PERSON p on tc.createuser = p.seq_id
+		where 1=1
+		<if test="code != null and code !='' ">
+			and tc.code = #{code}
+		</if>
+		<if test="organization != null and organization !='' ">
+			and tc.organization = #{organization}
+		</if>
+		<if test="name != null and name !='' ">
+			and tc.name like '%' + #{name} + '%'
+		</if>
+		ORDER BY tc.createtime
+	</select>
+	<select id="getUnitList4Back" parameterType="map" resultType="json">
+		select code,name from KQDS_OUTPROCESSING_UNIT where 1=1
+		<if test="isadd != null and isadd !='' ">
+			and useflag = 0
+		</if>
+		and organization = #{organization}
+	</select>
+	<select id="getUnitList" parameterType="map" resultType="json">
+		select code,name from KQDS_OUTPROCESSING_UNIT where 1=1
+		<if test="isadd != null and isadd !='' ">
+			and useflag = 0
+		</if>
+		and (organization = #{organization} or organization = '')
+	</select>
+	<select id="getJgcByName" parameterType="map" resultType="KqdsOutprocessingUnit">
+		select * from KQDS_OUTPROCESSING_UNIT where 1=1
+		<if test="name != null and name !='' ">
+			and name = #{name}
+		</if>
+		and organization = #{organization}
+	</select>
+	<select id="getJgcByCode" parameterType="map" resultType="json">
+		select * from KQDS_OUTPROCESSING_UNIT where 1=1
+		and code = #{code}
+		and organization = #{organization}
+	</select>
+	<select id="getUniCodeByName" parameterType="java.lang.String" resultType="int">
+		select count(1) from KQDS_OUTPROCESSING_UNIT where code = #{_parameter}
+	</select>
+	<select id="getJgcDictList4Back" parameterType="map" resultType="KqdsOutprocessingUnit">
+		select b.code,b.name,b.organization from KQDS_OUTPROCESSING_UNIT b where 1=1
+		and (b.organization = #{organization} )
+		<if test="mrjgc != null and mrjgc !='' ">
+			and b.code = #{mrjgc}
+		</if>
+		<if test="isadd != null and isadd !='' ">
+			and b.useflag = 0
+		</if>
+		<if test="search != null and search !='' ">
+			and b.code in (select t.mrjgc from KQDS_OUTPROCESSING t where t.wjgmc like '%' + #{search} + '%' GROUP BY mrjgc)
+		</if>
+	</select>
+	<select id="getJgcDictList" parameterType="map" resultType="KqdsOutprocessingUnit">
+		select b.code,b.name,b.organization from KQDS_OUTPROCESSING_UNIT b where 1=1
+		and (b.organization = #{organization} or b.organization = '')
+		<if test="mrjgc != null and mrjgc !='' ">
+			and b.code = #{mrjgc}
+		</if>
+		<if test="isadd != null and isadd !='' ">
+			and b.useflag = 0
+		</if>
+		<if test="search != null and search !='' ">
+			and b.code in (select t.mrjgc from KQDS_OUTPROCESSING t where t.wjgmc like '%' + #{search} + '%' GROUP BY mrjgc)
+		</if>
+	</select>
+	<delete id="deletecode" parameterType="java.lang.String">
+		<!-- WARNING - @mbg.generated This element is automatically generated by MyBatis Generator, do not modify. This element was generated on Thu Apr 12 10:54:48 CST 2018. -->
+		delete from KQDS_OUTPROCESSING_UNIT
+		where code = #{code,jdbcType=VARCHAR}
+	</delete>
+
+</mapper>

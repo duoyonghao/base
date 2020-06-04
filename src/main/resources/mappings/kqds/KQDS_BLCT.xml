@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_BLCT">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsBlct">
+		<id column="seq_id" jdbcType="VARCHAR" property="seqId" />
+		<result column="ctname" jdbcType="VARCHAR" property="ctname" />
+		<result column="cttype" jdbcType="VARCHAR" property="cttype" />
+		<result column="ctnexttype" jdbcType="VARCHAR" property="ctnexttype" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="useflag" jdbcType="INTEGER" property="useflag" />
+		<result column="orderno" jdbcType="INTEGER" property="orderno" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		seq_id, ctname, cttype, ctnexttype, createuser, createtime, useflag, orderno, organization
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_BLCT
+		where seq_id = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_BLCT
+		where seq_id = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsBlct">
+		insert into KQDS_BLCT (seq_id, ctname, cttype,
+		ctnexttype, createuser, createtime,
+		useflag, orderno, organization
+		)
+		values
+		(#{seqId,jdbcType=VARCHAR}, #{ctname,jdbcType=VARCHAR}, #{cttype,jdbcType=VARCHAR},
+		#{ctnexttype,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{useflag,jdbcType=INTEGER}, #{orderno,jdbcType=INTEGER}, #{organization,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsBlct">
+		insert into KQDS_BLCT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				seq_id,
+			</if>
+			<if test="ctname != null">
+				ctname,
+			</if>
+			<if test="cttype != null">
+				cttype,
+			</if>
+			<if test="ctnexttype != null">
+				ctnexttype,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="useflag != null">
+				useflag,
+			</if>
+			<if test="orderno != null">
+				orderno,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="ctname != null">
+				#{ctname,jdbcType=VARCHAR},
+			</if>
+			<if test="cttype != null">
+				#{cttype,jdbcType=VARCHAR},
+			</if>
+			<if test="ctnexttype != null">
+				#{ctnexttype,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="useflag != null">
+				#{useflag,jdbcType=INTEGER},
+			</if>
+			<if test="orderno != null">
+				#{orderno,jdbcType=INTEGER},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsBlct">
+		update KQDS_BLCT
+		<set>
+			<if test="ctname != null">
+				ctname = #{ctname,jdbcType=VARCHAR},
+			</if>
+			<if test="cttype != null">
+				cttype = #{cttype,jdbcType=VARCHAR},
+			</if>
+			<if test="ctnexttype != null">
+				ctnexttype = #{ctnexttype,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="useflag != null">
+				useflag = #{useflag,jdbcType=INTEGER},
+			</if>
+			<if test="orderno != null">
+				orderno = #{orderno,jdbcType=INTEGER},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where seq_id = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsBlct">
+		update KQDS_BLCT
+		set ctname = #{ctname,jdbcType=VARCHAR},
+		cttype = #{cttype,jdbcType=VARCHAR},
+		ctnexttype =
+		#{ctnexttype,jdbcType=VARCHAR},
+		createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		useflag = #{useflag,jdbcType=INTEGER},
+		orderno =
+		#{orderno,jdbcType=INTEGER},
+		organization = #{organization,jdbcType=VARCHAR}
+		where seq_id = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_BLCT
+	</sql>
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsBlct">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+
+
+	<select id="selectWithPage" parameterType="json" resultType="json">
+		select
+		<include refid="Base_Column_List"></include>
+		,d1.dict_name as cttypename,d2.dict_name as ctnexttypename
+		from
+		<include refid="tableName"></include>
+		p
+		left join sys_dict d1 on d1.seq_id = p.cttype
+		left join sys_dict d2 on d2.seq_id = p.ctnexttype
+		where 1=1
+		<if test="organization != null and organization != ''">
+			and p.organization = #{organization}
+		</if>
+		<foreach item="item" index="key" collection="querymap" open="" separator="" close="">
+			and p.${key} = #{item}
+		</foreach>
+		ORDER BY p.orderno asc
+	</select>
+
+	<select id="selectList" parameterType="map" resultType="json">
+		select
+		<include refid="Base_Column_List"></include>
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		<foreach item="item" index="key" collection="map" open="" separator="" close="">
+			and p.${key} = #{item}
+		</foreach>
+		ORDER BY p.orderno asc
+	</select>
+
+	<update id="updateFlagBySeqIds" parameterType="json">
+		update
+		<include refid="tableName"></include>
+		set
+		useflag = #{useflag}
+		where
+		SEQ_ID in
+		<foreach item="item" index="index" collection="idList" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+
+
+
+</mapper>

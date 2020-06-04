@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_YKZZ_TYPE">
+	<resultMap id="YkzzTypeMap" type="com.hudh.ykzz.entity.YkzzType">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="type_name" jdbcType="VARCHAR" property="typeName" />
+		<result column="parentid" jdbcType="VARCHAR" property="parentid" />
+		<result column="orderno" jdbcType="VARCHAR" property="orderno" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="creator" jdbcType="VARCHAR" property="creator" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, type_name, parentid, orderno ,createtime, creator, organization
+	</sql>
+	
+	<insert id="insertYkzzType" parameterType="com.hudh.ykzz.entity.YkzzType">
+		insert into HUDH_YKZZ_TYPE (id, type_name, parentid, orderno,createtime,creator,organization)
+		values (#{id,jdbcType=VARCHAR}, #{typeName,jdbcType=VARCHAR}, #{parentid,jdbcType=VARCHAR},
+		#{orderno,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR},#{creator,jdbcType=VARCHAR},#{organization,jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="findYkzzTypeById" resultType="com.hudh.ykzz.entity.YkzzType">
+		select
+		<include refid="Base_Column_List" /> 
+		from HUDH_YKZZ_TYPE where id=#{id,jdbcType=VARCHAR}
+	</select>
+	
+	<delete id="deleteYkzzTypeById" parameterType="String">
+		delete from HUDH_YKZZ_TYPE where id=#{id,jdbcType=VARCHAR}
+	</delete>
+	
+	<update id="updateYkzzTypeById" parameterType="com.hudh.ykzz.entity.YkzzType">
+		update HUDH_YKZZ_TYPE set type_name=#{typeName,jdbcType=VARCHAR},orderno=#{orderno,jdbcType=VARCHAR}
+		where id=#{id,jdbcType=VARCHAR}
+	</update>
+	
+	<select id="findChildTypesByParentId" parameterType="map" resultType="json">
+		select
+		a.id, a.type_name, a.parentid,a.orderno ,a.createtime, b.user_name
+		from HUDH_YKZZ_TYPE a left join sys_person b on a.creator=b.seq_id where parentid=#{id,jdbcType=VARCHAR}
+		and a.organization = #{organization}
+	</select>
+	
+	<select id="findAllTypes" resultType="json" parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" /> 
+		from HUDH_YKZZ_TYPE 
+		where 1=1
+		<if test='organization != null and organization != ""'>
+			and organization = #{organization}
+		</if>
+		and id != 'root'
+	</select>
+	
+</mapper>

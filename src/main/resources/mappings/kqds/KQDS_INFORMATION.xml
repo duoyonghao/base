@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_INFORMATION">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsInformation">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.base.KqdsInformation">
+		<result column="content" jdbcType="CLOB" property="content" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, createuser, createtime, title, type, status, organization
+	</sql>
+	<sql id="Blob_Column_List">
+		content
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from KQDS_INFORMATION
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_INFORMATION
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsInformation">
+		insert into KQDS_INFORMATION (SEQ_ID, createuser, createtime,
+		title, type, status,
+		organization, content)
+		values (#{seqId,jdbcType=VARCHAR},
+		#{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{title,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR},
+		#{content,jdbcType=CLOB})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsInformation">
+		insert into KQDS_INFORMATION
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=CLOB},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsInformation">
+		update KQDS_INFORMATION
+		<set>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=CLOB},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.kqds.entity.base.KqdsInformation">
+		update KQDS_INFORMATION
+		set createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		title = #{title,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR},
+		status = #{status,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR},
+		content =
+		#{content,jdbcType=CLOB}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsInformation">
+		update KQDS_INFORMATION
+		set createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		title =
+		#{title,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR},
+		status = #{status,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR}
+		where SEQ_ID =
+		#{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+	<sql id="tableName">
+		KQDS_INFORMATION
+	</sql>
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsInformation">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+
+
+	<select id="selectWithPage" parameterType="map" resultType="json">
+		select
+		p.seq_id,
+		dict.dict_name as type,
+		p.title
+		from
+		<include refid="tableName"></include>
+		p
+		LEFT JOIN SYS_DICT dict on p.type = dict.seq_id
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and p.${key} = #{val}
+		</foreach>
+		order by p.createtime desc
+	</select>
+	<select id="selectList" parameterType="map" resultType="json">
+		select
+		dict.dict_name as typename,
+		p.SEQ_ID, p.createuser, p.createtime, p.title, p.type, p.status, p.organization
+		,p.content
+		from
+		<include refid="tableName"></include>
+		p
+		LEFT JOIN SYS_DICT dict on p.type = dict.seq_id
+		where 1=1
+		<if test="searchinput != null">
+			and ( dict.dict_name like '%'+#{searchinput}+'%' or p.title like '%'+#{searchinput}+'%' or p.content like '%'+#{searchinput}+'%')
+		</if>
+		and p.organization = #{organization}
+		ORDER BY p.createtime
+	</select>
+
+
+</mapper>

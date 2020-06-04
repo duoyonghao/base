@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_CK_GOODS_TYPE">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsCkGoodsType">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="goodstype" jdbcType="VARCHAR" property="goodstype" />
+		<result column="typeno" jdbcType="VARCHAR" property="typeno" />
+		<result column="perid" jdbcType="VARCHAR" property="perid" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="sortno" jdbcType="INTEGER" property="sortno" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, goodstype, typeno, perid, createuser, createtime, organization, sortno
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_CK_GOODS_TYPE
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_CK_GOODS_TYPE
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsCkGoodsType">
+		insert into KQDS_CK_GOODS_TYPE (SEQ_ID, goodstype, typeno,
+		perid, createuser, createtime,
+		organization, sortno)
+		values
+		(#{seqId,jdbcType=VARCHAR}, #{goodstype,jdbcType=VARCHAR}, #{typeno,jdbcType=VARCHAR},
+		#{perid,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR}, #{sortno,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsCkGoodsType">
+		insert into KQDS_CK_GOODS_TYPE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="goodstype != null">
+				goodstype,
+			</if>
+			<if test="typeno != null">
+				typeno,
+			</if>
+			<if test="perid != null">
+				perid,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="sortno != null">
+				sortno,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="goodstype != null">
+				#{goodstype,jdbcType=VARCHAR},
+			</if>
+			<if test="typeno != null">
+				#{typeno,jdbcType=VARCHAR},
+			</if>
+			<if test="perid != null">
+				#{perid,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="sortno != null">
+				#{sortno,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsCkGoodsType">
+		update KQDS_CK_GOODS_TYPE
+		<set>
+			<if test="goodstype != null">
+				goodstype = #{goodstype,jdbcType=VARCHAR},
+			</if>
+			<if test="typeno != null">
+				typeno = #{typeno,jdbcType=VARCHAR},
+			</if>
+			<if test="perid != null">
+				perid = #{perid,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="sortno != null">
+				sortno = #{sortno,jdbcType=INTEGER},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsCkGoodsType">
+		update KQDS_CK_GOODS_TYPE
+		set goodstype = #{goodstype,jdbcType=VARCHAR},
+		typeno = #{typeno,jdbcType=VARCHAR},
+		perid =
+		#{perid,jdbcType=VARCHAR},
+		createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR},
+		sortno =
+		#{sortno,jdbcType=INTEGER}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_CK_GOODS_TYPE
+	</sql>
+	<select id="selectCountByMap" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsCkGoodsType">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+
+
+	<select id="selectList" parameterType="map" resultType="json">
+		select
+		*
+		from KQDS_CK_GOODS_TYPE
+		where 1=1
+		<if test="search != null and search !='' ">
+			and goodstype like '%' +#{search} + '%'
+		</if>
+		<if test="organization != null and organization !='' ">
+			and organization = #{organization}
+		</if>
+		<if test="perid != null and perid !='' ">
+			and perid = #{perid}
+		</if>
+		<if test="typeno != null and typeno !='' ">
+			and typeno = #{typeno}
+		</if>
+		order by sortno
+	</select>
+	<select id="getBNextTypeSelect" parameterType="map" resultType="json">
+		select
+		*
+		from KQDS_CK_GOODS_TYPE
+		where 1=1
+		<if test="organization != null and organization !='' ">
+			and organization = #{organization}
+		</if>
+		<if test="perid != null and perid !='' ">
+			and perid = #{perid}
+		</if>
+		order by sortno
+	</select>
+
+	<select id="getBaseTypeSelect" parameterType="map" resultType="json">
+		select
+		*
+		from KQDS_CK_GOODS_TYPE
+		where 1=1 and perid = #{perid}
+		<if test="organization != null and organization !='' ">
+			and organization = #{organization}
+		</if>
+		order by sortno
+	</select>
+	<select id="getUniTypenoByName" parameterType="json" resultType="int">
+		select count(1) from KQDS_CK_GOODS_TYPE where 1=1
+		<if test="typeno != null">
+			and typeno = #{typeno}
+		</if>
+		<if test="perid != null">
+			and perid = #{perid}
+		</if>
+	</select>
+	
+	<select id="findNextType" parameterType="map" resultType="com.kqds.entity.base.KqdsCkGoodsType">
+		SELECT * 
+		FROM KQDS_CK_GOODS_TYPE
+		WHERE 1=1
+		<if test="seqId != null and seqId != ''">
+			AND perid = #{seqId}
+		</if>
+	</select>
+	
+	<select id="findHouse" parameterType="map" resultType="json">
+		SELECT 
+		   housename AS house
+		FROM  KQDS_CK_HOUSE 
+		WHERE 1=1
+		AND SEQ_ID = #{id}
+	</select>
+</mapper>

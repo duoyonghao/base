@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_YKZZ_MANU">
+	<resultMap id="YkzzManuMap" type="com.hudh.ykzz.entity.YkzzManu">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="orderno" jdbcType="INTEGER" property="orderno" />
+		<result column="manu_name" jdbcType="VARCHAR" property="manuName" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="creator" jdbcType="VARCHAR" property="creator" />
+		<result column="manu_code" jdbcType="VARCHAR" property="manuCode" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, orderno, manu_name,createtime, creator, manu_code, organization
+	</sql>
+	
+	<insert id="insertYkzzManu" parameterType="com.hudh.ykzz.entity.YkzzManu">
+		insert into HUDH_YKZZ_MANU (id, orderno, manu_name, createtime,creator,manu_code,organization)
+		values (#{id,jdbcType=VARCHAR}, #{orderno,jdbcType=INTEGER}, #{manuName,jdbcType=VARCHAR},
+		#{createtime,jdbcType=VARCHAR},#{creator,jdbcType=VARCHAR},#{manuCode,jdbcType=VARCHAR},#{organization,jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="findYkzzManuById" resultType="com.hudh.ykzz.entity.YkzzManu">
+		select
+		<include refid="Base_Column_List" /> 
+		from HUDH_YKZZ_MANU where id=#{id,jdbcType=VARCHAR}
+	</select>
+	
+	<delete id="deleteManuTypeById" parameterType="String">
+		delete from HUDH_YKZZ_MANU where id=#{id,jdbcType=VARCHAR}
+	</delete>
+	
+	<update id="updateManuTypeById" parameterType="com.hudh.ykzz.entity.YkzzManu">
+		update HUDH_YKZZ_MANU set orderno=#{orderno,jdbcType=INTEGER},manu_name=#{manuName,jdbcType=VARCHAR}
+		where id=#{id,jdbcType=VARCHAR}
+	</update>
+	
+	<select id="findAllManu" resultType="json" parameterType="java.util.Map">
+		select
+		a.id, a.orderno, a.manu_name,a.createtime, a.creator, a.manu_code , b.user_name
+		from HUDH_YKZZ_MANU a left join sys_person b on a.creator=b.seq_id
+		where 1=1
+		<if test='organization != null and organization != ""'>
+			and a.organization = #{organization}
+		</if>
+		order by orderno asc
+	</select>
+	
+	<select id="findManuByCode" resultType="json">
+		select
+		<include refid="Base_Column_List" /> 
+		from HUDH_YKZZ_MANU where manu_code=#{manuCode,jdbcType=VARCHAR}
+	</select>
+</mapper>

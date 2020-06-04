@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_LCLJ_WORKLIST">
+	<resultMap id="WorklistMap" type="com.hudh.lclj.entity.LcljWorklist">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="nodeId" jdbcType="VARCHAR" property="nodeId" />
+		<result column="nodeName" jdbcType="VARCHAR" property="nodeName" />
+		<result column="nodeStatus" jdbcType="INTEGER" property="nodeStatus" />
+		<result column="flowStatus" jdbcType="INTEGER" property="flowStatus" />
+		<result column="dataId" jdbcType="INTEGER" property="dataId" />
+		<result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+		<result column="flowInfo" jdbcType="CLOB" property="flowInfo" />
+		<result column="operate" jdbcType="VARCHAR" property="operate" />
+		<result column="examine" jdbcType="INTEGER" property="examine" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="creator" jdbcType="VARCHAR" property="creator" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="viewUrl" jdbcType="VARCHAR" property="viewUrl" />
+		<result column="flowCode" jdbcType="VARCHAR" property="flowCode" />
+		<result column="overdue" jdbcType="VARCHAR" property="overdue" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, nodeId, nodeName, nodeStatus ,flowStatus ,dataId ,order_number ,flowInfo ,operate ,examine , createtime,creator ,organization ,viewUrl ,flowCode ,overdue
+	</sql>
+	
+	<insert id="insertWorkList" parameterType="com.hudh.lclj.entity.LcljWorklist">
+		insert into HUDH_LCLJ_WORKLIST (id, nodeId, nodeName, nodeStatus ,flowStatus ,dataId ,order_number ,flowInfo ,operate ,examine , createtime,creator ,organization ,viewUrl ,flowCode ,overdue)
+		values (#{id,jdbcType=VARCHAR}, #{nodeId,jdbcType=VARCHAR}, #{nodeName,jdbcType=VARCHAR},
+		#{nodeStatus,jdbcType=INTEGER},#{flowStatus,jdbcType=INTEGER},#{dataId,jdbcType=VARCHAR},
+		#{orderNumber,jdbcType=VARCHAR},#{flowInfo,jdbcType=CLOB},#{operate,jdbcType=VARCHAR},
+		#{examine,jdbcType=INTEGER},#{createtime,jdbcType=VARCHAR},#{creator,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR},#{viewUrl,jdbcType=VARCHAR},#{flowCode,jdbcType=VARCHAR},#{overdue,jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="findWorkByOrderNumber" resultType="com.hudh.lclj.entity.LcljWorklist">
+		select
+		<include refid="Base_Column_List" /> 
+		from HUDH_LCLJ_WORKLIST
+		where order_number = #{orderNumber} and nodeStatus = 1 and flowStatus = 1
+	</select>
+	
+	<update id="updateWorkByOrderNumber" parameterType="com.hudh.lclj.entity.LcljWorklist">
+		update HUDH_LCLJ_WORKLIST set nodeStatus=#{nodeStatus,jdbcType=INTEGER},
+		operate=#{operate,jdbcType=VARCHAR}, createtime=#{createtime,jdbcType=VARCHAR}, creator=#{creator,jdbcType=VARCHAR},dataId=#{dataId,jdbcType=VARCHAR} 
+		where order_number=#{orderNumber,jdbcType=VARCHAR} and nodeStatus = 1
+	</update>
+	
+	<select id="findHadWorkList" resultType="com.hudh.lclj.entity.LcljWorklist">
+		select
+		<include refid="Base_Column_List" /> 
+		from HUDH_LCLJ_WORKLIST
+		where order_number = #{orderNumber}
+	</select>
+	
+	<select id="findHadWorkByOrderNumberAndNodeId" resultType="com.hudh.lclj.entity.LcljWorklist" parameterType="map">
+		select
+		<include refid="Base_Column_List" /> 
+		from HUDH_LCLJ_WORKLIST
+		where order_number = #{ordNumber} and nodeId = #{nodeId} order by createtime desc
+	</select>
+	
+	<select id="findAllWorkList" resultType="com.hudh.lclj.entity.LcljWorklist">
+		select
+		<include refid="Base_Column_List" /> 
+		from HUDH_LCLJ_WORKLIST ORDER BY createtime DESC
+	</select>
+	
+	<select id="updateOverdueStatus">
+		update HUDH_LCLJ_WORKLIST set 
+		overdue = #{overdue} where id = #{id}
+	</select>
+	
+	<select id="selectHadWorkData" resultMap="WorklistMap">
+		select top(1) * from HUDH_LCLJ_WORKLIST where order_number = #{orderNumber} AND nodeId = #{nodeId} ORDER BY createtime DESC
+	</select>
+	
+</mapper>

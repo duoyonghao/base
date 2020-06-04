@@ -1,0 +1,185 @@
+@CHARSET "UTF-8";
+html,body,.container{
+	width:100%;
+	height:100%;
+}
+p{
+	padding:0;
+	margin:0;
+}
+a{
+	text-decoration:none;
+	color:#333;
+}
+a:hover{
+	text-decoration:none;
+}
+.container{
+	padding: 0 15px 5px;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+.titleDiv{
+	box-sizing: border-box;
+    color: #373737;
+    font-family: "Microsoft YaHei";
+    height: 30px;
+    position: relative;
+    border-bottom:1px solid #ddd;
+}
+.titleDiv .title{
+	font-size: 18px;
+    height: 20px;
+    line-height: 20px;
+    float: left;
+    display: block;
+    margin-top: 5px;
+    
+}
+.tableLayout{/*table布局 */
+	/* margin:0 auto; */
+	border-collapse:separate;
+	font-size:13px;
+	
+	/* padding-top:15px; */
+}
+hr{
+	margin:10px 0;
+	    border-top: 1px solid #ddd;
+}
+
+.tableLayout tr{	/*该页面 table 下的行高   调整行间距  */
+	height:38px;
+}
+select,input[type="text"]{	/*普通select inputsss */
+	box-sizing:border-box;
+	width:150px;
+	color:#333;
+	height:28px;
+	border-radius:4px;
+	transition:box-shadow linear 300ms;
+}
+input[type="text"]{	/*普通select inputsss */
+	padding-left:5px;
+	padding-right:5px;
+}
+textarea{
+	width:100%;
+	border-radius:4px;
+}
+select{
+	cursor:pointer;
+}
+/* input textarea select 用户体验效果  */
+input[type="text"]:focus,select:focus,textarea:focus{
+    box-shadow: 0 0 8px rgb(49, 165, 247);
+    border-color:transparent;
+}
+input[readonly]:focus,
+input[disabled]:focus,
+select[readonly]:focus,
+select[disabled]:focus,
+textarea[disabled]:focus,
+textarea[readonly]:focus{
+    box-shadow: none;
+    border-color:#ddd;
+    
+}
+input[readonly],html input[disabled],select[disabled],select[disabled],textarea[disabled]{/*只读的input*/
+	background:rgba(246, 246, 246, 0.42);
+	cursor:not-allowed;
+	color:#777;
+}
+input[readonly]{/*只读的input*/
+	background:rgba(246, 246, 246, 0.42);
+	cursor:not-allowed;
+}
+input[type="text"].whiteInp{/*白色输入框 */
+	cursor:pointer;
+}
+select{
+	cursor:pointer;
+	
+}
+
+html textarea[readonly]{
+	cursor:	not-allowed;
+	background:rgba(246, 246, 246, 0.42);
+}
+html select[disabled]{
+	cursor: not-allowed;
+	
+}
+.tableLayout tr td:nth-child(3){	/* 第三列 与第二列之间的间距 */
+	padding-left:30px;
+}
+
+.btnCommon{		/*本页面 所有按钮的基础样式 */
+	display:inline-block;
+	color:#0E7CC9;
+	background:#fff;
+	height:28px;
+	line-height:28px;
+	border-radius:16px;
+	text-align:center;
+	padding:0 20px;
+	border:1px solid #0E7CC9;
+	margin:0 10px;
+	font-size:13px;
+}
+.btnCommon:hover{  
+	cursor:pointer;
+	color:#fff;
+	background:#0E7CC9;
+}
+
+.contentTitle{	/* 页面首行的title*/
+	height:30px;
+	line-height:30px;
+	padding-left:20px;;
+	background:#0E7CC9;
+	color:#fff;
+	font-size:15px;
+}
+.contentText{	/*信息文本的样式 如 “患者名字”*/
+	display:block;
+	height:28px;
+	line-height:28px;
+	color:#333;
+	text-align:right;
+	padding-right:10px;
+}
+
+.tableLayout tr.textareaTr{	/*调整 textarea 所在行的行高 */
+	height:95px;
+}
+.tableLayout .zxbzSpan{
+	position:relative;
+	top:-3px;
+	cursor:pointer;
+	font-weight: normal;
+	margin:0;
+	padding-right:5px;
+}
+.buttonBar{/* 按钮组 */
+	margin:0 auto;
+	text-align:left;
+	padding-top:15px;
+}
+.table-striped > tbody > tr:nth-child(odd) {	/*清单中信息 奇数行为蓝色底*/
+    background: #eef9fe;
+}
+#table td span.time{	/*table数据表中  对时间字段添加的样式 让它能一行显示*/
+	display: inline-block;
+    width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/*网电咨询记录字样  */
+.infoHd,.tableHd{padding: 0 20px;line-height:30px;font-family:"Microsoft YaHei";font-size:14px;color: #FFFFFF;background: #0e7cc9;}
+/* .buttonBar{clear:both;text-align: center;margin: 0 0 15px 0;} */
+/*按钮的样式 */
+.aBtn{display: inline-block;margin-right:15px;padding: 0 20px;height: 28px;line-height: 28px;border: solid 1px #0e7cc7;border-radius:15px;color: #0e7cc7;}
+.aBtn:hover{color: #fff;background: #117cca;text-decoration: none;}
+.search{color: #fff;background: #117cca;text-decoration: none;}

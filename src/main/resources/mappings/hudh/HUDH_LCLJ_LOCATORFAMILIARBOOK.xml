@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_LCLJ_LOCATORFAMILIARBOOK">
+	<resultMap id="LocatorFamiliar" type="com.hudh.zzbl.entity.LocatorFamiliar">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="LcljId" jdbcType="VARCHAR" property="lcljId" />
+		<result column="LcljNum" jdbcType="VARCHAR" property="lcljNum" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="age" jdbcType="VARCHAR" property="age" />
+		<result column="sex" jdbcType="VARCHAR" property="sex" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
+		<result column="phone" jdbcType="VARCHAR" property="phone" />
+		<result column="allergy" jdbcType="VARCHAR" property="allergy" />
+		<result column="diagnose" jdbcType="VARCHAR" property="diagnose" />
+		<result column="treatmentParts" jdbcType="VARCHAR" property="treatmentParts" />
+		<result column="treatmentTime" jdbcType="VARCHAR" property="treatmentTime" />
+		<result column="profession" jdbcType="VARCHAR" property="profession" />
+		<result column="classify" jdbcType="VARCHAR" property="classify" />
+		<result column="doctorSignature" jdbcType="VARCHAR" property="doctorSignature" />
+		<result column="doctorTime" jdbcType="VARCHAR" property="doctorTime" />
+		<result column="patientSignature" jdbcType="VARCHAR" property="patientSignature" />
+		<result column="patientTime" jdbcType="VARCHAR" property="patientTime" />
+		<result column="creatTime" jdbcType="VARCHAR" property="createtime" />
+		<result column="remarks" jdbcType="VARCHAR" property="remark" />
+		<result column="PatientSignature" jdbcType="VARCHAR" property="patientSignature" />
+		<result column="PatientTime" jdbcType="VARCHAR" property="patientTime" />
+		<result column="doctorSignature" jdbcType="VARCHAR" property="doctorSignature" />
+		<result column="doctorTime" jdbcType="VARCHAR" property="doctorTime" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		SEQ_ID, LcljId, LcljNum,name,age,sex,address,phone,allergy,diagnose,treatmentParts,treatmentTime,profession,classify,
+		remark,PatientSignature,PatientTime,doctorSignature,
+		doctorTime,createtime
+	</sql>
+	<!-- 根据临床路径Id查询知情书 (locator种植/拔牙) -->
+	<select id="findLocatorFamiliar" parameterType="map" resultType="json">
+	select 
+		<include refid="Base_Column_List"/>
+	from HUDH_LCLJ_LocatorFamiliar
+	where 1=1
+	and lcljId = #{lcljId}
+	and classify=#{classify}
+	</select>
+	<!-- 保存知情书 (locator种植/拔牙) -->
+	<insert id="saveLocatorFamiliar" parameterType="com.hudh.zzbl.entity.LocatorFamiliar">
+	insert into HUDH_LCLJ_LocatorFamiliar (SEQ_ID, LcljId, LcljNum,name,age,sex,address,
+		phone,allergy,diagnose,treatmentParts,treatmentTime,profession,classify,
+		remark,patientSignature,PatientTime,doctorSignature,
+		doctorTime,createtime) values(#{seqId}, #{lcljId}, #{lcljNum},
+		 #{name}, #{age}, #{sex}, #{address}, #{phone}, #{allergy}, #{diagnose},
+		 #{treatmentParts}, #{treatmentTime}, #{profession}, #{classify},
+		 #{remark}, #{patientSignature}, #{patientTime}, #{doctorSignature},
+		 #{doctorTime}, #{createtime})
+	</insert>
+	
+	<!-- 修改知情书 (locator种植/拔牙) -->
+	<update id="updateLocatorFamiliar" parameterType="com.hudh.zzbl.entity.LocatorFamiliar">
+	update HUDH_LCLJ_LocatorFamiliar
+	<trim prefix="SET" suffixOverrides=",">
+		<if test="lcljId != null and lcljId!=''">
+			LcljId=#{lcljId},
+		</if>
+		<if test="lcljNum!=null and lcljNum!=''">
+			LcljNum=#{lcljNum},
+		</if>
+		<if test="name!=null and name!=''">
+			name=#{name},
+		</if>
+		<if test="age!=null and age!=''">
+			age=#{age},
+		</if>
+		<if test="sex!=null and sex!=''">
+			sex=#{sex},
+		</if>
+		<if test="address!=null and address!=''">
+			address=#{address},
+		</if>
+		<if test="phone!=null and phone!=''">
+			phone=#{phone},
+		</if>
+		<if test="allergy!=null and allergy!=''">
+			allergy=#{allergy},
+		</if>
+		<if test="diagnose!=null and diagnose!=''">
+			diagnose=#{diagnose},
+		</if>
+		<if test="treatmentParts!=null and treatmentParts!=''">
+			treatmentParts=#{treatmentParts},
+		</if>
+		<if test="treatmentTime!=null and treatmentTime!=''">
+			treatmentTime=#{treatmentTime},
+		</if>
+		<if test="profession!=null and profession!=''">
+			profession=#{profession},
+		</if>
+		<if test="classify!=null and classify!=''">
+			classify=#{classify},
+		</if>
+		<if test="remark!=null and remark!=''">
+			remark=#{remark},
+		</if>
+		<if test="patientSignature!=null and patientSignature!=''">
+			patientSignature=#{patientSignature},
+		</if>
+		<if test="patientTime!=null and patientTime!=''">
+			patientTime=#{patientTime},
+		</if>
+		<if test="doctorSignature!=null and doctorSignature!=''">
+			doctorSignature=#{doctorSignature},
+		</if>
+		<if test="doctorTime!=null and doctorTime!=''">
+			doctorTime=#{doctorTime},
+		</if>
+		<if test="createtime!=null and createtime!=''">
+			createtime=#{createtime}
+		</if>
+	</trim>
+	where 1=1
+	<if test="seqId !=null and seqId !=''">
+	and SEQ_ID =#{seqId}
+	</if>
+	</update>
+	
+	<!-- 根据临床路径Id查询知情书 (locator种植/拔牙) -->
+	<select id="findLocatorFamiliares" parameterType="java.lang.String" resultType="json">
+	select 
+		<include refid="Base_Column_List"/>
+	from HUDH_LCLJ_LocatorFamiliar
+	where 1=1
+	and lcljId = #{lcljId}
+	</select>
+</mapper>
+	

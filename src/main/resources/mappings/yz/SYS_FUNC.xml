@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="SYS_FUNC">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.sys.YZFunc">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="ORDERNO" jdbcType="INTEGER" property="orderno" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.sys.YZFunc">
+		<result column="MENU_ID" jdbcType="CLOB" property="menuId" />
+		<result column="FUNC_NAME" jdbcType="CLOB" property="funcName" />
+		<result column="FUNC_CODE" jdbcType="CLOB" property="funcCode" />
+		<result column="ICON" jdbcType="CLOB" property="icon" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, ORDERNO, createtime, createuser
+	</sql>
+	<sql id="Blob_Column_List">
+		MENU_ID, FUNC_NAME, FUNC_CODE, ICON
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from sys_func
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from sys_func
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.sys.YZFunc">
+		insert into sys_func (SEQ_ID, ORDERNO, createtime,
+		createuser, MENU_ID, FUNC_NAME,
+		FUNC_CODE, ICON)
+		values (#{seqId,jdbcType=VARCHAR},
+		#{orderno,jdbcType=INTEGER}, #{createtime,jdbcType=VARCHAR},
+		#{createuser,jdbcType=VARCHAR}, #{menuId,jdbcType=CLOB}, #{funcName,jdbcType=CLOB},
+		#{funcCode,jdbcType=CLOB},
+		#{icon,jdbcType=CLOB})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.sys.YZFunc">
+		insert into sys_func
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="orderno != null">
+				ORDERNO,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="menuId != null">
+				MENU_ID,
+			</if>
+			<if test="funcName != null">
+				FUNC_NAME,
+			</if>
+			<if test="funcCode != null">
+				FUNC_CODE,
+			</if>
+			<if test="icon != null">
+				ICON,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="orderno != null">
+				#{orderno,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="menuId != null">
+				#{menuId,jdbcType=CLOB},
+			</if>
+			<if test="funcName != null">
+				#{funcName,jdbcType=CLOB},
+			</if>
+			<if test="funcCode != null">
+				#{funcCode,jdbcType=CLOB},
+			</if>
+			<if test="icon != null">
+				#{icon,jdbcType=CLOB},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.sys.YZFunc">
+		update sys_func
+		<set>
+			<if test="orderno != null">
+				ORDERNO = #{orderno,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="menuId != null">
+				MENU_ID = #{menuId,jdbcType=CLOB},
+			</if>
+			<if test="funcName != null">
+				FUNC_NAME = #{funcName,jdbcType=CLOB},
+			</if>
+			<if test="funcCode != null">
+				FUNC_CODE = #{funcCode,jdbcType=CLOB},
+			</if>
+			<if test="icon != null">
+				ICON = #{icon,jdbcType=CLOB},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.kqds.entity.sys.YZFunc">
+		update sys_func
+		set ORDERNO = #{orderno,jdbcType=INTEGER},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		createuser =
+		#{createuser,jdbcType=VARCHAR},
+		MENU_ID = #{menuId,jdbcType=CLOB},
+		FUNC_NAME = #{funcName,jdbcType=CLOB},
+		FUNC_CODE = #{funcCode,jdbcType=CLOB},
+		ICON = #{icon,jdbcType=CLOB}
+		where
+		SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.sys.YZFunc">
+		update sys_func
+		set ORDERNO = #{orderno,jdbcType=INTEGER},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		createuser =
+		#{createuser,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		sys_func
+	</sql>
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="YZFunc">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+
+
+	<select id="getListByParentId" parameterType="java.lang.String" resultType="json">
+		select
+		menu_id , func_name as menu_name
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and menu_id like #{_parameter}+'__' order by orderno, func_name asc
+	</select>
+
+	<delete id="deleteBySeqIds">
+		delete from
+		<include refid="tableName"></include>
+		where seq_id in
+		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<select id="IsHaveChild" parameterType="java.lang.String" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and menu_id like #{_parameter}+'__'
+	</select>
+
+	<select id="countByMenuId" parameterType="json" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and menu_id = #{menuId}
+		<if test="seqId != null and seqId != ''">
+			and seq_id != #{seqId}
+		</if>
+	</select>
+
+	<select id="countByMenuName" parameterType="json" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and func_name = #{funcName}
+		and MENU_ID like #{menuparent}+'__'
+		<if test="seqId != null and seqId != ''">
+			and seq_id != #{seqId}
+		</if>
+	</select>
+
+	<select id="getFuncById" parameterType="java.lang.String" resultType="json">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and menu_id = #{_parameter}
+		order by menu_id
+	</select>
+
+	<select id="getAllFuncList" resultType="json">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+	</select>
+
+	<select id="listAllMenu4Tree" resultType="json">
+		select
+		menu_id
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+	</select>
+
+	<!-- 注意这个返回的是 YZMenuModel -->
+	<select id="queryFuncMoel" parameterType="java.lang.String" resultType="YZMenuModel">
+		select
+		seq_id
+		,menu_id as menuid
+		,func_name as menuname
+		,func_code as url
+		,icon
+		,orderno
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and menu_id = #{_parameter}
+		order by menu_id
+	</select>
+
+
+
+</mapper>

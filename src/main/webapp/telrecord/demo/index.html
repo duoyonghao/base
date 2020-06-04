@@ -1,0 +1,492 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>SWFObject 2 dynamic publishing example page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<script type="text/javascript" src="../js/pulgin/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="../js/pulgin/ext/ext-base.js"></script>
+<script type="text/javascript" src="../js/pulgin/ext/ext-all.js"></script>
+<script type="text/javascript" src="../js/pulgin/ext/ext-lang-zh_ch.js"></script>
+<script type="text/javascript" src="../js/pulgin/swfobject.js"></script>
+<script type="text/javascript">
+	swfobject.embedSWF("eVRSControl.swf", "swfDiv", "400", "300", "9.0.0", "expressInstall.swf",{
+		// flashvars，用于向flash传值
+	}, {
+		// 参数
+	}, {
+		name: "eVRSCon" // 属性
+	});
+	
+	$(function(){
+		// $("#swfDivParent").hide(); // 隐藏后，flash将被禁用
+	})
+</script>
+</head>
+	<body>
+		<div id="div2">
+		<ul>
+			设备IP
+			<input type="text" id="ip" value="192.168.0.200" id="ipaddress" />
+			用户名
+			<input type="text" id="user" value="admin" id="loginname" /> 密码
+			<input type="text" id="pwd" value="123456" id="loginpwd" /> 端口
+			<input type="text" id="port" value="80" id="port" />
+			<button id='start' onclick="connect();">连接</button>
+		</ul>
+		</div>
+	
+	
+		<div id="grid-chstatus" style="float: left; width: 100%; height: 100%;">
+		</div>
+	
+		<div id="swfDivParent">
+			<div id="swfDiv">
+				<p><a href="http://www.adobe.com/go/getflashplayer">点击允许运行flash</a></p>
+			</div>
+		</div>
+		
+<script type="text/javascript">
+/*
+ * Ext JS Library 2.0.2
+ * Copyright(c) 2006-2008, Ext JS, LLC.
+ * licensing＠extjs.com
+ * 
+ * extjs.com/license
+ */
+ var Record = Ext.data.Record.create([{
+	    name: 'seq'
+	},
+	{
+	    name: 'state',
+	    type: 'string'
+	},
+	{
+	    name: 'direction',
+	    type: 'string'
+	},
+	{
+	    name: 'voltage',
+	    type: 'string'
+	},
+	{
+	    name: 'local_code',
+	    type: 'string'
+	},
+	{
+	    name: 'remote_code',
+	    type: 'string'
+	},
+	{
+	    name: 'talklong',
+	    type: 'string'
+	}
+
+	]);
+
+	var myData = [
+
+	];
+	// create the data store
+	var store = new Ext.data.SimpleStore({
+	    fields: Record
+	});
+	var storeUpdate = new Ext.data.SimpleStore({
+	    fields: Record
+	});
+	store.loadData(myData);
+	// create the Grid
+	var grid = new Ext.grid.GridPanel({
+
+	    region: 'center',
+	    store: store,
+	    id: "grid_number_panel",
+	    border: false,
+	    //autoHeight:true,
+	    //autoWidth:true,
+	    height: 742,
+	    width: 760,
+	    //collapsible:true,
+	    loadMask: true,
+	    columns: [{
+	        header: '通道号',
+	        width: 40,
+	        sortable: false,
+	        dataIndex: 'seq'
+	    },
+	    {
+	        header: '状态',
+	        width: 60,
+	        sortable: false,
+	        renderer: ext_getState,
+	        dataIndex: 'state'
+	    },
+	    {
+	        header: '方向',
+	        width: 40,
+	        sortable: false,
+	        renderer: getDirection,
+	        dataIndex: 'direction'
+	    },
+	    {
+	        header: '电压',
+	        width: 40,
+	        sortable: false,
+	        dataIndex: 'voltage'
+	    },
+	    {
+	        header: '本地号码',
+	        width: 100,
+	        sortable: false,
+	        dataIndex: 'local_code'
+	    },
+	    {
+	        header: '对方号码',
+	        width: 100,
+	        sortable: false,
+	        dataIndex: 'remote_code'
+	    },
+	    {
+	        header: '时长',
+	        width: 120,
+	        sortable: false,
+	        renderer: formatMinutes,
+	        dataIndex: 'talklong'
+	    },
+	    {
+	        header: '操作',
+	        width: 100,
+	        sortable: false,
+	        renderer: getoperation,
+	        dataIndex: 'state'
+	    }
+
+	    ],
+	    stripeRows: true,
+	    //items:[numberconfW_Del],			
+	    stateful: true
+
+	});
+
+	Ext.onReady(function() {
+	    grid.render('grid-chstatus');
+	    //grid.getSelectionModel().selectFirstRow();
+	});
+	var ch_count = 256; //显示通道数量
+	var chindex = new Array();
+	var gdsttime = new Array();
+	var chstart = new Array();
+	var rowindex = new Array();
+	var isMonistor = 0; //1表示支持监听，2，不支持
+	var isremote_code = 0; //1表示有对方名字
+	var is_show_remotecode = 0;
+	var cur_ch = -1; //当前监听通道，-1表示未有通道监听
+	var cur_status = 0; //当前监听通道状态，1正在监听，0未监听
+	//var ip="192.168.0.113"
+	var ip = '192.168.18.245';
+	var username = 'admin';
+	var loginpwd = 'e10adc3949ba59abbe56e057f20f883e';
+	var port = 23456;
+	var isconnect = false;
+	var re_connect_time = 5000;
+	var heart_time = 5000;
+	//初始化控件
+	var eVRSCon = null;
+
+	function connect() {
+	    ip = $("#ip").val();
+	    eVRSCon.Connect(ip, port);
+	    $("#div2").html("正在连接到设备：" + ip);
+	}
+	//flash加载完成后回自动回调Init方法
+	function Init() {
+	    // alert(userch);
+	    eVRSCon = getSWF("eVRSCon"); //获取eVrsCon控件对象
+	    //注册事件  
+	    //注册方式：addEventListen("注册的事件","回调方法");
+	    eVRSCon.addEventListen("Connect", "connect_event"); //连接 设备回调事件
+	    eVRSCon.addEventListen("LogAckEvent", "logack_event"); //登录结果回调事件
+	    eVRSCon.addEventListen("DevInfoEvent", "devinfo_event"); //设备信息
+	    eVRSCon.addEventListen("VoltageChange", "voltageChange_event"); //电压改变事件
+	    eVRSCon.addEventListen("StateChange", "stateChange_event"); //通道状态改变事件
+	    eVRSCon.addEventListen("CodeEvent", "codeEvent_event"); //号码改变事件
+	    eVRSCon.addEventListen("TalkAction", "talkAction_event"); //录音事件
+	    eVRSCon.addEventListen("Disconnect", "disconnect_event"); //失去与 设备的连接
+	    for (i = 0; i < 256; i++) {
+	        chindex[i] = -1;
+	        rowindex[i] = -1;
+	        gdsttime[i] = 0;
+	    }
+	    //连接 设备器\
+	    //  alert(ip);
+	}
+
+	//连接 设备器事件
+	function connect_event(d) {
+	    //d 	1:成功 ，0失败
+	    if (d == 1) {
+	        eVRSCon.Login(username, loginpwd, false);
+	        $("#div2").html("正在登录...");
+
+	    } else {
+	        $("#div2").html("无法连接到设备");
+	        setInterval(isConnectServer, re_connect_time); //检查连接状态
+	        isconnect = false;
+	    }
+	}
+	//登出
+	function logOut() {
+	    eVRSCon.LogOut("");
+	}
+	//登录事件
+	function logack_event(d) {
+	    var d = eval('(' + d + ')');
+	    var res = d.res;
+	    var memo = d.memo;
+	    // res  1:成功 ，其他失败
+	    if (res == 1) {
+	        setInterval(SendSocketHeart, heart_time);
+
+	        $("#div2").html("登录成功");
+	        setInterval(settime, 1000); //更新通话时间
+	        isconnect = true;
+	    } else {
+	        $("#div2").html('登录到设备失败，请检查用户名或密码');
+	        setInterval(isConnectServer, re_connect_time); //检查连接状态
+	        isconnect = false;
+	    }
+	}
+	function SendSocketHeart() {
+	    if (isconnect) eVRSCon.Monitor(10000, 0);
+	}
+	//设备信息事
+	function devinfo_event(d) {
+	    var d = eval('(' + d + ')');
+	    var runstart = d.runstart; //设备本次运行开始时间
+	    var ch = d.ch; //通道数
+	    var choft = d.choft; //通道开始偏移量
+	    var devid = d.devid; //设备id
+	    var ser = d.ser; //序列号
+	    var mktime = d.mktime; //出厂日期
+	    for (i = 0; i < 256; i++) {
+	        chindex[i] = -1;
+	        rowindex[i] = -1;
+	        gdsttime[0];
+	    }
+	}
+
+	function getDirection(dir) {
+	    if (dir == '1') return '呼出';
+	    else if (dir == '0') return '呼入';
+	    else return '';
+	}
+
+	function getoperation(state) {
+	    if (isMonistor == 0) return "";
+	    return "";
+	}
+
+	function set_item_val(row, key, val) {
+	    var recordtoedit;
+	    recordtoedit = grid.store.getAt(row);
+	    recordtoedit.set(key, val);
+	}
+
+	function ext_getState(st) {
+	    var str = "unknow";
+	    var di = 0;
+	    switch (st) {
+	    case '0':
+	        str = "空 闲";
+	        // array[1]="images/channel/close.png";
+	        break;
+	    case '2':
+	        str = "录 音";
+	        //if(di==1)array[1]="images/channel/reco.png";
+	        // else if(di==0)array[1]="images/channel/recor.png";
+	        break;
+	    case '3':
+	        str = "通 话";
+	        // if(di==1)array[1]="images/channel/calls.png"; 
+	        // else if(di==0)array[1]="images/channel/callt.png";
+	        break;
+	    case '4':
+	        str = "振 铃";
+	        //  array[1]="images/channel/calr.png"; 
+	        break;
+	    case '7':
+	        str = '回 铃';
+	        break;
+	    case '9':
+	        str = "未接线";
+	        // 	  array[1]="images/channel/stop.png"; 
+	        break;
+	    }
+
+	    return str;
+	}
+
+	//电压改变事件
+	function voltageChange_event(d) {
+	    var d = eval('(' + d + ')');
+	    var ch = d.ch; //通道
+	    var dvt = d.vt; //电压 当为-1时，说明不是模拟录音通道
+	    if (dvt == "-1") {
+	        set_item_val(ch, 'voltage', '');
+	        return;
+	    } else set_item_val(ch, 'voltage', dvt);
+
+	}
+
+	//通道改变事件
+	function stateChange_event(d) {
+	    var d = eval('(' + d + ')');
+	    var dch = d.ch; //通道
+	    var dlc = d.lc; //本地号码
+	    var drc = d.rc; //对方号码
+	    var dus = d.us; //用户
+	    var dvt = d.vt; //电压 当-1时，说明不是模拟录音通道
+	    if (dvt == "-1") dvt = "";
+	    var ddi = d.di; //方向 0为呼入 1为呼出
+	    var dstv = d.st; //状态  //0空闲，2 录音，3 通话，4 振铃，9断线
+	    var dsttime = d.sttime;
+	    var contactname = "";
+	    if (dch >= 1000) {
+
+	        return;
+	    }
+
+	    chstart[dch] = dstv;
+	    gdsttime[dch] = d.sttime;
+	    if (chindex[dch] == -1) {
+	        //new ch
+	        rowcount = grid.getStore().getCount();
+	        chindex[dch] = rowcount;
+	        rowindex[rowcount] = dch;
+	        var r = new Record({
+	            seq: dch,
+	            state: dstv,
+	            direction: d.di,
+	            voltage: dvt,
+	            local_code: dlc,
+	            remote_code: drc,
+	            talklong: d.sttime
+	        });
+
+	        var n = rowcount;
+	        grid.stopEditing();
+	        grid.getStore().insert(n, r);
+	        rowcount = rowcount + 1;
+	    } else {
+
+	        rowcount = chindex[dch];
+
+	        recordtoedit = grid.store.getAt(rowcount);
+	        recordtoedit.set('state', dstv);
+	        recordtoedit.set('voltage', dvt);
+	        recordtoedit.set('direction', d.di);
+	        recordtoedit.set('local_code', dlc);
+	        recordtoedit.set('remote_code', drc);
+	        recordtoedit.set('talklong', d.sttime);
+	    }
+
+	    recordtoedit = grid.store.getAt(ch);
+	    state = recordtoedit.get('state');
+	    if (state == '2') {
+	        grid.getView().getRow(ch).style.backgroundColor = "red";
+	    } else {
+	        grid.getView().getRow(ch).style.backgroundColor = "green";
+	    }
+
+	}
+
+	//号码改变事件
+	function codeEvent_event(d) {
+	    var d = eval('(' + d + ')');
+	    var ch = d.ch; //通道数
+	    var st = d.st; //0空闲，2 录音，3 通话，4 振铃，9断线
+	    var lc = d.lc; //本地号码
+	    var rc = d.rc; //对方号码
+	    if (chindex[ch] != -1) {
+	        rowcount = chindex[ch];
+	        recordtoedit = grid.store.getAt(rowcount);
+	        recordtoedit.set('state', st);
+	        if (lc) recordtoedit.set('local_code', lc);
+	        if (rc) recordtoedit.set('remote_code', rc);
+	    }
+
+	}
+	//录音事件
+	function talkAction_event(d) {
+	    var d = eval('(' + d + ')');
+	    var ch = d.ch; //通道数
+	    var len = d.len; //通话时长，如果为０，表示没有通话，是一个未接电话
+	    var lc = d.lc; //本地号码;
+	    var rc = d.rc; //对方号码;
+	    var begin = d.begin; //本次话单开始通话时间，如果是未接电话，表示是第一声响铃时间。
+	    var di = d.di; //方向　0为呼入 1为呼出
+	    var file = d.file; //录音文件路径和名称	
+	}
+
+	function disconnect_event() {
+	    $("#div2").html("与设备的连接断开！");
+	    setInterval(isConnectServer, re_connect_time); //检查连接状态
+	    isconnect = false;
+	    $("#tu ul").empty();
+	}
+
+	//设置通话时长
+	function settime() {
+	    growcount = grid.getStore().getCount();
+	    for (i = 0; i < growcount; i++) {
+	        dch = rowindex[i];
+	        if (dch == -1) continue;
+	        if (chstart[dch] != 2) continue;
+	        gdsttime[dch]++;
+	        recordtoedit = grid.store.getAt(i);
+	        recordtoedit.set('talklong', gdsttime[i]);
+
+	    }
+
+	}
+	//格式化秒数为时分秒    
+	function formatMinutes(seconds) {
+	    if (seconds > 0) {
+	        var minutes = Math.floor(seconds / 60);
+	        if (minutes < 10) minutes = "0" + minutes;
+	        var seconds = seconds % 60;
+	        if (seconds < 10) seconds = "0" + seconds;
+	        return minutes + ":" + seconds;
+	    } else {
+	        return "00:00";
+	    }
+
+	}
+
+	//区分火狐、IE浏览器	  
+	function getSWF(movieName) {
+	    if (navigator.appName.indexOf("Microsoft") != -1) {
+	        return document.getElementById(movieName);
+	    } else {
+	        return document[movieName];
+	    }
+	}
+
+	//检查是否连接设备
+	function isConnectServer() {
+	    if (!isconnect) {
+	        //重连设备
+	        location.reload();
+	    }
+	}
+	var isopenMonitor = 0
+	var winop = null;
+
+	function winopclose() {
+	    if (winop != null) {
+	        winop.close();
+	        winop = null;
+	    }
+	}
+</script>
+	</body>
+</html>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_KSLL_REPLACEMENT_DETAIL">
+	<resultMap id="CollorDetailMap" type="com.hudh.ksll.entity.KsllReplaceMentDetail">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="goodscode" jdbcType="VARCHAR" property="goodscode" />
+		<result column="house" jdbcType="VARCHAR" property="house" />
+		<result column="goodsname" jdbcType="VARCHAR" property="goodsname" />
+		<result column="goodsnorms" jdbcType="VARCHAR" property="goodsnorms" />
+		<result column="goodsunit" jdbcType="DECIMAL" property="goodsunit" />
+		<result column="nums" jdbcType="INTEGER" property="nums" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="goodsremark" jdbcType="VARCHAR" property="goodsremark" />
+		<result column="parentid" jdbcType="VARCHAR" property="parentid" />
+		<result column="goodsprice" jdbcType="DECIMAL" property="goodsprice" />
+		<result column="ph" jdbcType="VARCHAR" property="ph" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, goodscode ,house, goodsname,goodsnorms , goodsunit,nums,organization,goodsremark,parentid,goodsprice,ph,createtime
+	</sql>
+	
+	<insert id="batchSaveReplacementDetail" parameterType="java.util.List">
+		insert into HUDH_KSLL_REPLACEMENT_DETAIL (id, goodscode ,house, goodsname,goodsnorms , goodsunit,nums,organization,goodsremark,parentid,goodsprice,ph,createtime,goodsdetailId,floor)
+		values (#{id,jdbcType=VARCHAR},#{goodscode,jdbcType=VARCHAR},#{house,jdbcType=VARCHAR},#{goodsname,jdbcType=VARCHAR},
+		#{goodsnorms,jdbcType=VARCHAR},#{goodsunit,jdbcType=DECIMAL},#{nums,jdbcType=INTEGER},
+		#{organization,jdbcType=VARCHAR},#{goodsremark,jdbcType=VARCHAR},#{parentid,jdbcType=VARCHAR},#{goodsprice,jdbcType=DECIMAL},#{ph,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR},#{goodsdetailId,jdbcType=VARCHAR},#{floor,jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="findDetailByParendId" parameterType="map" resultType="json">
+		select 
+			a.id, a.goodscode ,a.house as sshouse, a.goodsname,a.goodsnorms, a.goodsunit,a.nums as cknums,
+			a.organization,a.goodsremark,a.parentid,a.goodsprice as goodPrice,
+			b.SEQ_ID as goodsid,
+			c.goodsprice as goodsprice,
+			c.nums as nums,
+			c.kcmoney as kcmoney,
+			d.housename as sshousename,
+			e.status as parent_status,
+			e.deptpart,
+			a.ph
+			from HUDH_KSLL_REPLACEMENT_DETAIL a
+			LEFT JOIN KQDS_CK_GOODS_DETAIL b on b.goodscode =  a.goodscode
+			LEFT JOIN KQDS_CK_GOODS c on c.goodsdetailid = b.seq_id
+			LEFT JOIN KQDS_CK_HOUSE d on d.SEQ_ID = a.house
+			LEFT JOIN HUDH_KSLL_REPLACEMENT e on e.id = a.parentid
+		where a.parentid = #{parentId,jdbcType=VARCHAR} 
+		AND b.organization = #{organization}
+		order by a.goodscode asc
+	</select>
+	<select id="findCkOutDetailByParendId" parameterType="java.util.Map" resultType="json">
+		select p.addnumber,p.ph,p.addtime,sum(p.phnum) as phnum,d.goodscode,p.price as outprice
+ 		from HUDH_KSLL_COLLOR c
+		LEFT JOIN HUDH_KSLL_COLLOR_DETAIL d ON c.id = d.parentid
+		LEFT JOIN HUDH_KSLL_COLLOR_DETAIL_PH p on d.id=p.parentid
+		WHERE
+			c.deptpart = #{deptpart}
+		AND d.goodscode in (${goodscode})
+		and p.phnum <![CDATA[ > ]]> 0
+		GROUP BY p.addnumber,p.ph,p.addtime,d.goodscode,p.price
+		
+	</select>
+	<select id="selectReturnNumByGoodscode" parameterType="java.util.Map" resultType="int">
+		select isnull(sum(d.nums),0)
+		from HUDH_KSLL_REPLACEMENT_DETAIL d
+		left join HUDH_KSLL_REPLACEMENT r on d.parentid=r.id
+		where 1=1
+		<if test="starttime != null and starttime !='' ">
+			and r.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and r.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="goodscode != null and goodscode != '' ">
+			and d.goodscode=#{goodscode}
+		</if>
+	</select>
+</mapper>

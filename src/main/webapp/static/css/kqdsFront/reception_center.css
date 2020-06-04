@@ -1,0 +1,98 @@
+html{overflow: hidden;}
+body{position:relative;font-size: 12px;line-height: 21px;}
+#container{padding: 5px;}
+.bannerWrap{position:relative;height:100px;margin-bottom:10px; background:url("../img/banner.png") no-repeat;}
+.bannerWrap a.close{display:inline-block;position: absolute;right: 0;top:0;width: 26px;height: 26px; background:url("../img/close.png") no-repeat;opacity: 1;filter: Alpha(opacity=100);}
+.bannerWrap a.close:hover{background: url("../img/close_hover.png") no-repeat;}
+#main{overflow: hidden;}
+#main .centerWrap,#main .lookInfoWrap{float: left;}
+#main .centerWrap{margin-right:10px;}
+/*接待中心*/
+.centerWrap .columnWrap,.centerWrap .operateModel,.columnWrap{border:solid 1px #c0c0c0;background: #f5f5f5;}
+.centerWrap .centerWrap .columnWrap{margin-bottom: 15px;}
+.columnWrap .columnHd{padding:0 15px;border-bottom:solid 1px #0e7ec6;font-size:16px;color: #373737;font-family: "Microsoft YaHei";line-height:36px;}
+.columnWrap .columnHd .home-icon{margin-right:10px;vertical-align: -3px; *vertical-align: 0;}
+.centerWrap .columnWrap .columnBd{padding:4px;}
+.centerWrap .columnWrap .columnBd ul{overflow: hidden;margin-bottom:;}
+.centerWrap .columnWrap .columnBd ul li{float: left;width:14%;margin-left:2.6666%;height: 30px; border-radius: 17px;
+    text-align:center;line-height:30px;color: #0d7ccd;font-size: 12px;  font-family: "Microsoft YaHei";
+    cursor: pointer;-webkit-transition: all .3s; ransition: all .3s;}
+.centerWrap .columnWrap .columnBd ul li:first-child{margin-left: 0;}
+.centerWrap .columnWrap .columnBd ul li.current{color:#FFFFFF;background: #ff6100;}
+
+/*表格*/
+.tableBox{margin-top:4px;}
+.fixed-table-header{margin-right:0!important;border-bottom: none; color: #FFF;font-weight:normal;background: #00A6C0;}
+.table-striped > tbody > tr:nth-child(odd){background: #eef9fe;}
+.table-striped > tbody > tr{background: #FFF;}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{border-top: none;}
+.table-condensed > thead > tr > th, .table-condensed > tbody > tr > th, .table-condensed > tfoot > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > td{} /* padding: 0px 0px; */
+#table td span.time{display:inline-block;width: 120px;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+#table td span.name{display:inline-block;width: 80px;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+
+/*操作预约栏目*/
+/*  modify by liujs
+.operateModel{padding:10px;margin-top:10px;overflow: hidden;}
+.operateModel .optBox{position:relative;float: left;margin-left: 15px;padding: 50px 25px 0;background: #FFFFFF;}
+.operateModel .optBox .cornerMark{position: absolute;left: -3px;top: -3px;width:53px;height:53px;background: url("../img/corner.png") no-repeat;}
+.operateModel .optBox:first-child{margin-left: 0;}
+.operateModel .optBox ul{overflow: hidden;}
+.operateModel .optBox ul li{float: left;width:105px;margin-bottom:20px;font-size:14px;font-family: "Microsoft YaHei";color: #3f3f3f;cursor: pointer;-webkit-transition: all .3s; transition: all .3s;}
+.operateModel .optBox ul li .opt-icon{margin-right: 5px; vertical-align: -3px; *vertical-align: 0;}
+.operateModel .optBox ul li:hover{color: #0e7cc9;} */
+
+.operateModel{padding:10px;margin-top:10px;overflow: hidden;}
+.operateModel .optBox{position:relative;float: left;margin-left: 15px;padding: 50px 25px 0;background: #FFFFFF;}
+.operateModel .optBox .cornerMark{position: absolute;left: -3px;top: -3px;width:53px;height:53px;background: url("../img/corner.png") no-repeat;}
+.operateModel .optBox:first-child{margin-left: 0;}
+.operateModel .optBox ul{overflow: hidden;width: 100%; min-width: 315px;margin-top:-20px;}
+.operateModel .optBox ul li{float: left;width:33.3%;min-width:105px; margin-bottom:10px;font-size:14px;font-family: "Microsoft YaHei";color: #3f3f3f;cursor: pointer;-webkit-transition: all .3s; transition: all .3s;}
+.operateModel .optBox ul li .opt-icon{margin-right: 5px; vertical-align: -3px; *vertical-align: 0;}
+.operateModel .optBox ul li:hover{color: #00A6C0;}
+
+
+/*右侧信息栏目*/
+.tabIframe{display: block;}
+.lookInfoWrap .columnWrap{position: relative;background: #FFFFFF;}
+.lookInfoWrap .columnHd{padding:0 5px 0 80px;overflow: hidden;}
+.lookInfoWrap .columnWrap .iconBox{float: left; margin-left: -70px;}
+.lookInfoWrap .columnWrap .iconBox > span{margin-right: 5px;vertical-align: -4px;*vertical-align: -1px;}
+.lookInfoWrap .columnWrap .menu{overflow: hidden;margin: 10px 0 0 0;}
+.lookInfoWrap .columnWrap .menu li{float: left;width:11.5%;margin-left:2.78%;height: 30px; border-radius: 20px;
+    text-align:center;line-height:30px;color: #0d7ccd;font-size: 12px;  font-family: "Microsoft YaHei";
+    cursor: pointer;-webkit-transition: all .3s; transition: all .3s;}
+.lookInfoWrap .columnWrap .menu li.current{color:#FFFFFF;background: #ff6100;}
+.lookInfoWrap .columnBd{padding-left:80px;background: #FFFFFF;overflow: hidden;}
+.lookInfoWrap .columnBd .subSideBar{position: absolute;top:49px;left:0;bottom:0;width:80px;background: #f5f5f5;}
+.lookInfoWrap .columnBd .subSideBar li{height: 65px;padding-top:15px;text-align: center;color: #353535;}
+.lookInfoWrap .columnBd .subSideBar li:nth-child(2n-1){background: #fff;}
+.lookInfoWrap .columnBd .subSideBar li.hc-current{color: #FFFFFF;background: #ff6000;}
+.lookInfoWrap .columnBd .subSideBar li .hc-icon{display: block; margin: 0 auto 5px;}
+
+
+
+/*新增就诊信息弹窗*/
+.addVisitingDialog{width: 690px;margin-left: -355px;margin-top: -240px;}
+.addVisitingDialog .addVisitingDialog-content{padding: 20px;height: 350px;overflow-y: auto;}
+.addVisitingDialog-content .kv{float: left;line-height: 28px;margin:0 20px 15px 0;min-width: 28px;}
+.addVisitingDialog-content .kv > label{margin-right: 8px;}
+.addVisitingDialog-content .kv .hc-icon{vertical-align: -4px;*vertical-align: -1px;}
+.addVisitingDialog-content .kv .starsBox{display: inline-block;margin-left: 20px;}
+.addVisitingDialog-content .kv .starsBox > span{cursor: pointer;}
+.addVisitingDialog-content .kv .linBtn{display: inline-block;width: 26px;height: 26px;border: solid 1px #e5e5e5;border-radius: 5px;line-height: 26px; text-align: center;color: #0c7dc9;text-decoration: none;-webkit-transition: all .3s;transition: all .3s;}
+.addVisitingDialog-content .kv .linBtn:hover{border-color:#0d7dc5;}
+.nameKv .kv-v input[type=text]{width: 158px;}
+.sexKv .kv-v label{margin-right: 27px;}
+.sexKv .kv-v .addPhoto {display: inline-block;padding:0 10px;margin-left:20px;height: 24px;border: solid 1px #0d7dc5;border-radius: 3px;line-height: 24px;color: #0d7dc5;text-decoration: none;}
+.telKv .kv-v input[type=text]{float:left;width: 110px;border-radius: 3px 0 0 3px;}
+.telKv .kv-v select{float:left;vertical-align: top;width: 80px;margin:0 5px 0 -1px;border-radius: 0 3px 3px 0;}
+.addVisitingDialog-content .kv.oldKv{margin-left: 23px;}
+.longKv .kv-v input[type=text]{width: 515px;}
+.areaKv .kv-v select{width: 92px;vertical-align: top;}
+
+
+
+
+
+
+

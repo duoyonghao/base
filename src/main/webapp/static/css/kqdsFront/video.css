@@ -1,0 +1,43 @@
+body{}
+.tableHd{padding: 0 15px;line-height:30px;font-family:"Microsoft YaHei";font-size:14px;color: #FFFFFF;background: #00A6C0;}
+.infoBd{overflow: hidden;}
+.photoWrap{
+	width: 575px;
+	margin:20px auto -10px auto;
+	border:1px solid #ddd; 
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+}
+
+.bottomBar{
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+	margin: 10px auto;
+	text-align: right;
+	border-bottom:1px solid #ddd;
+	border-left:1px solid #ddd;
+	border-right:1px solid #ddd;
+	padding-bottom:8px;
+	padding-top:8px;
+	min-height:48px;
+}
+.bottomBar ul{float:left;padding:5px 10px;margin:0 0 0 10px;}
+.bottomBar ul li{float: left;padding:0 5px; line-height: 22px;color: #0e7cc7;}
+.bottomBar ul li.current{background: #00A6C0 ;color: #FFFFFF;}
+.aBtn{display: inline-block;margin-right:10px;padding: 0 30px;height: 28px;line-height: 28px;border: solid 1px #0e7cc7;border-radius:15px;color: #0e7cc7;}
+.aBtn:hover{color: #fff;background: #117cca;text-decoration: none;}
+.search{color: #fff;background: #117cca;text-decoration: none;}
+
+/*滚动*/
+#tFocus{overflow:hidden;}
+#tFocus-pic{height:300px;position:relative;background:#DDD;}
+#tFocus-pic li{height:300px;position:absolute;left:0;top:0;filter:alpha(opacity:0);opacity:0;}
+#tFocusBtn{height:90px;margin-top:-5px;z-index:20;overflow:hidden;border-top: 1px solid #ddd;}
+#tFocus-btn{width:87%;height:90px;position:relative;left:0;bottom:0;overflow:hidden;float:left;}
+#tFocus-btn ul{width:100000px;position:absolute;left:0;top:0;}
+#tFocus-btn li{display:block;float:left;height:88px;width:125px;margin-right:5px;}
+#tFocus-btn li{border:2px solid transparent;}
+#tFocus-btn li.active{border: 2px solid #00A6C0;overflow: hidden;}
+#tFocus-leftbtn,#tFocus-rightbtn{float:left;height:90px;width:30px;font-weight:bold; color:#00A6C0;line-height:90px; text-align:center;text-decoration:none;font-size:30px;}
+#tFocus-leftbtn{margin-right:5px;}
+#tFocus-rightbtn{float:right;}

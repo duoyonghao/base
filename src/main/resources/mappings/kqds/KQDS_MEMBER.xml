@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_MEMBER">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsMember">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="memberno" jdbcType="VARCHAR" property="memberno" />
+		<result column="memberlevel" jdbcType="VARCHAR" property="memberlevel" />
+		<result column="memberstatus" jdbcType="VARCHAR" property="memberstatus" />
+		<result column="money" jdbcType="DECIMAL" property="money" />
+		<result column="givemoney" jdbcType="DECIMAL" property="givemoney" />
+		<result column="password" jdbcType="VARCHAR" property="password" />
+		<result column="discount" jdbcType="INTEGER" property="discount" />
+		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="icno" jdbcType="VARCHAR" property="icno" />
+		<result column="isbinding" jdbcType="INTEGER" property="isbinding" />
+		<result column="discountdate" jdbcType="VARCHAR" property="discountdate" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, createuser, createtime, usercode, memberno, memberlevel, memberstatus, money,
+		givemoney, password, discount, username, remark, organization, icno, isbinding,
+		discountdate
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_MEMBER
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_MEMBER
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsMember">
+		insert into KQDS_MEMBER (SEQ_ID, createuser, createtime,
+		usercode, memberno, memberlevel,
+		memberstatus, money, givemoney,
+		password, discount,
+		username,
+		remark, organization, icno,
+		isbinding, discountdate)
+		values (#{seqId,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{usercode,jdbcType=VARCHAR}, #{memberno,jdbcType=VARCHAR}, #{memberlevel,jdbcType=VARCHAR},
+		#{memberstatus,jdbcType=VARCHAR}, #{money,jdbcType=DECIMAL},
+		#{givemoney,jdbcType=DECIMAL},
+		#{password,jdbcType=VARCHAR}, #{discount,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR}, #{icno,jdbcType=VARCHAR},
+		#{isbinding,jdbcType=INTEGER}, #{discountdate,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsMember">
+		insert into KQDS_MEMBER
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="usercode != null">
+				usercode,
+			</if>
+			<if test="memberno != null">
+				memberno,
+			</if>
+			<if test="memberlevel != null">
+				memberlevel,
+			</if>
+			<if test="memberstatus != null">
+				memberstatus,
+			</if>
+			<if test="money != null">
+				money,
+			</if>
+			<if test="givemoney != null">
+				givemoney,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="discount != null">
+				discount,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="icno != null">
+				icno,
+			</if>
+			<if test="isbinding != null">
+				isbinding,
+			</if>
+			<if test="discountdate != null">
+				discountdate,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="memberno != null">
+				#{memberno,jdbcType=VARCHAR},
+			</if>
+			<if test="memberlevel != null">
+				#{memberlevel,jdbcType=VARCHAR},
+			</if>
+			<if test="memberstatus != null">
+				#{memberstatus,jdbcType=VARCHAR},
+			</if>
+			<if test="money != null">
+				#{money,jdbcType=DECIMAL},
+			</if>
+			<if test="givemoney != null">
+				#{givemoney,jdbcType=DECIMAL},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="discount != null">
+				#{discount,jdbcType=INTEGER},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="icno != null">
+				#{icno,jdbcType=VARCHAR},
+			</if>
+			<if test="isbinding != null">
+				#{isbinding,jdbcType=INTEGER},
+			</if>
+			<if test="discountdate != null">
+				#{discountdate,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsMember">
+		update KQDS_MEMBER
+		<set>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				usercode = #{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="memberno != null">
+				memberno = #{memberno,jdbcType=VARCHAR},
+			</if>
+			<if test="memberlevel != null">
+				memberlevel = #{memberlevel,jdbcType=VARCHAR},
+			</if>
+			<if test="memberstatus != null">
+				memberstatus = #{memberstatus,jdbcType=VARCHAR},
+			</if>
+			<if test="money != null">
+				money = #{money,jdbcType=DECIMAL},
+			</if>
+			<if test="givemoney != null">
+				givemoney = #{givemoney,jdbcType=DECIMAL},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="discount != null">
+				discount = #{discount,jdbcType=INTEGER},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="icno != null">
+				icno = #{icno,jdbcType=VARCHAR},
+			</if>
+			<if test="isbinding != null">
+				isbinding = #{isbinding,jdbcType=INTEGER},
+			</if>
+			<if test="discountdate != null">
+				discountdate = #{discountdate,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsMember">
+		update KQDS_MEMBER
+		set createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		usercode =
+		#{usercode,jdbcType=VARCHAR},
+		memberno = #{memberno,jdbcType=VARCHAR},
+		memberlevel = #{memberlevel,jdbcType=VARCHAR},
+		memberstatus = #{memberstatus,jdbcType=VARCHAR},
+		money =
+		#{money,jdbcType=DECIMAL},
+		givemoney = #{givemoney,jdbcType=DECIMAL},
+		password = #{password,jdbcType=VARCHAR},
+		discount = #{discount,jdbcType=INTEGER},
+		username =
+		#{username,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR},
+		icno = #{icno,jdbcType=VARCHAR},
+		isbinding =
+		#{isbinding,jdbcType=INTEGER},
+		discountdate = #{discountdate,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_MEMBER
+	</sql>
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsMember">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+<select id="selectListMoney" parameterType="map" resultType="json">
+		select sum(t.money) as money,sum(t.givemoney) as givemoney from (
+		select DISTINCT
+		m.memberno,
+		m.money,
+		m.givemoney
+		from
+		KQDS_MEMBER m
+		LEFT JOIN KQDS_MEMBER_RECORD r on m.memberno = r.cardno
+		LEFT JOIN SYS_DICT kcit1 on m.memberlevel = kcit1.seq_id
+		LEFT JOIN KQDS_UserDocument u on m.usercode =
+		u.usercode
+		LEFT JOIN SYS_PERSON p on p.seq_id = u.askperson
+		LEFT JOIN SYS_PERSON p2 on p2.seq_id = u.createuser
+		LEFT JOIN SYS_PERSON p3 on p3.seq_id = u.developer
+		LEFT JOIN SYS_DICT
+		kcit3 on u.devchannel = kcit3.seq_id
+		LEFT JOIN SYS_DICT hzly on u.nexttype = hzly.seq_id
+		where 1=1
+		<if test="organization != null and organization !='' ">
+			and m.organization = #{organization}
+		</if>
+		<if test="pagenumsql != null and pagenumsql !='' ">
+			and (
+			u.askperson in (${visualstaff})
+			or u.createuser in (${visualstaff})
+			or u.usercode in(
+			SELECT usercode from KQDS_REG where askperson in (${visualstaff})
+			)
+			)
+		</if>
+		<if test="memberno != null and memberno !='' ">
+			and m.memberno like '%' + #{memberno} + '%'
+		</if>
+		<if test="usercode != null and usercode !='' ">
+			and m.usercode like '%' + #{usercode} + '%'
+		</if>
+		<if test="starttime != null and starttime !='' ">
+			and m.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and m.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="queryInput != null and queryInput !='' ">
+			and (u.usercode like '%' + #{queryInput} + '%'
+			or u.username like '%' + #{queryInput} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{queryInput} + '%'
+			)
+		</if>
+		<if test="memberlevel != null and memberlevel !='' ">
+			and m.memberlevel = #{memberlevel}
+		</if>
+		<if test="username != null and username !='' ">
+			and (u.username like '%' + #{username} + '%'
+			or u.pym like '%' + #{username} + '%'
+			)
+		</if>
+		<if test="createtime != null and createtime !='' ">
+			and m.createtime <![CDATA[ >= ]]>
+			#{createtime}
+		</if>
+		) as t
+	</select>
+	<select id="selectList" parameterType="map" resultType="json">
+		select DISTINCT
+		m.remark,
+		m.icno,
+		m.seq_id,
+		m.usercode,
+		m.username,
+		m.memberno,
+		m.discountdate,
+		kcit1.dict_name as memberlevel,
+		u.askperson,
+		u.age,
+		p.user_name as askpersonname,
+		kcit3.dict_name as
+		devchannel,
+		hzly.dict_name as nexttype,
+		p2.user_id as jdr,
+		p3.user_id as kfr,
+		m.memberstatus,
+		m.money,
+		m.discount,
+		m.createtime,
+		m.createuser,
+		m.givemoney
+		from
+		KQDS_MEMBER m
+		LEFT JOIN KQDS_MEMBER_RECORD r on m.memberno = r.cardno
+		LEFT JOIN SYS_DICT kcit1 on m.memberlevel = kcit1.seq_id
+		LEFT JOIN KQDS_UserDocument u on m.usercode =
+		u.usercode
+		LEFT JOIN SYS_PERSON p on p.seq_id = u.askperson
+		LEFT JOIN SYS_PERSON p2 on p2.seq_id = u.createuser
+		LEFT JOIN SYS_PERSON p3 on p3.seq_id = u.developer
+		LEFT JOIN SYS_DICT
+		kcit3 on u.devchannel = kcit3.seq_id
+		LEFT JOIN SYS_DICT hzly on u.nexttype = hzly.seq_id
+		where 1=1
+		<if test="organization != null and organization !='' ">
+			and m.organization = #{organization}
+		</if>
+		<if test="pagenumsql != null and pagenumsql !='' ">
+			and (
+			u.askperson in (${visualstaff})
+			or u.createuser in (${visualstaff})
+			or u.usercode in(
+			SELECT usercode from KQDS_REG where askperson in (${visualstaff})
+			)
+			)
+		</if>
+		<if test="memberno != null and memberno !='' ">
+			and m.memberno like '%' + #{memberno} + '%'
+		</if>
+		<if test="usercode != null and usercode !='' ">
+			and m.usercode like '%' + #{usercode} + '%'
+		</if>
+		<if test="starttime != null and starttime !='' ">
+			and m.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and m.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="queryInput != null and queryInput !='' ">
+			and (u.usercode like '%' + #{queryInput} + '%'
+			or u.username like '%' + #{queryInput} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{queryInput} + '%'
+			)
+		</if>
+		<if test="memberlevel != null and memberlevel !='' ">
+			and m.memberlevel = #{memberlevel}
+		</if>
+		<if test="username != null and username !='' ">
+			and (u.username like '%' + #{username} + '%'
+			or u.pym like '%' + #{username} + '%'
+			)
+		</if>
+		<if test="createtime != null and createtime !='' ">
+			and m.createtime <![CDATA[ >= ]]>
+			#{createtime}
+		</if>
+		<if test="sortName !=null and sortName != '' ">
+		order by ${sortName} ${sortOrder}
+		</if>
+		<if test="sortName == null">
+		order by m.createtime desc
+		</if>
+	</select>
+	<select id="selectList2" parameterType="map" resultType="json">
+		select
+		tp1.cmoney as cmoney1,tp1.cgivemoney as cgivemoney1,tp1.ctotal as ctotal1,tp1.zzmoney as zzmoney1,tp1.zzgivemoney as zzgivemoney1,
+		tp2.cmoney as cmoney2,tp2.cgivemoney as
+		cgivemoney2,tp2.ctotal as ctotal2,
+		tp3.cmoney as cmoney3,tp3.cgivemoney as cgivemoney3,tp3.ctotal as ctotal3,
+		tp4.cmoney as cmoney4,tp4.cgivemoney as cgivemoney4,tp4.ctotal as
+		ctotal4,
+		tp5.cmoney as cmoney5,tp5.cgivemoney as cgivemoney5,tp5.ctotal as ctotal5,
+		tp6.cmoney as cmoney6,tp6.cgivemoney as cgivemoney6,
+		tp7.cmoney as cmoney7,tp7.cgivemoney as
+		cgivemoney7,tp7.ctotal as ctotal7,tp7.zzmoney as zzmoney7,tp7.zzgivemoney as zzgivemoney7,
+		p2.USER_NAME as askperson,
+		u.age,
+		m.usercode,
+		m.username,
+		m.memberno,
+		kcit1.dict_name as
+		memberlevel,
+		m.memberstatus,
+		m.discount,
+		m.createtime,
+		p3.user_id as jdr,
+		p4.user_id as kfr,
+		kcit3.dict_name as devchannel,
+		hzly.dict_name as nexttype
+		from KQDS_MEMBER m
+		LEFT JOIN
+		KQDS_UserDocument u on u.usercode = m.usercode
+		LEFT JOIN SYS_PERSON p2 on u.AskPerson = p2.seq_id
+		LEFT JOIN SYS_DICT kcit1 on m.memberlevel = kcit1.seq_id
+		LEFT JOIN SYS_DICT kcit3
+		on u.devchannel = kcit3.seq_id
+		LEFT JOIN SYS_DICT hzly on u.nexttype = hzly.seq_id
+		LEFT JOIN SYS_PERSON p3 on p3.seq_id = u.createuser
+		LEFT JOIN SYS_PERSON p4 on p4.seq_id = u.developer
+		<if test="joinsql != null and joinsql !='' ">
+			${joinsql}
+		</if>
+		<if test="queryInput != null and queryInput !='' ">
+			and (u.usercode like '%' + #{queryInput} + '%'
+			or u.username like '%' + #{queryInput} + '%'
+			or u.pym like '%' + #{queryInput} + '%'
+			)
+		</if>
+		<if test="askperson != null and askperson !='' ">
+			and u.AskPerson = #{askperson}
+		</if>
+		order by m.createtime desc
+	</select>
+	<select id="selectAllQm" parameterType="map" resultType="json">
+		select
+		sum(cmoney) as cmoney,
+		sum(cgivemoney) as cgivemoney,
+		sum(ctotal) as ctotal,
+		sum(zzmoney) as zzmoney,
+		sum(zzgivemoney) as zzgivemoney
+		from KQDS_MEMBER_RECORD
+		where cardno =
+		#{memberno}
+		<if test="starttime != null and starttime !='' ">
+			and createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+	</select>
+	<select id="getSymoneyByUsercode" parameterType="map" resultType="json">
+		SELECT
+		sum(cmoney) as cmoney,
+		sum(cgivemoney) as cgivemoney,
+		sum(ctotal) as ctotal,
+		sum(zzmoney) as zzmoney,
+		sum(zzgivemoney) as zzgivemoney
+		FROM KQDS_MEMBER_RECORD dd
+		where createtime <![CDATA[ <= ]]>
+		#{sftime}
+		and usercode =#{usercode}
+		GROUP BY dd.cardno
+	</select>
+	<select id="getMemberListByUserCode" parameterType="java.lang.String" resultType="json">
+		select * from KQDS_MEMBER where usercode = #{_parameter}
+	</select>
+	<select id="getMemberListByMember" parameterType="map" resultType="json">
+		select * from KQDS_MEMBER where seq_id != #{seqId} and (memberno = #{memberno} or icno = #{memberno})
+	</select>
+
+	<update id="updateCardno" parameterType="map">
+		<!-- WARNING - @mbg.generated This element is automatically generated by MyBatis Generator, do not modify. This element was generated on Thu Apr 12 10:54:48 CST 2018. -->
+		update KQDS_MEMBER_RECORD set cardno = #{memberno1}
+		where cardno = #{memberno2}
+	</update>
+	<update id="updateShCardno" parameterType="map">
+		<!-- WARNING - @mbg.generated This element is automatically generated by MyBatis Generator, do not modify. This element was generated on Thu Apr 12 10:54:48 CST 2018. -->
+		update KQDS_MEMBER_RECORD_SH set cardno = #{memberno1}
+		where cardno = #{memberno2}
+	</update>
+	<update id="EXECUTE_UPDATE" parameterType="String">
+		${_parameter}
+	</update>
+	<update id="editIcno" parameterType="String">
+		<!-- WARNING - @mbg.generated This element is automatically generated by MyBatis Generator, do not modify. This element was generated on Thu Apr 12 10:54:48 CST 2018. -->
+		update KQDS_MEMBER set icno = memberno,isbinding=1
+	</update>
+	<update id="emptyIcno" parameterType="String">
+		<!-- WARNING - @mbg.generated This element is automatically generated by MyBatis Generator, do not modify. This element was generated on Thu Apr 12 10:54:48 CST 2018. -->
+		update KQDS_MEMBER set icno = '',isbinding=0
+	</update>
+	
+	<!-- 批量导入会员卡数据 -->
+	<insert id="batchSaveMember" parameterType="java.util.List">
+		insert into KQDS_MEMBER (SEQ_ID, createuser, createtime,
+		usercode, memberno, memberlevel,
+		memberstatus, money, givemoney,
+		password, discount,
+		username,
+		remark, organization, icno,
+		isbinding, discountdate)
+		values (#{seqId,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{usercode,jdbcType=VARCHAR}, #{memberno,jdbcType=VARCHAR}, #{memberlevel,jdbcType=VARCHAR},
+		#{memberstatus,jdbcType=VARCHAR}, #{money,jdbcType=DECIMAL},
+		#{givemoney,jdbcType=DECIMAL},
+		#{password,jdbcType=VARCHAR}, #{discount,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR}, #{icno,jdbcType=VARCHAR},
+		#{isbinding,jdbcType=INTEGER}, #{discountdate,jdbcType=VARCHAR})
+	</insert>
+
+</mapper>

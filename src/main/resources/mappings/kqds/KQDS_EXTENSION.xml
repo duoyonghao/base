@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_EXTENSION">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsExtension">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="visittime" jdbcType="VARCHAR" property="visittime" />
+		<result column="visitor" jdbcType="VARCHAR" property="visitor" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="finishtime" jdbcType="VARCHAR" property="finishtime" />
+		<result column="hfyd" jdbcType="VARCHAR" property="hfyd" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="myd" jdbcType="VARCHAR" property="myd" />
+		<result column="postperson" jdbcType="VARCHAR" property="postperson" />
+		<result column="hfresult" jdbcType="VARCHAR" property="hfresult" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="extension" jdbcType="VARCHAR" property="extension" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, createuser, createtime, visittime, visitor, usercode, username, finishtime,
+		hfyd, organization, myd, postperson, hfresult, status, extension, remark
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_EXTENSION
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_EXTENSION
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsExtension">
+		insert into KQDS_EXTENSION (SEQ_ID, createuser, createtime,
+		visittime, visitor, usercode,
+		username, finishtime, hfyd,
+		organization, myd,
+		postperson,
+		hfresult, status, extension,
+		remark)
+		values (#{seqId,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{visittime,jdbcType=VARCHAR},
+		#{visitor,jdbcType=VARCHAR}, #{usercode,jdbcType=VARCHAR},
+		#{username,jdbcType=VARCHAR}, #{finishtime,jdbcType=VARCHAR}, #{hfyd,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR}, #{myd,jdbcType=VARCHAR}, #{postperson,jdbcType=VARCHAR},
+		#{hfresult,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{extension,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsExtension">
+		insert into KQDS_EXTENSION
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="visittime != null">
+				visittime,
+			</if>
+			<if test="visitor != null">
+				visitor,
+			</if>
+			<if test="usercode != null">
+				usercode,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="finishtime != null">
+				finishtime,
+			</if>
+			<if test="hfyd != null">
+				hfyd,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="myd != null">
+				myd,
+			</if>
+			<if test="postperson != null">
+				postperson,
+			</if>
+			<if test="hfresult != null">
+				hfresult,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="extension != null">
+				extension,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="visittime != null">
+				#{visittime,jdbcType=VARCHAR},
+			</if>
+			<if test="visitor != null">
+				#{visitor,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="finishtime != null">
+				#{finishtime,jdbcType=VARCHAR},
+			</if>
+			<if test="hfyd != null">
+				#{hfyd,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="myd != null">
+				#{myd,jdbcType=VARCHAR},
+			</if>
+			<if test="postperson != null">
+				#{postperson,jdbcType=VARCHAR},
+			</if>
+			<if test="hfresult != null">
+				#{hfresult,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="extension != null">
+				#{extension,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsExtension">
+		update KQDS_EXTENSION
+		<set>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="visittime != null">
+				visittime = #{visittime,jdbcType=VARCHAR},
+			</if>
+			<if test="visitor != null">
+				visitor = #{visitor,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				usercode = #{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="finishtime != null">
+				finishtime = #{finishtime,jdbcType=VARCHAR},
+			</if>
+			<if test="hfyd != null">
+				hfyd = #{hfyd,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="myd != null">
+				myd = #{myd,jdbcType=VARCHAR},
+			</if>
+			<if test="postperson != null">
+				postperson = #{postperson,jdbcType=VARCHAR},
+			</if>
+			<if test="hfresult != null">
+				hfresult = #{hfresult,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="extension != null">
+				extension = #{extension,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsExtension">
+		update KQDS_EXTENSION
+		set createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		visittime =
+		#{visittime,jdbcType=VARCHAR},
+		visitor = #{visitor,jdbcType=VARCHAR},
+		usercode = #{usercode,jdbcType=VARCHAR},
+		username = #{username,jdbcType=VARCHAR},
+		finishtime =
+		#{finishtime,jdbcType=VARCHAR},
+		hfyd = #{hfyd,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR},
+		myd = #{myd,jdbcType=VARCHAR},
+		postperson =
+		#{postperson,jdbcType=VARCHAR},
+		hfresult = #{hfresult,jdbcType=VARCHAR},
+		status = #{status,jdbcType=VARCHAR},
+		extension = #{extension,jdbcType=VARCHAR},
+		remark =
+		#{remark,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_EXTENSION
+	</sql>
+
+	<select id="selectCountByMap" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsExtension">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+
+	<select id="selectList2" parameterType="map" resultType="json">
+		select
+		dept.DEPT_NAME as organizationname,
+		etype.createuser as typecreateuser,
+		t.jhname,
+		per1.user_name as createuser,
+		v.createtime,
+		v.hfresult,
+		v.visittime,
+		v.extension,
+		v.seq_id,
+		v.remark as extenremark,
+		u.usercode,
+		u.username,
+		u.sex,
+		u.age,
+		u.phonenumber1,
+		v.finishtime,
+		v.hfyd,
+		v.status,
+		v.organization,
+		kcit1.dict_name as myd,
+		per2.user_name as visitor,
+		visitor as
+		visitorid,
+		(select
+		count(1) from KQDS_Member where usercode =v.usercode ) as memberno,
+		u.remark
+		from KQDS_Extension v
+		LEFT JOIN KQDS_UserDocument u on u.UserCode = v.usercode
+		LEFT JOIN
+		KQDS_Extension_Type t on v.extension = t.seq_id
+		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = u.createuser
+		LEFT JOIN SYS_PERSON per2 on per2.SEQ_ID = v.visitor
+		LEFT JOIN
+		KQDS_EXTENSION_TYPE etype on etype.SEQ_ID = v.extension
+		LEFT JOIN SYS_DICT kcit1 on v.myd = kcit1.seq_id
+		LEFT JOIN SYS_DEPT dept on v.organization = dept.dept_code and
+		dept.dept_parent = '0'
+		where 1=1
+		<if test="status != null and status !='' ">
+			and v.status = #{status}
+		</if>
+		<if test="vtime1 != null and vtime1 !='' ">
+			and v.visittime <![CDATA[ >= ]]>
+			#{vtime1}
+		</if>
+		<if test="vtime2 != null and vtime2 !='' ">
+			and v.visittime <![CDATA[ <= ]]>
+			#{vtime2}
+		</if>
+		<if test="extension != null and extension !='' ">
+			and t.jhname = like '%' + #{extension} + '%'
+		</if>
+		<if test="organization != null and organization !='' ">
+			and v.organization = #{organization}
+		</if>
+		<if test="visitor != null and visitor !='' ">
+			and v.visitor = #{visitor}
+		</if>
+		<if test="planstatus != null and planstatus !='' ">
+			and t.status = #{planstatus}
+		</if>
+		<if test="tuiguang != null and tuiguang !='' ">
+			and v.extension = #{tuiguang}
+		</if>
+		and (v.createuser in (${visualstaff}) or v.visitor in (${visualstaff}))
+		ORDER BY v.status asc,v.createtime desc
+	</select>
+	<select id="selectCountByQuery" parameterType="map" resultType="json">
+		select COUNT(extension) as flcount,jhname,extension from KQDS_Extension e
+		LEFT JOIN KQDS_EXTENSION_TYPE t on e.extension = t.seq_id where 1=1
+		<if test="status != null and status !='' ">
+			and e.status = #{status}
+		</if>
+		<if test="vtime1 != null and vtime1 !='' ">
+			and e.visittime <![CDATA[ >= ]]>
+			#{vtime1}
+		</if>
+		<if test="vtime2 != null and vtime2 !='' ">
+			and e.visittime <![CDATA[ <= ]]>
+			#{vtime2}
+		</if>
+		<if test="extension != null and extension !='' ">
+			and t.jhname = like '%' + #{extension} + '%'
+		</if>
+		<if test="organization != null and organization !='' ">
+			and e.organization = #{organization}
+		</if>
+		<if test="visitor != null and visitor !='' ">
+			and e.visitor = #{visitor}
+		</if>
+		<if test="planstatus != null and planstatus !='' ">
+			and t.status = #{planstatus}
+		</if>
+		<if test="tuiguang != null and tuiguang !='' ">
+			and e.extension = #{tuiguang}
+		</if>
+		and (e.createuser in (${visualstaff}) or e.visitor in (${visualstaff}))
+		GROUP BY jhname,extension
+	</select>
+	<select id="selectZongCount" parameterType="map" resultType="int">
+		<bind name="temp_dbType" value="${system_dbType}" />
+		select count(1) from KQDS_Extension e where 1=1
+		<if test="status != null and status !='' ">
+			and e.status = #{status}
+		</if>
+		<if test="vtime1 != null and vtime1 !='' ">
+			and e.visittime <![CDATA[ >= ]]>
+			#{vtime1}
+		</if>
+		<if test="vtime2 != null and vtime2 !='' ">
+			and e.visittime <![CDATA[ <= ]]>
+			#{vtime2}
+		</if>
+		<if test="extension != null and extension !='' ">
+			and e.extension = like '%' + #{extension} + '%'
+		</if>
+		<if test="organization != null and organization !='' ">
+			and e.organization = #{organization}
+		</if>
+		<if test="visitor != null and visitor !='' ">
+			and e.visitor = #{visitor}
+		</if>
+		<if test="qm != null and qm !='' ">
+			<if test="temp_dbType == 0">
+				and finishtime <![CDATA[ < ]]>
+				DATE_ADD(visittime,INTERVAL 1 DAY)
+			</if>
+			<if test="temp_dbType == 1">
+				and finishtime <![CDATA[ < ]]>
+				dateadd(day, 1, visittime)
+			</if>
+		</if>
+		<if test="tuiguang != null and tuiguang !='' ">
+			and e.extension = #{tuiguang}
+		</if>
+		and (createuser in (${visualstaff}) or visitor in (${visualstaff}))
+	</select>
+	<select id="getExtensoionList" parameterType="map" resultType="json">
+		select t.seq_id,t.jhname from kqds_extension_type t
+		where 1=1
+		<if test="organization != null and organization !='' ">
+			and t.organization = #{organization}
+		</if>
+		<if test="planstatus != null and planstatus !='' ">
+			and t.status = #{planstatus}
+		</if>
+		<if test="vtime1 != null and vtime1 !='' ">
+			and t.seq_id in ( select extension from KQDS_EXTENSION where visittime  <![CDATA[ >= ]]>
+			#{vtime1} )
+		</if>
+		<if test="vtime2 != null and vtime2 !='' ">
+			and t.seq_id in ( select extension from KQDS_EXTENSION where visittime  <![CDATA[ <= ]]>
+			#{vtime2} )
+		</if>
+		<if test="extension != null and extension !='' ">
+			and t.jhname = like '%' + #{extension} + '%'
+		</if>
+		and (t.createuser in (${visualstaff}) or t.seq_id in ( select extension from KQDS_EXTENSION where visitor in (${visualstaff})))
+		order by t.createtime desc
+	</select>
+	<select id="checkIsFinish" parameterType="java.lang.String" resultType="int">
+		select count(1) as wei from KQDS_EXTENSION
+		where extension = (select extension from KQDS_EXTENSION
+		where seq_id = #{_parameter}) and status = 0
+	</select>
+	<select id="selectDetail" parameterType="map" resultType="json">
+		select
+		t.jhname,
+		per1.user_name as createuser,
+		v.createtime,
+		v.hfresult,
+		v.visittime,
+		v.extension,
+		v.remark as
+		extenremark,
+		v.seq_id,
+		u.usercode,
+		u.username,
+		u.sex,
+		u.age,
+		u.phonenumber1,
+		v.finishtime,
+		v.hfyd,
+		v.status,
+		v.organization,
+		kcit1.dict_name as myd,
+		per2.user_name as visitor,
+		visitor as
+		visitorid,
+		(select count(1) from KQDS_Member where usercode =v.usercode ) as memberno,
+		u.remark
+		from KQDS_Extension v
+		LEFT JOIN KQDS_UserDocument u on u.UserCode = v.usercode
+		LEFT
+		JOIN KQDS_Extension_Type t on v.extension = t.seq_id
+		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = u.createuser
+		LEFT JOIN SYS_PERSON per2 on per2.SEQ_ID = v.visitor
+		LEFT JOIN SYS_DICT
+		kcit1 on v.myd = kcit1.seq_id
+		where 1=1
+		and v.seq_Id = #{seqId}
+	</select>
+	<select id="getTodayList" parameterType="map" resultType="json">
+		<bind name="temp_dbType" value="${system_dbType}" />
+		select t.*,p.USER_NAME as cjr,
+		<if test="temp_dbType == 0">
+			(select e.visittime from KQDS_EXTENSION e where e.extension = t.seq_id limit 0,1) as vtime
+		</if>
+		<if test="temp_dbType == 1">
+			(select top 1 e.visittime from KQDS_EXTENSION e where e.extension = t.seq_id) as vtime
+		</if>
+		from kqds_extension_type t
+		LEFT JOIN SYS_PERSON p on p.SEQ_ID = t.createuser
+		where 1=1
+		and t.organization = #{organization}
+		and t.seq_id in ( select extension from KQDS_EXTENSION
+		where visittime <![CDATA[ >= ]]>
+		#{visittime} )
+		and (t.createuser in (${visualstaff}) or t.seq_id in ( select extension from KQDS_EXTENSION where visitor in (${visualstaff})))
+		order by t.createtime desc
+	</select>
+	<select id="JhTimeOut" parameterType="map" resultType="json">
+		select usercode,visitor,username,visittime from KQDS_EXTENSION
+		where 1=1
+		and visittime <![CDATA[ <= ]]>
+		#{visittime}
+		and status = 0
+		group by usercode
+		order by createtime desc
+	</select>
+
+</mapper>

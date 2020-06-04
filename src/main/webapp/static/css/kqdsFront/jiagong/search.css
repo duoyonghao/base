@@ -1,0 +1,107 @@
+body{background: #fefefe;}
+.searchWrap{border: solid 1px #c0c0c0;} */
+.listWrap,.searchWrap{border: solid 1px #ddd; border-left:none; border-right:none;}
+
+.listWrap{/* margin-bottom: 10px; */}
+.listWrap .listHd{
+	box-sizing: border-box;
+    color: #373737;
+    font-family: "Microsoft YaHei";
+    height: 46px;
+    position: relative;
+}
+.listWrap .listHd .title{
+	font-size: 20px;
+    height: 20px;
+    line-height: 20px;
+    float: left;
+    display: block;
+    margin-top: 16px;
+}
+.listWrap .listHd .home-icon{margin-right:6px;vertical-align: -3px; *vertical-align: 0;}
+
+
+/* .listWrap .listBd{padding:10px;background: #f5f5f5;overflow:hidden;} */
+.listWrap .listBd{background: #fff;overflow:hidden;}
+
+.listWrap  .formBox {margin: 10px 0;}
+.listWrap  .formBox label{float:left;font-weight: normal;margin-right: 10px;}
+.listWrap  .formBox label input[type=checkbox]{vertical-align: -3px; *vertical-align: 0;margin-right: 3px;}
+.listWrap  .formBox .kv{float: left;}
+.listWrap  .formBox .kv textarea{height: 30px;min-height: 0;width: 230px;}
+/* .listWrap  .formBox .kv input[type=text]{width: 90px;height: 20px;text-align: right;} */
+.listWrap  .formBox .kv input[type=text]{width: 90px;height: 20px;}/* 闂備胶灏ㄩ幏鐑筋敆閿曞紞ut闂備礁鎲￠崝鏇㈠箠鎼搭煈鏁婇柟閭﹀幘椤╃兘骞栫划鐧告嫹缂侊拷娴ｇ尨鎷烽悽顖ｅ枟鐎氱懓鈽夐弬璺ㄧ婵炵厧绻橀獮姗�宕橀幓鎺撹緢--濠碉紕鍋犻幓顏堝箯閿燂拷*/
+.listWrap  .formBox .totalMsg{float: right;margin-top: 7px;}
+.redFont{color: #ff3d3d;}
+
+
+.buttonBar{margin: 10px 0 0 10px;}
+.buttonBar .aBtn{display:inline-block;padding: 0 15px;height: 28px;border: solid 1px #00A6C0;color: #00A6C0 ;border-radius: 15px;line-height: 28px;width: 60px;text-align: center;}
+.buttonBar  .search{color:#fff;background: #00A6C0 ;}
+.buttonBar  .aBtn:hover{color:#fff;background: #00A6C0 ;}
+.buttonBar .text{color: #00a6c0 ;margin-right: 10px;}
+.addWrap .buttonBar{text-align: right;}
+
+.searchWrap{
+	position: relative;padding: 30px 10px 5px 10px;
+	border-radius:5px;
+	}
+.searchWrap .cornerBox{
+	position: absolute; 
+	left:0;top:0;
+	height:30px;
+	width:100%;
+	line-height:30px;
+	text-align:left;
+	padding-left:10px;
+	font-size:14px;
+	color:#333;
+	background: #fff ;
+	border-bottom:1px solid #ddd;
+}
+.searchWrap .text{position: absolute; left:140px;top:9px;color: #0e7ec8;}
+.searchWrap .text i{margin: 0 2px;}
+.searchWrap .btnBar{text-align:right;}
+.searchWrap .btnBar > .aBtn{display:inline-block;padding: 0 15px;height: 28px;border: solid 1px #00A6C0 ;color: #00A6C0 ;border-radius: 15px;line-height: 28px;}
+.searchWrap .btnBar > .aBtn:hover{color:#fff;background: #00A6C0 ;}
+.searchWrap .btnBar > .search{color:#fff;background: #00A6C0 ;}
+.formBox{overflow: hidden;}
+.searchWrap .kv{float: left;}
+.searchWrap .kv > label{margin-right: 10px;}
+.searchWrap .kv input[type=text],
+.searchWrap .kv select{width:100px;height: 24px; line-height: 24px;box-sizing: border-box; }
+.searchWrap .kv input[type=text].searchInput{width: 390px;}
+.searchWrap .orangeFont{margin-left:10px;color: #ff6100;line-height: 20px;}
+
+
+/* .tableBox{border: solid 1px #0d7dc5;overflow: hidden;} */
+.tableBox{overflow: hidden; }
+
+.fixed-table-header{margin-right:0!important;border-bottom: none; color: #FFF;font-weight:normal;background: #00a6c0;}
+.table-striped > tbody > tr:nth-child(odd){background: #eef9fe;}
+.table-striped > tbody > tr{background: #FFF;}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{border-top: none;}
+.table-condensed > thead > tr > th, .table-condensed > tbody > tr > th, .table-condensed > tfoot > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > td{} /* padding: 0px 0px; */
+
+
+.addWrap{padding-right: 310px;}
+.costList{
+	box-sizing: border-box;
+	float:right;
+	border: solid 1px #ddd;
+}
+.costList .costListHd{padding:0 10px;height:30.4px;line-height:30.4px;color:#FFFFFF;background:#00A6C0 ;}
+.costList .costListHd h4{line-height: 30.4px;font-size: 14px;}
+.costList .costListHd .kv{float: right;margin: 4px 0 0 0;}
+.costList .costListHd .kv > label{margin-right: 10px;color: #FFFFFF;}
+.costList .costListHd .kv  select{width: 150px;height: 20px;}
+.costList .costListBd{padding: 5px;}
+
+
+table td span.time{display:inline-block;width: 140px;white-space: nowrap;overflow: hidden;text-overflow:ellipsis;}
+table td span.name{display:inline-block;width: 80px;white-space: nowrap;overflow: hidden;text-overflow:ellipsis;}
+
+
+
+
+

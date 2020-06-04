@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_PAYCOST">
+
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsPaycost">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="sex" jdbcType="INTEGER" property="sex" />
+		<result column="doctor" jdbcType="VARCHAR" property="doctor" />
+		<result column="nurse" jdbcType="VARCHAR" property="nurse" />
+		<result column="techperson" jdbcType="VARCHAR" property="techperson" />
+		<result column="askperson" jdbcType="VARCHAR" property="askperson" />
+		<result column="costno" jdbcType="VARCHAR" property="costno" />
+		<result column="totalcost" jdbcType="DECIMAL" property="totalcost" />
+		<result column="voidmoney" jdbcType="DECIMAL" property="voidmoney" />
+		<result column="shouldmoney" jdbcType="DECIMAL" property="shouldmoney" />
+		<result column="actualmoney" jdbcType="DECIMAL" property="actualmoney" />
+		<result column="arrearmoney" jdbcType="DECIMAL" property="arrearmoney" />
+		<result column="discountmoney" jdbcType="DECIMAL" property="discountmoney" />
+		<result column="paytype1" jdbcType="VARCHAR" property="paytype1" />
+		<result column="money1" jdbcType="DECIMAL" property="money1" />
+		<result column="paytype2" jdbcType="VARCHAR" property="paytype2" />
+		<result column="money2" jdbcType="DECIMAL" property="money2" />
+		<result column="regno" jdbcType="VARCHAR" property="regno" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, createuser, createtime, usercode, username, sex, doctor, nurse, techperson,
+		askperson, costno, totalcost, voidmoney, shouldmoney, actualmoney, arrearmoney,
+		discountmoney,
+		paytype1, money1, paytype2, money2, regno, organization
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_PAYCOST
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_PAYCOST
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsPaycost">
+		insert into KQDS_PAYCOST (SEQ_ID, createuser, createtime,
+		usercode, username, sex,
+		doctor, nurse, techperson,
+		askperson, costno, totalcost,
+		voidmoney, shouldmoney, actualmoney,
+		arrearmoney, discountmoney, paytype1,
+		money1, paytype2, money2,
+		regno, organization)
+		values (#{seqId,jdbcType=VARCHAR},
+		#{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{usercode,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER},
+		#{doctor,jdbcType=VARCHAR},
+		#{nurse,jdbcType=VARCHAR}, #{techperson,jdbcType=VARCHAR},
+		#{askperson,jdbcType=VARCHAR}, #{costno,jdbcType=VARCHAR}, #{totalcost,jdbcType=DECIMAL},
+		#{voidmoney,jdbcType=DECIMAL},
+		#{shouldmoney,jdbcType=DECIMAL}, #{actualmoney,jdbcType=DECIMAL},
+		#{arrearmoney,jdbcType=DECIMAL}, #{discountmoney,jdbcType=DECIMAL}, #{paytype1,jdbcType=VARCHAR},
+		#{money1,jdbcType=DECIMAL}, #{paytype2,jdbcType=VARCHAR}, #{money2,jdbcType=DECIMAL},
+		#{regno,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsPaycost">
+		insert into KQDS_PAYCOST
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="usercode != null">
+				usercode,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="doctor != null">
+				doctor,
+			</if>
+			<if test="nurse != null">
+				nurse,
+			</if>
+			<if test="techperson != null">
+				techperson,
+			</if>
+			<if test="askperson != null">
+				askperson,
+			</if>
+			<if test="costno != null">
+				costno,
+			</if>
+			<if test="totalcost != null">
+				totalcost,
+			</if>
+			<if test="voidmoney != null">
+				voidmoney,
+			</if>
+			<if test="shouldmoney != null">
+				shouldmoney,
+			</if>
+			<if test="actualmoney != null">
+				actualmoney,
+			</if>
+			<if test="arrearmoney != null">
+				arrearmoney,
+			</if>
+			<if test="discountmoney != null">
+				discountmoney,
+			</if>
+			<if test="paytype1 != null">
+				paytype1,
+			</if>
+			<if test="money1 != null">
+				money1,
+			</if>
+			<if test="paytype2 != null">
+				paytype2,
+			</if>
+			<if test="money2 != null">
+				money2,
+			</if>
+			<if test="regno != null">
+				regno,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=INTEGER},
+			</if>
+			<if test="doctor != null">
+				#{doctor,jdbcType=VARCHAR},
+			</if>
+			<if test="nurse != null">
+				#{nurse,jdbcType=VARCHAR},
+			</if>
+			<if test="techperson != null">
+				#{techperson,jdbcType=VARCHAR},
+			</if>
+			<if test="askperson != null">
+				#{askperson,jdbcType=VARCHAR},
+			</if>
+			<if test="costno != null">
+				#{costno,jdbcType=VARCHAR},
+			</if>
+			<if test="totalcost != null">
+				#{totalcost,jdbcType=DECIMAL},
+			</if>
+			<if test="voidmoney != null">
+				#{voidmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="shouldmoney != null">
+				#{shouldmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="actualmoney != null">
+				#{actualmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="arrearmoney != null">
+				#{arrearmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="discountmoney != null">
+				#{discountmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="paytype1 != null">
+				#{paytype1,jdbcType=VARCHAR},
+			</if>
+			<if test="money1 != null">
+				#{money1,jdbcType=DECIMAL},
+			</if>
+			<if test="paytype2 != null">
+				#{paytype2,jdbcType=VARCHAR},
+			</if>
+			<if test="money2 != null">
+				#{money2,jdbcType=DECIMAL},
+			</if>
+			<if test="regno != null">
+				#{regno,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsPaycost">
+		update KQDS_PAYCOST
+		<set>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				usercode = #{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=INTEGER},
+			</if>
+			<if test="doctor != null">
+				doctor = #{doctor,jdbcType=VARCHAR},
+			</if>
+			<if test="nurse != null">
+				nurse = #{nurse,jdbcType=VARCHAR},
+			</if>
+			<if test="techperson != null">
+				techperson = #{techperson,jdbcType=VARCHAR},
+			</if>
+			<if test="askperson != null">
+				askperson = #{askperson,jdbcType=VARCHAR},
+			</if>
+			<if test="costno != null">
+				costno = #{costno,jdbcType=VARCHAR},
+			</if>
+			<if test="totalcost != null">
+				totalcost = #{totalcost,jdbcType=DECIMAL},
+			</if>
+			<if test="voidmoney != null">
+				voidmoney = #{voidmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="shouldmoney != null">
+				shouldmoney = #{shouldmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="actualmoney != null">
+				actualmoney = #{actualmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="arrearmoney != null">
+				arrearmoney = #{arrearmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="discountmoney != null">
+				discountmoney = #{discountmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="paytype1 != null">
+				paytype1 = #{paytype1,jdbcType=VARCHAR},
+			</if>
+			<if test="money1 != null">
+				money1 = #{money1,jdbcType=DECIMAL},
+			</if>
+			<if test="paytype2 != null">
+				paytype2 = #{paytype2,jdbcType=VARCHAR},
+			</if>
+			<if test="money2 != null">
+				money2 = #{money2,jdbcType=DECIMAL},
+			</if>
+			<if test="regno != null">
+				regno = #{regno,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsPaycost">
+		update KQDS_PAYCOST
+		set createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		usercode =
+		#{usercode,jdbcType=VARCHAR},
+		username = #{username,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=INTEGER},
+		doctor = #{doctor,jdbcType=VARCHAR},
+		nurse = #{nurse,jdbcType=VARCHAR},
+		techperson = #{techperson,jdbcType=VARCHAR},
+		askperson = #{askperson,jdbcType=VARCHAR},
+		costno = #{costno,jdbcType=VARCHAR},
+		totalcost = #{totalcost,jdbcType=DECIMAL},
+		voidmoney =
+		#{voidmoney,jdbcType=DECIMAL},
+		shouldmoney = #{shouldmoney,jdbcType=DECIMAL},
+		actualmoney = #{actualmoney,jdbcType=DECIMAL},
+		arrearmoney = #{arrearmoney,jdbcType=DECIMAL},
+		discountmoney = #{discountmoney,jdbcType=DECIMAL},
+		paytype1 = #{paytype1,jdbcType=VARCHAR},
+		money1 = #{money1,jdbcType=DECIMAL},
+		paytype2 = #{paytype2,jdbcType=VARCHAR},
+		money2 =
+		#{money2,jdbcType=DECIMAL},
+		regno = #{regno,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_PAYCOST
+	</sql>
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsPaycost">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="getCountIndex" parameterType="map" resultType="int">
+		<bind name="temp_dbType" value="${system_dbType}" />
+		select count(1) from KQDS_COSTORDER cost
+		LEFT JOIN KQDS_reg r on cost.regno = r.seq_id
+		left join KQDS_UserDocument u on u.usercode = cost.usercode
+		where 1=1 and cost.status=2
+		<if test="temp_dbType == 0">
+			and to_days(cost.sftime) = to_days(now())
+		</if>
+		<if test="temp_dbType == 1">
+			and datediff(day, cost.sftime,getdate())=0
+		</if>
+		and cost.organization = #{organization}
+		<if test="querytype != null and querytype !='' ">
+			and (
+			cost.createuser in (${querytype})
+			or cost.doctor in (${querytype})
+			or cost.doctor in (select d.doctor from KQDS_COSTORDER_DETAIL d where d.costno = cost.costno )
+			or cost.sfuser in (${querytype})
+			or r.askperson in (${querytype})
+			or r.createuser in (${querytype})
+			)
+		</if>
+		<if test="searchValue != null and searchValue !='' ">
+			and (u.usercode like '%' + #{searchValue} + '%'
+			or u.username like '%' + #{searchValue} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{searchValue} + '%'
+			)
+		</if>
+	</select>
+	<select id="getItem" parameterType="java.lang.String" resultType="KqdsTreatitem">
+		select basetype,nexttype from KQDS_TreatItem where treatitemno = #{_parameter}
+	</select>
+	<select id="getQfItem" parameterType="KqdsCostorderDetail" resultType="KqdsCostorderDetail">
+		select * from KQDS_COSTORDER_DETAIL
+		where 1=1
+		and usercode = #{usercode} and itemno = #{itemno}
+		and qfbh
+		= #{qfbh}
+		and seq_id != #{seqId}
+		and isqfreal = 1
+	</select>
+	<delete id="deletebyregno1old" parameterType="map">
+		<!-- WARNING - @mbg.generated This element is automatically generated by MyBatis Generator, do not modify. This element was generated on Thu Apr 12 10:54:48 CST 2018. -->
+		delete from KQDS_JZQK
+		where regno = #{regno}
+		and (reggoal is null or reggoal = '')
+		and doctor not in (select createuser from KQDS_TOOTH_DOC where regno = #{regno})
+		and doctor not in
+		(select createuser from KQDS_MEDICALRECORD where regno = #{regno})
+		and doctor not in (select doctor from KQDS_COSTORDER where regno = #{regno})
+		and doctor not in (select createuser
+		from KQDS_COSTORDER where regno = #{regno} )
+	</delete>
+	<delete id="deletebyregno1" parameterType="map">
+		<!-- WARNING - @mbg.generated This element is automatically generated by MyBatis Generator, do not modify. This element was generated on Thu Apr 12 10:54:48 CST 2018. -->
+		delete from KQDS_JZQK
+		where regno = #{regno}
+		and (reggoal is null or reggoal = '')
+		and doctor not in (select createuser from KQDS_TOOTH_DOC where regno = #{regno})
+		and doctor not in
+		(select createuser from KQDS_MEDICALRECORD where regno = #{regno})
+		and doctor not in (select doctor from KQDS_REG where seq_id = #{regno})
+	</delete>
+	<delete id="deletebyregno2" parameterType="map">
+		<!-- WARNING - @mbg.generated This element is automatically generated by MyBatis Generator, do not modify. This element was generated on Thu Apr 12 10:54:48 CST 2018. -->
+		delete from KQDS_JZQK
+		where regno = #{regno}
+		and doctor = #{doctor}
+		and (reggoal is null or reggoal = '')
+	</delete>
+	
+	<!-- 查询是否有欠费 -->
+	<select id="isArrearage" parameterType="java.lang.String" resultType="json">
+	SELECT
+	*
+	FROM
+		KQDS_COSTORDER_DETAIL
+	WHERE
+		1 = 1
+	AND usercode = #{usercode}
+	AND isqfreal = 1 
+	</select>
+	
+	<select id="findPayCostByUsercodes" parameterType="String" resultType="json">
+	select 
+	SEQ_ID,createuser,createtime,usercode,username,sex,doctor,nurse,techperson,
+	costno,totalcost,voidmoney,shouldmoney,actualmoney,arrearmoney,discountmoney,
+	paytype1,money1,paytype2,money2,regno,organization
+	 from KQDS_PAYCOST where usercode in (${_parameter})
+	</select>
+	<!-- 按月查询业绩 syp 2019-9-24 -->
+	<select id="findTotalMoneyByMonth" parameterType="map" resultType="json">
+		SELECT 
+		YEAR (createtime) 年,
+		MONTH (createtime) 月,
+		SUM(totalcost) as totalMoney 
+		FROM KQDS_PAYCOST where 1=1
+		and MONTH (createtime) <![CDATA[ >= ]]> #{startmonth}
+		and MONTH (createtime) <![CDATA[ <= ]]> #{endmonth} 
+		<if test="years!='' and years!=null">
+			and (${years})
+		</if>
+		AND organization = #{organization}
+		GROUP BY
+		YEAR (createtime),
+		MONTH (createtime)
+		ORDER BY
+		MONTH (createtime) ASC
+	</select>
+	
+	<select id="findTotalDiscountByMonth" parameterType="map" resultType="json">
+		SELECT 
+		YEAR (createtime) 年,
+		MONTH (createtime) 月,
+		SUM(voidmoney + discountmoney) as totalMoney 
+		FROM KQDS_PAYCOST where 1=1
+		and MONTH (createtime) <![CDATA[ >= ]]> #{startmonth}
+		and MONTH (createtime) <![CDATA[ <= ]]> #{endmonth} 
+		<if test="years!='' and years!=null">
+			and (${years})
+		</if>
+		<if test="askperson !=null and askperson !=''">
+			AND askperson in (${askperson})
+		</if>
+		AND organization = #{organization}
+		GROUP BY
+		YEAR (createtime),
+		MONTH (createtime)
+		ORDER BY
+		MONTH (createtime) ASC
+	</select>
+</mapper>

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_LCLJ_CHECKRECORD">
+	
+	<resultMap id="LcljcheckrecordMap" type="com.hudh.lclj.entity.LcljApprovedMemo">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="LcljId" jdbcType="VARCHAR" property="LcljId" />
+		<result column="nodeId" jdbcType="VARCHAR" property="nodeId" />
+		<result column="nodeName" jdbcType="VARCHAR" property="nodeName" />
+		<result column="nodetime" jdbcType="VARCHAR" property="nodetime" />
+		<result column="nexttime" jdbcType="VARCHAR" property="nexttime" />
+		<result column="regtime" jdbcType="VARCHAR" property="regtime" />
+		<result column="recesort" jdbcType="VARCHAR" property="recesort" />
+		<result column="regsort" jdbcType="VARCHAR" property="regsort" />
+		<result column="regdoctor" jdbcType="VARCHAR" property="regdoctor" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="updateuser" jdbcType="VARCHAR" property="updateuser" />
+		<result column="updatetime" jdbcType="VARCHAR" property="updatetime" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="nodeLimit" jdbcType="VARCHAR" property="nodeLimit" />
+		<result column="isRejectStatus" jdbcType="VARCHAR" property="isRejectStatus" />
+		<result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		SEQ_ID, lcljId, nodeId, nodeName, nodetime, nexttime, regtime, recesort, regsort,
+		regdoctor, remark, updateuser, updatetime, status, createuser, createtime, nodeLimit, isRejectStatus, order_number
+	</sql>
+	
+	<insert id="insert" parameterType="com.hudh.lclj.entity.LcljApprovedMemo">
+		insert into HUDH_LCLJ_CHECKRECORD (SEQ_ID, lcljId, nodeId, nodeName, nodetime, nexttime,regtime,
+		 recesort, regsort, regdoctor, remark, updateuser, updatetime, status, createuser, createtime, nodeLimit, isRejectStatus, order_number)
+		values (#{seqId,jdbcType=VARCHAR}, #{lcljId,jdbcType=VARCHAR}, #{nodeId,jdbcType=VARCHAR}, #{nodeName,jdbcType=VARCHAR},
+		#{nodetime,jdbcType=VARCHAR}, #{nexttime,jdbcType=VARCHAR}, #{regtime,jdbcType=VARCHAR}, #{recesort,jdbcType=VARCHAR},
+	    #{regsort,jdbcType=VARCHAR}, #{regdoctor,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR},#{updateuser,jdbcType=VARCHAR},
+	    #{updatetime,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+	    #{nodeLimit,jdbcType=VARCHAR}, #{isRejectStatus,jdbcType=VARCHAR}, #{orderNumber,jdbcType=VARCHAR})
+	</insert>
+
+	<select id="findLcljCheckrecordById" parameterType="map" resultType="json">
+		SELECT
+			cr.SEQ_ID,
+			cr.lcljId,
+			cg.flowname AS flowname,
+			cr.nodeId,
+			cr.nodeName,
+			cr.nodetime,
+			cr.nexttime,
+			cr.regtime,
+			cr.recesort,
+			cr.regsort,
+			sd.dict_name AS recesortname,
+			d.dict_name AS regsortname,
+			cr.regdoctor,
+			p.USER_NAME AS regdoctorname,
+			cr.remark,
+			yp.USER_NAME AS updateuser,
+			cr.updatetime,
+			sp.USER_NAME AS createuser,
+			cr.createtime,
+			cr.status,
+			ok.blcode,
+			u.username,
+			cr.nodeLimit
+		FROM
+			HUDH_LCLJ_CHECKRECORD cr
+		LEFT JOIN sys_dict d ON d.SEQ_ID = cr.regsort
+		LEFT JOIN sys_dict sd ON sd.SEQ_ID = cr.recesort
+		LEFT JOIN sys_person p ON p.SEQ_ID = cr.regdoctor
+		LEFT JOIN sys_person sp ON sp.SEQ_ID = cr.createuser
+		LEFT JOIN sys_person yp ON yp.SEQ_ID = cr.updateuser
+		LEFT JOIN HUDH_LCLJ_ORDERTRACK ok ON ok.id = cr.lcljId
+		LEFT JOIN HUDH_LCLJ_FLOW_CONFIG cg ON cg.flowcode = ok.flowcode
+		left join kqds_userdocument u on u.seq_id = ok.userdocument_id
+		WHERE 1=1
+		<if test="LcljId != null and LcljId != ''">
+			AND	cr.lcljId = #{LcljId}
+		</if>
+		<!-- <if test="createuser != null and createuser != ''">
+			AND	cr.createuser = #{createuser}
+		</if> -->
+		<if test="status != null and status != ''">
+			AND	cr.status = #{status}
+		</if>
+		order by cr.nodetime DESC
+	</select>
+	
+	<select id="findLcljCheckrecord" parameterType="map" resultType="json">
+		SELECT
+			cr.SEQ_ID,
+			cr.lcljId,
+			cg.flowname AS flowname,
+			cr.nodeId,
+			cr.nodeName,
+			cr.nodetime,
+			cr.nexttime,
+			cr.regtime,
+			cr.recesort,
+			cr.regsort,
+			sd.dict_name AS recesortname,
+			d.dict_name AS regsortname,
+			cr.regdoctor,
+			p.USER_NAME AS regdoctorname,
+			cr.remark,
+			yp.USER_NAME AS updateuser,
+			cr.updatetime,
+			sp.USER_NAME AS createuser,
+			cr.createtime,
+			cr.status,
+			ok.blcode,
+			u.username,
+			cr.nodeLimit
+		FROM
+			HUDH_LCLJ_CHECKRECORD cr
+		LEFT JOIN sys_dict d ON d.SEQ_ID = cr.regsort
+		LEFT JOIN sys_dict sd ON sd.SEQ_ID = cr.recesort
+		LEFT JOIN sys_person p ON p.SEQ_ID = cr.regdoctor
+		LEFT JOIN sys_person sp ON sp.SEQ_ID = cr.createuser
+		LEFT JOIN sys_person yp ON yp.SEQ_ID = cr.updateuser
+		LEFT JOIN HUDH_LCLJ_ORDERTRACK ok ON ok.id = cr.lcljId
+		LEFT JOIN HUDH_LCLJ_FLOW_CONFIG cg ON cg.flowcode = ok.flowcode
+		left join kqds_userdocument u on u.seq_id = ok.userdocument_id
+		WHERE 1=1
+		<if test="LcljId != null and LcljId != ''">
+			AND	cr.lcljId = #{LcljId}
+		</if>
+		<!-- <if test="createuser != null and createuser != ''">
+			AND	cr.createuser = #{createuser}
+		</if> -->
+		<if test="status != null and status != ''">
+			AND	cr.status = #{status}
+		</if>
+		<if test="querytype != null and querytype !='' ">
+			AND cr.createuser in (${querytype}) 
+		</if>
+		order by cr.nodetime DESC
+	</select>
+	
+	<select id="getAwaitCheckRecord" parameterType="map" resultType="json">
+		SELECT
+			cr.SEQ_ID,
+			cr.lcljId,
+			cg.flowname AS flowname,
+			cr.nodeId,
+			cr.nodeName,
+			cr.nodetime,
+			cr.nexttime,
+			cr.regtime,
+			cr.recesort,
+			cr.regsort,
+			sd.dict_name AS recesortname,
+			d.dict_name AS regsortname,
+			cr.regdoctor,
+			p.USER_NAME AS regdoctorname,
+			cr.remark,
+			yp.USER_NAME AS updateuser,
+			cr.updatetime,
+			sp.USER_NAME AS createuser,
+			cr.createtime,
+			cr.status,
+			ok.blcode,
+			u.username,
+			cr.nodeLimit
+		FROM
+			HUDH_LCLJ_CHECKRECORD cr
+		LEFT JOIN sys_dict d ON d.SEQ_ID = cr.regsort
+		LEFT JOIN sys_dict sd ON sd.SEQ_ID = cr.recesort
+		LEFT JOIN sys_person p ON p.SEQ_ID = cr.regdoctor
+		LEFT JOIN sys_person sp ON sp.SEQ_ID = cr.createuser
+		LEFT JOIN sys_person yp ON yp.SEQ_ID = cr.updateuser
+		LEFT JOIN HUDH_LCLJ_ORDERTRACK ok ON ok.id = cr.lcljId
+		LEFT JOIN HUDH_LCLJ_FLOW_CONFIG cg ON cg.flowcode = ok.flowcode
+		left join kqds_userdocument u on u.seq_id = ok.userdocument_id
+		WHERE 1=1
+		<if test="LcljId != null and LcljId != ''">
+			AND	cr.lcljId = #{LcljId}
+		</if>
+		<!-- <if test="createuser != null and createuser != ''">
+			AND	cr.createuser = #{createuser}
+		</if> -->
+		<if test="status != null and status != ''">
+			AND	cr.status = #{status}
+		</if>
+		<!-- <if test="querytype != null and querytype !='' ">
+			AND cr.createuser in (${querytype}) 
+		</if> -->
+		order by cr.nodetime DESC
+	</select>
+	
+	<select id="findLcljCheckrecordCount" parameterType="map" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			HUDH_LCLJ_CHECKRECORD cr
+		WHERE 1=1
+		<if test="createuser != null and createuser != ''">
+		AND	cr.createuser = #{createuser}
+		</if>
+		<if test="status != null and status != ''">
+		AND	cr.status = #{status}
+		</if>
+	</select>
+	
+	<select id="getAwaitVerifieNum" parameterType="map" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			HUDH_LCLJ_CHECKRECORD cr
+		WHERE 1=1
+		<if test="createuser != null and createuser != ''">
+			AND	cr.createuser = #{createuser}
+		</if>
+		<if test="status != null and status != ''">
+			AND	cr.status = #{status}
+		</if>
+	</select>
+	
+	<update id="Update" parameterType="com.hudh.lclj.entity.LcljApprovedMemo">
+	 update HUDH_LCLJ_CHECKRECORD
+	 <set>
+	 	<if test="lcljId != null and lcljId != ''">
+	 		lcljId = #{lcljId},
+	 	</if>
+	 	<if test="nodeId != null and nodeId != ''">
+	 		nodeId = #{nodeId},
+	 	</if>
+	 	<if test="nodeName != null and nodeName != ''">
+	 		nodeName = #{nodeName},
+	 	</if>
+	 	<if test="nodetime != null and nodetime != ''">
+	 		nodetime = #{nodetime},
+	 	</if>
+	 	<if test="nexttime != null and nexttime != ''">
+	 		nexttime = #{nexttime},
+	 	</if>
+	 	<if test="regtime != null and regtime != ''">
+	 		regtime = #{regtime},
+	 	</if>
+	 	<if test="recesort != null and recesort != ''">
+	 		recesort = #{recesort},
+	 	</if>
+	 	<if test="regsort != null and regsort != ''">
+	 		regsort = #{regsort},
+	 	</if>
+	 	<if test="regdoctor != null and regdoctor != ''">
+	 		regdoctor = #{regdoctor},
+	 	</if>
+	 	<if test="remark != null and remark != ''">
+	 		remark = #{remark},
+	 	</if>
+	 	<if test="updateuser != null and updateuser != ''">
+	 		updateuser = #{updateuser},
+	 	</if>
+	 	<if test="updatetime != null and updatetime != ''">
+	 		updatetime = #{updatetime},
+	 	</if>
+	 	<if test="status != null and status != ''">
+	 		status = #{status},
+	 	</if>
+	 	<if test="createuser != null and createuser != ''">
+	 		createuser = #{createuser},
+	 	</if>
+	 	<if test="createtime != null and createtime != ''">
+	 		createtime = #{createtime},
+	 	</if>
+	 </set>
+	 where SEQ_ID = #{seqId}
+	</update>
+	
+	<delete id="delCheckRecord" parameterType="map">
+	 delete 
+	 from HUDH_LCLJ_CHECKRECORD
+	 where 1=1
+	 <if test="seqId != null and seqId != null">
+	  	SEQ_ID = #{seqId}
+	 </if>
+	</delete>
+	
+	<select id="findCheckRecordByOrderAndStatus" parameterType="map" resultType="com.hudh.lclj.entity.LcljApprovedMemo">
+		select * from HUDH_LCLJ_CHECKRECORD 
+		where LcljId = #{LcljId} and status = 2 AND updatetime IS NOT null;
+	</select>
+	
+	<update id="updateCheckRecordBySeqId" parameterType="map">
+		update HUDH_LCLJ_CHECKRECORD set status = '3' where SEQ_ID = #{seqId}
+	</update>
+</mapper>

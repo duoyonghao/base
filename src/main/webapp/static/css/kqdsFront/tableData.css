@@ -1,0 +1,155 @@
+@CHARSET "UTF-8";
+#table td>span.label,
+#table1 td>span.label,
+#table2 td>span.label,
+#listTable td>span.label,
+#dykdxm td>span.label,
+#chufang td>span.label
+{padding:0 4px;box-sizing:border-box;font-size:13px;}
+.label-danger{
+	background:transparent;
+	/* border:1px solid #65DEAA;
+	color:#313840; */
+	color:tomato;
+	font-weight:normal;
+	border-radius:16px
+}
+.label-info,.label-success{
+	/* background:#FC4F41;
+	color:#fff; */
+	background:transparent;
+	color:#333;
+	font-weight:normal;
+	border-radius:16px;
+}
+
+#table td,
+#table1 td,
+#table2 td,
+#listTable td,
+#dykdxm td,
+#chufang td
+{padding:0 5px;vertical-align:middle;height:24px;}
+
+#table td>span,
+#table1 td>span,
+#table2 td>span,
+#listTable td>span,
+#dykdxm td>span,
+#chufang td>span
+{display:inline-block;white-space: nowrap;overflow: hidden;text-overflow:ellipsis;position:relative;top:2px;height:18px;line-height:18px; }
+
+#table td>span.time,
+#table1 td>span.time,
+#table2 td>span.time,
+#listTable td>span.time,
+#dykdxm td>span.time,
+#chufang td>span.time
+{display:inline-block;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+
+#table td>span.name,
+#table1 td>span.name,
+#table2 td>span.name,
+#listTable td>span.name,
+#dykdxm td>span.name,
+#chufang td>span.name
+{width:72px;display:inline-block;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+
+#table td>span.remark,
+#table1 td>span.remark,
+#table2 td>span.remark,
+#listTable td>span.remark,
+#dykdxm td>span.remark,
+#chufang td>span.remark
+{width:120px;text-align:left;position:relative;top:-1px;float:left;}/* 备注的长度 */
+
+#table td>span.source,
+#table1 td>span.source,
+#table2 td>span.source,
+#listTable td>span.source,
+#dykdxm td>span.source,
+#chufang td>span.source
+{width:96px;}/* 来源子分类 */
+
+#table td>span.money,
+#table1 td>span.money,
+#table2 td>span.money,
+#listTable td>span.money,
+#dykdxm td>span.money,
+#chufang td>span.money
+{text-align:center;}
+
+#table td>input[type="text"]
+{height:21px;} /* 仓库中的input框高度设置 */
+
+#table td>input[type="number"]
+{height:21px;} /* 仓库中的input框高度设置 */
+
+
+table tr th div.th-inner{
+	color:#fff !important;	
+	/* font-size:13px !important; */
+	/* background:#00a6c0 !important;  影响其他样式 如需要请加在自己本文件*/ 
+	font-family: "SimSun";
+}
+.fixed-table-container thead th .both{
+	background-image:none;
+}
+/* 全部得bootStarptable 的边框为透明色  边框不能去掉否则 对不齐 */
+.bootstrap-table table,.bootstrap-table table td,.bootstrap-table table th{
+	border-color:transparent !important;
+}
+/* bootStraptable中表格内容中的表头颜色设置  */
+.bootstrap-table .fixed-table-body thead{
+	background:#00A6C0 !important;
+}
+/* bottstrapTable 含有checkbox 的单元格样式 */
+.bootstrap-table td.bs-checkbox , .bootstrap-table th.bs-checkbox>div.th-inner{
+	position:relative;
+	width:36px;
+	height:28px;
+	overflow:hidden;
+	box-sizing: border-box;
+}
+.bootstrap-table td.bs-checkbox input[type=checkbox] , .bootstrap-table th.bs-checkbox input[type=checkbox]{
+	position:absolute;
+	width:12px;
+	height:12px;
+	top:7px;
+	left:10px;
+}
+.bootstrap-table td.bs-checkbox input[type=checkbox] {
+	top:5px;
+	left:10px;
+	
+}
+/*bottstrapTable 名字  有微信标识的  */
+.bootstrap-table td div.weixin{ /*微信图标     未激活的样子  */
+    position: relative;
+    top: -1px;
+    display: block;
+    float: right;
+    background: url(../../image/kqdsFront/img/kqdsUpIcons.png) no-repeat -338px -131px;
+    width: 21px;
+    height: 21px;
+}
+.bootstrap-table td div.activeWeixin{/*微信图标    激活的样子  */
+    background-position: -338px -2px;
+}
+/*table内容隔行色*/
+.table-striped > tbody > tr:nth-child(odd) {
+    background: #ECF7FD; 
+}
+.table-striped > tbody > tr:nth-child(even) {
+    background: #fff; 
+}
+.fixed-table-body thead th .th-inner{
+	padding-right:8px;
+    
+}
+.fixed-table-container{
+	border:none;
+}
+a:hover{
+	text-decoration:none;
+}

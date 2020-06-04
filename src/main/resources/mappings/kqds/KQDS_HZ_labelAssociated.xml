@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_HZ_labelAssociated">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsHzLabelAssociated">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="labeId" jdbcType="VARCHAR" property="labeId" />
+		<result column="patientId" jdbcType="VARCHAR" property="patientId" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode"/>
+		<result column="userName" jdbcType="VARCHAR" property="userName" />
+		<result column="createUser" jdbcType="VARCHAR" property="createUser" />
+		<result column="createTime" jdbcType="VARCHAR" property="createTime" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="isdelete" jdbcType="INTEGER" property="isdelete"/>
+		<result column="updateTime" jdbcType="VARCHAR" property="updateTime"/>
+		<result column="modifier" jdbcType="VARCHAR" property="modifier"/>
+		<result column="reservedo" jdbcType="VARCHAR" property="reservedo" />
+		<result column="reserveds" jdbcType="VARCHAR" property="reserveds" />
+		<result column="reservedt" jdbcType="VARCHAR" property="reservedt" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID,labeId,patientId,usercode,userName,createUser,createTime,remark,reservedo,reserveds,reservedt,status,isdelete,updateTime,modifier
+	</sql>
+	<insert id="insertKqdsHzLabelAssociated" parameterType="com.kqds.entity.base.KqdsHzLabelAssociated">
+	insert into KQDS_HZ_labelAssociated (SEQ_ID,labeId,patientId,usercode,userName,createUser,createTime,remark,reservedo,reserveds,reservedt,status,isdelete) 
+	values (#{seqId},#{labeId},#{patientId},#{usercode},#{userName},#{createUser},#{createTime},#{remark},#{reservedo},#{reserveds},#{reservedt},#{status},#{isdelete})
+	</insert>
+	<select id="selectPriceListByLabeId" parameterType="java.util.Map" resultType="json">
+		select 
+		cpl.SEQ_ID, 
+		cpl.exploit, 
+		cpl.istsxm,
+		cpl.treatitemname, 
+		cpl.unit,
+		cpl.unitprice, 
+		cpl.num,
+		cpl.subtotal, 
+		cpl.discount, 
+		cpl.arrearmoney,
+		cpl.paymoney, 
+		cpl.voidmoney, 
+		cpl.parent_id as parentId, 
+		cpl.createuser, 
+		cpl.createtime,
+		cpl.usercode,
+		cpl.itemname,
+		cpl.nodename,
+		cpl.itemid,
+		cpl.tcnameid
+		from KQDS_HZ_labelAssociated hza 
+		left join KQDS_COSTORDER_PRICE_LIST cpl on hza.SEQ_ID =cpl.parent_id
+		where 1=1 
+		and hza.isdelete !=1
+		and cpl.isdelete !=1
+		and hza.status=#{status}
+		<if test="usercode !=null and usercode!=''">
+		and hza.usercode=#{usercode} 
+		</if>
+		<if test="labeId !=null and labeId!=''">
+		and hza.labeId=#{labeId}
+		</if>
+		order by cpl.createtime asc
+	</select>
+	<select id="selectKqdsHzLabelAssociatedByUserId" parameterType="java.util.Map" resultType="java.lang.String">
+		select top 1 seq_id from KQDS_HZ_labelAssociated where usercode=#{usercode} and isdelete!=1 and status=#{status} order by createTime desc
+	</select>
+	<update id="updateKqdsHzLabelAssociated" parameterType="com.kqds.entity.base.KqdsHzLabelAssociated">
+		update KQDS_HZ_labelAssociated set isdelete=1 ,updateTime =#{updateTime},modifier=#{modifier} where SEQ_ID=#{seqId}
+	</update>
+	<update id="updateKqdsHzLabelAssociatedByStatus" parameterType="com.kqds.entity.base.KqdsHzLabelAssociated">
+		update KQDS_HZ_labelAssociated set isdelete=1 ,updateTime =#{updateTime},modifier=#{modifier} where usercode=#{usercode} and status=#{status}
+	</update>
+	<select id="selectKqdsHzLabelBySeqId" parameterType="java.lang.String" resultType="java.lang.String">
+		select l.leveLabel 
+		from KQDS_HZ_labelAssociated a 
+		LEFT JOIN KQDS_HZ_label l on a.labeId=l.SEQ_ID 
+		where a.SEQ_ID=#{hzLabelAssciatedSeqId}
+	</select>
+</mapper>

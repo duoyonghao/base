@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_Notification">
+	<resultMap id="Notification" type="com.hudh.zzbl.entity.Notification">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="SEQ_ID" />
+		<result column="LcljNum" jdbcType="VARCHAR" property="LcljNum" />
+		<result column="LcljId" jdbcType="VARCHAR" property="LcljId" />
+		<result column="patienttime" jdbcType="VARCHAR" property="patienttime" />
+		<result column="doctortime" jdbcType="VARCHAR" property="doctortime" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />		
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="content" jdbcType="VARCHAR" property="content" />
+		<result column="whether" jdbcType="VARCHAR" property="whether" />	
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />	
+		<result column="organization" jdbcType="VARCHAR" property="organization" />	
+		<result column="patientsignature" jdbcType="VARCHAR" property="patientsignature" />
+		<result column="doctorsignature" jdbcType="VARCHAR" property="doctorsignature" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID,LcljId,LcljNum,usercode,username,content,createtime,doctortime,whether,patienttime,createuser,organization,patientsignature,doctorsignature
+	</sql>
+	<insert id="saveNotification" parameterType="com.hudh.zzbl.entity.Notification">
+		insert into HUDH_Notification(SEQ_ID,LcljId,LcljNum,usercode,username,content,createtime,doctortime,whether,patienttime,createuser,organization,patientsignature,doctorsignature)
+		values
+		(#{SEQ_ID,jdbcType=VARCHAR},#{LcljId,jdbcType=VARCHAR},#{LcljNum,jdbcType=VARCHAR},#{usercode,jdbcType=VARCHAR},#{username,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR},#{doctortime,jdbcType=VARCHAR},#{whether,jdbcType=VARCHAR},#{patienttime,jdbcType=VARCHAR},
+		#{createuser,jdbcType=VARCHAR},#{organization,jdbcType=VARCHAR},#{patientsignature,jdbcType=VARCHAR},#{doctorsignature,jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="findNotificationByLcljId" parameterType="java.util.Map" resultType="com.hudh.zzbl.entity.Notification">
+		select * from HUDH_Notification where LcljId=#{lcljId,jdbcType=VARCHAR} and LcljNum=#{lcljNum}
+	</select>
+	
+	<update id="updateNotification" parameterType="com.hudh.zzbl.entity.Notification">
+		update HUDH_Notification 
+		<set>
+			<if test="doctortime != null">
+				doctortime=#{doctortime},
+			</if>
+			<if test="patienttime != null">
+				patienttime=#{patienttime},
+			</if>
+			<if test="patientsignature != null">
+				patientsignature=#{patientsignature},
+			</if>
+			<if test="doctorsignature != null">
+				doctorsignature=#{doctorsignature},
+			</if>
+			<if test="whether != null">
+				whether=#{whether},
+			</if>
+			<if test="content != null">
+				content=#{content},
+			</if>
+		</set>
+		where LcljId=#{lcljId,jdbcType=VARCHAR} and LcljNum=#{lcljNum}
+	</update>
+</mapper>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_DZBL_DETAIL">
+	<resultMap id="DzblDetailMap" type="com.hudh.dzbl.entity.DzblDetail">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="blfl" jdbcType="VARCHAR" property="blfl" />
+		<result column="bc" jdbcType="VARCHAR" property="bc" />
+		<result column="detail" jdbcType="CLOB" property="detail" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="blcode" jdbcType="VARCHAR" property="blcode" />
+		<result column="creator" jdbcType="VARCHAR" property="creator" />
+		<result column="sstype" jdbcType="VARCHAR" property="sstype" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, title, blfl, bc, detail ,createtime ,status,blcode,creator,sstype,organization
+	</sql>
+	
+	<insert id="insertDzblDetail" parameterType="com.hudh.dzbl.entity.DzblDetail">
+		insert into HUDH_DZBL_DETAIL (id, title, blfl,bc, detail,createtime,status,blcode,creator,sstype,organization)
+		values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{blfl,jdbcType=VARCHAR},
+		#{bc,jdbcType=VARCHAR}, #{detail,jdbcType=CLOB}, #{createtime,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},
+		#{blcode,jdbcType=VARCHAR},#{creator,jdbcType=VARCHAR},#{sstype,jdbcType=VARCHAR},#{organization,jdbcType=VARCHAR})
+	</insert>
+
+	<select id="findDzblByBlcode" resultType="json">
+		select
+		a.id, a.title, a.blfl, a.bc, a.detail ,a.createtime ,a.status,a.blcode,a.creator,b.user_name as username,a.sstype
+		from HUDH_DZBL_DETAIL a 
+		left join sys_person b on a.creator = b.seq_id 
+		where a.blcode=#{blcode,jdbcType=VARCHAR} 
+		order by a.createtime desc
+	</select>
+	
+	<select id="findDzblById" resultType="json">
+		select
+		<include refid="Base_Column_List" /> 
+		from HUDH_DZBL_DETAIL where id=#{id,jdbcType=VARCHAR}
+	</select>
+	
+	<update id="updateDzblById" parameterType="com.hudh.dzbl.entity.DzblDetail">
+		update HUDH_DZBL_DETAIL set blfl=#{blfl,jdbcType=VARCHAR}, bc=#{bc,jdbcType=VARCHAR}, sstype=#{sstype,jdbcType=VARCHAR},detail=#{detail,jdbcType=VARCHAR},createtime=#{createtime,jdbcType=VARCHAR},
+		status=#{status,jdbcType=VARCHAR},creator=#{creator,jdbcType=VARCHAR} 
+		where id=#{id,jdbcType=VARCHAR}
+	</update>
+	
+	<select id="findDzblDetailByUsercodes" parameterType="String" resultType="json">
+	select 
+	id,title,blfl,bc,detail,createtime,status,blcode,creator,sstype
+	from HUDH_DZBL_DETAIL where blcode in (${_parameter})
+	</select>
+	
+	<select id="findDzbl" parameterType="map" resultType="json">
+	SELECT
+			a.id, a.title, a.blfl, a.bc, a.createtime , a.blcode, u.username AS username, a.creator, p.user_name as createname, a.sstype
+		FROM HUDH_DZBL_DETAIL a
+		LEFT JOIN KQDS_USERDOCUMENT u ON u.usercode = a.blcode
+		LEFT JOIN sys_person p ON p.SEQ_ID = a.creator
+		WHERE 1=1
+		<if test="starttime != null and starttime != ''">
+			AND a.createtime <![CDATA[ >= ]]>  #{starttime} 
+		</if>
+		<if test="endtime != null and endtime != ''">
+			AND a.createtime <![CDATA[ <= ]]> #{endtime}
+		</if>
+		<if test="searchValue != null and searchValue != ''">
+			AND (a.blcode LIKE '%${searchValue}%'
+			OR a.sstype LIKE '%${searchValue}%'
+			OR u.username LIKE '%${searchValue}%')
+		</if>
+		AND a.creator IN(${querytype})
+		ORDER BY a.createtime desc
+	</select>
+	
+</mapper>

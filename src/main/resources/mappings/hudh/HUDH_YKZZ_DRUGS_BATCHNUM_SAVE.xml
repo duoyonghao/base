@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_YKZZ_DRUGS_BATCHNUM_SAVE">
+	<resultMap id="DrugsBatchnumSaveMap" type="com.hudh.ykzz.entity.YkzzDrugsBatchnumSave">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="drugsno" jdbcType="VARCHAR" property="drugsno" />
+		<result column="drugsname" jdbcType="VARCHAR" property="drugsname" />
+		<result column="batchnum" jdbcType="VARCHAR" property="batchnum" />
+		<result column="number" jdbcType="VARCHAR" property="number" />
+		<result column="batchno" jdbcType="VARCHAR" property="batchno" />
+		<result column="costOrderDetailId" jdbcType="VARCHAR" property="costOrderDetailId" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, drugsno, drugsname, batchnum ,number, batchno, costOrderDetailId, organization
+	</sql>
+	
+	<insert id="insertDrugsBatchnumSave" parameterType="java.util.List">
+		insert into HUDH_YKZZ_DRUGS_BATCHNUM_SAVE 
+		(id, drugsno, drugsname, batchnum ,number,batchno, costOrderDetailId, organization,createtime,createname)
+		values 
+		(#{id,jdbcType=VARCHAR}, #{drugsno,jdbcType=VARCHAR}, #{drugsname,jdbcType=VARCHAR},
+		#{batchnum,jdbcType=VARCHAR},#{number,jdbcType=VARCHAR},#{batchno,jdbcType=VARCHAR},#{costOrderDetailId,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR},#{createname,jdbcType=VARCHAR}
+		)
+	</insert>
+	<!--2019-08-23 lwg 根据药品批号和编号查询当天的出库数量-->
+	<select id="findBatchnumSaveOutNumsByOrdernoAndBatchnum" parameterType="java.util.Map" resultType="String">
+		select isnull(sum(convert(int,number)),0)
+		from HUDH_YKZZ_DRUGS_BATCHNUM_SAVE 
+		WHERE 1=1
+		and drugsno = #{orderno} 
+		and batchno=#{batchnum} 
+		and createtime <![CDATA[ >= ]]> #{starttime}
+		and createtime <![CDATA[ <= ]]> #{endtime}
+	</select>
+	<select id="findOutNumsByBatchnumSave" parameterType="java.util.Map" resultType="String">
+	select isnull(sum(convert(int,number)),0)
+		from HUDH_YKZZ_DRUGS_BATCHNUM_SAVE 
+		WHERE 1=1
+		and createtime <![CDATA[ >= ]]> #{starttime}
+		and createtime <![CDATA[ <= ]]> #{endtime}
+	</select>
+	
+</mapper>

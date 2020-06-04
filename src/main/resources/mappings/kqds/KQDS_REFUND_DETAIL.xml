@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_REFUND_DETAIL">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsRefundDetail">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="orderdetailno" jdbcType="VARCHAR" property="orderdetailno" />
+		<result column="itemno" jdbcType="VARCHAR" property="itemno" />
+		<result column="itemname" jdbcType="VARCHAR" property="itemname" />
+		<result column="unit" jdbcType="VARCHAR" property="unit" />
+		<result column="unitprice" jdbcType="DECIMAL" property="unitprice" />
+		<result column="num" jdbcType="INTEGER" property="num" />
+		<result column="discount" jdbcType="VARCHAR" property="discount" />
+		<result column="subtotal" jdbcType="DECIMAL" property="subtotal" />
+		<result column="arrearmoney" jdbcType="DECIMAL" property="arrearmoney" />
+		<result column="paymoney" jdbcType="DECIMAL" property="paymoney" />
+		<result column="voidmoney" jdbcType="DECIMAL" property="voidmoney" />
+		<result column="askperson" jdbcType="VARCHAR" property="askperson" />
+		<result column="doctor" jdbcType="VARCHAR" property="doctor" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="payxj" jdbcType="DECIMAL" property="payxj" />
+		<result column="payyjj" jdbcType="DECIMAL" property="payyjj" />
+		<result column="paybank" jdbcType="DECIMAL" property="paybank" />
+		<result column="payyb" jdbcType="DECIMAL" property="payyb" />
+		<result column="payother1" jdbcType="DECIMAL" property="payother1" />
+		<result column="payother2" jdbcType="DECIMAL" property="payother2" />
+		<result column="payother3" jdbcType="DECIMAL" property="payother3" />
+		<result column="tknum" jdbcType="INTEGER" property="tknum" />
+		<result column="tkmoney" jdbcType="DECIMAL" property="tkmoney" />
+		<result column="refundid" jdbcType="VARCHAR" property="refundid" />
+		<result column="costno" jdbcType="VARCHAR" property="costno" />
+		<result column="payzfb" jdbcType="DECIMAL" property="payzfb" />
+		<result column="paywx" jdbcType="DECIMAL" property="paywx" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="paymmd" jdbcType="DECIMAL" property="paymmd" />
+		<result column="paybdfq" jdbcType="DECIMAL" property="paybdfq" />
+		<result column="qfbh" jdbcType="VARCHAR" property="qfbh" />
+		<result column="paydjq" jdbcType="DECIMAL" property="paydjq" />
+		<result column="isyjjitem" jdbcType="INTEGER" property="isyjjitem" />
+		<result column="payintegral" jdbcType="DECIMAL" property="payintegral" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, createuser, createtime, usercode, orderdetailno, itemno, itemname, unit,
+		unitprice, num, discount, subtotal, arrearmoney, paymoney, voidmoney, askperson,
+		doctor, remark, payxj, payyjj, paybank, payyb, payother1, payother2, payother3, tknum,
+		tkmoney, refundid, costno, payzfb, paywx, organization, paymmd, paybdfq, qfbh, paydjq,
+		isyjjitem, payintegral
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_REFUND_DETAIL
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_REFUND_DETAIL
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsRefundDetail">
+		insert into KQDS_REFUND_DETAIL (SEQ_ID, createuser, createtime,
+		usercode, orderdetailno, itemno,
+		itemname, unit, unitprice,
+		num, discount,
+		subtotal,
+		arrearmoney, paymoney, voidmoney,
+		askperson, doctor, remark,
+		payxj, payyjj, paybank,
+		payyb, payother1, payother2,
+		payother3, tknum, tkmoney,
+		refundid, costno, payzfb,
+		paywx,
+		organization, paymmd,
+		paybdfq, qfbh, paydjq,
+		isyjjitem, payintegral)
+		values (#{seqId,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{usercode,jdbcType=VARCHAR}, #{orderdetailno,jdbcType=VARCHAR}, #{itemno,jdbcType=VARCHAR},
+		#{itemname,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, #{unitprice,jdbcType=DECIMAL},
+		#{num,jdbcType=INTEGER}, #{discount,jdbcType=VARCHAR}, #{subtotal,jdbcType=DECIMAL},
+		#{arrearmoney,jdbcType=DECIMAL}, #{paymoney,jdbcType=DECIMAL}, #{voidmoney,jdbcType=DECIMAL},
+		#{askperson,jdbcType=VARCHAR}, #{doctor,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+		#{payxj,jdbcType=DECIMAL}, #{payyjj,jdbcType=DECIMAL}, #{paybank,jdbcType=DECIMAL},
+		#{payyb,jdbcType=DECIMAL}, #{payother1,jdbcType=DECIMAL}, #{payother2,jdbcType=DECIMAL},
+		#{payother3,jdbcType=DECIMAL}, #{tknum,jdbcType=INTEGER}, #{tkmoney,jdbcType=DECIMAL},
+		#{refundid,jdbcType=VARCHAR}, #{costno,jdbcType=VARCHAR}, #{payzfb,jdbcType=DECIMAL},
+		#{paywx,jdbcType=DECIMAL}, #{organization,jdbcType=VARCHAR}, #{paymmd,jdbcType=DECIMAL},
+		#{paybdfq,jdbcType=DECIMAL}, #{qfbh,jdbcType=VARCHAR}, #{paydjq,jdbcType=DECIMAL},
+		#{isyjjitem,jdbcType=INTEGER}, #{payintegral,jdbcType=DECIMAL})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsRefundDetail">
+		insert into KQDS_REFUND_DETAIL
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="usercode != null">
+				usercode,
+			</if>
+			<if test="orderdetailno != null">
+				orderdetailno,
+			</if>
+			<if test="itemno != null">
+				itemno,
+			</if>
+			<if test="itemname != null">
+				itemname,
+			</if>
+			<if test="unit != null">
+				unit,
+			</if>
+			<if test="unitprice != null">
+				unitprice,
+			</if>
+			<if test="num != null">
+				num,
+			</if>
+			<if test="discount != null">
+				discount,
+			</if>
+			<if test="subtotal != null">
+				subtotal,
+			</if>
+			<if test="arrearmoney != null">
+				arrearmoney,
+			</if>
+			<if test="paymoney != null">
+				paymoney,
+			</if>
+			<if test="voidmoney != null">
+				voidmoney,
+			</if>
+			<if test="askperson != null">
+				askperson,
+			</if>
+			<if test="doctor != null">
+				doctor,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="payxj != null">
+				payxj,
+			</if>
+			<if test="payyjj != null">
+				payyjj,
+			</if>
+			<if test="paybank != null">
+				paybank,
+			</if>
+			<if test="payyb != null">
+				payyb,
+			</if>
+			<if test="payother1 != null">
+				payother1,
+			</if>
+			<if test="payother2 != null">
+				payother2,
+			</if>
+			<if test="payother3 != null">
+				payother3,
+			</if>
+			<if test="tknum != null">
+				tknum,
+			</if>
+			<if test="tkmoney != null">
+				tkmoney,
+			</if>
+			<if test="refundid != null">
+				refundid,
+			</if>
+			<if test="costno != null">
+				costno,
+			</if>
+			<if test="payzfb != null">
+				payzfb,
+			</if>
+			<if test="paywx != null">
+				paywx,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="paymmd != null">
+				paymmd,
+			</if>
+			<if test="paybdfq != null">
+				paybdfq,
+			</if>
+			<if test="qfbh != null">
+				qfbh,
+			</if>
+			<if test="paydjq != null">
+				paydjq,
+			</if>
+			<if test="isyjjitem != null">
+				isyjjitem,
+			</if>
+			<if test="payintegral != null">
+				payintegral,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="orderdetailno != null">
+				#{orderdetailno,jdbcType=VARCHAR},
+			</if>
+			<if test="itemno != null">
+				#{itemno,jdbcType=VARCHAR},
+			</if>
+			<if test="itemname != null">
+				#{itemname,jdbcType=VARCHAR},
+			</if>
+			<if test="unit != null">
+				#{unit,jdbcType=VARCHAR},
+			</if>
+			<if test="unitprice != null">
+				#{unitprice,jdbcType=DECIMAL},
+			</if>
+			<if test="num != null">
+				#{num,jdbcType=INTEGER},
+			</if>
+			<if test="discount != null">
+				#{discount,jdbcType=VARCHAR},
+			</if>
+			<if test="subtotal != null">
+				#{subtotal,jdbcType=DECIMAL},
+			</if>
+			<if test="arrearmoney != null">
+				#{arrearmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="paymoney != null">
+				#{paymoney,jdbcType=DECIMAL},
+			</if>
+			<if test="voidmoney != null">
+				#{voidmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="askperson != null">
+				#{askperson,jdbcType=VARCHAR},
+			</if>
+			<if test="doctor != null">
+				#{doctor,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="payxj != null">
+				#{payxj,jdbcType=DECIMAL},
+			</if>
+			<if test="payyjj != null">
+				#{payyjj,jdbcType=DECIMAL},
+			</if>
+			<if test="paybank != null">
+				#{paybank,jdbcType=DECIMAL},
+			</if>
+			<if test="payyb != null">
+				#{payyb,jdbcType=DECIMAL},
+			</if>
+			<if test="payother1 != null">
+				#{payother1,jdbcType=DECIMAL},
+			</if>
+			<if test="payother2 != null">
+				#{payother2,jdbcType=DECIMAL},
+			</if>
+			<if test="payother3 != null">
+				#{payother3,jdbcType=DECIMAL},
+			</if>
+			<if test="tknum != null">
+				#{tknum,jdbcType=INTEGER},
+			</if>
+			<if test="tkmoney != null">
+				#{tkmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="refundid != null">
+				#{refundid,jdbcType=VARCHAR},
+			</if>
+			<if test="costno != null">
+				#{costno,jdbcType=VARCHAR},
+			</if>
+			<if test="payzfb != null">
+				#{payzfb,jdbcType=DECIMAL},
+			</if>
+			<if test="paywx != null">
+				#{paywx,jdbcType=DECIMAL},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="paymmd != null">
+				#{paymmd,jdbcType=DECIMAL},
+			</if>
+			<if test="paybdfq != null">
+				#{paybdfq,jdbcType=DECIMAL},
+			</if>
+			<if test="qfbh != null">
+				#{qfbh,jdbcType=VARCHAR},
+			</if>
+			<if test="paydjq != null">
+				#{paydjq,jdbcType=DECIMAL},
+			</if>
+			<if test="isyjjitem != null">
+				#{isyjjitem,jdbcType=INTEGER},
+			</if>
+			<if test="payintegral != null">
+				#{payintegral,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsRefundDetail">
+		update KQDS_REFUND_DETAIL
+		<set>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				usercode = #{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="orderdetailno != null">
+				orderdetailno = #{orderdetailno,jdbcType=VARCHAR},
+			</if>
+			<if test="itemno != null">
+				itemno = #{itemno,jdbcType=VARCHAR},
+			</if>
+			<if test="itemname != null">
+				itemname = #{itemname,jdbcType=VARCHAR},
+			</if>
+			<if test="unit != null">
+				unit = #{unit,jdbcType=VARCHAR},
+			</if>
+			<if test="unitprice != null">
+				unitprice = #{unitprice,jdbcType=DECIMAL},
+			</if>
+			<if test="num != null">
+				num = #{num,jdbcType=INTEGER},
+			</if>
+			<if test="discount != null">
+				discount = #{discount,jdbcType=VARCHAR},
+			</if>
+			<if test="subtotal != null">
+				subtotal = #{subtotal,jdbcType=DECIMAL},
+			</if>
+			<if test="arrearmoney != null">
+				arrearmoney = #{arrearmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="paymoney != null">
+				paymoney = #{paymoney,jdbcType=DECIMAL},
+			</if>
+			<if test="voidmoney != null">
+				voidmoney = #{voidmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="askperson != null">
+				askperson = #{askperson,jdbcType=VARCHAR},
+			</if>
+			<if test="doctor != null">
+				doctor = #{doctor,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="payxj != null">
+				payxj = #{payxj,jdbcType=DECIMAL},
+			</if>
+			<if test="payyjj != null">
+				payyjj = #{payyjj,jdbcType=DECIMAL},
+			</if>
+			<if test="paybank != null">
+				paybank = #{paybank,jdbcType=DECIMAL},
+			</if>
+			<if test="payyb != null">
+				payyb = #{payyb,jdbcType=DECIMAL},
+			</if>
+			<if test="payother1 != null">
+				payother1 = #{payother1,jdbcType=DECIMAL},
+			</if>
+			<if test="payother2 != null">
+				payother2 = #{payother2,jdbcType=DECIMAL},
+			</if>
+			<if test="payother3 != null">
+				payother3 = #{payother3,jdbcType=DECIMAL},
+			</if>
+			<if test="tknum != null">
+				tknum = #{tknum,jdbcType=INTEGER},
+			</if>
+			<if test="tkmoney != null">
+				tkmoney = #{tkmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="refundid != null">
+				refundid = #{refundid,jdbcType=VARCHAR},
+			</if>
+			<if test="costno != null">
+				costno = #{costno,jdbcType=VARCHAR},
+			</if>
+			<if test="payzfb != null">
+				payzfb = #{payzfb,jdbcType=DECIMAL},
+			</if>
+			<if test="paywx != null">
+				paywx = #{paywx,jdbcType=DECIMAL},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="paymmd != null">
+				paymmd = #{paymmd,jdbcType=DECIMAL},
+			</if>
+			<if test="paybdfq != null">
+				paybdfq = #{paybdfq,jdbcType=DECIMAL},
+			</if>
+			<if test="qfbh != null">
+				qfbh = #{qfbh,jdbcType=VARCHAR},
+			</if>
+			<if test="paydjq != null">
+				paydjq = #{paydjq,jdbcType=DECIMAL},
+			</if>
+			<if test="isyjjitem != null">
+				isyjjitem = #{isyjjitem,jdbcType=INTEGER},
+			</if>
+			<if test="payintegral != null">
+				payintegral = #{payintegral,jdbcType=DECIMAL},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsRefundDetail">
+		update KQDS_REFUND_DETAIL
+		set createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		usercode
+		= #{usercode,jdbcType=VARCHAR},
+		orderdetailno = #{orderdetailno,jdbcType=VARCHAR},
+		itemno = #{itemno,jdbcType=VARCHAR},
+		itemname = #{itemname,jdbcType=VARCHAR},
+		unit =
+		#{unit,jdbcType=VARCHAR},
+		unitprice = #{unitprice,jdbcType=DECIMAL},
+		num = #{num,jdbcType=INTEGER},
+		discount = #{discount,jdbcType=VARCHAR},
+		subtotal = #{subtotal,jdbcType=DECIMAL},
+		arrearmoney = #{arrearmoney,jdbcType=DECIMAL},
+		paymoney = #{paymoney,jdbcType=DECIMAL},
+		voidmoney = #{voidmoney,jdbcType=DECIMAL},
+		askperson = #{askperson,jdbcType=VARCHAR},
+		doctor =
+		#{doctor,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		payxj = #{payxj,jdbcType=DECIMAL},
+		payyjj = #{payyjj,jdbcType=DECIMAL},
+		paybank = #{paybank,jdbcType=DECIMAL},
+		payyb =
+		#{payyb,jdbcType=DECIMAL},
+		payother1 = #{payother1,jdbcType=DECIMAL},
+		payother2 = #{payother2,jdbcType=DECIMAL},
+		payother3 = #{payother3,jdbcType=DECIMAL},
+		tknum =
+		#{tknum,jdbcType=INTEGER},
+		tkmoney = #{tkmoney,jdbcType=DECIMAL},
+		refundid = #{refundid,jdbcType=VARCHAR},
+		costno = #{costno,jdbcType=VARCHAR},
+		payzfb = #{payzfb,jdbcType=DECIMAL},
+		paywx = #{paywx,jdbcType=DECIMAL},
+		organization = #{organization,jdbcType=VARCHAR},
+		paymmd = #{paymmd,jdbcType=DECIMAL},
+		paybdfq = #{paybdfq,jdbcType=DECIMAL},
+		qfbh =
+		#{qfbh,jdbcType=VARCHAR},
+		paydjq = #{paydjq,jdbcType=DECIMAL},
+		isyjjitem = #{isyjjitem,jdbcType=INTEGER},
+		payintegral = #{payintegral,jdbcType=DECIMAL}
+		where SEQ_ID =
+		#{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_REFUND_DETAIL
+	</sql>
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsRefundDetail">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectWithNopage" parameterType="map" resultType="json">
+		select rt.*,d.payother2 as zsmoney,d.paymoney-d.payother2 as ssmoney from KQDS_REFUND_DETAIL rt
+		left join KQDS_COSTORDER_DETAIL d on d.seq_id = rt.orderdetailno
+		where 1=1
+		<if test="refundid != null and refundid !='' ">
+			and rt.refundid = #{refundid}
+		</if>
+		ORDER BY rt.CreateTime desc
+	</select>
+	<select id="selectWithNopage4" parameterType="map" resultType="json">
+		select rt.SEQ_ID,rt.itemname,rt.tknum,rt.tkmoney,rt.remark,d.payxj,d.payyjj,d.paybank,d.payyb,d.payother1,d.payother2,d.payzfb,d.paywx,d.paymmd,d.paybdfq,d.paydjq,d.payintegral
+		from KQDS_REFUND_DETAIL rt
+		left join KQDS_COSTORDER_DETAIL d on d.seq_id = rt.orderdetailno
+		where 1=1
+		<if test="refundid != null and refundid !='' ">
+			and rt.refundid = #{refundid}
+		</if>
+		ORDER BY rt.CreateTime desc
+	</select>
+	<select id="tkQuery" parameterType="map" resultType="json">
+		SELECT
+		YEAR (r.createtime) AS year,
+		MONTH (r.createtime) AS month,
+		SUM(tkmoney) AS tkmoney
+		FROM
+			KQDS_REG r
+	    LEFT JOIN KQDS_COSTORDER c ON c.regno = r.SEQ_ID
+	    LEFT JOIN KQDS_REFUND_DETAIL detail ON c.costno = detail.costno
+		WHERE 1=1
+		AND	(${years})
+		AND	MONTH (r.createtime)  <![CDATA[ >= ]]> #{startmonth}
+		AND MONTH (r.createtime) <![CDATA[ <= ]]>  #{endmonth}
+		AND r.askperson in (${askperson})
+		GROUP BY
+			YEAR (r.createtime),
+			MONTH (r.createtime)
+		ORDER BY
+			MONTH (r.createtime) ASC
+	</select>
+</mapper>

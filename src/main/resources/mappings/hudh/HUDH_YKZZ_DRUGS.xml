@@ -1,0 +1,1026 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_YKZZ_DRUGS" >
+  <resultMap id="BaseResultMap" type="com.hudh.ykzz.entity.YkzzDrugs" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="order_no" property="order_no" jdbcType="VARCHAR" />
+    <result column="good_name" property="good_name" jdbcType="VARCHAR" />
+    <result column="charge_typeone" property="charge_typeone" jdbcType="VARCHAR" />
+    <result column="change_typetwo" property="change_typetwo" jdbcType="VARCHAR" />
+    <result column="company" property="company" jdbcType="VARCHAR" />
+    <result column="nuit_price" property="nuit_price" jdbcType="VARCHAR" />
+    <result column="discount" property="discount" jdbcType="VARCHAR" />
+    
+    <result column="special" property="special" jdbcType="VARCHAR" />
+    <result column="picking" property="picking" jdbcType="VARCHAR" />
+    <result column="good_type" property="good_type" jdbcType="VARCHAR" />
+    <result column="comments" property="comments" jdbcType="VARCHAR" />
+    <result column="discount_info" property="discount_info" jdbcType="VARCHAR" />
+    <result column="chemistry_name" property="chemistry_name" jdbcType="VARCHAR" />
+    <result column="specifica_id" property="specifica_id" jdbcType="VARCHAR" />
+    <result column="drugs_typeone" property="drugs_typeone" jdbcType="VARCHAR" />
+    
+    <result column="drugs_typetwo" property="drugs_typetwo" jdbcType="VARCHAR" />
+    <result column="packing_num" property="packing_num" jdbcType="VARCHAR" />
+    <result column="company_min" property="company_min" jdbcType="VARCHAR" />
+    <result column="content_coe" property="content_coe" jdbcType="VARCHAR" />
+    <result column="content_unit" property="content_unit" jdbcType="VARCHAR" />
+    <result column="sta_item" property="sta_item" jdbcType="VARCHAR" />
+    <result column="contry_code" property="contry_code" jdbcType="VARCHAR" />
+    <result column="pharm_class" property="pharm_class" jdbcType="VARCHAR" />
+    
+    <result column="pharm_dos" property="pharm_dos" jdbcType="VARCHAR" />
+    <result column="pharm_spec" property="pharm_spec" jdbcType="VARCHAR" />
+    <result column="ant_gra" property="ant_gra" jdbcType="VARCHAR" />
+    <result column="psy_drugs" property="psy_drugs" jdbcType="VARCHAR" />
+    <result column="drug_identify" property="drug_identify" jdbcType="VARCHAR" />
+    <result column="manu_id" property="manu_id" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    
+    <result column="minnums" property="minnums" jdbcType="VARCHAR" />
+    <result column="mingj" property="mingj" jdbcType="VARCHAR" />
+    <result column="maxnums" property="maxnums" jdbcType="VARCHAR" />
+    <result column="maxgj" property="maxgj" jdbcType="VARCHAR" />
+    <result column="drgs_total_money" property="drgs_total_money" jdbcType="DECIMAL" />
+    <result column="drug_retail_price" property="drug_retail_price" jdbcType="DECIMAL" />
+    <result column="packing_unit" property="packing_unit" jdbcType="VARCHAR" />
+    <result column="organization" property="organization" jdbcType="VARCHAR" />
+    <result column="drug_total_num" property="drug_total_num" jdbcType="VARCHAR" />
+    <result column="drugs_type" property="drugs_type" jdbcType="VARCHAR" />
+    <result column="manufac_id" property="manufac_id" jdbcType="VARCHAR" />
+    <result column="userflag" property="userflag" jdbcType="VARCHAR" />
+    <result column="classify" property="classify" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_no, good_name, charge_typeone, change_typetwo, company, convert(varchar,nuit_price)  as nuit_price, discount, 
+    special, picking, good_type, comments, discount_info, chemistry_name, specifica_id, 
+    drugs_typeone, drugs_typetwo, packing_num, company_min, content_coe, content_unit, 
+    sta_item, contry_code, pharm_class, pharm_dos, pharm_spec, ant_gra, psy_drugs, drug_identify, 
+    manu_id, createtime, creator, minnums, mingj, maxnums, maxgj,
+    convert(varchar,drgs_total_money)  as drgs_total_money, 
+    <!-- drgs_total_money,  -->
+    convert(varchar,drug_retail_price)  as drug_retail_price, 
+    <!-- drug_retail_price,  -->
+    packing_unit, organization, drug_total_num, drugs_type,manufac_id,userflag, classify
+  </sql>
+  
+  <insert id="importDrugsInfro" parameterType="java.util.List">
+    	<!-- 
+    	insert into HUDH_YKZZ_DRUGS
+    	( id,order_no,good_name,charge_typeone,change_typetwo,company,nuit_price,discount,special,
+    	picking,good_type, comments, discount_info, chemistry_name, specifica_id, drugs_typeone, 
+    	drugs_typetwo, packing_num, company_min, content_coe, content_unit, sta_item, contry_code,
+    	pharm_class, pharm_dos, pharm_spec, ant_gra, psy_drugs, drug_identify, manu_id, createtime,
+    	creator, minnums, mingj, maxnums, maxgj, drgs_total_money, drug_retail_price, packing_unit, 
+    	organization, drug_total_num
+    	)
+    	values
+    	<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+    		#{item.id},
+    		#{item.order_no},
+    		#{item.good_name},
+    		#{item.charge_typeone},
+    		#{item.change_typetwo},
+    		#{item.company},
+    		#{item.nuit_price},
+    		#{item.discount},
+    		#{item.special},
+    		#{item.picking},
+    		#{item.good_type},
+    		#{item.comments},
+    		#{item.discount_info},
+    		#{item.chemistry_name},
+    		#{item.specifica_id},
+    		#{item.drugs_typeone},
+    		#{item.drugs_typetwo},
+    		#{item.packing_num},
+    		#{item.company_min},
+    		#{item.content_coe},
+    		#{item.content_unit},
+    		#{item.sta_item},
+    		#{item.contry_code},
+    		#{item.pharm_class},
+    		#{item.pharm_dos},
+    		#{item.pharm_spec},
+    		#{item.ant_gra},
+    		#{item.psy_drugs},
+    		#{item.drug_identify},
+    		#{item.manu_id},
+    		#{item.createtime},
+    		#{item.creator},
+    		#{item.minnums},
+    		#{item.mingj},
+    		#{item.maxnums},
+    		#{item.maxgj},
+    		#{item.drgs_total_money},
+    		#{item.drug_retail_price},
+    		#{item.packing_unit},
+    		#{item.organization},
+    		#{item.drug_total_num}
+    	</foreach> -->
+       insert into HUDH_YKZZ_DRUGS 
+	  	 (id, order_no, good_name, 
+	      charge_typeone, change_typetwo, company, 
+	      nuit_price, discount, special, 
+	      picking, good_type, comments, 
+	      discount_info, chemistry_name, specifica_id, 
+	      drugs_typeone, drugs_typetwo, packing_num, 
+	      company_min, content_coe, content_unit, 
+	      sta_item, contry_code, pharm_class, 
+	      pharm_dos, pharm_spec, ant_gra, 
+	      psy_drugs, drug_identify, manu_id, createtime, 
+	      creator, minnums, mingj, maxnums, maxgj, 
+	      drgs_total_money, drug_retail_price, packing_unit, organization, drug_total_num, drugs_type, manufac_id, userflag, classify
+	      )
+	    values 
+	     (#{id,jdbcType=VARCHAR}, #{order_no,jdbcType=VARCHAR}, #{good_name,jdbcType=VARCHAR}, 
+	      #{charge_typeone,jdbcType=VARCHAR}, #{change_typetwo,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, 
+	      #{nuit_price,jdbcType=VARCHAR}, #{discount,jdbcType=VARCHAR}, #{special,jdbcType=VARCHAR}, 
+	      #{picking,jdbcType=VARCHAR}, #{good_type,jdbcType=VARCHAR}, #{comments,jdbcType=VARCHAR}, 
+	      #{discount_info,jdbcType=VARCHAR}, #{chemistry_name,jdbcType=VARCHAR}, #{specifica_id,jdbcType=VARCHAR}, 
+	      #{drugs_typeone,jdbcType=VARCHAR}, #{drugs_typetwo,jdbcType=VARCHAR}, #{packing_num,jdbcType=VARCHAR}, 
+	      #{company_min,jdbcType=VARCHAR}, #{content_coe,jdbcType=VARCHAR}, #{content_unit,jdbcType=VARCHAR}, 
+	      #{sta_item,jdbcType=VARCHAR}, #{contry_code,jdbcType=VARCHAR}, #{pharm_class,jdbcType=VARCHAR}, 
+	      #{pharm_dos,jdbcType=VARCHAR}, #{pharm_spec,jdbcType=VARCHAR}, #{ant_gra,jdbcType=VARCHAR}, 
+	      #{psy_drugs,jdbcType=VARCHAR}, #{drug_identify,jdbcType=VARCHAR}, #{manu_id,jdbcType=VARCHAR},
+	      #{createtime,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{minnums,jdbcType=VARCHAR}, #{mingj,jdbcType=VARCHAR}, 
+	      #{maxnums,jdbcType=VARCHAR}, #{maxgj,jdbcType=VARCHAR},
+	      #{drgs_total_money,jdbcType=DECIMAL}, #{drug_retail_price,jdbcType=DECIMAL}, #{packing_unit,jdbcType=VARCHAR}, 
+	      #{organization,jdbcType=VARCHAR}, #{drug_total_num,jdbcType=VARCHAR}, #{drugs_type,jdbcType=VARCHAR}, 
+	      #{manufac_id,jdbcType=VARCHAR}, #{userflag,jdbcType=VARCHAR}, #{classify,jdbcType=VARCHAR}
+	      )		
+  </insert>
+  
+  <insert id="importDrugs" parameterType="com.hudh.ykzz.entity.YkzzDrugs" >
+    insert into HUDH_YKZZ_DRUGS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="order_no != null" >
+        order_no,
+      </if>
+      <if test="good_name != null" >
+        good_name,
+      </if>
+      <if test="charge_typeone != null" >
+        charge_typeone,
+      </if>
+      <if test="change_typetwo != null" >
+        change_typetwo,
+      </if>
+      <if test="company != null" >
+        company,
+      </if>
+      <if test="nuit_price != null" >
+        nuit_price,
+      </if>
+      <if test="discount != null" >
+        discount,
+      </if>
+      <if test="special != null" >
+        special,
+      </if>
+      <if test="picking != null" >
+        picking,
+      </if>
+      <if test="good_type != null" >
+        good_type,
+      </if>
+      <if test="comments != null" >
+        comments,
+      </if>
+      <if test="discount_info != null" >
+        discount_info,
+      </if>
+      <if test="chemistry_name != null" >
+        chemistry_name,
+      </if>
+      <if test="specifica_id != null" >
+        specifica_id,
+      </if>
+      <if test="drugs_typeone != null" >
+        drugs_typeone,
+      </if>
+      <if test="drugs_typetwo != null" >
+        drugs_typetwo,
+      </if>
+      <if test="packing_num != null" >
+        packing_num,
+      </if>
+      <if test="company_min != null" >
+        company_min,
+      </if>
+      <if test="content_coe != null" >
+        content_coe,
+      </if>
+      <if test="content_unit != null" >
+        content_unit,
+      </if>
+      <if test="sta_item != null" >
+        sta_item,
+      </if>
+      <if test="contry_code != null" >
+        contry_code,
+      </if>
+      <if test="pharm_class != null" >
+        pharm_class,
+      </if>
+      <if test="pharm_dos != null" >
+        pharm_dos,
+      </if>
+      <if test="pharm_spec != null" >
+        pharm_spec,
+      </if>
+      <if test="ant_gra != null" >
+        ant_gra,
+      </if>
+      <if test="psy_drugs != null" >
+        psy_drugs,
+      </if>
+      <if test="drug_identify != null" >
+        drug_identify,
+      </if>
+      <if test="manu_id != null" >
+        manu_id,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="minnums != null" >
+        minnums,
+      </if>
+      <if test="mingj != null" >
+        mingj,
+      </if>
+      <if test="maxnums != null" >
+        maxnums,
+      </if>
+      <if test="maxgj != null" >
+        maxgj,
+      </if>
+      <if test="drug_total_num != null" >
+        drug_total_num,
+      </if>
+      <if test="drgs_total_money != null" >
+        drgs_total_money,
+      </if>
+      <if test="drug_retail_price != null" >
+        drug_retail_price,
+      </if>
+      <if test="packing_unit != null" >
+        packing_unit,
+      </if>
+      <if test="organization != null" >
+        organization,
+      </if>
+      <if test="drugs_type != null" >
+        drugs_type,
+      </if>
+      <if test="manufac_id != null" >
+        manufac_id,
+      </if>
+      <if test="userflag != null" >
+        userflag,
+      </if>
+      <if test="classify != null" >
+        classify,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="order_no != null" >
+        #{order_no,jdbcType=VARCHAR},
+      </if>
+      <if test="good_name != null" >
+        #{good_name,jdbcType=VARCHAR},
+      </if>
+      <if test="charge_typeone != null" >
+        #{charge_typeone,jdbcType=VARCHAR},
+      </if>
+      <if test="change_typetwo != null" >
+        #{change_typetwo,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="nuit_price != null" >
+        #{nuit_price,jdbcType=NUMERIC},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="special != null" >
+        #{special,jdbcType=VARCHAR},
+      </if>
+      <if test="picking != null" >
+        #{picking,jdbcType=VARCHAR},
+      </if>
+      <if test="good_type != null" >
+        #{good_type,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="discount_info != null" >
+        #{discount_info,jdbcType=VARCHAR},
+      </if>
+      <if test="chemistry_name != null" >
+        #{chemistry_name,jdbcType=VARCHAR},
+      </if>
+      <if test="specifica_id != null" >
+        #{specifica_id,jdbcType=VARCHAR},
+      </if>
+      <if test="drugs_typeone != null" >
+        #{drugs_typeone,jdbcType=VARCHAR},
+      </if>
+      <if test="drugs_typetwo != null" >
+        #{drugs_typetwo,jdbcType=VARCHAR},
+      </if>
+      <if test="packing_num != null" >
+        #{packing_num,jdbcType=VARCHAR},
+      </if>
+      <if test="company_min != null" >
+        #{company_min,jdbcType=VARCHAR},
+      </if>
+      <if test="content_coe != null" >
+        #{content_coe,jdbcType=VARCHAR},
+      </if>
+      <if test="content_unit != null" >
+        #{content_unit,jdbcType=VARCHAR},
+      </if>
+      <if test="sta_item != null" >
+        #{sta_item,jdbcType=VARCHAR},
+      </if>
+      <if test="contry_code != null" >
+        #{contry_code,jdbcType=VARCHAR},
+      </if>
+      <if test="pharm_class != null" >
+        #{pharm_class,jdbcType=VARCHAR},
+      </if>
+      <if test="pharm_dos != null" >
+        #{pharm_dos,jdbcType=VARCHAR},
+      </if>
+      <if test="pharm_spec != null" >
+        #{pharm_spec,jdbcType=VARCHAR},
+      </if>
+      <if test="ant_gra != null" >
+        #{ant_gra,jdbcType=VARCHAR},
+      </if>
+      <if test="psy_drugs != null" >
+        #{psy_drugs,jdbcType=VARCHAR},
+      </if>
+      <if test="drug_identify != null" >
+        #{drug_identify,jdbcType=VARCHAR},
+      </if>
+      <if test="manu_id != null" >
+        #{manu_id,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=NVARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="minnums != null" >
+        #{minnums,jdbcType=VARCHAR},
+      </if>
+      <if test="mingj != null" >
+        #{mingj,jdbcType=VARCHAR},
+      </if>
+      <if test="maxnums != null" >
+        #{maxnums,jdbcType=VARCHAR},
+      </if>
+      <if test="maxgj != null" >
+        #{maxgj,jdbcType=VARCHAR},
+      </if>
+      <if test="drug_total_num != null" >
+        #{drug_total_num,jdbcType=INTEGER},
+      </if>
+      <if test="drgs_total_money != null" >
+        #{drgs_total_money,jdbcType=DECIMAL},
+      </if>
+      <if test="drug_retail_price != null" >
+        #{drug_retail_price,jdbcType=DECIMAL},
+      </if>
+      <if test="packing_unit != null" >
+        #{packing_unit,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null" >
+        #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="drugs_type != null" >
+        #{drugs_type,jdbcType=VARCHAR},
+      </if>
+      <if test="manufac_id != null" >
+        #{manufac_id,jdbcType=VARCHAR},
+      </if>
+      <if test="userflag != null" >
+        #{userflag,jdbcType=VARCHAR},
+      </if>
+      <if test="classify != null" >
+        #{classify,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <!--#################################### auto create ################################# -->
+  <!-- 表名 -->
+  <sql id="tableName">
+  	HUDH_YKZZ_DRUGS
+  </sql>
+  
+  <insert id="insertDrugsInfor" parameterType="com.hudh.ykzz.entity.YkzzDrugs">
+  	insert into HUDH_YKZZ_DRUGS 
+  	 (id, order_no, good_name, 
+      charge_typeone, change_typetwo, company, 
+      nuit_price, discount, special, 
+      picking, good_type, comments, 
+      discount_info, chemistry_name, specifica_id, 
+      drugs_typeone, drugs_typetwo, packing_num, 
+      company_min, content_coe, content_unit, 
+      sta_item, contry_code, pharm_class, 
+      pharm_dos, pharm_spec, ant_gra, 
+      psy_drugs, drug_identify, manu_id, createtime, 
+      creator, minnums, mingj, maxnums, maxgj, 
+      drgs_total_money, drug_retail_price, packing_unit, organization, drug_total_num, drugs_type, manufac_id,userflag,classify
+      )
+    values (#{id,jdbcType=VARCHAR}, #{order_no,jdbcType=VARCHAR}, #{good_name,jdbcType=VARCHAR}, 
+      #{charge_typeone,jdbcType=VARCHAR}, #{change_typetwo,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, 
+      #{nuit_price,jdbcType=VARCHAR}, #{discount,jdbcType=VARCHAR}, #{special,jdbcType=VARCHAR}, 
+      #{picking,jdbcType=VARCHAR}, #{good_type,jdbcType=VARCHAR}, #{comments,jdbcType=VARCHAR}, 
+      #{discount_info,jdbcType=VARCHAR}, #{chemistry_name,jdbcType=VARCHAR}, #{specifica_id,jdbcType=VARCHAR}, 
+      #{drugs_typeone,jdbcType=VARCHAR}, #{drugs_typetwo,jdbcType=VARCHAR}, #{packing_num,jdbcType=VARCHAR}, 
+      #{company_min,jdbcType=VARCHAR}, #{content_coe,jdbcType=VARCHAR}, #{content_unit,jdbcType=VARCHAR}, 
+      #{sta_item,jdbcType=VARCHAR}, #{contry_code,jdbcType=VARCHAR}, #{pharm_class,jdbcType=VARCHAR}, 
+      #{pharm_dos,jdbcType=VARCHAR}, #{pharm_spec,jdbcType=VARCHAR}, #{ant_gra,jdbcType=VARCHAR}, 
+      #{psy_drugs,jdbcType=VARCHAR}, #{drug_identify,jdbcType=VARCHAR}, #{manu_id,jdbcType=VARCHAR},
+      #{createtime,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{minnums,jdbcType=VARCHAR}, #{mingj,jdbcType=VARCHAR}, 
+      #{maxnums,jdbcType=VARCHAR}, #{maxgj,jdbcType=VARCHAR},
+      #{drgs_total_money,jdbcType=DECIMAL}, #{drug_retail_price,jdbcType=DECIMAL}, #{packing_unit,jdbcType=VARCHAR}, 
+      #{organization,jdbcType=VARCHAR}, #{drug_total_num,jdbcType=VARCHAR}, #{drugs_type, jdbcType=VARCHAR}, 
+      #{manufac_id, jdbcType=VARCHAR}, #{userflag, jdbcType=VARCHAR}, #{classify, jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <insert id="addTreatItemBack" parameterType="com.kqds.entity.base.KqdsTreatitem">
+		insert into KQDS_TREATITEM 
+		(SEQ_ID, createuser, createtime,
+		treatitemno, treatitemname, unit,
+		unitprice, discount, basetype,
+		nexttype, xmjs, yhxx, istsxm, issplit, useflag,
+		organization, isyjjitem, status)
+		values 
+		(#{seqId,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{treatitemno,jdbcType=VARCHAR}, #{treatitemname,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR},
+		#{unitprice,jdbcType=VARCHAR}, #{discount,jdbcType=VARCHAR},
+		#{basetype,jdbcType=VARCHAR}, 
+		#{nexttype,jdbcType=VARCHAR}, #{xmjs,jdbcType=VARCHAR}, #{yhxx,jdbcType=VARCHAR},
+		#{istsxm,jdbcType=INTEGER}, #{issplit,jdbcType=INTEGER},
+		#{useflag,jdbcType=INTEGER},
+		#{organization,jdbcType=VARCHAR}, #{isyjjitem,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="saveBatchInsertTreatItemBack" parameterType="java.util.List">
+  		insert into KQDS_TREATITEM 
+		(SEQ_ID, createuser, createtime,
+		treatitemno, treatitemname, unit,
+		unitprice, discount, basetype,
+		nexttype, xmjs, yhxx, istsxm, issplit, useflag,
+		organization, isyjjitem, status)
+		values 
+		(#{seqId,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{treatitemno,jdbcType=VARCHAR}, #{treatitemname,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR},
+		#{unitprice,jdbcType=VARCHAR}, #{discount,jdbcType=VARCHAR},
+		#{basetype,jdbcType=VARCHAR}, 
+		#{nexttype,jdbcType=VARCHAR}, #{xmjs,jdbcType=VARCHAR}, #{yhxx,jdbcType=VARCHAR},
+		#{istsxm,jdbcType=INTEGER}, #{issplit,jdbcType=INTEGER},
+		#{useflag,jdbcType=INTEGER},
+		#{organization,jdbcType=VARCHAR}, #{isyjjitem,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR})
+  </insert>
+  
+  <update id="updateDeugsTreatitemInfor" parameterType="com.kqds.entity.base.KqdsTreatitem">
+		update KQDS_TREATITEM
+		<set>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="treatitemno != null">
+				treatitemno = #{treatitemno,jdbcType=VARCHAR},
+			</if>
+			<if test="treatitemname != null">
+				treatitemname = #{treatitemname,jdbcType=VARCHAR},
+			</if>
+			<if test="unit != null">
+				unit = #{unit,jdbcType=VARCHAR},
+			</if>
+			<if test="unitprice != null">
+				unitprice = #{unitprice,jdbcType=VARCHAR},
+			</if>
+			<if test="discount != null">
+				discount = #{discount,jdbcType=VARCHAR},
+			</if>
+			<if test="basetype != null">
+				basetype = #{basetype,jdbcType=VARCHAR},
+			</if>
+			<if test="nexttype != null">
+				nexttype = #{nexttype,jdbcType=VARCHAR},
+			</if>
+			<if test="xmjs != null">
+				xmjs = #{xmjs,jdbcType=VARCHAR},
+			</if>
+			<if test="yhxx != null">
+				yhxx = #{yhxx,jdbcType=VARCHAR},
+			</if>
+			<if test="istsxm != null">
+				istsxm = #{istsxm,jdbcType=INTEGER},
+			</if>
+			<if test="issplit != null">
+				issplit = #{issplit,jdbcType=INTEGER},
+			</if>
+			<if test="useflag != null">
+				useflag = #{useflag,jdbcType=INTEGER},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="isyjjitem != null">
+				isyjjitem = #{isyjjitem,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 根据模板导入药品 -->
+  <insert id="insertDrugsInfro" parameterType="com.hudh.ykzz.entity.YkzzDrugs">
+  	insert into HUDH_YKZZ_DRUGS (id, order_no, good_name, 
+      charge_typeone, change_typetwo, company, 
+      nuit_price, discount, special, 
+      picking, good_type, comments, 
+      discount_info, chemistry_name, specifica_id, 
+      drugs_typeone, drugs_typetwo, packing_num, 
+      company_min, content_coe, content_unit, 
+      sta_item, contry_code, pharm_class, 
+      pharm_dos, pharm_spec, ant_gra, 
+      psy_drugs, drug_identify, manu_id, createtime, 
+      creator, minnums, mingj, maxnums, maxgj, 
+      drgs_total_money, drug_retail_price, packing_unit, organization, drug_total_num, drugs_type, manufac_id, userflag, classify 
+      )
+    values (#{id,jdbcType=VARCHAR}, #{order_no,jdbcType=VARCHAR}, #{good_name,jdbcType=VARCHAR}, 
+      #{charge_typeone,jdbcType=VARCHAR}, #{change_typetwo,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, 
+      #{nuit_price,jdbcType=VARCHAR}, #{discount,jdbcType=VARCHAR}, #{special,jdbcType=VARCHAR}, 
+      #{picking,jdbcType=VARCHAR}, #{good_type,jdbcType=VARCHAR}, #{comments,jdbcType=VARCHAR}, 
+      #{discount_info,jdbcType=VARCHAR}, #{chemistry_name,jdbcType=VARCHAR}, #{specifica_id,jdbcType=VARCHAR}, 
+      #{drugs_typeone,jdbcType=VARCHAR}, #{drugs_typetwo,jdbcType=VARCHAR}, #{packing_num,jdbcType=VARCHAR}, 
+      #{company_min,jdbcType=VARCHAR}, #{content_coe,jdbcType=VARCHAR}, #{content_unit,jdbcType=VARCHAR}, 
+      #{sta_item,jdbcType=VARCHAR}, #{contry_code,jdbcType=VARCHAR}, #{pharm_class,jdbcType=VARCHAR}, 
+      #{pharm_dos,jdbcType=VARCHAR}, #{pharm_spec,jdbcType=VARCHAR}, #{ant_gra,jdbcType=VARCHAR}, 
+      #{psy_drugs,jdbcType=VARCHAR}, #{drug_identify,jdbcType=VARCHAR}, #{manu_id,jdbcType=VARCHAR},
+      #{createtime,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{minnums,jdbcType=VARCHAR}, #{mingj,jdbcType=VARCHAR}, 
+      #{maxnums,jdbcType=VARCHAR}, #{maxgj,jdbcType=VARCHAR},
+      #{drgs_total_money,jdbcType=DECIMAL}, #{drug_retail_price,jdbcType=DECIMAL}, #{packing_unit,jdbcType=VARCHAR}, 
+      #{organization,jdbcType=VARCHAR}, #{drug_total_num,jdbcType=VARCHAR}, #{drugs_type, jdbcType=VARCHAR}, 
+      #{manufac_id, jdbcType=VARCHAR}, #{userflag, jdbcType=VARCHAR}, #{classify, jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <select id="selectDrugsByPrimaryId" resultType="json" parameterType="java.lang.String" >
+    <!-- 
+    select 
+    <include refid="Base_Column_List" />
+    from HUDH_YKZZ_DRUGS
+    where id = #{id,jdbcType=VARCHAR} -->
+    SELECT
+	a.id,
+	a.order_no,
+	a.good_name,
+	a.charge_typeone,
+	a.change_typetwo,
+	a.company,
+	convert(varchar,a.nuit_price)  as nuit_price,
+	<!-- a.nuit_price, -->
+	a.discount,
+	a.special,
+	a.picking,
+	a.good_type,
+	a.comments,
+	a.discount_info,
+	a.chemistry_name,
+	a.specifica_id,
+	a.drugs_typeone,
+	a.drugs_typetwo,
+	a.packing_num,
+	a.company_min,
+	a.content_coe,
+	a.content_unit,
+	a.sta_item,
+	a.contry_code,
+	a.pharm_class,
+	a.pharm_dos,
+	a.pharm_spec,
+	a.ant_gra,
+	a.psy_drugs,
+	a.drug_identify,
+	a.manu_id,
+	a.createtime,
+	a.creator,
+	a.minnums,
+	a.mingj,
+	a.maxnums,
+	a.maxgj,
+	convert(varchar,a.drgs_total_money)  as drgs_total_money,
+	<!-- a.drgs_total_money, -->
+	convert(varchar,a.drug_retail_price)  as drug_retail_price,
+	<!-- a.drug_retail_price, -->
+	a.packing_unit,
+	d.type_name as basetype,
+	b.type_name as nexttype,
+	c.manu_name,
+	a.manufac_id,
+	e.manufacturers_name,
+	a.classify
+	FROM HUDH_YKZZ_DRUGS a
+	LEFT JOIN HUDH_YKZZ_TYPE b ON a.drugs_typetwo = b.id
+  	LEFT JOIN HUDH_YKZZ_TYPE d ON a.drugs_typeone = d.id
+	LEFT JOIN HUDH_YKZZ_MANU c ON a.manu_id = c.id
+	LEFT JOIN HUDH_YKZZ_MANUFACTURERS e ON a.manufac_id = e.id
+	where a.id = #{id,jdbcType=VARCHAR} 
+	ORDER BY order_no DESC
+  </select>
+  <select id="selectAllDrugsInfor" resultType="json" parameterType="java.util.Map">
+  	<!-- 
+  	select 
+    <include refid="Base_Column_List" />
+    from HUDH_YKZZ_DRUGS 
+    order by order_no DESC -->
+    
+	SELECT
+	a.id,
+	a.order_no,
+	a.good_name,
+	a.charge_typeone,
+	a.change_typetwo,
+	a.company,
+	convert(varchar,a.nuit_price)  as nuit_price,
+	<!-- a.nuit_price, -->
+	a.discount,
+	a.special,
+	a.picking,
+	a.good_type,
+	a.comments,
+	a.discount_info,
+	a.chemistry_name,
+	a.specifica_id,
+	a.drugs_typeone,
+	a.drugs_typetwo,
+	a.packing_num,
+	a.company_min,
+	a.content_coe,
+	a.content_unit,
+	a.pharm_spec,
+	a.sta_item,
+	a.contry_code,
+	a.pharm_class,
+	a.pharm_dos,
+	a.pharm_spec,
+	a.ant_gra,
+	a.psy_drugs,
+	a.drug_identify,
+	a.manu_id,
+	a.createtime,
+	a.creator,
+	a.minnums,
+	a.mingj,
+	a.maxnums,
+	a.maxgj,
+	convert(varchar,a.drgs_total_money)  as drgs_total_money,
+	<!-- a.drgs_total_money, -->
+	convert(varchar,a.drug_retail_price)  as drug_retail_price,
+	<!-- a.drug_retail_price, -->
+	a.packing_unit,
+	a.drug_total_num,
+	d.type_name as basetype,
+	b.type_name as nexttype,
+	c.manu_name,
+	a.classify
+	FROM HUDH_YKZZ_DRUGS a
+	LEFT JOIN HUDH_YKZZ_TYPE b ON a.drugs_typetwo = b.id
+  	LEFT JOIN HUDH_YKZZ_TYPE d ON a.drugs_typeone = d.id
+	LEFT JOIN HUDH_YKZZ_MANU c ON a.manu_id = c.id
+	WHERE 1=1 and userflag = 0
+	<if test="queryInput != null and queryInput !='' ">
+		and (chemistry_name like '%' + #{queryInput} + '%'
+		or good_name like '%' + #{queryInput} + '%')
+	</if>
+	<if test="basetype != null and basetype !='' ">
+		and a.drugs_typeone = #{basetype} 
+	</if>
+	<if test="nexttype != null and nexttype !='' ">
+		and a.drugs_typetwo = #{nexttype} 
+	</if>
+	<if test="organization != null and organization !='' ">
+		and a.organization = #{organization} 
+	</if>
+	ORDER BY order_no ASC
+  </select>
+  <select id="findNextOrderNumber" resultMap="BaseResultMap">
+	select TOP(1)
+	<include refid="Base_Column_List" />
+	FROM HUDH_YKZZ_DRUGS ORDER BY order_no DESC
+  </select>
+  <delete id="deleteDrugsByPrimaryId" parameterType="java.lang.String" >
+    delete from HUDH_YKZZ_DRUGS
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteTreamtDrugsByPrimaryId" parameterType="java.lang.String">
+  	delete from KQDS_TREATITEM
+    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </delete>
+  <update id="updateDrugsByPrimaryId" parameterType="com.hudh.ykzz.entity.YkzzDrugs" >
+    update HUDH_YKZZ_DRUGS
+    <set >
+      <if test="order_no != null" >
+        order_no = #{order_no,jdbcType=VARCHAR},
+      </if>
+      <if test="good_name != null" >
+        good_name = #{good_name,jdbcType=VARCHAR},
+      </if>
+      <if test="charge_typeone != null" >
+        charge_typeone = #{charge_typeone,jdbcType=VARCHAR},
+      </if>
+      <if test="change_typetwo != null" >
+        change_typetwo = #{change_typetwo,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="nuit_price != null" >
+        nuit_price = #{nuit_price,jdbcType=NUMERIC},
+      </if>
+      <if test="discount != null" >
+        discount = #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="special != null" >
+        special = #{special,jdbcType=VARCHAR},
+      </if>
+      <if test="picking != null" >
+        picking = #{picking,jdbcType=VARCHAR},
+      </if>
+      <if test="good_type != null" >
+        good_type = #{good_type,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null" >
+        comments = #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="discount_info != null" >
+        discount_info = #{discount_info,jdbcType=VARCHAR},
+      </if>
+      <if test="chemistry_name != null" >
+        chemistry_name = #{chemistry_name,jdbcType=VARCHAR},
+      </if>
+      <if test="specifica_id != null" >
+        specifica_id = #{specifica_id,jdbcType=VARCHAR},
+      </if>
+      <if test="drugs_typeone != null" >
+        drugs_typeone = #{drugs_typeone,jdbcType=VARCHAR},
+      </if>
+      <if test="drugs_typetwo != null" >
+        drugs_typetwo = #{drugs_typetwo,jdbcType=VARCHAR},
+      </if>
+      <if test="packing_num != null" >
+        packing_num = #{packing_num,jdbcType=VARCHAR},
+      </if>
+      <if test="company_min != null" >
+        company_min = #{company_min,jdbcType=VARCHAR},
+      </if>
+      <if test="content_coe != null" >
+        content_coe = #{content_coe,jdbcType=VARCHAR},
+      </if>
+      <if test="content_unit != null" >
+        content_unit = #{content_unit,jdbcType=VARCHAR},
+      </if>
+      <if test="sta_item != null" >
+        sta_item = #{sta_item,jdbcType=VARCHAR},
+      </if>
+      <if test="contry_code != null" >
+        contry_code = #{contry_code,jdbcType=VARCHAR},
+      </if>
+      <if test="pharm_class != null" >
+        pharm_class = #{pharm_class,jdbcType=VARCHAR},
+      </if>
+      <if test="pharm_dos != null" >
+        pharm_dos = #{pharm_dos,jdbcType=VARCHAR},
+      </if>
+      <if test="pharm_spec != null" >
+        pharm_spec = #{pharm_spec,jdbcType=VARCHAR},
+      </if>
+      <if test="ant_gra != null" >
+        ant_gra = #{ant_gra,jdbcType=VARCHAR},
+      </if>
+      <if test="psy_drugs != null" >
+        psy_drugs = #{psy_drugs,jdbcType=VARCHAR},
+      </if>
+      <if test="drug_identify != null" >
+        drug_identify = #{drug_identify,jdbcType=VARCHAR},
+      </if>
+      <if test="manu_id != null" >
+        manu_id = #{manu_id,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=NVARCHAR},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="minnums != null" >
+        minnums = #{minnums,jdbcType=VARCHAR},
+      </if>
+      <if test="mingj != null" >
+        mingj = #{mingj,jdbcType=VARCHAR},
+      </if>
+      <if test="maxnums != null" >
+        maxnums = #{maxnums,jdbcType=VARCHAR},
+      </if>
+      <if test="maxgj != null" >
+        maxgj = #{maxgj,jdbcType=VARCHAR},
+      </if>
+      <if test="drgs_total_money != null" >
+        drgs_total_money = #{drgs_total_money,jdbcType=DECIMAL},
+      </if>
+      <if test="drug_retail_price != null" >
+        drug_retail_price = #{drug_retail_price,jdbcType=DECIMAL},
+      </if>
+      <if test="packing_unit != null" >
+        packing_unit = #{packing_unit,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null" >
+        organization = #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="drug_total_num != null" >
+        drug_total_num = #{drug_total_num,jdbcType=VARCHAR},
+      </if>
+      <if test="drugs_type != null" >
+        drugs_type = #{drugs_type,jdbcType=VARCHAR},
+      </if>
+      <if test="manufac_id != null" >
+        manufac_id = #{manufac_id,jdbcType=VARCHAR},
+      </if>
+      <if test="userflag != null" >
+        userflag = #{userflag,jdbcType=VARCHAR},
+      </if>
+      <if test="classify != null" >
+        classify = #{classify,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="batchUpdateDrugsByPrimaryId" parameterType="java.util.List" >
+    update HUDH_YKZZ_DRUGS
+    <set>
+      <if test="nuit_price != null" >
+        nuit_price = #{nuit_price,jdbcType=DECIMAL},
+      </if>
+      <if test="drug_total_num != null" >
+        drug_total_num = #{drug_total_num,jdbcType=INTEGER},
+      </if>
+      <if test="drgs_total_money != null" >
+        drgs_total_money = #{drgs_total_money,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectDrugsInforByConditionQuery" resultType="json" parameterType="java.util.Map">
+  	SELECT
+	a.id,
+	a.order_no,
+	a.good_name,
+	a.charge_typeone,
+	a.change_typetwo,
+	a.company,
+	convert(varchar,a.nuit_price)  as nuit_price,
+	<!-- a.nuit_price, -->
+	a.discount,
+	a.special,
+	a.picking,
+	a.good_type,
+	a.comments,
+	a.discount_info,
+	a.chemistry_name,
+	a.specifica_id,
+	a.drugs_typeone,
+	a.drugs_typetwo,
+	a.packing_num,
+	a.company_min,
+	a.content_coe,
+	a.content_unit,
+	a.sta_item,
+	a.contry_code,
+	a.pharm_class,
+	a.pharm_dos,
+	a.pharm_spec,
+	a.ant_gra,
+	a.psy_drugs,
+	a.drug_identify,
+	a.manu_id,
+	a.createtime,
+	a.creator,
+	a.minnums,
+	a.mingj,
+	a.maxnums,
+	a.maxgj,
+	convert(varchar,a.drgs_total_money)  as drgs_total_money,
+	<!-- a.drgs_total_money, -->
+	convert(varchar,a.drug_retail_price)  as drug_retail_price,
+	<!-- a.drug_retail_price, -->
+	a.drug_total_num,
+	a.packing_unit,
+	d.type_name as basetype,
+	b.type_name as nexttype,
+	c.manu_name,
+	a.userflag,
+	a.classify,
+	j.valid
+	FROM HUDH_YKZZ_DRUGS a
+	LEFT JOIN HUDH_YKZZ_TYPE b ON a.drugs_typetwo = b.id
+  	LEFT JOIN HUDH_YKZZ_TYPE d ON a.drugs_typeone = d.id
+	LEFT JOIN HUDH_YKZZ_MANU c ON a.manu_id = c.id
+	LEFT JOIN (SELECT MIN(valid) as valid,orderno FROM HUDH_YKZZ_DRUGS_IN_DETAIL where batchnoNum>0 GROUP BY orderno) j on  j.orderno=a.order_no
+	WHERE 1=1
+		<if test="queryInput != null and queryInput !='' ">
+			and (a.chemistry_name like '%' + #{queryInput} + '%'
+			or a.good_name like '%' + #{queryInput} + '%')
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and a.drugs_typeone = #{basetype} 
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and a.drugs_typetwo = #{nexttype} 
+		</if>
+		<if test="organization != null and organization !='' ">
+			and a.organization = #{organization} 
+		</if>
+	order by CONVERT (INT, a.drug_total_num) DESC
+  </select>
+  
+  <select id="selectDrugsByIdStr" resultMap="BaseResultMap">
+	select
+	<include refid="Base_Column_List" />
+	FROM HUDH_YKZZ_DRUGS where 1!=1
+	<foreach collection="list" index="index"  item="tag" >
+   		or id = #{tag.drugsId} 
+  	</foreach>
+  </select>
+  
+  <select id="selectDrugsByOrderNoStr" resultMap="BaseResultMap">
+	select
+	<include refid="Base_Column_List" />
+	FROM HUDH_YKZZ_DRUGS where 1!=1
+	<foreach collection="list" index="index"  item="tag" >
+   		or order_no = #{tag} 
+  	</foreach>
+  </select>
+  
+  <select id="getAllDrugsInfor" resultType="com.hudh.ykzz.entity.YkzzDrugs" parameterType="map">
+  	select 
+    <include refid="Base_Column_List" />
+    from HUDH_YKZZ_DRUGS
+    where 1=1
+    and contry_code=#{contry_code}
+  </select>
+  
+  <select id="findOrderNumberCount" resultType="int">
+  	SELECT count(*) FROM HUDH_YKZZ_DRUGS
+  </select>
+  
+  <select id="findDeugsByContryCode" parameterType="java.lang.String" resultType="com.hudh.ykzz.entity.YkzzDrugs">
+  	select 
+    <include refid="Base_Column_List" />
+    from HUDH_YKZZ_DRUGS
+    where 1=1
+    <if test="organization != null and organization != '' ">
+    	and organization = #{organization,jdbcType=VARCHAR}
+    </if>
+    <if test="contrycode != null and contrycode != '' ">
+    	and contry_code = #{contrycode,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <update id="forbiddenDrugs" parameterType="String">
+  	update HUDH_YKZZ_DRUGS set userflag = 1 where id = #{id}
+  </update>
+  
+  <update id="recoverDrugs" parameterType="String">
+  	update HUDH_YKZZ_DRUGS set userflag = 0 where id = #{id}
+  </update>
+</mapper>

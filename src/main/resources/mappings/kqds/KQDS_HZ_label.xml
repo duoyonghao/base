@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_HZ_label">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsLabel">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="createuser" jdbcType="VARCHAR" property="createUser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createTime" />
+		<result column="leveLabel" jdbcType="VARCHAR" property="leveLabel" />
+		<result column="parentId" jdbcType="VARCHAR" property="parentId" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="status" jdbcType="INTEGER" property="status"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, createuser, createtime, leveLabel, parentId, remark,status
+	</sql>
+	<!-- 查询患者印象标签 -->
+	<select id="findLabel" parameterType="map" resultType="com.kqds.entity.base.KqdsLabel">
+	SELECT
+	 	 kl.*,
+	 	 sy.USER_NAME AS createname 
+	FROM KQDS_HZ_label kl
+	LEFT JOIN SYS_PERSON sy ON sy.SEQ_ID = kl.createUser
+	WHERE 1=1
+	AND	kl.parentId = #{parentId}
+	AND kl.status != 5
+	ORDER BY kl.createTime ASC
+	</select>
+	<!-- 查询患者印象标签 -->
+	<select id="findLabelCondition" parameterType="map" resultType="com.kqds.entity.base.KqdsLabel">
+	SELECT
+	 	 kl.*,
+	 	 sy.USER_NAME AS createname 
+	FROM KQDS_HZ_label kl
+	LEFT JOIN SYS_PERSON sy ON sy.SEQ_ID = kl.createUser
+	WHERE 1=1
+	AND	kl.parentId = #{parentId}
+	ORDER BY kl.createTime ASC
+	</select>
+	<insert id="saveLabel" parameterType="com.kqds.entity.base.KqdsLabel">
+	INSERT INTO KQDS_HZ_label (
+	SEQ_ID,
+	leveLabel,
+	parentId,
+	parentName,
+	createuser,
+	createtime,
+	status,
+	remark
+	)
+	VALUES
+		(#{seqId},
+		#{leveLabel},
+		#{parentId},
+		#{parentName},
+		#{createUser},
+		#{createTime},
+		#{status},
+		#{remark})
+	</insert>
+	
+	<delete id="deLabel" parameterType="map">
+	DELETE 
+		FROM KQDS_HZ_label 
+	WHERE
+		SEQ_ID = #{seqId}
+	</delete>
+	<select id="findLabelAll" resultType="json">
+	SELECT
+	 	kl.*,
+	 	sy.USER_NAME AS createname
+	FROM 
+		KQDS_HZ_label kl
+	LEFT JOIN SYS_PERSON sy ON sy.SEQ_ID = kl.createUser
+	</select>
+	<!-- 条件查找 -->
+	<select id="fingLabelByCondition" parameterType="map" resultType="json">
+		SELECT
+	 	kl.*,
+	 	sy.USER_NAME AS createname
+		FROM 
+			KQDS_HZ_label kl
+		LEFT JOIN SYS_PERSON sy ON sy.SEQ_ID = kl.createUser
+		WHERE 1=1
+		<if test="parentId!=null and parentId!=''">
+			AND parentId = #{parentId}
+		</if>
+		<if test="leveLabel!=null and leveLabel!=''">
+			AND leveLabel LIKE '%' + #{leveLabel} + '%'
+		</if>
+	</select>
+	<update id="updateLabel" parameterType="com.kqds.entity.base.KqdsLabel">
+		UPDATE KQDS_HZ_label
+		SET 
+		<if test="leveLabel!=null and leveLabel!=''">
+		leveLabel = #{leveLabel},
+		</if>
+		<if test="remark!=null and remark!=''">
+		remark = #{remark},
+		</if>
+		  updateTime = #{createTime}
+		WHERE
+		SEQ_ID = #{seqId}	
+	</update>
+	<insert id="insertKqdsHzLabel" parameterType="com.kqds.entity.base.KqdsLabel">
+		insert into KQDS_HZ_label (SEQ_ID, createuser, createtime, leveLabel, parentId,parentName, remark,status) 
+		values (#{seqId},#{createUser},#{createTime},#{leveLabel},#{parentId},#{parentName},#{remark},#{status})
+	</insert>
+	<select id="selectKqdsHzLabelByLeveLabel" parameterType="java.util.Map" resultType="java.lang.String">
+		select seq_id from KQDS_HZ_label where 
+		1=1
+		<if test="leveLabel != null and leveLabel !='' ">
+		and leveLabel=#{leveLabel} 
+		</if>
+		<if test="parentId !=null and parentId != ''">
+		and parentId=#{parentId}
+		</if>
+	</select>
+	<select id="selectKqdsHzLabelByUsercode" parameterType="java.util.Map" resultType="com.kqds.entity.base.KqdsLabel">
+		select l.leveLabel,l.SEQ_ID,l.parentName from KQDS_HZ_label l 
+		left join KQDS_HZ_labelAssociated a on l.seq_id=a.labeId
+		where a.isdelete!=1 and usercode=#{usercode} and a.status=#{status}
+	</select>
+	<select id="findKqdsHzLabelParentIdByParentName" parameterType="java.lang.String" resultType="com.kqds.entity.base.KqdsLabel">
+		select parentId,parentName,seq_id from KQDS_HZ_label where leveLabel = #{leveLabel} and remark like '二级%'
+	</select>
+	<select id="findKqdsHzLabelSeqIdByLeveLabel" parameterType="java.lang.String" resultType="java.lang.String">
+	select SEQ_ID from KQDS_HZ_label where leveLabel = #{leveLabel} and remark like '三级%'
+	</select>
+	
+	<select id="findParentId" parameterType="map" resultType="json">
+		SELECT
+	 	kl.*,
+	 	sy.USER_NAME AS createname
+		FROM 
+			KQDS_HZ_label kl
+		LEFT JOIN SYS_PERSON sy ON sy.SEQ_ID = kl.createUser
+		WHERE 1=1
+		<if test="parentId!=null and parentId!=''">
+			AND parentId = #{parentId}
+		</if>
+	</select>
+</mapper>

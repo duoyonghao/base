@@ -1,0 +1,334 @@
+@CHARSET "UTF-8";
+html,body,.container{
+	width:100%;
+	height:100%;
+}
+a{
+	text-decoration:none;
+	color:#333;
+}
+a:hover{
+	text-decoration:none;
+}
+.container{
+	padding:20px 0 70px;
+	overflow:auto;
+}
+.tableContent{/*table布局 */
+	margin:0 auto;
+	border-collapse:separate;
+	font-size:13px;
+}
+.relative{
+	position:relative;
+}
+.icon20 {/* 客户星级 */
+	display: inline-block;
+    width: 20px;
+    height: 20px;  
+    cursor:pointer;
+}
+.hc-icon {/* 客户星级 */
+    background: url(../../../image/kqdsFront/img/icon.png) no-repeat;
+}
+.stars-icon {/* 客户星级 */  /*无色星星 */
+    background-position: -130px -15px;
+}
+.hc-active.stars-icon{/*黄色星星*/
+	background-position:-150px -15px;
+}
+.tableContent span.impText{/*必填信息*/
+	display:block;
+	text-align:right;
+	padding:0 10px 0 5px;
+	color:#FA6406;
+	/* color:#a94442; */
+}
+.tableContent span.comText{/*普通信息 */
+	display:block;
+	text-align:right;
+	padding:0 10px 0 5px;
+}
+
+.tableContent tr{/*行高 用来调整行与行之间的距离 */
+	height:42px;
+}
+.tableContent tr>td:nth-child(3){/*第三列与第二列之间间距30px*/
+	padding-left:60px;
+}
+input[readonly]{/*只读的input*/
+	background:rgba(246, 246, 246, 0.42);
+	cursor:not-allowed;
+}
+select,input[type="text"]{/*普通select input 占td的80% */
+	width:200px;
+	box-sizing:border-box;
+	float:left;
+	color:#333;
+}
+input[type="text"]:focus,select:focus,textarea:focus{
+    box-shadow: 0 0 8px rgb(49, 165, 247);
+    border-color:transparent;
+}
+select{padding-left:3px;cursor:pointer;}
+input[type="text"]{padding-left:5px;}
+input[readonly]:focus,
+input[disabled]:focus,
+select[readonly]:focus,
+select[disabled]:focus,
+textarea[disabled]:focus,
+textarea[readonly]:focus{
+    box-shadow: none;
+    border-color:#ddd;
+}
+input[readonly],html input[disabled],select[disabled],select[disabled],textarea[disabled]{/*只读的input*/
+	background:rgba(246, 246, 246, 0.42);
+	cursor:not-allowed;
+	color:#777;
+}
+select.sel_short_inp_long{/*select input 组合使用时的样式 */
+	width:60px;
+	height:28px;
+	border-top-right-radius:0;
+	border-bottom-right-radius:0;
+	padding-left:3px;
+}
+input[type="text"].sel_short_inp_long{	/* select input 组合使用时的样式 */
+	width:140px;
+	height:28px;
+	border-top-left-radius:0;
+	border-bottom-left-radius:0;
+	border-left-color:rgba(255,255,255,0);
+}
+.ui-datepicker-trigger{	/*出生年月日的 按钮*/
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+	position:absolute;
+	/* right:46px; */
+	right:2px;
+}
+.sel3{	/*国家区 的三个select */
+	width:110px;
+	height:28px;
+	margin-left:2px;
+}
+.sel3:last-child{/*市 县 区  */
+	width:130px;
+}
+input.sel_address{/*地址中的input宽度*/
+	width:527px;
+	height:28px;
+}
+textarea{
+	width:100%;
+	min-height:30px;
+	font-size:13px;
+	border-radius:4px;
+	color:#333;
+	padding-left:5px;
+}
+tr.textareaTr3{	/* 行为3 的 textarea行高 */
+	height:94px;
+}
+
+tr.textareaTr1{	/* 行数1 的 textarea行高 */
+	height:50px;
+}
+									/*底部固定定位的div 存放三个按钮*/
+.fixedBottomDiv{
+	position:fixed;
+	bottom:0;
+	width:100%;
+	box-sizing:border-box;
+	background:#fff;
+	height:50px;
+	text-align:center;
+	padding-top:10px;
+	border-top:1px solid #ddd;
+}
+.fixedBottomDiv>.aBtn{/* 清空 确认 取消 按钮样式 */
+	display:inline-block;
+	color:#0E7CC9;
+	background:#fff;
+	height:28px;
+	width:90px;
+	line-height:28px;
+	border-radius:16px;
+	text-align:center;
+	padding:0 5px;
+	border:1px solid #0E7CC9;
+	margin:0 10px;
+	font-size:13px;
+}
+.fixedBottomDiv>.search{
+	cursor:pointer;
+	color:#fff;
+	background:#0E7CC9;
+}
+.fixedBottomDiv>.aBtn:hover{
+	cursor:pointer;
+	color:#fff;
+	background:#0E7CC9;
+}
+
+.sexValue{/* 性别 男和女 的样式 */
+	display:inline-block;
+	position:relative;
+	top:-2px;
+	font-weight:normal;
+	margin-right:4px;
+	margin-bottom:0;
+	cursor:pointer;
+}
+input[type="radio"]:hover{/* 鼠标移入指针的效果 */
+	cursor:pointer;
+}
+#femaleId{
+	margin-left:15px;
+}
+
+
+										/*表单验证的样式修改*/
+
+.form-group{	/*所有提示文本 的样式  */
+	margin:0;
+}
+.form-group i.form-control-feedback{	/*覆盖了框架提供form-control-feedback 本身的部分样式*/
+	top:0;
+	right:-31px;
+}
+.form-group small.help-block{/*所有提示文本 的样式  */
+    margin:0;
+    height: 12px;
+    position: absolute;
+    top: 29px;
+    left: 10px;
+    font-size:11px;
+    /* font-size:12px; */
+}
+
+/* .sexReg{性别  提示符号 与提示文本的父元素
+	
+} */
+.sexReg i.form-control-feedback{/*提示符号  “对勾” “叉号” */
+	top:-7px;
+	right:98px;
+}
+.sexReg small.help-block{/* 提示文本的样式 */
+	top:25px;
+}
+
+/* .provinceReg{地区  提示符号 与 提示文本  的父元素
+	
+} */
+.provinceReg i.form-control-feedback{/*提示符号的位置  */
+	right:42px;
+}
+
+.greyInp{
+	background:#ddd;
+	cursor:pointer;
+}
+.whiteInp{
+	cursor:pointer;
+}
+
+
+
+												/* 以上为hzjd.jsp 使用的样式 */
+
+/*hzjd_edit.jsp 使用以上样式，以下为资料修改专用CSS*/
+.editPageBtnGroup{/*底部确认按钮父元素*/
+	text-align:center;
+	padding-top:20px;
+}
+.editPageBtnGroup .confirmBtn{
+	color:#0E7CC9;
+	background:#fff;
+	height:28px;
+	width:90px;
+	line-height:28px;
+	border-radius:16px;
+	text-align:center;
+	padding:0 5px;
+	border:1px solid #0E7CC9;
+	margin:0 10px;
+	font-size:13px;
+}
+.editPageBtnGroup .confirmBtn{
+	cursor:pointer;
+	color:#fff;
+	background:#0E7CC9;
+}
+
+								/*网电中心 建档页面自有  */
+.containerNet{
+	width:100%;
+	padding:20px 0 50px;
+	/* overflow:hidden; */
+}
+.containerNet #defaultForm{/* 表单 */
+	overflow:hidden;
+}
+.containerNet input[type="text"].sel_address{/* 地址的宽度 */
+	width:527px;
+}
+.containerNet .passportNum{/* 商务身份证 */
+	width:527px;
+	min-height:24px;
+	padding:5px;
+}
+.containerNet .line{			/*分割线  */
+	position:relative;
+	left:5px;
+}
+
+								/*网电中心 修改页面自有  */
+.containerNetEdit{	/*网电中心页面的  */
+	width:100%;
+	padding:20px 0 20px;
+	/* overflow:hidden; */
+}
+.containerNetEdit input[type="text"].sel_address{/* 地址的宽度 */
+	width:527px;
+}
+.containerNetEdit .netBtnDiv{/* 确认按钮的父元素 */
+	margin-top:20px;
+	text-align:center;
+}
+.containerNetEdit .passportNum{/* 商务通身份证的样式 */
+	width:527px;
+	min-height:24px;
+	padding:5px;
+}
+.containerNetEdit .line{	/*分割线  */
+	position:relative;
+	left:5px;
+}
+.netBtnDiv>.aBtn{/* 清空 确认 取消 按钮样式 */
+	display:inline-block;
+	color:#0E7CC9;
+	background:#fff;
+	height:28px;
+	width:90px;
+	line-height:28px;
+	border-radius:16px;
+	text-align:center;
+	padding:0 5px;
+	border:1px solid #0E7CC9;
+	margin:0 10px;
+	font-size:13px;
+}
+.netBtnDiv>.search{
+	cursor:pointer;
+	color:#fff;
+	background:#0E7CC9;
+}
+.netBtnDiv>.aBtn:hover{
+	cursor:pointer;
+	color:#fff;
+	background:#0E7CC9;
+}
+

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta name="viewport" content="width=device-width,initial-scale=1,mininum-scale=1,maximum-scale=1,user-scalable=no" charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="../../static/css/wechat/weui.css"/>
+<link rel="stylesheet" href="../../static/css/wechat/jquery-weui.min.css"/>
+<link rel="stylesheet" href="../../static/css/wechat/kqdsWeixin.css"/>
+<style>
+	.kqds-binglidetail .weui-form-preview__label {
+	    width: 8em;
+	    text-align: left;
+	    /* margin-right: 0; */
+	}
+	.weui-form-preview__label {
+	    float: left;
+	    margin-right: 1em;
+	    min-width: 4em;
+	    color: #999999;
+	   	text-align: left; 
+	    text-align-last: left; 
+	}
+	.weui-form-preview__bd {
+	    padding: 10px 15px;
+	    font-size: .9em;
+	    text-align: left;
+	    color: #999999;
+	    line-height: 2;
+	}
+	.weui-form-preview__item {
+	    overflow: hidden;
+	    border-bottom: 1px solid #ddd;
+	}
+</style>
+</head>
+<body>
+<div class="kqds-header">
+	<h2 class="titleText">
+		<i class="icon icon-leftArrow" onclick="jump('list.html')"></i> 
+		<span class="titleTextFont">病历详情</span>
+	</h2>
+</div>
+<div class="kqds-content">
+	<div class="kqds-binglidetail">
+		<div class="weui-form-preview"></div>
+	</div>
+</div>
+<script type="text/javascript" src="../../static/js/wechat/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="../../static/plugin/layer-v2.4/layer/layer.js"></script>
+<script type="text/javascript" src="../../static/js/wechat/jquery-weui.js"></script>
+<script type="text/javascript" src="../../static/js/kqdsFront/util.js"></script>
+<script type="text/javascript" src="../../static/js/wechat/kqds_wechat.js?version=1.7"></script>
+<script type="text/javascript" src="../../static/js/wechat/kqds_order.js"></script>
+<script>
+var orderinfo = null;
+$(function() {
+    var seqId = $.getUrlVar('seqId');
+    var mtype = $.getUrlVar('mtype');
+    var url = wxBingLiObj.selectDetail + "&meid=" + seqId + "&mtype=" + mtype;
+    var rtData = getDataFromServer(url);
+    if (rtData.retState == 0) {
+        var html = initDetail(rtData.data);
+        $(".weui-form-preview").append(html);
+    }
+});
+function initDetail(info) {
+    var detail = '';
+    detail += '<div class="weui-form-preview__bd">';
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">药物过敏史： </label>';
+    detail += '  		<span class="weui-form-preview__value">' + info.allergy + '</span>';
+    detail += '  </div>';
+    detail += getcontent(info.dentition, "牙列情况： ");
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">软组织情况： </label>';
+    detail += '  		<span class="weui-form-preview__value">' + info.softTissue + '</span>';
+    detail += '  </div>';
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">硬组织情况： </label>';
+    detail += '  		<span class="weui-form-preview__value">' + info.hardTissue + '</span>';
+    detail += '  </div>';
+    
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">CBCT检查： </label>';
+    detail += '  		<span class="weui-form-preview__value">骨高度(mm)' + info.boneHeight + ',骨宽度(mm)' + info.boneWidth + ',骨密度(mm)' + info.boneDensity + '</span>';
+    detail += '  </div>';
+    
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">CBCT检查： </label>';
+    detail += '  		<span class="weui-form-preview__value">距离上颌窦高度：左(mm)' + info.maxillarySinusLeft + '，右(mm)' + info.maxillarySinusRight + '</span>';
+    detail += '  </div>';
+    
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">CBCT检查： </label>';
+    detail += '  		<span class="weui-form-preview__value">距离下牙槽神经管高度：左(mm)' + info.boneNerveLeft + '，右（mm）' + info.boneNerveRight + '</span>';
+    detail += '  </div>';
+    
+    var hypertensionControlHtml = "";
+    if(info.hypertensionControl == 0){
+    	hypertensionControlHtml = "否"
+    }
+    if(info.hypertensionControl == 1){
+    	hypertensionControlHtml = "是"
+    }
+    
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">全身情况： </label>';
+    detail += '  		<span class="weui-form-preview__value">高血压：' + info.hypertension + ',' + info.hypertensionYear + '年,是否服药?' + info.hypertensionMedication + '，是否控制：'+hypertensionControlHtml+'</span>';
+    detail += '  </div>';
+    
+    var cardiopathyMedicationHtml = "";
+    if(info.cardiopathyMedication == 0){
+    	cardiopathyMedicationHtml = "否"
+    }
+    if(info.cardiopathyMedication == 1){
+    	cardiopathyMedicationHtml = "是"
+    }
+    
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">全身情况： </label>';
+    detail += '  		<span class="weui-form-preview__value">心脏病：' + info.cardiopathy + ',' + info.cardiopathyYear + '年,是否常备药在身边?' + cardiopathyMedicationHtml + '</span>';
+    detail += '  </div>';
+    
+    var diabetesIfHtml = "";
+    if(info.diabetesIf == 0){
+    	diabetesIfHtml = "无"
+    }
+    if(info.diabetesIf == 1){
+    	diabetesIfHtml = "有"
+    }
+    
+    
+    var diabetesHowHtml = "";
+    if(info.diabetesHow == 1){
+    	diabetesHowHtml = "饮食"
+    }
+    if(info.diabetesHow == 2){
+    	diabetesHowHtml = "口服药"
+    }
+    if(info.diabetesHow == 3){
+    	diabetesHowHtml = "针剂"
+    }
+    
+    var diabetesControlHtml = "";
+    if(info.diabetesControl == 0){
+    	diabetesControlHtml = "否"
+    }
+    if(info.diabetesControl == 1){
+    	diabetesControlHtml = "是"
+    }
+    
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">全身情况： </label>';
+    detail += '  		<span class="weui-form-preview__value">糖尿病：' + diabetesIfHtml + ',怎么控制：' + diabetesHowHtml + ',是否控制：' + diabetesControlHtml + '</span>';
+    detail += '  </div>';
+    
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">全身情况： </label>';
+    detail += '  		<span class="weui-form-preview__value">传染性疾病：' + info.infectiousDisease + '</span>';
+    detail += '  </div>';
+    
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">全身情况： </label>';
+    detail += '  		<span class="weui-form-preview__value">代谢性疾病：' + info.metabolicDisease + '</span>';
+    detail += '  </div>';
+    
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">全身情况： </label>';
+    detail += '  		<span class="weui-form-preview__value">服药情况：' + info.medication + '</span>';
+    detail += '  </div>';
+    
+    
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">其他： </label>';
+    detail += '  		<span class="weui-form-preview__value">' + info.others + '</span>';
+    detail += '  </div>';
+    
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">实验室检查： </label>';
+    detail += '  		<span class="weui-form-preview__value">' + info.labExamination + '</span>';
+    detail += '  </div>';
+    
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">术前诊断： </label>';
+    detail += '  		<span class="weui-form-preview__value">' + info.preoperativeDiagnosis + '</span>';
+    detail += '  </div>';
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">手术中可能发生的问题及其对策： </label>';
+    detail += '  		<span class="weui-form-preview__value">' + info.possibleProblems + '</span>';
+    detail += '  </div>';
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">植骨情况： </label>';
+    detail += '  		<span class="weui-form-preview__value">' + info.boneMembrane + '</span>';
+    detail += '  </div>';
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">手术后应注意问题： </label>';
+    detail += '  		<span class="weui-form-preview__value">' + info.postoperativeAttentions + '</span>';
+    detail += '  </div>';
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">种植修复相关问题： </label>';
+    detail += '  		<span class="weui-form-preview__value">' + info.issueImplantationRestoration + '</span>';
+    detail += '  </div>';
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">种植治疗方案： </label>';
+    detail += '  		<span class="weui-form-preview__value">' + info.treatmentPlan + '</span>';
+    detail += '  </div>';
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">备注： </label>';
+    detail += '  		<span class="weui-form-preview__value">' + info.treatmentRemark + '</span>';
+    detail += '  </div>';
+    
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">牙龈厚度(mm)：  </label>';
+    detail += '  		<span class="weui-form-preview__value">' + info.gumThickness + '</span>';
+    detail += '  </div>';
+    
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">牙槽嵴顶宽度(mm)：  </label>';
+    detail += '  		<span class="weui-form-preview__value">' + info.alveolarCrestWidth + '</span>';
+    detail += '  </div>';
+    
+    detail += getcontent(info.detailsOfImpants, "种植体植入情况： ");
+    
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">条码粘贴： </label>';
+    detail += '  		<span class="weui-form-preview__value">' + info.barcodeStick + '</span>';
+    detail += '  </div>';
+    
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">术后医嘱： </label>';
+    detail += '  		<span class="weui-form-preview__value">' + info.postoperativeAdvice + '</span>';
+    detail += '  </div>';
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">备注：</label>';
+    detail += '  		<span class="weui-form-preview__value">' + info.stageRemark + '</span>';
+    detail += '  </div>';
+    
+    return detail;
+}
+</script>
+</body>
+</html>

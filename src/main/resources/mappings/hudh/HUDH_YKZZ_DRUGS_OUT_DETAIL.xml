@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_YKZZ_DRUGS_OUT_DETAIL">
+	<resultMap id="DrugsOutDetailMap" type="com.hudh.ykzz.entity.YkzzDrugsOutDetail">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="orderno" jdbcType="VARCHAR" property="orderno" />
+		<result column="contry_code" jdbcType="VARCHAR" property="contryCode" />
+		<result column="chemistry_name" jdbcType="VARCHAR" property="chemistryName" />
+		<result column="drugs_typeone" jdbcType="VARCHAR" property="drugsTypeone" />
+		<result column="drugs_typetwo" jdbcType="VARCHAR" property="drugsTypetwo" />
+		<result column="company" jdbcType="VARCHAR" property="company" />
+		<result column="nuit_price" jdbcType="DECIMAL" property="nuitPrice" />
+		<result column="kc_quantity" jdbcType="INTEGER" property="kcQuantity" />
+		<result column="ck_quantity" jdbcType="INTEGER" property="ckQuantity" />
+		<result column="amount" jdbcType="DECIMAL" property="amount" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="parentid" jdbcType="VARCHAR" property="parentid" />
+		<result column="drugs_id" jdbcType="VARCHAR" property="drugsId" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="batchnum" jdbcType="VARCHAR" property="batchnum" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="batchToNumber" jdbcType="VARCHAR" property="batchToNumber" />
+		<result column="batchToId" jdbcType="VARCHAR" property="batchToId" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, orderno, contry_code, chemistry_name ,drugs_typeone, drugs_typetwo,company , nuit_price,kc_quantity,ck_quantity,
+		amount,remark,parentid,drugs_id,status,batchnum,createtime,batchToNumber,batchToId,organization
+	</sql>
+	
+	<insert id="batchSaveOutDetail" parameterType="java.util.List">
+		insert into HUDH_YKZZ_DRUGS_OUT_DETAIL (id, orderno, contry_code, chemistry_name ,drugs_typeone, drugs_typetwo,company , 
+		nuit_price,kc_quantity,ck_quantity,amount,remark,parentid,drugs_id,status,batchnum,createtime,batchToNumber,batchToId,organization)
+		values (#{id,jdbcType=VARCHAR}, #{orderno,jdbcType=VARCHAR}, #{contryCode,jdbcType=VARCHAR},
+		#{chemistryName,jdbcType=VARCHAR},#{drugsTypeone,jdbcType=VARCHAR},#{drugsTypetwo,jdbcType=VARCHAR},
+		#{company,jdbcType=VARCHAR},#{nuitPrice,jdbcType=DECIMAL},#{kcQuantity,jdbcType=INTEGER},
+		#{ckQuantity,jdbcType=INTEGER},#{amount,jdbcType=DECIMAL},#{remark,jdbcType=VARCHAR},
+		#{parentid,jdbcType=VARCHAR},#{drugsId,jdbcType=VARCHAR},#{status,jdbcType=INTEGER},
+		#{batchnum,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR},#{batchToNumber,jdbcType=VARCHAR},#{batchToId,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<select id="findDetailByParendId" resultType="json">
+		select
+		a.id, a.orderno, a.contry_code, a.chemistry_name ,a.drugs_typeone,a.drugs_typetwo,a.status,b.type_name as drugs_typeone_name,c.type_name as drugs_typetwo_name,
+		a.company , 
+		convert(varchar,a.nuit_price)  as nuit_price,
+		<!-- a.nuit_price, -->
+		a.kc_quantity,
+		a.ck_quantity,
+		convert(varchar,a.amount)  as amount,
+		<!-- a.amount, -->
+		a.remark,a.parentid,a.drugs_id,d.packing_unit,d.pharm_spec,a.batchnum
+		from HUDH_YKZZ_DRUGS_OUT_DETAIL a
+		left join HUDH_YKZZ_TYPE b on a.drugs_typeone = b.id
+		left join HUDH_YKZZ_TYPE c on a.drugs_typetwo = c.id
+		left join HUDH_YKZZ_DRUGS d on a.drugs_id = d.id
+		where a.parentid = #{parentid,jdbcType=VARCHAR} and a.status = 0
+	</select>
+	
+	<update id="deleteDrugsOutDetailByParendId" parameterType="String">
+		update HUDH_YKZZ_DRUGS_OUT_DETAIL set status = 1
+		where parentid=#{id,jdbcType=VARCHAR}
+	</update>
+	
+	<select id="findDrugsOutDetailByOrderno" parameterType="String" resultType="com.hudh.ykzz.entity.YkzzDrugsOutDetail">
+		SELECT COUNT(*),orderno,batchnum,ck_quantity,createtime FROM HUDH_YKZZ_DRUGS_OUT_DETAIL WHERE orderno = #{order_no} GROUP BY orderno,batchnum,ck_quantity,createtime ORDER BY createtime ASC;
+	</select>
+	<!--2019-08-23 lwg 根据药品批号和编号查询当天的出库数量-->
+	<select id="findDrugsOutDetailByOrdernoAndBatchnum" parameterType="java.util.Map" resultType="String">
+		select isnull(sum(ck_quantity),0)
+		from HUDH_YKZZ_DRUGS_OUT_DETAIL 
+		WHERE 1=1
+		and orderno = #{orderno} 
+		and batchnum=#{batchnum} 
+		and createtime <![CDATA[ >= ]]> #{starttime}
+		and createtime <![CDATA[ <= ]]> #{endtime}
+	</select>
+	<!--2019-08-23 lwg 查询当天药品的总出库数量-->
+	<select id="findOutNumsByAll" parameterType="java.util.Map" resultType="String">
+		select isnull(sum(ck_quantity),0)
+		from HUDH_YKZZ_DRUGS_OUT_DETAIL 
+		WHERE 1=1
+		and createtime <![CDATA[ >= ]]> #{starttime}
+		and createtime <![CDATA[ <= ]]> #{endtime}
+	</select>
+</mapper>

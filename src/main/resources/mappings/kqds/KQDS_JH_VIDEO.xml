@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_JH_VIDEO">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsJh">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="url" jdbcType="VARCHAR" property="url" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="operator" jdbcType="VARCHAR" property="operator" />
+		<result column="del" jdbcType="INTEGER" property="del" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="filename" jdbcType="VARCHAR" property="filename" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="burning_time" jdbcType="VARCHAR" property="burningTime" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.base.KqdsJhVideo">
+		<result column="content" jdbcType="CLOB" property="content" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id,url,createtime,operator,del,createuser,filename,organization,burning_time
+	</sql>
+	
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsJhVideo">
+		insert into KQDS_JH_VIDEO 
+		(id,url,createtime,createuser,filename,del,organization,burning_time)
+		values
+		(#{id,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{createuser,jdbcType=VARCHAR},#{filename,jdbcType=VARCHAR},#{del,jdbcType=INTEGER},
+		#{organization,jdbcType=VARCHAR},#{burningTime,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertList" parameterType="java.util.List">
+		<foreach collection="list" item="bean" index="index" open="" close="" separator=";">
+		insert into KQDS_JH_VIDEO 
+		(id,url,createtime,createuser,filename,del,organization,burning_time)
+		values
+		(#{bean.id,jdbcType=VARCHAR}, #{bean.url,jdbcType=VARCHAR}, #{bean.createtime,jdbcType=VARCHAR},
+		#{bean.createuser,jdbcType=VARCHAR},#{bean.filename,jdbcType=VARCHAR},#{bean.del,jdbcType=INTEGER},
+		#{bean.organization,jdbcType=VARCHAR},#{bean.burningTime,jdbcType=VARCHAR})
+		</foreach>
+	</insert>
+	
+	<select id="selectUrl" parameterType="java.lang.String" resultType="com.kqds.entity.base.KqdsJhVideo">
+		select * from KQDS_JH_VIDEO where del=0 and organization=#{organization}
+	</select>
+	
+	<update id="del" parameterType="com.kqds.entity.base.KqdsJhVideo">
+		update KQDS_JH_VIDEO set del=#{del},operator=#{operator} where url=#{url} and organization=#{organization}
+	</update>
+</mapper>

@@ -1,0 +1,188 @@
+@CHARSET "UTF-8";
+*{
+	box-sizing:border-box;
+}
+html{
+	font-size:10px;
+	/* font-family:"Microsoft Yahei","serif","sans-serif"; */
+}
+html,body,.container{
+	width:100%;
+}
+body{
+	font-size:1.2rem;
+}
+.container{
+	padding:0 15px 0 ;
+	box-sizing:border-box;
+	overflow:hidden;
+}
+.titleDiv{
+	box-sizing: border-box;
+    color: #373737;
+    font-family: "Microsoft YaHei";
+    height: 30px;
+    position: relative;
+    
+}
+.titleDiv .title{
+	font-size: 18px;
+    height: 20px;
+    line-height: 20px;
+    float: left;
+    display: block;
+    margin-top: 5px;
+}
+.indivdualMessageUl{
+	border-top:1px solid #ddd;
+	overflow:hidden;
+    padding: 3px 0px;
+}
+.indivdualMessageUl>li{
+	overflow:hidden;
+}
+.indivdualMessageUl>li>div{
+	/* width:50%; */
+	line-height:28px;
+	float:left;
+}
+.indivdualMessageUl>li>div:first-child{
+	width:250px;
+}
+@media screen and (max-width:520px){
+	.indivdualMessageUl>li>div:first-child{
+		width:200px;
+	}
+}
+.indivdualMessageUl>li>div.fullWidth{
+	width:100%;
+}
+.indivdualMessageUl>li>div>span{
+	float:left;
+	height:26px;
+	line-height:26px;
+	font-family:"Microsoft YaHei";
+	font-weight:400;
+	color:#7C7C7C;
+}
+.indivdualMessageUl>li>div>i{
+	font-style:normal;
+	float:left;
+	line-height:26px;
+	color:#333;
+	padding-left:15px;
+}
+.indivdualMessageUl>li>div>b{
+	font-weight:normal;
+	float:left;
+	width:21px;
+	height:21px;
+}
+.indivdualMessageUl>li>div>span.showValue{
+	
+}
+a{
+	text-decoration:none;
+	color:#333;
+}
+a:hover{
+	text-decoration:none;
+}
+.barcodediv{	/*条形码的父元素 没有选择患者时 条形码时隐藏的 */
+	display:none;
+	width:556px;
+	margin:0 auto;
+}
+
+.pageTitle{/* 标题 “基本信息 ” */
+	display:block;
+	color:#fff;
+	background:#0E7CC9;
+	height:2.8rem;
+	line-height:2.8rem;
+	font-size:1.4rem;
+	padding-left:2rem;
+	/* font-weight:bold; */
+}
+.printBarcode{	/* 打印按钮 */
+	display:inline-block;
+	width:50px;
+	height:24px;
+	line-height:24px;
+	text-align:center;
+	background:#fff;
+	border:1px solid #0E7CC9;
+	border-radius:16px;
+	color:#0E7CC9;
+	text-decoration:none;
+	position:relative;
+	cursor:pointer;
+	top:-4px; 
+}
+.printBarcode:hover{	
+	background:#0E7CC9;
+	color:#fff;
+}
+.tableLayout{	/* table布局 */
+	margin:10px auto;
+	clear:both;
+	/* width:95%; */
+	width:580px;
+}
+table.tableLayout tr>td:nth-child(3){/* 第二列与第三列之间的距离 */
+	
+}
+span.dataName{	/* 信息名称 */
+	display:block;
+	padding:10px 10px 10px 0;
+	text-align:right;
+	float:left;
+	width:100px;
+	white-space : nowrap; 
+}
+span.dataValue{	/* 信息值   1行4列时 值的宽度*/
+	display:block;
+	padding:10px 10px 10px 0px;
+	width:168px;
+	float:left;
+}
+span.dataLongName{/* 信息名称  1行1列时 值的宽度*/
+	display:block;
+	padding:10px 10px 10px 0;
+	text-align:right;
+	width:100px;
+	float:left;
+	white-space:nowrap;
+}
+span.dataLongValue{/* 信息值   1行1列时 值的宽度*/
+	display:block;
+	padding:10px 10px 10px 0;
+	width:443px;
+	float:left;
+}
+
+.tableLayout.paddingBot tr:last-child span{/* 距离一下个table的距离*/
+	padding-bottom:20px;
+}
+.tableLayout.paddingBot{ /* 添加table的下边框 */
+	border-bottom:1px solid #ddd;
+}
+@font-face
+{
+    font-family: FontAwesome;
+    src: url('../../fonts/fontawesome-webfont.ttf'),
+    url('../../fonts/fontawesome-webfont.eot'); /* IE9 */
+}
+.weixinIcon{
+	font-family: 'FontAwesome';
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 15px;
+    text-align: center;
+    margin-right:0;
+    cursor:pointer;
+}
+.icon-weixin:before{
+	content:'\f1d7';
+}

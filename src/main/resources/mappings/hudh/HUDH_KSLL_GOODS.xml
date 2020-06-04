@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_KSLL_GOODS">
+	<resultMap id="KsllGoodMap" type="com.hudh.ksll.entity.KsllGoods">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="deptpart" jdbcType="VARCHAR" property="deptpart" />
+		<result column="goodscode" jdbcType="VARCHAR" property="goodscode" />
+		<result column="goodsname" jdbcType="VARCHAR" property="goodsname" />
+		<result column="house" jdbcType="VARCHAR" property="house" />
+		<result column="goodsnorms" jdbcType="VARCHAR" property="goodsnorms" />
+		<result column="goodsunit" jdbcType="VARCHAR" property="createtime" />
+		<result column="nums" jdbcType="INTEGER" property="organization" />
+		<result column="validity" jdbcType="VARCHAR" property="organization" />
+		<result column="inremark" jdbcType="VARCHAR" property="organization" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="goodsprice" jdbcType="VARCHAR" property="goodsprice" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime"/>
+		<result column="createuser" jdbcType="VARCHAR" property="createuser"/>
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, deptpart, goodscode, goodsname ,house, goodsnorms,goodsunit , nums,validity,inremark,organization,goodsprice,createtime,createuser
+	</sql>
+	
+	<select id="findKsllGoodsByPrimaryId" parameterType="String" resultType="json">
+		select
+		<include refid="Base_Column_List" />
+		from HUDH_KSLL_GOODS
+		where id=#{id}
+	</select>
+	
+	<insert id="insertKsllGoods" parameterType="com.hudh.ksll.entity.KsllCollor">
+		insert into HUDH_KSLL_GOODS 
+		(id, deptpart, goodscode, goodsname ,house, goodsnorms,goodsunit , nums,validity,inremark,organization,createtime,createuser)
+		values (#{id,jdbcType=VARCHAR}, #{deptpart,jdbcType=VARCHAR}, #{goodscode,jdbcType=VARCHAR},
+		#{goodsname,jdbcType=VARCHAR},#{house,jdbcType=VARCHAR},#{goodsnorms,jdbcType=VARCHAR},
+		#{goodsunit,jdbcType=VARCHAR},#{nums,jdbcType=INTEGER},#{validity,jdbcType=VARCHAR},
+		#{inremark,jdbcType=VARCHAR},#{organization,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR},#{createuser,jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="findAllKsllGoods" resultType="json" parameterType="map">
+		SELECT
+			kc.id,
+			kc.deptpart,
+			cd.DEPTNAME AS deptpartname,
+			d.goodscode,
+			d.goodsname,
+			h.SEQ_ID AS house,
+			h.housename AS housename,
+			d.goodsnorms,
+			d.goodsunit,
+			kc.nums,
+			kc.goodsdetailid,
+			kc.validity,
+			kc.inremark,
+			kc.organization,
+			kc.goodsprice,
+			kc.createtime,
+			p.USER_NAME
+		FROM
+			HUDH_KSLL_GOODS kc
+		LEFT JOIN KQDS_CK_DEPT cd ON cd.SEQ_ID = kc.deptpart
+		LEFT JOIN KQDS_CK_GOODS_DETAIL d ON d.SEQ_ID = kc.goodsdetailid
+		LEFT JOIN KQDS_CK_GOODS g ON g.goodsdetailid = d.SEQ_ID
+		LEFT JOIN KQDS_CK_HOUSE h ON h.SEQ_ID = g.sshouse
+		LEFT JOIN sys_person p ON p.SEQ_ID = kc.createuser
+		where 1=1
+		<if test='deptpart != null and deptpart != ""'>
+			and kc.deptpart = #{deptpart}
+		</if>
+		<if test='house != null and house != ""'>
+			<!-- and kc.house = #{house} -->
+			AND h.SEQ_ID = #{house}
+		</if>
+		<if test='goodscode != null and goodscode != ""'>
+			and d.goodscode = #{goodscode}
+		</if>
+		<if test='goodsname != null and goodsname != ""'>
+			and d.goodsname = #{goodsname}
+		</if>
+		<if test='organization != null and organization != ""'>
+			and kc.organization = #{organization}
+		</if>
+		<if test="queryInput != null and queryInput !=''">
+			and (cd.deptName like '%' + #{queryInput} + '%'
+			or d.goodsname like '%' + #{queryInput} + '%'
+			or d.goodsnorms like '%' + #{queryInput} + '%'
+			or d.goodscode like '%' + #{queryInput} + '%')
+		</if>
+		<if test="parentid != null and parentid != '' ">
+		and d.goodscode in (select goodscode from HUDH_KSLL_COLLOR_DETAIL 
+		 where parentid = #{parentid,jdbcType=VARCHAR} and status!=3)
+		</if>
+		order by d.goodscode asc
+	</select>
+	
+	<update id="batchUpdateKsllGoodsByPrimaryId" parameterType="java.util.List" >
+    	update HUDH_KSLL_GOODS
+    	<set>
+      		<if test="nums != null" >
+       	 		nums = #{nums,jdbcType=INTEGER},
+      		</if>
+    	</set>
+    	where id = #{id,jdbcType=VARCHAR}
+  	</update>
+  
+  	<insert id="batchSaveKsllGoodsDetail" parameterType="java.util.List">
+		insert into HUDH_KSLL_GOODS (id, deptpart, goodscode, goodsname ,house, goodsnorms,goodsunit , nums,validity,inremark,organization,goodsprice,createtime,createuser,goodsdetailid)
+		values (#{id,jdbcType=VARCHAR}, #{deptpart,jdbcType=VARCHAR}, #{goodscode,jdbcType=VARCHAR},
+		#{goodsname,jdbcType=VARCHAR},#{house,jdbcType=VARCHAR},#{goodsnorms,jdbcType=VARCHAR},
+		#{goodsunit,jdbcType=VARCHAR},#{nums,jdbcType=INTEGER},#{validity,jdbcType=VARCHAR},
+		#{inremark,jdbcType=DECIMAL},#{organization,jdbcType=VARCHAR},#{goodsprice,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR},#{createuser,jdbcType=VARCHAR},#{goodsdetailid,jdbcType=VARCHAR})
+	</insert>
+	
+	<update id="updateKsllGoodsByPrimaryId" parameterType="com.hudh.ksll.entity.KsllGoods" >
+    update HUDH_KSLL_GOODS
+    <set >
+      <if test="deptpart != null" >
+        deptpart = #{deptpart,jdbcType=VARCHAR},
+      </if>
+      <if test="goodscode != null" >
+        goodscode = #{goodscode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsname != null" >
+        goodsname = #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="house != null" >
+        house = #{house,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsnorms != null" >
+        goodsnorms = #{goodsnorms,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsunit != null" >
+        goodsunit = #{goodsunit,jdbcType=VARCHAR},
+      </if>
+      <if test="nums != null" >
+        nums = #{nums,jdbcType=VARCHAR},
+      </if>
+      <if test="validity != null" >
+        validity = #{validity,jdbcType=VARCHAR},
+      </if>
+      <if test="inremark != null" >
+        inremark = #{inremark,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null" >
+        organization = #{organization,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="findKsllGoodsByGoodsCode" parameterType="String" resultType="com.hudh.ksll.entity.KsllGoods">
+  	select <include refid="Base_Column_List" /> from HUDH_KSLL_GOODS where goodscode = #{goodsCode}
+  	<!-- select a.* from HUDH_KSLL_GOODS a,(select goodscode,max(createtime) as createtime from HUDH_KSLL_GOODS group by goodscode) b  
+  	where a.goodscode = b.goodscode and a.createtime = b.createtime  -->
+  </select>
+  <select id="findKsllGoodsByDeptpartAndGoodscode" parameterType="java.util.Map" resultType="com.hudh.ksll.entity.KsllGoods">
+  	select <include refid="Base_Column_List" /> 
+  	from HUDH_KSLL_GOODS where 
+        deptpart = #{deptpart,jdbcType=VARCHAR}
+        and goodscode = #{goodscode,jdbcType=VARCHAR}
+        <if test="house != null and house != '' ">
+        and house = #{house,jdbcType=VARCHAR}
+        </if>
+  </select>
+  <select id="findAllKsllColorGoodsByGoodscode" parameterType="java.util.Map" resultType="json">
+  		select <include refid="Base_Column_List" /> 
+  		from HUDH_KSLL_GOODS where 1=1
+  		<if test="deptpart !=null and deptpart !=''">
+        and deptpart = #{deptpart,jdbcType=VARCHAR}
+  		</if>
+        <if test="goodscode!=null and goodscode !=''">
+        and goodscode in (${goodscode})
+        </if>
+        <if test="house != null and house != '' ">
+        and house = #{house,jdbcType=VARCHAR}
+        </if>
+  </select>
+</mapper>

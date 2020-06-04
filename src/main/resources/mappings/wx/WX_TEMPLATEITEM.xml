@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="WX_TEMPLATEITEM">
+
+	<resultMap id="BaseResultMap" type="com.kqds.entity.wx.WXTemplateitem">
+		<id column="seq_id" jdbcType="VARCHAR" property="seqId" />
+		<result column="template_id" jdbcType="VARCHAR" property="templateId" />
+		<result column="template_seqid" jdbcType="VARCHAR" property="templateSeqid" />
+		<result column="first" jdbcType="VARCHAR" property="first" />
+		<result column="keyword1" jdbcType="VARCHAR" property="keyword1" />
+		<result column="keyword2" jdbcType="VARCHAR" property="keyword2" />
+		<result column="keyword3" jdbcType="VARCHAR" property="keyword3" />
+		<result column="keyword4" jdbcType="VARCHAR" property="keyword4" />
+		<result column="keyword5" jdbcType="VARCHAR" property="keyword5" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		seq_id, template_id, template_seqid, first, keyword1, keyword2, keyword3, keyword4,
+		keyword5, remark, status, createuser, createtime
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wx_templateitem
+		where seq_id = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from wx_templateitem
+		where seq_id = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.wx.WXTemplateitem">
+		insert into wx_templateitem (seq_id, template_id, template_seqid,
+		first, keyword1, keyword2,
+		keyword3, keyword4, keyword5,
+		remark, status,
+		createuser,
+		createtime)
+		values (#{seqId,jdbcType=VARCHAR}, #{templateId,jdbcType=VARCHAR}, #{templateSeqid,jdbcType=VARCHAR},
+		#{first,jdbcType=VARCHAR},
+		#{keyword1,jdbcType=VARCHAR}, #{keyword2,jdbcType=VARCHAR},
+		#{keyword3,jdbcType=VARCHAR}, #{keyword4,jdbcType=VARCHAR}, #{keyword5,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR},
+		#{status,jdbcType=INTEGER}, #{createuser,jdbcType=VARCHAR},
+		#{createtime,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.wx.WXTemplateitem">
+		insert into wx_templateitem
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				seq_id,
+			</if>
+			<if test="templateId != null">
+				template_id,
+			</if>
+			<if test="templateSeqid != null">
+				template_seqid,
+			</if>
+			<if test="first != null">
+				first,
+			</if>
+			<if test="keyword1 != null">
+				keyword1,
+			</if>
+			<if test="keyword2 != null">
+				keyword2,
+			</if>
+			<if test="keyword3 != null">
+				keyword3,
+			</if>
+			<if test="keyword4 != null">
+				keyword4,
+			</if>
+			<if test="keyword5 != null">
+				keyword5,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="templateId != null">
+				#{templateId,jdbcType=VARCHAR},
+			</if>
+			<if test="templateSeqid != null">
+				#{templateSeqid,jdbcType=VARCHAR},
+			</if>
+			<if test="first != null">
+				#{first,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword1 != null">
+				#{keyword1,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword2 != null">
+				#{keyword2,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword3 != null">
+				#{keyword3,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword4 != null">
+				#{keyword4,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword5 != null">
+				#{keyword5,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.wx.WXTemplateitem">
+		update wx_templateitem
+		<set>
+			<if test="templateId != null">
+				template_id = #{templateId,jdbcType=VARCHAR},
+			</if>
+			<if test="templateSeqid != null">
+				template_seqid = #{templateSeqid,jdbcType=VARCHAR},
+			</if>
+			<if test="first != null">
+				first = #{first,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword1 != null">
+				keyword1 = #{keyword1,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword2 != null">
+				keyword2 = #{keyword2,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword3 != null">
+				keyword3 = #{keyword3,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword4 != null">
+				keyword4 = #{keyword4,jdbcType=VARCHAR},
+			</if>
+			<if test="keyword5 != null">
+				keyword5 = #{keyword5,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where seq_id = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.wx.WXTemplateitem">
+		update wx_templateitem
+		set template_id = #{templateId,jdbcType=VARCHAR},
+		template_seqid = #{templateSeqid,jdbcType=VARCHAR},
+		first = #{first,jdbcType=VARCHAR},
+		keyword1 = #{keyword1,jdbcType=VARCHAR},
+		keyword2 = #{keyword2,jdbcType=VARCHAR},
+		keyword3 = #{keyword3,jdbcType=VARCHAR},
+		keyword4 =
+		#{keyword4,jdbcType=VARCHAR},
+		keyword5 = #{keyword5,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		createuser =
+		#{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR}
+		where seq_id = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+
+	<!--表名 -->
+	<sql id="tableName">
+		WX_TEMPLATEITEM
+	</sql>
+
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="WXTemplateitem">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectPage" parameterType="map" resultType="json">
+		select * from WX_TEMPLATEITEM dt
+		order by dt.createtime desc
+	</select>
+	
+	<select id="selectList" parameterType="map" resultType="json">
+		select * from WX_TEMPLATEITEM dt
+		order by dt.createtime desc
+	</select>
+
+</mapper>

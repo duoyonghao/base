@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_TREATITEM_TC">
+
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsTreatitemTc">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="itemno" jdbcType="VARCHAR" property="itemno" />
+		<result column="itemname" jdbcType="VARCHAR" property="itemname" />
+		<result column="unit" jdbcType="VARCHAR" property="unit" />
+		<result column="unitprice" jdbcType="VARCHAR" property="unitprice" />
+		<result column="num" jdbcType="VARCHAR" property="num" />
+		<result column="discount" jdbcType="VARCHAR" property="discount" />
+		<result column="subtotal" jdbcType="VARCHAR" property="subtotal" />
+		<result column="arrearmoney" jdbcType="VARCHAR" property="arrearmoney" />
+		<result column="paymoney" jdbcType="VARCHAR" property="paymoney" />
+		<result column="voidmoney" jdbcType="VARCHAR" property="voidmoney" />
+		<result column="istsxm" jdbcType="INTEGER" property="istsxm" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="tcnameid" jdbcType="VARCHAR" property="tcnameid" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, itemno, itemname, unit, unitprice, num, discount, subtotal, arrearmoney,
+		paymoney, voidmoney, istsxm, organization, createuser, createtime, tcnameid
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_TREATITEM_TC
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_TREATITEM_TC
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsTreatitemTc">
+		insert into KQDS_TREATITEM_TC (SEQ_ID, itemno, itemname,
+		unit, unitprice, num,
+		discount, subtotal, arrearmoney,
+		paymoney, voidmoney, istsxm,
+		organization, createuser, createtime,
+		tcnameid)
+		values (#{seqId,jdbcType=VARCHAR}, #{itemno,jdbcType=VARCHAR}, #{itemname,jdbcType=VARCHAR},
+		#{unit,jdbcType=VARCHAR},
+		#{unitprice,jdbcType=VARCHAR}, #{num,jdbcType=VARCHAR},
+		#{discount,jdbcType=VARCHAR}, #{subtotal,jdbcType=VARCHAR}, #{arrearmoney,jdbcType=VARCHAR},
+		#{paymoney,jdbcType=VARCHAR},
+		#{voidmoney,jdbcType=VARCHAR}, #{istsxm,jdbcType=INTEGER},
+		#{organization,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{tcnameid,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsTreatitemTc">
+		insert into KQDS_TREATITEM_TC
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="itemno != null">
+				itemno,
+			</if>
+			<if test="itemname != null">
+				itemname,
+			</if>
+			<if test="unit != null">
+				unit,
+			</if>
+			<if test="unitprice != null">
+				unitprice,
+			</if>
+			<if test="num != null">
+				num,
+			</if>
+			<if test="discount != null">
+				discount,
+			</if>
+			<if test="subtotal != null">
+				subtotal,
+			</if>
+			<if test="arrearmoney != null">
+				arrearmoney,
+			</if>
+			<if test="paymoney != null">
+				paymoney,
+			</if>
+			<if test="voidmoney != null">
+				voidmoney,
+			</if>
+			<if test="istsxm != null">
+				istsxm,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="tcnameid != null">
+				tcnameid,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="itemno != null">
+				#{itemno,jdbcType=VARCHAR},
+			</if>
+			<if test="itemname != null">
+				#{itemname,jdbcType=VARCHAR},
+			</if>
+			<if test="unit != null">
+				#{unit,jdbcType=VARCHAR},
+			</if>
+			<if test="unitprice != null">
+				#{unitprice,jdbcType=VARCHAR},
+			</if>
+			<if test="num != null">
+				#{num,jdbcType=VARCHAR},
+			</if>
+			<if test="discount != null">
+				#{discount,jdbcType=VARCHAR},
+			</if>
+			<if test="subtotal != null">
+				#{subtotal,jdbcType=VARCHAR},
+			</if>
+			<if test="arrearmoney != null">
+				#{arrearmoney,jdbcType=VARCHAR},
+			</if>
+			<if test="paymoney != null">
+				#{paymoney,jdbcType=VARCHAR},
+			</if>
+			<if test="voidmoney != null">
+				#{voidmoney,jdbcType=VARCHAR},
+			</if>
+			<if test="istsxm != null">
+				#{istsxm,jdbcType=INTEGER},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="tcnameid != null">
+				#{tcnameid,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsTreatitemTc">
+		update KQDS_TREATITEM_TC
+		<set>
+			<if test="itemno != null">
+				itemno = #{itemno,jdbcType=VARCHAR},
+			</if>
+			<if test="itemname != null">
+				itemname = #{itemname,jdbcType=VARCHAR},
+			</if>
+			<if test="unit != null">
+				unit = #{unit,jdbcType=VARCHAR},
+			</if>
+			<if test="unitprice != null">
+				unitprice = #{unitprice,jdbcType=VARCHAR},
+			</if>
+			<if test="num != null">
+				num = #{num,jdbcType=VARCHAR},
+			</if>
+			<if test="discount != null">
+				discount = #{discount,jdbcType=VARCHAR},
+			</if>
+			<if test="subtotal != null">
+				subtotal = #{subtotal,jdbcType=VARCHAR},
+			</if>
+			<if test="arrearmoney != null">
+				arrearmoney = #{arrearmoney,jdbcType=VARCHAR},
+			</if>
+			<if test="paymoney != null">
+				paymoney = #{paymoney,jdbcType=VARCHAR},
+			</if>
+			<if test="voidmoney != null">
+				voidmoney = #{voidmoney,jdbcType=VARCHAR},
+			</if>
+			<if test="istsxm != null">
+				istsxm = #{istsxm,jdbcType=INTEGER},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="tcnameid != null">
+				tcnameid = #{tcnameid,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsTreatitemTc">
+		update KQDS_TREATITEM_TC
+		set itemno = #{itemno,jdbcType=VARCHAR},
+		itemname = #{itemname,jdbcType=VARCHAR},
+		unit =
+		#{unit,jdbcType=VARCHAR},
+		unitprice = #{unitprice,jdbcType=VARCHAR},
+		num = #{num,jdbcType=VARCHAR},
+		discount = #{discount,jdbcType=VARCHAR},
+		subtotal = #{subtotal,jdbcType=VARCHAR},
+		arrearmoney = #{arrearmoney,jdbcType=VARCHAR},
+		paymoney = #{paymoney,jdbcType=VARCHAR},
+		voidmoney = #{voidmoney,jdbcType=VARCHAR},
+		istsxm = #{istsxm,jdbcType=INTEGER},
+		organization =
+		#{organization,jdbcType=VARCHAR},
+		createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		tcnameid = #{tcnameid,jdbcType=VARCHAR}
+		where SEQ_ID =
+		#{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_TREATITEM_TC
+	</sql>
+
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+	<select id="selectBeanListByMap" parameterType="map" resultType="com.kqds.entity.base.KqdsTreatitemTc">
+		<!-- select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include> -->
+		<!-- SELECT a.*,b.useflag FROM KQDS_TREATITEM_TC a
+		LEFT JOIN KQDS_TREATITEM b ON b.treatitemno = a.itemno
+		where 1=1 and b.useflag = 0 -->  <!-- 套餐取消停用药品 -->
+		SELECT a.*,b.useflag,d.classify FROM KQDS_TREATITEM_TC a
+		LEFT JOIN KQDS_TREATITEM b ON b.treatitemno = a.itemno
+		LEFT JOIN HUDH_YKZZ_DRUGS d ON d.order_no = a.itemno
+		where 1=1 and b.useflag = 0
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="getByTreatItemno" parameterType="java.lang.String" resultType="json">
+		select * from KQDS_TREATITEM where treatitemno = #{_parameter}
+	</select>
+	<select id="getCountByItemnos" parameterType="java.lang.String" resultType="int">
+		select count(1) from KQDS_TREATITEM_TC where itemno in(#{_parameter})
+	</select>
+	<select id="checkTc" parameterType="map" resultType="int">
+		select count(1) from KQDS_TREATITEM_TC where 1=1
+		and parentid = #{parentid} and name = #{name} and seq_id != #{seqId}
+	</select>
+	<select id="selectTcxmCount" parameterType="java.lang.String" resultType="int">
+		select count(1) from KQDS_TREATITEM_TC where tcnameid = #{_parameter}
+	</select>
+	<select id="selectWithPage" parameterType="map" resultType="json">
+		select
+		tcty.name as tctype,
+		tc.name as tcname,
+		tcty.seq_id as tctypeid,
+		tc.seq_id,
+		tc.isopen,
+		p.USER_NAME as createusername
+		from KQDS_TREATITEM_TC_type tc
+		LEFT JOIN
+		KQDS_TREATITEM_TC_type tcty on tc.parentid = tcty.seq_id
+		LEFT JOIN sys_person p on p.SEQ_ID = tc.createuser
+		where 1=1 and tc.parentid !='0'
+		<if test="tctype != null and tctype !='' ">
+			and tcty.name like '%' + #{tctype} + '%'
+		</if>
+		<if test="tcname != null and tcname !='' ">
+			and tc.tcname like '%' + #{tcname} + '%'
+		</if>
+		and tc.organization = #{organization}
+		ORDER BY tc.createtime
+	</select>
+	<select id="selectWithPageBytctypeAndname" parameterType="map" resultType="json">
+		select * from KQDS_TREATITEM_TC tc where tcnameid=#{tcnameid}
+	</select>
+	<select id="selectNoPageBytctypeAndname" parameterType="java.lang.String" resultType="json">
+		select * from KQDS_TREATITEM_TC tc where tcnameid=#{_parameter}
+	</select>
+	<select id="getTcNameListByTcType" parameterType="map" resultType="KqdsTreatitemTcType">
+		select name,seq_id from KQDS_TreatItem_Tc_Type where 1=1
+		and (createuser =#{createuser} or isopen = 1) and
+		parentid = #{parentid}
+		and (organization = #{organization} or organization = '')
+	</select>
+	<select id="countTcNameByTcType" parameterType="map" resultType="int">
+		select count(1) from KQDS_TreatItem_Tc_Type where 1=1
+		and (createuser =#{createuser} or isopen = 1) and
+		parentid = #{parentid}
+		and (organization = #{organization} or organization = '')
+	</select>
+	<select id="getTcTypeList" parameterType="java.lang.String" resultType="KqdsTreatitemTcType">
+		select tc.name,tc.seq_id from KQDS_TREATITEM_TC_TYPE tc where 1=1
+		and (organization = #{_parameter} or
+		organization = '') and parentid='0'
+	</select>
+
+</mapper>

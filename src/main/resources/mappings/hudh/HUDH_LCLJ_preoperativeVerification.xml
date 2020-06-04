@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_LCLJ_preoperativeVerification">
+	<resultMap id="preoperativeVerification" type="com.hudh.lclj.entity.PreoperativeVerification">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="SEQ_ID" />
+		<result column="lclj_Id" jdbcType="VARCHAR" property="lclj_Id" />
+		<result column="order_number" jdbcType="VARCHAR" property="order_number" />
+		<result column="patient_name" jdbcType="VARCHAR" property="patient_name"/>
+		<result column="patient_sex" jdbcType="VARCHAR" property="patient_sex"/>
+		<result column="patient_age" jdbcType="VARCHAR" property="patient_age"/>
+		<result column="blood_pressure" jdbcType="VARCHAR" property="blood_pressure"/>
+		<result column="pulse" jdbcType="VARCHAR" property="pulse"/>
+		<result column="blood_glucose" jdbcType="VARCHAR" property="blood_glucose"/>
+		<result column="cruor_function" jdbcType="VARCHAR" property="cruor_function"/>
+		<result column="infectious_diseases" jdbcType="VARCHAR" property="infectious_diseases"/>
+		<result column="consultation_opinion" jdbcType="VARCHAR" property="consultation_opinion"/>
+		<result column="pullout_tooth" jdbcType="VARCHAR" property="pullout_tooth"/>
+		<result column="plant_tooth" jdbcType="VARCHAR" property="plant_tooth"/>
+		<result column="assist_operation" jdbcType="VARCHAR" property="assist_operation"/>
+		<result column="plant_system" jdbcType="VARCHAR" property="plant_system"/>
+		<result column="nurseSignature" jdbcType="VARCHAR" property="nurseSignature"/>
+		<result column="doctorSignature" jdbcType="VARCHAR" property="doctorSignature"/>
+		<result column="signaturetime" jdbcType="VARCHAR" property="signaturetime"/>
+		<result column="operationAlltext" jdbcType="VARCHAR" property="operationAlltext"/>
+		
+		<result column="upleftToothBitOne" jdbcType="VARCHAR" property="upleftToothBitOne"/>
+		<result column="uperRightToothBitOne" jdbcType="VARCHAR" property="uperRightToothBitOne"/>
+		<result column="leftLowerToothBitOne" jdbcType="VARCHAR" property="leftLowerToothBitOne"/>
+		<result column="lowRightToothBitOne" jdbcType="VARCHAR" property="lowRightToothBitOne"/>
+		<result column="upleftToothBitTwo" jdbcType="VARCHAR" property="upleftToothBitTwo"/>
+		<result column="uperRightToothBitTwo" jdbcType="VARCHAR" property="uperRightToothBitTwo"/>
+		<result column="leftLowerToothBitTwo" jdbcType="VARCHAR" property="leftLowerToothBitTwo"/>
+		<result column="lowRightToothBitTwo" jdbcType="VARCHAR" property="lowRightToothBitTwo"/>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		SEQ_ID,lclj_Id,order_number,patient_name,patient_sex,patient_age,blood_pressure,pulse,blood_glucose,
+		cruor_function,infectious_diseases,consultation_opinion,pullout_tooth,plant_tooth,assist_operation,
+		plant_system,nurseSignature,doctorSignature,signaturetime,operationAlltext,createtime,upleftToothBitOne,
+		uperRightToothBitOne,leftLowerToothBitOne,lowRightToothBitOne,upleftToothBitTwo,uperRightToothBitTwo,
+		leftLowerToothBitTwo,lowRightToothBitTwo
+	</sql>
+	<!-- 保存术前核查单  -->
+	<insert id="savePreoperativeVerification" parameterType="com.hudh.lclj.entity.PreoperativeVerification">
+		INSERT INTO HUDH_LCLJ_preoperativeVerification(
+		SEQ_ID,lclj_Id,order_number,patient_name,patient_sex,patient_age,blood_pressure,pulse,blood_glucose,
+		cruor_function,infectious_diseases,consultation_opinion,pullout_tooth,plant_tooth,assist_operation,
+		plant_system,nurseSignature,doctorSignature,signaturetime,operationAlltext,createtime,upleftToothBitOne,
+		uperRightToothBitOne,leftLowerToothBitOne,lowRightToothBitOne,upleftToothBitTwo,uperRightToothBitTwo,
+		leftLowerToothBitTwo,lowRightToothBitTwo
+		) VALUES(#{SEQ_ID,jdbcType=VARCHAR},#{lclj_Id,jdbcType=VARCHAR},#{order_number,jdbcType=VARCHAR},#{patient_name,jdbcType=VARCHAR},
+		#{patient_sex,jdbcType=VARCHAR},#{patient_age,jdbcType=VARCHAR},#{blood_pressure,jdbcType=VARCHAR},#{pulse,jdbcType=VARCHAR},
+		#{blood_glucose,jdbcType=VARCHAR},#{cruor_function,jdbcType=VARCHAR},#{infectious_diseases,jdbcType=VARCHAR},#{consultation_opinion,jdbcType=VARCHAR},
+		#{pullout_tooth,jdbcType=VARCHAR},#{plant_tooth,jdbcType=VARCHAR},#{assist_operation,jdbcType=VARCHAR},#{plant_system,jdbcType=VARCHAR},
+		#{nurseSignature,jdbcType=VARCHAR},#{doctorSignature,jdbcType=VARCHAR},#{signaturetime,jdbcType=VARCHAR},#{operationAlltext,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR}
+		,#{upleftToothBitOne,jdbcType=VARCHAR},#{uperRightToothBitOne,jdbcType=VARCHAR},#{leftLowerToothBitOne,jdbcType=VARCHAR},#{lowRightToothBitOne,jdbcType=VARCHAR},
+		#{upleftToothBitTwo,jdbcType=VARCHAR},
+		#{uperRightToothBitTwo,jdbcType=VARCHAR},#{leftLowerToothBitTwo,jdbcType=VARCHAR},#{lowRightToothBitTwo,jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- 查询术前核查单 -->
+	<select id="findPreoperativeVerification" parameterType="String" resultType="json">
+		select 
+			<include refid="Base_Column_List" />
+		from
+			HUDH_LCLJ_preoperativeVerification
+		where lclj_Id = #{lcljId,jdbcType=VARCHAR}
+	</select>
+</mapper>
