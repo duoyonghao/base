@@ -845,9 +845,6 @@ ul, ol{
 						<td><span id="38">38</span></td>
 					</tr>
 				</table>
-				<ul>
-					<li></li>
-				</ul>
 			</div>
 		</div>				
 	</div>		
