@@ -51,9 +51,9 @@
 		line-height: 26px;
 		letter-spacing: 1px;
 		font-weight: bold;
-	   	padding-top: 5%;  
-/* 		height:136px; */
-	    margin-bottom: 2%; 
+	   	padding-top: 10px;  
+	    margin-bottom:10px;
+	    border-top: 2px dotted #776c6c;
 	}
 	/* 详细文字介绍 */
 	#content .consent_text{
@@ -198,11 +198,15 @@
  	    opacity: 1; 
 	    -webkit-text-fill-color: #00A6C0;     	
     }
-
+	#logoImg{
+	    width: 12%;
+	    margin-bottom: 10px;
+	}
 </style>
 <body style="padding: 0px 3% 0px;">
 <!--startprint-->
 	<div id="content">
+	<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
 		<h2 class="bigtitle">拔牙手术知情同意书</h2>
 		<i class="line"></i>
 		<div class="container-fluid examine_continer">
@@ -470,7 +474,7 @@
 			         );
 			    }
 		    });
-			console.log(window.parent)
+
 		    $.ajax({
 		        type: "POST",
 		        url: pageurl,

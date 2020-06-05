@@ -93,15 +93,16 @@
 </style>
 </head>
 <body>
-	<!-- 测试按钮 lutian 2020/05/29  -->
+	<div>
+		<!-- 测试按钮 lutian 2020/05/29  -->
 		<div class="btnTest">
+			<button class="principleBtnGB">主诉改版</button>
 			<button class="principleBtn">主诉测试</button>
 			<button class="operationRecord">种植牙手术记录</button>
 			<button class="repairRecord">修复治疗记录</button>
 			<button class="postoperationItem">种植牙术后注意事项</button>
 		</div>
-	<!-- -------------------------- -->
-	<div>
+		<!-- -------------------------- -->
 		<table align="center"  id="operationBefore_form" style="width:100%;margin:70px auto 15px;">
 			<tbody>
 				<tr>
@@ -374,6 +375,23 @@
 	});
 	
 	/* 测试按钮js lutian 2020/05/29 */
+	
+	//主诉改版
+	$(".principleBtnGB").click(function(){
+	  	parent.layer.open({
+	  		title:"主诉改版",
+	  		type:2,
+	  		closeBtn:1,
+	  		content:contextPath + "/ZzblViewAct/toAnamnesisThirdInfor.act",
+	  		area:['90%','80%'],
+	  		cancel: function(){
+	  		},
+	  		end:function(){
+	  			window.location.reload();//刷新本页面
+	  		}
+	  	}); 
+	  });
+	
 	//主诉
 	$(".principleBtn").click(function(){
 	  	parent.layer.open({
@@ -537,8 +555,8 @@
 	function checkOptions(){ 
 		//console.log(id+"---------------"+order_number);
 		/* 判断主诉及既往病史 */
-		var askPreviousurl = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
-//		var askPreviousurl = contextPath + '/HUDH_FlowAct/findLcljOrderTrsackById.act';
+//		var askPreviousurl = contextPath + '/HUDH_ZzblAskAct/findCaseH	istoryById.act';
+		var askPreviousurl = contextPath + '/HUDH_FlowAct/findLcljOrderTrsackById.act';
 		$.ajax({
 			url: askPreviousurl,
 			type:"POST",

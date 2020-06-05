@@ -137,7 +137,7 @@ public class HttpRequestUtils {
 		HttpPost method = new HttpPost(url);
 
 		RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(1000).setConnectTimeout(300).build();// 设置请求和传输超时时间
-//		method.setConfig(requestConfig);
+		method.setConfig(requestConfig);
 
 		if (null != param) {
 			StringEntity entity = new StringEntity(param, "utf-8");
