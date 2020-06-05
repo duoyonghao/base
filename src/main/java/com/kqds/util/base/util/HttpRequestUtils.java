@@ -136,6 +136,9 @@ public class HttpRequestUtils {
 		String result = null;
 		HttpPost method = new HttpPost(url);
 
+
+
+
 		RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(1000).setConnectTimeout(300).build();// 设置请求和传输超时时间
 		//method.setConfig(requestConfig);
 
