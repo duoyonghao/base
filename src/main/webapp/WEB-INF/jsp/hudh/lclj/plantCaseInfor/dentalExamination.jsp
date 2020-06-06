@@ -799,7 +799,7 @@
                 </table>
             </div>
         </div>
-        <div class="row toothBitmap" id="toothBitmap" style="display:none;">
+        <div class="row toothBitmap" id="toothBitmap" style="display:block;">
             <div class="col-md-12 col-sm-12 colDefined">
                 <span class="smalltitle">口腔情况牙位简图</span>
             </div>
