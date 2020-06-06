@@ -93,11 +93,11 @@
 	    $.axse(url, null,
 	    function(data) { 
 	    	 if(projectId=="toothLoose"){
-	    		 getdata=[{dictCode:"1",dictName:"Ⅰ°",},{dictCode:"2",dictName:"Ⅱ°",},{dictCode:"3",dictName: "Ⅲ°",},{dictCode:"4", dictName:"牙列缺失",},{dictCode:"5",dictName:"牙列缺损"}];
+	    		 getdata=[{dictCode:"ysd1",dictName:"Ⅰ°",},{dictCode:"ysd2",dictName:"Ⅱ°",},{dictCode:"ysd3",dictName: "Ⅲ°",}];
 	    	 }else if(projectId=="toothCondition"){
 	    		 getdata=data.conditionData;
 	    	 }else if(projectId=="imageExamination"){
-	    		 getdata=[{dictCode:"14",dictName:"牙槽嵴",},{dictCode:"15",dictName:"牙槽神经管",},{dictCode:"16",dictName: "种植区域",},{dictCode:"17", dictName:"Ⅰ类骨",},{dictCode:"18",dictName:"Ⅱ类骨"},{dictCode:"19",dictName:"Ⅲ类骨"},{dictCode:"20",dictName:"Ⅳ类骨"}];
+	    		 getdata=[{dictCode:"yxx14",dictName:"牙槽嵴",},{dictCode:"yxx15",dictName:"牙槽神经管",},{dictCode:"yxx16",dictName: "种植区域",},{dictCode:"yxx17", dictName:"Ⅰ类骨",},{dictCode:"yxx18",dictName:"Ⅱ类骨"},{dictCode:"yxx19",dictName:"Ⅲ类骨"},{dictCode:"yxx20",dictName:"Ⅳ类骨"}];
 	    	 }else if(projectId=="medicalCertificate"){
 	    		 getdata=data.certificateData;
 	    	 }
