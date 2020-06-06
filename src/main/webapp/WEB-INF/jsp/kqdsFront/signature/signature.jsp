@@ -25,21 +25,21 @@
 		padding: .5em;
 		margin: .5em;
 	}
-	
+
 	#signatureparent {
 		color:black;
 		background-color:darkgrey;
 		/*max-width:600px;*/
 		padding:20px;
 	}
-	
+
 	/*This is the div within which the signature canvas is fitted*/
 	#signature {
 		border: 2px dotted black;
 		background-color:lightgrey;
 	}
 
-	/* Drawing the 'gripper' for touch-enabled devices */ 
+	/* Drawing the 'gripper' for touch-enabled devices */
 	html.touch #content {
 		float:left;
 		width:92%;
@@ -76,7 +76,7 @@ jQuery.noConflict()
 	    if (topics[topic]) {
 	        var currentTopic = topics[topic],
 	        args = args || {};
-	
+
 	        for (var i = 0, j = currentTopic.length; i < j; i++) {
 	            currentTopic[i].call($, args);
 	        }
@@ -96,7 +96,7 @@ jQuery.noConflict()
 	    var topic = handle.topic;
 	    if (topics[topic]) {
 	        var currentTopic = topics[topic];
-	
+
 	        for (var i = 0, j = currentTopic.length; i < j; i++) {
 	            if (currentTopic[i] === handle.callback) {
 	                currentTopic.splice(i, 1);
@@ -122,7 +122,7 @@ $(document).ready(function() {
 	, $tools = $('#tools')
 	, $extraarea = $('#displayarea')
 	, pubsubprefix = 'jSignature.demo.'
-	
+
 	/* var export_plugins = $sigdiv.jSignature('listPlugins','export')
 	, chops = ['<select>']
 	, name
@@ -133,11 +133,11 @@ $(document).ready(function() {
 		}
 	}
 	chops.push('</select>')
-	
+
 	$(chops.join('')).bind('change', function(e){
 		if (e.target.value !== ''){
 			var data = $sigdiv.jSignature('getData', e.target.value)
-			
+
 			$.publish(pubsubprefix + 'formatchanged')
 			if (typeof data === 'string'){
 				$('textarea', $tools).val(data)
@@ -177,9 +177,9 @@ $(document).ready(function() {
 	$('<input type="button" value="清空">').bind('click', function(e){
 		$sigdiv.jSignature('reset')
 	}).appendTo($tools)
-	
+
 	/* $('<div><textarea style="width:100%;height:7em;"></textarea></div>').appendTo($tools) */
-	
+
 	/* $.subscribe(pubsubprefix + 'formatchanged', function(){
 		$extraarea.html('')
 	})
@@ -193,7 +193,7 @@ $(document).ready(function() {
 		} catch (ex) {
 
 		}
-		
+
 		var message = [
 			"If you don't see an image immediately above, it means your browser is unable to display in-line (data-url-formatted) SVG."
 			, "This is NOT an issue with jSignature, as we can export proper SVG document regardless of browser's ability to display it."
@@ -206,7 +206,7 @@ $(document).ready(function() {
 		var i = new Image()
 		i.src = 'data:' + data[0] + ',' + data[1]
 		$(i).appendTo($extraarea)
-		
+
 		var message = [
 			"If you don't see an image immediately above, it means your browser is unable to display in-line (data-url-formatted) SVG."
 			, "This is NOT an issue with jSignature, as we can export proper SVG document regardless of browser's ability to display it."
@@ -214,22 +214,22 @@ $(document).ready(function() {
            ]
 		$( "<div>" + message.join("<br/>") + "</div>" ).appendTo( $extraarea )
 	});
-	
+
 	$.subscribe(pubsubprefix + 'image/png;base64', function(data) {
 		var i = new Image()
 		i.src = 'data:' + data[0] + ',' + data[1]
 		$('<span><b>As you can see, one of the problems of "image" extraction (besides not working on some old Androids, elsewhere) is that it extracts A LOT OF DATA and includes all the decoration that is not part of the signature.</b></span>').appendTo($extraarea)
 		$(i).appendTo($extraarea)
 	});
-	
+
 	$.subscribe(pubsubprefix + 'image/jsignature;base30', function(data) {
 		$('<span><b>This is a vector format not natively render-able by browsers. Format is a compressed "movement coordinates arrays" structure tuned for use server-side. The bonus of this format is its tiny storage footprint and ease of deriving rendering instructions in programmatic, iterative manner.</b></span>').appendTo($extraarea)
 	});*/
 
 	if (Modernizr.touch){
-		$('#scrollgrabber').height($('#content').height())		
-	} 
-	
+		$('#scrollgrabber').height($('#content').height())
+	}
+
 })
 
 })(jQuery)
