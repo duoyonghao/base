@@ -197,6 +197,7 @@
 						<option value="替米沙坦">替米沙坦</option>
 						<option value="厄贝沙坦">厄贝沙坦</option>
 						<option value="缬沙坦">缬沙坦</option>
+						<option value="络活喜">络活喜</option>
 					</select>
 				</div>
 			</div>
@@ -323,6 +324,7 @@
 						<option value="磷酸西格列汀片">磷酸西格列汀片</option>
 						<option value="维格列汀">维格列汀</option>
 						<option value="利格列汀">利格列汀</option>
+						<option value="拜糖平">拜糖平</option>
 					</select>
 				</div>
 			</div>
