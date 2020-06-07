@@ -18,7 +18,7 @@
 <link rel="stylesheet" type="text/css" href="<%=contextPath%>/static/css/hudh/lclj/flowdetail/css/toothMap.css" />
 </head>
 <body>
-	<div class="continer" style="border:2px solid blue;">
+	<div class="continer">
 		<div class="toothMap">
 			<ul class="toothMapItem upTooth">
 				<li>
