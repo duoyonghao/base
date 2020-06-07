@@ -137,7 +137,7 @@
 				</li>
 			</ul>
 		</div>
-		<!-- 按钮 -->
+		<!-- 按钮1 -->
 		<div class="btns">
 			<button class="resetBtn" onclick="resetbtns();">复位</button>
 			<button class="affirmBtn" onclick="affirmBtns();">确认</button>
