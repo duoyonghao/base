@@ -18,7 +18,7 @@
 <link rel="stylesheet" type="text/css" href="<%=contextPath%>/static/css/hudh/lclj/flowdetail/css/toothMap.css" />
 </head>
 <body>
-	<div class="continer" style="border:2px solid red;">
+	<div class="continer" style="border:2px solid blue;">
 		<div class="toothMap">
 			<ul class="toothMapItem upTooth">
 				<li>
@@ -143,58 +143,50 @@
 			<button class="affirmBtn" onclick="affirmBtns();">确认</button>
 		</div>
 	</div>
-	
-	<script type="text/javascript" src="js/jquery-2.1.4.js"></script>
-	<script type="text/javascript" src="<%=contextPath%>/static/css/hudh/lclj/flowdetail/js/jquery-2.1.4.js"></script>
-	<!-- /base/src/main/webapp/static/css/hudh/lclj/flowdetail/js/jquery-2.1.4.js -->
+
+	<script type="text/javascript" src="<%=contextPath%>/static/js/app/plugin/jquery.js"></script>
 	<script type="text/javascript">
 		var parentIndex = '<%=index%>';
 		var parentId="";
 		$(function(){
-			//牙位初始化
-			if(parentIndex=="0"){
-				parentId="zhongzhi";
-			}else if(parentIndex=="1"){
-				parentId="xiufu";
-			}
 			/* 左上选中牙位 */
-			$(window.parent.document).find("#"+parentId).find(".leftUpTooth").each(function(i,obj){
+			$(window.parent.document).find(".toothMapCase").find(".toothMapItem").eq(parentIndex).find(".leftUpTooth").each(function(i,obj){
 				if($(this).hasClass("current")){
 					$(".upTooth").find(".leftUpText").eq(i).addClass("toothCurrent");
 				}
 			});
 			/* 全选中 */
-			if($(window.parent.document).find("#"+parentId).find(".leftUpTooth.current").length==8){
+			if($(window.parent.document).find(".toothMapCase").find(".toothMapItem").eq(parentIndex).find(".leftUpTooth.current").length==8){
 				$(".upTooth").find(".leftUpCbox").prop("checked","checked");
 			}
 			/* 左下选中牙位 */
-			$(window.parent.document).find("#"+parentId).find(".leftDownTooth").each(function(i,obj){
+			$(window.parent.document).find(".toothMapCase").find(".toothMapItem").eq(parentIndex).find(".leftDownTooth").each(function(i,obj){
 				if($(this).hasClass("current")){
 					$(".downTooth").find(".leftButtomText").eq(i).addClass("toothCurrent");
 				}
 			});
 			/* 全选中 */
-			if($(window.parent.document).find("#"+parentId).find(".leftDownTooth.current").length==8){
+			if($(window.parent.document).find(".toothMapCase").find(".toothMapItem").eq(parentIndex).find(".leftDownTooth.current").length==8){
 				$(".downTooth").find(".leftButtomCbox").prop("checked","checked");
 			}
 			/* 右上选中牙位 */
-			$(window.parent.document).find("#"+parentId).find(".rightUpTooth").each(function(i,obj){
+			$(window.parent.document).find(".toothMapCase").find(".toothMapItem").eq(parentIndex).find(".rightUpTooth").each(function(i,obj){
 				if($(this).hasClass("current")){
 					$(".upTooth").find(".rightUpText").eq(i).addClass("toothCurrent");
 				}
 			});
 			/* 全选中 */
-			if($(window.parent.document).find("#"+parentId).find(".rightUpTooth.current").length==8){
+			if($(window.parent.document).find(".toothMapCase").find(".toothMapItem").eq(parentIndex).find(".rightUpTooth.current").length==8){
 				$(".upTooth").find(".rightUpCbox").prop("checked","checked");
 			}
 			/* 右下选中牙位 */
-			$(window.parent.document).find("#"+parentId).find(".rightDownTooth").each(function(i,obj){
+			$(window.parent.document).find(".toothMapCase").find(".toothMapItem").eq(parentIndex).find(".rightDownTooth").each(function(i,obj){
 				if($(this).hasClass("current")){
 					$(".downTooth").find(".rightButtomText").eq(i).addClass("toothCurrent");
 				}
 			});
 			/* 全选中 */
-			if($(window.parent.document).find("#"+parentId).find(".rightDownTooth.current").length==8){
+			if($(window.parent.document).find(".toothMapCase").find(".toothMapItem").eq(parentIndex).find(".rightDownTooth.current").length==8){
 				$(".downTooth").find(".rightButtomCbox").prop("checked","checked");
 			}
 			
@@ -211,7 +203,7 @@
 		};
 		//牙位图确认
 		function affirmBtns(){
-			$(window.parent.document).find("#"+parentId).find("li").each(function(i,obj){
+			$(window.parent.document).find(".toothMapCase").find(".toothMapItem").eq(parentIndex).find("li").each(function(i,obj){
 				$(this).removeClass("current");
 			});
 			/* 左上选中牙位 */
@@ -223,7 +215,7 @@
 			});
 			//console.log(leftUpToothArr+"--------左上选中牙位");
 			for (var i = 0; i < leftUpToothArr.length; i++) {
-				$(window.parent.document).find("#"+parentId).find(".leftUpTooth").eq(leftUpToothArr[i]).addClass("current");
+				$(window.parent.document).find(".toothMapCase").find(".toothMapItem").eq(parentIndex).find(".leftUpTooth").eq(leftUpToothArr[i]).addClass("current");
 			}
 			/* 右上选中牙位 */
 			var rightUpToothArr=[];
@@ -234,7 +226,7 @@
 			});
 			//console.log(rightUpToothArr+"--------右上选中牙位");
 			for (var j = 0; j < rightUpToothArr.length; j++) {
-				$(window.parent.document).find("#"+parentId).find(".rightUpTooth").eq(rightUpToothArr[j]).addClass("current");
+				$(window.parent.document).find(".toothMapCase").find(".toothMapItem").eq(parentIndex).find(".rightUpTooth").eq(rightUpToothArr[j]).addClass("current");
 			}
 			/* 左下选中牙位 */
 			var leftDownToothArr=[];
@@ -245,7 +237,7 @@
 			});
 			//console.log(leftDownToothArr+"--------左下选中牙位");
 			for (var k = 0; k < leftDownToothArr.length; k++) {
-				$(window.parent.document).find("#"+parentId).find(".leftDownTooth").eq(leftDownToothArr[k]).addClass("current");
+				$(window.parent.document).find(".toothMapCase").find(".toothMapItem").eq(parentIndex).find(".leftDownTooth").eq(leftDownToothArr[k]).addClass("current");
 			}
 			/* 右下选中牙位 */
 			var rightDownToothArr=[];
@@ -256,7 +248,7 @@
 			});
 			//console.log(rightDownToothArr+"--------右下选中牙位");
 			for (var g = 0; g < rightDownToothArr.length; g++) {
-				$(window.parent.document).find("#"+parentId).find(".rightDownTooth").eq(rightDownToothArr[g]).addClass("current");
+				$(window.parent.document).find(".toothMapCase").find(".toothMapItem").eq(parentIndex).find(".rightDownTooth").eq(rightDownToothArr[g]).addClass("current");
 			}
             //console.log($(window.parent.document).find(".aa").text()+"-----------");
             var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
