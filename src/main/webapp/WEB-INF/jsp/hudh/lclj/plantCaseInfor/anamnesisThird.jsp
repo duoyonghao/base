@@ -728,6 +728,7 @@
 						<option value="替米沙坦">替米沙坦</option>
 						<option value="厄贝沙坦">厄贝沙坦</option>
 						<option value="缬沙坦">缬沙坦</option>
+						<option value="络活喜">络活喜</option>
 					</select>
 				</div>
 			</div>
@@ -840,6 +841,7 @@
 						<option value="磷酸西格列汀片">磷酸西格列汀片</option>
 						<option value="维格列汀">维格列汀</option>
 						<option value="利格列汀">利格列汀</option>
+						<option value="拜糖平">拜糖平</option>
 					</select>
 				</div>
 			</div>
@@ -1755,17 +1757,16 @@
 		/* 页面赋值判断初始化 */
 		function initZzblInfor(){
 			//console.log(id+"--------------查询id");
-			var url = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
+			var url = contextPath + '/HUDH_ZzblAdviceAct/findCaseHistoryById.act';
 			$.ajax({
 				url: url,
 				type:"POST",
 				dataType:"json",
 				data : {
-					 id :  id, //临床路径ID
-					 order_number : order_number
+					 id :  id
 				},
 				success:function(result){
-
+					console.log(result);
 					//获取当前页面所有按钮
 					 getButtonAllCurPage(menuid);
 				}
@@ -1896,7 +1897,7 @@
 			
 			var url = contextPath + '';
 	        var param = {
-	        		 id:caseId,
+				     caseId:caseId,
 	        		 LcljId :  id,
 	        		 LcljNum :  order_number,
 	        		 username :patient_name,
@@ -2105,10 +2106,10 @@
 			/* var doctorSignature = $("#doctorSignature").val(); *///医生签字
 			var doctorTime = $("#doctortime").val();//医生签字时间     72
 
-			var url = contextPath + '';
+			var url = contextPath + '/HUDH_ZzblAdviceAct/saveCaseHistory.act';
 	        var param = {
-                    LcljId :  id,
-                    LcljNum :  order_number,
+                    lcljId :  id,
+                    lcljNum :  order_number,
                     patient_num :  patient_num,
                     symptom :  symptom,
                     toothloseMapUpLeft :  toothloseMapUpLeft,
@@ -2137,7 +2138,7 @@
                     isTakeMedicie : isTakeMedicie,
                     pressure : pressure,
                     hypertensionmedicine : hypertensionmedicine,
-                    IsHearDiease : IsHearDiease,
+                    isHearDiease : IsHearDiease,
                     hearDiease : hearDiease,
                     isPrepareMedication : isPrepareMedication,
                     heardieasemedicine : heardieasemedicine,
@@ -2148,22 +2149,22 @@
                     diabetesinjectionmedicine : diabetesinjectionmedicine,
                     isheartoperation : isheartoperation,
                     isheartinfarction : isheartinfarction,
-                    IsBloodCoagulation : IsBloodCoagulation,
+                    isBloodCoagulation : IsBloodCoagulation,
                     bloodCoagulation : bloodCoagulation,
                     isAntiFreezing : isAntiFreezing,
                     antifreezingmedicine : antifreezingmedicine,
                     antiFreezingTime : antiFreezingTime,
                     isHepatitisB : isHepatitisB,
                     hepatitisB : hepatitisB,
-                    IsHepatitisC : IsHepatitisC,
+                    isHepatitisC : IsHepatitisC,
                     hepatitisC : hepatitisC,
-                    IsHIV : IsHIV,
-                    Hiv : Hiv,
-                    IsCancer : IsCancer,
+                    isHIV : IsHIV,
+                    hiv : Hiv,
+                    isCancer : IsCancer,
                     cancer : cancer,
                     isYphilis : isYphilis,
                     syphilis : syphilis,
-                    IsMaxillofacial : IsMaxillofacial,
+                    isMaxillofacial : IsMaxillofacial,
                     maxillofacial : maxillofacial,
                     isInflammation : isInflammation,
                     inflammation : inflammation,
@@ -2171,13 +2172,13 @@
                     drugAbuse : drugAbuse,
                     isPsychosis : isPsychosis,
                     psychosis : psychosis,
-                    IsMucousMembrane : IsMucousMembrane,
+                    isMucousMembrane : IsMucousMembrane,
                     mucousMembrane : mucousMembrane,
-                    IsPharmacy : IsPharmacy,
+                    isPharmacy : IsPharmacy,
                     pharmacy : pharmacy,
                     takeorallytime : takeorallytime,
                     pharmacymedicine : pharmacymedicine,
-                    IsGlucocorticoids : IsGlucocorticoids,
+                    isGlucocorticoids : IsGlucocorticoids,
                     glucocorticoids : glucocorticoids,
                     glucocorticoidsmedicine : glucocorticoidsmedicine,
                     isOtherDiseases : isOtherDiseases,
@@ -2201,16 +2202,15 @@
                     odontoprisisDegree : odontoprisisDegree,
                     chewingHabits : chewingHabits,
                     chewinghabitstime : chewinghabitstime,
-                    Others : Others,
+                    others : Others,
                     isteethclean : isteethclean,
                     teethcleannum : teethcleannum,
                     planttime : planttime,
-                    PatientTime : PatientTime,
-                    doctorTime : doctorTime
+                    patientTime : PatientTime,
+                    doctorTime : doctorTime,
+            		patientsignature : patientsignature,
+					doctorsignature : signature
 	        };
-	        
-	        console.log(JSON.stringify(param)+"-------------保存传参");
-            return;
 	        $.axseSubmit(url, param,function() {},function(r) {
 	        	layer.alert("保存成功！", {
 		            end: function() {
