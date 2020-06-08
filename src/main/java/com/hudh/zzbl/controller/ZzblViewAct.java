@@ -79,6 +79,15 @@ public class ZzblViewAct {
 		mv.setViewName("/hudh/lclj/plantCaseInfor/inform.jsp");
 		return mv;
 	}
+
+	@RequestMapping("/toExamineDentalImplant.act")
+	public ModelAndView toExamineDentalImplant(HttpServletRequest request, HttpServletResponse response) {
+		String status = request.getParameter("status");
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("status", status);
+		mv.setViewName("/hudh/lclj/plantCaseInfor/implantTooth.jsp");
+		return mv;
+	}
 	
 	@RequestMapping("/toExamineDiagnoseCase.act")
 	public ModelAndView toExamineDiagnoseCase(HttpServletRequest request, HttpServletResponse response) {
