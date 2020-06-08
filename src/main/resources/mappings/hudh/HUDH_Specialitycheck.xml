@@ -25,7 +25,7 @@
     <result column=" defectDentition" jdbcType="VARCHAR" property=" defectdentition" />
     <result column="saprodontia" jdbcType="VARCHAR" property="saprodontia" />
     <result column="residualCrown" jdbcType="VARCHAR" property="residualcrown" />
-    <result column=" oulonitis" jdbcType="VARCHAR" property=" pulpitis" />
+    <result column=" pulpitis" jdbcType="VARCHAR" property=" pulpitis" />
     <result column="teethTilted" jdbcType="VARCHAR" property="teethtilted" />
     <result column="nub" jdbcType="VARCHAR" property="nub" />
     <result column="defectiveRepair" jdbcType="VARCHAR" property="defectiverepair" />
@@ -54,7 +54,7 @@
   <sql id="Base_Column_List">   
 	SEQ_ID,lcljId, lcljNum, userId, IsmouthOpening, mouthOpening, arthrosis, occludingRelation, verticalCurve, horizontalCurve, 
     distanceBetween, labialLine, gumTypes, undergo, periodontalCondition, mucosalSituation, 
-    oneDu, twoDu, threeDu, dentitionDefect, defectDentition, saprodontia, residualCrown, oulonitis, 
+    oneDu, twoDu, threeDu, dentitionDefect, defectDentition, saprodontia, residualCrown, pulpitis,
     teethTilted, nub, defectiveRepair, mouthApicitis, teethElongation, maxillarySinus, 
     alveolar, genyantrum, boneMass, oneBone, twoBone, threeBone, fourBoue, anodontism, 
     teethDefect, dummy, parodontopathy, residualRoot, residualRown, apicitis, other, createuser, createtime, organization
@@ -150,7 +150,7 @@
         residualCrown,
       </if>
       <if test=" pulpitis != null">
-        oulonitis,
+          pulpitis,
       </if>
       <if test="teethtilted != null">
         teethTilted,
@@ -375,7 +375,7 @@
       defectDentition = #{defectdentition,jdbcType=VARCHAR},
       saprodontia = #{saprodontia,jdbcType=VARCHAR},
       residualCrown = #{residualcrown,jdbcType=VARCHAR},
-      oulonitis = #{pulpitis,jdbcType=VARCHAR},
+      pulpitis = #{pulpitis,jdbcType=VARCHAR},
       teethTilted = #{teethtilted,jdbcType=VARCHAR},
       nub = #{nub,jdbcType=VARCHAR},
       defectiveRepair = #{defectiverepair,jdbcType=VARCHAR},
