@@ -268,8 +268,11 @@
 					                	<input id="topo_procera" name="tooth_texture" type="checkbox" value="局部-瑞典Procera牙冠"><label for="topo_procera">(6)、局部-瑞典Procera牙冠</label>
 					            	</li>
 					            	<li>
-					                	<input id="topo_pro" name="tooth_texture" type="checkbox" value="局部-塑钢牙pvc"><label for="topo_pro">(6)、局部-塑钢牙pvc</label>
+					                	<input id="topo_pro" name="tooth_texture" type="checkbox" value="局部-塑钢牙pvc"><label for="topo_pro">(7)、局部-塑钢牙pvc</label>
 					            	</li>
+									<li>
+										<input id="topo_abutment" name="tooth_texture" type="checkbox" value="局部-塑钢牙pvc"><label for="topo_abutment">(8)、局部-纯钛基台一体冠</label>
+									</li>
 					            </ul>
 					        </div>
 					        <div class="options">

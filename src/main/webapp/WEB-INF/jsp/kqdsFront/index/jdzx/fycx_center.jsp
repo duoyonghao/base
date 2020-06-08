@@ -153,6 +153,9 @@
 		               		<li>应收:<span id="ying">0</span></li>
 		               		<li>欠款:<span id="qian">0</span></li>
 		               		<li>缴费:<span id="xian">0</span></li>
+							<li>预交金使用:<span id="yjjshiyong">0</span></li>
+							<li>预交金充值:<span id="yjjchongzhi">0</span></li>
+							<li>预交金退费:<span id="yjjtuifei">0</span></li>
 		               	</ul>
 	               	</div>
                	</div>
@@ -481,14 +484,20 @@ function initTable(status, type) {
                  $("#mian").html(data.voidmoney);
                  $("#ying").html(data.shouldmoney);
                  $("#xian").html(data.actualmoney);
-                 $("#qian").html(data.y2); 
+                 $("#qian").html(data.y2);
+                $("#yjjshiyong").html(data.yjjshiyong); //预交金使用:
+                $("#yjjchongzhi").html(data.yjjchongzhi); //预交金充值:
+                $("#yjjtuifei").html(data.cmoney); //预交金退费:
         	 }
         	 if(data.total == 0){
         		 $("#xiaoji").html("0");
                  $("#mian").html("0");
                  $("#ying").html("0");
                  $("#xian").html("0");
-                 $("#qian").html("0"); 
+                 $("#qian").html("0");
+                 $("#yjjshiyong").html("0");
+                 $("#yjjchongzhi").html("0");
+                 $("#yjjtuifei").html("0");
         	 } 
         	//分页加载
         	/* showdata("table",data.rows);
@@ -520,9 +529,13 @@ function initTable(status, type) {
             width: 40,
             formatter: function (value, row, index) {
              /* return index + 1; */
-             var pageSize = $('#table').bootstrapTable('getOptions').pageSize;     //通过table的#id 得到每页多少条
+                var pageSize = $('#table').bootstrapTable('getOptions').pageSize;     //通过table的#id 得到每页多少条
                 var pageNumber = $('#table').bootstrapTable('getOptions').pageNumber; //通过table的#id 得到当前第几页
-                return pageSize * (pageNumber - 1) + index + 1;    // 返回每条的序号： 每页条数 *（当前页 - 1 ）+ 序号
+                if(row.voidmoney=='' || row.voidmoney==null){
+                    return '<span>'+'Y_'+(pageSize * (pageNumber - 1) + index + 1)+'</span>';
+                }else{
+                    return '<span>'+(pageSize * (pageNumber - 1) + index + 1)+'</span>';
+                }
             }
         },          
          {
@@ -610,7 +623,11 @@ function initTable(status, type) {
             
             sortable: true,
             formatter: function(value, row, index) {
-                return '<span class="money">' + value + '</span>';
+                if(value){
+                    return '<span class="money">' + value + '</span>';
+                }else{
+                    return '';
+                }
             }
         },
         {
@@ -630,7 +647,11 @@ function initTable(status, type) {
             
             sortable: true,
             formatter: function(value, row, index) {
-                return '<span class="money">' + value + '</span>';
+                if(value){
+                    return '<span class="money">' + value + '</span>';
+                }else{
+                    return '';
+                }
             }
         },
         {
@@ -720,7 +741,11 @@ function initTable(status, type) {
             valign: 'middle',
             sortable: true,
             formatter: function(value, row, index) {
-                return '<span>' + value + '</span>';
+                if(value){
+                    return '<span>'+value+'</span>'
+                }else{
+                    return '';
+                }
             }
         },
         {
