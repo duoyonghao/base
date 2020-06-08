@@ -375,7 +375,7 @@
       defectDentition = #{defectdentition,jdbcType=VARCHAR},
       saprodontia = #{saprodontia,jdbcType=VARCHAR},
       residualCrown = #{residualcrown,jdbcType=VARCHAR},
-      oulonitis = #{pulpitis,jdbcType=VARCHAR},
+      pulpitis = #{pulpitis,jdbcType=VARCHAR},
       teethTilted = #{teethtilted,jdbcType=VARCHAR},
       nub = #{nub,jdbcType=VARCHAR},
       defectiveRepair = #{defectiverepair,jdbcType=VARCHAR},
