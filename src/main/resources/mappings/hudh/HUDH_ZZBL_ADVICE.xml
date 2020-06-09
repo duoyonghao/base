@@ -108,6 +108,8 @@
 		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
 		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
 		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="updateuser" jdbcType="VARCHAR" property="updateuser" />
+		<result column="updatetime" jdbcType="VARCHAR" property="updatetime" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
@@ -118,10 +120,10 @@
 		heardieasemedicine,isDiabetes,diabetes,dietControl,diabetesoralmedicine,diabetesinjectionmedicine,isheartoperation,isheartinfarction,isBloodCoagulation,
 		bloodCoagulation,isAntiFreezing,antifreezingmedicine,antiFreezingTime,isHepatitisB,hepatitisB,isHepatitisC,hepatitisC,isHIV,hiv,isCancer,cancer,
 		isYphilis,syphilis,isMaxillofacial,maxillofacial,isInflammation,inflammation,isDrugAbuse,drugAbuse,isPsychosis,psychosis,isMucousMembrane,mucousMembrane,
-		isPharmacy,pharmacy,takeorallytime,pharmacymedicine,IsGlucocorticoids,glucocorticoids,glucocorticoidsmedicine,isOtherDiseases,otherdiseasestext,
+		isPharmacy,pharmacy,takeorallytime,pharmacymedicine,isGlucocorticoids,glucocorticoids,glucocorticoidsmedicine,isOtherDiseases,otherdiseasestext,
 		otherDiseases,isDrugAllergy,allergicLength,drugallergy,isPregnancy,pregnancy,onMedication,onmedicationtime,issmoke,smoketime,smokeNum,isdrink,
-		drinkTime,drinkScale,isodontoprisis,odontoprisis,odontoprisisDegree,chewingHabits,chewinghabitstime,Others,isteethclean,teethcleannum,planttime,
-		patientTime,doctorTime,patientsignature,doctorsignature,organization,createuser,createtime,status
+		drinkTime,drinkScale,isodontoprisis,odontoprisis,odontoprisisDegree,chewingHabits,chewinghabitstime,others,isteethclean,teethcleannum,planttime,
+		patientTime,doctorTime,patientsignature,doctorsignature,organization,createuser,createtime,status,updateuser,updatetime
 </sql>
 
 	<!-- 保存主诉及既往病史 -->
@@ -170,26 +172,81 @@
 	<!-- 根据Id更新主诉及既往病史 -->
 	<update id="updateCaseHistoryById" parameterType="com.hudh.zzbl.entity.ZzblAdvice">
 		update HUDH_ZZBL_ADVICE set
+
+		<if test="lcljId != null">
+			lcljId = #{lcljId,jdbcType=VARCHAR},
+		</if>
 		<if test="lcljNum != null">
 			lcljNum = #{lcljNum,jdbcType=VARCHAR},
 		</if>
-		<if test="treaTment != null">
-			Treatment = #{treaTment,jdbcType=VARCHAR},
-		</if>
-		<if test="antiFreezingTime != null">
-			antifreezingtime = #{antiFreezingTime,jdbcType=VARCHAR},
-		</if>
-		<if test="LcljId != null">
-			LcljId = #{LcljId,jdbcType=VARCHAR},
-		</if>
-		<if test="agomphosTime != null">
-			agomphosTime = #{agomphosTime,jdbcType=VARCHAR},
+		<if test="patient_num != null">
+			patient_num = #{patient_num,jdbcType=VARCHAR},
 		</if>
 		<if test="symptom != null">
 			symptom = #{symptom,jdbcType=VARCHAR},
 		</if>
-		<if test="plantTime != null">
-			plantTime = #{plantTime,jdbcType=VARCHAR},
+		<if test="toothloseMapUpLeft != null">
+			toothloseMapUpLeft = #{toothloseMapUpLeft,jdbcType=VARCHAR},
+		</if>
+		<if test="toothloseMapDownLeft != null">
+			toothloseMapDownLeft = #{toothloseMapDownLeft,jdbcType=VARCHAR},
+		</if>
+		<if test="toothloseMapUpRight != null">
+			toothloseMapUpRight = #{toothloseMapUpRight,jdbcType=VARCHAR},
+		</if>
+		<if test="toothloseMapDownRight != null">
+			toothloseMapDownRight = #{toothloseMapDownRight,jdbcType=VARCHAR},
+		</if>
+		<if test="toothlessMapUpLeft != null">
+			toothlessMapUpLeft = #{toothlessMapUpLeft,jdbcType=VARCHAR},
+		</if>
+		<if test="toothlessMapDownLeft != null">
+			toothlessMapDownLeft = #{toothlessMapDownLeft,jdbcType=VARCHAR},
+		</if>
+		<if test="toothlessMapUpRight != null">
+			toothlessMapUpRight = #{toothlessMapUpRight,jdbcType=VARCHAR},
+		</if>
+		<if test="toothlessMapDownRight != null">
+			toothlessMapDownRight = #{toothlessMapDownRight,jdbcType=VARCHAR},
+		</if>
+		<if test="toothdecayedMapUpLeft != null">
+			toothdecayedMapUpLeft = #{toothdecayedMapUpLeft,jdbcType=VARCHAR},
+		</if>
+		<if test="toothdecayedMapDownLeft != null">
+			toothdecayedMapDownLeft = #{toothdecayedMapDownLeft,jdbcType=VARCHAR},
+		</if>
+		<if test="toothdecayedMapUpRight != null">
+			toothdecayedMapUpRight = #{toothdecayedMapUpRight,jdbcType=VARCHAR},
+		</if>
+		<if test="toothdecayedMapDownRight != null">
+			toothdecayedMapDownRight = #{toothdecayedMapDownRight,jdbcType=VARCHAR},
+		</if>
+		<if test="toothsnapMapUpLeft != null">
+			toothsnapMapUpLeft = #{toothsnapMapUpLeft,jdbcType=VARCHAR},
+		</if>
+		<if test="toothsnapMapDownLeft != null">
+			toothsnapMapDownLeft = #{toothsnapMapDownLeft,jdbcType=VARCHAR},
+		</if>
+		<if test="toothsnapMapUpRight != null">
+			toothsnapMapUpRight = #{toothsnapMapUpRight,jdbcType=VARCHAR},
+		</if>
+		<if test="toothsnapMapDownRight != null">
+			toothsnapMapDownRight = #{toothsnapMapDownRight,jdbcType=VARCHAR},
+		</if>
+		<if test="toothlosetime != null">
+			toothlosetime = #{toothlosetime,jdbcType=VARCHAR},
+		</if>
+		<if test="toothlesstime != null">
+			toothlesstime = #{toothlesstime,jdbcType=VARCHAR},
+		</if>
+		<if test="toothdecayedtime != null">
+			toothdecayedtime = #{toothdecayedtime,jdbcType=VARCHAR},
+		</if>
+		<if test="toothsnaptime != null">
+			toothsnaptime = #{toothsnaptime,jdbcType=VARCHAR},
+		</if>
+		<if test="implantRestoration != null">
+			implantRestoration = #{implantRestoration,jdbcType=VARCHAR},
 		</if>
 		<if test="isHypertension != null">
 			isHypertension = #{isHypertension,jdbcType=VARCHAR},
@@ -200,20 +257,23 @@
 		<if test="isTakeMedicie != null">
 			isTakeMedicie = #{isTakeMedicie,jdbcType=VARCHAR},
 		</if>
-		<if test="isControl != null">
-			isControl = #{isControl,jdbcType=VARCHAR},
-		</if>
 		<if test="pressure != null">
 			pressure = #{pressure,jdbcType=VARCHAR},
 		</if>
-		<if test="IsHearDiease != null">
-			IsHearDiease = #{IsHearDiease,jdbcType=VARCHAR},
+		<if test="hypertensionmedicine != null">
+			hypertensionmedicine = #{hypertensionmedicine,jdbcType=VARCHAR},
+		</if>
+		<if test="isHearDiease != null">
+			isHearDiease = #{isHearDiease,jdbcType=VARCHAR},
 		</if>
 		<if test="hearDiease != null">
 			hearDiease = #{hearDiease,jdbcType=VARCHAR},
 		</if>
 		<if test="isPrepareMedication != null">
 			isPrepareMedication = #{isPrepareMedication,jdbcType=VARCHAR},
+		</if>
+		<if test="heardieasemedicine != null">
+			heardieasemedicine = #{heardieasemedicine,jdbcType=VARCHAR},
 		</if>
 		<if test="isDiabetes != null">
 			isDiabetes = #{isDiabetes,jdbcType=VARCHAR},
@@ -224,17 +284,20 @@
 		<if test="dietControl != null">
 			dietControl = #{dietControl,jdbcType=VARCHAR},
 		</if>
-		<if test="isDietControl != null">
-			isDietControl = #{isDietControl,jdbcType=VARCHAR},
+		<if test="diabetesoralmedicine != null">
+			diabetesoralmedicine = #{diabetesoralmedicine,jdbcType=VARCHAR},
 		</if>
-		<if test="isInfarction != null">
-			isInfarction = #{isInfarction,jdbcType=VARCHAR},
+		<if test="diabetesinjectionmedicine != null">
+			diabetesinjectionmedicine = #{diabetesinjectionmedicine,jdbcType=VARCHAR},
 		</if>
-		<if test="infarction != null">
-			infarction = #{infarction,jdbcType=VARCHAR},
+		<if test="isheartoperation != null">
+			isheartoperation = #{isheartoperation,jdbcType=VARCHAR},
 		</if>
-		<if test="IsBloodCoagulation != null">
-			IsBloodCoagulation = #{IsBloodCoagulation,jdbcType=VARCHAR},
+		<if test="isheartinfarction != null">
+			isheartinfarction = #{isheartinfarction,jdbcType=VARCHAR},
+		</if>
+		<if test="isBloodCoagulation != null">
+			isBloodCoagulation = #{isBloodCoagulation,jdbcType=VARCHAR},
 		</if>
 		<if test="bloodCoagulation != null">
 			bloodCoagulation = #{bloodCoagulation,jdbcType=VARCHAR},
@@ -242,8 +305,11 @@
 		<if test="isAntiFreezing != null">
 			isAntiFreezing = #{isAntiFreezing,jdbcType=VARCHAR},
 		</if>
-		<if test="antiFreezing != null">
-			antiFreezing = #{antiFreezing,jdbcType=VARCHAR},
+		<if test="antifreezingmedicine != null">
+			antifreezingmedicine = #{antifreezingmedicine,jdbcType=VARCHAR},
+		</if>
+		<if test="antiFreezingTime != null">
+			antiFreezingTime = #{antiFreezingTime,jdbcType=VARCHAR},
 		</if>
 		<if test="isHepatitisB != null">
 			isHepatitisB = #{isHepatitisB,jdbcType=VARCHAR},
@@ -251,17 +317,23 @@
 		<if test="hepatitisB != null">
 			hepatitisB = #{hepatitisB,jdbcType=VARCHAR},
 		</if>
-		<if test="IsHepatitisC != null">
-			IsHepatitisC = #{IsHepatitisC,jdbcType=VARCHAR},
+		<if test="isHepatitisC != null">
+			isHepatitisC = #{isHepatitisC,jdbcType=VARCHAR},
 		</if>
 		<if test="hepatitisC != null">
 			hepatitisC = #{hepatitisC,jdbcType=VARCHAR},
 		</if>
-		<if test="IsHIV != null">
-			IsHIV = #{IsHIV,jdbcType=VARCHAR},
+		<if test="isHIV != null">
+			isHIV = #{isHIV,jdbcType=VARCHAR},
 		</if>
-		<if test="Hiv != null">
-			Hiv = #{Hiv,jdbcType=VARCHAR},
+		<if test="hiv != null">
+			hiv = #{hiv,jdbcType=VARCHAR},
+		</if>
+		<if test="isCancer != null">
+			isCancer = #{isCancer,jdbcType=VARCHAR},
+		</if>
+		<if test="cancer != null">
+			cancer = #{cancer,jdbcType=VARCHAR},
 		</if>
 		<if test="isYphilis != null">
 			isYphilis = #{isYphilis,jdbcType=VARCHAR},
@@ -269,14 +341,8 @@
 		<if test="syphilis != null">
 			syphilis = #{syphilis,jdbcType=VARCHAR},
 		</if>
-		<if test="IsCancer != null">
-			IsCancer = #{IsCancer,jdbcType=VARCHAR},
-		</if>
-		<if test="cancer != null">
-			cancer = #{cancer,jdbcType=VARCHAR},
-		</if>
-		<if test="IsMaxillofacial != null">
-			IsMaxillofacial = #{IsMaxillofacial,jdbcType=VARCHAR},
+		<if test="isMaxillofacial != null">
+			isMaxillofacial = #{isMaxillofacial,jdbcType=VARCHAR},
 		</if>
 		<if test="maxillofacial != null">
 			maxillofacial = #{maxillofacial,jdbcType=VARCHAR},
@@ -286,12 +352,6 @@
 		</if>
 		<if test="inflammation != null">
 			inflammation = #{inflammation,jdbcType=VARCHAR},
-		</if>
-		<if test="IsPharmacy != null">
-			IsPharmacy = #{IsPharmacy,jdbcType=VARCHAR},
-		</if>
-		<if test="pharmacy != null">
-			pharmacy = #{pharmacy,jdbcType=VARCHAR},
 		</if>
 		<if test="isDrugAbuse != null">
 			isDrugAbuse = #{isDrugAbuse,jdbcType=VARCHAR},
@@ -305,20 +365,38 @@
 		<if test="psychosis != null">
 			psychosis = #{psychosis,jdbcType=VARCHAR},
 		</if>
-		<if test="IsMucousMembrane != null">
-			IsMucousMembrane = #{IsMucousMembrane,jdbcType=VARCHAR},
+		<if test="isMucousMembrane != null">
+			isMucousMembrane = #{isMucousMembrane,jdbcType=VARCHAR},
 		</if>
 		<if test="mucousMembrane != null">
 			mucousMembrane = #{mucousMembrane,jdbcType=VARCHAR},
 		</if>
-		<if test="IsGlucocorticoids != null">
-			IsGlucocorticoids = #{IsGlucocorticoids,jdbcType=VARCHAR},
+		<if test="isPharmacy != null">
+			isPharmacy = #{isPharmacy,jdbcType=VARCHAR},
+		</if>
+		<if test="pharmacy != null">
+			pharmacy = #{pharmacy,jdbcType=VARCHAR},
+		</if>
+		<if test="takeorallytime != null">
+			takeorallytime = #{takeorallytime,jdbcType=VARCHAR},
+		</if>
+		<if test="pharmacymedicine != null">
+			pharmacymedicine = #{pharmacymedicine,jdbcType=VARCHAR},
+		</if>
+		<if test="isGlucocorticoids != null">
+			isGlucocorticoids = #{isGlucocorticoids,jdbcType=VARCHAR},
 		</if>
 		<if test="glucocorticoids != null">
 			glucocorticoids = #{glucocorticoids,jdbcType=VARCHAR},
 		</if>
+		<if test="glucocorticoidsmedicine != null">
+			glucocorticoidsmedicine = #{glucocorticoidsmedicine,jdbcType=VARCHAR},
+		</if>
 		<if test="isOtherDiseases != null">
 			isOtherDiseases = #{isOtherDiseases,jdbcType=VARCHAR},
+		</if>
+		<if test="otherdiseasestext != null">
+			otherdiseasestext = #{otherdiseasestext,jdbcType=VARCHAR},
 		</if>
 		<if test="otherDiseases != null">
 			otherDiseases = #{otherDiseases,jdbcType=VARCHAR},
@@ -329,8 +407,8 @@
 		<if test="allergicLength != null">
 			allergicLength = #{allergicLength,jdbcType=VARCHAR},
 		</if>
-		<if test="drugAllergy != null">
-			drugAllergy = #{drugAllergy,jdbcType=VARCHAR},
+		<if test="drugallergy != null">
+			drugallergy = #{drugallergy,jdbcType=VARCHAR},
 		</if>
 		<if test="isPregnancy != null">
 			isPregnancy = #{isPregnancy,jdbcType=VARCHAR},
@@ -341,20 +419,29 @@
 		<if test="onMedication != null">
 			onMedication = #{onMedication,jdbcType=VARCHAR},
 		</if>
-		<if test="habit != null">
-			habit = #{habit,jdbcType=VARCHAR},
+		<if test="onmedicationtime != null">
+			onmedicationtime = #{onmedicationtime,jdbcType=VARCHAR},
 		</if>
-		<if test="smokeTime != null">
-			smokeTime = #{smokeTime,jdbcType=VARCHAR},
+		<if test="issmoke != null">
+			issmoke = #{issmoke,jdbcType=VARCHAR},
+		</if>
+		<if test="smoketime != null">
+			smoketime = #{smoketime,jdbcType=VARCHAR},
 		</if>
 		<if test="smokeNum != null">
 			smokeNum = #{smokeNum,jdbcType=VARCHAR},
+		</if>
+		<if test="isdrink != null">
+			isdrink = #{isdrink,jdbcType=VARCHAR},
 		</if>
 		<if test="drinkTime != null">
 			drinkTime = #{drinkTime,jdbcType=VARCHAR},
 		</if>
 		<if test="drinkScale != null">
 			drinkScale = #{drinkScale,jdbcType=VARCHAR},
+		</if>
+		<if test="isodontoprisis != null">
+			isodontoprisis = #{isodontoprisis,jdbcType=VARCHAR},
 		</if>
 		<if test="odontoprisis != null">
 			odontoprisis = #{odontoprisis,jdbcType=VARCHAR},
@@ -365,53 +452,41 @@
 		<if test="chewingHabits != null">
 			chewingHabits = #{chewingHabits,jdbcType=VARCHAR},
 		</if>
-		<if test="Others != null">
-			Others = #{Others,jdbcType=VARCHAR},
+		<if test="chewinghabitstime != null">
+			chewinghabitstime = #{chewinghabitstime,jdbcType=VARCHAR},
 		</if>
-		<if test="LastToothExtractionTime != null">
-			LastToothExtractionTime = #{LastToothExtractionTime,jdbcType=VARCHAR},
+		<if test="others != null">
+			others = #{others,jdbcType=VARCHAR},
 		</if>
-		<if test="HaveYouHadDenture != null">
-			HaveYouHadDenture = #{HaveYouHadDenture,jdbcType=VARCHAR},
+		<if test="isteethclean != null">
+			isteethclean = #{isteethclean,jdbcType=VARCHAR},
 		</if>
-		<if test="ReasonsImplantDentures != null">
-			ReasonsImplantDentures = #{ReasonsImplantDentures,jdbcType=VARCHAR},
+		<if test="teethcleannum != null">
+			teethcleannum = #{teethcleannum,jdbcType=VARCHAR},
 		</if>
-		<if test="PatientSignature != null">
-			PatientSignature = #{PatientSignature,jdbcType=VARCHAR},
+		<if test="planttime != null">
+			planttime = #{planttime,jdbcType=VARCHAR},
 		</if>
-		<if test="PatientTime != null">
-			PatientTime = #{PatientTime,jdbcType=VARCHAR},
-		</if>
-		<if test="doctorSignature != null">
-			doctorSignature = #{doctorSignature,jdbcType=VARCHAR},
+		<if test="patientTime != null">
+			patientTime = #{patientTime,jdbcType=VARCHAR},
 		</if>
 		<if test="doctorTime != null">
 			doctorTime = #{doctorTime,jdbcType=VARCHAR},
 		</if>
-		<if test="createtime != null">
-			createtime = #{createtime,jdbcType=VARCHAR},
+		<if test="patientsignature != null">
+			patientsignature = #{patientsignature,jdbcType=VARCHAR},
 		</if>
-		<if test="hypertensionmedicine != null">
-			hypertensionmedicine = #{hypertensionmedicine,jdbcType=VARCHAR},
+		<if test="doctorsignature != null">
+			doctorsignature = #{doctorsignature,jdbcType=VARCHAR},
 		</if>
-		<if test="heardieasemedicine != null">
-			heardieasemedicine = #{heardieasemedicine,jdbcType=VARCHAR},
+		<if test="status != null">
+			status = #{status,jdbcType=VARCHAR},
 		</if>
-		<if test="diabetesoralmedicine != null">
-			diabetesoralmedicine = #{diabetesoralmedicine,jdbcType=VARCHAR},
+		<if test="updateuser != null">
+			updateuser = #{updateuser,jdbcType=VARCHAR},
 		</if>
-		<if test="diabetesinjectionmedicine != null">
-			diabetesinjectionmedicine = #{diabetesinjectionmedicine,jdbcType=VARCHAR},
-		</if>
-		<if test="antifreezingmedicine != null">
-			antifreezingmedicine = #{antifreezingmedicine,jdbcType=VARCHAR},
-		</if>
-		<if test="pharmacymedicine != null">
-			pharmacymedicine = #{pharmacymedicine,jdbcType=VARCHAR},
-		</if>
-		<if test="glucocorticoidsmedicine != null">
-			glucocorticoidsmedicine = #{glucocorticoidsmedicine,jdbcType=VARCHAR}
+		<if test="updatetime != null">
+			updatetime = #{updatetime,jdbcType=VARCHAR}
 		</if>
 		where SEQ_ID = #{SEQ_ID,jdbcType=VARCHAR}
 	</update>

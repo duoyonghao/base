@@ -102,10 +102,14 @@ public class HUDH_ZzblAdviceAct {
 	  public String updateCaseHistoryById(HttpServletRequest request, HttpServletResponse response)
 	    throws Exception
 	  {
-
+		  ZzblAdvice zzblAdvice = new ZzblAdvice();
+		  BeanUtils.populate(zzblAdvice, request.getParameterMap());
+		  YZPerson person = SessionUtil.getLoginPerson(request);
+		  zzblAdvice.setUpdateuser(person.getSeqId());
+		  zzblAdvice.setUpdatetime(YZUtility.getCurDateTimeStr());
 	    try
 	    {
-			zzblAdviceService.updateCaseHistoryById(null);
+			zzblAdviceService.updateCaseHistoryById(zzblAdvice);
 	      YZUtility.DEAL_SUCCESS(null, null, response, this.logger);
 	    }
 	    catch (Exception e)

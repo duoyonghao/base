@@ -1556,12 +1556,12 @@
 		}
 		//更新
 		function updatePatientSignature(){
-			var url = contextPath + '/HUDH_ZzblAskAct/updateCaseHistoryById.act';
-			var patienttime = $("#patienttime").val();//修复医生签名时间
+			var url = contextPath + '/HUDH_ZzblAdviceAct/updateCaseHistoryById.act';
+			var patienttime = $("#patienttime").val();//患者签名时间
 	        var param = {
-	        		id:  caseId, //临床路径ID
-	        		PatientSignature :  patientsignature,//患者签名
-	        		patienttime : patienttime//患者签名时间
+                SEQ_ID:  caseId, //临床路径ID
+                patientsignature :  patientsignature,//患者签名
+                patientTime : patienttime//患者签名时间
 
 	        };
 	        $.axseSubmit(url, param,function() {},function(r) {
@@ -1612,7 +1612,7 @@
 					if(result){
 						if(result.seq_id){
 							caseId=result.seq_id; //已存在的seqid
-							$("#consent_saveBtn").css("display","none");//隐藏保存按钮
+                            $("#consent_saveBtn").css("display","none");//隐藏保存按钮
 							$("#consent_updateBtn").css("display","inline-block");//显示修改按钮
 						}
 						for(var key in result){
@@ -1663,7 +1663,20 @@
 						toothMapInit("toothsnapMap","rightUpTooth",result.toothsnapmapupright);  //牙折断
 						toothMapInit("toothsnapMap","leftDownTooth",result.toothsnapmapdownleft);  //牙折断
 						toothMapInit("toothsnapMap","rightDownTooth",result.toothsnapmapdownright);  //牙折断
-
+                        signature=result.doctorsignature;
+                        if(signature!=""){
+                            $("#img").attr('src', signature);
+                            doctorstatus=false;
+                        }else{
+                            $("#img").attr('display', 'none');
+                        }
+                        patientsignature=result.patientsignature;
+                        if(patientsignature!=""){
+                            $("#patientimg").attr('src', patientsignature);
+                            patientstatus=false;
+                        }else{
+                            $("#patientimg").attr('display', 'none');
+                        }
 					}
 					//获取当前页面所有按钮
 					getButtonAllCurPage(menuid);
@@ -1821,11 +1834,11 @@
 			/* var doctorSignature = $("#doctorSignature").val(); *///医生签字
 			var doctorTime = $("#doctortime").val();//医生签字时间     72
 
-			var url = contextPath + '';
+			var url = contextPath + '/HUDH_ZzblAdviceAct/updateCaseHistoryById.act';
 			var param = {
 				lcljId :  id,
 				lcljNum :  order_number,
-				seqid : caseId,
+                SEQ_ID : caseId,
 				patient_num :  patient_num,
 				symptom :  symptom,
 				toothloseMapUpLeft :  toothloseMapUpLeft,
@@ -1927,7 +1940,6 @@
 				patientsignature : patientsignature,
 				doctorsignature : signature
 			};
-			console.log(JSON.stringify(param)+"----------修改参数");
 	        $.axseSubmit(url, param,function() {},function(r) {
 	        	layer.alert("修改成功！", {
 		            end: function() {
