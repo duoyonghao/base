@@ -85,7 +85,8 @@
 		margin-right: 30px;
 	}	
 	.detailInfo td{
-		height: 120px;
+		/*height: 120px;*/
+		height: 360px;
 	}
 	.infoText{
 		font-weight: bold;
@@ -102,10 +103,24 @@
 	    letter-spacing: 1px;
 	    margin: 0 auto;
 	}
+	#logoImg{
+		position: absolute;
+		top: 35px;
+		width: 150px;
+		height: 45px;
+	}
+	@page{
+		size: auto;
+		margin: 0mm auto;
+	}
 </style>
 <body style="padding: 0px 3%;">
+<!--startprint-->
 	<div id="content">
-		<h2 class="bigtitle">修复治疗记录 </h2>	
+		<div class="col-md-12 col-sm-12 colDefined" style="position: relative;">
+			<img id="logoImg" src="http://www.hdbkq.cn/templets/hdb/new_header_img/hud_logo.png">
+			<h2 class="bigtitle">修复治疗记录 </h2>
+		</div>
 		<div class="row content">
 			<div class="col-md-12 col-sm-12 colDefined">
 				<table class="contentItem" border="1" width="100%">
@@ -131,10 +146,10 @@
 								<input id="" class="consent_time writetime" type="text" placeholder="请选择日期"/>
 							</td>
 							<td colspan="4">
-								<textarea id="" class="form-control reviewrecord" style="width: 100%; height: 120px ;overflow: auto;word-break: break-all; resize: none;"></textarea>
+								<textarea id="" class="form-control reviewrecord" style="width: 100%; height: 460px ;overflow: auto;word-break: break-all; resize: none;"></textarea>
 							</td>
 							<td colspan="2">
-								<textarea id="" class="form-control doctorname" style="width: 100%; height: 120px ;overflow: auto;word-break: break-all; resize: none;"></textarea>
+								<textarea id="" class="form-control doctorname" style="width: 100%; height: 460px ;overflow: auto;word-break: break-all; resize: none;"></textarea>
 							</td>
 							<td>
 								<button id="consent_updateBtn" style="display: none;" class="consent_updateBtn hidden" onclick="update(this)">修改此条记录</button>
@@ -144,6 +159,7 @@
 				</table>
 			</div>
 		</div>
+		<!--endprint-->
 		<!-- 按钮 -->
 		<div class="btns">
 			<button id="consent_saveBtn" onclick="save()">保存</button>
@@ -223,10 +239,10 @@
 			writeHtml+='<input id="" class="consent_time writetime" type="text" placeholder="请选择日期"/>';
 			writeHtml+='</td>';
 			writeHtml+='<td colspan="4">';
-			writeHtml+='<textarea id="" class="form-control reviewrecord" style="width: 100%; height: 120px ;overflow: auto;word-break: break-all; resize: none;"></textarea>';
+			writeHtml+='<textarea id="" class="form-control reviewrecord" style="width: 100%; height: 460px ;overflow: auto;word-break: break-all; resize: none;"></textarea>';
 			writeHtml+='</td>';
 			writeHtml+='<td colspan="2">';
-			writeHtml+='<textarea id="" class="form-control doctorname" style="width: 100%; height: 120px ;overflow: auto;word-break: break-all; resize: none;"></textarea>';
+			writeHtml+='<textarea id="" class="form-control doctorname" style="width: 100%; height: 460px ;overflow: auto;word-break: break-all; resize: none;"></textarea>';
 			writeHtml+='</td>';						
 			writeHtml+='<td>';
 			writeHtml+='<button id="consent_updateBtn" style="display: none;" class="consent_updateBtn hidden" onclick="update(this)">修改此条记录</button>';
@@ -313,10 +329,10 @@
 		        			initInfoHtml+='<input class="consent_time writetime" type="text" placeholder="请选择日期" value='+data[i].writetime+' >';
 		        			initInfoHtml+='</td>';
 		        			initInfoHtml+='<td colspan="4">';
-		        			initInfoHtml+='<textarea class="form-control reviewrecord" style="width: 100%; height: 120px ;overflow: auto;word-break: break-all; resize: none;">'+data[i].reviewrecord+'</textarea>';
+		        			initInfoHtml+='<textarea class="form-control reviewrecord" style="width: 100%; height: 460px ;overflow: auto;word-break: break-all; resize: none;">'+data[i].reviewrecord+'</textarea>';
 		        			initInfoHtml+='</td>';
 		        			initInfoHtml+='<td colspan="2">';
-		        			initInfoHtml+='<textarea class="form-control doctorname" style="width: 100%; height: 120px ;overflow: auto;word-break: break-all; resize: none;">'+data[i].doctorname+'</textarea>';
+		        			initInfoHtml+='<textarea class="form-control doctorname" style="width: 100%; height: 460px ;overflow: auto;word-break: break-all; resize: none;">'+data[i].doctorname+'</textarea>';
 		        			initInfoHtml+='</td>';						
 		        			initInfoHtml+='<td>';
 		        			initInfoHtml+='<button id="consent_updateBtn" style="display: block;" class="consent_updateBtn hidden" onclick="update(this)">修改此条记录</button>';
@@ -377,13 +393,17 @@
 		
 		/* 打印本页面方法 */
 		function myPreviewAll(){
-			LODOP=getLodop();  
-			LODOP.PRINT_INIT("人工种植牙知情同意书");
-			LODOP.SET_PRINT_PAGESIZE(1,2100,2970,"A4");
-			var htmlStyle="<style>button{display:none;}*{font-size: 12px;line-height: 24px;}</style>";
-			var html="<!DOCTYPE html>"+document.getElementsByTagName("html")[0].innerHTML+htmlStyle;
-			LODOP.ADD_PRINT_HTM(0,10,"100%","100%",html);
-			LODOP.PREVIEW();	
+			$(".consent_updateBtn").css("display","none");
+			$("#tbody").find("tr:last").remove();
+			bdhtml=window.document.body.innerHTML;
+			sprnstr="<!--startprint-->";
+			eprnstr="<!--endprint-->";
+			prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);
+			prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
+			var htmlStyle="<style>button{display:none;}*{font-size: 12px;line-height: 24px;}#logoImg{top: -5px;}</style>";
+			window.document.body.innerHTML=prnhtml+htmlStyle;
+			window.print();  //打印
+			window.document.body.innerHTML=bdhtml; // 恢复页面
 		};
 		
 		function getButtonPower() {
