@@ -130,7 +130,7 @@ function checkedItems(projectId,toothNum){
 		 					if(checkedtoothArr[i]==toothNum){
 		 						var itmecheckedArr=[];
 		 						var itmechecked=$(thi).find("div").attr("id");
-		 						itmecheckedArr.push(itmechecked);//通过牙位查归属牙问题		 						
+		 						itmecheckedArr.push(itmechecked);//通过牙位查归属牙问题
 		 						for(var j=0;j<itmecheckedArr.length;j++){
 		 	 						$("#projectItems").find("ul label").each(function(j,el){
 		 	 							$("#projectItems").find("ul label").find("input[value="+itmecheckedArr[j]+"]").attr('checked',true);
@@ -141,7 +141,7 @@ function checkedItems(projectId,toothNum){
 				})					
 			}		
 		})
-	}else{//牙松动布局相同				
+	}else{//牙松动布局相同
 		 $(window.parent.document).find("#"+projectId+"Box").find("tr td:even").each(function(j,el){
 			var thi=this;
 			if($(thi).find("div").find("span").length>0){

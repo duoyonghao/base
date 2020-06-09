@@ -26,6 +26,10 @@
     <script type="text/javascript" src="<%=contextPath%>/static/plugin/layer-v2.4/layer/layer.js"></script>
 </head>
 <style type="text/css">
+    dl{
+        padding:0;
+        margin:0;
+    }
     body{
         font-size: 12px!important;
     }
@@ -282,7 +286,13 @@
     .placeholder:focus:before{
         content:none;
     }
-
+    .ulstayle{
+        width: 20%;
+        border: 2px solid #aaa;
+        float:left;
+        border-radius: 5px;
+        margin: 1%;
+    }
 </style>
 <body>
 <!--startprint-->
@@ -379,7 +389,7 @@
                         <label><input class="unusual" type="checkbox" name="occludingrelation" value="5" onclick="chooseUnusual(this.name);"/><span class=" ">开颌 </span></label>
                     </td>
                 </tr>
-                <tr>
+                <tr style="display: none">
                     <td colspan="2" class="problemitem"><span class="">纵&nbsp&nbsp&nbsp&nbsp曲线</span></td>
                     <td colspan="4">
                         <label><input class="" type="radio" name="verticalcurve" value="0"/><span class=" ">正常</span></label>
@@ -395,16 +405,17 @@
                     <td  class="problemitem"><span class="">颌间距离</span></td>
                     <td  style="text-align: center;"><input class="border_bottom" id="distancebetween" type="text" onblur="TextLengthCheck(this.id,2);"/>mm</td>
                     <td colspan="3" class="problemitem"><span class="">唇线</span></td>
-                    <td colspan="1">
+                    <td colspan="3">
                         <label><input class="" type="radio" name="labialline"  value="高"/><span class=" ">高</span></label>
                         <label><input class="" type="radio" name="labialline" value="中"/><span class=" ">中</span></label>
                         <label><input class="" type="radio" name="labialline" value="低"/><span class=" ">低</span></label>
                     </td>
-                    <td colspan="2" class="problemitem"><span class="">牙龈生物学类型</span></td>
-                    <td colspan="3">
-                        <label><input class="" type="radio" name="gumtypes" value="薄龈"/><span class=" ">薄龈</span></label>
-                        <label><input class="" type="radio" name="gumtypes" value="厚龈"/><span class=" ">厚龈</span></label>
-                    </td>
+                    <td colspan="2" class="problemitem"><span class="">其他</span></td>
+<%--                    <td colspan="2" class="problemitem"><span class="">牙龈生物学类型</span></td>--%>
+<%--                    <td colspan="3">--%>
+<%--                        <label><input class="" type="radio" name="gumtypes" value="薄龈"/><span class=" ">薄龈</span></label>--%>
+<%--                        <label><input class="" type="radio" name="gumtypes" value="厚龈"/><span class=" ">厚龈</span></label>--%>
+<%--                    </td>--%>
                 </tr>
                 <tr>
                     <td class="problemitem" colspan="2"><span class="">口腔治疗经历</span></td>
@@ -476,7 +487,7 @@
             <input type="button" id="medicalCertificate" class="nocurrent_btn" value="诊断"/>
         </div>
         <!-- 牙位图 -->
-        <div class="row toothBox"  id="toothLooseMap" style="min-width:700px;float:left;overflow:hidden;">
+        <div class="row toothBox toothProBox"  id="toothLooseMap" style="min-width:700px;float:left;overflow:hidden;">
             <ul class="upYa" >
                 <!-- 	               		<span style="font-size: initial;">全选:</span><li style="float: right;"><input id="alltooth" class="" value="全口" type="checkbox"/></li> -->
                 <li><input type="checkbox" class="lefttop" style="margin-top:65px;" /></li>
@@ -525,7 +536,7 @@
                 <li><input type="checkbox" class="rightdown" style="margin-bottom:20px;"/></li>
             </ul>
         </div>
-        <div class="row toothBox" id="toothConditionMap" style="min-width:700px;float:left; display: none;">
+        <div class="row toothBox toothProBox" id="toothConditionMap" style="min-width:700px;float:left; display: none;">
             <ul class="upYa" >
                 <!-- 	                	<span style="font-size: initial;">全选:</span><li style="float: right;"><input id="alltooth" class="" value="全口" type="checkbox"/></li> -->
                 <li><input type="checkbox" class="lefttop" style="margin-top:65px;" /></li>
@@ -574,7 +585,7 @@
                 <li><input type="checkbox" class="rightdown" style="margin-bottom:20px;"/></li>
             </ul>
         </div>
-        <div class="row toothBox" id="imageExaminationMap" style="min-width:700px;float:left; display: none;">
+        <div class="row toothBox toothProBox" id="imageExaminationMap" style="min-width:700px;float:left; display: none;">
             <ul class="upYa" >
                 <!-- 	                	<span style="font-size: initial;">全选:</span><li style="float: right;"><input id="alltooth" class=""  value="全口" type="checkbox"/></li> -->
                 <li><input type="checkbox" class="lefttop" style="margin-top:65px;" /></li>
@@ -623,7 +634,7 @@
                 <li><input type="checkbox" class="rightdown" style="margin-bottom:20px;"/></li>
             </ul>
         </div>
-        <div class="row toothBox" id="medicalCertificateMap" style="min-width:700px;float:left; display: none;">
+        <div class="row toothBox toothProBox" id="medicalCertificateMap" style="min-width:700px;float:left; display: none;">
             <ul class="upYa" >
                 <!-- 	                	<span style="font-size: initial;">全选:</span><li style="float: right;"><input id="alltooth" class=""  value="全口" type="checkbox"/></li> -->
                 <li><input type="checkbox" class="lefttop" style="margin-top:65px;" /></li>
@@ -799,11 +810,154 @@
                 </table>
             </div>
         </div>
-        <div class="row toothBitmap" id="toothBitmap" style="display:block;">
+        <div class="row toothBitmap" id="toothBitmap" style="display:block;overflow: hidden;">
             <div class="col-md-12 col-sm-12 colDefined">
                 <span class="smalltitle">口腔情况牙位简图</span>
             </div>
-            <iframe src="<%=contextPath%>/static/css/kqdsFront/inner.svg" width="100%" height="800"></iframe>
+<%--            <iframe src="<%=contextPath%>/static/css/kqdsFront/inner.svg" width="100%" height="800"></iframe>--%>
+            <div class="leftUp" style="float: left;width: 45%;overflow: hidden;border: 2px solid #aaa;padding: 10px;border-radius: 10px;"></div>
+            <div class="rightUp" style="float: right;width: 45%;overflow: hidden;border: 2px solid #aaa;padding: 10px;border-radius: 10px;"></div>
+            <div class="row toothBox" id="" style="min-width:700px;width: 100%;overflow: hidden;margin-left: 10%;">
+                <ul class="upYa" >
+                    <li>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/leup/leup8.png"  alt=""/>
+                        <span class="num" name="adultupYa1" toothname="18">18</span>
+                    </li>
+                    <li>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/leup/leup7.png"  alt=""/>
+                        <span class="num" name="adultupYa1" toothname="17">17</span>
+                    </li>
+                    <li>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/leup/leup6.png"  alt=""/>
+                        </span><span class="num" name="adultupYa1" toothname="16">16</span>
+                    </li>
+                    <li>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/leup/leup5.png"  alt=""/>
+                        </span><span class="num" name="adultupYa1" toothname="15">15</span>
+                    </li>
+                    <li>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/leup/leup4.png"  alt=""/>
+                        <span class="num" name="adultupYa1" toothname="14">14</span>
+                    </li>
+                    <li>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/leup/leup3.png"  alt=""/>
+                        </span><span class="num" name="adultupYa1" toothname="13">13</span>
+                    </li>
+                    <li>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/leup/leup2.png"  alt=""/>
+                        </span><span class="num" name="adultupYa1" toothname="12">12</span>
+                    </li>
+                    <li>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/leup/leup1.png"  alt=""/>
+                        <span class="num" name="adultupYa1" toothname="11">11</span>
+                    </li>
+
+                    <li>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgup/rgup1.png"  alt=""/>
+                        <span class="num" name="adultupYa2" toothname="21">21</span>
+                    </li>
+                    <li>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgup/rgup2.png"  alt=""/>
+                        <span class="num" name="adultupYa2" toothname="22">22</span>
+                    </li>
+                    <li>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgup/rgup3.png"  alt=""/>
+                        <span class="num" name="adultupYa2" toothname="23">23</span>
+                    </li>
+                    <li>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgup/rgup4.png"  alt=""/>
+                        <span class="num" name="adultupYa2" toothname="24">24</span>
+                    </li>
+                    <li>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgup/rgup5.png"  alt=""/>
+                        <span class="num" name="adultupYa2" toothname="25">25</span>
+                    </li>
+                    <li>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgup/rgup6.png"  alt=""/>
+                        <span class="num" name="adultupYa2" toothname="26">26</span>
+                    </li>
+                    <li>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgup/rgup7.png"  alt=""/>
+                        <span class="num" name="adultupYa2" toothname="27">27</span>
+                    </li>
+                    <li>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgup/rgup8.png"  alt=""/>
+                        <span class="num" name="adultupYa2" toothname="28">28</span>
+                    </li>
+                </ul>
+                <div class="line" style="left: -20%;width: 40%;">
+                    <span class="left">右</span>
+                    <span class="right">左</span>
+                </div>
+                <ul class="downYa">
+                    <li>
+                        <span class="num" name="adultdownYa1" toothname="48">48</span>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/ledown/ledown8.png"  alt=""/>
+                    </li>
+                    <li>
+                        <span class="num" name="adultdownYa1" toothname="47">47</span>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/ledown/ledown7.png"  alt=""/>
+                    </li>
+                    <li><span class="num" name="adultdownYa1" toothname="46">46</span>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/ledown/ledown6.png"  alt=""/>
+                    </li>
+                    <li>
+                        <span class="num" name="adultdownYa1" toothname="45">45</span>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/ledown/ledown5.png"  alt=""/>
+                    </li>
+                    <li>
+                        <span class="num" name="adultdownYa1" toothname="44">44</span>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/ledown/ledown4.png"  alt=""/>
+                    </li>
+                    <li>
+                        <span class="num" name="adultdownYa1" toothname="43">43</span>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/ledown/ledown3.png"  alt=""/>
+                    </li>
+                    <li>
+                        <span class="num" name="adultdownYa1" toothname="42">42</span>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/ledown/ledown2.png"  alt=""/>
+                    </li>
+                    <li>
+                        <span class="num" name="adultdownYa1" toothname="41">41</span>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/ledown/ledown1.png"  alt=""/>
+                    </li>
+
+                    <li>
+                        <span class="num" name="adultdownYa2" toothname="31">31</span>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgdown/rgdown1.png"  alt=""/>
+                    </li>
+                    <li>
+                        <span class="num" name="adultdownYa2" toothname="32">32</span>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgdown/rgdown2.png"  alt=""/>
+                    </li>
+                    <li>
+                        <span class="num" name="adultdownYa2" toothname="33">33</span>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgdown/rgdown3.png"  alt=""/>
+                    </li>
+                    <li>
+                        <span class="num" name="adultdownYa2" toothname="34">34</span>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgdown/rgdown4.png"  alt=""/>
+                    </li>
+                    <li>
+                        <span class="num" name="adultdownYa2" toothname="35">35</span>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgdown/rgdown5.png"  alt=""/>
+                    </li>
+                    <li>
+                        <span class="num" name="adultdownYa2" toothname="36">36</span>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgdown/rgdown6.png"  alt=""/>
+                    </li>
+                    <li>
+                        <span class="num" name="adultdownYa2" toothname="37">37</span>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgdown/rgdown7.png"  alt=""/>
+                    </li>
+                    <li>
+                        <span class="num" name="adultdownYa2" toothname="38">38</span>
+                        <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgdown/rgdown8.png"  alt=""/>
+                    </li>
+                </ul>
+            </div>
+            <div class="leftDown" style="float: left;width: 45%;overflow: hidden;border: 2px solid #aaa;padding: 10px;border-radius: 10px;"></div>
+            <div class="rightDown" style="float: right;width:45%;overflow: hidden;border: 2px solid #aaa;padding: 10px;border-radius: 10px;"></div>
         </div>
     </div>
     <!--endprint-->
@@ -976,6 +1130,7 @@
 			})
 		}
 	}
+        // http://127.0.0.1:8084/base/static/css/kqdsFront/yaweitu.css
 // 添加问题牙齿时（图）赋值---选中状态（红圈）
 	function checkedTooth(projectId,one){
 		var tooth=$("#"+projectId+"Map").find("ul li span.num").text();
@@ -984,7 +1139,12 @@
     	for(var i=0;i<tooth.length;i+=2){
     		toothArr.push(tooth.slice(i,i+2));
     	}
-    	checkedArr.push(one);
+    	if(one){
+            checkedArr.push(one);
+        }else{
+
+        }
+    	// checkedArr.push(one);
     	for(j=0;j<toothArr.length;j++){
 			for(var i=0;i<checkedArr.length;i++){
 				if(checkedArr[i]!=toothArr[j]){
@@ -1010,7 +1170,7 @@
     					})
     			 }
     		 })
-    	}else{//牙松动布局相同的
+    	}else{//整体口腔情况明细、影像学检查、诊断布局相同的
     		 $("#"+projectId+"Box").find("tr td:even").each(function(j,el){
     			 var thi=this;
     			 var span=$(thi).find("div").find("span");
@@ -1065,7 +1225,7 @@
     //点击牙齿操作
     var toothNum;
     var toothMore;
-    $('.toothBox').on('click', 'li',
+    $('.toothProBox').on('click', 'li',
         function() {
             if(!projectId){
                 layer.alert("请选择要添加的牙位项目！");
@@ -1099,19 +1259,7 @@
             })
         })
     // 牙位图end========================================================================
-
-    // 	口腔治疗经历---多选拼接在一起以","分隔
-    function oralTreatmentExperience() {
-        var obj = $("#oralSpecialtyExamination").find("input[name='oral_treatment_experience']");
-        var oral_treatment_experience = "";
-        for ( k in obj ) {
-            if(obj[k].checked) {
-                oral_treatment_experience = oral_treatment_experience + obj[k].value + ',';
-            }
-        }
-        return oral_treatment_experience;
-    }
-    // 复选框存值
+    // 复选框取值
     function inputCheckedSave(name) {
         var obj = $("#"+name+"Checkbox").find("input[name="+name+"]");
         var inputSave = "";
@@ -1135,7 +1283,7 @@
         })
         return toothLooseItem;
     }
-    //整体情况~诊断~影像学检查=牙位取值
+    //整体情况~诊断~影像学检查 =》牙位取值
     function saveTooth(obj){
         var ToothItem={};
         $("#"+obj).find("tr td:odd").each(function(j,el){
@@ -1146,6 +1294,7 @@
                 ToothItem[item]=checkedtoothStr;
             }
         })
+        // console.log(ToothItem+'-------')
         return ToothItem;
     }
     //    保存方法
@@ -1321,7 +1470,7 @@
                         }
                     });
                 } else {
-                    layer.alert('修改失败'  );
+                    layer.alert('修改失败22'  );
                 }
             },
             function() {
@@ -1341,7 +1490,8 @@
             success:function(result){
                 var res=result[0];
                 updataid=res.seqId;
-// 					console.log(JSON.stringify(res)+"-----rr");
+					// console.log(JSON.stringify(res)+"-----rr");
+                toothMap(res["dentitiondefect"]);
                 if(result.length>0){
                     $("#consent_saveBtn").css("display","none");//隐藏保存按钮
                     $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
@@ -1450,7 +1600,47 @@
             }
         });
     }
-
+    // 初始化整体口腔情况牙位图
+    function toothMap(data){//data返回的牙位及牙位问题
+        var obj={};//数据整理以牙位为基准
+        for(var key in data){
+            var dentitiondefectstr=data[key];
+            //去掉字符串最后的逗号
+            dentitiondefectstr = (dentitiondefectstr.substring(dentitiondefectstr.length - 1) == ',') ? dentitiondefectstr.substring(0, dentitiondefectstr.length - 1) : dentitiondefectstr;
+            //字符串转数组
+            var list = dentitiondefectstr.split(",");
+            // 查询dictName值
+            for(var i=0;i<conditionData.length;i++){
+                var newConditionData=conditionData[i];
+                for(var j in newConditionData){
+                    if(newConditionData[j]==key){
+                        key=newConditionData["dictName"];
+                    }
+                }
+            }
+            // 数据重组
+            for(var i=0;i<list.length;i++){
+                if(list[i] in obj){
+                    obj[list[i]].push(key)
+                }else{
+                    obj[list[i]]=[key]
+                }
+            }
+        }
+        // console.log(JSON.stringify(obj)+"----obj");
+        // 数据赋图
+        for(var y in obj){
+            if(y<19){
+                $(".leftUp").prepend("<dl class='ulstayle'><dl>"+y+"</dl><dd>"+obj[y]+"</dd></dl>")
+            }else if(y>19&&y<29){
+                $(".rightUp").append("<dl class='ulstayle'><dl>"+y+"</dl><dd>"+obj[y]+"</dd></dl>")
+            } else if(y>29&&y<39){
+                $(".rightDown").append("<dl class='ulstayle'><dl>"+y+"</dl><dd>"+obj[y]+"</dd></dl>")
+            }else if(y>39&&y<49){
+                $(".leftDown").prepend("<dl class='ulstayle'><dl>"+y+"</dl><dd>"+obj[y]+"</dd></dl>")
+            }
+        }
+    }
     //打印方法
     function myPreviewAll() {
         bdhtml=window.document.body.innerHTML;
@@ -1463,7 +1653,7 @@
         window.document.body.innerHTML=prnhtml+htmlStyle;
         window.print();  //打印
         window.document.body.innerHTML=bdhtml; // 恢复页面
-// 			    window.location.reload();
+        window.location.reload();
     }
 
 </script>
