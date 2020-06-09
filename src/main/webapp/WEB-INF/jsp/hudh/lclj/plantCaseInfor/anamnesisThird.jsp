@@ -71,7 +71,6 @@
    .rpInfo_import{
 	   	margin-bottom: 10px;
 	   	line-height: 24px;
-	   border: 1px solid red;
    }
    .rpInfo_import input{
    		width: 110px;
@@ -213,7 +212,7 @@
 		margin-right: 35px;
 	}
 </style>
-<body style="border:1px solid blue;">
+<body>
 <!--startprint-->
 		<div id="anamnesis_continer" class="container-fluid" style="height:100%;">
 		<!-- 标题 -->
@@ -1609,7 +1608,7 @@
 					 id :  id
 				},
 				success:function(result){
-					console.log(JSON.stringify(result)+"--------------患者查询信息");
+					//console.log(JSON.stringify(result)+"--------------患者查询信息");
 					if(result){
 						if(result.seq_id){
 							caseId=result.seq_id; //已存在的seqid
