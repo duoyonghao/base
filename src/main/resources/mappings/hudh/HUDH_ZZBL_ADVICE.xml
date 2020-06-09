@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_ZZBL_ADVICE">
+	<resultMap id="ZzblAdvice" type="com.hudh.zzbl.entity.ZzblAdvice">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="SEQ_ID" />
+		<result column="lcljNum" jdbcType="VARCHAR" property="lcljNum" />
+		<result column="lcljId" jdbcType="VARCHAR" property="lcljId" />
+		<result column="patient_num" jdbcType="VARCHAR" property="patient_num" />
+		<result column="symptom" jdbcType="VARCHAR" property="symptom" />
+		<result column="toothloseMapUpLeft" jdbcType="VARCHAR" property="toothloseMapUpLeft" />
+		<result column="toothloseMapDownLeft" jdbcType="VARCHAR" property="toothloseMapDownLeft" />
+		<result column="toothloseMapUpRight" jdbcType="VARCHAR" property="toothloseMapUpRight" />
+		<result column="toothloseMapDownRight" jdbcType="VARCHAR" property="toothloseMapDownRight" />
+		<result column="toothlessMapUpLeft" jdbcType="VARCHAR" property="toothlessMapUpLeft" />
+		<result column="toothlessMapDownLeft" jdbcType="VARCHAR" property="toothlessMapDownLeft" />
+		<result column="toothlessMapUpRight" jdbcType="VARCHAR" property="toothlessMapUpRight" />
+		<result column="toothlessMapDownRight" jdbcType="VARCHAR" property="toothlessMapDownRight" />
+		<result column="toothdecayedMapUpLeft" jdbcType="VARCHAR" property="toothdecayedMapUpLeft" />
+		<result column="toothdecayedMapDownLeft" jdbcType="VARCHAR" property="toothdecayedMapDownLeft" />
+		<result column="toothdecayedMapUpRight" jdbcType="VARCHAR" property="toothdecayedMapUpRight" />
+		<result column="toothdecayedMapDownRight" jdbcType="VARCHAR" property="toothdecayedMapDownRight" />
+		<result column="toothsnapMapUpLeft" jdbcType="VARCHAR" property="toothsnapMapUpLeft" />
+		<result column="toothsnapMapDownLeft" jdbcType="VARCHAR" property="toothsnapMapDownLeft" />
+		<result column="toothsnapMapUpRight" jdbcType="VARCHAR" property="toothsnapMapUpRight" />
+		<result column="toothsnapMapDownRight" jdbcType="VARCHAR" property="toothsnapMapDownRight" />
+		<result column="toothlosetime" jdbcType="VARCHAR" property="toothlosetime" />
+		<result column="toothlesstime" jdbcType="VARCHAR" property="toothlesstime" />
+		<result column="toothdecayedtime" jdbcType="CLOB" property="toothdecayedtime" />
+		<result column="toothsnaptime" jdbcType="VARCHAR" property="toothsnaptime" />
+		<result column="implantRestoration" jdbcType="VARCHAR" property="implantRestoration" />
+		<result column="isHypertension" jdbcType="VARCHAR" property="isHypertension" />
+		<result column="hypertension" jdbcType="VARCHAR" property="hypertension" />
+		<result column="isTakeMedicie" jdbcType="VARCHAR" property="isTakeMedicie" />
+		<result column="hypertensionmedicine" jdbcType="VARCHAR" property="hypertensionmedicine" />
+		<result column="isHearDiease" jdbcType="VARCHAR" property="isHearDiease" />
+		<result column="hearDiease" jdbcType="VARCHAR" property="hearDiease" />
+		<result column="isPrepareMedication" jdbcType="VARCHAR" property="isPrepareMedication" />
+		<result column="heardieasemedicine" jdbcType="VARCHAR" property="heardieasemedicine" />
+		<result column="isDiabetes" jdbcType="VARCHAR" property="isDiabetes" />
+		<result column="diabetes" jdbcType="VARCHAR" property="diabetes" />
+		<result column="dietControl" jdbcType="VARCHAR" property="dietControl" />
+		<result column="diabetesoralmedicine" jdbcType="VARCHAR" property="diabetesoralmedicine" />
+		<result column="diabetesinjectionmedicine" jdbcType="VARCHAR" property="diabetesinjectionmedicine" />
+		<result column="isheartoperation" jdbcType="VARCHAR" property="isheartoperation" />
+		<result column="isheartinfarction" jdbcType="VARCHAR" property="isheartinfarction" />
+		<result column="isBloodCoagulation" jdbcType="VARCHAR" property="isBloodCoagulation" />
+		<result column="bloodCoagulation" jdbcType="VARCHAR" property="bloodCoagulation" />
+		<result column="isAntiFreezing" jdbcType="VARCHAR" property="isAntiFreezing" />
+		<result column="antifreezingmedicine" jdbcType="VARCHAR" property="antifreezingmedicine" />
+		<result column="antiFreezingTime" jdbcType="VARCHAR" property="antiFreezingTime" />
+		<result column="isHepatitisB" jdbcType="VARCHAR" property="isHepatitisB" />
+		<result column="hepatitisB" jdbcType="VARCHAR" property="hepatitisB" />
+		<result column="isHepatitisC" jdbcType="VARCHAR" property="isHepatitisC" />
+		<result column="hepatitisC" jdbcType="VARCHAR" property="hepatitisC" />
+		<result column="isHIV" jdbcType="VARCHAR" property="isHIV" />
+		<result column="hiv" jdbcType="VARCHAR" property="hiv" />
+		<result column="isCancer" jdbcType="VARCHAR" property="isCancer" />
+		<result column="cancer" jdbcType="VARCHAR" property="cancer" />
+		<result column="isYphilis" jdbcType="VARCHAR" property="isYphilis" />
+		<result column="syphilis" jdbcType="VARCHAR" property="syphilis" />
+		<result column="isMaxillofacial" jdbcType="VARCHAR" property="isMaxillofacial" />
+		<result column="maxillofacial" jdbcType="VARCHAR" property="maxillofacial" />
+		<result column="isInflammation" jdbcType="VARCHAR" property="isInflammation" />
+		<result column="inflammation" jdbcType="VARCHAR" property="inflammation" />
+		<result column="isDrugAbuse" jdbcType="VARCHAR" property="isDrugAbuse" />
+		<result column="drugAbuse" jdbcType="VARCHAR" property="drugAbuse" />
+		<result column="isPsychosis" jdbcType="VARCHAR" property="isPsychosis" />
+		<result column="psychosis" jdbcType="VARCHAR" property="psychosis" />
+		<result column="isMucousMembrane" jdbcType="VARCHAR" property="isMucousMembrane" />
+		<result column="mucousMembrane" jdbcType="VARCHAR" property="mucousMembrane" />
+		<result column="isPharmacy" jdbcType="VARCHAR" property="isPharmacy" />
+		<result column="pharmacy" jdbcType="VARCHAR" property="pharmacy" />
+		<result column="takeorallytime" jdbcType="VARCHAR" property="takeorallytime" />
+		<result column="pharmacymedicine" jdbcType="VARCHAR" property="pharmacymedicine" />
+		<result column="isGlucocorticoids" jdbcType="VARCHAR" property="isGlucocorticoids" />
+		<result column="glucocorticoids" jdbcType="VARCHAR" property="glucocorticoids" />
+		<result column="glucocorticoidsmedicine" jdbcType="VARCHAR" property="glucocorticoidsmedicine" />
+		<result column="isOtherDiseases" jdbcType="VARCHAR" property="isOtherDiseases" />
+		<result column="otherdiseasestext" jdbcType="VARCHAR" property="otherdiseasestext" />
+		<result column="otherDiseases" jdbcType="VARCHAR" property="otherDiseases" />
+		<result column="isDrugAllergy" jdbcType="VARCHAR" property="isDrugAllergy" />
+		<result column="allergicLength" jdbcType="VARCHAR" property="allergicLength" />
+		<result column="drugallergy" jdbcType="VARCHAR" property="drugallergy" />
+		<result column="isPregnancy" jdbcType="VARCHAR" property="isPregnancy" />
+		<result column="pregnancy" jdbcType="VARCHAR" property="pregnancy" />
+		<result column="onMedication" jdbcType="VARCHAR" property="onMedication" />
+		<result column="onmedicationtime" jdbcType="VARCHAR" property="onmedicationtime" />
+		<result column="issmoke" jdbcType="VARCHAR" property="issmoke" />
+		<result column="smoketime" jdbcType="VARCHAR" property="smoketime" />
+		<result column="smokeNum" jdbcType="VARCHAR" property="smokeNum" />
+		<result column="isdrink" jdbcType="VARCHAR" property="isdrink" />
+		<result column="drinkTime" jdbcType="VARCHAR" property="drinkTime" />
+		<result column="drinkScale" jdbcType="VARCHAR" property="drinkScale" />
+		<result column="isodontoprisis" jdbcType="VARCHAR" property="isodontoprisis" />
+		<result column="odontoprisis" jdbcType="VARCHAR" property="odontoprisis" />
+		<result column="odontoprisisDegree" jdbcType="VARCHAR" property="odontoprisisDegree" />
+		<result column="chewingHabits" jdbcType="VARCHAR" property="chewingHabits" />
+		<result column="chewinghabitstime" jdbcType="VARCHAR" property="chewinghabitstime" />
+		<result column="others" jdbcType="VARCHAR" property="others" />
+		<result column="isteethclean" jdbcType="VARCHAR" property="isteethclean" />
+		<result column="teethcleannum" jdbcType="VARCHAR" property="teethcleannum" />
+		<result column="planttime" jdbcType="VARCHAR" property="planttime" />
+		<result column="patientTime" jdbcType="VARCHAR" property="patientTime" />
+		<result column="doctorTime" jdbcType="VARCHAR" property="doctorTime" />
+		<result column="patientsignature" jdbcType="VARCHAR" property="patientsignature" />
+		<result column="doctorsignature" jdbcType="VARCHAR" property="doctorsignature" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		SEQ_ID,lcljId,lcljNum,patient_num,symptom,toothloseMapUpLeft,toothloseMapDownLeft,toothloseMapUpRight,toothloseMapDownRight,toothlessMapUpLeft,
+        toothlessMapDownLeft,toothlessMapUpRight,toothlessMapDownRight,toothdecayedMapUpLeft,toothdecayedMapDownLeft,toothdecayedMapUpRight,
+		toothdecayedMapDownRight,toothsnapMapUpLeft,toothsnapMapDownLeft,toothsnapMapUpRight,toothsnapMapDownRight,toothlosetime,toothlesstime,toothdecayedtime,
+		toothsnaptime,implantRestoration,isHypertension,hypertension,isTakeMedicie,pressure,hypertensionmedicine,isHearDiease,hearDiease,isPrepareMedication,
+		heardieasemedicine,isDiabetes,diabetes,dietControl,diabetesoralmedicine,diabetesinjectionmedicine,isheartoperation,isheartinfarction,isBloodCoagulation,
+		bloodCoagulation,isAntiFreezing,antifreezingmedicine,antiFreezingTime,isHepatitisB,hepatitisB,isHepatitisC,hepatitisC,isHIV,hiv,isCancer,cancer,
+		isYphilis,syphilis,isMaxillofacial,maxillofacial,isInflammation,inflammation,isDrugAbuse,drugAbuse,isPsychosis,psychosis,isMucousMembrane,mucousMembrane,
+		isPharmacy,pharmacy,takeorallytime,pharmacymedicine,IsGlucocorticoids,glucocorticoids,glucocorticoidsmedicine,isOtherDiseases,otherdiseasestext,
+		otherDiseases,isDrugAllergy,allergicLength,drugallergy,isPregnancy,pregnancy,onMedication,onmedicationtime,issmoke,smoketime,smokeNum,isdrink,
+		drinkTime,drinkScale,isodontoprisis,odontoprisis,odontoprisisDegree,chewingHabits,chewinghabitstime,Others,isteethclean,teethcleannum,planttime,
+		patientTime,doctorTime,patientsignature,doctorsignature,organization,createuser,createtime,status
+</sql>
+
+	<!-- 保存主诉及既往病史 -->
+	<insert id="saveCaseHistory" parameterType="com.hudh.zzbl.entity.ZzblAdvice">
+		insert into
+		HUDH_ZZBL_ADVICE
+		(SEQ_ID,lcljId,lcljNum,patient_num,symptom,toothloseMapUpLeft,toothloseMapDownLeft,toothloseMapUpRight,toothloseMapDownRight,toothlessMapUpLeft,
+        toothlessMapDownLeft,toothlessMapUpRight,toothlessMapDownRight,toothdecayedMapUpLeft,toothdecayedMapDownLeft,toothdecayedMapUpRight,
+		toothdecayedMapDownRight,toothsnapMapUpLeft,toothsnapMapDownLeft,toothsnapMapUpRight,toothsnapMapDownRight,toothlosetime,toothlesstime,toothdecayedtime,
+		toothsnaptime,implantRestoration,isHypertension,hypertension,isTakeMedicie,pressure,hypertensionmedicine,IsHearDiease,hearDiease,isPrepareMedication,
+		heardieasemedicine,isDiabetes,diabetes,dietControl,diabetesoralmedicine,diabetesinjectionmedicine,isheartoperation,isheartinfarction,isBloodCoagulation,
+		bloodCoagulation,isAntiFreezing,antifreezingmedicine,antiFreezingTime,isHepatitisB,hepatitisB,isHepatitisC,hepatitisC,isHIV,hiv,isCancer,cancer,
+		isYphilis,syphilis,isMaxillofacial,maxillofacial,isInflammation,inflammation,isDrugAbuse,drugAbuse,isPsychosis,psychosis,isMucousMembrane,mucousMembrane,
+		isPharmacy,pharmacy,takeorallytime,pharmacymedicine,isGlucocorticoids,glucocorticoids,glucocorticoidsmedicine,isOtherDiseases,otherdiseasestext,
+		otherDiseases,isDrugAllergy,allergicLength,drugallergy,isPregnancy,pregnancy,onMedication,onmedicationtime,issmoke,smoketime,smokeNum,isdrink,
+		drinkTime,drinkScale,isodontoprisis,odontoprisis,odontoprisisDegree,chewingHabits,chewinghabitstime,others,isteethclean,teethcleannum,planttime,
+		patientTime,doctorTime,patientsignature,doctorsignature,organization,createuser,createtime,status)
+		values(#{SEQ_ID,jdbcType=VARCHAR},#{lcljId,jdbcType=VARCHAR},#{lcljNum,jdbcType=VARCHAR},#{patient_num,jdbcType=VARCHAR},#{symptom,jdbcType=VARCHAR},#{toothloseMapUpLeft,jdbcType=VARCHAR},
+		#{toothloseMapDownLeft,jdbcType=VARCHAR},#{toothloseMapUpRight,jdbcType=VARCHAR},#{toothloseMapDownRight,jdbcType=VARCHAR},#{toothlessMapUpLeft,jdbcType=VARCHAR},#{toothlessMapDownLeft,jdbcType=VARCHAR},
+		#{toothlessMapUpRight,jdbcType=VARCHAR},#{toothlessMapDownRight,jdbcType=VARCHAR},#{toothdecayedMapUpLeft,jdbcType=VARCHAR},#{toothdecayedMapDownLeft,jdbcType=VARCHAR},#{toothdecayedMapUpRight,jdbcType=VARCHAR},
+		#{toothdecayedMapDownRight,jdbcType=VARCHAR},#{toothsnapMapUpLeft,jdbcType=VARCHAR},#{toothsnapMapDownLeft,jdbcType=VARCHAR},#{toothsnapMapUpRight,jdbcType=VARCHAR},#{toothsnapMapDownRight,jdbcType=VARCHAR},
+		#{toothlosetime,jdbcType=VARCHAR},#{toothlesstime,jdbcType=VARCHAR},#{toothdecayedtime,jdbcType=VARCHAR},#{toothsnaptime,jdbcType=VARCHAR},#{implantRestoration,jdbcType=VARCHAR},#{isHypertension,jdbcType=VARCHAR},
+		#{hypertension,jdbcType=VARCHAR},#{isTakeMedicie,jdbcType=VARCHAR},#{pressure,jdbcType=VARCHAR},#{hypertensionmedicine,jdbcType=VARCHAR},#{isHearDiease,jdbcType=VARCHAR},#{hearDiease,jdbcType=VARCHAR},
+		#{isPrepareMedication,jdbcType=VARCHAR},#{heardieasemedicine,jdbcType=VARCHAR},#{isDiabetes,jdbcType=VARCHAR},#{diabetes,jdbcType=VARCHAR},#{dietControl,jdbcType=VARCHAR},#{diabetesoralmedicine,jdbcType=VARCHAR},
+		#{diabetesinjectionmedicine,jdbcType=VARCHAR},#{isheartoperation,jdbcType=VARCHAR},#{isheartinfarction,jdbcType=VARCHAR},#{isBloodCoagulation,jdbcType=VARCHAR},#{bloodCoagulation,jdbcType=VARCHAR},#{isAntiFreezing,jdbcType=VARCHAR},
+		#{antifreezingmedicine,jdbcType=VARCHAR},#{antiFreezingTime,jdbcType=VARCHAR},#{isHepatitisB,jdbcType=VARCHAR},#{hepatitisB,jdbcType=VARCHAR},#{isHepatitisC,jdbcType=VARCHAR},#{hepatitisC,jdbcType=VARCHAR},
+		#{isHIV,jdbcType=VARCHAR},#{hiv,jdbcType=VARCHAR},#{isCancer,jdbcType=VARCHAR},#{cancer,jdbcType=VARCHAR},#{isYphilis,jdbcType=VARCHAR},#{syphilis,jdbcType=VARCHAR},#{isMaxillofacial,jdbcType=VARCHAR},
+		#{maxillofacial,jdbcType=VARCHAR},#{isInflammation,jdbcType=VARCHAR},#{inflammation,jdbcType=VARCHAR},#{isDrugAbuse,jdbcType=VARCHAR},#{drugAbuse,jdbcType=VARCHAR},#{isPsychosis,jdbcType=VARCHAR},#{psychosis,jdbcType=VARCHAR},
+		#{isMucousMembrane,jdbcType=VARCHAR},#{mucousMembrane,jdbcType=VARCHAR},#{isPharmacy,jdbcType=VARCHAR},#{pharmacy,jdbcType=VARCHAR},#{takeorallytime,jdbcType=VARCHAR},#{pharmacymedicine,jdbcType=VARCHAR},
+		#{isGlucocorticoids,jdbcType=VARCHAR},#{glucocorticoids,jdbcType=VARCHAR},#{glucocorticoidsmedicine,jdbcType=VARCHAR},#{isOtherDiseases,jdbcType=VARCHAR},#{otherdiseasestext,jdbcType=VARCHAR},
+		#{otherDiseases,jdbcType=VARCHAR},#{isDrugAllergy,jdbcType=VARCHAR},#{allergicLength,jdbcType=VARCHAR},#{drugallergy,jdbcType=VARCHAR},#{isPregnancy,jdbcType=VARCHAR},#{pregnancy,jdbcType=VARCHAR},
+		#{onMedication,jdbcType=VARCHAR},#{onmedicationtime,jdbcType=VARCHAR},#{issmoke,jdbcType=VARCHAR},#{smoketime,jdbcType=VARCHAR},#{smokeNum,jdbcType=VARCHAR},#{isdrink,jdbcType=VARCHAR},
+		#{drinkTime,jdbcType=VARCHAR},#{drinkScale,jdbcType=VARCHAR},#{isodontoprisis,jdbcType=VARCHAR},#{odontoprisis,jdbcType=VARCHAR},#{odontoprisisDegree,jdbcType=VARCHAR},#{chewingHabits,jdbcType=VARCHAR},
+		#{chewinghabitstime,jdbcType=VARCHAR},#{others,jdbcType=VARCHAR},#{isteethclean,jdbcType=VARCHAR},#{teethcleannum,jdbcType=VARCHAR},#{planttime,jdbcType=VARCHAR},#{patientTime,jdbcType=VARCHAR},#{doctorTime,jdbcType=VARCHAR},
+		#{patientsignature,jdbcType=VARCHAR},#{doctorsignature,jdbcType=VARCHAR},#{organization,jdbcType=VARCHAR},#{createuser,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR})
+	</insert>
+
+	<!-- 根据id查询主诉及既往病史 -->
+	<select id="findCaseHistoryById" parameterType="String" resultType="json">
+		select
+		<include refid="Base_Column_List" />
+		from HUDH_ZZBL_ADVICE
+		where lcljId = #{id,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 根据Id更新主诉及既往病史 -->
+	<update id="updateCaseHistoryById" parameterType="com.hudh.zzbl.entity.ZzblAdvice">
+		update HUDH_ZZBL_ADVICE set
+		<if test="lcljNum != null">
+			lcljNum = #{lcljNum,jdbcType=VARCHAR},
+		</if>
+		<if test="treaTment != null">
+			Treatment = #{treaTment,jdbcType=VARCHAR},
+		</if>
+		<if test="antiFreezingTime != null">
+			antifreezingtime = #{antiFreezingTime,jdbcType=VARCHAR},
+		</if>
+		<if test="LcljId != null">
+			LcljId = #{LcljId,jdbcType=VARCHAR},
+		</if>
+		<if test="agomphosTime != null">
+			agomphosTime = #{agomphosTime,jdbcType=VARCHAR},
+		</if>
+		<if test="symptom != null">
+			symptom = #{symptom,jdbcType=VARCHAR},
+		</if>
+		<if test="plantTime != null">
+			plantTime = #{plantTime,jdbcType=VARCHAR},
+		</if>
+		<if test="isHypertension != null">
+			isHypertension = #{isHypertension,jdbcType=VARCHAR},
+		</if>
+		<if test="hypertension != null">
+			hypertension = #{hypertension,jdbcType=VARCHAR},
+		</if>
+		<if test="isTakeMedicie != null">
+			isTakeMedicie = #{isTakeMedicie,jdbcType=VARCHAR},
+		</if>
+		<if test="isControl != null">
+			isControl = #{isControl,jdbcType=VARCHAR},
+		</if>
+		<if test="pressure != null">
+			pressure = #{pressure,jdbcType=VARCHAR},
+		</if>
+		<if test="IsHearDiease != null">
+			IsHearDiease = #{IsHearDiease,jdbcType=VARCHAR},
+		</if>
+		<if test="hearDiease != null">
+			hearDiease = #{hearDiease,jdbcType=VARCHAR},
+		</if>
+		<if test="isPrepareMedication != null">
+			isPrepareMedication = #{isPrepareMedication,jdbcType=VARCHAR},
+		</if>
+		<if test="isDiabetes != null">
+			isDiabetes = #{isDiabetes,jdbcType=VARCHAR},
+		</if>
+		<if test="diabetes != null">
+			diabetes = #{diabetes,jdbcType=VARCHAR},
+		</if>
+		<if test="dietControl != null">
+			dietControl = #{dietControl,jdbcType=VARCHAR},
+		</if>
+		<if test="isDietControl != null">
+			isDietControl = #{isDietControl,jdbcType=VARCHAR},
+		</if>
+		<if test="isInfarction != null">
+			isInfarction = #{isInfarction,jdbcType=VARCHAR},
+		</if>
+		<if test="infarction != null">
+			infarction = #{infarction,jdbcType=VARCHAR},
+		</if>
+		<if test="IsBloodCoagulation != null">
+			IsBloodCoagulation = #{IsBloodCoagulation,jdbcType=VARCHAR},
+		</if>
+		<if test="bloodCoagulation != null">
+			bloodCoagulation = #{bloodCoagulation,jdbcType=VARCHAR},
+		</if>
+		<if test="isAntiFreezing != null">
+			isAntiFreezing = #{isAntiFreezing,jdbcType=VARCHAR},
+		</if>
+		<if test="antiFreezing != null">
+			antiFreezing = #{antiFreezing,jdbcType=VARCHAR},
+		</if>
+		<if test="isHepatitisB != null">
+			isHepatitisB = #{isHepatitisB,jdbcType=VARCHAR},
+		</if>
+		<if test="hepatitisB != null">
+			hepatitisB = #{hepatitisB,jdbcType=VARCHAR},
+		</if>
+		<if test="IsHepatitisC != null">
+			IsHepatitisC = #{IsHepatitisC,jdbcType=VARCHAR},
+		</if>
+		<if test="hepatitisC != null">
+			hepatitisC = #{hepatitisC,jdbcType=VARCHAR},
+		</if>
+		<if test="IsHIV != null">
+			IsHIV = #{IsHIV,jdbcType=VARCHAR},
+		</if>
+		<if test="Hiv != null">
+			Hiv = #{Hiv,jdbcType=VARCHAR},
+		</if>
+		<if test="isYphilis != null">
+			isYphilis = #{isYphilis,jdbcType=VARCHAR},
+		</if>
+		<if test="syphilis != null">
+			syphilis = #{syphilis,jdbcType=VARCHAR},
+		</if>
+		<if test="IsCancer != null">
+			IsCancer = #{IsCancer,jdbcType=VARCHAR},
+		</if>
+		<if test="cancer != null">
+			cancer = #{cancer,jdbcType=VARCHAR},
+		</if>
+		<if test="IsMaxillofacial != null">
+			IsMaxillofacial = #{IsMaxillofacial,jdbcType=VARCHAR},
+		</if>
+		<if test="maxillofacial != null">
+			maxillofacial = #{maxillofacial,jdbcType=VARCHAR},
+		</if>
+		<if test="isInflammation != null">
+			isInflammation = #{isInflammation,jdbcType=VARCHAR},
+		</if>
+		<if test="inflammation != null">
+			inflammation = #{inflammation,jdbcType=VARCHAR},
+		</if>
+		<if test="IsPharmacy != null">
+			IsPharmacy = #{IsPharmacy,jdbcType=VARCHAR},
+		</if>
+		<if test="pharmacy != null">
+			pharmacy = #{pharmacy,jdbcType=VARCHAR},
+		</if>
+		<if test="isDrugAbuse != null">
+			isDrugAbuse = #{isDrugAbuse,jdbcType=VARCHAR},
+		</if>
+		<if test="drugAbuse != null">
+			drugAbuse = #{drugAbuse,jdbcType=VARCHAR},
+		</if>
+		<if test="isPsychosis != null">
+			isPsychosis = #{isPsychosis,jdbcType=VARCHAR},
+		</if>
+		<if test="psychosis != null">
+			psychosis = #{psychosis,jdbcType=VARCHAR},
+		</if>
+		<if test="IsMucousMembrane != null">
+			IsMucousMembrane = #{IsMucousMembrane,jdbcType=VARCHAR},
+		</if>
+		<if test="mucousMembrane != null">
+			mucousMembrane = #{mucousMembrane,jdbcType=VARCHAR},
+		</if>
+		<if test="IsGlucocorticoids != null">
+			IsGlucocorticoids = #{IsGlucocorticoids,jdbcType=VARCHAR},
+		</if>
+		<if test="glucocorticoids != null">
+			glucocorticoids = #{glucocorticoids,jdbcType=VARCHAR},
+		</if>
+		<if test="isOtherDiseases != null">
+			isOtherDiseases = #{isOtherDiseases,jdbcType=VARCHAR},
+		</if>
+		<if test="otherDiseases != null">
+			otherDiseases = #{otherDiseases,jdbcType=VARCHAR},
+		</if>
+		<if test="isDrugAllergy != null">
+			isDrugAllergy = #{isDrugAllergy,jdbcType=VARCHAR},
+		</if>
+		<if test="allergicLength != null">
+			allergicLength = #{allergicLength,jdbcType=VARCHAR},
+		</if>
+		<if test="drugAllergy != null">
+			drugAllergy = #{drugAllergy,jdbcType=VARCHAR},
+		</if>
+		<if test="isPregnancy != null">
+			isPregnancy = #{isPregnancy,jdbcType=VARCHAR},
+		</if>
+		<if test="pregnancy != null">
+			pregnancy = #{pregnancy,jdbcType=VARCHAR},
+		</if>
+		<if test="onMedication != null">
+			onMedication = #{onMedication,jdbcType=VARCHAR},
+		</if>
+		<if test="habit != null">
+			habit = #{habit,jdbcType=VARCHAR},
+		</if>
+		<if test="smokeTime != null">
+			smokeTime = #{smokeTime,jdbcType=VARCHAR},
+		</if>
+		<if test="smokeNum != null">
+			smokeNum = #{smokeNum,jdbcType=VARCHAR},
+		</if>
+		<if test="drinkTime != null">
+			drinkTime = #{drinkTime,jdbcType=VARCHAR},
+		</if>
+		<if test="drinkScale != null">
+			drinkScale = #{drinkScale,jdbcType=VARCHAR},
+		</if>
+		<if test="odontoprisis != null">
+			odontoprisis = #{odontoprisis,jdbcType=VARCHAR},
+		</if>
+		<if test="odontoprisisDegree != null">
+			odontoprisisDegree = #{odontoprisisDegree,jdbcType=VARCHAR},
+		</if>
+		<if test="chewingHabits != null">
+			chewingHabits = #{chewingHabits,jdbcType=VARCHAR},
+		</if>
+		<if test="Others != null">
+			Others = #{Others,jdbcType=VARCHAR},
+		</if>
+		<if test="LastToothExtractionTime != null">
+			LastToothExtractionTime = #{LastToothExtractionTime,jdbcType=VARCHAR},
+		</if>
+		<if test="HaveYouHadDenture != null">
+			HaveYouHadDenture = #{HaveYouHadDenture,jdbcType=VARCHAR},
+		</if>
+		<if test="ReasonsImplantDentures != null">
+			ReasonsImplantDentures = #{ReasonsImplantDentures,jdbcType=VARCHAR},
+		</if>
+		<if test="PatientSignature != null">
+			PatientSignature = #{PatientSignature,jdbcType=VARCHAR},
+		</if>
+		<if test="PatientTime != null">
+			PatientTime = #{PatientTime,jdbcType=VARCHAR},
+		</if>
+		<if test="doctorSignature != null">
+			doctorSignature = #{doctorSignature,jdbcType=VARCHAR},
+		</if>
+		<if test="doctorTime != null">
+			doctorTime = #{doctorTime,jdbcType=VARCHAR},
+		</if>
+		<if test="createtime != null">
+			createtime = #{createtime,jdbcType=VARCHAR},
+		</if>
+		<if test="hypertensionmedicine != null">
+			hypertensionmedicine = #{hypertensionmedicine,jdbcType=VARCHAR},
+		</if>
+		<if test="heardieasemedicine != null">
+			heardieasemedicine = #{heardieasemedicine,jdbcType=VARCHAR},
+		</if>
+		<if test="diabetesoralmedicine != null">
+			diabetesoralmedicine = #{diabetesoralmedicine,jdbcType=VARCHAR},
+		</if>
+		<if test="diabetesinjectionmedicine != null">
+			diabetesinjectionmedicine = #{diabetesinjectionmedicine,jdbcType=VARCHAR},
+		</if>
+		<if test="antifreezingmedicine != null">
+			antifreezingmedicine = #{antifreezingmedicine,jdbcType=VARCHAR},
+		</if>
+		<if test="pharmacymedicine != null">
+			pharmacymedicine = #{pharmacymedicine,jdbcType=VARCHAR},
+		</if>
+		<if test="glucocorticoidsmedicine != null">
+			glucocorticoidsmedicine = #{glucocorticoidsmedicine,jdbcType=VARCHAR}
+		</if>
+		where SEQ_ID = #{SEQ_ID,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 根据Id删除主诉及既往病史 -->
+	<delete id="deleteCaseHistoryById" parameterType="String">
+		delete from HUDH_ZZBL_ADVICE where SEQ_ID = #{SEQ_ID,jdbcType=VARCHAR}
+	</delete>
+</mapper>

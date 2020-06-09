@@ -33,7 +33,7 @@
 		margin: 0px;
 		padding: 0px;
 		font-size: 18px;
-		line-height: 30px; 
+		line-height: 26px;
 	}
 	#content{
 		margin-bottom: 20px;
@@ -149,10 +149,24 @@
 	    width: 100%;
 	    height: 100%;
 	}
+	#logoImg{
+		position: absolute;
+		top: 35px;
+		width: 150px;
+		height: 45px;
+	}
+	@page{
+		size: auto;
+		margin: 0mm auto;
+	}
 </style>
 <body style="padding: 0px 3%;">
+<!--startprint-->
 	<div id="content">
-		<h2 class="bigtitle">种植牙手术记录</h2>	
+		<div class="col-md-12 col-sm-12 colDefined" style="position: relative;">
+			<img id="logoImg" src="http://www.hdbkq.cn/templets/hdb/new_header_img/hud_logo.png">
+			<h2 class="bigtitle">种植牙手术记录</h2>
+		</div>
 		<div class="row content">
 	<!-- 患者详情 -->
 			<div class="col-md-12 col-sm-12 colDefined">
@@ -186,19 +200,19 @@
 						<tr>
 							<td><span>操<br/>作<br/>记<br/>录</span></td>
 							<td colspan="11" class="infoText">
-								<textarea id="operatingrecord" class="form-control" style="width: 100%; height: 120px;overflow: auto;word-break: break-all; resize: none;"></textarea>
+								<textarea id="operatingrecord" class="form-control" style="width: 100%; height: 510px;overflow: auto;word-break: break-all; resize: none;"></textarea>
 							</td>							
 						</tr>
 						<tr>
 							<td><span>种<br/>植<br/>体<br/>条<br/>码 </span></td>
 							<td colspan="11" class="infoText">
-								<textarea id="implantbarcode" class="form-control" style="width: 100%; height: 150px ;overflow: auto;word-break: break-all; resize: none;"></textarea>
+								<textarea id="implantbarcode" class="form-control" style="width: 100%; height: 130px ;overflow: auto;word-break: break-all; resize: none;"></textarea>
 							</td>							
 						</tr>
 						<tr>
 							<td><span>骨<br/>粉<br/>骨<br/>膜<br/>条<br/>码</span></td>
 							<td colspan="11" class="infoText">
-								<textarea id="periostbarcode" class="form-control" style="width: 100%; height: 180px ;overflow: auto;word-break: break-all; resize: none;"></textarea>
+								<textarea id="periostbarcode" class="form-control" style="width: 100%; height: 155px ;overflow: auto;word-break: break-all; resize: none;"></textarea>
 							</td>								
 						</tr>	
 					</tbody>			
@@ -212,8 +226,8 @@
 				</div>
 				<input id="doctortime" type="text" class="consent_time" readonly="readonly" placeholder="请选择日期"/>
 			</div>	
-		</div>	
-	
+		</div>
+		<!--endprint-->
 		<!-- 按钮 -->
 		<div class="btns">
 			<button id="consent_saveBtn" onclick="save()">保存</button>
@@ -454,13 +468,15 @@
 		}				
 		/* 打印本页面方法 */
 		function myPreviewAll(){
-			LODOP=getLodop();  
-			LODOP.PRINT_INIT("种植牙手术记录");
-			LODOP.SET_PRINT_PAGESIZE(1,2100,2970,"A4");
-			var htmlStyle="<style>button{display:none;}*{font-size: 12px;line-height: 24px;}</style>";
-			var html="<!DOCTYPE html>"+document.getElementsByTagName("html")[0].innerHTML+htmlStyle;
-			LODOP.ADD_PRINT_HTM(0,10,"100%","100%",html);
-			LODOP.PREVIEW();	
+			bdhtml=window.document.body.innerHTML;
+			sprnstr="<!--startprint-->";
+			eprnstr="<!--endprint-->";
+			prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);
+			prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
+			var htmlStyle="<style>button{display:none;}*{font-size: 12px;line-height: 24px;}#logoImg{top: -5px;}</style>";
+			window.document.body.innerHTML=prnhtml+htmlStyle;
+			window.print();  //打印
+			window.document.body.innerHTML=bdhtml; // 恢复页面
 		};
 		
 

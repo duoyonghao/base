@@ -46,208 +46,42 @@
 	}  
 	#logoImg{
 		width: 16.5%;
-	} 
+	}
 	@media print{
-		.common_style{
-			background-color: #ddd;
-			border:1px solid #ccc; 
-/* 			border:1px solid red; */
-		}
-		/* *{
+		*{
 			font-size: 12px;
-		} */
-		#logoImg{
-			width:160px;
-		}
-		#username{
-/* 			border:1px solid red; */
-			font-size: 10px;
-		}
-		button{
-			display:none;
-		}
-		.time_div>input{
-			display:block;
-			margin-top:3px!important;
-			width:40px!important;
-			height:18px!important;
-		}
-		.fillWrite_group>input{
-			display:block;
-			width:40px!important;
-			height:18px!important;
-			margin-top:3px!important;
-		}
-		#pressure{
-			display:block;
-			width:50px!important;
-			height:18px!important;
-			margin-top:3px!important;
-		}
-		.alreadyInfo{
-			font-size:12px !important;
 		}
 		.rpInfo_import{
-			margin-right:80px;
-			width:auto;
+			margin-bottom: 0px !important;
 		}
-		input[type='radio'],input[type='checkbox']{
-			width:10px!important;
+		.rpInfo_import .alreadyInfo{
+			font-size: 12px;
 		}
-		.option_div>input{
-			margin-top:5px!important;
-		}
-		.option_div>label{
-			margin-top:15px!important;
-		}
-		p{
-			margin:0px!important;
-			padding:0px!important;
-			line-height:14px!important;
-		}
-		.consent_time{
-			width:110px!important;
-			height:18px!important;
-			margin-top:3px!important;
-		}
-		.row>.colDefined{
-			height:24px!important;
-		}
-		.bigtitle{
-			font-size:22px;
-			line-height:22px;
-			margin:45px auto 20px!important;
-			padding-top:0px!important;
-		}
-		.toothInfo{
-			height:50px!important;
-			margin-bottom:10px!important;
-/* 			border:1px solid blue; */
-		}
-		.patientInfo{
-			padding:10px 0px 0px 15px!important;
-		}
-		.loseTooth_time{
-			width:170px!important;
-		}
-		.loseTooth_option>li{
-			margin-right:5px!important;
-		}
-		.loseTooth_time>span{
-			font-size:12px!important;
-		}
-		.mainSuitInfo{
-			padding:0px!important;
-		}
-		.chiefComplaint{
-			padding:10px 0px 0px 0px!important;
-			margin:0px!important;
-		}
-		.common_style span, #anamnesis_continer .common_style label{
-			margin-top:5px!important;}
-		.smoking input{
-			margin-top:2px!important;
-		}
-		.patientInfo{
-			padding-left:0px!important;
-		}
-		.mainSuitInfo{
-			padding-left:0px!important;
-		}
-		.mainSuitInfo{
-			height:70px!important;
-			padding-bottom:0px!important;
-		}
-		.plantTooth_reason li{
-			height:22px!important;
-			margin-bottom:0px!important;
-		}
-		.plantTooth_reason input{
-			vertical-align:middle!important;
-		}
-		.loseTooth_option>li label{
-			margin-top:5px!important;
-		}
-		.signature_box span{
-			font-size:12px!important;
-		}
-		.common_style{
-			background-color: #ddd!important;
-		}
-		#denture{
-			background-color:white!important;
-		}
-		.loseTooth_time>span,input{
-			display:inline!important;
-		}
-		.loseTooth_time{
-			width:auto!important;
-		}
-		input[type='text']{
-			border:0px!important;
-			padding:0px!important;
-			text-align:center!important;
-			font-weight:bold!important;
-		}
-		#agomphostime,#planttime{
-			padding-left:10px!important;
-			text-align:left!important;
-			vertical-align:top;
-		}
-		#drugallergy{
-			width:270px!important;
-			border-bottom:1px solid #adaaaa!important;
-			text-align:left!important;
-			padding-left:10px!important;
-		}
-		#onmedication{
-			width:570px!important;
-			border-bottom:1px solid #adaaaa!important;
-			text-align:left!important;
-			padding-left:10px!important;
-		}
-		#habit{
-			width:660px!important;
-			border-bottom:1px solid #adaaaa!important;
-			text-align:left!important;
-			padding-left:10px!important;
-		}
-		#others{
-			width:660px!important;
-			border-bottom:1px solid #adaaaa!important;
-			text-align:left!important;
-			padding-left:10px!important;
-		}
-		#antifreezing{
-			width:170px!important;
-			border-bottom:1px solid #adaaaa!important;
-			text-align:left!important;
-			padding-left:10px!important
-		}
-		#lasttoothextractiontime{
-			border-bottom:1px solid #adaaaa!important;
-		}
+		.rpInfo_import span{
+   			font-weight: normal;
+   		}
 	}
 	#anamnesis_continer .bgwhite{
 		background-color: white;
 	}
-	 @page{  
+	 /*@page{
 	    size:205mm 290mm;  
 	    margin: 0 auto;  
-   } 
+   	} */
    .rpInfo_import{
-   		margin-bottom: 10px;
+	   	margin-bottom: 10px;
+	   	line-height: 24px;
    }
    .rpInfo_import input{
    		width: 110px;
     	margin-left: 5px;
    }
-   .rpInfo_import span{
+   /*.rpInfo_import span{
    		line-height: 24px;
-   }
+   }*/
    .patientInfo{
-   		border-top: 2px solid #776c6c;
-    	border-bottom: 2px solid #776c6c;
+   		/*border-top: 2px solid #776c6c;
+    	border-bottom: 2px solid #776c6c;*/
     	padding: 10px 0px 0px 0px !important;
    }
    .combgGray {
@@ -255,33 +89,32 @@
 	}
 	/* 小标题 */
 	.smallTitle{
-		border: 1px solid yellow;
 	    font-size: 19px;
 	    color: #333333;
 	    font-weight: bold;
+        border-top: 2px solid #776c6c;
 	}
 	.smallTitle .circle{
 		display: inline-block;
 		width:12px;
 		height:12px;
 		border-radius:50%;
-		background-color: #333333;
+		/*background-color: #333333;*/
 		margin-right: 10px;
+		border: 6px solid #333333;
 	}
 	/* 主诉 */
 	/* 牙位 */
 	.toothMapCase{
 		display:block;
-		border: 1px solid blue;
 		width: 100%;
 		overflow: hidden;
 	}
 	.toothMapCase .toothMapItem{
 		display:block;
 		width:25%;
-		/* min-width:300px; */
+		min-width:345px;
 		float:left;
-		border:1px solid red;
 		text-align: center;
 	}
 	.toothMapCase .toothMapItem input[name="symptom"]{
@@ -304,7 +137,7 @@
 	.downYa span:first-child{display: inline-block;margin-bottom: 5px;}
 	.toothMap{
 		position:relative;
-		border:1px solid green;
+		margin: 10px 10px;
 	}
 	.toothMap .toothMap{
 		overflow: hidden;
@@ -340,8 +173,8 @@
 		height: 1px;
 		color:#888;
 		background: black;
-		width: 340px;
-	    margin: 0 auto;
+		/*width: 100%;*/
+		margin: 0 10px;
 	}
 	.toothMap .line .left{
 		font-size: 13px !important;
@@ -351,7 +184,7 @@
 	}
 	.upYa,.downYa{
 		width: 320px;
-	    margin: 0 auto;
+	    margin: 0 auto!important;
 	}
 	.upYa li{
 		margin-bottom: 5px;
@@ -374,9 +207,12 @@
 	.toothMap li.current{
 		visibility: visible; 	
 	}
-	
+	.rpInfo_import {
+		width: auto;
+		margin-right: 35px;
+	}
 </style>
-<body style="border:1px solid blue;">
+<body>
 <!--startprint-->
 		<div id="anamnesis_continer" class="container-fluid" style="height:100%;">
 		<!-- 标题 -->
@@ -389,10 +225,11 @@
 		</div>	
 		<!-- 患者信息 -->
 		<div class="row patientInfo">
-			<div class="col-md-12 col-sm-12 col-xs-12 smallTitle" style="padding-left:0px;"><span class="circle"></span>基本信息</div>
+			<div class="col-md-12 col-sm-12 col-xs-12 smallTitle" style="padding:5px 0px 0px 0px;"><span class="circle"></span>基本信息</div>
 			<!-- 首诊时间 -->
 			<div class="rpInfo_import">
-				<span>首诊时间:</span><input id="" class="consent_time" type="text" readonly="readonly" placeholder="请选择日期"/>
+				<span>首诊时间:</span><%--<input id="first_time" class="consent_time" type="text" readonly="readonly" placeholder="请选择日期"/>--%>
+				<font class="alreadyInfo" id="first_time"></font>
 			</div>
 			<!-- 信息输入组合框 -->
 			<div class="rpInfo_import">
@@ -417,43 +254,43 @@
 			<!-- 信息输入组合框 -->
 			<div class="rpInfo_import">
 				<span>证件号码：</span>
-				<font class="alreadyInfo" id="patient_age"></font>
+				<font class="alreadyInfo" id="patient_idnum"></font>
 			</div>
 			<!-- 信息输入组合框 -->
 			<div class="rpInfo_import">
 				<span>出生年月：</span>
-				<font class="alreadyInfo" id="patient_age"></font>
+				<font class="alreadyInfo" id="patient_birthday"></font>
 			</div>
 			<!-- 信息输入组合框 -->
 			<div class="rpInfo_import">
 				<span>联系电话：</span>
-				<font class="alreadyInfo" id="patient_age"></font>
+				<font class="alreadyInfo" id="patient_phone"></font>
 			</div>	
 			<!-- 信息输入组合框 -->
 			<div class="rpInfo_import">
 				<span>紧急联系人：</span>
-				<font class="alreadyInfo" id="patient_age"></font>
+				<font class="alreadyInfo" id="urgency_people"></font>
 			</div>
 			<!-- 信息输入组合框 -->
 			<div class="rpInfo_import">
 				<span>紧急联系人电话：</span>
-				<font class="alreadyInfo" id="patient_age"></font>
+				<font class="alreadyInfo" id="urgency_phone"></font>
 			</div>
 			<!-- 信息输入组合框 -->
-			<div class="rpInfo_import">
+			<div class="rpInfo_import" style="width: auto;">
 				<span>现居住地址：</span>
-				<font class="alreadyInfo" id="patient_age"></font>
+				<font class="alreadyInfo" id="patient_address"></font>
 			</div>
 		</div>
 		<!-- 主诉 -->
-		<div class="row">
+		<div class="row" style="">
 			<div class="col-md-12 col-sm-12 col-xs-12 smallTitle" style="padding-left:0px;"><span class="circle"></span>主诉</div>
 			<div class="col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;">
 				<ul class="toothMapCase">
 					<li class="toothMapItem">
-						<input name="symptom" id="tooth_lack" type="checkbox" value="0"/><label for="tooth_lack">牙缺失</label>
+						<input name="symptom" id="tooth_lose" type="checkbox" value="0"/><label for="tooth_lose">牙缺失</label>
 						<!-- 牙位图 -->
-						<div class="toothMap" onclick="showToothMap(0);">
+						<div class="toothMap toothloseMap" onclick="showToothMap(0);">
 							<ul class="upYa">
 								<li class="leftUpTooth"><span class="yaIcon le8"></span><span class="num numle8 ToothBit_checkbox1" name="zzadultupYa1">8</span></li>
 								<li class="leftUpTooth"><span class="yaIcon le7"></span><span class="num numle7 ToothBit_checkbox1" name="zzadultupYa1">7</span></li>
@@ -495,16 +332,16 @@
 								<li class="rightDownTooth"><span class="num numrg7 ToothBit_checkbox4" name="zzadultdownYa2">7</span><span class="yaIcon rg7"></span></li>
 								<li class="rightDownTooth"><span class="num numrg8 ToothBit_checkbox4" name="zzadultdownYa2">8</span><span class="yaIcon rg8"></span></li>
 							</ul>
-							<span class="showToothMap" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>
+							<%--<span class="showToothMap" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>--%>
 						</div>
 						<div class="toothTime">
-							<span>时长：</span><input id="" type="text" placeholder="请输入时长"/>
+							<span>时长：</span><input id="toothlosetime" type="text" placeholder="请输入时长"/>
 						</div>
 					</li>
 					<li class="toothMapItem">
-						<input name="symptom" id="tooth_loose" type="checkbox" value="1"/><label for="tooth_loose">牙松动</label>
+						<input name="symptom" id="tooth_less" type="checkbox" value="1"/><label for="tooth_less">牙松动</label>
 						<!-- 牙位图 -->
-						<div class="toothMap" onclick="showToothMap(1);">
+						<div class="toothMap toothlessMap" onclick="showToothMap(1);">
 							<ul class="upYa">
 								<li class="leftUpTooth"><span class="yaIcon le8"></span><span class="num numle8 ToothBit_checkbox1" name="zzadultupYa1">8</span></li>
 								<li class="leftUpTooth"><span class="yaIcon le7"></span><span class="num numle7 ToothBit_checkbox1" name="zzadultupYa1">7</span></li>
@@ -546,16 +383,16 @@
 								<li class="rightDownTooth"><span class="num numrg7 ToothBit_checkbox4" name="zzadultdownYa2">7</span><span class="yaIcon rg7"></span></li>
 								<li class="rightDownTooth"><span class="num numrg8 ToothBit_checkbox4" name="zzadultdownYa2">8</span><span class="yaIcon rg8"></span></li>
 							</ul>
-							<span class="showToothMap" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>
+							<%--<span class="showToothMap" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>--%>
 						</div>
 						<div class="toothTime">
-							<span>时长：</span><input id="" type="text" placeholder="请输入时长"/>
+							<span>时长：</span><input id="toothlesstime" type="text" placeholder="请输入时长"/>
 						</div>
 					</li>
 					<li class="toothMapItem">
-						<input name="symptom" id="tooth_rot" type="checkbox" value="2"/><label for="tooth_rot">龋齿</label>
+						<input name="symptom" id="tooth_decayed" type="checkbox" value="2"/><label for="tooth_decayed">龋齿</label>
 						<!-- 牙位图 -->
-						<div class="toothMap" onclick="showToothMap(2);">
+						<div class="toothMap toothdecayedMap" onclick="showToothMap(2);">
 							<ul class="upYa">
 								<li class="leftUpTooth"><span class="yaIcon le8"></span><span class="num numle8 ToothBit_checkbox1" name="zzadultupYa1">8</span></li>
 								<li class="leftUpTooth"><span class="yaIcon le7"></span><span class="num numle7 ToothBit_checkbox1" name="zzadultupYa1">7</span></li>
@@ -597,16 +434,16 @@
 								<li class="rightDownTooth"><span class="num numrg7 ToothBit_checkbox4" name="zzadultdownYa2">7</span><span class="yaIcon rg7"></span></li>
 								<li class="rightDownTooth"><span class="num numrg8 ToothBit_checkbox4" name="zzadultdownYa2">8</span><span class="yaIcon rg8"></span></li>
 							</ul>
-							<span class="showToothMap" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>
+							<%--<span class="showToothMap" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>--%>
 						</div>
 						<div class="toothTime">
-							<span>时长：</span><input id="" type="text" placeholder="请输入时长"/>
+							<span>时长：</span><input id="toothdecayedtime" type="text" placeholder="请输入时长"/>
 						</div>
 					</li>
 					<li class="toothMapItem">
-						<input name="symptom" id="tooth_break" type="checkbox" value="3"/><label for="tooth_break">牙折断</label>
+						<input name="symptom" id="tooth_snap" type="checkbox" value="3"/><label for="tooth_snap">牙折断</label>
 						<!-- 牙位图 -->
-						<div class="toothMap" onclick="showToothMap(3);">
+						<div class="toothMap toothsnapMap" onclick="showToothMap(3);">
 							<ul class="upYa">
 								<li class="leftUpTooth"><span class="yaIcon le8"></span><span class="num numle8 ToothBit_checkbox1" name="zzadultupYa1">8</span></li>
 								<li class="leftUpTooth"><span class="yaIcon le7"></span><span class="num numle7 ToothBit_checkbox1" name="zzadultupYa1">7</span></li>
@@ -648,10 +485,10 @@
 								<li class="rightDownTooth"><span class="num numrg7 ToothBit_checkbox4" name="zzadultdownYa2">7</span><span class="yaIcon rg7"></span></li>
 								<li class="rightDownTooth"><span class="num numrg8 ToothBit_checkbox4" name="zzadultdownYa2">8</span><span class="yaIcon rg8"></span></li>
 							</ul>
-							<span class="showToothMap" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>
+							<%--<span class="showToothMap" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>--%>
 						</div>
 						<div class="toothTime">
-							<span>时长：</span><input id="" type="text" placeholder="请输入时长"/>
+							<span>时长：</span><input id="toothsnaptime" type="text" placeholder="请输入时长"/>
 						</div>
 					</li>
 				</ul>
@@ -661,8 +498,8 @@
 					<span class="select_name">是否要求种植修复:</span>
 					<!-- 选项 -->
 					<div class="select_item" style="width:auto;">
-						<input name="ImplantRestoration" id="ir_yes" value="0" type="checkbox" style="vertical-align: text-bottom;margin-left: 10px;"/><label for="ir_yes">是</label>
-						<input name="ImplantRestoration" id="ir_no" value="1" type="checkbox" style="vertical-align: text-bottom;margin-left: 10px;"/><label for="ir_no">否</label>
+						<input name="implantrestoration" id="ir_yes" value="0" type="radio" style="vertical-align: text-bottom;margin-left: 10px;"/><label for="ir_yes">是</label>
+						<input name="implantrestoration" id="ir_no" value="1" type="radio" style="vertical-align: text-bottom;margin-left: 10px;"/><label for="ir_no">否</label>
 					</div>
 				</div>
 			</div>
@@ -689,8 +526,7 @@
 			<div class="col-md-1 col-sm-2 col-xs-2 colDefined combgGray backColor">
 				<!-- 时间div -->
 				<div class="time_div common_style">
-					<input id="hypertension" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>年</span>
+					<input id="hypertension" type="text" placeholder="时间"/>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-5 col-xs-5 colDefined combgGray backColor">
@@ -706,19 +542,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-4 col-xs-4 colDefined combgGray">
-				<!-- 选择组合框 -->
-				<div class="select_group common_style">
-					<!-- 选项名称 -->
-					<span class="select_name">是否控制:</span>
-					<!-- 选项 -->
-					<div class="option_div">
-						<input name="iscontrol" id="isControl_y" value="1" type="radio" disabled="disabled"/><label for="isControl_y">是</label>
-						<input name="iscontrol" id="isControl_n" value="0" type="radio" disabled="disabled"/><label for="isControl_n">否</label>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-2 col-sm-4 col-xs-4 colDefined combgGray">
+			<div class="col-md-3 col-sm-6 col-xs-6 colDefined combgGray">
 				<!-- 填写组合框 -->
 				<div class="fillWrite_group common_style">
 					<!-- 填写名称 -->
@@ -727,7 +551,7 @@
 					<input id="pressure" style="width: 120px;text-align: center;padding: 0px;" class="fillWrite_input" placeholder="125/69" onblur="TextLengthCheck(this.id,10);" type="text"/>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-4 col-xs-4 colDefined combgGray">
+			<div class="col-md-3 col-sm-6 col-xs-6 colDefined combgGray">
 				<!-- 填写组合框 -->
 				<div class="selectgroup common_style">
 					<span class="groupName" style="font-weight: normal;">常用药物：</span>
@@ -743,6 +567,7 @@
 						<option value="替米沙坦">替米沙坦</option>
 						<option value="厄贝沙坦">厄贝沙坦</option>
 						<option value="缬沙坦">缬沙坦</option>
+						<option value="络活喜">络活喜</option>
 					</select>
 				</div>
 			</div>
@@ -767,8 +592,7 @@
 			<div class="col-md-1 col-sm-4 col-xs-4 colDefined">
 				<!-- 时间div -->
 				<div class="time_div common_style bgwhite">
-					<input id="heardiease" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>年</span>
+					<input id="heardiease" type="text" placeholder="时间"/>
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-6 col-xs-6 colDefined backcolorGray">
@@ -819,15 +643,14 @@
 			<div class="col-md-1 col-sm-2 col-xs-2 colDefined combgGray backColor">
 				<!-- 时间div -->
 				<div class="time_div common_style">
-					<input id="diabetes" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>年</span>
+					<input id="diabetes" type="text" placeholder="时间"/>
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-6 col-xs-6 colDefined combgGray backColor">
 				<!-- 选择组合框 -->
 				<div class="select_group common_style">
 					<!-- 选项名称 -->
-					<span class="select_name">是怎么控制:</span>
+					<span class="select_name">怎么控制:</span>
 					<!-- 选项 -->
 					<div class="select_item" style="width:auto;">
 						<input name="dietcontrol" id="dietControl_eat" value="饮食" type="checkbox" style="vertical-align: text-bottom;margin-left: 10px;" disabled="disabled"/><label for="dietControl_eat" style="margin-right: ">饮食</label>
@@ -836,19 +659,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-4 col-xs-4 colDefined combgGray">
-				<!-- 选择组合框 -->
-				<div class="select_group common_style">
-					<!-- 选项名称 -->
-					<span class="select_name">是否控制:</span>
-					<!-- 选项 -->
-					<div class="option_div">
-						<input name="isdietcontrol" id="isDietControl_y" value="1" type="radio" disabled="disabled"/><label for="isDietControl_y">是</label>
-						<input name="isdietcontrol" id="isDietControl_n" value="0" type="radio" disabled="disabled"/><label for="isDietControl_n">否</label>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-2 col-sm-4 col-xs-4 colDefined combgGray">
+			<div class="col-md-3 col-sm-6 col-xs-6 colDefined combgGray">
 				<!-- 填写组合框 -->
 				<div class="selectgroup common_style">
 					<span class="groupName" style="font-weight: normal;">口服常用药：</span>
@@ -869,10 +680,11 @@
 						<option value="磷酸西格列汀片">磷酸西格列汀片</option>
 						<option value="维格列汀">维格列汀</option>
 						<option value="利格列汀">利格列汀</option>
+						<option value="拜糖平">拜糖平</option>
 					</select>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-4 col-xs-4 colDefined combgGray">
+			<div class="col-md-3 col-sm-6 col-xs-6 colDefined combgGray">
 				<!-- 填写组合框 -->
 				<div class="selectgroup common_style">
 					<span class="groupName" style="font-weight: normal;">注射常用药：</span>
@@ -887,24 +699,30 @@
 		</div>
 		<!-- 六个月内做过心瓣膜手术 -->
 		<div class="row bgWhite">
-			<div class="col-md-8 col-sm-8 col-xs-8 colDefined">
+			<div class="col-md-4 col-sm-4 col-xs-4 colDefined">
 				<!-- 名称div -->
 				<div class="name_div common_style">
-					<span>六个月内做过心瓣膜置换术或发生心梗：</span>
+					<span>六个月内做过心脏手术：</span>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<!-- 选项div -->
 				<div class="option_div common_style">
-					<input name="isinfarction" id="isInfarction_n" value="0" type="radio" onclick="ishaveillness(this.name)"/><label for="isInfarction_n">无</label>
-					<input name="isinfarction" id="isInfarction_y" value="1" type="radio" onclick="ishaveillness(this.name)"/><label for="isInfarction_y">有</label>
+					<input name="isheartoperation" id="isheartoperation_n" value="0" type="radio" onclick="ishaveillness(this.name)"/><label for="isheartoperation_n">无</label>
+					<input name="isheartoperation" id="isheartoperation_y" value="1" type="radio" onclick="ishaveillness(this.name)"/><label for="isheartoperation_y">有</label>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-4 col-xs-4 colDefined">
+				<!-- 名称div -->
+				<div class="name_div common_style">
+					<span>六个月内发生心梗：</span>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
-				<!-- 时间div -->
-				<div class="time_div common_style">
-					<input id="infarction" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>月</span>
+				<!-- 选项div -->
+				<div class="option_div common_style">
+					<input name="isheartinfarction" id="isheartinfarction_n" value="0" type="radio" onclick="ishaveillness(this.name)"/><label for="isheartinfarction_n">无</label>
+					<input name="isheartinfarction" id="isheartinfarction_y" value="1" type="radio" onclick="ishaveillness(this.name)"/><label for="isheartinfarction_y">有</label>
 				</div>
 			</div>
 		</div>
@@ -913,7 +731,7 @@
 			<div class="col-md-8 col-sm-8 col-xs-8 colDefined combgGray">
 				<!-- 名称div -->
 				<div class="name_div common_style">
-					<span class="print_textStyle ipadText">凝血功能不足性疾病(血友病、再障、血小板减少症、急性白血病、粒细胞缺乏症):</span>
+					<span class="print_textStyle ipadText">凝血功能不足性疾病(血友病、再障、血小板减少症、急性白血病):</span>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
@@ -926,8 +744,7 @@
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 时间div -->
 				<div class="time_div common_style">
-					<input id="bloodcoagulation" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>年</span>
+					<input id="bloodcoagulation" type="text" placeholder="时间"/>
 				</div>
 			</div>
 		</div>
@@ -936,9 +753,7 @@
 			<div class="col-md-5 col-sm-8 col-xs-8 colDefined">
 				<!-- 名称div -->
 				<div class="name_div common_style fillWrite_group">
-					<span class="print_textStyle ipadText">服用抗凝药物或其他可以导致凝血功能障碍的药物(药名):</span>
-					<!-- 填写框-->
-					<!-- <input id="antifreezing" placeholder="此框只能输9个字" onblur="TextLengthCheck(this.id,9);" style="margin-top: 8px;width: 25%;margin-left: 2%;border: 0px;" class="fillWrite_input" type="text"/> -->
+					<span class="print_textStyle ipadText">服用抗凝药物或其他可以导致凝血功能障碍的药物:</span>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-4 col-xs-4 colDefined">
@@ -967,8 +782,7 @@
 			<div class="col-md-2 col-sm-6 col-xs-6 colDefined backcolorGray">
 				<!-- 时间div -->
 				<div class="time_div common_style">
-					<input id="antifreezingtime" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>年</span>
+					<input id="antifreezingtime" type="text" placeholder="时间"/>
 				</div>
 			</div>
 		</div>
@@ -990,8 +804,7 @@
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 				<!-- 时间div -->
 				<div class="time_div common_style">
-					<input id="hepatitisb" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>年</span>
+					<input id="hepatitisb" type="text" placeholder="时间"/>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
@@ -1010,8 +823,7 @@
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 				<!-- 时间div -->
 				<div class="time_div common_style">
-					<input id="hepatitisc" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>年</span>
+					<input id="hepatitisc" type="text" placeholder="时间"/>
 				</div>
 			</div>
 		</div>
@@ -1033,8 +845,7 @@
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
 				<!-- 时间div -->
 				<div class="time_div common_style">
-					<input id="hiv" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>年</span>
+					<input id="hiv" type="text" placeholder="时间"/>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
@@ -1053,8 +864,7 @@
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
 				<!-- 时间div -->
 				<div class="time_div common_style">
-					<input id="cancer" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>年</span>
+					<input id="cancer" type="text" placeholder="时间"/>
 				</div>
 			</div>
 		</div>		
@@ -1076,8 +886,7 @@
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 				<!-- 时间div -->
 				<div class="time_div common_style">
-					<input id="syphilis" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>年</span>
+					<input id="syphilis" type="text" placeholder="时间"/>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
@@ -1096,8 +905,7 @@
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 				<!-- 时间div -->
 				<div class="time_div common_style">
-					<input id="maxillofacial" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>年</span>
+					<input id="maxillofacial" type="text" placeholder="时间"/>
 				</div>
 			</div>
 		</div>	
@@ -1119,8 +927,7 @@
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
 				<!-- 时间div -->
 				<div class="time_div common_style">
-					<input id="inflammation" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>年</span>
+					<input id="inflammation" type="text" placeholder="时间"/>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-1 col-xs-1 colDefined backcolorGray">
@@ -1139,8 +946,7 @@
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
 				<!-- 时间div -->
 				<div class="time_div common_style">
-					<input id="drugabuse" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>年</span>
+					<input id="drugabuse" type="text" placeholder="时间"/>
 				</div>
 			</div>
 		</div>			
@@ -1162,8 +968,7 @@
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 				<!-- 时间div -->
 				<div class="time_div common_style">
-					<input id="psychosis" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>年</span>
+					<input id="psychosis" type="text" placeholder="时间"/>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
@@ -1182,17 +987,16 @@
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 				<!-- 时间div -->
 				<div class="time_div common_style">
-					<input id="mucousmembrane" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>年</span>
+					<input id="mucousmembrane" type="text" placeholder="时间"/>
 				</div>
 			</div>
 		</div>	
 		<!-- 骨质疏松症用药情况： -->
 		<div class="row bgWhite">
-		 	<div class="col-md-2 col-sm-4 col-xs-4 colDefined backcolorGray">
+		 	<div class="col-md-3 col-sm-4 col-xs-4 colDefined backcolorGray">
 				<!-- 名称div -->
 				<div class="name_div common_style">
-					<span>骨质疏松症用药情况:</span>
+					<span>骨质疏松症用药情况（双磷酸盐类）:</span>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-4 col-xs-4 colDefined backcolorGray">
@@ -1202,20 +1006,25 @@
 					<input name="ispharmacy" id="IsPharmacy_y" value="1" type="radio" onclick="ishaveillness(this.name);ishavapharmacy(this.name);"/><label for="IsPharmacy_y">有</label>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-4 col-xs-4 colDefined backcolorGray">
-				<!-- 时间div -->
-				<div class="time_div common_style">
-					<input id="pharmacy" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>年</span>
-				</div>
-			</div>
 			<div class="col-md-2 col-sm-6 col-xs-6 colDefined">
-				<div class="option_div common_style">
-					<input name="treatment" id="Treatment_vein" value="0" type="radio" disabled="disabled"/><label for="Treatment_vein">静脉</label>
-					<input name="treatment" id="Treatment_take" value="1" type="radio" disabled="disabled"/><label for="Treatment_take">口服</label>
-				</div>
+                <!-- 填写组合框 -->
+                <div class="fillWrite_group common_style">
+                    <!-- 填写名称 -->
+                    <span class="fillWrite_name" style="font-weight: normal;">注射:</span>
+                    <!-- 填写框-->
+                    <input id="pharmacy" class="fillWrite_input" type="text" placeholder="时间"/>
+                </div>
 			</div>
-			 <div class="col-md-4 col-sm-6 col-xs-6 colDefined">
+            <div class="col-md-2 col-sm-6 col-xs-6 colDefined">
+                <!-- 填写组合框 -->
+                <div class="fillWrite_group common_style">
+                    <!-- 填写名称 -->
+                    <span class="fillWrite_name" style="font-weight: normal;">口服:</span>
+                    <!-- 填写框-->
+                    <input id="takeorallytime" class="fillWrite_input" type="text" placeholder="时间"/>
+                </div>
+            </div>
+			 <div class="col-md-3 col-sm-6 col-xs-6 colDefined">
 				<!-- 填写组合框 -->
 				<div class="selectgroup common_style">
 					<span class="groupName" style="font-weight: normal;">常用药物：</span>
@@ -1252,8 +1061,7 @@
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 时间div -->
 				<div class="time_div common_style">
-					<input id="glucocorticoids" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>年</span>
+					<input id="glucocorticoids" type="text" placeholder="时间"/>
 				</div>
 			</div>
 			<div class="col-md-6 col-sm-5 col-xs-5 colDefined combgGray">
@@ -1273,7 +1081,7 @@
 		</div>	
 		<!-- 其他系统疾病 -->
 		<div class="row bgWhite">
-			<div class="col-md-8 col-sm-8 col-xs-8 colDefined">
+			<div class="col-md-2 col-sm-3 col-xs-3 colDefined">
 				<!-- 名称div -->
 				<div class="name_div common_style">
 					<span>其他系统疾病:</span>
@@ -1286,11 +1094,17 @@
 					<input name="isotherdiseases" id="isOtherDiseasesString_y" value="1" type="radio" onclick="ishaveillness(this.name)"/><label for="isOtherDiseasesString_y">有</label>
 				</div>
 			</div>
+
+			<div class="col-md-6 col-sm-5 col-xs-5 colDefined">
+				<!-- 其他疾病输入框 -->
+				<div class="time_div common_style">
+					<input id="otherdiseasestext" style="width:100%;" type="text" placeholder="其他系统疾病"/>
+				</div>
+			</div>
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<!-- 时间div -->
 				<div class="time_div common_style">
-					<input id="otherdiseases" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>年</span>
+					<input id="otherdiseases" type="text" placeholder="时间"/>
 				</div>
 			</div>
 		</div>	
@@ -1314,17 +1128,15 @@
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 时间div -->
 				<div class="time_div common_style">
-					<input id="allergiclength" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>年</span>
+					<input id="allergiclength" type="text" placeholder="时间"/>
 				</div>
 			</div>
 			<div class="col-md-6 col-sm-6 col-xs-6 colDefined combgGray">
 				<!-- 填写组合框 -->
 				<div class="fillWrite_group common_style">
 					<!-- 填写名称 -->
-					<span class="fillWrite_name">过敏药物:</span>
 					<!-- 填写框-->
-					<input id="drugallergy" placeholder="在此输入..." onblur="TextLengthCheck(this.id,28);" class="fillWrite_input" style="width: 79%;border:0px;" type="text" disabled="disabled"/>
+					<input id="drugallergy" placeholder="请输入过敏药物" onblur="TextLengthCheck(this.id,28);" class="fillWrite_input" style="width: 79%;border:0px;" type="text"/>
 				</div>
 			</div>
 		</div>	
@@ -1348,35 +1160,30 @@
 			<div class="col-md-8 col-sm-8 col-xs-8 colDefined">
 				<!-- 时间div -->
 				<div class="time_div common_style">
-					<input id="pregnancy" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>月</span>
+					<input id="pregnancy" type="text" placeholder="时间"/>
 				</div>
 			</div>
 		</div>	
 		<!-- 正在服用的药物 -->
 		<div class="row">
-			<div class="col-md-12 col-sm-12 col-xs-12 colDefined combgGray">
+			<div class="col-md-10 col-sm-10 col-xs-10 colDefined combgGray">
 				<!-- 填写组合框 -->
 				<div class="fillWrite_group common_style">
 					<!-- 填写名称 -->
-					<span class="fillWrite_name">正在服用的药物(请写明):</span>
+					<span class="fillWrite_name">正在服用的药物:</span>
 					<!-- 填写框-->
 					<input id="onmedication" placeholder="华法林，降压药，降糖药..." onblur="TextLengthCheck(this.id,40);" style="width: 75%;border:0px;" class="fillWrite_input" type="text"/>
 				</div>
 			</div>
-		</div>
-		<!-- 习惯 -->
-		<!-- <div class="row bgWhite">
-			<div class="col-md-12 col-sm-12 col-xs-12 colDefined">
-				填写组合框
-				<div class="fillWrite_group common_style">
-					填写名称
-					<span class="fillWrite_name">习惯:</span>
-					填写框
-					<input id="habit" placeholder="在此输入...(此框只能输48个字)" onblur="TextLengthCheck(this.id,48);" style="width: 89%;border:0px;" class="fillWrite_input" type="text"/>
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
+				<!-- 时间div -->
+				<div class="time_div common_style">
+					<input id="onmedicationtime" type="text" placeholder="时间"/>
 				</div>
 			</div>
-		</div> -->
+		</div>
+		<div class="col-md-12 col-sm-12 col-xs-12 smallTitle" style="padding-left:0px;"><span class="circle"></span>生活习惯</div>
+			<%--<div style="height: 100px;border:1px solid red;"></div>--%>
 		<!-- 抽烟 -->
 		<div class="row smoking">
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
@@ -1386,20 +1193,29 @@
 					<span class="fillWrite_name">吸烟:</span>
 				</div>
 			</div>
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
+				<div class="select_group common_style">
+					<!-- 选项div -->
+					<div class="option_div">
+						<input name="issmoke" id="isSmoke_n" value="0" type="radio" onclick="ishaveillness(this.name);ishavaDrugAllergy(this.name);"/><label for="isSmoke_n">无</label>
+						<input name="issmoke" id="isSmoke_y" value="1" type="radio" onclick="ishaveillness(this.name);ishavaDrugAllergy(this.name);"/><label for="isSmoke_y">有</label>
+					</div>
+				</div>
+			</div>
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<!-- 填写组合框 -->
 				<div class="fillWrite_group common_style">
 					<!-- 填写框-->
-					<input id="smoketime" class="fillWrite_input" oninput="if(value>100||value<0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/><label>年</label>
+					<input id="smoketime" class="fillWrite_input" type="text" placeholder="时间"/>
 				</div>
 			</div>
-			<div class="col-md-8 col-sm-8 col-xs-8 colDefined">
+			<div class="col-md-6 col-sm-8 col-xs-8 colDefined">
 				<!-- 填写组合框 -->
 				<div class="fillWrite_group common_style">
 					<!-- 填写名称 -->
 					<span class="fillWrite_name" style="font-weight: normal;">抽烟支数/日:</span>
 					<!-- 填写框-->
-					<input id="smokenum" class="fillWrite_input" oninput="if(value>100||value<0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
+					<input id="smokenum" class="fillWrite_input" type="text"/>
 				</div>
 			</div>
 		</div>
@@ -1413,13 +1229,22 @@
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
+				<div class="select_group common_style">
+					<!-- 选项div -->
+					<div class="option_div">
+						<input name="isdrink" id="isDrink_n" value="0" type="radio" onclick="ishaveillness(this.name);ishavaDrugAllergy(this.name);"/><label for="isDrink_n">无</label>
+						<input name="isdrink" id="isDrink_y" value="1" type="radio" onclick="ishaveillness(this.name);ishavaDrugAllergy(this.name);"/><label for="isDrink_y">有</label>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 填写组合框 -->
 				<div class="fillWrite_group common_style">
 					<!-- 填写框-->
-					<input id="drinktime" class="fillWrite_input" oninput="if(value>100||value<0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/><label>年</label>
+					<input id="drinktime" class="fillWrite_input" type="text" placeholder="时间"/>
 				</div>
 			</div>
-			<div class="col-md-8 col-sm-8 col-xs-8 colDefined combgGray">
+			<div class="col-md-6 col-sm-8 col-xs-8 colDefined combgGray">
 				<!-- 选项div -->
 				<div class="option_div common_style">
 					<input name="drinkscale" id="drinkScale_little" value="少量" type="radio"/><label for="drinkScale_little">少量</label>
@@ -1437,14 +1262,23 @@
 					<span class="fillWrite_name">磨牙:</span>
 				</div>
 			</div>
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
+				<div class="select_group common_style">
+					<!-- 选项div -->
+					<div class="option_div">
+						<input name="isodontoprisis" id="isOdontoprisis_n" value="0" type="radio" onclick="ishaveillness(this.name);ishavaDrugAllergy(this.name);"/><label for="isOdontoprisis_n">无</label>
+						<input name="isodontoprisis" id="isOdontoprisis_y" value="1" type="radio" onclick="ishaveillness(this.name);ishavaDrugAllergy(this.name);"/><label for="isOdontoprisis_y">有</label>
+					</div>
+				</div>
+			</div>
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<!-- 填写组合框 -->
 				<div class="fillWrite_group common_style">
 					<!-- 填写框-->
-					<input id="odontoprisis" class="fillWrite_input" oninput="if(value>100||value<0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/><label>年</label>
+					<input id="odontoprisis" class="fillWrite_input" type="text" placeholder="时间"/>
 				</div>
 			</div>
-			<div class="col-md-8 col-sm-8 col-xs-8 colDefined">
+			<div class="col-md-2 col-sm-8 col-xs-8 colDefined">
 				<!-- 选项div -->
 				<div class="option_div common_style">
 					<input name="odontoprisisdegree" id="odontoprisisDegree_more" value="1" type="radio"/><label for="odontoprisisDegree_more">频繁</label>
@@ -1453,6 +1287,7 @@
 				</div>
 			</div>
 		</div>
+            <%--咀嚼习惯--%>
 		<div class="row bgWhite">
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 名称div -->
@@ -1460,33 +1295,82 @@
 					<span>咀嚼习惯:</span>
 				</div>
 			</div>
-			<div class="col-md-10 col-sm-10 col-xs-10 colDefined combgGray">
+			<div class="col-md-2 col-sm-10 col-xs-10 colDefined combgGray">
 				<!-- 填写组合框 -->
 				<div class="fillWrite_group common_style">
-					<!-- 填写名称 -->
-					<span class="fillWrite_name" style="font-weight: normal;">单侧（右左）:</span>
 					<!-- 填写框-->
 					<!-- <input style="width:34%;" class="fillWrite_input" type="text"/> -->
-					<input style="width:25px;margin-top:15px;margin-right:0px;" name="chewinghabits" id="chewingHabits_l" value="左" type="radio"/><label for="chewingHabits_l" style="margin-right: 5px;">左</label>
-					<input style="width:25px;margin-top:15px;margin-right:0px;" name="chewinghabits" id="chewingHabits_r" value="右" type="radio"/><label for="chewingHabits_r" style="margin-right: 5px;">右</label>
+					<input style="width:25px;margin-top:15px;margin-right:0px;" name="chewinghabits" id="chewingHabits_l" value="左" type="radio"/><label for="chewingHabits_l" style="margin-right: 5px;">左侧</label>
+					<input style="width:25px;margin-top:15px;margin-right:0px;" name="chewinghabits" id="chewingHabits_r" value="右" type="radio"/><label for="chewingHabits_r" style="margin-right: 5px;">右侧</label>
 					<input style="width:25px;margin-top:15px;margin-right:0px;" name="chewinghabits" id="chewingHabits_d" value="双侧" type="radio"/><label for="chewingHabits_d" style="margin-right: 5px;">双侧</label>
 				</div>
 			</div>
+            <div class="col-md-2 col-sm-2 col-xs-2 colDefined">
+                <!-- 填写组合框 -->
+                <div class="fillWrite_group common_style">
+                    <!-- 填写框-->
+                    <input id="chewinghabitstime" class="fillWrite_input" type="text" placeholder="时间"/>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 colDefined">
+                <!-- 填写组合框 -->
+                <div class="fillWrite_group common_style">
+                    <!-- 填写名称 -->
+                    <span class="fillWrite_name">其他习惯:</span>
+                    <!-- 填写框-->
+                    <input id="others" placeholder="在此输入..." onblur="TextLengthCheck(this.id,48);" style="width: 88%;border:0px;" class="fillWrite_input" type="text" placeholder="请输入其他习惯"/>
+                </div>
+            </div>
 		</div>
+        <%--洁牙习惯--%>
+        <div class="row">
+            <div class="col-md-2 col-sm-2 col-xs-2 colDefined">
+                <!-- 填写组合框 -->
+                <div class="fillWrite_group common_style">
+                    <!-- 填写名称 -->
+                    <span class="fillWrite_name">洁牙习惯:</span>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
+                <div class="select_group common_style">
+                    <!-- 选项div -->
+                    <div class="option_div">
+                        <input name="isteethclean" id="isTeethclean_n" value="0" type="radio" onclick="ishaveillness(this.name);ishavaDrugAllergy(this.name);"/><label for="isTeethclean_n">无</label>
+                        <input name="isteethclean" id="isTeethclean_y" value="1" type="radio" onclick="ishaveillness(this.name);ishavaDrugAllergy(this.name);"/><label for="isTeethclean_y">有</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2 colDefined">
+                <!-- 填写组合框 -->
+                <div class="fillWrite_group common_style">
+                    <!-- 填写框-->
+                    <span>频次</span>
+                    <input id="teethcleannum" class="fillWrite_input" type="text" placeholder="时间"/>
+                    <span>次/年</span>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-8 col-xs-8 colDefined">
+                <!-- 最近一次洁牙 -->
+                <div class="lastcleantooth" style="height: 40px;line-height: 40px;">
+                    <span>最近一次洁牙:</span><input id="planttime" class="consent_time" type="text" readonly="readonly" placeholder="请选择日期"/>
+                </div>
+            </div>
+        </div>
 		<!-- 其他 -->
-		<div class="row">
+		<%--<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12 colDefined">
 				<!-- 填写组合框 -->
 				<div class="fillWrite_group common_style">
 					<!-- 填写名称 -->
-					<span class="fillWrite_name">其他:</span>
+					<span class="fillWrite_name">其他习惯:</span>
+
 					<!-- 填写框-->
-					<input id="others" placeholder="在此输入..." onblur="TextLengthCheck(this.id,48);" style="width: 89%;border:0px;" class="fillWrite_input" type="text"/>
+					<input id="others" placeholder="在此输入..." onblur="TextLengthCheck(this.id,48);" style="width: 89%;border:0px;" class="fillWrite_input" type="text" placeholder="请输入其他习惯"/>
 				</div>
 			</div>
-		</div>
-		<div class="row question_row" style="text-align: right;">
-			<p class="question_text" style="margin-top: 40px;font-size: 16px;"><font style="color:red;font-size: 18px;margin-right: 10px;">*</font>以上所述个人健康状况属实，对隐瞒病情所造成的不良后果，责任自负。</p>
+		</div>--%>
+		<div class="row question_row" style="text-align: right;border-top: 2px solid #776c6c;">
+			<p class="question_text" style="margin-top: 40px;font-size: 16px;"><font style="color:red;font-size: 18px;margin-right: 10px;">*</font>以上所述本人健康状况属实，对隐瞒病情所造成的不良后果责任自负。</p>
 		</div>
 		<!-- 手术签名 -->
 		<div class="row signature_row">
@@ -1526,15 +1410,15 @@
 			</div>
 		</div>
 		
-		
 	</div>
-<!--endprint-->
+
 	<!-- 按钮 -->
 	<div class="btns">
 		<button id="consent_saveBtn" onclick="save()">保存</button>
 		<button id="consent_updateBtn" style="display: none;" class="consent_updateBtn hidden" onclick="update()">修改表单</button>
 		<button id="print_Btn" onclick="doPrint()">打印本页内容</button>
 	</div>
+<!--endprint-->
 </body>
 	<script language="javascript"  src="<%=contextPath%>/static/js/kqdsFront/LodopFuncs.js"></script>
 	<script type="text/javascript">
@@ -1581,13 +1465,8 @@
 			         );
 			    }
 		    });
-			
-			
-		    //患者姓名、年龄、性别赋值
-			$("#patient_name").text(window.parent.consultSelectPatient.username);
-			$("#patient_num").text(window.parent.consultSelectPatient.usercode);  //编号
-			$("#patient_sex").text(window.parent.consultSelectPatient.sex);
-			$("#patient_age").text(window.parent.consultSelectPatient.age); 
+			/* 初始化患者基本信息 */
+			initPatientInfo(window.parent.consultSelectPatient.usercode);
 			initZzblInfor();/* 页面赋值判断初始化 */
 			
 			// 2019/7/24 lutian 禁止页面拖拽
@@ -1597,7 +1476,35 @@
 	       
 			
 		});
-		
+		/* 初始化患者信息 */
+		function initPatientInfo(usercode){
+			var pageurl = '<%=contextPath%>/HUDH_FlowAct/findPatientInformation.act';
+			$.ajax({
+				type: "POST",
+				url: pageurl,
+				data: {
+					usercode: usercode,
+					status: 0
+				},
+				dataType: "json",
+				success: function (r) {
+					//console.log(JSON.stringify(r)+"----------查询患者信息");
+					//$("#first_time").attr("value", r.cztime); //首诊时间
+					$("#first_time").text(r.cztime); //首诊时间
+					$("#patient_num").text(r.usercode);//患者编号
+					$("#patient_name").text( r.username);//患者姓名
+					$("#patient_sex").text( r.sex);//患者性别
+					$("#patient_age").text( r.age);//患者年龄
+					$("#patient_idnum").text( r.idcardno); //身份证号码
+					$("#patient_birthday").text( r.birthday); //生日
+					$("#patient_phone").text( r.phonenumber1); //电话
+					$("#urgency_people").text( r.emergencyContact);  //紧急联系人
+					$("#urgency_phone").text( r.emergencyPhone);  //紧急联系人电话
+					$("#patient_address").text( r.provincename + r.cityname + r.townname + r.streetName); //地址
+					userseqid=r.seq_id;
+				}
+			});
+		}
 		//更改牙位：弹出牙位图
 		function showToothMap(i){
 			layer.open({
@@ -1607,7 +1514,6 @@
 				shade: 0.6,
 				area: ['800px', '450px'],
 				content: contextPath +'/ZzblViewAct/toAnamnesisToothMap.act?index='+i
-				/* /base/src/main/webapp/WEB-INF/jsp/hudh/lclj/plantCaseInfor/toothMap.jsp */
 			});
 		}
 		
@@ -1693,35 +1599,23 @@
 		/* 页面赋值判断初始化 */
 		function initZzblInfor(){
 			//console.log(id+"--------------查询id");
-			var url = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
+			var url = contextPath + '/HUDH_ZzblAdviceAct/findCaseHistoryById.act';
 			$.ajax({
 				url: url,
 				type:"POST",
 				dataType:"json",
 				data : {
-					 id :  id, //临床路径ID
-					 order_number : order_number
+					 id :  id
 				},
 				success:function(result){
-					//console.log(JSON.stringify(result)+"--------------添加成功后查询数据");
-					//caseId=result.seqId;  //病历id
-					var result;
-					if(seqidFather){
-						for (var i=0;i<result.length;i++) {
-							if(seqidFather==result[i].seqId){
-								result=result[i];
-							}
+					//console.log(JSON.stringify(result)+"--------------患者查询信息");
+					if(result){
+						if(result.seq_id){
+							caseId=result.seq_id; //已存在的seqid
+							$("#consent_saveBtn").css("display","none");//隐藏保存按钮
+							$("#consent_updateBtn").css("display","inline-block");//显示修改按钮
 						}
-					}
-					caseId=seqidFather;  //病历id
-					//console.log(JSON.stringify(result)+"---------------result");
-					/* 判断是否已经填写过内容 */
-					if(result.seqId){
-						$("#consent_saveBtn").css("display","none");//隐藏保存按钮
-						$("#consent_updateBtn").css("display","inline-block");//显示修改按钮
-						//赋值 
 						for(var key in result){
-							//console.log(key+"-------------"+result[key]);
 							$("#"+key+"[type='text']").attr("value",result[key]);// 填框赋值
 							//常用药物select赋值
 							if($("#"+key).find("option")){
@@ -1736,52 +1630,58 @@
 							//单选按钮赋值
 							$("input[name="+key+"][type='radio']").each(function(){
 								if($(this).val()==result[key]){
-								   $(this).attr("checked","checked");
+									$(this).attr("checked","checked");
 								}
 							})
+							//多选框赋值
 							if(result[key].indexOf(";")>0){
 								var checkboxVal= result[key];//拼接多选框的值
 								var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
 								for(var i=0;i<checkboxValArr.length;i++){
 									$("input[name="+key+"]").each(function(){
 										if($(this).val()==checkboxValArr[i]){
-										   $(this).attr("checked","checked");
+											$(this).attr("checked","checked");
 										}
 									})
 								}
-							} 
-							if(key.indexOf("is")>=0 && result[key]==1){
-								$("input[name="+key+"]").each(function(i,obj){
-									if($(this).val()==1){
-										$(this).trigger("click");
-									}
-								});
 							}
 						}
-						//$("input").attr("disabled","disabled");//查看信息的时候禁止在填写
-						signature=result.doctorsignature;
-						if(signature!=""){
-							$("#img").attr('src', signature);
-							doctorstatus=false;
-						}else{
-							$("#img").attr('display', 'none');
-						}
-						patientsignature=result.patientsignature;
-						if(patientsignature!=""){
-							$("#patientimg").attr('src', patientsignature);
-							patientstatus=false;
-						}else{
-							$("#patientimg").attr('display', 'none');
-						}
-						
-					}  
-					/* 针对ipad自适应 */
+						//牙位图赋值
+						toothMapInit("toothloseMap","leftUpTooth",result.toothlosemapupleft);  //牙缺失
+						toothMapInit("toothloseMap","rightUpTooth",result.toothlosemapupright);  //牙缺失
+						toothMapInit("toothloseMap","leftDownTooth",result.toothlosemapdownleft);  //牙缺失
+						toothMapInit("toothloseMap","rightDownTooth",result.toothlosemapdownright);  //牙缺失
+						toothMapInit("toothlessMap","leftUpTooth",result.toothlessmapupleft);  //牙松动
+						toothMapInit("toothlessMap","rightUpTooth",result.toothlessmapupright);  //牙松动
+						toothMapInit("toothlessMap","leftDownTooth",result.toothlessmapdownleft);  //牙松动
+						toothMapInit("toothlessMap","rightDownTooth",result.toothlessmapdownright);  //牙松动
+						toothMapInit("toothdecayedMap","leftUpTooth",result.toothdecayedmapupleft);  //龋齿
+						toothMapInit("toothdecayedMap","rightUpTooth",result.toothdecayedmapupright);  //龋齿
+						toothMapInit("toothdecayedMap","leftDownTooth",result.toothdecayedmapdownleft);  //龋齿
+						toothMapInit("toothdecayedMap","rightDownTooth",result.toothdecayedmapdownright);  //龋齿
+						toothMapInit("toothsnapMap","leftUpTooth",result.toothsnapmapupleft);  //牙折断
+						toothMapInit("toothsnapMap","rightUpTooth",result.toothsnapmapupright);  //牙折断
+						toothMapInit("toothsnapMap","leftDownTooth",result.toothsnapmapdownleft);  //牙折断
+						toothMapInit("toothsnapMap","rightDownTooth",result.toothsnapmapdownright);  //牙折断
+
+					}
 					//获取当前页面所有按钮
-					 getButtonAllCurPage(menuid);
+					getButtonAllCurPage(menuid);
 				}
 		  });
 		}
-		
+		//牙位图赋值
+		function toothMapInit(fObj,sObj,toothStr){
+			var toothArr=toothStr.split(";");
+			$("."+fObj).find("."+sObj).each(function(i,obj){
+				for (var i = 0; i < toothArr.length; i++) {
+					if($(this).find(".num").text()==toothArr[i]){
+						$(this).addClass("current");
+					}
+				}
+			});
+		}
+
 		/* 牙齿症状选中 */
 		function showSymptom() {
 		    var obj = document.getElementsByName("symptom");
@@ -1816,30 +1716,51 @@
 
 		//修改
 		function update(){
-			var patient_name = $("#patient_name").val();//患者姓名
-			var patient_sex = $("#patient_sex").val();//患者性别
-			var patient_age = $("#patient_age").val();//患者年龄
-			var agomphosTime = $("#agomphostime").val();//缺牙时间
+			var patient_num= $("#patient_num").text(); //患者编号
+			//主诉
 			var symptom=showSymptom();//牙齿症状选中
-			var plantTime = $("#planttime").val();//要求种植修复时间
+			var toothloseMapUpLeft = getToothNum("toothloseMap","leftUpTooth") //牙缺失左上牙位图
+			var toothloseMapDownLeft = getToothNum("toothloseMap","leftDownTooth") //牙缺失左下牙位图
+			var toothloseMapUpRight = getToothNum("toothloseMap","rightUpTooth") //牙缺失右上牙位图
+			var toothloseMapDownRight = getToothNum("toothloseMap","rightDownTooth") //牙缺失右下牙位图
+			var toothlessMapUpLeft = getToothNum("toothlessMap","leftUpTooth") //牙松动左上牙位图
+			var toothlessMapDownLeft = getToothNum("toothlessMap","leftDownTooth") //牙松动左下牙位图
+			var toothlessMapUpRight = getToothNum("toothlessMap","rightUpTooth") //牙松动右上牙位图
+			var toothlessMapDownRight = getToothNum("toothlessMap","rightDownTooth") //牙松动右下牙位图
+			var toothdecayedMapUpLeft = getToothNum("toothdecayedMap","leftUpTooth") //龋齿左上牙位图
+			var toothdecayedMapDownLeft = getToothNum("toothdecayedMap","leftDownTooth") //龋齿左下牙位图
+			var toothdecayedMapUpRight = getToothNum("toothdecayedMap","rightUpTooth") //龋齿右上牙位图
+			var toothdecayedMapDownRight = getToothNum("toothdecayedMap","rightDownTooth") //龋齿右下牙位图
+			var toothsnapMapUpLeft = getToothNum("toothsnapMap","leftUpTooth") //牙折断左上牙位图
+			var toothsnapMapDownLeft = getToothNum("toothsnapMap","leftDownTooth") //牙折断左下牙位图
+			var toothsnapMapUpRight = getToothNum("toothsnapMap","rightUpTooth") //牙折断右上牙位图
+			var toothsnapMapDownRight = getToothNum("toothsnapMap","rightDownTooth") //牙折断右下牙位图
+			var toothlosetime=$("#toothlosetime").val(); //牙缺失时间
+			var toothlesstime=$("#toothlesstime").val(); //牙松动时间
+			var toothdecayedtime=$("#toothdecayedtime").val(); //龋齿时间
+			var toothsnaptime=$("#toothsnaptime").val(); //牙折断时间
+			var implantRestoration=$("input[name='ImplantRestoration']:checked").val(); //是否要求种植修复
+			//既往史
 			var isHypertension = $('input[name="ishypertension"]:checked').val();//是否有高血压
 			var hypertension = $("#hypertension").val();//患高血压年限
 			var isTakeMedicie = $('input[name="istakemedicie"]:checked').val();//是否有在服药
-			var isControl = $('input[name="iscontrol"]:checked').val();//是否控制
 			var pressure = $("#pressure").val();//当前血压
+			var hypertensionmedicine = $("#hypertensionmedicine").val();  //高血压常用药物
 			var IsHearDiease = $('input[name="isheardiease"]:checked').val();//是否患有心脏病（心绞痛、心衰）
 			var hearDiease = $("#heardiease").val();//患心脏病年限
 			var isPrepareMedication = $('input[name="ispreparemedication"]:checked').val();//是否有长期备药在身边
+			var heardieasemedicine = $("#heardieasemedicine").val();  //心脏病常用药
 			var isDiabetes = $('input[name="isdiabetes"]:checked').val();//是否患有糖尿病
 			var diabetes = $("#diabetes").val();//患糖尿病年限
 			var dietControl=showdietControl();//控制饮食的方式
-			var isDietControl = $('input[name="isdietcontrol"]:checked').val();//是否控制
-			var isInfarction = $('input[name="isinfarction"]:checked').val();//近6个月是否有做过心瓣膜置换术或发生过心梗
-			var infarction = $("#infarction").val();//发病或手术时限
+			var diabetesoralmedicine = $("#diabetesoralmedicine").val();  //糖尿病口服常用药
+			var diabetesinjectionmedicine = $("#diabetesinjectionmedicine").val(); //糖尿病注射常用药
+			var isheartoperation = $('input[name="isheartoperation"]:checked').val();//六个月内做过心脏手术
+			var isheartinfarction = $('input[name="isheartinfarction"]:checked').val();//六个月内发生心梗
 			var IsBloodCoagulation = $('input[name="isbloodcoagulation"]:checked').val();//凝血功能不足性疾病
 			var bloodCoagulation = $("#bloodcoagulation").val();//患病年限
 			var isAntiFreezing = $('input[name="isantifreezing"]:checked').val();//服用抗凝药物或其他可以导致凝血功能障碍的药物
-			//var antiFreezing = $("#antifreezing").val();//所服药名       ----去掉参数
+			var antifreezingmedicine = $("#antifreezingmedicine").val();  //服用抗凝药物常用药物
 			var antiFreezingTime = $("#antifreezingtime").val();//服药年限
 			var isHepatitisB = $('input[name="ishepatitisb"]:checked').val();//是否患有乙肝
 			var hepatitisB = $("#hepatitisb").val();//患病年限
@@ -1847,147 +1768,166 @@
 			var hepatitisC = $("#hepatitisc").val();//患病年限
 			var IsHIV = $('input[name="ishiv"]:checked').val();//是否患有HIV
 			var Hiv = $("#hiv").val();//患病年限
+			var IsCancer = $('input[name="iscancer"]:checked').val();//是否恶性肿瘤（癌症）
+			var cancer = $("#cancer").val();//患病年限
 			var isYphilis = $('input[name="isyphilis"]:checked').val();//是否患有梅毒
 			var syphilis = $("#syphilis").val();//患病年限
-			var IsCancer = $('input[name="iscancer"]:checked').val();//是否患癌症
-			var cancer = $("#cancer").val();//患病年限
 			var IsMaxillofacial = $('input[name="ismaxillofacial"]:checked').val();//是否有过颌面部放疗术
 			var maxillofacial = $("#maxillofacial").val();//间隔年限
 			var isInflammation = $('input[name="isinflammation"]:checked').val();//是否患有感染急性炎症
 			var inflammation = $("#inflammation").val();//患病年限
-			var IsPharmacy = $('input[name="ispharmacy"]:checked').val();// 是否有骨质酥松用药
-			var Treatment = $('input[name="treatment"]:checked').val();// 用药方式
-			var pharmacy = $("#pharmacy").val();//用药年限
 			var isDrugAbuse = $('input[name="isdrugabuse"]:checked').val();// 是否吸毒
 			var drugAbuse = $("#drugabuse").val();//吸毒年限
 			var isPsychosis = $('input[name="ispsychosis"]:checked').val();// 是否患有心理、精神障碍
 			var psychosis = $("#psychosis").val();//患病年限
 			var IsMucousMembrane = $('input[name="ismucousmembrane"]:checked').val();// 是否患有皮肤黏膜病变
 			var mucousMembrane = $("#mucousmembrane").val();//患病年限
+			var IsPharmacy = $('input[name="ispharmacy"]:checked').val();// 是否有骨质酥松用药
+			var pharmacy = $("#pharmacy").val();// 注射用药时间
+			var takeorallytime = $("#takeorallytime").val();// 口服用药时间
+			var pharmacymedicine = $("#pharmacymedicine").val(); //骨质疏松常用药物
 			var IsGlucocorticoids = $('input[name="isglucocorticoids"]:checked').val();// 长期应用糖皮质激素
 			var glucocorticoids = $("#glucocorticoids").val();//使用激素年限
+			var glucocorticoidsmedicine = $("#glucocorticoidsmedicine").val(); //长期应用糖皮质激素常用药
 			var isOtherDiseases = $('input[name="isotherdiseases"]:checked').val();//是否患有其他疾病
+			var otherdiseasestext = $("#otherdiseasestext").val();//其他疾病输入
 			var otherDiseases = $("#otherdiseases").val();//患病年限
 			var isDrugAllergy = $('input[name="isdrugallergy"]:checked').val();//是否药物过敏
-			var drugAllergy = $("#drugallergy").val();//过敏药物
 			var allergicLength = $("#allergiclength").val();//过敏时间
+			var drugallergy = $("#drugallergy").val();//输入过敏药物
 			var isPregnancy = $('input[name="ispregnancy"]:checked').val();//是否怀孕
 			var pregnancy = $("#pregnancy").val();//受孕时间 单位：月
 			var onMedication = $("#onmedication").val();//正在服用药物
-			//var habit = $("#habit").val();//生活习惯		-----去掉参数
-			var smokeTime = $("#smoketime").val();//吸烟年限
+			var onmedicationtime = $("#onmedicationtime").val();//正在服用药物的时间
+			//生活习惯
+			var issmoke = $('input[name="issmoke"]:checked').val();//是否吸烟
+			var smoketime = $("#smoketime").val();//抽烟时间
 			var smokeNum = $("#smokenum").val();//抽烟数量    支/日
+			var isdrink = $('input[name="isdrink"]:checked').val();//是否饮酒
 			var drinkTime = $("#drinktime").val();//饮酒年限
 			var drinkScale = $('input[name="drinkscale"]:checked').val();//饮酒量    1.少量 2.中量 3.大量
-			var odontoprisis = $("#odontoprisis").val();//磨牙年数
+			var isodontoprisis = $('input[name="isodontoprisis"]:checked').val();//是否磨牙
+			var odontoprisis = $("#odontoprisis").val();//磨牙时间
 			var odontoprisisDegree = $('input[name="odontoprisisdegree"]:checked').val();//磨牙频率 1.频繁 2.偶尔
-			var chewingHabits = $('input[name="chewinghabits"]:checked').val();//咀嚼习惯 
-			var Others = $("#others").val();//其他
-			var LastToothExtractionTime = $("#lasttoothextractiontime").val();//最近一次拔牙距今时间
-			var HaveYouHadDenture = $('input[name="haveyouhaddenture"]:checked').val();//是否做义齿修复
-			var ReasonsImplantDentures=showReasonsImplantDentures();//选择做义齿是为了什么
+			var chewingHabits = $('input[name="chewinghabits"]:checked').val();//咀嚼习惯
+			var chewinghabitstime = $("#chewinghabitstime").val();//咀嚼习惯时间
+			var Others = $("#others").val();//其他习惯输入
+			var isteethclean = $('input[name="isteethclean"]:checked').val();//洁牙习惯
+			var teethcleannum = $("#teethcleannum").val();//频次
+			var planttime = $("#planttime").val();//最近一次洁牙
+			//签字
 			/* var PatientSignature = $("#PatientSignature").val();//患者签字 */
 			var PatientTime = $("#patienttime").val();//患者签字时间
-			/* var doctorSignature = $("#doctorSignature").val();//医生签字 */
+			/* var doctorSignature = $("#doctorSignature").val(); *///医生签字
 			var doctorTime = $("#doctortime").val();//医生签字时间     72
-			//新增参数
-			var hypertensionmedicine = $("#hypertensionmedicine").val();  //高血压常用药物
-			var heardieasemedicine = $("#heardieasemedicine").val();  //心脏病常用药
-			var diabetesoralmedicine = $("#diabetesoralmedicine").val();  //糖尿病口服常用药
-			var diabetesinjectionmedicine = $("#diabetesinjectionmedicine").val(); //糖尿病注射常用药
-			var antifreezingmedicine = $("#antifreezingmedicine").val();  //服用抗凝药物常用药物
-			var pharmacymedicine = $("#pharmacymedicine").val(); //骨质疏松常用药物
-			var glucocorticoidsmedicine = $("#glucocorticoidsmedicine").val(); //长期应用糖皮质激素常用药
-			
-			var url = contextPath + '/HUDH_ZzblAskAct/updateCaseHistoryById.act';
-	        var param = {
-	        		 id:caseId,
-	        		 LcljId :  id,
-	        		 LcljNum :  order_number,
-	        		 username :patient_name,
-		        	 sex : patient_sex,
-		        	 age : patient_age,
-	        		 agomphosTime :  agomphosTime,
-	        		 symptom :  symptom,
-	        		 plantTime :  plantTime,
-	        		 isHypertension :  isHypertension,
-	        		 hypertension :  hypertension,
-	        		 isTakeMedicie :  isTakeMedicie,
-	        		 isControl :  isControl,
-	        		 pressure :  pressure,
-	        		 IsHearDiease :  IsHearDiease,
-	        		 hearDiease :  hearDiease,
-	        		 isPrepareMedication :  isPrepareMedication,
-	        		 isDiabetes :  isDiabetes,
-	        		 diabetes :  diabetes,
-	        		 dietControl :  dietControl,
-	        		 isDietControl :  isDietControl,
-	        		 isInfarction :  isInfarction,
-	        		 infarction :  infarction,
-	        		 IsBloodCoagulation :  IsBloodCoagulation,
-	        		 bloodCoagulation :  bloodCoagulation,
-	        		 isAntiFreezing :  isAntiFreezing,
-	        		 //antiFreezing :  antiFreezing,
-	        		 antiFreezingTime :  antiFreezingTime,
-	        		 isHepatitisB :  isHepatitisB,
-	        		 hepatitisB :  hepatitisB,
-	        		 IsHepatitisC :  IsHepatitisC,
-	        		 hepatitisC :  hepatitisC,
-	        		 IsHIV :  IsHIV,
-	        		 Hiv :  Hiv,
-	        		 isYphilis :  isYphilis,
-	        		 syphilis :  syphilis,
-	        		 IsCancer :  IsCancer,
-	        		 cancer :  cancer,
-	        		 IsMaxillofacial :  IsMaxillofacial,
-	        		 maxillofacial :  maxillofacial,
-	        		 isInflammation :  isInflammation,
-	        		 inflammation :  inflammation,
-	        		 IsPharmacy :  IsPharmacy,
-	        		 Treatment :  Treatment,
-	        		 pharmacy :  pharmacy,
-	        		 isDrugAbuse :  isDrugAbuse,
-	        		 drugAbuse :  drugAbuse,
-	        		 allergicLength :allergicLength,
-	        		 isPsychosis :  isPsychosis,
-	        		 psychosis :  psychosis,
-	        		 IsMucousMembrane :  IsMucousMembrane,
-	        		 mucousMembrane :  mucousMembrane,
-	        		 IsGlucocorticoids :  IsGlucocorticoids,
-	        		 glucocorticoids :  glucocorticoids,
-	        		 isOtherDiseases :  isOtherDiseases,
-	        		 otherDiseases :  otherDiseases,
-	        		 isDrugAllergy :  isDrugAllergy,
-	        		 drugAllergy :  drugAllergy,
-	        		 isPregnancy :  isPregnancy,
-	        		 pregnancy :  pregnancy,
-	        		 onMedication :  onMedication,
-	        		 //habit :  habit,
-	        		 smokeTime :  smokeTime,
-	        		 smokeNum :  smokeNum,
-	        		 drinkTime :  drinkTime,
-	        		 drinkScale :  drinkScale,
-	        		 odontoprisis :  odontoprisis,
-	        		 odontoprisisDegree :  odontoprisisDegree,
-	        		 chewingHabits :  chewingHabits,
-	        		 Others :  Others,
-	        		 LastToothExtractionTime :  LastToothExtractionTime,
-	        		 HaveYouHadDenture :  HaveYouHadDenture,
-	        		 ReasonsImplantDentures :  ReasonsImplantDentures,
-	        		 PatientSignature :  patientsignature,
-	        		 PatientTime :  PatientTime,
-	        		 doctorSignature :  signature,
-	        		 doctorTime :  doctorTime,
-	        		 //新增参数
-		     		 hypertensionmedicine : hypertensionmedicine, //高血压常用药物
-		     		 heardieasemedicine : heardieasemedicine, //心脏病常用药
-		     		 diabetesoralmedicine : diabetesoralmedicine, //糖尿病口服常用药
-		     		 diabetesinjectionmedicine : diabetesinjectionmedicine,//糖尿病注射常用药
-		     		 antifreezingmedicine : antifreezingmedicine, //服用抗凝药物常用药物
-		     		 pharmacymedicine : pharmacymedicine, //骨质疏松常用药物
-		     		 glucocorticoidsmedicine : glucocorticoidsmedicine //长期应用糖皮质激素常用药
-	        };
-	        
+
+			var url = contextPath + '';
+			var param = {
+				lcljId :  id,
+				lcljNum :  order_number,
+				seqid : caseId,
+				patient_num :  patient_num,
+				symptom :  symptom,
+				toothloseMapUpLeft :  toothloseMapUpLeft,
+				toothloseMapDownLeft :  toothloseMapDownLeft,
+				toothloseMapUpRight :  toothloseMapUpRight,
+				toothloseMapDownRight :  toothloseMapDownRight,
+				toothlessMapUpLeft :  toothlessMapUpLeft,
+				toothlessMapDownLeft :  toothlessMapDownLeft,
+				toothlessMapUpRight :  toothlessMapUpRight,
+				toothlessMapDownRight :  toothlessMapDownRight,
+				toothdecayedMapUpLeft :  toothdecayedMapUpLeft,
+				toothdecayedMapDownLeft :  toothdecayedMapDownLeft,
+				toothdecayedMapUpRight :  toothdecayedMapUpRight,
+				toothdecayedMapDownRight :  toothdecayedMapDownRight,
+				toothsnapMapUpLeft :  toothsnapMapUpLeft,
+				toothsnapMapDownLeft :  toothsnapMapDownLeft,
+				toothsnapMapUpRight :  toothsnapMapUpRight,
+				toothsnapMapDownRight :  toothsnapMapDownRight,
+				toothlosetime :  toothlosetime,
+				toothlesstime :  toothlesstime,
+				toothdecayedtime :  toothdecayedtime,
+				toothsnaptime :  toothsnaptime,
+				implantRestoration : implantRestoration,
+				isHypertension : isHypertension,
+				hypertension : hypertension,
+				isTakeMedicie : isTakeMedicie,
+				pressure : pressure,
+				hypertensionmedicine : hypertensionmedicine,
+				isHearDiease : IsHearDiease,
+				hearDiease : hearDiease,
+				isPrepareMedication : isPrepareMedication,
+				heardieasemedicine : heardieasemedicine,
+				isDiabetes : isDiabetes,
+				diabetes : diabetes,
+				dietControl : dietControl,
+				diabetesoralmedicine : diabetesoralmedicine,
+				diabetesinjectionmedicine : diabetesinjectionmedicine,
+				isheartoperation : isheartoperation,
+				isheartinfarction : isheartinfarction,
+				isBloodCoagulation : IsBloodCoagulation,
+				bloodCoagulation : bloodCoagulation,
+				isAntiFreezing : isAntiFreezing,
+				antifreezingmedicine : antifreezingmedicine,
+				antiFreezingTime : antiFreezingTime,
+				isHepatitisB : isHepatitisB,
+				hepatitisB : hepatitisB,
+				isHepatitisC : IsHepatitisC,
+				hepatitisC : hepatitisC,
+				isHIV : IsHIV,
+				hiv : Hiv,
+				isCancer : IsCancer,
+				cancer : cancer,
+				isYphilis : isYphilis,
+				syphilis : syphilis,
+				isMaxillofacial : IsMaxillofacial,
+				maxillofacial : maxillofacial,
+				isInflammation : isInflammation,
+				inflammation : inflammation,
+				isDrugAbuse : isDrugAbuse,
+				drugAbuse : drugAbuse,
+				isPsychosis : isPsychosis,
+				psychosis : psychosis,
+				isMucousMembrane : IsMucousMembrane,
+				mucousMembrane : mucousMembrane,
+				isPharmacy : IsPharmacy,
+				pharmacy : pharmacy,
+				takeorallytime : takeorallytime,
+				pharmacymedicine : pharmacymedicine,
+				isGlucocorticoids : IsGlucocorticoids,
+				glucocorticoids : glucocorticoids,
+				glucocorticoidsmedicine : glucocorticoidsmedicine,
+				isOtherDiseases : isOtherDiseases,
+				otherdiseasestext : otherdiseasestext,
+				otherDiseases : otherDiseases,
+				isDrugAllergy : isDrugAllergy,
+				allergicLength : allergicLength,
+				drugallergy : drugallergy,
+				isPregnancy : isPregnancy,
+				pregnancy : pregnancy,
+				onMedication : onMedication,
+				onmedicationtime : onmedicationtime,
+				issmoke : issmoke,
+				smoketime : smoketime,
+				smokeNum : smokeNum,
+				isdrink : isdrink,
+				drinkTime : drinkTime,
+				drinkScale : drinkScale,
+				isodontoprisis : isodontoprisis,
+				odontoprisis : odontoprisis,
+				odontoprisisDegree : odontoprisisDegree,
+				chewingHabits : chewingHabits,
+				chewinghabitstime : chewinghabitstime,
+				others : Others,
+				isteethclean : isteethclean,
+				teethcleannum : teethcleannum,
+				planttime : planttime,
+				patientTime : PatientTime,
+				doctorTime : doctorTime,
+				patientsignature : patientsignature,
+				doctorsignature : signature
+			};
+			console.log(JSON.stringify(param)+"----------修改参数");
 	        $.axseSubmit(url, param,function() {},function(r) {
 	        	layer.alert("修改成功！", {
 		            end: function() {
@@ -2005,179 +1945,216 @@
 		
 		//保存		
 		function save() {
-			var patient_name = $("#patient_name").val();//患者姓名
-			var patient_sex = $("#patient_sex").val();//患者性别
-			var patient_age = $("#patient_age").val();//患者年龄
-			var agomphosTime = $("#agomphostime").val();//缺牙时间
+			var patient_num= $("#patient_num").text(); //患者编号
+            //主诉
 			var symptom=showSymptom();//牙齿症状选中
-			var plantTime = $("#planttime").val();//要求种植修复时间
-			var isHypertension = $('input[name="ishypertension"]:checked').val();//是否有高血压
-			var hypertension = $("#hypertension").val();//患高血压年限
-			var isTakeMedicie = $('input[name="istakemedicie"]:checked').val();//是否有在服药
-			var isControl = $('input[name="iscontrol"]:checked').val();//是否控制
-			var pressure = $("#pressure").val();//当前血压
-			var IsHearDiease = $('input[name="isheardiease"]:checked').val();//是否患有心脏病（心绞痛、心衰）
-			var hearDiease = $("#heardiease").val();//患心脏病年限
-			var isPrepareMedication = $('input[name="ispreparemedication"]:checked').val();//是否有长期备药在身边
-			var isDiabetes = $('input[name="isdiabetes"]:checked').val();//是否患有糖尿病
-			var diabetes = $("#diabetes").val();//患糖尿病年限
-			var dietControl=showdietControl();//控制饮食的方式
-			var isDietControl = $('input[name="isdietcontrol"]:checked').val();//是否控制
-			var isInfarction = $('input[name="isinfarction"]:checked').val();//近6个月是否有做过心瓣膜置换术或发生过心梗
-			var infarction = $("#infarction").val();//发病或手术时限
-			var IsBloodCoagulation = $('input[name="isbloodcoagulation"]:checked').val();//凝血功能不足性疾病
-			var bloodCoagulation = $("#bloodcoagulation").val();//患病年限
-			var isAntiFreezing = $('input[name="isantifreezing"]:checked').val();//服用抗凝药物或其他可以导致凝血功能障碍的药物
-			//var antiFreezing = $("#antifreezing").val();//所服药名     -----去掉参数
-			var antiFreezingTime = $("#antifreezingtime").val();//服药年限
-			var isHepatitisB = $('input[name="ishepatitisb"]:checked').val();//是否患有乙肝
-			var hepatitisB = $("#hepatitisb").val();//患病年限
-			var IsHepatitisC = $('input[name="ishepatitisc"]:checked').val();//是否患有丙肝
-			var hepatitisC = $("#hepatitisc").val();//患病年限
-			var IsHIV = $('input[name="ishiv"]:checked').val();//是否患有HIV
-			var Hiv = $("#hiv").val();//患病年限
-			var isYphilis = $('input[name="isyphilis"]:checked').val();//是否患有梅毒
-			var syphilis = $("#syphilis").val();//患病年限
-			var IsCancer = $('input[name="iscancer"]:checked').val();//是否患癌症
-			var cancer = $("#cancer").val();//患病年限
-			var IsMaxillofacial = $('input[name="ismaxillofacial"]:checked').val();//是否有过颌面部放疗术
-			var maxillofacial = $("#maxillofacial").val();//间隔年限
-			var isInflammation = $('input[name="isinflammation"]:checked').val();//是否患有感染急性炎症
-			var inflammation = $("#inflammation").val();//患病年限
-			var IsPharmacy = $('input[name="ispharmacy"]:checked').val();// 是否有骨质酥松用药
-			var Treatment = $('input[name="treatment"]:checked').val();// 用药方式
-			var pharmacy = $("#pharmacy").val();//用药年限
-			var isDrugAbuse = $('input[name="isdrugabuse"]:checked').val();// 是否吸毒
-			var drugAbuse = $("#drugabuse").val();//吸毒年限
-			var isPsychosis = $('input[name="ispsychosis"]:checked').val();// 是否患有心理、精神障碍
-			var psychosis = $("#psychosis").val();//患病年限
-			var IsMucousMembrane = $('input[name="ismucousmembrane"]:checked').val();// 是否患有皮肤黏膜病变
-			var mucousMembrane = $("#mucousmembrane").val();//患病年限
-			var IsGlucocorticoids = $('input[name="isglucocorticoids"]:checked').val();// 长期应用糖皮质激素
-			var glucocorticoids = $("#glucocorticoids").val();//使用激素年限
-			var isOtherDiseases = $('input[name="isotherdiseases"]:checked').val();//是否患有其他疾病
-			var otherDiseases = $("#otherdiseases").val();//患病年限
-			var isDrugAllergy = $('input[name="isdrugallergy"]:checked').val();//是否药物过敏
-			var drugAllergy = $("#drugallergy").val();//过敏药物
-			var allergicLength = $("#allergiclength").val();//过敏时间
-			var isPregnancy = $('input[name="ispregnancy"]:checked').val();//是否怀孕
-			var pregnancy = $("#pregnancy").val();//受孕时间 单位：月
-			var onMedication = $("#onmedication").val();//正在服用药物
-			//var habit = $("#habit").val();//生活习惯		----去掉参数
-			var smokeTime = $("#smoketime").val();//吸烟年限
-			var smokeNum = $("#smokenum").val();//抽烟数量    支/日
-			var drinkTime = $("#drinktime").val();//饮酒年限
-			var drinkScale = $('input[name="drinkscale"]:checked').val();//饮酒量    1.少量 2.中量 3.大量
-			var odontoprisis = $("#odontoprisis").val();//磨牙年数
-// 			alert(odontoprisis);
-			var odontoprisisDegree = $('input[name="odontoprisisdegree"]:checked').val();//磨牙频率 1.频繁 2.偶尔
-			var chewingHabits = $('input[name="chewinghabits"]:checked').val();//咀嚼习惯 
-			var Others = $("#others").val();//其他
-			var LastToothExtractionTime = $("#lasttoothextractiontime").val();//最近一次拔牙距今时间
-			var HaveYouHadDenture = $('input[name="haveyouhaddenture"]:checked').val();//是否做义齿修复
-			var ReasonsImplantDentures=showReasonsImplantDentures();//选择做义齿是为了什么
+			var toothloseMapUpLeft = getToothNum("toothloseMap","leftUpTooth") //牙缺失左上牙位图
+            var toothloseMapDownLeft = getToothNum("toothloseMap","leftDownTooth") //牙缺失左下牙位图
+            var toothloseMapUpRight = getToothNum("toothloseMap","rightUpTooth") //牙缺失右上牙位图
+            var toothloseMapDownRight = getToothNum("toothloseMap","rightDownTooth") //牙缺失右下牙位图
+            var toothlessMapUpLeft = getToothNum("toothlessMap","leftUpTooth") //牙松动左上牙位图
+            var toothlessMapDownLeft = getToothNum("toothlessMap","leftDownTooth") //牙松动左下牙位图
+            var toothlessMapUpRight = getToothNum("toothlessMap","rightUpTooth") //牙松动右上牙位图
+            var toothlessMapDownRight = getToothNum("toothlessMap","rightDownTooth") //牙松动右下牙位图
+            var toothdecayedMapUpLeft = getToothNum("toothdecayedMap","leftUpTooth") //龋齿左上牙位图
+            var toothdecayedMapDownLeft = getToothNum("toothdecayedMap","leftDownTooth") //龋齿左下牙位图
+            var toothdecayedMapUpRight = getToothNum("toothdecayedMap","rightUpTooth") //龋齿右上牙位图
+            var toothdecayedMapDownRight = getToothNum("toothdecayedMap","rightDownTooth") //龋齿右下牙位图
+            var toothsnapMapUpLeft = getToothNum("toothsnapMap","leftUpTooth") //牙折断左上牙位图
+            var toothsnapMapDownLeft = getToothNum("toothsnapMap","leftDownTooth") //牙折断左下牙位图
+            var toothsnapMapUpRight = getToothNum("toothsnapMap","rightUpTooth") //牙折断右上牙位图
+            var toothsnapMapDownRight = getToothNum("toothsnapMap","rightDownTooth") //牙折断右下牙位图
+            var toothlosetime=$("#toothlosetime").val(); //牙缺失时间
+            var toothlesstime=$("#toothlesstime").val(); //牙松动时间
+            var toothdecayedtime=$("#toothdecayedtime").val(); //龋齿时间
+            var toothsnaptime=$("#toothsnaptime").val(); //牙折断时间
+            var implantRestoration=$("input[name='ImplantRestoration']:checked").val(); //是否要求种植修复
+            //既往史
+            var isHypertension = $('input[name="ishypertension"]:checked').val();//是否有高血压
+            var hypertension = $("#hypertension").val();//患高血压年限
+            var isTakeMedicie = $('input[name="istakemedicie"]:checked').val();//是否有在服药
+            var pressure = $("#pressure").val();//当前血压
+            var hypertensionmedicine = $("#hypertensionmedicine").val();  //高血压常用药物
+            var IsHearDiease = $('input[name="isheardiease"]:checked').val();//是否患有心脏病（心绞痛、心衰）
+            var hearDiease = $("#heardiease").val();//患心脏病年限
+            var isPrepareMedication = $('input[name="ispreparemedication"]:checked').val();//是否有长期备药在身边
+            var heardieasemedicine = $("#heardieasemedicine").val();  //心脏病常用药
+            var isDiabetes = $('input[name="isdiabetes"]:checked').val();//是否患有糖尿病
+            var diabetes = $("#diabetes").val();//患糖尿病年限
+            var dietControl=showdietControl();//控制饮食的方式
+            var diabetesoralmedicine = $("#diabetesoralmedicine").val();  //糖尿病口服常用药
+            var diabetesinjectionmedicine = $("#diabetesinjectionmedicine").val(); //糖尿病注射常用药
+            var isheartoperation = $('input[name="isheartoperation"]:checked').val();//六个月内做过心脏手术
+            var isheartinfarction = $('input[name="isheartinfarction"]:checked').val();//六个月内发生心梗
+            var IsBloodCoagulation = $('input[name="isbloodcoagulation"]:checked').val();//凝血功能不足性疾病
+            var bloodCoagulation = $("#bloodcoagulation").val();//患病年限
+            var isAntiFreezing = $('input[name="isantifreezing"]:checked').val();//服用抗凝药物或其他可以导致凝血功能障碍的药物
+            var antifreezingmedicine = $("#antifreezingmedicine").val();  //服用抗凝药物常用药物
+            var antiFreezingTime = $("#antifreezingtime").val();//服药年限
+            var isHepatitisB = $('input[name="ishepatitisb"]:checked').val();//是否患有乙肝
+            var hepatitisB = $("#hepatitisb").val();//患病年限
+            var IsHepatitisC = $('input[name="ishepatitisc"]:checked').val();//是否患有丙肝
+            var hepatitisC = $("#hepatitisc").val();//患病年限
+            var IsHIV = $('input[name="ishiv"]:checked').val();//是否患有HIV
+            var Hiv = $("#hiv").val();//患病年限
+            var IsCancer = $('input[name="iscancer"]:checked').val();//是否恶性肿瘤（癌症）
+            var cancer = $("#cancer").val();//患病年限
+            var isYphilis = $('input[name="isyphilis"]:checked').val();//是否患有梅毒
+            var syphilis = $("#syphilis").val();//患病年限
+            var IsMaxillofacial = $('input[name="ismaxillofacial"]:checked').val();//是否有过颌面部放疗术
+            var maxillofacial = $("#maxillofacial").val();//间隔年限
+            var isInflammation = $('input[name="isinflammation"]:checked').val();//是否患有感染急性炎症
+            var inflammation = $("#inflammation").val();//患病年限
+            var isDrugAbuse = $('input[name="isdrugabuse"]:checked').val();// 是否吸毒
+            var drugAbuse = $("#drugabuse").val();//吸毒年限
+            var isPsychosis = $('input[name="ispsychosis"]:checked').val();// 是否患有心理、精神障碍
+            var psychosis = $("#psychosis").val();//患病年限
+            var IsMucousMembrane = $('input[name="ismucousmembrane"]:checked').val();// 是否患有皮肤黏膜病变
+            var mucousMembrane = $("#mucousmembrane").val();//患病年限
+            var IsPharmacy = $('input[name="ispharmacy"]:checked').val();// 是否有骨质酥松用药
+            var pharmacy = $("#pharmacy").val();// 注射用药时间
+            var takeorallytime = $("#takeorallytime").val();// 口服用药时间
+            var pharmacymedicine = $("#pharmacymedicine").val(); //骨质疏松常用药物
+            var IsGlucocorticoids = $('input[name="isglucocorticoids"]:checked').val();// 长期应用糖皮质激素
+            var glucocorticoids = $("#glucocorticoids").val();//使用激素年限
+            var glucocorticoidsmedicine = $("#glucocorticoidsmedicine").val(); //长期应用糖皮质激素常用药
+            var isOtherDiseases = $('input[name="isotherdiseases"]:checked').val();//是否患有其他疾病
+            var otherdiseasestext = $("#otherdiseasestext").val();//其他疾病输入
+            var otherDiseases = $("#otherdiseases").val();//患病年限
+            var isDrugAllergy = $('input[name="isdrugallergy"]:checked').val();//是否药物过敏
+            var allergicLength = $("#allergiclength").val();//过敏时间
+            var drugallergy = $("#drugallergy").val();//输入过敏药物
+            var isPregnancy = $('input[name="ispregnancy"]:checked').val();//是否怀孕
+            var pregnancy = $("#pregnancy").val();//受孕时间 单位：月
+            var onMedication = $("#onmedication").val();//正在服用药物
+            var onmedicationtime = $("#onmedicationtime").val();//正在服用药物的时间
+            //生活习惯
+            var issmoke = $('input[name="issmoke"]:checked').val();//是否吸烟
+            var smoketime = $("#smoketime").val();//抽烟时间
+            var smokeNum = $("#smokenum").val();//抽烟数量    支/日
+            var isdrink = $('input[name="isdrink"]:checked').val();//是否饮酒
+            var drinkTime = $("#drinktime").val();//饮酒年限
+            var drinkScale = $('input[name="drinkscale"]:checked').val();//饮酒量    1.少量 2.中量 3.大量
+            var isodontoprisis = $('input[name="isodontoprisis"]:checked').val();//是否磨牙
+            var odontoprisis = $("#odontoprisis").val();//磨牙时间
+            var odontoprisisDegree = $('input[name="odontoprisisdegree"]:checked').val();//磨牙频率 1.频繁 2.偶尔
+            var chewingHabits = $('input[name="chewinghabits"]:checked').val();//咀嚼习惯
+            var chewinghabitstime = $("#chewinghabitstime").val();//咀嚼习惯时间
+            var Others = $("#others").val();//其他习惯输入
+            var isteethclean = $('input[name="isteethclean"]:checked').val();//洁牙习惯
+            var teethcleannum = $("#teethcleannum").val();//频次
+            var planttime = $("#planttime").val();//最近一次洁牙
+            //签字
 			/* var PatientSignature = $("#PatientSignature").val();//患者签字 */
 			var PatientTime = $("#patienttime").val();//患者签字时间
 			/* var doctorSignature = $("#doctorSignature").val(); *///医生签字
 			var doctorTime = $("#doctortime").val();//医生签字时间     72
-			//新增参数
-			var hypertensionmedicine = $("#hypertensionmedicine").val();  //高血压常用药物
-			var heardieasemedicine = $("#heardieasemedicine").val();  //心脏病常用药
-			var diabetesoralmedicine = $("#diabetesoralmedicine").val();  //糖尿病口服常用药
-			var diabetesinjectionmedicine = $("#diabetesinjectionmedicine").val(); //糖尿病注射常用药
-			var antifreezingmedicine = $("#antifreezingmedicine").val();  //服用抗凝药物常用药物
-			var pharmacymedicine = $("#pharmacymedicine").val(); //骨质疏松常用药物
-			var glucocorticoidsmedicine = $("#glucocorticoidsmedicine").val(); //长期应用糖皮质激素常用药
-			
-			var url = contextPath + '/HUDH_ZzblAskAct/saveCaseHistory.act';
+
+			var url = contextPath + '/HUDH_ZzblAdviceAct/saveCaseHistory.act';
 	        var param = {
-	        		 LcljId :  id,
-	        		 LcljNum :  order_number,
-	        		 username :patient_name,
-		        	 sex : patient_sex,
-		        	 age : patient_age,
-	        		 agomphosTime :  agomphosTime,
-	        		 symptom :  symptom,
-	        		 plantTime :  plantTime,
-	        		 isHypertension :  isHypertension,
-	        		 hypertension :  hypertension,
-	        		 isTakeMedicie :  isTakeMedicie,
-	        		 isControl :  isControl,
-	        		 pressure :  pressure,
-	        		 IsHearDiease :  IsHearDiease,
-	        		 hearDiease :  hearDiease,
-	        		 isPrepareMedication :  isPrepareMedication,
-	        		 isDiabetes :  isDiabetes,
-	        		 diabetes :  diabetes,
-	        		 dietControl :  dietControl,
-	        		 isDietControl :  isDietControl,
-	        		 isInfarction :  isInfarction,
-	        		 infarction :  infarction,
-	        		 IsBloodCoagulation :  IsBloodCoagulation,
-	        		 bloodCoagulation :  bloodCoagulation,
-	        		 isAntiFreezing :  isAntiFreezing,
-	        		 //antiFreezing :  antiFreezing,
-	        		 antiFreezingTime :  antiFreezingTime,
-	        		 isHepatitisB :  isHepatitisB,
-	        		 hepatitisB :  hepatitisB,
-	        		 IsHepatitisC :  IsHepatitisC,
-	        		 hepatitisC :  hepatitisC,
-	        		 IsHIV :  IsHIV,
-	        		 Hiv :  Hiv,
-	        		 isYphilis :  isYphilis,
-	        		 syphilis :  syphilis,
-	        		 IsCancer :  IsCancer,
-	        		 cancer :  cancer,
-	        		 IsMaxillofacial :  IsMaxillofacial,
-	        		 maxillofacial :  maxillofacial,
-	        		 isInflammation :  isInflammation,
-	        		 inflammation :  inflammation,
-	        		 IsPharmacy :  IsPharmacy,
-	        		 Treatment :  Treatment,
-	        		 pharmacy :  pharmacy,
-	        		 isDrugAbuse :  isDrugAbuse,
-	        		 drugAbuse :  drugAbuse,
-	        		 allergicLength :allergicLength,
-	        		 isPsychosis :  isPsychosis,
-	        		 psychosis :  psychosis,
-	        		 IsMucousMembrane :  IsMucousMembrane,
-	        		 mucousMembrane :  mucousMembrane,
-	        		 IsGlucocorticoids :  IsGlucocorticoids,
-	        		 glucocorticoids :  glucocorticoids,
-	        		 isOtherDiseases :  isOtherDiseases,
-	        		 otherDiseases :  otherDiseases,
-	        		 isDrugAllergy :  isDrugAllergy,
-	        		 drugAllergy :  drugAllergy,
-	        		 isPregnancy :  isPregnancy,
-	        		 pregnancy :  pregnancy,
-	        		 onMedication :  onMedication,
-	        		 //habit :  habit,
-	        		 smokeTime :  smokeTime,
-	        		 smokeNum :  smokeNum,
-	        		 drinkTime :  drinkTime,
-	        		 drinkScale :  drinkScale,
-	        		 odontoprisis :  odontoprisis,
-	        		 odontoprisisDegree :  odontoprisisDegree,
-	        		 chewingHabits :  chewingHabits,
-	        		 Others :  Others,
-	        		 LastToothExtractionTime :  LastToothExtractionTime,
-	        		 HaveYouHadDenture :  HaveYouHadDenture,
-	        		 ReasonsImplantDentures :  ReasonsImplantDentures,
-	        		 PatientSignature :  patientsignature,
-	        		 PatientTime :  PatientTime,
-	        		 doctorTime :  doctorTime,
-	        		 doctorSignature : signature,
-		        	 //新增参数
-		     		 hypertensionmedicine : hypertensionmedicine, //高血压常用药物
-		     		 heardieasemedicine : heardieasemedicine, //心脏病常用药
-		     		 diabetesoralmedicine : diabetesoralmedicine, //糖尿病口服常用药
-		     		 diabetesinjectionmedicine : diabetesinjectionmedicine,//糖尿病注射常用药
-		     		 antifreezingmedicine : antifreezingmedicine, //服用抗凝药物常用药物
-		     		 pharmacymedicine : pharmacymedicine, //骨质疏松常用药物
-		     		 glucocorticoidsmedicine : glucocorticoidsmedicine //长期应用糖皮质激素常用药
+                    lcljId :  id,
+                    lcljNum :  order_number,
+                    patient_num :  patient_num,
+                    symptom :  symptom,
+                    toothloseMapUpLeft :  toothloseMapUpLeft,
+                    toothloseMapDownLeft :  toothloseMapDownLeft,
+                    toothloseMapUpRight :  toothloseMapUpRight,
+                    toothloseMapDownRight :  toothloseMapDownRight,
+                    toothlessMapUpLeft :  toothlessMapUpLeft,
+                    toothlessMapDownLeft :  toothlessMapDownLeft,
+                    toothlessMapUpRight :  toothlessMapUpRight,
+                    toothlessMapDownRight :  toothlessMapDownRight,
+                    toothdecayedMapUpLeft :  toothdecayedMapUpLeft,
+                    toothdecayedMapDownLeft :  toothdecayedMapDownLeft,
+                    toothdecayedMapUpRight :  toothdecayedMapUpRight,
+                    toothdecayedMapDownRight :  toothdecayedMapDownRight,
+                    toothsnapMapUpLeft :  toothsnapMapUpLeft,
+                    toothsnapMapDownLeft :  toothsnapMapDownLeft,
+                    toothsnapMapUpRight :  toothsnapMapUpRight,
+                    toothsnapMapDownRight :  toothsnapMapDownRight,
+                    toothlosetime :  toothlosetime,
+                    toothlesstime :  toothlesstime,
+                    toothdecayedtime :  toothdecayedtime,
+                    toothsnaptime :  toothsnaptime,
+                    implantRestoration : implantRestoration,
+                    isHypertension : isHypertension,
+                    hypertension : hypertension,
+                    isTakeMedicie : isTakeMedicie,
+                    pressure : pressure,
+                    hypertensionmedicine : hypertensionmedicine,
+                    isHearDiease : IsHearDiease,
+                    hearDiease : hearDiease,
+                    isPrepareMedication : isPrepareMedication,
+                    heardieasemedicine : heardieasemedicine,
+                    isDiabetes : isDiabetes,
+                    diabetes : diabetes,
+                    dietControl : dietControl,
+                    diabetesoralmedicine : diabetesoralmedicine,
+                    diabetesinjectionmedicine : diabetesinjectionmedicine,
+                    isheartoperation : isheartoperation,
+                    isheartinfarction : isheartinfarction,
+                    isBloodCoagulation : IsBloodCoagulation,
+                    bloodCoagulation : bloodCoagulation,
+                    isAntiFreezing : isAntiFreezing,
+                    antifreezingmedicine : antifreezingmedicine,
+                    antiFreezingTime : antiFreezingTime,
+                    isHepatitisB : isHepatitisB,
+                    hepatitisB : hepatitisB,
+                    isHepatitisC : IsHepatitisC,
+                    hepatitisC : hepatitisC,
+                    isHIV : IsHIV,
+                    hiv : Hiv,
+                    isCancer : IsCancer,
+                    cancer : cancer,
+                    isYphilis : isYphilis,
+                    syphilis : syphilis,
+                    isMaxillofacial : IsMaxillofacial,
+                    maxillofacial : maxillofacial,
+                    isInflammation : isInflammation,
+                    inflammation : inflammation,
+                    isDrugAbuse : isDrugAbuse,
+                    drugAbuse : drugAbuse,
+                    isPsychosis : isPsychosis,
+                    psychosis : psychosis,
+                    isMucousMembrane : IsMucousMembrane,
+                    mucousMembrane : mucousMembrane,
+                    isPharmacy : IsPharmacy,
+                    pharmacy : pharmacy,
+                    takeorallytime : takeorallytime,
+                    pharmacymedicine : pharmacymedicine,
+                    isGlucocorticoids : IsGlucocorticoids,
+                    glucocorticoids : glucocorticoids,
+                    glucocorticoidsmedicine : glucocorticoidsmedicine,
+                    isOtherDiseases : isOtherDiseases,
+                    otherdiseasestext : otherdiseasestext,
+                    otherDiseases : otherDiseases,
+                    isDrugAllergy : isDrugAllergy,
+                    allergicLength : allergicLength,
+                    drugallergy : drugallergy,
+                    isPregnancy : isPregnancy,
+                    pregnancy : pregnancy,
+                    onMedication : onMedication,
+                    onmedicationtime : onmedicationtime,
+                    issmoke : issmoke,
+                    smoketime : smoketime,
+                    smokeNum : smokeNum,
+                    isdrink : isdrink,
+                    drinkTime : drinkTime,
+                    drinkScale : drinkScale,
+                    isodontoprisis : isodontoprisis,
+                    odontoprisis : odontoprisis,
+                    odontoprisisDegree : odontoprisisDegree,
+                    chewingHabits : chewingHabits,
+                    chewinghabitstime : chewinghabitstime,
+                    others : Others,
+                    isteethclean : isteethclean,
+                    teethcleannum : teethcleannum,
+                    planttime : planttime,
+                    patientTime : PatientTime,
+                    doctorTime : doctorTime,
+            		patientsignature : patientsignature,
+					doctorsignature : signature
 	        };
-	        
-	        //console.log(JSON.stringify(param)+"-------------提交传参");
 	        $.axseSubmit(url, param,function() {},function(r) {
 	        	layer.alert("保存成功！", {
 		            end: function() {
@@ -2192,7 +2169,19 @@
 	        	layer.alert("保存失败！");
 		    }); 
 		}
-		
+
+		/*获得左上牙位图 obj:牙位图div类名 toothClass:牙位父级类名*/
+        function getToothNum(obj,toothClass){
+            var ToothArr=[];
+            $("."+obj).find("."+toothClass).each(function(i,obj){
+                if($(this).hasClass("current")){
+                    ToothArr.push($(this).find(".num").text());
+                }
+            });
+            var TootharrStr=ToothArr.join(";");
+            return TootharrStr;
+        }
+
 		/* 疾病判断并验证:根据选项框name截取得到时间id并禁用 例:选项框-ishypertension 输入框-hypertension */
 		function ishaveillness(objName){
 			var inputTextid=objName.substring(2);
@@ -2337,16 +2326,17 @@
 	    eprnstr="<!--endprint-->";   
 	    prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);   
 	    prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));   
-	    var htmlStyle="<style>*{font-size: 10px;}button{display:none;}.time_div>input{display:block;margin-top:3px!important;width:40px!important;height:18px!important;}.fillWrite_group>input{display:block;width:40px!important;height:18px!important;margin-top:3px!important;}#pressure{display:block;width:50px!important;height:18px!important;margin-top:3px!important;}.alreadyInfo{font-size:12px !important;}.rpInfo_import{margin-right:80px;width:auto;}input[type='radio'],input[type='checkbox']{width:10px!important;}.option_div>input{margin-top:5px!important;}.option_div>label{margin-top:15px!important;}";
+	    /*var htmlStyle="<style>*{font-size: 10px;}button{display:none;}.time_div>input{display:block;margin-top:3px!important;width:40px!important;height:18px!important;}.fillWrite_group>input{display:block;width:40px!important;height:18px!important;margin-top:3px!important;}#pressure{display:block;width:50px!important;height:18px!important;margin-top:3px!important;}.alreadyInfo{font-size:12px !important;}.rpInfo_import{margin-right:80px;width:auto;}input[type='radio'],input[type='checkbox']{width:10px!important;}.option_div>input{margin-top:5px!important;}.option_div>label{margin-top:15px!important;}";
 		htmlStyle+="p{margin:0px!important;padding:0px!important;line-height:14px!important;}.consent_time{width:110px!important;height:18px!important;margin-top:3px!important;}.row>.colDefined{height:24px!important;}.bigtitle{font-size:22px;line-height:22px;margin:45px auto 20px!important;padding-top:0px!important;}.toothInfo{margin-bottom:5px!important;}.patientInfo{padding:10px 0px 0px 15px!important;}.loseTooth_time{width:170px!important;}.loseTooth_option>li{margin-right:5px!important;}.loseTooth_time>span{font-size:12px!important;}";
 		htmlStyle+=".mainSuitInfo{padding:0px!important;}.chiefComplaint{padding:0px 0px 0px 0px!important;margin:0px!important;}.common_style span, #anamnesis_continer .common_style label{margin-top:5px!important;}.smoking input{margin-top:2px!important;}.patientInfo{padding-left:0px!important;}.mainSuitInfo{padding-left:0px!important;height:40px!important;padding-bottom:0px!important;}.plantTooth_reason li{height:22px!important;margin-bottom:0px!important;}";
 		htmlStyle+=".plantTooth_reason input{vertical-align:middle!important;}.loseTooth_option>li label{margin-top:5px!important;}.signature_box span{font-size:12px!important;}#denture{background-color:white!important;}.loseTooth_time>span,input{display:inline!important;}.loseTooth_time{width:auto!important;}.common_style{background-color: transparent!important;}";
 		htmlStyle+="input[type='text']{border:0px!important;padding:0px!important;text-align:center!important;font-weight:bold!important;}#agomphostime,#planttime{padding-left:10px!important;text-align:left!important;vertical-align:top;}#drugallergy{width:270px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important;}#onmedication{width:570px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important;}#habit{width:660px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important;}#others{width:660px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important;}";
 		htmlStyle+="#antifreezing{width:170px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important}#lasttoothextractiontime{border-bottom:1px solid #adaaaa!important;}#doctorSignature{border:1px solid red;}";
 		htmlStyle+=".backColor{background-color:transparent!important;}.backcolorGray{background-color:#f5f5f5!important;}.selectgroup .groupSelect{margin-top:4px!important;font-size:10px;height:18px;appearance:none;-webkit-appearance:none;-moz-appearance:none;}select::-ms-expand{display:none;}#consent_updateBtn{display:none!important;}</style>";
-	    window.document.body.innerHTML=prnhtml+htmlStyle;  
+	    window.document.body.innerHTML=prnhtml+htmlStyle;*/
+		window.document.body.innerHTML=prnhtml;
 	    window.print();  //打印
-	   	// document.body.innerHTML=bdhtml; //恢复页面
+		document.body.innerHTML=bdhtml; //恢复页面
 	} 			 
 	//打印样式
 	function myPreviewAll(){
