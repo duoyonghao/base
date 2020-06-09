@@ -204,7 +204,6 @@
 			//获取当前页面所有按钮
 			getButtonAllCurPage(menuid);
 		});
-		
 		/* 初始化患者信息 */
 		function initPatientInfo(usercode){
 			var pageurl = '<%=contextPath%>/HUDH_FlowAct/findPatientInformation.act';
