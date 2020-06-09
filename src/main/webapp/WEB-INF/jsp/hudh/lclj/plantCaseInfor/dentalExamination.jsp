@@ -1133,8 +1133,15 @@
         // http://127.0.0.1:8084/base/static/css/kqdsFront/yaweitu.css
 // 添加问题牙齿时（图）赋值---选中状态（红圈）
 	function checkedTooth(projectId,one){
+		    // var arr1 = [];
+		    // for(var i = 11; i < 19; i++) {
+		    //     arr1.push(i);
+            // }
+
 		var tooth=$("#"+projectId+"Map").find("ul li span.num").text();
     	var toothArr=[];
+
+    	// var toothArr = tooth.split(',');
 		var checkedArr=[];
     	for(var i=0;i<tooth.length;i+=2){
     		toothArr.push(tooth.slice(i,i+2));
@@ -1144,6 +1151,17 @@
         }else{
 
         }
+
+    	for(j=0; j< toolArr.length; j++) {
+
+    	if(!checkInArray(toolArr[j], checkedArr)) {
+    	    //取消18位的红圈
+        }
+    	else {
+    	    //加上18位的红圈
+        }
+        }
+
     	// checkedArr.push(one);
     	for(j=0;j<toothArr.length;j++){
 			for(var i=0;i<checkedArr.length;i++){
@@ -1640,6 +1658,15 @@
                 $(".leftDown").prepend("<dl class='ulstayle'><dl>"+y+"</dl><dd>"+obj[y]+"</dd></dl>")
             }
         }
+    }
+
+    function checkInArray(val, arr) {
+        for(var i = 0; i < arr.length; i++) {
+            if(val===arr[i]) {
+                return true;
+            }
+        }
+        return false;
     }
     //打印方法
     function myPreviewAll() {
