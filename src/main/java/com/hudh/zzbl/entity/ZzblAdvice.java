@@ -447,6 +447,31 @@ public class ZzblAdvice implements Serializable{
 	 *状态
 	 */
 	private String status;
+	/**
+	 *修改人
+	 */
+	private String updateuser;
+	/**
+	 *修改时间
+	 */
+	private String updatetime;
+
+
+	public String getUpdateuser() {
+		return updateuser;
+	}
+
+	public void setUpdateuser(String updateuser) {
+		this.updateuser = updateuser;
+	}
+
+	public String getUpdatetime() {
+		return updatetime;
+	}
+
+	public void setUpdatetime(String updatetime) {
+		this.updatetime = updatetime;
+	}
 
 	public String getCreateuser() {
 		return createuser;
@@ -1420,6 +1445,8 @@ public class ZzblAdvice implements Serializable{
 				", createuser='" + createuser + '\'' +
 				", createtime='" + createtime + '\'' +
 				", status='" + status + '\'' +
+				", updateuser='" + updateuser + '\'' +
+				", updatetime='" + updatetime + '\'' +
 				'}';
 	}
 }
