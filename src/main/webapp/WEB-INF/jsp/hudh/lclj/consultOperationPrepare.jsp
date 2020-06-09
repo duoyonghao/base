@@ -367,7 +367,7 @@
         document.addEventListener("click",function(event){
         	event=event||window.event;
             var eve=event.target||eve.elementSrc;
-        	if(eve.className=='ask_Previous' || eve.className=='examine_diagnose' || eve.className=='diagnosis_case' || eve.className=='xiufu_test'){
+        	if(eve.className=='ask_Previous' || eve.className=='examine_diagnose' || eve.className=='diagnosis_case' || eve.className=='xiufu_test' || eve.id=='allCases'){
         	}else{
         		$(".caseContiner").each(function(i,obj){
         			$(this).css("display","none");
