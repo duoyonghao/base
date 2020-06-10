@@ -33,7 +33,6 @@
 		line-height: 30px; 
 	}
 	#content{
-		/* font-weight: bold; */
 		margin-bottom: 20px;
 		padding-top: 10px;
 	}
@@ -81,16 +80,14 @@
 	   	padding: 0px 20px;
 	   	letter-spacing: 1px;
 	}
-	.btns #consent_saveBtn{
-		margin-right: 30px;
-	}	
-	.detailInfo td{
-		/*height: 120px;*/
-		height: 360px;
-	}
-	.infoText{
-		font-weight: bold;
-	}
+    .detailInfo td{
+        height: 120px;
+    }
+
+    .infoText{
+        font-weight: bold;
+    }
+
 	.consent_updateBtn{
 		font-size: 16px;
 	    line-height: 34px;
@@ -136,21 +133,11 @@
 							<td class="infoText"><font id="patient_age"></font></td>
 						</tr>
 						<tr>
-							<td colspan="2"><span class="contentName">时间</span></td>
+							<td><span class="contentName">时间</span></td>
+                            <td><span class="contentName">病程</span></td>
 							<td colspan="4"><span class="contentName">复查记录</span></td>
 							<td><span class="contentName">创建人</span></td>
 							<td><span class="contentName">操作</span></td>
-						</tr>
-						<tr class="detailInfo">
-							<td colspan="2">
-							</td>
-							<td colspan="4">
-							</td>
-							<td>
-							</td>
-							<td>
-								<button id="consent_updateBtn" class="consent_updateBtn hidden" onclick="deleteInfo(this);">删除</button>
-							</td>							
 						</tr>
 					</tbody>			
 				</table>
@@ -159,7 +146,6 @@
 		<!--endprint-->
 		<!-- 按钮 -->
 		<div class="btns">
-			<button id="consent_saveBtn" onclick="save()">保存</button>
 			<button id="print_Btn" onclick="myPreviewAll()">打印本页内容</button>
 		</div>
 	</div>
@@ -229,16 +215,26 @@
 
 		//页面数据初始化
 		function init() {
-			console.log(selectPatient.usercode+"----------患者编号");
+			//console.log(selectPatient.usercode+"----------患者编号");
 			var param = {
-					patientnum:selectPatient.usercode
+					blCode:selectPatient.usercode
 				 };
-			var url = contextPath + '';
+			var url = contextPath + '/HUDH_DzblAct/findDzblByBlcode.act';
 			 $.axseSubmit(url, param,function() {},function(data) {
 				 	//console.log(JSON.stringify(data)+"-----------data");
-		        	if(data.length>0){
-
-		        	}
+				 var initInfoHtml="";
+				 if(data.length>0){
+				     for(var i=0;i<data.length;i++){
+                         initInfoHtml+='<tr class="detailInfo" seqid='+data[i].seq_id+'>';
+                         initInfoHtml+='<td>'+data[i].createtime+'</td>';
+                         initInfoHtml+='<td>'+data[i].bc+'</td>';
+                         initInfoHtml+='<td colspan="4" style="text-align: left;padding: 10px;">'+data[i].detail+'</td>';
+                         initInfoHtml+='<td>'+data[i].username+'</td>';
+                         initInfoHtml+='<td><button id="consent_updateBtn" class="consent_updateBtn hidden" onclick="deleteInfo(this);">删除</button></td>';
+                         initInfoHtml+='</tr>';
+                     }
+                     $("#tbody").append(initInfoHtml);
+                 }
 		        },function(r){
 		        	layer.alert("查询失败！");
 			    }); 
@@ -268,7 +264,9 @@
 		    var menubutton1 = "";
 		    for (var i = 0; i < listbutton.length; i++) {
 		        if (listbutton[i].qxName == "zsbs_xgbd") {
-		           $("#consent_updateBtn").removeClass("hidden");
+					$(".consent_updateBtn").each(function(i,obj){
+						$(this).removeClass("hidden");
+					});
 		        }
 		    }
 		    $("#bottomBarDdiv").append(menubutton1);
