@@ -296,7 +296,7 @@
         #others {
             position: relative;
             margin-top: 13px;
-            width: 87%;
+            width: 97%;
             height: 200px;
             padding: 10px;
             font-size: 17px;
@@ -333,11 +333,17 @@
 		    width: 10%;
 		    margin:10px 0 10px 0;
 		}
-	 /*分隔线 */
-    .line {
-        display: block;
-        border-top:2px dotted #776c6c;
-    }
+        .line {
+            display: block;
+            border-top:2px dotted #776c6c;
+        }
+        .text{
+            margin: 10px 0;
+        }
+        @page{
+            size:auto;
+            margin: 0mm auto;
+        }
 </style>
 </head>
 <body>
@@ -451,23 +457,23 @@
         <div class="container-fluid examine_continer cavityExamine">
             
                 <textarea oninput="show1(event,50)" id="others" placeholder="特殊告知内容" type="text" /></textarea>
-                <div>我已知悉医生告知的情况，仍同意种植牙方案。</div>
-                <div class="signature_time timed">
-                    <div class="zl_signature">
-                        <span id="doctorSignature" style="line-height: 50px;">医生签名:</span>
-                        <img id="img" style="width:156px;height:auto;"/>
-                        <input id="doctortime" type="text" class="consent_time inputheight2" readonly="readonly"
-                            placeholder="请选择日期" />
-                    </div>
-                </div>
+                <div class="text">我已知悉医生告知的情况，仍同意种植牙方案。</div>
                 <div class="signature_time timep">
                     <div class="zl_signature">
                         <span id="patientSignature" style="margin-top: 8px;">患者签名:</span>
-					 <img id="patientimg" style="width:156px;height:auto;"/>
+                        <img id="patientimg" style="width:156px;height:auto;"/>
                         <input id="patienttime" type="text" class="consent_time inputheight2" readonly="readonly"
-                            placeholder="请选择日期" />
+                               placeholder="请选择日期" />
                     </div>
-                </div>      
+                </div>
+                <div class="signature_time timed">
+                        <div class="zl_signature">
+                            <span id="doctorSignature" style="line-height: 50px;">医生签名:</span>
+                            <img id="img" style="width:156px;height:auto;"/>
+                            <input id="doctortime" type="text" class="consent_time inputheight2" readonly="readonly"
+                                placeholder="请选择日期" />
+                        </div>
+                    </div>
             <!--endprint-->
         </div>
         <!-- 按钮 -->
