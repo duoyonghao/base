@@ -61,6 +61,10 @@
     .gap{
      	margin:10px 0;
     }
+	@page{
+		size:auto;
+		margin: 0mm auto;
+	}
 </style>
 <body>
 <!--startprint-->
@@ -566,7 +570,7 @@
 		<button id="consent_updateBtn" style="display: none;" class="consent_updateBtn hidden" onclick="update()">修改表单</button>
 		<button id="print_Btn" onclick="myPreviewAll()">打印本页内容</button>
 	</div>
-	
+
 </body>
 
 <script language="javascript"  src="<%=contextPath%>/static/js/kqdsFront/LodopFuncs.js"></script>
