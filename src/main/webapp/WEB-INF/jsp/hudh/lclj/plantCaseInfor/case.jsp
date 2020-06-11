@@ -395,6 +395,10 @@
 		width: 20%;
 		height:94%;
 	}
+    @page{
+        size:auto;
+        margin: 0mm auto;
+    }
 </style>
 
 <body>
@@ -1660,9 +1664,9 @@
                 </li>
             </ul>
         </div>
-        <span class="smalltitle">临床路径：</span>
-        <div style="height: 817px;border-top: 1px solid #b3b3b3;">
-            <div class="item">
+        <span class="smalltitle route">临床路径：</span>
+        <div style="height: 817px;border-top: 1px solid #b3b3b3;" class="route">
+            <div class="article_one item">
                 <div style="width: 100%;float: right;">
                     <ul class="loseTooth_option">
                         <li>
@@ -1772,7 +1776,7 @@
                 </div>
             </div>
 
-            <div class="item">
+            <div class="article_two item">
                 <div style="width: 100%;float: right;">
                     <ul class="loseTooth_option">
                         <li>
@@ -1843,7 +1847,7 @@
                 </div>
 
             </div>
-            <div class="item">
+            <div class="article_three item">
                 <div style="width: 100%;float: right;">
                     <ul class="loseTooth_option">
                         <li>
@@ -2065,6 +2069,7 @@
 	        	},
 	        dataType: "json",
 	        success: function (result) {
+	            console.log(result,"------------------")
 	            if(result!=null){
 	            	$("#consent_saveBtn").css("display","none");//隐藏保存按钮
 					$("#consent_updateBtn").css("display","inline-block");//显示修改按钮
@@ -2750,7 +2755,26 @@
 			}
 		}
     
-    function doPrint() {   
+    function doPrint() {
+        if($("#renovate:checked").val() == undefined && $("#growFull:checked").val() == undefined && $("#implantRepair:checked").val() == undefined){
+            $(".route").css('display','none');
+        }
+        if($("#implantRepair:checked").val() != undefined){
+            $(".article_three").css('display','none');
+            $(".article_two").css('display','none');
+            $(".route").css('height','325px');
+        }else if($("#growFull:checked").val() != undefined){
+            $(".article_one").css('display','none');
+            $(".article_three").css('display','none');
+            $(".route").css('height','325px');
+        }else if($("#renovate:checked").val() != undefined){
+            $(".article_one").css('display','none');
+            $(".article_two").css('display','none');
+            $(".route").css('height','325px');
+        }
+
+
+
 	    bdhtml=window.document.body.innerHTML;   
 	    sprnstr="<!--startprint-->";   
 	    eprnstr="<!--endprint-->";   
@@ -2764,7 +2788,6 @@
     
     //打印方法
     function myPreviewAll() {
-
         doPrint()
     };
     

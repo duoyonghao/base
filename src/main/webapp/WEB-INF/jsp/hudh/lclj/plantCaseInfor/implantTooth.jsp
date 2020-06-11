@@ -59,8 +59,7 @@
 		line-height: 26px;
 		letter-spacing: 1px;
 		font-weight: bold;
-	   	padding-top: 5%;  
-	    margin-bottom:2%; 
+		margin: 7px 0;
 	}
 	/* 详细文字介绍 */
 	#content .consent_text{
@@ -199,7 +198,7 @@
 	.line{
 		display:block;
 		border: 1px solid #776c6c;
-		margin-bottom: 2%;
+		margin-bottom: 7px;
 	}
 	h2{
     	margin-top: 0px; 
@@ -260,9 +259,25 @@
 	    vertical-align: middle;
 	    padding: 0px 8px;
 	}
+	#logoImg{
+		width: 12%;
+		margin:10px 0 10px 0;
+	}
+	/* 	分隔线 */
+	.lineone{
+		display: block;
+		border-top:2px dotted #776c6c;
+	}
+	@page{
+		size:auto;
+		margin: 0mm auto;
+	}
 </style>
 <body style="padding: 0px 2%;">
+<!--startprint-->
 	<div id="content">
+		<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
+		<i class="lineone"></i>
 		<h2 class="bigtitle">人工种植牙知情同意书</h2>
 		<i class="line"></i>
 		<div class="consent_text">
@@ -403,6 +418,7 @@
 				<input id="doctortime" type="text" class="consent_time inputheight inputheight2" readonly="readonly" placeholder="请选择日期"/>
 			</div>
 		</div>
+		<!--endprint-->
 		<!-- 按钮 -->
 		<div class="btns">
 			<button id="consent_saveBtn" onclick="save()">保存</button>
@@ -652,21 +668,25 @@
 		} 
 		
 		/* 打印本页面方法 */
-		function myPreviewAll(){
+		function myPreviewAll() {
 			if(doctorstatus&&signature==""){
 				$("#img").css("display","none");
 			}
 			if(patientstatus&&patientsignature==""){
 				$("#patientimg").css("display","none");
 			}
-			LODOP=getLodop();  
-			LODOP.PRINT_INIT("人工种植牙知情同意书");
-			var htmlStyle="<style>button{display:none;}*{font-size: 12px;line-height: 18.5px;}.span{vertical-align:bottom;margin-bottom: 10px;}.margin{margin-top:-10px}.height{height:70%!important;}textarea{overflow-x:hidden;overflow-y:hidden;padding-left:50px!important;}.font{font-size: 16px!important;font-weight: bolder;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}";
+
+			bdhtml=window.document.body.innerHTML;
+			sprnstr="<!--startprint-->";
+			eprnstr="<!--endprint-->";
+			prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);
+			prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
+			var htmlStyle="<style>button{display:none;}*{font-size: 12px;line-height: 18.5px;}.span{vertical-align:bottom;margin-bottom: 10px;}.margin{margin-top:-10px}#logoImg{text-align:left!important;width:27%!important;left:0%!important;top:17px!important;}.height{height:70%!important;}textarea{overflow-x:hidden;overflow-y:hidden;padding-left:50px!important;}.font{font-size: 16px!important;font-weight: bolder;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}";
 			htmlStyle+="#plantingsystemselect{font-size:12px;height:24px;vertical-align:bottom;}.selectTag{border:none;vertical-align:middle;font-size:12px!important;line-height:12px;appearance:none;-webkit-appearance:none;-moz-appearance:none;}select::-ms-expand{display:none;}";
 			htmlStyle+=".plantingsystemselectText{font-size:12px;height:24px;line-height:24px;vertical-align:bottom;margin-bottom:5px;}.selectTag{display:none!important;}.plantingsystemselectText{display:inline-block;}.repairselectText{font-size:12px;height:24px;line-height:24px;vertical-align:bottom;margin-bottom:5px;}.repairselectText{display:inline-block!important;}</style>";
-			var html="<!DOCTYPE html>"+document.getElementsByTagName("html")[0].innerHTML+htmlStyle;
-			LODOP.ADD_PRINT_HTM(0,0,"100%","100%",html);
-			LODOP.PREVIEW();	
+			window.document.body.innerHTML=prnhtml+htmlStyle;
+			window.print();  //打印
+			document.body.innerHTML=bdhtml; //恢复页面
 		};
 		
 		//获取url中的参数

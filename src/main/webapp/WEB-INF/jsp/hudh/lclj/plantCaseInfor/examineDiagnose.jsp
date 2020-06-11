@@ -69,6 +69,10 @@
         border-top:2px dotted #776c6c;
         padding:10px 0;
     }
+	@page{
+		size:auto;
+		margin: 0mm auto;
+	}
 </style>
 </head>
 <body>
