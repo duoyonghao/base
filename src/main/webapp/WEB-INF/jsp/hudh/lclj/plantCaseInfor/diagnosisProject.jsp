@@ -52,6 +52,10 @@
         border-top:2px dotted #776c6c;
         padding:10px 0;
     }
+	@page{
+		size:auto;
+		margin: 0mm auto;
+	}
 </style>
 </head>
 <body>
@@ -1136,7 +1140,7 @@
 		    eprnstr="<!--endprint-->";   
 		    prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);   
 		    prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));   
-		    var htmlStyle="<style>button{display:none;}textarea{height:50px!important;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}#diagnosis_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.one{margin-left: 42px!important;}.inputheight2{border: 1px solid transparent!important;}#consent_signature{width:100%!important;}	.consent_updateBtn{display:none!important;}.btns{display:none;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;top:17px!important;}</style>";
+		    var htmlStyle="<style>button{display:none;}textarea{height:50px!important;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}#diagnosis_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.one{margin-left: 42px!important;}.inputheight2{border: 1px solid transparent!important;}#consent_signature{width:100%!important;}	.consent_updateBtn{display:none!important;}.btns{display:none!important;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;top:17px!important;}</style>";
 		    window.document.body.innerHTML=prnhtml+htmlStyle;  
 		    window.print();  //打印
 		    document.body.innerHTML=bdhtml; //恢复页面
