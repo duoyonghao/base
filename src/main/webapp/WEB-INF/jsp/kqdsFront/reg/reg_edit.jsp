@@ -865,9 +865,19 @@ function getButtonPower() {
             menubutton1 += '<a class="kqdsCommonBtn" onclick="updateSubmit();">更改挂号</a>';
         } else if (listbutton[i].qxName == "reg_del") {
             menubutton1 += '<a class="kqdsCommonBtn" onclick="delSubmit();">撤销挂号</a>';
+        } else if (listbutton[i].qxName == "reg_update_jurisdiction") {
+            updateJurisdiction();
         }
     }
     $("#bottomBarDdiv").append(menubutton1);
+}
+function updateJurisdiction(){
+    $("#recesort").attr("disabled","disabled");
+    $("#regsort").attr("disabled","disabled");
+    $("#regway").attr("disabled","disabled");
+    $("#askpersondept").attr("disabled","disabled");
+    $("#askperson").attr("disabled","disabled");
+    $("#receivenoDesc").attr("disabled","disabled");
 }
 </script>
 </html>
