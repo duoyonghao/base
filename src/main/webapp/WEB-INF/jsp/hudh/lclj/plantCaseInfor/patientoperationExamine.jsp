@@ -20,8 +20,9 @@
 <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/bootstrap/bootstrap.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/bootstrap/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/bootstrap/bootstrap-datetimepicker.zh-CN.js" charset="utf-8" ></script>
-<%-- <script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/util.js"></script> --%><!-- 引入封装ajax方法文件,（影响元素contenteditable="true"属性） -->
-<script type="text/javascript" src="<%=contextPath%>/static/plugin/layer-v2.4/layer/layer.js"></script>
+	<script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/util.js"></script>
+	<!-- 引入封装ajax方法文件,（影响元素contenteditable="true"属性） -->
+	<script type="text/javascript" src="<%=contextPath%>/static/plugin/layer-v2.4/layer/layer.js"></script>
 <style type="text/css">
 	*{
 		margin: 0px;
@@ -80,7 +81,7 @@
    		font-weight: bold;
 	}
 /* 	logo */
-	#logoImg {
+	.logoImg {
 	    width: 150px;
 	    height: 45px;
 	}
@@ -121,19 +122,19 @@
 		margin:0 2% 0 2%;
 	}
 	/* 签名 */
-	#content #consent_signature{
+	#content .consent_signature{
  	    overflow: hidden;
    		margin-top: 10px;
    		margin-bottom: 20px;
 	}
-	#content #consent_signature>.signature_time{
+	#content .consent_signature>.signature_time{
 	    width: 40%;
    		position: relative;
 	}
-	#content #consent_signature>.signature_time>.signature_box{
+	#content .consent_signature>.signature_time>.signature_box{
 		width:100%;
 	}
-	#content #consent_signature>.signature_time>.signature_box>span{
+	#content .consent_signature>.signature_time>.signature_box>span{
 		font-weight: normal;
 	}
 	.content .colDefined .contentItem tbody tr{
@@ -144,7 +145,7 @@
 	    text-align: center;
 	}
 	/* 时间选择框 */
-	#content #consent_signature>.signature_time>input {
+	#content .consent_signature>.signature_time>input {
 	    width: 40%;
 	    position: absolute;
 	    right: 0px;
@@ -226,7 +227,7 @@
 <div>
 	<div id="content" class="content">
 		<!-- 标题 -->
-		<img id="logoImg" src="http://www.hdbkq.cn/templets/hdb/new_header_img/hud_logo.png">
+		<img class="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
 		<h2 class="bigtitle">种植牙术前安全核查单(护患)</h2>
 		<div class="row consent_text" style="">
 			<div class="col-md-12 col-sm-12 colDefined">
@@ -301,12 +302,12 @@
 			</div>			
 		</div>
 		<!-- 手术签名 -->
-		<div id="consent_signature">
+		<div class="consent_signature">
 			<!-- 患者签名 -->
 			<div class="signature_time" style="float: left;">
 				<div class="signature_box">
 					<span>患者签名:</span>
-					<div id=""></div>
+					<div></div>
 				</div>
 				<input id="patienttime" type="text" class="patienttime consent_time inputhidden" readonly="readonly" placeholder="请选择日期"/>
 			</div>	
@@ -314,14 +315,14 @@
 			<div class="signature_time" style="float: right;">
 				<div class="signature_box">
 					<span>护士签名:</span>
-					<div id=""></div>
+					<div></div>
 				</div>
 				<input id="nursetime1" type="text" class="nursetime1 consent_time inputhidden" readonly="readonly" placeholder="请选择日期"/>
 			</div>
 		</div>
 		<i style="border: 1px dashed #333;width: 100%;display: block;margin-top: 10%"></i>
 		<!-- 标题 -->
-		<img id="logoImg" src="http://www.hdbkq.cn/templets/hdb/new_header_img/hud_logo.png">
+		<img class="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
 		<h2 class="bigtitle top">种植牙术前安全核查单(医护)</h2>
 		<div class="row consent_text" style="">
 			<div class="col-md-12 col-sm-12 colDefined">
@@ -374,39 +375,39 @@
 						<tr class="reuseData">
 							<td colspan="2"><span>拔牙牙位</span></td>							
 							<td colspan="2"><span>种植牙位</span></td>	
-							<td colspan="2" rowspan="2">辅助手术<input id="" class="assist_operation text_input2" placeholder="" onblur="TextLengthCheck(this.id,10);" type="text" disabled/></td>	
-							<td colspan="2" rowspan="2">手术方式<input id="" class="plant_system text_input2" placeholder="" onblur="TextLengthCheck(this.id,10);" type="text" disabled/></td>														
+							<td colspan="2" rowspan="2">辅助手术<input class="assist_operation text_input2" placeholder="" onblur="TextLengthCheck(this.id,10);" type="text" disabled/></td>
+							<td colspan="2" rowspan="2">手术方式<input class="plant_system text_input2" placeholder="" onblur="TextLengthCheck(this.id,10);" type="text" disabled/></td>
 						</tr>
 						<tr class="reuseData">
 							<td colspan="2" class="tooth_height" style="height: 70px">
 								<ul class="tooth_map">
 									<li>
-										<input id="" onblur="TextLengthCheck(this.id,10);" class="tooth_input uplefttoothbitone" type="text" disabled/>
+										<input onblur="TextLengthCheck(this.id,10);" class="tooth_input uplefttoothbitone" type="text" disabled/>
 									</li>
 									<li>
-										<input id="" onblur="TextLengthCheck(this.id,10);" class="tooth_input uperrighttoothbitone" type="text" disabled/>
+										<input onblur="TextLengthCheck(this.id,10);" class="tooth_input uperrighttoothbitone" type="text" disabled/>
 									</li>
 									<li>
-										<input id="" onblur="TextLengthCheck(this.id,10);" class="tooth_input leftlowertoothbitone" type="text" disabled/>
+										<input onblur="TextLengthCheck(this.id,10);" class="tooth_input leftlowertoothbitone" type="text" disabled/>
 									</li>
 									<li>
-										<input id="" onblur="TextLengthCheck(this.id,10);" class="tooth_input lowrighttoothbitone" type="text" disabled/>
+										<input onblur="TextLengthCheck(this.id,10);" class="tooth_input lowrighttoothbitone" type="text" disabled/>
 									</li>
 								</ul>
 							</td>							
 							<td colspan="2" class="tooth_height" style="height: 70px">
 								<ul class="tooth_map">
 									<li>
-										<input id="" onblur="TextLengthCheck(this.id,10);" class="tooth_input uplefttoothbittwo" type="text" disabled/>
+										<input onblur="TextLengthCheck(this.id,10);" class="tooth_input uplefttoothbittwo" type="text" disabled/>
 									</li>
 									<li>
-										<input id="" onblur="TextLengthCheck(this.id,10);" class="tooth_input uperrighttoothbittwo" type="text" disabled/>
+										<input onblur="TextLengthCheck(this.id,10);" class="tooth_input uperrighttoothbittwo" type="text" disabled/>
 									</li>
 									<li>
-										<input id="" onblur="TextLengthCheck(this.id,10);" class="tooth_input leftlowertoothbittwo" type="text" disabled/>
+										<input onblur="TextLengthCheck(this.id,10);" class="tooth_input leftlowertoothbittwo" type="text" disabled/>
 									</li>
 									<li>
-										<input id="" onblur="TextLengthCheck(this.id,10);" class="tooth_input lowrighttoothbittwo" type="text" disabled/>
+										<input onblur="TextLengthCheck(this.id,10);" class="tooth_input lowrighttoothbittwo" type="text" disabled/>
 									</li>
 								</ul>
 							</td>																					
@@ -421,12 +422,12 @@
 			</div>			
 		</div>
 		<!-- 手术签名 -->
-		<div id="consent_signature">
+		<div class="consent_signature">
 			<!-- 患者签名 -->
 			<div class="signature_time" style="float: left;">
 				<div class="signature_box">
 					<span>护士签名:</span>
-					<div id=""></div>
+					<div></div>
 				</div>
 				<input id="nursetime2" type="text" class="nursetime2 consent_time inputhidden" readonly="readonly" placeholder="请选择日期"/>
 			</div>	
@@ -434,7 +435,7 @@
 			<div class="signature_time" style="float: right;">
 				<div class="signature_box">
 					<span>医生签名:</span>
-					<div id=""></div>
+					<div></div>
 				</div>
 				<input id="doctortime" type="text" class="doctortime consent_time inputhidden" readonly="readonly" placeholder="请选择日期"/>
 			</div>
@@ -445,7 +446,7 @@
 	<!-- 按钮 -->
 	<div class="btns">
 		<button id="consent_saveBtn" onclick="save()" style="height: 33px;" readonly="readonly">保存</button>
-		<button id="consent_updateBtn" style="display: none;" class="consent_updateBtn" onclick="update()">修改表单</button>
+		<button id="consent_updateBtn" style="display: none;" class="consent_updateBtn hidden" onclick="update()">修改表单</button>
 		<button id="print_Btn" onclick="myPreviewAll()" style="height: 33px;" readonly="readonly">打印本页内容</button>
 	</div>
 </div>	
@@ -457,6 +458,7 @@
 		var order_number= patientInformation.orderNumber; //选中患者order_number
 		var patient_usercode= patientInformation.blcode;//选中患者usercode
 		var patient_seqid;
+		var menuid=window.parent.menuid;//左侧菜单id
 		$(function(){
 			//时间选择
 		     $(".consent_time").datetimepicker({
@@ -480,7 +482,7 @@
 			document.ondragstart = function() {
 	            return false;
 	        };
-	        
+			getButtonAllCurPage(menuid);
 		});
 		/* 初始化患者信息 */
 		function getUserInformation(usercode){
@@ -782,7 +784,7 @@
 		 function getButtonPower() {
 			    var menubutton1 = "";
 			    for (var i = 0; i < listbutton.length; i++) {
-			        if (listbutton[i].qxName == "zsbs_xgbd"&&doctorstatus&&patientstatus) {
+			        if (listbutton[i].qxName == "zsbs_xgbd") {
 			           $("#consent_updateBtn").removeClass("hidden");
 			        }
 			    }
@@ -799,7 +801,7 @@
 			    window.document.body.innerHTML=prnhtml+htmlStyle;  
 			    window.print();  //打印
 			    window.document.body.innerHTML=bdhtml; // 恢复页面
-// 			    window.location.reload();
+			    window.location.reload();
 			} 
 		/* 打印页面方法 */
 		function myPreviewAll2(){

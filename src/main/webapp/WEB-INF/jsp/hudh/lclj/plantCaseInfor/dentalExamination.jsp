@@ -110,7 +110,7 @@
     .baseInfo .patient>.inputDiv{
         display:block;
         float:left;
-        width: 230px;
+        width: 235px;
         height: 30px;
     }
     .patient .inputDiv:nth-child(5){
@@ -150,6 +150,12 @@
         width:20px;
         font-size: 14px;
         margin-left: 2px;
+    }
+    .content .colDefined .contentItem tr td input[type="text"]{
+        -webkit-appearance:none;
+        padding: 0;
+        margin: 0;
+        text-align: center;
     }
     .border_bottom{
         width: 20px;
@@ -287,11 +293,13 @@
         content:none;
     }
     .ulstayle{
-        width: 20%;
-        border: 2px solid #aaa;
-        float:left;
+        width: 80%;
+        border: 1px solid #aaa;
+        /*float:left;*/
         border-radius: 5px;
         margin: 1%;
+        display: flex;
+        flex-direction:row;
     }
 </style>
 <body>
@@ -300,7 +308,7 @@
     <!-- 标题 -->
     <div class="row">
         <div id="logoTitle" class="col-md-12 col-sm-12 col-xs-12">
-            <img id="logoImg" src="http://www.hdbkq.cn/templets/hdb/new_header_img/hud_logo.png">
+            <img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
         </div>
     </div>
     <!-- 基本信息 -->
@@ -365,12 +373,12 @@
                 <!-- 主诉content -->
                 <tr>
                     <td colspan="1" class="problemitem"><span class="">张口度</span></td>
-                    <td colspan="4">
+                    <td colspan="1">
                         <label><input class="" type="radio" name="ismouthopening" value="0" onclick="choose(this.name);"/><span class=" ">正常</span></label>
                         <label><input class="" type="radio" name="ismouthopening" value="1" onclick="choose(this.name);"/><span class=" ">受限</span></label><input class="border_bottom ismouthopeninginput" id="mouthopening" type="text" onblur="TextLengthCheck(this.id,2);" style="cursor: no-drop;" disabled="disabled"/>mm
                     </td>
                     <td colspan="2" class="problemitem"><span class="">牙颞下颌关节</span></td>
-                    <td colspan="4" class="chooseCheckbox" id="arthrosisCheckbox">
+                    <td colspan="5" class="chooseCheckbox" id="arthrosisCheckbox">
                         <label><input class="usual" type="checkbox" name="arthrosis" value="0" onclick="chooseUsual(this,this.name);"/><span class=" ">正常</span></label>
                         <label><input class="unusual" type="checkbox" name="arthrosis" value="1" onclick="chooseUnusual(this.name);"/><span class=" ">弹响</span></label>
                         <label><input class="unusual" type="checkbox" name="arthrosis" value="2" onclick="chooseUnusual(this.name);"/><span class=" ">疼痛</span></label>
@@ -478,7 +486,7 @@
             </table>
         </div>
     </div>
-    <div id="tooth" style="overflow:hidden;padding-left: 12%;">
+    <div id="tooth" style="overflow:hidden;padding-left: 0%;">
         <!-- 牙位图操作 -->
         <div class="btnsYa">
             <input type="button" id="toothLoose" class="nocurrent_btn" value="牙松动"/>
@@ -487,7 +495,7 @@
             <input type="button" id="medicalCertificate" class="nocurrent_btn" value="诊断"/>
         </div>
         <!-- 牙位图 -->
-        <div class="row toothBox toothProBox"  id="toothLooseMap" style="min-width:700px;float:left;overflow:hidden;">
+        <div class="row toothBox toothProBox"  id="toothLooseMap" style="min-width:600px;float:left;overflow:hidden;">
             <ul class="upYa" >
                 <!-- 	               		<span style="font-size: initial;">全选:</span><li style="float: right;"><input id="alltooth" class="" value="全口" type="checkbox"/></li> -->
                 <li><input type="checkbox" class="lefttop" style="margin-top:65px;" /></li>
@@ -536,7 +544,7 @@
                 <li><input type="checkbox" class="rightdown" style="margin-bottom:20px;"/></li>
             </ul>
         </div>
-        <div class="row toothBox toothProBox" id="toothConditionMap" style="min-width:700px;float:left; display: none;">
+        <div class="row toothBox toothProBox" id="toothConditionMap" style="min-width:600px;float:left; display: none;">
             <ul class="upYa" >
                 <!-- 	                	<span style="font-size: initial;">全选:</span><li style="float: right;"><input id="alltooth" class="" value="全口" type="checkbox"/></li> -->
                 <li><input type="checkbox" class="lefttop" style="margin-top:65px;" /></li>
@@ -585,7 +593,7 @@
                 <li><input type="checkbox" class="rightdown" style="margin-bottom:20px;"/></li>
             </ul>
         </div>
-        <div class="row toothBox toothProBox" id="imageExaminationMap" style="min-width:700px;float:left; display: none;">
+        <div class="row toothBox toothProBox" id="imageExaminationMap" style="min-width:600px;float:left; display: none;">
             <ul class="upYa" >
                 <!-- 	                	<span style="font-size: initial;">全选:</span><li style="float: right;"><input id="alltooth" class=""  value="全口" type="checkbox"/></li> -->
                 <li><input type="checkbox" class="lefttop" style="margin-top:65px;" /></li>
@@ -634,7 +642,7 @@
                 <li><input type="checkbox" class="rightdown" style="margin-bottom:20px;"/></li>
             </ul>
         </div>
-        <div class="row toothBox toothProBox" id="medicalCertificateMap" style="min-width:700px;float:left; display: none;">
+        <div class="row toothBox toothProBox" id="medicalCertificateMap" style="min-width:600px;float:left; display: none;">
             <ul class="upYa" >
                 <!-- 	                	<span style="font-size: initial;">全选:</span><li style="float: right;"><input id="alltooth" class=""  value="全口" type="checkbox"/></li> -->
                 <li><input type="checkbox" class="lefttop" style="margin-top:65px;" /></li>
@@ -815,9 +823,9 @@
                 <span class="smalltitle">口腔情况牙位简图</span>
             </div>
 <%--            <iframe src="<%=contextPath%>/static/css/kqdsFront/inner.svg" width="100%" height="800"></iframe>--%>
-            <div class="leftUp" style="float: left;width: 45%;overflow: hidden;border: 2px solid #aaa;padding: 10px;border-radius: 10px;"></div>
-            <div class="rightUp" style="float: right;width: 45%;overflow: hidden;border: 2px solid #aaa;padding: 10px;border-radius: 10px;"></div>
-            <div class="row toothBox" id="" style="min-width:700px;width: 100%;overflow: hidden;margin-left: 10%;">
+            <div class="leftUp" style="float: left;width: 45%;overflow: hidden;border: 2px solid transparent;padding: 10px;border-radius: 10px;"></div>
+            <div class="rightUp" style="float: right;width: 45%;overflow: hidden;border: 2px solid transparent;padding: 10px;border-radius: 10px;"></div>
+            <div class="row toothBox" id="conditionToothBox" style="min-width:700px;width: 100%;overflow: hidden;margin-left: 10%;">
                 <ul class="upYa" >
                     <li>
                         <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/leup/leup8.png"  alt=""/>
@@ -956,19 +964,19 @@
                     </li>
                 </ul>
             </div>
-            <div class="leftDown" style="float: left;width: 45%;overflow: hidden;border: 2px solid #aaa;padding: 10px;border-radius: 10px;"></div>
-            <div class="rightDown" style="float: right;width:45%;overflow: hidden;border: 2px solid #aaa;padding: 10px;border-radius: 10px;"></div>
+            <div class="leftDown" style="float: left;width: 45%;overflow: hidden;border: 2px solid transparent;padding: 10px;border-radius: 10px;"></div>
+            <div class="rightDown" style="float: right;width:45%;overflow: hidden;border: 2px solid transparent;padding: 10px;border-radius: 10px;"></div>
         </div>
     </div>
     <!--endprint-->
     <!-- 按钮 -->
     <div class="btns">
         <button id="consent_saveBtn" onclick="save()">保存</button>
-        <button id="consent_updateBtn" style="display: none;" class="consent_updateBtn" onclick="update()">修改表单</button>
+        <button id="consent_updateBtn" style="display: none;" class="consent_updateBtn hidden" onclick="update()">修改表单</button>
         <button id="print_Btn" onclick="myPreviewAll()" style="/*visibility: hidden;*/">打印本页内容</button>
     </div>
 
-</body>
+<%--</body>--%>
 	<script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/util.js"></script>
 	<script language="javascript"  src="<%=contextPath%>/static/js/kqdsFront/LodopFuncs.js"></script>
 	<script type="text/javascript">
@@ -980,6 +988,7 @@
 		var idlclj= patientInformation.seqid;	//选中患者临床路径id
 		var order_number= patientInformation.orderNumber; //选中患者order_number
 		var updataid="";
+        var menuid=window.parent.menuid;//左侧菜单id
 		$(function(){
 			getUser(usercode);//获取患者信息并赋值
 			gettionData();//获取各板块问题详情
@@ -1005,7 +1014,12 @@
 			document.ondragstart = function() {
 	            return false;
 	        };
-		});
+            getButtonAllCurPage(menuid);
+            var userAgent = navigator.userAgent;
+            if (userAgent.indexOf("iPad") == -1){
+				$("#tooth").css("padding-left","15%");
+            }
+        });
 	function getUser(usercode){
 			var pageurl = '<%=contextPath%>/HUDH_FlowAct/findPatientInformation.act';
 			$.ajax({
@@ -1090,9 +1104,11 @@
 // 		end
 // 	获取各板块问题
 	function gettionData(){
+		    var a=1;
 		var url = contextPath + "/YZDictAct/getDiseaseByCode.act?id=bqfl67&code=zdqk594";
 	    $.axse(url, null,
 	    function(data) {
+	        // a=2;
 	    	 conditionData=data.conditionData;
 	    	 certificateData=data.certificateData;
 	    },
@@ -1100,7 +1116,6 @@
 	        layer.alert('查询出错！' );
 	    });
 	}
-
 	// 各项目问题内容的赋值
 	function pro(obj,data){
 		    for(var i=0;i<(data.length)/2;i++){
@@ -1133,41 +1148,21 @@
         // http://127.0.0.1:8084/base/static/css/kqdsFront/yaweitu.css
 // 添加问题牙齿时（图）赋值---选中状态（红圈）
 	function checkedTooth(projectId,one){
-		    // var arr1 = [];
-		    // for(var i = 11; i < 19; i++) {
-		    //     arr1.push(i);
-            // }
-
 		var tooth=$("#"+projectId+"Map").find("ul li span.num").text();
     	var toothArr=[];
-
-    	// var toothArr = tooth.split(',');
+    	var toothArr = tooth.split(',');
 		var checkedArr=[];
     	for(var i=0;i<tooth.length;i+=2){
     		toothArr.push(tooth.slice(i,i+2));
     	}
     	if(one){
             checkedArr.push(one);
-        }else{
-
         }
-
-    	for(j=0; j< toolArr.length; j++) {
-
-    	if(!checkInArray(toolArr[j], checkedArr)) {
-    	    //取消18位的红圈
-        }
-    	else {
-    	    //加上18位的红圈
-        }
-        }
-
-    	// checkedArr.push(one);
     	for(j=0;j<toothArr.length;j++){
 			for(var i=0;i<checkedArr.length;i++){
 				if(checkedArr[i]!=toothArr[j]){
 					$("#"+projectId+"Map").find("ul li span[toothname="+toothArr[j]+"]").removeClass("checked_current");
-					$("#"+projectId+"BoxMap").find("tr td span[id="+toothArr[j]+"]").removeClass("checked_current");
+					$("#"+projectId+"BoxMap").find("tr td span[id="+toothArr[j]+"]").removeClass("checked_current");//table表格
 				}
 			}
 		}
@@ -1199,7 +1194,7 @@
     								for(var i=0;i<checkedArr.length;i++){
     									if(checkedArr[i]==toothArr[j]){
     										$("#"+projectId+"Map").find("ul li span[toothname="+toothArr[j]+"]").addClass("checked_current");
-    										$("#"+projectId+"BoxMap").find("tr td span[id="+toothArr[j]+"]").addClass("checked_current");
+    										$("#"+projectId+"BoxMap").find("tr td span[id="+toothArr[j]+"]").addClass("checked_current");//table表格
     									}
     								}
     							}
@@ -1646,6 +1641,11 @@
             }
         }
         // console.log(JSON.stringify(obj)+"----obj");
+        var toothConditionCheck=Object.keys(obj);
+        // 牙位图赋框
+        for(var i=0;i<toothConditionCheck.length;i++){
+            $("#conditionToothBox").find("ul li span[toothname="+toothConditionCheck[i]+"]").addClass("checked_current");
+        }
         // 数据赋图
         for(var y in obj){
             if(y<19){
@@ -1668,6 +1668,16 @@
         }
         return false;
     }
+    //修改按钮权限
+    function getButtonPower() {
+            var menubutton1 = "";
+            for (var i = 0; i < listbutton.length; i++) {
+                if (listbutton[i].qxName == "zsbs_xgbd") {
+                    $("#consent_updateBtn").removeClass("hidden");
+                }
+            }
+            $("#bottomBarDdiv").append(menubutton1);
+        }
     //打印方法
     function myPreviewAll() {
         bdhtml=window.document.body.innerHTML;
@@ -1684,5 +1694,5 @@
     }
 
 </script>
-
+</body>
 </html>
