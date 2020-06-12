@@ -44,33 +44,25 @@
  	}
  	#logoImg{
 	    width: 10%;
-	    margin: 10px 0;
+	    margin: 40px auto 0;
 	}
-	 /*分隔线 */
-    .line {
-        display: block;
-        border-top:2px dotted #776c6c;
-        padding:10px 0;
-    }
 </style>
 </head>
 <body>
-<!--startprint-->
 <div style="margin: 17px;">
 
 	<!-- 标题 -->
 	<div id="diagnosis_continer" class="container-fluid">
 		<div class="row">
 				<div>
-				 	<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
-					<i class="line"></i>
-					<h2 class="bigtitle" style="margin:0px!important;">诊疗方案</h2>
+				<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
+					<h2 class="bigtitle">诊疗方案</h2>
 				</div>
 		</div>
 	</div>
 	<div id="diagnosis_continer" class="container-fluid">
 		<!-- 患者信息 -->
-		<div class="row" style="border-top: 2px solid #776c6c;">
+		<div class="row">
 			<div class="col-md-3 col-sm-3 col-xs-3 colDefined">
 				<!-- 信息输入组合框 -->
 				<div class="rpInfo_import">
@@ -589,18 +581,18 @@
 	</div>
 	
 	<!-- 手术签名 -->
-	<div id="consent_signature" style="width: 100%;">
+	<div id="consent_signature" style="float: right;height: 200px;width: 45%;">
 	    <div style="margin-bottom: 16px;">
 		   <span style="font-size: 15px;font-weight: bold;"><i style="color:red;">*</i> 以上情况我已知情并签字确认。</span>
 		</div>
 		<!-- 患者签名 -->
-		<div class="signature_time" style="width:42%;float:left;margin-right: 7%;">
+		<div class="signature_time">
 			<span id="patientSignature">患者签名:</span>
 			<img id="patientimg"/>
 			<input id="patienttime" type="text" class="consent_time inputheight2" readonly="readonly" placeholder="请选择日期"/>
 		</div>	
 		<!-- 医生签名 -->
-		<div class="signature_time" style="width:42%;">
+		<div class="signature_time" style="float:right;position: relative;">
 			<span id="doctorSignature">医生签名:</span>
 			<img id="img"/>
 			<input id="doctortime" type="text" class="consent_time inputheight2" readonly="readonly" placeholder="请选择日期"/>
@@ -608,7 +600,7 @@
 	</div>
     
    </div>
-<!--endprint-->
+	
 	<!-- 按钮 -->
 	<div class="btns">
 		<button id="consent_saveBtn" onclick="save()">保存</button>
@@ -753,7 +745,6 @@
 					 order_number : order_number
 				},
 				success:function(result){
-					console.log(result)
 					//console.log(JSON.stringify(result)+"--------------添加成功后查询数据");
 					var result;
 					if(seqidFather){
@@ -1130,21 +1121,9 @@
 		    }
 		    $("#bottomBarDdiv").append(menubutton1);
 		}
-		function doPrint() {   
-		    bdhtml=window.document.body.innerHTML;   
-		    sprnstr="<!--startprint-->";   
-		    eprnstr="<!--endprint-->";   
-		    prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);   
-		    prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));   
-		    var htmlStyle="<style>button{display:none;}textarea{height:50px!important;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}#diagnosis_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.one{margin-left: 42px!important;}.inputheight2{border: 1px solid transparent!important;}#consent_signature{width:100%!important;}	.consent_updateBtn{display:none!important;}.btns{display:none;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;top:17px!important;}</style>";
-		    window.document.body.innerHTML=prnhtml+htmlStyle;  
-		    window.print();  //打印
-		    document.body.innerHTML=bdhtml; //恢复页面
-		} 
 		
 		function myPreviewAll(){
-			doPrint();
-			/* if(doctorstatus&&signature==""){
+			if(doctorstatus&&signature==""){
 				   $("#img").css("display","none");
 			}
 			if(patientstatus&&patientsignature==""){
@@ -1155,7 +1134,7 @@
 			var htmlStyle="<style>button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}#diagnosis_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.one{margin-left: 42px!important;}.inputheight2{border: 1px solid transparent!important;}#consent_signature{width:300px !important;}#consent_signature{width:40%;}.consent_updateBtn{display:none!important;}.btns{display:none;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;top:17px!important;}</style>";
 			var html="<!DOCTYPE html>"+document.getElementsByTagName("html")[0].innerHTML+htmlStyle;
 			LODOP.ADD_PRINT_HTM(0,0,"100%","100%",html);
-			LODOP.PREVIEW(); */	
+			LODOP.PREVIEW();	
 		};
 
 </script>

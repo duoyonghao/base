@@ -90,18 +90,6 @@
 	.infoText{
 		font-weight: bold;
 	}
-	.consent_updateBtn{
-		font-size: 16px;
-	    line-height: 34px;
-	    background-color: #00A6C0;
-	    font-weight: normal;
-	    color: white;
-	    border: 0px;
-	    border-radius: 5px;
-	    padding: 0px 10px;
-	    letter-spacing: 1px;
-	    margin: 0 auto;
-	}
 </style>
 <body style="padding: 0px 3%;">
 	<div id="content">
@@ -112,7 +100,7 @@
 					<tbody id="tbody">
 						<tr>
 							<td><span>患者编号</span></td>
-							<td colspan="2" class="infoText"><font id="patient_num"></font></td>
+							<td class="infoText"><font id="patient_num"></font></td>
 							<td><span>患者姓名</span></td>	
 							<td class="infoText"><font id="patient_name"></font></td>
 							<td><span>性别</span></td>	
@@ -124,7 +112,6 @@
 							<td colspan="2"><span class="contentName">时间</span></td>
 							<td colspan="4"><span class="contentName">复查记录</span></td>
 							<td colspan="2"><span class="contentName">医生名称</span></td>
-							<td><span class="contentName">操作</span></td>
 						</tr>
 						<!-- <tr class="detailInfo">
 							<td colspan="2">
@@ -135,11 +122,8 @@
 							</td>
 							<td colspan="2">
 								<textarea id="" class="form-control doctorname" style="width: 100%; height: 120px ;overflow: auto;word-break: break-all; resize: none;"></textarea>
-							</td>
-							<td>
-								<button id="consent_updateBtn" style="display: none;" class="consent_updateBtn hidden" onclick="update(this)">修改此条记录</button>
 							</td>							
-						</tr> --> 
+						</tr> -->
 					</tbody>			
 				</table>
 			</div>
@@ -161,7 +145,6 @@
  		var order_number= window.parent.consultSelectPatient.orderNumber;//选中患者order_number
 		var selectPatient= window.parent.consultSelectPatient;//选中患者 lutian
 		var userseqid; //患者seqid
-		var menuid=window.parent.menuid;//左侧菜单id
 		$(function(){
 			//时间选择
 		    $(".consent_time").datetimepicker({
@@ -183,15 +166,13 @@
 			/* 初始化患者基本信息 */
 		    initPatientInfo(selectPatient.usercode);
 			
- 		    init();//页面数据初始化
-			// 2019/7/24 lutian 禁止页面拖拽
+ 		    init();
+			 // 2019/7/24 lutian 禁止页面拖拽
 			document.ondragstart = function() {
 	            return false;
 	        };
-	        
-	      	//获取当前页面所有按钮
-			getButtonAllCurPage(menuid);
-			$("#consent_updateBtn").css("display","inline-block");//显示修改按钮
+		    
+	        appendWrite(); //追加输入
 		});
 		
 		/* 初始化患者信息 */
@@ -228,9 +209,6 @@
 			writeHtml+='<td colspan="2">';
 			writeHtml+='<textarea id="" class="form-control doctorname" style="width: 100%; height: 120px ;overflow: auto;word-break: break-all; resize: none;"></textarea>';
 			writeHtml+='</td>';						
-			writeHtml+='<td>';
-			writeHtml+='<button id="consent_updateBtn" style="display: none;" class="consent_updateBtn hidden" onclick="update(this)">修改此条记录</button>';
-			writeHtml+='</td>';
 			writeHtml+='</tr>';
 			$("#tbody").append(writeHtml);
 			
@@ -252,80 +230,13 @@
 		    });
 		}
 		
-		//修改单行数据
-		function update(obj){
-			var patient_num = $("#patient_num").text();//患者编号
-			var patient_name = $("#patient_name").text();//患者姓名
-			var patient_sex = $("#patient_sex").text();//患者性别
-			var patient_age = $("#patient_age").text();//患者年龄
-			var seqid = $(obj).parents(".detailInfo").attr("seqid"); //患者seqid
-			var writetime=$(obj).parents(".detailInfo").find(".writetime").val();//时间
-			var reviewrecord=$(obj).parents(".detailInfo").find(".reviewrecord").val();//复查记录
-			var doctorname=$(obj).parents(".detailInfo").find(".doctorname").val();//医生名称
-			if(writetime=="" || reviewrecord=="" || doctorname==""){
-				layer.alert("请填写复查时间、复查记录、医生名称！");
-				return;
-			}
-			var url = contextPath + '/HUDH_MedicalRecordsAct/installOrUpdate.act';
-	        var param = {
-	        		 lcljId :  id,
-	        		 lcljNum :  order_number,
-	        		 seqId : seqid,
-	        		 userId : userseqid,
-	        		 usernum : patient_num,
-	        		 username :patient_name,
-		        	 sex : patient_sex,
-		        	 age : patient_age,
-		        	 writetime : writetime,
-		        	 reviewrecord:reviewrecord,
-		        	 doctorname:doctorname
-	        };
-	        
-	        //console.log(JSON.stringify(param)+"------------修改传参");
-	        $.axseSubmit(url, param,function() {},function(r) {
-	        	layer.alert("保存成功！", {
-		            end: function() {
-		            	//保存成功父页面选中该项
-		            	//window.parent.document.getElementById("ask_Previous").prev().attr("checked","checked");
-		                var frameindex = parent.layer.getFrameIndex(window.name);
-		                //parent.layer.close(frameindex); //再执行关闭
-		            }
-		      	});
-	        },function(r){
-	        	layer.alert("保存失败！");
-		    });
-			
-		}
-		
-		//页面数据初始化
 		function init() {
-			var param = {
+			 var param = {
 						lcljId:id
 				 };
 			var url = contextPath + '/HUDH_MedicalRecordsAct/selectAcography.act';
 			 $.axseSubmit(url, param,function() {},function(data) {
-				 	//console.log(JSON.stringify(data)+"-----------data");
-		        	if(data.length>0){
-		        		var initInfoHtml="";
-		        		for(var i=0;i<data.length;i++){
-		        			initInfoHtml+='<tr class="detailInfo" seqid='+data[i].seq_id+'>';
-		        			initInfoHtml+='<td colspan="2">';
-		        			initInfoHtml+='<input class="consent_time writetime" type="text" placeholder="请选择日期" value='+data[i].writetime+' >';
-		        			initInfoHtml+='</td>';
-		        			initInfoHtml+='<td colspan="4">';
-		        			initInfoHtml+='<textarea class="form-control reviewrecord" style="width: 100%; height: 120px ;overflow: auto;word-break: break-all; resize: none;">'+data[i].reviewrecord+'</textarea>';
-		        			initInfoHtml+='</td>';
-		        			initInfoHtml+='<td colspan="2">';
-		        			initInfoHtml+='<textarea class="form-control doctorname" style="width: 100%; height: 120px ;overflow: auto;word-break: break-all; resize: none;">'+data[i].doctorname+'</textarea>';
-		        			initInfoHtml+='</td>';						
-		        			initInfoHtml+='<td>';
-		        			initInfoHtml+='<button id="consent_updateBtn" style="display: block;" class="consent_updateBtn hidden" onclick="update(this)">修改此条记录</button>';
-		        			initInfoHtml+='</td>';
-		        			initInfoHtml+='</tr>';
-		        		}
-		        		$("#tbody").append(initInfoHtml);
-		        	}
-		        	appendWrite(); //追加输入
+		        	console.log(JSON.stringify(data))
 		        },function(r){
 		        	layer.alert("查询失败！");
 			    }); 
@@ -341,10 +252,7 @@
 			var writetime =$("#tbody").find("tr").eq(trlength-1).find(".writetime").val();//时间
 			var reviewrecord = $("#tbody").find("tr").eq(trlength-1).find(".reviewrecord").val();//复查记录
 			var doctorname = $("#tbody").find("tr").eq(trlength-1).find(".doctorname").val();//医生名称
-			if(writetime=="" || reviewrecord=="" || doctorname==""){
-				layer.alert("请填写复查时间、复查记录、医生名称！");
-				return;
-			}
+			
 			var url = contextPath + '/HUDH_MedicalRecordsAct/installOrUpdate.act';
 	        var param = {
 	        		 lcljId :  id,
@@ -359,7 +267,8 @@
 		        	 doctorname:doctorname
 	        };
 	        
-	        //console.log(JSON.stringify(param)+"------------保存传参");
+	        console.log(JSON.stringify(param)+"------------保存传参");
+	        //return;
 	        $.axseSubmit(url, param,function() {},function(r) {
 	        	layer.alert("保存成功！", {
 		            end: function() {
@@ -386,17 +295,6 @@
 			LODOP.PREVIEW();	
 		};
 		
-		function getButtonPower() {
-		    var menubutton1 = "";
-		    for (var i = 0; i < listbutton.length; i++) {
-		        if (listbutton[i].qxName == "zsbs_xgbd") {
-		           //$("#consent_updateBtn").removeClass("hidden");
-		           $(".consent_updateBtn").each(function(i,obj){
-		        	   $(this).removeClass("hidden");
-		           });
-		        }
-		    }
-		    $("#bottomBarDdiv").append(menubutton1);
-		}
+
 	</script>
 </html>

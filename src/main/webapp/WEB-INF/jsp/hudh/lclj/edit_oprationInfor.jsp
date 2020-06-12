@@ -1205,7 +1205,7 @@ function createSSInfo(){
 	if(!counsellor) {layer.alert('请选择咨询师');return;}
 	if(!plant_physician) {layer.alert('请选择种植医师');return;}
 	if(!repair_physician) {layer.alert('请选择修复医师');return;}
-	if(!clinic_nurse) {layer.alert('请选择诊室护士');return;}
+	//if(!clinic_nurse) {layer.alert('请选择诊室护士');return;}
 	var imageological_examination = showImagelogic();
 	//var consultation = showConsultation();
 	//var advisory = showAdvisory();

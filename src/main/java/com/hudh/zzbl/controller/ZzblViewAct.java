@@ -50,10 +50,10 @@ public class ZzblViewAct {
 		return mv;
 	}
 //	新核查单
-	@RequestMapping("/toPatientOperationExamineInfor.act")
-	public ModelAndView toPatientOperationExamineInfor(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping("/toNewOperationExamineInfor.act")
+	public ModelAndView toNewOperationExamineInfor(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/hudh/lclj/plantCaseInfor/patientoperationExamine.jsp");
+		mv.setViewName("/hudh/lclj/plantCaseInfor/newoperationExamine.jsp");
 		return mv;
 	}
 	
@@ -127,21 +127,7 @@ public class ZzblViewAct {
 		mv.setViewName("/hudh/lclj/plantCaseInfor/postoperativePrecautions.jsp");
 		return mv;
 	}
-	@RequestMapping("/toAnamnesisThirdInfor.act")
-	public ModelAndView toAnamnesisThirdInfor(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/hudh/lclj/plantCaseInfor/anamnesisThird.jsp");
-		return mv;
-	}
-	@RequestMapping(value = "/toAnamnesisToothMap.act")
-	public ModelAndView toAnamnesisToothMap(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String type = request.getParameter("type");
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("type", type);
-		mv.setViewName("/hudh/lclj/plantCaseInfor/toothMap.jsp");
-		return mv;
-	}
-	/*-----------------------*/
+	 
 	@RequestMapping(value = "/toNewLocatorKnowBook.act")
 	public ModelAndView toNewBl7(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String type = request.getParameter("type");

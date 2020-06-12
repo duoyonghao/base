@@ -315,8 +315,8 @@
 	        	//console.log(JSON.stringify(data)+"------------页面返回数据");
 	        	if(data.length>0){
 	        		alreadyCaseId=data[0]["seq_id"]; //已存在病历id
-	        		$("#consent_saveBtn").css("display","none");  //隐藏保存按钮
-	        		$("#consent_updateBtn").css("display","inline-block");  //显示修改按钮
+	        		$("#consent_saveBtn").css("display","none");
+	        		$("#consent_updateBtn").css("display","inline-block");
 	        		signature=data[0].doctorname;
 					 if(signature!=""){
 						 $("#img").attr('src', signature);
@@ -455,7 +455,7 @@
 		/* 打印本页面方法 */
 		function myPreviewAll(){
 			LODOP=getLodop();  
-			LODOP.PRINT_INIT("种植牙手术记录");
+			LODOP.PRINT_INIT("人工种植牙知情同意书");
 			LODOP.SET_PRINT_PAGESIZE(1,2100,2970,"A4");
 			var htmlStyle="<style>button{display:none;}*{font-size: 12px;line-height: 24px;}</style>";
 			var html="<!DOCTYPE html>"+document.getElementsByTagName("html")[0].innerHTML+htmlStyle;

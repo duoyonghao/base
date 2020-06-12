@@ -150,10 +150,6 @@ public class KqdsUserdocument implements Serializable{
 	
 	private String photoDisplay;//打印照片
 	
-	private String emergencyContact;//紧急联系人
-	
-	private String emergencyPhone;//紧急联系人电话
-	
 	public String getHeadPic() {
 		return headPic;
 	}
@@ -785,22 +781,6 @@ public class KqdsUserdocument implements Serializable{
 				+ iscreateLclj + ", accepttool=" + accepttool + ", familyship=" + familyship + ", hobby=" + hobby
 				+ ", activity=" + activity + ", introduce=" + introduce + ", clipAddress=" + clipAddress + ", nation="
 				+ nation + ", certOrg=" + certOrg + ", effDate=" + effDate + ", expDate=" + expDate + "]";
-	}
-
-	public String getEmergencyContact() {
-		return emergencyContact;
-	}
-
-	public void setEmergencyContact(String emergencyContact) {
-		this.emergencyContact = emergencyContact;
-	}
-
-	public String getEmergencyPhone() {
-		return emergencyPhone;
-	}
-
-	public void setEmergencyPhone(String emergencyPhone) {
-		this.emergencyPhone = emergencyPhone;
 	}
 	
 	

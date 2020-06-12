@@ -348,15 +348,9 @@ function initChukuNum(tdindex,goodsid){
                 for (var j = 0; j < list.length; j++) {
                     var optionStr = list[j];
                     //console.log(optionStr,+"444"); ' inprice='+optionStr.inprice+
-                    if(list[j].yxdate=="/"){
-                    	phObj.find(".ph").append(
-            					'<option value='+ optionStr.phnum + ' date="yxdate">' + optionStr.ph + '</option>' 
-            			);
-                    }else{
-                    	phObj.find(".ph").append(
-            					'<option value='+ optionStr.phnum + ' date='+optionStr.yxdate+' >' + optionStr.ph + '</option>' 
-            			);
-                    }
+                    phObj.find(".ph").append(
+    					'<option value='+ optionStr.phnum + '>' + optionStr.ph + '</option>' 
+    				);
                     if(j==0){
                     	phnum=optionStr.phnum; // 批号数量
                     	//inprice=optionStr.inprice;
@@ -1025,11 +1019,10 @@ function addDeatil(index){
  	var ph=$("#ph"+index+" option:selected").text();
  	var phs=$("#ph"+index).html();
  	var phss=phs.split("/option>");
- 	var yxdate=$("#ph"+index).find("option:selected").attr("date");
  	var phsss='';
  	var a=0;
  	for (var i = 0; i < phss.length; i++) {
- 		if(phss[i]!=''&&phss[i].indexOf(">"+ph+"<") == -1||phss[i].indexOf(yxdate)==-1&&phss[i]!=''&&phss[i].indexOf(">"+ph+"<") != -1){
+		if(phss[i]!=''&&phss[i].indexOf(">"+ph+"<") == -1){
 			a+=1;
 			phsss+=phss[i]+"/option>";
 		}

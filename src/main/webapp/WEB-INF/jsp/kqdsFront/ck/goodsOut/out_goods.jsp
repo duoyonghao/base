@@ -377,12 +377,8 @@ function initChukuNum(tdindex,goodsid){
                 var phHtml="";
                 for (var j = 0; j < list.length; j++) {
                     var optionStr = list[j];
-                    /*console.log(optionStr,+"444");  ' inprice='+optionStr.inprice+ */
-	                    if(list[j].yxdate=="/"){
-	                    	phHtml+="<option value="+list[j].phnum+" date='yxdate'>"+list[j].ph+"</option>";
-	                    }else{
-	                    	phHtml+="<option value="+list[j].phnum+" date="+list[j].yxdate+">"+list[j].ph+"</option>";
-	                    }
+                    //console.log(optionStr,+"444"); ' inprice='+optionStr.inprice+
+					phHtml+="<option value="+list[j].phnum+">"+list[j].ph+"</option>";
                 	}
                 $("#ph"+tdindex).html(phHtml); //出库批号
                 $("#phnum"+tdindex).val(list[0].phnum); //批号数量
@@ -928,13 +924,12 @@ function addDeatil(index){
  	$("#index"+tdindex).parent().css("display","none");
  	$("#index"+index).html(tdindex);
  	var ph=$("#ph"+index+" option:selected").text();
- 	var yxdate=$("#ph"+index).find("option:selected").attr("date");
  	var phs=$("#ph"+index).html();
  	var phss=phs.split("/option>");
  	var phsss='';
  	var a=0;
  	for (var i = 0; i < phss.length; i++) {
-		if(phss[i]!=''&&phss[i].indexOf(">"+ph+"<") == -1||phss[i].indexOf(yxdate)==-1&&phss[i]!=''&&phss[i].indexOf(">"+ph+"<") != -1){
+		if(phss[i]!=''&&phss[i].indexOf(">"+ph+"<") == -1){
 			a+=1;
 			phsss+=phss[i]+"/option>";
 		}

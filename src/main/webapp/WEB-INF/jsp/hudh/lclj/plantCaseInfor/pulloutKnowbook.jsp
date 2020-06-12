@@ -207,7 +207,6 @@
     }
 </style>
 <body style="padding: 0px 3% 0px;">
-<!--startprint-->
 	<div id="content">
 		<h2 class="bigtitle">拔牙手术知情同意书</h2>
 		<i class="line"></i>
@@ -352,21 +351,20 @@
 			<!-- 患者签名 -->
 			<div class="signature_time" style="margin-top:2%;">
 				<div class="signature_box">
-					<span>患者签名:</span>
-					<div id="PatientSignature"></div>
+					<span id="patientSignature">患者签名:</span>
+					<img id="patientimg" style="width:156px;height:auto;"/>
 				</div>
 				<input id="patienttime" type="text" class="consent_time inputheight inputheight2" readonly="readonly" placeholder="请选择日期"/>
 			</div>	
 			<!-- 医生签名 -->
 			<div class="signature_time" style="float:right;margin-top:2%;">
 				<div class="signature_box">
-					<span>医生签名:</span>
-					<div id="doctorSignature"></div>
+					<span id="doctorSignature">医生签名:</span>
+					<img id="img" style="width:156px;height:auto;"/>
 				</div>
 				<input id="doctortime"  type="text" class="consent_time inputheight inputheight2" readonly="readonly" placeholder="请选择日期"/>
 			</div>
 		</div>
-		<!--endprint-->
 		<!-- 按钮 -->
 		<div class="btns">
 			<button id="consent_saveBtn" onclick="save()">保存</button>
@@ -379,6 +377,10 @@
 </body>
 	<script language="javascript"  src="<%=contextPath%>/static/js/kqdsFront/LodopFuncs.js"></script>
 	<script type="text/javascript">
+		var signature="";
+		var patientsignature="";
+		var doctorstatus=true;
+		var patientstatus=true;
 		var contextPath = "<%=contextPath%>";	
 		var id;	//选中患者id
 		var order_number;//选中患者order_number
@@ -443,8 +445,6 @@
 			document.ondragstart = function() {
 	            return false;
 	        };
-		    //获取当前页面所有按钮
- 			 getButtonAllCurPage(menuid);
 		});
 		
 		//去掉自适应span元素的下边框
@@ -531,28 +531,36 @@
 					        }
 						}
 						//$("input").attr("disabled","disabled").css("background","transparent");//查看信息的时候禁止在填写
-						
+						signature=result.doctorsignature;
+						if(signature!=""){
+							$("#img").attr('src', signature);
+							doctorstatus=false;
+						}else{
+							$("#img").attr('display', 'none');
+						}
+						patientsignature=result.patientsignature;
+						if(patientsignature!=""){
+							$("#patientimg").attr('src', patientsignature);
+							patientstatus=false;
+						}else{
+							$("#patientimg").attr('display', 'none');
+						}
 					} 
+					//获取当前页面所有按钮
+		 			 getButtonAllCurPage(menuid);
 				}
 		  });
 		}
 		
-		function doPrint() {   
-		    bdhtml=window.document.body.innerHTML;   
-		    sprnstr="<!--startprint-->";   
-		    eprnstr="<!--endprint-->";   
-		    prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);   
-		    prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
-		    var htmlStyle="<style>button{display:none;}*{font-size: 14px!important;line-height: 28px;}.margin{width: 95%;position: absolute;margin-top: -29px;}.margintop1{margin-top:-2px;}.margintop{margin-top: 5px;}.font{font-size: 16px!important;font-weight: bolder;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}</style>";
-		    window.document.body.innerHTML=prnhtml+htmlStyle;  
-		    window.print();  //打印
-		    document.body.innerHTML=bdhtml; //恢复页面
-		} 
-		
 		/* 打印本页面方法 */
 		function myPreviewAll(){
-			doPrint()
-/* 			LODOP=getLodop();  
+			if(doctorstatus&&signature==""){
+				   $("#img").css("display","none");
+			}
+			if(patientstatus&&patientsignature==""){
+				   $("#patientimg").css("display","none");
+			}
+			LODOP=getLodop();  
 			LODOP.PRINT_INIT("拔牙手术知情同意书");
 			//LODOP.SET_PRINT_PAGESIZE(1,0,0,"A4");
 			LODOP.SET_PRINT_MODE("FULL_WIDTH_FOR_OVERFLOW",true);//宽度溢出缩放
@@ -560,7 +568,7 @@
 			var html="<!DOCTYPE html>"+document.getElementsByTagName("html")[0].innerHTML+htmlStyle;
 // 			LODOP.ADD_PRINT_HTM(10,10,"100%","100%",html);
 			LODOP.ADD_PRINT_HTM(0,0,"100%","100%",html);
-			LODOP.PREVIEW();	 */
+			LODOP.PREVIEW();	
 		};
 		
 		//获取url中的参数
@@ -583,9 +591,9 @@
 			var treatmentParts = $("#treatmentparts").text();//治疗部位
 			var treatmentTime = $("#treatmenttime").val();//治疗日期
 			var profession = $("#profession").val();//职业
-			var PatientSignature = $("#PatientSignature").val();//患者签字
+			//var PatientSignature = $("#PatientSignature").val();//患者签字
 			var PatientTime = $("#patienttime").val();//患者签字时间
-			var doctorSignature = $("#doctorSignature").val();//医生签字
+			//var doctorSignature = $("#doctorSignature").val();//医生签字
 			var doctorTime = $("#doctortime").val();//医生签字时间
 			var createtime= new Date().Format("yyyy-MM-dd HH:mm:ss");
 			
@@ -603,9 +611,9 @@
 		        	 treatmentParts :  treatmentParts,
 		        	 treatmentTime :  treatmentTime,
 		        	 profession :  profession,
-	        		 PatientSignature :  PatientSignature,
+	        		 //PatientSignature :  PatientSignature,
 	        		 patientTime :  PatientTime,
-	        		 doctorSignature :  doctorSignature,
+	        		 //doctorSignature :  doctorSignature,
 	        		 doctorTime :  doctorTime,
 	        		 createtime :  createtime,
 	        		 classify:1
@@ -640,9 +648,9 @@
 			var treatmentParts = $("#treatmentparts").text();//治疗部位
 			var treatmentTime = $("#treatmenttime").val();//治疗日期
 			var profession = $("#profession").val();//职业
-			var PatientSignature = $("#PatientSignature").val();//患者签字
+			//var PatientSignature = $("#PatientSignature").val();//患者签字
 			var PatientTime = $("#patienttime").val();//患者签字时间
-			var doctorSignature = $("#doctorSignature").val();//医生签字
+			//var doctorSignature = $("#doctorSignature").val();//医生签字
 			var doctorTime = $("#doctortime").val();//医生签字时间
 			var createtime= new Date().Format("yyyy-MM-dd HH:mm:ss");
 
@@ -664,9 +672,9 @@
 			        	 treatmentParts :  treatmentParts,
 			        	 treatmentTime :  treatmentTime,
 			        	 profession :  profession,
-		        		 PatientSignature :  PatientSignature,
+		        		 //PatientSignature :  PatientSignature,
 		        		 patientTime :  PatientTime,
-		        		 doctorSignature :  doctorSignature,
+		        		 //doctorSignature :  doctorSignature,
 		        		 doctorTime :  doctorTime,
 		        		 createtime :  createtime,
 		        		 classify:1
@@ -717,7 +725,7 @@
 		function getButtonPower() {
 		    var menubutton1 = "";
 		    for (var i = 0; i < listbutton.length; i++) {
-		        if (listbutton[i].qxName == "zsbs_xgbd") {
+		        if (listbutton[i].qxName == "zsbs_xgbd"&&doctorstatus&&patientstatus) {
 		           $("#consent_updateBtn").removeClass("hidden");
 		        }
 		    }

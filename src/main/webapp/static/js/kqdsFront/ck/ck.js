@@ -699,14 +699,8 @@ function getButtonPower() {
 	  menubutton3 = ""
 		  
 	  for (var i = 0; i < listbutton.length; i++) {
-		  console.log(""+listbutton[i].qxName);
-		  if (listbutton[i].qxName == "addgoodstype") {
-	    	  menubutton_cklb += '<label id="addgoodstype" onclick="addgoodstype()" style="cursor:pointer">添加类别</label>';
-	      } else if (listbutton[i].qxName == "editgoodstype") {
-	    	  menubutton_cklb += '<label id="editgoodstype" onclick="editgoodstype()" style="cursor:pointer">修改类别</label>';
-	      } else if (listbutton[i].qxName == "delgoodstype") {
-	    	  menubutton_cklb += '<label id="delgoodstype" onclick="delgoodstype()" style="cursor:pointer">删除类别</label>';
-	      }else if (listbutton[i].qxName == "add") {
+		  //console.log(""+listbutton[i].qxName);
+	      if (listbutton[i].qxName == "add") {
 	          menubutton1 += '<label id="add" onclick="add()" style="cursor:pointer">添加商品</label>';
 	      } else if (listbutton[i].qxName == "ck_baseinfo_sppltj") {
 	          menubutton1 += '<label id="addBatch" onclick="addBatch()" style="cursor:pointer">批量添加商品</label>';  //2020/03/28	 批量添加商品    lutian

@@ -107,7 +107,6 @@ ul, ol{
 	display:block;
 	float:left;
 	width: 230px;
-	height: 30px; 
 }
 .patient .inputDiv:nth-child(5){
 	width: 100px!important;
@@ -118,8 +117,8 @@ ul, ol{
 .baseInfo .patient>.inputDiv>span{
 	display: inline-block;
 	font-size: 16px;
-	line-height: 30px;
-	height: 30px;
+	line-height: 22px;
+	height: 22px;
 }
 .baseInfo .patient>.inputDiv>font{
 	font-size: 15px;
@@ -173,8 +172,7 @@ ul, ol{
 }
 .btnsYa{
 	float: left;
-/* 	width: 14%; */
-	width:200px;
+	width: 14%;
 	text-align: center;
 	margin-top: 2%;
 }
@@ -215,22 +213,16 @@ ul, ol{
 .div_with2{
  	width:170px; 
 /* 	height:20px; */
- 	height:35px;
 	border:0px;
 	overflow: hidden;
-	word-wrap: break-word;
-    word-break: normal;
-    margin: auto;
+	margin: auto;
 }
 .div_with3{
- 	width:300px; 
-/* 	height:20px; */
- 	height:35px;
+ 	width:145px; 
+	height:20px;
 	border:0px;
 	overflow: hidden;
-	word-wrap: break-word;
-    word-break: normal;
-    margin: auto;
+	margin: auto;
 }
 .checked_current{
 	border: 1px solid red;
@@ -359,27 +351,27 @@ ul, ol{
 					<tr>
 						<td colspan="1" class="problemitem"><span class="">张口度</span></td>
 						<td colspan="4">
-							<label><input class="" type="radio" name="ismouthopening" value="0" onclick="choose(this.name);"/><span class=" ">正常</span></label>
-							<label><input class="" type="radio" name="ismouthopening" value="1" onclick="choose(this.name);"/><span class=" ">受限</span></label><input class="border_bottom ismouthopeninginput" id="mouthopening" type="text" onblur="TextLengthCheck(this.id,2);" style="cursor: no-drop;" disabled="disabled"/>mm
+							<label><input class="" type="radio" name="mouth_open" value="0" onclick="choose(this.name);"/><span class=" ">正常</span></label>
+							<label><input class="" type="radio" name="mouth_open" value="1" onclick="choose(this.name);"/><span class=" ">受限</span></label><input class="border_bottom mouth_openinput" id="mouth_openinput" class="mouth_openinput" type="text" style="cursor: no-drop;" disabled="disabled"/>mm
 						</td>
 						<td colspan="2" class="problemitem"><span class="">牙颞下颌关节</span></td>
-						<td colspan="4" class="chooseCheckbox" id="arthrosisCheckbox">
-							<label><input class="usual" type="checkbox" name="arthrosis" value="0" onclick="chooseUsual(this,this.name);"/><span class=" ">正常</span></label>
-							<label><input class="unusual" type="checkbox" name="arthrosis" value="1" onclick="chooseUnusual(this.name);"/><span class=" ">弹响</span></label>
-							<label><input class="unusual" type="checkbox" name="arthrosis" value="2" onclick="chooseUnusual(this.name);"/><span class=" ">疼痛</span></label>
-							<label><input class="unusual" type="checkbox" name="arthrosis" value="3" onclick="chooseUnusual(this.name);"/><span class=" ">习惯性拖拉</span></label>
-							<label><input class="unusual" type="checkbox" name="arthrosis" value="4" onclick="chooseUnusual(this.name);"/><span class=" ">绞索</span></label>
+						<td colspan="4" class="chooseCheckbox" id="tooth_temporomandibularCheckbox">
+							<label><input class="usual" type="checkbox" name="tooth_temporomandibular" value="0" onclick="chooseUsual(this,this.name);"/><span class=" ">正常</span></label>
+							<label><input class="unusual" type="checkbox" name="tooth_temporomandibular" value="1" onclick="chooseUnusual(this.name);"/><span class=" ">弹响</span></label>
+							<label><input class="unusual" type="checkbox" name="tooth_temporomandibular" value="2" onclick="chooseUnusual(this.name);"/><span class=" ">疼痛</span></label>
+							<label><input class="unusual" type="checkbox" name="tooth_temporomandibular" value="3" onclick="chooseUnusual(this.name);"/><span class=" ">习惯性拖拉</span></label>
+							<label><input class="unusual" type="checkbox" name="tooth_temporomandibular" value="4" onclick="chooseUnusual(this.name);"/><span class=" ">绞索</span></label>
 						</td>							
 					</tr>
 					<tr>
 						<td colspan="2" class="problemitem"><span class="">咬合关系</span></td>
-						<td colspan="10" class="chooseCheckbox" id="occludingrelationCheckbox">
-							<label><input class="usual" type="checkbox" name="occludingrelation" value="0" onclick="chooseUsual(this,this.name);"/><span class=" ">正常颌 </span></label>
-							<label><input class="unusual" type="checkbox" name="occludingrelation" value="1" onclick="chooseUnusual(this.name);"/><span class=" ">深覆颌 </span></label>
-							<label><input class="unusual" type="checkbox" name="occludingrelation" value="2" onclick="chooseUnusual(this.name);"/><span class=" ">深覆盖 </span></label>
-							<label><input class="unusual" type="checkbox" name="occludingrelation" value="3" onclick="chooseUnusual(this.name);"/><span class=" ">对刃颌 </span></label>
-							<label><input class="unusual" type="checkbox" name="occludingrelation" value="4" onclick="chooseUnusual(this.name);"/><span class=" ">反颌 </span></label>
-							<label><input class="unusual" type="checkbox" name="occludingrelation" value="5" onclick="chooseUnusual(this.name);"/><span class=" ">开颌 </span></label>
+						<td colspan="10" class="chooseCheckbox" id="intercourse_relationsCheckbox">
+							<label><input class="usual" type="checkbox" name="intercourse_relations" value="0" onclick="chooseUsual(this,this.name);"/><span class=" ">正常颌 </span></label>
+							<label><input class="unusual" type="checkbox" name="intercourse_relations" value="1" onclick="chooseUnusual(this.name);"/><span class=" ">深覆颌 </span></label>
+							<label><input class="unusual" type="checkbox" name="intercourse_relations" value="2" onclick="chooseUnusual(this.name);"/><span class=" ">深覆盖 </span></label>
+							<label><input class="unusual" type="checkbox" name="intercourse_relations" value="3" onclick="chooseUnusual(this.name);"/><span class=" ">对刃颌 </span></label>
+							<label><input class="unusual" type="checkbox" name="intercourse_relations" value="4" onclick="chooseUnusual(this.name);"/><span class=" ">反颌 </span></label>
+							<label><input class="unusual" type="checkbox" name="intercourse_relations" value="5" onclick="chooseUnusual(this.name);"/><span class=" ">开颌 </span></label>
 						</td>	
 					</tr>
 					<tr>
@@ -396,51 +388,50 @@ ul, ol{
 					</tr>
 					<tr>
 						<td  class="problemitem"><span class="">颌间距离</span></td>
-						<td  style="text-align: center;"><input class="border_bottom" id="distancebetween" type="text" onblur="TextLengthCheck(this.id,2);"/>mm</td>
+						<td  style="text-align: center;"><input class="border_bottom" id="intermaxillarySpace" type="text"/>mm</td>
 						<td colspan="3" class="problemitem"><span class="">唇线</span></td>
 						<td colspan="1">
-							<label><input class="" type="radio" name="labialline"  value="高"/><span class=" ">高</span></label>
-							<label><input class="" type="radio" name="labialline" value="中"/><span class=" ">中</span></label>
-							<label><input class="" type="radio" name="labialline" value="低"/><span class=" ">低</span></label>
+							<label><input class="" type="radio" name="lip_line"  value="高"/><span class=" ">高</span></label>
+							<label><input class="" type="radio" name="lip_line" value="中"/><span class=" ">中</span></label>
+							<label><input class="" type="radio" name="lip_line" value="低"/><span class=" ">低</span></label>
 						</td>
 						<td colspan="2" class="problemitem"><span class="">牙龈生物学类型</span></td>
 						<td colspan="3">
-							<label><input class="" type="radio" name="gumtypes" value="薄龈"/><span class=" ">薄龈</span></label>
-							<label><input class="" type="radio" name="gumtypes" value="厚龈"/><span class=" ">厚龈</span></label>
+							<label><input class="" type="radio" name="gingiva_biologicaltypes" value="薄龈"/><span class=" ">薄龈</span></label>
+							<label><input class="" type="radio" name="gingiva_biologicaltypes" value="厚龈"/><span class=" ">厚龈</span></label>
 						</td>
 					</tr>
 					<tr>
 						<td class="problemitem" colspan="2"><span class="">口腔治疗经历</span></td>
-						<td colspan="10" id="undergoCheckbox">
-							<label><input class="" type="checkbox" name="undergo" value="1 "/><span class=" ">补牙 </span></label>
-							<label><input class="" type="checkbox" name="undergo" value="2"/><span class=" ">牙周治疗 </span></label>
-							<label><input class="" type="checkbox" name="undergo" value="3 "/><span class=" ">种植治疗 </span></label>
-							<label><input class="" type="checkbox" name="undergo" value="4"/><span class=" ">部分活动义齿</span></label>
-							<label><input class="" type="checkbox" name="undergo" value="5"/><span class=" ">全口义齿</span></label>
-							<label><input class="" type="checkbox" name="undergo" value="6"/><span class=" ">固定义齿 </span></label>
+						<td colspan="10">
+							<label><input class="" type="checkbox" name="oral_treatment_experience" value="1 "/><span class=" ">补牙 </span></label>
+							<label><input class="" type="checkbox" name="oral_treatment_experience" value="2"/><span class=" ">牙周治疗 </span></label>
+							<label><input class="" type="checkbox" name="oral_treatment_experience" value="3 "/><span class=" ">种植治疗 </span></label>
+							<label><input class="" type="checkbox" name="oral_treatment_experience" value="4"/><span class=" ">部分活动义齿</span></label>
+							<label><input class="" type="checkbox" name="oral_treatment_experience" value="5"/><span class=" ">全口义齿</span></label>
+							<label><input class="" type="checkbox" name="oral_treatment_experience" value="6"/><span class=" ">固定义齿 </span></label>
 						</td>
 					</tr>
 					<tr>
 						<td class="problemitem" colspan="2"><span class="">牙周情况</span></td>
-						<td colspan="10" class="chooseCheckbox" id="periodontalconditionCheckbox">
-							<label><input class="usual" type="checkbox" name="periodontalcondition" value="1" onclick="chooseUsual(this,this.name);"/><span class=" ">良好 </span></label>
-							<label><input class="unusual" type="checkbox" name="periodontalcondition" value="2" onclick="chooseUnusual(this.name);chooseUnusualRadio(this,this.name)"/><span class=" ">牙周病</label>（
-							<label><input class="level" type="radio" name="periodontalcondition" value="重度" disabled/><span class=" ">重度</span></label>
-							<label><input class="level" type="radio" name="periodontalcondition" value="中度" disabled/><span class=" ">中度</span></label>
-							<label><input class="level" type="radio" name="periodontalcondition" value="轻度" disabled/><span class=" ">轻度</span></label>
+						<td colspan="10" class="chooseCheckbox" id="periodontal_conditionCheckbox">
+							<label><input class="usual" type="checkbox" name="periodontal_condition" value="1" onclick="chooseUsual(this,this.name);"/><span class=" ">良好 </span></label>
+							<label><input class="unusual" type="checkbox" name="periodontal_condition" value="2" onclick="chooseUnusual(this.name);chooseUnusualRadio(this,this.name)"/><span class=" ">牙周病</label>（
+							<label><input class="level" type="radio" name="periodontal_condition" value="重度" disabled/><span class=" ">重度</span></label>
+							<label><input class="level" type="radio" name="periodontal_condition" value="中度" disabled/><span class=" ">中度</span></label>
+							<label><input class="level" type="radio" name="periodontal_condition" value="轻度" disabled/><span class=" ">轻度</span></label>
 							）  </span>
-							<label><input class="unusual" type="checkbox" name="periodontalcondition" value="3" onclick="chooseUnusual(this.name);"/><span class=" ">牙龈炎</span></label>
-							<label><input class="unusual" type="checkbox" name="periodontalcondition" value="4" onclick="chooseUnusual(this.name);"/><span class=" ">植体周围粘膜炎</span></label>
+							<label><input class="unusual" type="checkbox" name="periodontal_condition" value="3" onclick="chooseUnusual(this.name);"/><span class=" ">牙龈炎</span></label>
 						</td>
 					</tr>	
 					<tr>
 						<td class="problemitem" colspan="2"><span class="">粘膜情况</span></td>
-						<td colspan="10" class="chooseCheckbox" id="mucosalsituationCheckbox">
-							<label><input class="usual" type="checkbox" name="mucosalsituation" value="1" onclick="chooseUsual(this,this.name);"/><span class=" ">正常</span></label>
-							<label><input class="unusual" type="checkbox" name="mucosalsituation" value="2" onclick="chooseUnusual(this.name);"/><span class=" ">溃疡   </span></label>
-							<label><input class="unusual" type="checkbox" name="mucosalsituation" value="3" onclick="chooseUnusual(this.name);"/><span class=" ">白斑 </span></label>
-							<label><input class="unusual" type="checkbox" name="mucosalsituation" value="4" onclick="chooseUnusual(this.name);"/><span class=" ">扁平苔藓</span></label>
-							<label><input class="unusual" type="checkbox" name="mucosalsituation" value="5" onclick="chooseUnusual(this.name);"/><span class=" ">福代斯斑 </span></label>
+						<td colspan="10" class="chooseCheckbox" id="mucous_conditionCheckbox">
+							<label><input class="usual" type="checkbox" name="mucous_condition" value="1" onclick="chooseUsual(this,this.name);"/><span class=" ">正常</span></label>
+							<label><input class="unusual" type="checkbox" name="mucous_condition" value="2" onclick="chooseUnusual(this.name);"/><span class=" ">溃疡   </span></label>
+							<label><input class="unusual" type="checkbox" name="mucous_condition" value="3" onclick="chooseUnusual(this.name);"/><span class=" ">白斑 </span></label>
+							<label><input class="unusual" type="checkbox" name="mucous_condition" value="4" onclick="chooseUnusual(this.name);"/><span class=" ">扁平苔藓</span></label>
+							<label><input class="unusual" type="checkbox" name="mucous_condition" value="5" onclick="chooseUnusual(this.name);"/><span class=" ">福代斯斑 </span></label>
 						</td>
 					</tr>	
 					<tr  class="toothLooseNextBox">
@@ -456,21 +447,19 @@ ul, ol{
 					<tr>
 						<td  colspan="" class="problemitem table_width"><span class="" id="3">Ⅲ°</span></td>
 						<td  colspan="4" class="table_width"><div class="div_with placeholder" id="3"></div></td>
-<!-- 						<td  colspan="" class="table_width problemitem"><span class=" " id="4">牙列缺失</span></td> -->
-<!-- 						<td  colspan="4" class="table_width"><div class="div_with placeholder" id="4"></div></td> -->
-						<td  colspan="" class="table_width"></td> 
- 						<td  colspan="4" class="table_width"></td> 
+						<td  colspan="" class="table_width problemitem"><span class=" " id="4">牙列缺失</span></td>
+						<td  colspan="4" class="table_width"><div class="div_with placeholder" id="4"></div></td>
 					</tr>
-<!-- 					<tr> -->
-<!-- 						<td  colspan="" class="table_width problemitem"><span class=" " id="5">牙列缺损</span></td> -->
-<!-- 						<td  colspan="4" class="table_width"><div class="div_with placeholder" id="5"></div></td> -->
-<!-- 						<td  colspan="" class="table_width"></td> -->
-<!-- 						<td  colspan="4" class="table_width"></td> -->
-<!-- 					</tr>															 -->
+					<tr>
+						<td  colspan="" class="table_width problemitem"><span class=" " id="5">牙列缺损</span></td>
+						<td  colspan="4" class="table_width"><div class="div_with placeholder" id="5"></div></td>
+						<td  colspan="" class="table_width"></td>
+						<td  colspan="4" class="table_width"></td>
+					</tr>															
 				</table>
 			</div>
 		</div>
-		<div id="tooth" style="overflow:hidden;padding-left: 12%;">
+		<div id="tooth" style="overflow:hidden;padding-left: 15%;">
 		<!-- 牙位图操作 -->
 			<div class="btnsYa">
 					<input type="button" id="toothLoose" class="nocurrent_btn" value="牙松动"/>
@@ -735,15 +724,15 @@ ul, ol{
 				<table id="imageExaminationBox" class="contentItem contentItem2" border="1" width="100%">
 					<tr>
 						<td class="table_width2"><div class='div_with2 placeholder' id="14"></div></td>
-						<td colspan="2" class="problemitem table_width3"><span class="" id="14">牙槽嵴顶距上颌窦底 </span><input class="border_bottom" id="saprodontia" type="text" onblur="TextLengthCheck(this.id,2);"/>mm</td>
+						<td colspan="2" class="problemitem table_width3"><span class="" id="14">牙槽嵴顶距上颌窦底 </span><input class="border_bottom" id="upDistance" type="text"/>mm</td>
 						<td class="table_width2"><div class='div_with2 placeholder' id="15"></div></td>
-						<td colspan="2" class="problemitem table_width3"><span class="" id="15">距下牙槽神经管 </span><input class="border_bottom" id="residualcrown" type="text" onblur="TextLengthCheck(this.id,2);"/>mm</td>						
+						<td colspan="2" class="problemitem table_width3"><span class="" id="15">距下牙槽神经管 </span><input class="border_bottom" id="downDistance" type="text"/>mm</td>						
 					</tr>	
 					<tr>
 						<td class="problemitem"><span class="">上颌窦情况</span></td>
 						<td colspan="8">
-							<label><input class="" name="pulpitis" type="radio" value="0" onclick="choose(this.name)"/><span class=" ">正常 </span></label>
-							<label><input class="" name="pulpitis" type="radio" value="1" onclick="choose(this.name)"/><span class=" ">异常 </span></label><input class="border_bottom pulpitisinput" id="teethtilted" disabled type="text" onblur="TextLengthCheck(this.id,30);" style="width: 50%;cursor: no-drop;"/>
+							<label><input class="" name="maxillary_sinus_condition" type="radio" value="0" onclick="choose(this.name)"/><span class=" ">正常 </span></label>
+							<label><input class="" name="maxillary_sinus_condition" type="radio" value="1" onclick="choose(this.name)"/><span class=" ">异常 </span></label><input class="border_bottom maxillary_sinus_conditioninput" id="unusual" disabled type="text" style="width: 50%;cursor: no-drop;"/>
 						</td>					
 					</tr>	
 					<tr>
@@ -752,14 +741,14 @@ ul, ol{
 							<span class="" id="16">种植区域骨量</span>	
 						</td>
 						<td colspan="2">									
-							<label><input type="radio" name='nub' value="不足"/><span class="">不足</span></label>
-							<label><input type="radio" name='nub' value="充足"/><span class="">充分 </span></label>	
+							<label><input type="radio" name='bone_mass' value="不足"/><span class="">不足</span></label>
+							<label><input type="radio" name='bone_mass' value="充足"/><span class="">充分 </span></label>	
 						</td>				
 					</tr>	
 					<tr>
 						<td rowspan="4" class="problemitem"><span class="">种植区域骨质 </span></td></td>
 						<td colspan="4" class="table_width2">
-							<div class='placeholder' id="17" class="div_with3"></div>									
+							<div class='placeholder' id="17"></div>									
 						</td>
 						<td colspan="" class="table_width2 problemitem">
 							<span class=""  id="17">Ⅰ类骨</span>											
@@ -768,7 +757,7 @@ ul, ol{
 					</tr>
 					<tr>
 						<td colspan="4" class="table_width2">
-							<div class='placeholder' id="18" class="div_with3"></div>							
+							<div class='placeholder' id="18"></div>							
 						</td>	
 						<td colspan="" class="table_width2 problemitem" style="width: 30%">
 							<span class="" id="18">Ⅱ类骨</span>	
@@ -776,7 +765,7 @@ ul, ol{
 					</tr>	
 					<tr>
 						<td colspan="4" class="table_width2">
-							<div class='placeholder' id="19" class="div_with3"></div>								
+							<div class='placeholder' id="19"></div>								
 						</td>
 						<td colspan="" class="table_width2 problemitem">						
 							<span class="" id="19">Ⅲ类骨</span>						
@@ -784,7 +773,7 @@ ul, ol{
 					</tr>
 					<tr>							
 						<td colspan="4" class="table_width2">
-							<div class='placeholder' id="20" class="div_with3"></div>								
+							<div class='placeholder' id="20"></div>								
 						</td>
 						<td colspan="" class="table_width2 problemitem">
 							<span class="" id="20">Ⅳ类骨 </span>	
@@ -802,12 +791,23 @@ ul, ol{
 			</table>
 			</div>			
 		</div>
-		<div class="row toothBitmap" id="toothBitmap" style="display:block;">
+		<div class="row toothBitmap" id="toothBitmap" style="display:block;border: 1px solid red;">
 			<div class="col-md-12 col-sm-12 colDefined">
 				<span class="smalltitle">口腔情况牙位简图</span>
 			</div>
+<!-- 			padding:0% 25% 0% 25% -->
 			<div class="col-md-12 col-sm-12 colDefined">
-				<table id="toothConditionBoxMap2" border="1" width="100%">
+				<ul style="width: 185px;border: 1px solid red;">
+					<li>不良修复体</li>
+					<li>不良修复体</li>
+					<li>不良修复体</li>
+					<li>不良修复体</li>
+					<li>不良修复体</li>
+					<li>不良修复体</li>
+					<li>不良修复体</li>
+					<li>不良修复体</li>
+				</ul>
+				<table id="toothConditionBoxMap2" border="1" width="50%"  style="margin:0% 25% 0% 25%">
 					<tr>
 						<td><span id="18">18</span></td>
 						<td><span id="17">17</span></td>
@@ -845,6 +845,16 @@ ul, ol{
 						<td><span id="38">38</span></td>
 					</tr>
 				</table>
+				<ul style="width: 185px;border: 1px solid red;">
+					<li>不良修复体</li>
+					<li>不良修复体</li>
+					<li>不良修复体</li>
+					<li>不良修复体</li>
+					<li>不良修复体</li>
+					<li>不良修复体</li>
+					<li>不良修复体</li>
+					<li>不良修复体</li>
+				</ul>
 			</div>
 		</div>				
 	</div>		
@@ -852,8 +862,8 @@ ul, ol{
 	<!-- 按钮 -->
 	<div class="btns">
 		<button id="consent_saveBtn" onclick="save()">保存</button>
-		<button id="consent_updateBtn" style="display: none;" class="consent_updateBtn" onclick="update()">修改表单</button>
-		<button id="print_Btn" onclick="myPreviewAll()" style="/*visibility: hidden;*/">打印本页内容</button>
+		<button id="consent_updateBtn" style="display: none;" class="consent_updateBtn hidden" onclick="update()">修改表单</button>
+		<button id="print_Btn" onclick="myPreviewAll()" style="visibility: hidden;">打印本页内容</button>
 	</div>
 	
 </body>
@@ -867,7 +877,6 @@ ul, ol{
 		var usercode=patientInformation.usercode; //选中患者usercode
 		var idlclj= patientInformation.seqid;	//选中患者临床路径id
 		var order_number= patientInformation.orderNumber; //选中患者order_number
-		var updataid="";
 		$(function(){
 			getUser(usercode);//获取患者信息并赋值
 			gettionData();//获取各板块问题详情
@@ -958,29 +967,12 @@ ul, ol{
 		}
 	}
 //choose end=======================================================================
-// 	输入框校验start
-		/* 文字长度校验方法   obj：元素id  textNum：限制文字长度 */
-		function TextLengthCheck(obj,textNum){
-			var objTextVal=$("#"+obj).val();
-			if(objTextVal.length>textNum){
-				$("#"+obj).attr("maxlength",textNum);
-				layer.open({
-					 title: '提示',
-					 content: '输入不能超过'+textNum+'位数！',
-					 end:function(){
-						 var inputNewVal=$("#"+obj).val();
-						 $("#"+obj).val(inputNewVal.substring(0,textNum)).focus();
-					 }
-				});
-				return;
-			}
-		}
-// 		end
 // 	获取各板块问题
 	function gettionData(){
 		var url = contextPath + "/YZDictAct/getDiseaseByCode.act?id=bqfl67&code=zdqk594";
 	    $.axse(url, null,
 	    function(data) { 
+// 	    	console.log("ceshi"+JSON.stringify(data));
 	    	 conditionData=data.conditionData;
 	    	 certificateData=data.certificateData;
 	    },
@@ -1018,7 +1010,7 @@ ul, ol{
 			})
 		}		
 	}
-// 添加问题牙齿时（图）赋值---选中状态（红圈）
+// 问题牙齿（图）赋值---选中状态（红圈）
 	function checkedTooth(projectId,one){
 		var tooth=$("#"+projectId+"Map").find("ul li span.num").text();
     	var toothArr=[];
@@ -1088,19 +1080,16 @@ ul, ol{
  				if(projectId=='toothLoose'){//1
  					$("#toothLooseMap").css("display","block");
 					$("#toothLooseMap").siblings(".toothBox").css("display","none");
- 					checkedTooth(projectId);
+//  					checkedTooth("toothLooseMap");
  				}else if(projectId=='toothCondition'){//2
  					$("#toothConditionMap").css("display","block");
  					$("#toothConditionMap").siblings(".toothBox").css("display","none");
- 					checkedTooth(projectId);
  				}else if(projectId=='imageExamination'){//3
  					$("#imageExaminationMap").css("display","block");
  					$("#imageExaminationMap").siblings(".toothBox").css("display","none");
- 					checkedTooth(projectId);
  				}else if(projectId=='medicalCertificate'){//4
  					$("#medicalCertificateMap").css("display","block");
  					$("#medicalCertificateMap").siblings(".toothBox").css("display","none");
- 					checkedTooth(projectId);
  				}
 	        }else{}
  		})
@@ -1153,17 +1142,6 @@ ul, ol{
 		}
 		return oral_treatment_experience;
 	}
-// 复选框存值
-		function inputCheckedSave(name) {
-		var obj = $("#"+name+"Checkbox").find("input[name="+name+"]");
-		var inputSave = "";
-		for ( k in obj ) {
-			if(obj[k].checked) {
-				inputSave = inputSave + obj[k].value + ',';
-			}
-		}
-		return inputSave;
-	}
 //牙松动牙位取值
 	function saveToothLoose(){
 		var toothLooseItem={};
@@ -1195,18 +1173,18 @@ ul, ol{
 // 	   基本信息seqid
 	 	var patient_seqid = $("#patient_num").attr("seqid");
 // 	    口腔专科检查    
-	    var ismouthopening = $("#oralSpecialtyExamination").find("input[name='ismouthopening']:checked").val();//张口度ismouthopening
-	    var mouthopening = $("#mouthopening").val(); // 张口度mouth_openinput
-	    var arthrosis=inputCheckedSave("arthrosis");//牙颞下颌关节
-	    var occludingrelation=inputCheckedSave("occludingrelation");//咬合关系
-	    var verticalcurve=$("#oralSpecialtyExamination").find("input[name='verticalcurve']:checked").val();//纵曲线
+	    var mouth_open = $("#oralSpecialtyExamination").find("input[name='mouth_open']:checked").val();//张口度mouth_open
+	    var mouth_open_mm = $("#mouth_openinput").val();//张口度mouth_openinput
+	    var tooth_temporomandibular=$("#oralSpecialtyExamination").find("input[name='tooth_temporomandibular']:checked").val();//牙颞下颌关节
+	    var intercourse_relations=$("#oralSpecialtyExamination").find("input[name='intercourse_relations']:checked").val();//咬合关系
+	    var verticalcurve=$("#oralSpecialtyExamination").find("input[name='intercourse_relations']:checked").val();//纵曲线
 	    var horizontalcurve=$("#oralSpecialtyExamination").find("input[name='horizontalcurve']:checked").val();//横曲线
-	    var distancebetween=$("#distancebetween").val();//颌间距
-	    var labialline=$("#oralSpecialtyExamination").find("input[name='labialline']:checked").val();//唇线
-	    var gumtypes=$("#oralSpecialtyExamination").find("input[name='gumtypes']:checked").val();//牙龈生物学类型
-	    var undergo=inputCheckedSave("undergo"); //口腔治疗经历
-	    var periodontalcondition=inputCheckedSave("periodontalcondition");//牙周情况
-	    var mucosalsituation=inputCheckedSave("mucosalsituation"); //粘膜情况
+	    var intermaxillarySpace=$("#intermaxillarySpace").val();//颌间距
+	    var lip_line=$("#oralSpecialtyExamination").find("input[name='lip_line']:checked").val();//唇线
+	    var gingiva_biologicaltypes=$("#oralSpecialtyExamination").find("input[name='gingiva_biologicaltypes']:checked").val();//牙龈生物学类型
+	    var oral_treatment_experience=oralTreatmentExperience(); //口腔治疗经历
+	    var periodontal_condition=$("#oralSpecialtyExamination").find("input[name='periodontal_condition']:checked").val(); //牙周情况
+	    var mucous_condition=$("#oralSpecialtyExamination").find("input[name='mucous_condition']:checked").val(); //粘膜情况
 // 牙松动
 		var toothLoose=saveToothLoose();//牙位
 // 整体口腔情况明细
@@ -1214,13 +1192,13 @@ ul, ol{
 		
 // 影像学检查
 		var imageExamination=saveTooth("imageExaminationBox");//牙位
-		var saprodontia = $("#saprodontia").val();//牙槽嵴顶距上颌窦底 
-		var residualcrown = $("#residualcrown").val();//距下牙槽神经管
-		var pulpitis = $("#imageExaminationBox").find("input[name='pulpitis']:checked").val();//上颌窦情况是否正常
-		var teethtilted=$("#teethtilted").val();//上颌窦情况异常情况
-		var nub = $("#imageExaminationBox").find("input[name='nub']:checked").val();//种植区域骨量是否正常
+		var upDistance = $("#upDistance").val();//牙槽嵴顶距上颌窦底 
+		var downDistance = $("#downDistance").val();//距下牙槽神经管
+		var genyantrum = $("#imageExaminationBox").find("input[name='maxillary_sinus_condition']:checked").val();//上颌窦情况是否正常
+		var unusual=$("#unusual").val();//上颌窦情况异常情况
+		var bone_mass = $("#imageExaminationBox").find("input[name='bone_mass']:checked").val();//种植区域骨量是否正常
 // 诊断
-	  	var medicalCertificate=saveTooth("medicalCertificateBox"); //牙位
+	  	var medicalCertificate=saveTooth("medicalCertificateBox");//牙位
 	    toothLoose = JSON.stringify(toothLoose);
 	    toothCondition = JSON.stringify(toothCondition);
 	    imageExamination = JSON.stringify(imageExamination);
@@ -1231,29 +1209,29 @@ ul, ol{
 				lcljNum:order_number,
 				userId : patient_seqid,
 //	     	    口腔专科检查   
-	    		ismouthopening : ismouthopening,
-	    		mouthopening : mouthopening,
-	    		arthrosis : arthrosis,
-	    		occludingrelation : occludingrelation,
+	    		ismouthopening : mouth_open,
+	    		mouthopening : mouth_open_mm,
+	    		arthrosis : tooth_temporomandibular,
+	    		occludingrelation : intercourse_relations,
 	    		verticalcurve : verticalcurve,
 	    		horizontalcurve : horizontalcurve,
-	    		distancebetween : distancebetween,
-	    		labialline : labialline,
-	    		gumtypes : gumtypes,
-	    		undergo : undergo,
-	    		periodontalcondition : periodontalcondition,
-	    		mucosalsituation : mucosalsituation,
+	    		distancebetween : intermaxillarySpace,
+	    		labialline : lip_line,
+	    		gumtypes : gingiva_biologicaltypes,
+	    		undergo : oral_treatment_experience,
+	    		periodontalcondition : periodontal_condition,
+	    		mucosalsituation : mucous_condition,
 // 牙松动
 				onedu : toothLoose,
 // 整体口腔情况明细
 				dentitiondefect : toothCondition,
 // 影像学检查
 				defectdentition : imageExamination,
-				saprodontia : saprodontia,
-				residualcrown : residualcrown,
-				pulpitis : pulpitis,
-				teethtilted : teethtilted,
-				nub : nub,				
+				saprodontia : upDistance,
+				residualcrown : downDistance,
+				pulpitis : genyantrum,
+				teethtilted : unusual,
+				nub : bone_mass,				
 // 诊断
 				defectiverepair : medicalCertificate
 	    };
@@ -1279,97 +1257,6 @@ ul, ol{
 	        layer.alert('保存失败' );
 	    });
 	}
-	
-//  修改方法
-	function update() {
-// 	   基本信息seqid
-	 	var patient_seqid = $("#patient_num").attr("seqid");
-// 	    口腔专科检查    
-	    var ismouthopening = $("#oralSpecialtyExamination").find("input[name='ismouthopening']:checked").val();//张口度ismouthopening
-	    var mouthopening = $("#mouthopening").val(); // 张口度mouth_openinput
-	    var arthrosis=inputCheckedSave("arthrosis");//牙颞下颌关节
-	    var occludingrelation=inputCheckedSave("occludingrelation");//咬合关系
-	    var verticalcurve=$("#oralSpecialtyExamination").find("input[name='verticalcurve']:checked").val();//纵曲线
-	    var horizontalcurve=$("#oralSpecialtyExamination").find("input[name='horizontalcurve']:checked").val();//横曲线
-	    var distancebetween=$("#distancebetween").val();//颌间距
-	    var labialline=$("#oralSpecialtyExamination").find("input[name='labialline']:checked").val();//唇线
-	    var gumtypes=$("#oralSpecialtyExamination").find("input[name='gumtypes']:checked").val();//牙龈生物学类型
-	    var undergo=inputCheckedSave("undergo"); //口腔治疗经历
-	    var periodontalcondition=inputCheckedSave("periodontalcondition");//牙周情况
-	    var mucosalsituation=inputCheckedSave("mucosalsituation"); //粘膜情况
-// 牙松动
-		var toothLoose=saveToothLoose();//牙位
-// 整体口腔情况明细
-		var toothCondition=saveTooth("toothConditionBox");//牙位
-		
-// 影像学检查
-		var imageExamination=saveTooth("imageExaminationBox");//牙位
-		var saprodontia = $("#saprodontia").val();//牙槽嵴顶距上颌窦底 
-		var residualcrown = $("#residualcrown").val();//距下牙槽神经管
-		var pulpitis = $("#imageExaminationBox").find("input[name='pulpitis']:checked").val();//上颌窦情况是否正常
-		var teethtilted=$("#teethtilted").val();//上颌窦情况异常情况
-		var nub = $("#imageExaminationBox").find("input[name='nub']:checked").val();//种植区域骨量是否正常
-// 诊断
-	  	var medicalCertificate=saveTooth("medicalCertificateBox"); //牙位
-	    toothLoose = JSON.stringify(toothLoose);
-	    toothCondition = JSON.stringify(toothCondition);
-	    imageExamination = JSON.stringify(imageExamination);
-	    medicalCertificate = JSON.stringify(medicalCertificate);
-	    var param = {
-	    		seqId:updataid,
-//	     	    基本信息
-				lcljId:idlclj,
-				lcljNum:order_number,
-				userId : patient_seqid,
-//	     	    口腔专科检查   
-	    		ismouthopening : ismouthopening,
-	    		mouthopening : mouthopening,
-	    		arthrosis : arthrosis,
-	    		occludingrelation : occludingrelation,
-	    		verticalcurve : verticalcurve,
-	    		horizontalcurve : horizontalcurve,
-	    		distancebetween : distancebetween,
-	    		labialline : labialline,
-	    		gumtypes : gumtypes,
-	    		undergo : undergo,
-	    		periodontalcondition : periodontalcondition,
-	    		mucosalsituation : mucosalsituation,
-// 牙松动
-				onedu : toothLoose,
-// 整体口腔情况明细
-				dentitiondefect : toothCondition,
-// 影像学检查
-				defectdentition : imageExamination,
-				saprodontia : saprodontia,
-				residualcrown : residualcrown,
-				pulpitis : pulpitis,
-				teethtilted : teethtilted,
-				nub : nub,				
-// 诊断
-				defectiverepair : medicalCertificate
-	    };
-// 	    console.log(JSON.stringify(param)+"---------param");
-// 	    return;
-	    var url = contextPath + '/HUDH_MedicalRecordsAct/installData.act';
-	    $.axseSubmit(url, param,
-	    function() {},
-	    function(r) {
-	        if (r.retState == "0") {
-	            layer.alert('修改成功', {	                  
-	                end: function() {
-	                    parent.refresh();
-	                    var frameindex = parent.layer.getFrameIndex(window.name);
-		                parent.layer.close(frameindex); //再执行关闭
-	                }
-	            });
-	        } else {
-	            layer.alert('修改失败'  );
-	        }
-	    },
-	    function() {
-	        layer.alert('修改失败' );
-	    });
-	}
 // 	返回数据赋值
 		function initData(){
 			var url =  contextPath + '/HUDH_MedicalRecordsAct/selectdata.act';
@@ -1381,112 +1268,16 @@ ul, ol{
 					lcljId:idlclj
 				},
 				success:function(result){
-					var res=result[0];
-					updataid=res.seqId;
-// 					console.log(JSON.stringify(res)+"-----rr");
-					if(result.length>0){
-						$("#consent_saveBtn").css("display","none");//隐藏保存按钮
-	 					$("#consent_updateBtn").css("display","inline-block");//显示修改按钮
-	 					for(var i in res){
-							$("input[name="+i+"]").each(function(){
-								var that=this;
-								var split = res[i].split(",");
-								for(var j = 0; j < split.length; j++){
-									if($(that).val()==split[j]){
-										$(that).attr("checked","checked");
-									}
-								}
-							})//复选框及单选框赋值
-							$("#"+i+"[type='text']").attr("value",res[i]);// 填框赋值		
-	 					}
-// 	 					牙位赋值start
-						if(res[i]="onedu"){
-							var toothLoose=res.onedu;
-							var table_pro=$(".toothLooseNextBox").nextAll().find("td:even");
-							table_pro.each(function(j,el){
-								var $table_span=$(this).next().find("div");//赋值的div框
-								var tabletooth=$(this).find("span").attr("id");	//要赋值的item							
-								for(var key in toothLoose){	
-									var toothLoosestr=toothLoose[key];							
-									if(toothLoose[key]!=""){
-										//去掉字符串最后一个逗号
-										toothLoosestr = (toothLoosestr.substring(toothLoosestr.length - 1) == ',') ? toothLoosestr.substring(0, toothLoosestr.length - 1) : toothLoosestr;
-										var toothLooseArr = toothLoosestr.split(",");
-//	 									console.log(toothLooseArr+"-----toothLooseArr");
-										if(tabletooth!=undefined&&tabletooth==key){										
-											for(var j=0;j<toothLooseArr.length;j++){	
-												$table_span.append('<span id='+toothLooseArr[j]+' itmid='+key+'>'+toothLooseArr[j]+","+'</span>');
-											}
-										}
-									}
-								}								
-							})
+// 					console.log(JSON.stringify(result)+"-----lcljId:idlclj");
+					for(var i=0;i<result.length;i++){
+						if(result[i].seqId){
+							$("#consent_saveBtn").css("display","none");//隐藏保存按钮
+//	 						$("#consent_updateBtn").css("display","inline-block");//显示修改按钮
+//	 						$("#print_Btn").css("visibility","inherit");//测试位置
+							for(var key in result){
+								console.log(key+"-------------"+JSON.stringify(result[key]));
+							}
 						}
-						if(res[i]="dentitiondefect"){
-							var dentitiondefect=res.dentitiondefect;
-							var table_pro=$("#toothConditionBox").find("td:odd");
-							table_pro.each(function(j,el){
-								var $table_span=$(this).prev().find("div");//赋值的div框
-								var tabletooth=$(this).find("span").attr("id");	//要赋值的item	
-								for(var key in dentitiondefect){	
-									var dentitiondefectstr=dentitiondefect[key];
-									if(dentitiondefect[key]!=""){
-										//去掉字符串最后一个逗号
-										dentitiondefectstr = (dentitiondefectstr.substring(dentitiondefectstr.length - 1) == ',') ? dentitiondefectstr.substring(0, dentitiondefectstr.length - 1) : dentitiondefectstr;
-										var dentitiondefectArr = dentitiondefectstr.split(",");
-										if(tabletooth!=undefined&&tabletooth==key){										
-											for(var j=0;j<dentitiondefectArr.length;j++){	
-												$table_span.append('<span id='+dentitiondefectArr[j]+' itmid='+key+'>'+dentitiondefectArr[j]+","+'</span>');
-											}
-										}
-									}
-								}								
-							})
-						}
-						if(res[i]="defectdentition"){
-							var defectdentition=res.defectdentition;
-							var table_pro=$("#imageExaminationBox").find("td:odd");
-							table_pro.each(function(j,el){
-								var $table_span=$(this).prev().find("div");//赋值的div框
-								var tabletooth=$(this).find("span").attr("id");	//要赋值的item	
-								for(var key in defectdentition){	
-									var defectdentitionstr=defectdentition[key];	
-									if(defectdentition[key]!=""){
-										//去掉字符串最后一个逗号
-										defectdentitionstr = (defectdentitionstr.substring(defectdentitionstr.length - 1) == ',') ? defectdentitionstr.substring(0, defectdentitionstr.length - 1) : defectdentitionstr;
-										var defectdentitionArr = defectdentitionstr.split(",");
-										if(tabletooth!=undefined&&tabletooth==key){										
-											for(var j=0;j<defectdentitionArr.length;j++){	
-												$table_span.append('<span id='+defectdentitionArr[j]+' itmid='+key+'>'+defectdentitionArr[j]+","+'</span>');
-											}
-										}
-									}
-								}								
-							})
-							
-						}
-						if(res[i]="defectiverepair"){
-							var defectiverepair=res.defectiverepair;
-							var table_pro=$("#medicalCertificateBox").find("td:odd");
-							table_pro.each(function(j,el){
-								var $table_span=$(this).prev().find("div");//赋值的div框
-								var tabletooth=$(this).find("span").attr("id");	//要赋值的item	
-								for(var key in defectiverepair){	
-									var defectiverepairstr=defectiverepair[key];	
-									if(defectiverepair[key]!=""){
-										//去掉字符串最后一个逗号
-										defectiverepairstr = (defectiverepairstr.substring(defectiverepairstr.length - 1) == ',') ? defectiverepairstr.substring(0, defectiverepairstr.length - 1) : defectiverepairstr;
-										var defectiverepairArr = defectiverepairstr.split(",");
-										if(tabletooth!=undefined&&tabletooth==key){										
-											for(var j=0;j<defectiverepairArr.length;j++){	
-												$table_span.append('<span id='+defectiverepairArr[j]+' itmid='+key+'>'+defectiverepairArr[j]+","+'</span>');
-											}
-										}
-									}
-								}								
-							})
-						}
-// 	 					牙位赋值end
 					}
 					
 				}

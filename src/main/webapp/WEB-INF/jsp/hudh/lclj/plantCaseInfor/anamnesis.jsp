@@ -268,7 +268,7 @@
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
 				<!-- <div class="big_title"><span class="bigtitle">主诉及既往病史</span></div> -->
-				<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
+				<%-- <img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png"> --%>
 				<span class="bigtitle">主诉及既往病史</span>
 			</div>
 		</div>	
