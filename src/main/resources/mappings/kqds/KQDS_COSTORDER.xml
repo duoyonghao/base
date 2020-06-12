@@ -517,11 +517,11 @@
 	<select id="selectRealQfUserListArr" parameterType="map" resultType="json">
 		select
 		u.usercode,
-		sum(totalcost) as totalcost,
-		sum(voidmoney) as voidmoney,
-		sum(shouldmoney) as shouldmoney,
-		sum(y2) as y2,
-		sum(actualmoney) as actualmoney
+		isnull(sum(totalcost),0) as totalcost,
+		isnull(sum(voidmoney),0) as voidmoney,
+		isnull(sum(shouldmoney),0) as shouldmoney,
+		isnull(sum(y2),0) as y2,
+		isnull(sum(actualmoney),0) as actualmoney
 		from KQDS_UserDocument u
 		LEFT JOIN KQDS_COSTORDER c on u.usercode = c.usercode
 		where 1=1 and (c.cjstatus = '1' or c.status=2)
@@ -685,8 +685,7 @@
 			or cost.doctor in (${visualstaff})
 			or cost.sfuser in (${visualstaff})
 			or r.createuser in (${visualstaff})
-			or r.askperson in
-			(${visualstaff})
+			or r.askperson in (${visualstaff})
 			or r.doctor in (${visualstaff})
 			or cost.techperson in (${visualstaff})
 			or u.createuser in (${visualstaff})
@@ -722,8 +721,7 @@
 			or cost.doctor in (${visualstaff})
 			or cost.sfuser in (${visualstaff})
 			or r.createuser in (${visualstaff})
-			or r.askperson in
-			(${visualstaff})
+			or r.askperson in (${visualstaff})
 			or r.doctor in (${visualstaff})
 			or cost.techperson in (${visualstaff})
 			or u.createuser in (${visualstaff})
@@ -736,11 +734,11 @@
 	</select>
 	<select id="getTotalNumFields" parameterType="map" resultType="json">
 		select
-		sum(cost.totalcost) as totalcost,
-		sum(cost.voidmoney) as voidmoney,
-		sum(cost.shouldmoney) as shouldmoney,
-		sum(cost.actualmoney) as actualmoney,
-		sum(cost.y2) as y2
+		isnull(sum(cost.totalcost),0) as totalcost,
+		isnull(sum(cost.voidmoney),0) as voidmoney,
+		isnull(sum(cost.shouldmoney),0) as shouldmoney,
+		isnull(sum(cost.actualmoney),0) as actualmoney,
+		isnull(sum(cost.y2),0) as y2
 		from
 		KQDS_COSTORDER cost
 		LEFT JOIN KQDS_UserDocument u on cost.usercode = u.UserCode
@@ -857,7 +855,7 @@
 	
 	<select id="getTotalNumFieldsByYjj" parameterType="map" resultType="json">
 		SELECT
-			SUM(payyjj) AS paymoney
+			isnull(SUM(payyjj),0) AS paymoney
 		FROM
 			KQDS_COSTORDER_DETAIL
 		where costno in (
@@ -958,7 +956,7 @@
 	</select>
 	<select id="getTotalNumFieldsByYjjchongzhi" parameterType="map" resultType="json">
 		SELECT
-			SUM(paymoney) as paymoney
+			isnull(SUM(paymoney),0) as paymoney
 		FROM
 			KQDS_COSTORDER_DETAIL
 		where 
@@ -1399,7 +1397,7 @@
 		cost.cjstatus,
 		cost.isprint,
 		cost.username,cost.isback,cost.backremark,cost.isreg,cost.isdrugs,cost.issend, <!-- 查询结果集包含isdeugs、issend -->
-		(select sum(d.payyjj) from KQDS_COSTORDER_DETAIL d where d.costno=cost.costno group by d.costno)  as payyjj
+		(select isnull(sum(d.payyjj),0) AS payyjj from KQDS_COSTORDER_DETAIL d where d.costno=cost.costno group by d.costno)  as payyjj
 		from KQDS_COSTORDER cost
 		left join kqds_userdocument u on u.usercode = cost.usercode
 		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = cost.nurse
@@ -1641,11 +1639,11 @@
 		from SYS_DICT tcode
 		LEFT JOIN (
 		select
-		sum(detail.paymoney)as ys,
-		sum(detail.y2) as y2,
-		sum(detail.payother2) as zs,
-		sum(detail.payintegral) as integral,
-		sum(detail.paydjq) as djq,basetype
+		isnull(sum(detail.paymoney),0) as ys,
+		isnull(sum(detail.y2),0) as y2,
+		isnull(sum(detail.payother2),0) as zs,
+		isnull(sum(detail.payintegral),0) as integral,
+		isnull(sum(detail.paydjq),0) as djq,basetype
 		from KQDS_CostOrder_Detail detail
 		LEFT JOIN KQDS_TREATITEM
 		item on detail.itemno = item.treatitemno
@@ -1670,11 +1668,11 @@
 	</select>
 	<select id="getYysr" parameterType="map" resultType="json">
 		select
-		sum(detail.paymoney)as skze,
-		sum(detail.y2) as y2,
-		sum(detail.payother2) as zs,
-		sum(detail.payintegral) as integral,
-		sum(detail.paydjq) as djq
+		isnull(sum(detail.paymoney),0) as skze,
+		isnull(sum(detail.y2),0) as y2,
+		isnull(sum(detail.payother2),0) as zs,
+		isnull(sum(detail.payintegral),0) as integral,
+		isnull(sum(detail.paydjq),0) as djq
 		from KQDS_COSTORDER_DETAIL detail
 		LEFT JOIN KQDS_COSTORDER cost on cost.costno = detail.costno
 		left join KQDS_UserDocument u on u.usercode = detail.usercode
@@ -1699,11 +1697,11 @@
 	</select>
 	<select id="getYysrList" parameterType="map" resultType="json">
 		select detail.doctor,regsort,
-		sum(detail.paymoney)as skze,
-		sum(detail.y2) as y2,
-		sum(detail.payother2) as zs,
-		sum(detail.payintegral) as integral,
-		sum(detail.paydjq) as djq
+		isnull(sum(detail.paymoney),0) as skze,
+		isnull(sum(detail.y2),0) as y2,
+		isnull(sum(detail.payother2),0) as zs,
+		isnull(sum(detail.payintegral),0) as integral,
+		isnull(sum(detail.paydjq),0) as djq
 		from
 		KQDS_COSTORDER_DETAIL detail
 		LEFT JOIN KQDS_COSTORDER cost on cost.costno = detail.costno
@@ -1734,11 +1732,11 @@
 	</select>
 	<select id="getYysr2" parameterType="map" resultType="json">
 		select
-		sum(detail.paymoney)as paymoney,
-		sum(detail.payyjj) as yjj,
-		sum(detail.payother2) as zs,
-		sum(detail.payintegral) as integral,
-		sum(detail.paydjq) as djq
+		isnull(sum(detail.paymoney),0) as paymoney,
+		isnull(sum(detail.payyjj) ,0) as yjj,
+		isnull(sum(detail.payother2) ,0) as zs,
+		isnull(sum(detail.payintegral) ,0) as integral,
+		isnull(sum(detail.paydjq) ,0) as djq
 		from
 		KQDS_COSTORDER_DETAIL detail
 		LEFT JOIN KQDS_COSTORDER cost on cost.costno = detail.costno
@@ -1784,12 +1782,11 @@
 	
 	<select id="getYysrList2" parameterType="map" resultType="json">
 		select u.createuser,devchannel,nexttype,detail.askperson,regsort,
-		sum(detail.paymoney)as paymoney,
-		sum(detail.payyjj) as yjj,
-		sum(detail.payother2) as zs,
-		sum(detail.payintegral) as
-		integral,
-		sum(detail.paydjq) as djq
+		isnull(sum(detail.paymoney),0) as paymoney,
+		isnull(sum(detail.payyjj) ,0) as yjj,
+		isnull(sum(detail.payother2) ,0) as zs,
+		isnull(sum(detail.payintegral),0) as integral,
+		isnull(sum(detail.paydjq) ,0) as djq
 		from KQDS_COSTORDER_DETAIL detail
 		LEFT JOIN KQDS_COSTORDER cost on cost.costno = detail.costno
 		left join KQDS_UserDocument u on u.usercode =
@@ -2427,7 +2424,7 @@
 	</select>
 	<select id="findCostOrderByUserdocumentDay" parameterType="map" resultType="json">
 	SELECT
-	SUM (a.actualmoney) as actualmoney,
+	isnull(SUM (a.actualmoney),0) as actualmoney,
 	a.usercode,
 	a.years,
 	a.months,
@@ -2489,7 +2486,7 @@
 	</select>
 	<select id="findCostOrderByUserdocumentMonth" parameterType="map" resultType="json">
 	SELECT
-	SUM (a.actualmoney) as actualmoney,
+	isnull(SUM (a.actualmoney),0) as actualmoney,
 	a.usercode,
 	a.years,
 	a.months
@@ -2546,7 +2543,7 @@
 	</select>
 	<select id="findCostOrderByUserdocumentYear" parameterType="map" resultType="json">
 	SELECT
-	SUM (a.actualmoney) as actualmoney,
+	isnull(SUM (a.actualmoney),0) as actualmoney,
 	a.usercode,
 	a.years
 	FROM
@@ -2611,7 +2608,7 @@
 	
 	<select id="findCostOrderYjj" parameterType="map" resultType="json">
 		SELECT 
-		sum(paymoney) as paymoney,
+		isnull(sum(paymoney),0) as paymoney,
 		usercode
 		FROM KQDS_COSTORDER_DETAIL
 		WHERE usercode in (${usercodes}) and isyjjitem=1
