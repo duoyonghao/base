@@ -48,7 +48,7 @@
 					sys_dept_priv a
 				JOIN master..spt_values b ON b.type = 'P'
 				WHERE
-					button_name in (#{buttonName})
+					button_name in (${buttonName})
 				AND organization = #{organization}
 				AND charindex(
 					',',
