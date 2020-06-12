@@ -130,7 +130,7 @@
 			</table>
 		</form>
 <!--  物资管理 20200406licc -->
-		<form id="ckVisualForm">
+		<form id="orderVisualForm">
 			<table class="optionTable">
 				<tbody>
 					<tr>
@@ -175,7 +175,7 @@
 				</tbody>
 			</table>
 		</form>
-		<form id="orderVisualForm">
+		<form id="ckVisualForm">
 			<table class="optionTable">
 				<tbody>
 					<tr>

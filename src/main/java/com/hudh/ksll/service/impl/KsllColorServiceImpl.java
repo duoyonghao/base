@@ -61,7 +61,7 @@ import com.hudh.ksll.entity.KsllCollorDetailPh;
 import com.hudh.ksll.entity.KsllGoods;
 @SuppressWarnings({ "unchecked","unused"})
 @Service
-public class KsllColorServiceImpl implements IKsllColorService {
+public class   KsllColorServiceImpl implements IKsllColorService {
 	private static Logger logger = LoggerFactory.getLogger(KsllColorServiceImpl.class);
 	private static int KSLL_STATUS_BHZ = 0; //备货中
 	private static int KSLL_STATUS_BHWC = 1; //备货完成
@@ -548,7 +548,7 @@ public class KsllColorServiceImpl implements IKsllColorService {
 							if(list1.get(i).getInt("innum")>=outNum){
 								//存入outNum数量
 								money = addOut(person, menzhen, dp, detail, outNum, list1, money, i);
-								
+								break;
 							}else{
 								//存入全部
 								money = addOut(person, menzhen, dp, detail, list1.get(i).getInt("innum"), list1, money, i);
@@ -560,12 +560,12 @@ public class KsllColorServiceImpl implements IKsllColorService {
 							break;
 						}
 						money = addOutDetail(person, menzhen, dp, detail, list1, n, outNum);
-					}else if(list1.get(n).getInt("innum")>=outNum&&dan>0){
+					}else if(list1.get(n).getInt("innum")-dan>=outNum&&dan>0){
 						if(list1.get(n).getInt("innum")==0){
 							break;
 						}
 						money = addOutDetail(person, menzhen, dp, detail, list1, n, outNum);
-					}else if(list1.get(n).getInt("innum")<outNum&&dan>0 ){
+					}else if(list1.get(n).getInt("innum")-dan<outNum&&dan>0 ){
 						if(list1.get(n).getInt("innum")==0){
 							break;
 						}
@@ -575,6 +575,7 @@ public class KsllColorServiceImpl implements IKsllColorService {
 						for (int i = n+1; i < list1.size(); i++) {
 							if(list1.get(i).getInt("innum")>=outNum){
 								money = addOut(person, menzhen, dp, detail, outNum, list1, money, i);
+								break;
 							}else{
 								//存入全部
 								money = addOut(person, menzhen, dp, detail, list1.get(i).getInt("innum"), list1, money, i);

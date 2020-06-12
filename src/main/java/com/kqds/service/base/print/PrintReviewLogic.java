@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -13,6 +11,10 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
 import com.kqds.dao.DaoSupport;
 import com.kqds.entity.base.KqdsMedicalrecordReview;
 import com.kqds.entity.base.KqdsUserdocument;
@@ -63,8 +65,6 @@ public class PrintReviewLogic extends BaseLogic {
 	 * 表一
 	 * 
 	 * @param userinfo
-	 * @param meid
-	 * @param conn
 	 * @return
 	 * @throws Exception
 	 */
