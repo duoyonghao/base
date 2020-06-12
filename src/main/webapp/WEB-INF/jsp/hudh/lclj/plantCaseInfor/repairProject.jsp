@@ -63,7 +63,7 @@
     }
 	@page{
 		size:auto;
-		margin: 0mm auto;
+		margin: 20px auto;
 	}
 </style>
 <body>
@@ -79,21 +79,21 @@
 		</div>
 		<!-- 患者详细信息 -->
 		<div class="row patient" style="border-bottom: 2px solid #776c6c;">
-			<div class="col-md-3 col-sm-3 col-xs-3 colDefined">
+			<div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="line-height: 60px;">
 				<!-- 信息输入组合框 -->
 				<div class="rpInfo_import">
 					<span>患者姓名：</span>
 					<input id="patient_name" type="text" disabled="disabled"/>
 				</div>
 			</div>
-			<div class="col-md-3 col-sm-3 col-xs-3 colDefined">
+			<div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="line-height: 60px;">
 				<!-- 信息输入组合框 -->
 				<div class="rpInfo_import">
 					<span>患者编号：</span>
 					<input id="patient_usercode" type="text" disabled="disabled"/>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined" style="line-height: 60px;">
 				<!-- 信息输入组合框 -->
 				<div class="rpInfo_import">
 					<span>性别：</span>
@@ -411,7 +411,7 @@
 		
 		<!-- 牙位图加多选框 -->
 		<div class="row">
-			<div class="col-md-12 col-sm-12 col-xs-12 colDefined" style="margin-bottom: 5px;">
+			<div class="col-md-12 col-sm-12 col-xs-12 colDefined" style="margin: 14px 7px;">
 				<!-- 牙位图 -->
 				<div class="zl_toothMapdiv">
 				<div class="col-md-12 col-sm-12 col-xs-12 colDefined" style="width:100%;padding:0px;">
@@ -563,6 +563,7 @@
 				</div>
 		</div>
 	</div>
+		<canvas></canvas>
 	<!--endprint-->
 	<!-- 按钮 -->
 	<div class="btns">
@@ -1367,17 +1368,17 @@
 		    $("#bottomBarDdiv").append(menubutton1);
 		}
 		
-		function doPrint() {   
-		    bdhtml=window.document.body.innerHTML;   
-		    sprnstr="<!--startprint-->";   
-		    eprnstr="<!--endprint-->";   
-		    prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);   
-		    prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));   
+		function doPrint() {
+		    bdhtml=window.document.body.innerHTML;
+		    sprnstr="<!--startprint-->";
+		    eprnstr="<!--endprint-->";
+		    prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);
+		    prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
 		    var htmlStyle="<style>#repairDoctorSignature{display: inline-block;}#repairImg{width:80px !important;}#img{width:80px !important;}#operationdoctortime{display: inline-block;}button{display:none;}.distance{margin-top: 10px !important;}#repair_continer .rp_toothGroup>ul>li{margin-left: 3%;}*{font-size: 12px;line-height: 16px;}#repair_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.lodopPrintborder{border-right: 2px solid black !important;}.patient{padding:0!important;margin:0!important;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}#logoImg{text-align:left!important;width:27%!important;left:0%!important;top:17px!important;}#requirerestor{height:40px!important;}</style>";
-		    window.document.body.innerHTML=prnhtml+htmlStyle;  
+		    window.document.body.innerHTML=prnhtml+htmlStyle;
 		    window.print();  //打印
 		    document.body.innerHTML=bdhtml; //恢复页面
-		} 
+		}
 		
 		function myPreviewAll(){
 			if(doctorstatus&&signature==""){
