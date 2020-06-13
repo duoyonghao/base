@@ -1,4 +1,7 @@
-image: maven:latest
+image: openjdk:8-jdk
+services:
+  - maven:latest
+
 stages:
   - build
 
