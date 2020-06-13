@@ -241,7 +241,7 @@
 							<td><span>年龄</span></td>	
 							<td><font type="text" class="patient_age"></font></td>
 							<td><span>手术医生</span></td>	
-							<td><font type="text" class="patient_doctor"></font></td>
+							<td><font type="text" id="patient_doctor" class="patient_doctor"></font></td>
 						</tr>
 						<tr>
 							<td colspan="3"><span>是否已服抗菌药</span>
@@ -533,7 +533,7 @@
 			
 		/* 页面赋值判断初始化 */
 		function initZzblInfor(){
-			var url = contextPath + '/HUDH_LCLJAct/findPreoperativeVerification.act';
+			var url = contextPath + '/HUDH_MedicalRecordsAct/findVerification.act';
 			$.ajax({
 				url: url,
 				type:"POST",
@@ -570,7 +570,7 @@
 		function save() {
 // 		护患（核查单）
 //手术医生
-			var patient_doctor=$(".patient_doctor").text(); //（复用）
+			var patient_doctor=$("#patient_doctor").text(); //（复用）
 //既往史
 			var antibacterial_medicine = $('input[name="antibacterial_medicine"]:checked').val();//是否已服抗菌药  0是1否
 			var iodine_allergy = $('input[name="iodine_allergy"]:checked').val();//是否有碘伏过敏史   0是1否
@@ -612,55 +612,55 @@
 			var doctortime = $("#doctortime").val();// 手术医生签名时间
 			
 			var parms={
-					 patient_seqid:patient_seqid,//患者的信息id（复用）
-					 id :  id, //临床路径ID（复用）
-	        		 order_number :  order_number, //节点编号（复用）
+                     userId:patient_seqid,//患者的信息id（复用）
+                     lcljId :  id, //临床路径ID（复用）
+                     orderNumber :  order_number, //节点编号（复用）
 //  	护士-患者
 					//手术医生1
-	        		 patient_doctor:patient_doctor, //（复用）
+                     patientDoctor:patient_doctor, //（复用）
 					//患者既往史是否3
-					 antibacterial_medicine:antibacterial_medicine,
-					 iodine_allergy:iodine_allergy,
-					 anesthetic_allergy:anesthetic_allergy,
+                     antibacterialMedicine:antibacterial_medicine,
+                     iodineAllergy:iodine_allergy,
+                     anestheticAllergy:anesthetic_allergy,
 					// 更改拔牙位、种植牙位以及辅助手术种植系统展示start（复用）10
-		        	 upleftToothBitOne : upleftToothBitOne,
-		        	 uperRightToothBitOne : uperRightToothBitOne,
-		        	 leftLowerToothBitOne : leftLowerToothBitOne,
-		        	 lowRightToothBitOne : lowRightToothBitOne,
-		        	 upleftToothBitTwo : upleftToothBitTwo,
-		        	 uperRightToothBitTwo : uperRightToothBitTwo,
-		        	 leftLowerToothBitTwo : leftLowerToothBitTwo,
-		        	 lowRightToothBitTwo : lowRightToothBitTwo,
-		        	 assist_operation : assist_operation,//辅助手术
-		        	 plant_system :plant_system,//种植系统
+                     uplefttoothbitone : upleftToothBitOne,
+                     uperrighttoothbitone : uperRightToothBitOne,
+                     leftlowertoothbitone : leftLowerToothBitOne,
+                     lowrighttoothbitone : lowRightToothBitOne,
+                     uplefttoothbittwo : upleftToothBitTwo,
+                     uperrighttoothbittwo : uperRightToothBitTwo,
+                     leftlowertoothbittwo : leftLowerToothBitTwo,
+                     lowrighttoothbittwo : lowRightToothBitTwo,
+                     assistOperation : assist_operation,//辅助手术
+                     plantSystem :plant_system,//种植系统
 					//	end 	 		        	 
-		        	 patientTime :  patientTime,
-		        	 nursetimeone :  nursetime1,	
+                     patienttime :  patientTime,
+                     nursetimeone :  nursetime1,
 // 	      医生-护士
 	        		//手术医生时间
-	        		 operationtime:operationtime,
+                     operationtime:operationtime,
 	        		// 患者既往史12
-		        	 blood_pressure :blood_pressure,//血压
-		        	 pulse : pulse,//脉搏
-		        	 blood_glucose : blood_glucose,//血糖
-		        	 cruor_function :cruor_function,//凝血功能
-		        	 whiteblood_cell:whiteblood_cell,//白细胞数
-		        	 neutrophile_cell:neutrophile_cell,  //中性粒细胞
-		        	 redblood_cell:redblood_cell, //红细胞数
-		        	 oxyphorase:oxyphorase,//血红蛋白
-		        	 premedicate:premedicate,//术前用药
-		        	 takemedicine_hour:takemedicine_hour,//用药时间小时
-		        	 takemedicine_minutes:takemedicine_minutes,//用药时间分钟
-		        	 takemedicine_measure:takemedicine_measure, //用药剂量
-		        	 consultation_opinion:consultation_opinion, //会诊意见
+                     bloodPressure :blood_pressure,//血压
+                     pulse : pulse,//脉搏
+                     bloodGlucose : blood_glucose,//血糖
+                     cruorFunction :cruor_function,//凝血功能
+                     whitebloodCell:whiteblood_cell,//白细胞数
+                     neutrophileCell:neutrophile_cell,  //中性粒细胞
+                     redbloodCell:redblood_cell, //红细胞数
+                     oxyphorase:oxyphorase,//血红蛋白
+                     premedicate:premedicate,//术前用药
+                     takemedicineHour:takemedicine_hour,//用药时间小时
+                     takemedicineMinutes:takemedicine_minutes,//用药时间分钟
+                     takemedicineMeasure:takemedicine_measure, //用药剂量
+                     consultationOpinion:consultation_opinion, //会诊意见
 		        	 //签名时间
-		        	 nurseSignatureTime : nursetime2, //手术护士签名
-		        	 doctorSignatureTime : doctortime, //手术医生签名	
+                     nursesignaturetime : nursetime2, //手术护士签名
+                     doctorsignaturetime : doctortime, //手术医生签名
 	        		 
 			};
 			console.log(JSON.stringify(parms)+"-----parms");
-			return;
-			var url = contextPath + '/HUDH_LCLJAct/savePreoperativeVerification.act';
+			//return;
+			var url = contextPath + '/HUDH_MedicalRecordsAct/SaveVerification.act';
 			$.ajax({
 				url: url,
 				type:"POST",
@@ -769,7 +769,7 @@
 	        };
 	        //console.log(JSON.stringify(param)+"---------修改参数");
 // 	        var url = contextPath + '/HUDH_ZzblAskAct/updateCaseHistoryById.act';
-			var url = contextPath + '/HUDH_LCLJAct/savePreoperativeVerification.act';
+			var url = contextPath + '/HUDH_MedicalRecordsAct/SaveVerification.act';
 	        $.axseSubmit(url, param,function() {},function(r) {
 	        	layer.alert("修改成功！", {
 		            end: function() {
