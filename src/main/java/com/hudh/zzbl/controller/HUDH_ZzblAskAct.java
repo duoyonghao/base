@@ -683,10 +683,10 @@ public class HUDH_ZzblAskAct{
 	    if(YZUtility.isNotNullOrEmpty(fixedDenture)) {
 	    	familiarBook.setFixedDenture(fixedDenture);
 	    }
-	    if(!plantingSystem.equals(null) && !plantingSystem.equals("")){
+	    if(YZUtility.isNotNullOrEmpty(plantingSystem)){
 	    	familiarBook.setPlantingSystem(plantingSystem);
 	    }
-	    if(!modelNumber.equals(null) && !modelNumber.equals("")){
+	    if(YZUtility.isNotNullOrEmpty(modelNumber)){
 	    	familiarBook.setModelNumber(modelNumber);
 	    }
 	    familiarBook.setUpleftToothBitOne(upleftToothBitOne);
@@ -697,31 +697,31 @@ public class HUDH_ZzblAskAct{
 	    familiarBook.setUperRightToothBitTwo(uperRightToothBitTwo);
 	    familiarBook.setLeftLowerToothBitTwo(leftLowerToothBitTwo);
 	    familiarBook.setLowRightToothBitTwo(lowRightToothBitTwo);
-	    if(!assistOperation.equals(null) && !assistOperation.equals("")){
+	    if(YZUtility.isNotNullOrEmpty(assistOperation)){
 	    	 familiarBook.setAssistOperation(assistOperation);
 	    }
-	    if(!remarks.equals(null) && !remarks.equals("")){
+	    if(YZUtility.isNotNullOrEmpty(remarks)){
 	    	 familiarBook.setRemarks(remarks);
 	    }
-	    if(!PatientSignature.equals(null) && !PatientSignature.equals("")){
+	    if(YZUtility.isNotNullOrEmpty(PatientSignature)){
 	    	 familiarBook.setPatientSignature(PatientSignature);
 	    } 
-	    if(!patientTime.equals(null) && !patientTime.equals("")){
+	    if(YZUtility.isNotNullOrEmpty(patientTime)){
 	    	familiarBook.setPatientTime(patientTime);
 	    }
-	    if(!doctorSignature.equals(null) && !doctorSignature.equals("")){
+	    if(YZUtility.isNotNullOrEmpty(doctorSignature)){
 	    	 familiarBook.setDoctorSignature(doctorSignature);
 	    }
-	    if(!doctorTime.equals(null) && !doctorTime.equals("")){
+	    if(YZUtility.isNotNullOrEmpty(doctorTime)){
 	    	 familiarBook.setDoctorTime(doctorTime);
 	    }
-	    if(!createtime.equals(null) && !createtime.equals("")){
+	    if(YZUtility.isNotNullOrEmpty(createtime)){
 	    	familiarBook.setCreatetime(createtime);
 	    }
-	    if(!plantingsystemselect.equals(null) && !plantingsystemselect.equals("")){
+	    if(YZUtility.isNotNullOrEmpty(plantingsystemselect)){
 	    	familiarBook.setPlantingsystemselect(plantingsystemselect);
 	    }
-	    if(!repairselect.equals(null) && !repairselect.equals("")){
+	    if(YZUtility.isNotNullOrEmpty(repairselect)){
 	    	familiarBook.setRepairselect(repairselect);
 	    }
 	    try
