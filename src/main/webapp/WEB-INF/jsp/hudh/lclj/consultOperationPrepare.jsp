@@ -636,8 +636,21 @@
 				
 			}
 	  });
-		
-		
+		/* 判断新种植病历情况记录*/
+		var plantRecordsurl =  contextPath + '/HUDH_MedicalRecordsAct/selectdata.act';
+		$.ajax({
+			url: plantRecordsurl,
+			type:"POST",
+			dataType:"json",
+			data : {
+				lcljId:id
+			},
+			success:function(result) {
+				if(result[0].seqId){
+					$(".plantRecords").prev().attr("checked","checked").attr("disabled","disabled");
+				}
+			}
+		});
 		/* 判断人工种植牙知情同意书*/
 		var plantKnowbookurl = contextPath + '/HUDH_ZzblAskAct/findFamiliarBookById.act';
 		$.ajax({
