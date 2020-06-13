@@ -28,7 +28,8 @@
 		margin: 0px;
 		padding: 0px;
 		font-size: 15px;
-		line-height:60px;  
+		line-height:30px;
+		/*line-height:60px;  */
 	}
 	label{
 		margin-bottom: 0px;
@@ -138,7 +139,7 @@
 		font-weight: normal;
 	}
 	.content .colDefined .contentItem tbody tr{
-	    height: 35px; 
+	    height: 35px;
 	}
 	.content .colDefined .contentItem tbody tr td {
 	    width: 12.5%; 
