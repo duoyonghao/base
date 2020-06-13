@@ -12,5 +12,8 @@ build:
   stage: build
   script:
     - ./mvnw compile
+    - ./mvnw war:exploded
+  artifacts:
+    - target/base
   tags:
     - package
