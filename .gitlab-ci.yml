@@ -2,6 +2,7 @@ image: openjdk:8-jdk
 
 stages:
   - build
+  - deploy
 
 before_script:
   - chmod u+x ./mvnw
@@ -16,3 +17,12 @@ build:
       - target/base
   tags:
     - package
+
+deploy:
+  stage: deploy
+  script:
+    - ls
+  dependencies:
+    - build
+  tags:
+    - deploy
