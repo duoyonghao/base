@@ -22,9 +22,14 @@ deploy-test:
   stage: test
   script:
     - ls target
-    - D:\tomcat\apache-tomcat-8.0.36\bin\shutdown.bat
+    - cd D:\tomcat\apache-tomcat-8.0.36\bin
+    - .\shutdown.bat
+    - cd ../webapps
+    - rm -r base
+    - cd ${CI_BUILDS_DIR}
     - cp -r target\base D:\tomcat\apache-tomcat-8.0.36\webapps
-    - D:\tomcat\apache-tomcat-8.0.36\bin\startup.bat
+    - cd D:\tomcat\apache-tomcat-8.0.36\bin
+    - .\startup.bat
   dependencies:
     - build
   tags:
