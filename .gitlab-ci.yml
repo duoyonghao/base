@@ -1,5 +1,8 @@
 image: openjdk:8-jdk
 
+variables:
+  tomcat_dir: D:\tomcat\apache-tomcat-8.0.36
+
 stages:
   - build
   - test
@@ -22,7 +25,10 @@ deploy-test:
   stage: test
   script:
     - ls target
-    - .\deploy.bat D:\tomcat\apache-tomcat-8.0.36
+    - cd ${tomcat_dir}\bin && .\shutdown.bat
+    - rm -rf ${tomcat_dir}\webapps\base
+    - cp -r target\base ${tomcat_dir}\webapps
+    - cd ${tomcat_dir}\bin && .\startup.bat
   dependencies:
     - build
   tags:
