@@ -246,7 +246,7 @@ public class HUDH_MedicalRecordsAct {
      * @dateTime:2020年6月30日 下午14:12:23
      */
     @RequestMapping("/SaveVerification.act")
-    public String SaveVerification(HttpServletRequest request, HttpServletResponse response) {
+    public String SaveVerification(HttpServletRequest request, HttpServletResponse response) throws Exception {
         try {
             YZPerson person = SessionUtil.getLoginPerson(request);
             String organization = ChainUtil.getCurrentOrganization(request);
@@ -254,16 +254,18 @@ public class HUDH_MedicalRecordsAct {
             BeanUtils.populate(dp, request.getParameterMap());
             if (dp.getSeqId() != null && !dp.getSeqId().equals("")) {
                 mlogic.updateVerification(dp);
+                YZUtility.DEAL_SUCCESS(null, "", response, logger);
             } else {
                 dp.setSeqId(YZUtility.getUUID());
                 dp.setCreateuser(person.getSeqId());
                 dp.setCreatetime(YZUtility.getCurDateTimeStr());
                 dp.setOrganization(organization);
                 mlogic.SaveVerification(dp);
+                YZUtility.DEAL_SUCCESS(null, "", response, logger);
             }
         } catch (Exception e) {
             // TODO: handle exception
-            e.printStackTrace();
+            YZUtility.DEAL_ERROR("", false, e, response, logger);
         }
         return null;
     }
