@@ -2,9 +2,12 @@ image: maven:latest
 stages:
   - build
 
+before_script:
+  - chmod u+x ./mvnw
+
 build:
   stage: build
   script:
-    - ./mvn compile
+    - ./mvnw compile
   tags:
     - package
