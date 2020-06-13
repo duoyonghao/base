@@ -5,6 +5,6 @@ stages:
 build:
   stage: build
   script:
-    - ./mvnw compile
+    - ./mvn compile
   tags:
     - package
