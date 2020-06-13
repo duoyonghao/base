@@ -92,7 +92,7 @@
 	} 
 	/* 第二条：输入输入框 */
 	#content .consent_text .text_input{
-		width:80%;
+		width:90%;
     	height: 30px;
     	border: 0px;
     	border-radius: 0px;
@@ -180,6 +180,7 @@
 		color: #00a6c0;
 		line-height: 28px;
 		border-radius: 3px;
+		text-align: center;
 	}
 	#content input[type="text"]:disabled{
 		background-color: transparent;
@@ -577,10 +578,11 @@
 				},
 				success:function(result){
 					var res=result[0];
-					updataid=res.seqId;
+					// updataid=res.seqId;
 					// console.log(JSON.stringify(res)+'----result');
 					/* 判断是否已经填写过内容 */
 					if(result.length>0) {
+						updataid=res.seqId;
 						$("#consent_saveBtn").css("display", "none");//隐藏保存按钮
 						$("#consent_updateBtn").css("display", "inline-block");//显示修改按钮
 						//赋值 

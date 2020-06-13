@@ -1502,10 +1502,10 @@
             },
             success:function(result){
                 var res=result[0];
-                updataid=res.seqId;
 					// console.log(JSON.stringify(res)+"-----rr");
                 toothMap(res["dentitiondefect"]);
                 if(result.length>0){
+                    updataid=res.seqId;
                     $("#consent_saveBtn").css("display","none");//隐藏保存按钮
                     $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
                     for(var i in res){
