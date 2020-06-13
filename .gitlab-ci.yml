@@ -22,7 +22,7 @@ deploy-test:
   stage: test
   script:
     - ls target
-    - .\deploy.bat
+    - .\deploy.bat D:\tomcat\apache-tomcat-8.0.36
   dependencies:
     - build
   tags:
