@@ -51,7 +51,7 @@
     redbloodCell, oxyphorase, premedicate, takemedicineHour, takemedicineMinutes, takemedicineMeasure,
     consultationOpinion,nursesignaturetime, doctorsignaturetime,createuser,createtime,organization
   </sql>
-    <select id="selectByCode" parameterType="java.lang.String" resultType="json">
+    <select id="selectVerificationByCode" parameterType="java.lang.String" resultType="json">
         select
         <include refid="Base_Column_List" />
         from HUDH_LCLJ_Verification
