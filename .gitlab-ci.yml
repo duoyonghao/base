@@ -21,7 +21,10 @@ build:
 deploy-test:
   stage: test
   script:
-    - ls
+    - ls target
+    - D:\tomcat\apache-tomcat-8.0.36\bin\shutdown.bat
+    - cp -r target\base D:\tomcat\apache-tomcat-8.0.36\webapps\base
+    - D:\tomcat\apache-tomcat-8.0.36\bin\startup.bat
   dependencies:
     - build
   tags:
