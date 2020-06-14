@@ -646,7 +646,8 @@
 				lcljId:id
 			},
 			success:function(result) {
-				if(result[0].seqId){
+				// console.log(JSON.stringify(result)+'----result');
+				if(result.length>0){
 					$(".plantRecords").prev().attr("checked","checked").attr("disabled","disabled");
 				}
 			}
