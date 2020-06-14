@@ -1588,10 +1588,9 @@
 		<if test="visualstaff != null and visualstaff !='' ">
 			and (
 			reg.doctor in (${visualstaff})
-			or c.doctor in (select d.doctor from KQDS_COSTORDER_DETAIL d where d.costno = c.costno )
+			or EXISTS (select d.doctor from KQDS_COSTORDER_DETAIL d where c.doctor=d.doctor and d.costno = c.costno )
 			or reg.askperson in (${visualstaff})
-			or
-			reg.createuser in (${visualstaff})
+			or reg.createuser in (${visualstaff})
 			or c.doctor in (${visualstaff})
 			or c.nurse in (${visualstaff})
 			or c.techperson in (${visualstaff})
