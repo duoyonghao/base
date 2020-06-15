@@ -26,7 +26,7 @@ deploy-test:
     - echo -n "stop tomcat server..."
     - Stop-Service Tomcat8
     - echo -n "remove old artifacts..."
-    - rm -r D:\tomcat\apache-tomcat-8.0.36\webapps\base
+    - if (Test-Path D:\tomcat\apache-tomcat-8.0.36\webapps\base) {rm -r D:\tomcat\apache-tomcat-8.0.36\webapps\base}
     - echo -n "copy new artifacts..."
     - cp -r target\base D:\tomcat\apache-tomcat-8.0.36\webapps
     - echo -n "start tomcat server..."
