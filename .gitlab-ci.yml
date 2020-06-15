@@ -1,8 +1,5 @@
 image: openjdk:8-jdk
 
-variables:
-  tomcat_dir: D:\tomcat\apache-tomcat-8.0.36
-
 stages:
   - build
   - test
@@ -23,13 +20,15 @@ build:
 
 deploy-test:
   stage: test
+  variables:
+    tomcat_dir: D:\tomcat\apache-tomcat-8.0.36
   script:
-    - echo stop tomcat server...
+    - echo -n "stop tomcat server..."
     - Stop-Service Tomcat8
-    - echo remove old artifacts...
-    - echo copy new artifacts...
-    - echo start tomcat server...
-    - Start-Service Tomcat8
+    - echo -n "remove old artifacts..."
+    - echo -n "copy new artifacts..."
+    - echo -n "start tomcat server..."
+#    - Start-Service Tomcat8
   dependencies:
     - build
   tags:
