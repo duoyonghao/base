@@ -24,8 +24,12 @@ build:
 deploy-test:
   stage: test
   script:
-    - ls target
-    - .\deploy.ps1
+    - echo stop tomcat server...
+    - Stop-Service Tomcat8
+    - echo remove old artifacts...
+    - echo copy new artifacts...
+    - echo start tomcat server...
+    - Start-Service Tomcat8
   dependencies:
     - build
   tags:
