@@ -7,18 +7,11 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.parsers.ParserConfigurationException;
 
+import com.pdfjet.*;
 import org.w3c.dom.DOMException;
 import org.xml.sax.SAXException;
 
-import com.pdfjet.Box;
-import com.pdfjet.Font;
-import com.pdfjet.Image;
-import com.pdfjet.ImageType;
-import com.pdfjet.Letter;
-import com.pdfjet.Line;
-import com.pdfjet.PDF;
-import com.pdfjet.Page;
-import com.pdfjet.TextLine;
+
 
 public class PDFWriter {
 	private XMLParser parser;

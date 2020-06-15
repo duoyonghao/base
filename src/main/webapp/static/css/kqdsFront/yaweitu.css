@@ -95,7 +95,7 @@ a:hover{text-decoration:none;}
 .toothBox .line {
     position: absolute;
     top: 49%;
-    left: 1%;
+    left: -8%;
     right: 0;
     height: 1px;
     color: #888;

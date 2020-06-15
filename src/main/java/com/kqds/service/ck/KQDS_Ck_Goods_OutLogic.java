@@ -209,7 +209,7 @@ public class KQDS_Ck_Goods_OutLogic extends BaseLogic {
 							if(list1.get(i).getInt("innum")>=outNum){
 								//存入outNum数量
 								money = addOut(person, menzhen, dp, detail, outNum, list1, money, i);
-								
+								break;
 							}else{
 								//存入全部
 								money = addOut(person, menzhen, dp, detail, list1.get(i).getInt("innum"), list1, money, i);
@@ -236,6 +236,7 @@ public class KQDS_Ck_Goods_OutLogic extends BaseLogic {
 						for (int i = n+1; i < list1.size(); i++) {
 							if(list1.get(i).getInt("innum")>=outNum){
 								money = addOut(person, menzhen, dp, detail, outNum, list1, money, i);
+								break;
 							}else{
 								//存入全部
 								money = addOut(person, menzhen, dp, detail, list1.get(i).getInt("innum"), list1, money, i);

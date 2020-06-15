@@ -485,17 +485,11 @@
 		where 1=1
 		<if test="querytype != null and querytype !='' ">
 			and (
-			reg.doctor in (${querytype})
-			or reg.repairdoctor in (${querytype})
-			or reg.askperson in (${querytype})
-			or reg.createuser in (${querytype})
-			or reg.seq_id in (select regno from KQDS_COSTORDER_DETAIL where
-			askperson in( ${querytype}) or doctor in (${querytype}) or createuser in(${querytype}))
-			or reg.seq_id in (select regno from KQDS_TOOTH_DOC where createuser in( ${querytype}))
-			or
-			reg.seq_id in (select regno from KQDS_MEDICALRECORD where createuser in( ${querytype}))
-			or us.usercode in (select usercode from KQDS_MEMBER_RECORD where askperson in
-			(${querytype}))
+			reg.doctor in (${querytype}) or reg.repairdoctor in (${querytype}) or reg.askperson in (${querytype}) or reg.createuser in (${querytype})
+			or EXISTS (select regno from KQDS_COSTORDER_DETAIL where reg.seq_id=regno and  askperson in ( ${querytype}) or doctor in (${querytype}) or createuser in(${querytype}))
+			or EXISTS (select regno from KQDS_TOOTH_DOC where reg.seq_id=regno and createuser in ( ${querytype}))
+			or EXISTS (select regno from KQDS_MEDICALRECORD where reg.seq_id=regno and  createuser in ( ${querytype}))
+			or EXISTS (select usercode from KQDS_MEMBER_RECORD where us.usercode==usercode and  askperson in (${querytype}))
 			)
 		</if>
 		<if test="status != null and status !='' ">
@@ -552,15 +546,11 @@
 		LEFT JOIN SYS_DEPT odept on odept.dept_code = reg.organization and odept.dept_parent = '0'
 		where 1=1
 		<if test="querytype != null and querytype !='' ">
-			and (reg.doctor in (${querytype})
-			or reg.repairdoctor in (${querytype})
-			or reg.askperson in (${querytype})
-			or reg.createuser in (${querytype})
-			or reg.seq_id in (select regno from KQDS_COSTORDER_DETAIL where askperson 
-			in( ${querytype}) or doctor in (${querytype}) or createuser in(${querytype}))
-			or reg.seq_id in (select regno from KQDS_TOOTH_DOC where createuser in( ${querytype}))
-			or reg.seq_id in (select regno from KQDS_MEDICALRECORD where createuser in( ${querytype}))
-			or us.usercode in (select usercode from KQDS_MEMBER_RECORD where askperson in(${querytype}))
+			and (reg.doctor in (${querytype}) or reg.repairdoctor in (${querytype}) or reg.askperson in (${querytype}) or reg.createuser in (${querytype})
+			or EXISTS (select regno from KQDS_COSTORDER_DETAIL where reg.seq_id=regno and  askperson in( ${querytype}) or doctor in (${querytype}) or createuser in(${querytype}))
+			or EXISTS (select regno from KQDS_TOOTH_DOC where reg.seq_id =regno and createuser in( ${querytype}))
+			or EXISTS (select regno from KQDS_MEDICALRECORD where reg.seq_id =regno and createuser in( ${querytype}))
+			or EXISTS (select usercode from KQDS_MEMBER_RECORD where us.usercode=usercode and askperson in(${querytype}))
 			)
 		</if>
 		<if test="status != null and status !='' ">
@@ -1520,13 +1510,10 @@
 		where 1=1 and r.del !='1'
 		<if test="querytype != null and querytype !='' ">
 			and (r.doctor in (${querytype}) or r.repairdoctor in (${querytype}) or r.askperson in (${querytype}) or r.createuser in (${querytype})
-			or r.seq_id in (select regno from KQDS_COSTORDER_DETAIL where
-			askperson in(
-			${querytype}) or doctor in (${querytype}) or createuser in( ${querytype}))
-			or r.seq_id in (select regno from KQDS_TOOTH_DOC where createuser in( ${querytype}))
-			or
-			r.seq_id in (select regno from KQDS_MEDICALRECORD where createuser in( ${querytype}))
-			or u.usercode in (select usercode from KQDS_MEMBER_RECORD where askperson in (${querytype}))
+			or EXISTS (select regno from KQDS_COSTORDER_DETAIL where r.seq_id=regno and askperson in( ${querytype}) or doctor in (${querytype}) or createuser in( ${querytype}))
+			or EXISTS (select regno from KQDS_TOOTH_DOC where r.seq_id=regno and createuser in( ${querytype}))
+			or EXISTS (select regno from KQDS_MEDICALRECORD where r.seq_id=regno and createuser in( ${querytype}))
+			or EXISTS (select usercode from KQDS_MEMBER_RECORD where u.usercode=usercode and askperson in (${querytype}))
 			)
 		</if>
 		<!-- <if test="status2 != null and status2 !='' "> and r.status <![CDATA[ >= ]]> 2 </if> <if test="status5 != null and status5 !='' "> <if test="temp_dbType == 0"> and to_days(r.createtime) 
@@ -1813,18 +1800,14 @@
 		select count(*) from KQDS_REG r
 		left join KQDS_UserDocument u on u.usercode = r.usercode
 		where 1=1 and r.del !='1'
-		and (r.doctor in (${visualstaff}) or r.askperson in
-		(${visualstaff}) or r.createuser in (${visualstaff})
-		or r.seq_id in (select regno from KQDS_COSTORDER_DETAIL where askperson in( ${visualstaff}) or doctor in (${visualstaff}) or
-		createuser in(${visualstaff}))
-		or r.seq_id in (select regno from KQDS_TOOTH_DOC where createuser in( ${visualstaff}))
-		or r.seq_id in (select regno from KQDS_MEDICALRECORD where
-		createuser in( ${visualstaff}))
-		or u.usercode in (select usercode from KQDS_MEMBER_RECORD where askperson in (${visualstaff}))
+		and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff})
+		or EXISTS (select regno from KQDS_COSTORDER_DETAIL where r.seq_id =regno and askperson in ( ${visualstaff}) or doctor in (${visualstaff}) or createuser in (${visualstaff}))
+		or EXISTS (select regno from KQDS_TOOTH_DOC where r.seq_id=regno and createuser in ( ${visualstaff}))
+		or EXISTS (select regno from KQDS_MEDICALRECORD where r.seq_id=regno and createuser in ( ${visualstaff}))
+		or EXISTS (select usercode from KQDS_MEMBER_RECORD where u.usercode=usercode and askperson in (${visualstaff}))
 		)
 		and n.askperson in (${visualstaff})
-		and n.isdelete =
-		0
+		and n.isdelete =0
 		<if test="createtime != null and createtime !='' ">
 			${createtime}
 		</if>
@@ -1836,14 +1819,11 @@
 		select count(1) from KQDS_REG r
 		left join KQDS_UserDocument u on u.usercode = r.usercode
 		where 1=1 and r.del !='1'
-		and (r.doctor in (${visualstaff}) or r.askperson in
-		(${visualstaff}) or r.createuser in (${visualstaff})
-		or r.seq_id in (select regno from KQDS_COSTORDER_DETAIL where askperson in( ${visualstaff}) or doctor in (${visualstaff}) or
-		createuser in( ${visualstaff}))
-		or r.seq_id in (select regno from KQDS_TOOTH_DOC where createuser in( ${visualstaff}))
-		or r.seq_id in (select regno from KQDS_MEDICALRECORD where
-		createuser in( ${visualstaff}))
-		or u.usercode in (select usercode from KQDS_MEMBER_RECORD where askperson in (${visualstaff}))
+		and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff})
+		or EXISTS (select regno from KQDS_COSTORDER_DETAIL where r.seq_id=regno and askperson in( ${visualstaff}) or doctor in (${visualstaff}) or createuser in( ${visualstaff}))
+		or EXISTS (select regno from KQDS_TOOTH_DOC where r.seq_id=regno and createuser in( ${visualstaff}))
+		or EXISTS (select regno from KQDS_MEDICALRECORD where r.seq_id=regno AND createuser in( ${visualstaff}))
+		or EXISTS (select usercode from KQDS_MEMBER_RECORD where u.usercode=usercode AND askperson in (${visualstaff}))
 		)
 		<if test="createtime != null and createtime !='' ">
 			${createtime}
@@ -1864,27 +1844,18 @@
 		odept.dept_name as organizationname,u.usercode,p.user_name as askpersonname,p1.user_name as doctorname,p2.user_name as jdrname,kcit1.dict_name as recesortname,kcit2.dict_name as
 		regsortname,r.username,u.sex,u.age,u.totalpay,u.remark,r.createtime from KQDS_REG r
 		left join KQDS_UserDocument u on u.usercode = r.usercode
-		LEFT JOIN SYS_DICT kcit1 on r.recesort
-		= kcit1.seq_id
+		LEFT JOIN SYS_DICT kcit1 on r.recesort = kcit1.seq_id
 		LEFT JOIN SYS_DICT kcit2 on r.regsort = kcit2.seq_id
 		LEFT JOIN SYS_PERSON p on p.SEQ_ID = r.askperson
-		LEFT JOIN SYS_PERSON p1 on
-		p1.SEQ_ID = r.doctor
-		LEFT JOIN
-		SYS_PERSON p2 on p2.SEQ_ID = u.createuser
+		LEFT JOIN SYS_PERSON p1 on p1.SEQ_ID = r.doctor
+		LEFT JOIN SYS_PERSON p2 on p2.SEQ_ID = u.createuser
 		LEFT JOIN SYS_DEPT odept on odept.dept_code = u.organization and odept.dept_parent = '0' // 门诊名称
 		where 1=1 and r.del !='1'
-		and
-		(r.doctor in
-		(${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff})
-		or r.seq_id in (select regno from KQDS_COSTORDER_DETAIL where askperson in(
-		${visualstaff})
-		or doctor in (${visualstaff}) or createuser in( ${visualstaff}))
-		or r.seq_id in (select regno from KQDS_TOOTH_DOC where createuser in( ${visualstaff}))
-		or r.seq_id
-		in (select regno
-		from KQDS_MEDICALRECORD where createuser in( ${visualstaff}))
-		or u.usercode in (select usercode from KQDS_MEMBER_RECORD where askperson in (${visualstaff}))
+		and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff})
+		or EXISTS (select regno from KQDS_COSTORDER_DETAIL where r.seq_id=regno AND askperson in (${visualstaff}) or doctor in (${visualstaff}) or createuser in ( ${visualstaff}))
+		or EXISTS (select regno from KQDS_TOOTH_DOC where r.seq_id=regno AND createuser in( ${visualstaff}))
+		or EXISTS (select regno from KQDS_MEDICALRECORD where r.seq_id=regno AND createuser in( ${visualstaff}))
+		or EXISTS (select usercode from KQDS_MEMBER_RECORD where u.usercode=usercode AND askperson in (${visualstaff}))
 		)
 		<if test="createtime != null and createtime !='' ">
 			<if test="temp_dbType == 0">
@@ -1930,14 +1901,11 @@
 		select count(1) from KQDS_REG r
 		left join KQDS_UserDocument u on u.usercode = r.usercode
 		where 1=1 and r.del !='1'
-		and (r.doctor in (${visualstaff}) or r.askperson in
-		(${visualstaff}) or r.createuser in (${visualstaff})
-		or r.seq_id in (select regno from KQDS_COSTORDER_DETAIL where askperson in( ${visualstaff}) or doctor in (${visualstaff}) or
-		createuser in( ${visualstaff}))
-		or r.seq_id in (select regno from KQDS_TOOTH_DOC where createuser in( ${visualstaff}))
-		or r.seq_id in (select regno from KQDS_MEDICALRECORD where
-		createuser in( ${visualstaff}))
-		or u.usercode in (select usercode from KQDS_MEMBER_RECORD where askperson in (${visualstaff}))
+		and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff})
+		or EXISTS (select regno from KQDS_COSTORDER_DETAIL where r.seq_id=regno AND askperson in( ${visualstaff}) or doctor in (${visualstaff}) or createuser in( ${visualstaff}))
+		or EXISTS (select regno from KQDS_TOOTH_DOC where r.seq_id=regno AND createuser in( ${visualstaff}))
+		or EXISTS (select regno from KQDS_MEDICALRECORD where r.seq_id=regno AND createuser in( ${visualstaff}))
+		or EXISTS (select usercode from KQDS_MEMBER_RECORD where u.usercode=usercode AND askperson in (${visualstaff}))
 		)
 		<if test="createtime != null and createtime !='' ">
 			${createtime}
@@ -1972,14 +1940,11 @@
 		select count(1) from KQDS_REG r
 		left join KQDS_UserDocument u on u.usercode = r.usercode
 		where 1=1 and r.del !='1'
-		and (r.doctor in (${visualstaff}) or r.askperson in
-		(${visualstaff}) or r.createuser in (${visualstaff})
-		or r.seq_id in (select regno from KQDS_COSTORDER_DETAIL where askperson in( ${visualstaff}) or doctor in (${visualstaff}) or
-		createuser in( ${visualstaff}))
-		or r.seq_id in (select regno from KQDS_TOOTH_DOC where createuser in( ${visualstaff}))
-		or r.seq_id in (select regno from KQDS_MEDICALRECORD where
-		createuser in( ${visualstaff}))
-		or u.usercode in (select usercode from KQDS_MEMBER_RECORD where askperson in (${visualstaff}))
+		and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff})
+		or EXISTS (select regno from KQDS_COSTORDER_DETAIL where r.seq_id =regno AND askperson in( ${visualstaff}) or doctor in (${visualstaff}) or createuser in( ${visualstaff}))
+		or EXISTS (select regno from KQDS_TOOTH_DOC where r.seq_id=regno AND createuser in( ${visualstaff}))
+		or EXISTS (select regno from KQDS_MEDICALRECORD where r.seq_id=regno AND createuser in( ${visualstaff}))
+		or EXISTS (select usercode from KQDS_MEMBER_RECORD where u.usercode=usercode AND askperson in (${visualstaff}))
 		)
 		<if test="createtime != null and createtime !='' ">
 			${createtime}
@@ -2622,8 +2587,8 @@
 				AND r.organization = #{organization}
 				AND c.cjstatus = 1
 				AND c.isdrugs != 1
-				AND detail.itemno IN (
-					SELECT treatitemno FROM KQDS_TREATITEM WHERE implant = '1'
+				AND EXISTS (
+					SELECT treatitemno FROM KQDS_TREATITEM WHERE detail.itemno=treatitemno AND implant = '1'
 				)
 				AND r.askperson IN (${askperson})
 				GROUP BY

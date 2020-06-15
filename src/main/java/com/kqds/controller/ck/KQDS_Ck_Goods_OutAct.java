@@ -181,7 +181,7 @@ public class KQDS_Ck_Goods_OutAct {
 						if(list1.get(i).getInt("innum")>=outNum){
 							//存入outNum数量
 							money=money.add(new BigDecimal((String) list1.get(i).get("inprice")).multiply(new BigDecimal(outNum)));
-							
+							break;
 						}else{
 							//存入全部
 							money=money.add(new BigDecimal((String) list1.get(i).get("inprice")).multiply(new BigDecimal(list1.get(i).getInt("innum"))));
@@ -199,6 +199,7 @@ public class KQDS_Ck_Goods_OutAct {
 					for (int i = n+1; i < list1.size(); i++) {
 						if(list1.get(i).getInt("innum")>=outNum){
 							money=money.add(new BigDecimal((String) list1.get(i).get("inprice")).multiply(new BigDecimal(outNum)));
+							break;
 						}else{
 							//存入全部
 							money=money.add(new BigDecimal((String) list1.get(i).get("inprice")).multiply(new BigDecimal(list1.get(i).getInt("innum"))));

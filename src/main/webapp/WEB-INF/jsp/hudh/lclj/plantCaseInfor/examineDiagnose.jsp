@@ -61,17 +61,30 @@
  	}
  	#logoImg{
 	    width: 10%;
+	    padding: 10px 0;
+	}
+	 /*分隔线 */
+    .line {
+        display: block;
+        border-top:2px dotted #776c6c;
+        padding:10px 0;
+    }
+	@page{
+		size:auto;
+		margin: 0mm auto;
 	}
 </style>
 </head>
 <body>
+<!--startprint-->
    <div class="boxBig">
    	<div class="container-fluid examine_continer">
 		<!-- 标题 -->
 		<div class="row">
 			<div>
 				<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
-				<h2 class="bigtitle" style="border-bottom: 2px solid #776c6c;padding-bottom: 15px;">检查及诊断</h2>
+				<i class="line"></i>
+				<h2 class="bigtitle" style="margin-top: 0!important;">检查及诊断</h2>
 			</div>
 			
 		</div>	
@@ -746,6 +759,7 @@
 			</div>
 		</div>
     </div> 
+    <!--endprint-->
 	<!-- 按钮 -->
 	<div class="btns">
 		<button id="consent_saveBtn" onclick="save()">保存</button>
@@ -1305,29 +1319,23 @@
 		    $("#bottomBarDdiv").append(menubutton1);
 		}
 		
-		function myPreviewAll(){
-			if(doctorstatus&&signature==""){
-				   $("#img").css("display","none");
-			   }
-			/* LODOP=getLodop();  
-			LODOP.PRINT_INIT("检查及诊断");
-			var htmlStyle="<style>button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}.examine_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.consent_updateBtn{display:none!important;}#doctortime{border:none;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;top:17px!important;}</style>";
-			var html="<!DOCTYPE html>"+document.getElementsByTagName("html")[0].innerHTML+htmlStyle;
-			LODOP.ADD_PRINT_HTM(10,10,"100%","100%",html);
-			LODOP.PREVIEW(); */	
-			bdhtml=window.document.body.innerHTML;   
+		function doPrint() {   
+		    bdhtml=window.document.body.innerHTML;   
 		    sprnstr="<!--startprint-->";   
 		    eprnstr="<!--endprint-->";   
 		    prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);   
 		    prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));   
-			var htmlStyle="<style>*{font-size: 10px;}button{display:none;}.time_div>input{display:block;margin-top:3px!important;width:40px!important;height:18px!important;}.fillWrite_group>input{display:block;width:40px!important;height:18px!important;margin-top:3px!important;}#pressure{display:block;width:50px!important;height:18px!important;margin-top:3px!important;}.alreadyInfo{font-size:12px !important;}.rpInfo_import{margin-right:80px;width:auto;}input[type='radio'],input[type='checkbox']{width:10px!important;}.option_div>input{margin-top:5px!important;}.option_div>label{margin-top:15px!important;}";
-			htmlStyle+="p{margin:0px!important;padding:0px!important;line-height:14px!important;}.consent_time{width:110px!important;height:18px!important;margin-top:3px!important;}.row>.colDefined{height:24px!important;}.bigtitle{font-size:22px;line-height:22px;margin:45px auto 20px!important;padding-top:0px!important;}.toothInfo{height:50px!important;margin-bottom:10px!important;}.patientInfo{padding:10px 0px 0px 15px!important;}.loseTooth_time{width:170px!important;}.loseTooth_option>li{margin-right:5px!important;}.loseTooth_time>span{font-size:12px!important;}";
-			htmlStyle+=".mainSuitInfo{padding:0px!important;}.chiefComplaint{padding:10px 0px 0px 0px!important;margin:0px!important;}.common_style span, #anamnesis_continer .common_style label{margin-top:5px!important;}.smoking input{margin-top:2px!important;}.patientInfo{padding-left:0px!important;}.mainSuitInfo{padding-left:0px!important;}.mainSuitInfo{height:70px!important;padding-bottom:0px!important;}.question_row{margin-top:15px!important;}.question_row .colDefined{height:18px!important;}.question_text{height:18px!important;font-size:12px!important;margin:0px!important;}.plantTooth_reason li{height:22px!important;margin-bottom:0px!important;}";
-			htmlStyle+=".plantTooth_reason input{vertical-align:middle!important;}.question_row .colDefined input{display:inline-block!important;height:20px!important;}.question_twoInfo{height:30px!important;}.question_twoInfo .select_item input{vertical-align:middle!important;margin-top:10px!important;}#question_three{margin-top:0px!important;}.loseTooth_option>li label{margin-top:5px!important;}.signature_box span{font-size:12px!important;}.common_style{background-color: #ddd!important;}#denture{background-color:white!important;}";
-			htmlStyle+=".loseTooth_time>span,input{display:inline!important;}.loseTooth_time{width:auto!important;}input[type='text']{border:0px!important;padding:0px!important;text-align:center!important;font-weight:bold!important;}#agomphostime,#planttime{padding-left:10px!important;text-align:left!important;vertical-align:top;}#drugallergy{width:270px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important;}#onmedication{width:570px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important;}#habit{width:660px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important;}#others{width:660px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important;}";
-			htmlStyle+="#antifreezing{width:170px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important}#lasttoothextractiontime{border-bottom:1px solid #adaaaa!important;}</style>";
+		    var htmlStyle="<style>#others{border-style: none;border-bottom: 1px solid #5b5b5b;}button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}.examine_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 10px !important;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}.btns{display:none!important;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;}</style>";
 		    window.document.body.innerHTML=prnhtml+htmlStyle;  
 		    window.print();  //打印
+		    document.body.innerHTML=bdhtml; //恢复页面
+		} 
+		
+		function myPreviewAll(){
+			if(doctorstatus&&signature==""){
+				   $("#img").css("display","none");
+			   }
+			doPrint();
 		};
 
 </script>

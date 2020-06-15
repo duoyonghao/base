@@ -1236,7 +1236,7 @@ public class KQDS_ScbbAct {
 			}
 			
 			if(!YZUtility.isNullorEmpty(qxname)){
-				map.put("buttonName", qxname);	
+				map.put("buttonName", "\'"+qxname+"\'");
 			}
 			if(!YZUtility.isNullorEmpty(deptCategory)){
 				map.put("deptCategory", deptCategory);	

@@ -264,6 +264,7 @@ function getlist() {
                     btn: ['是', '否'] //按钮
                 },
                 function() {
+                	$("#tkze").html(0);
                     layer.closeAll('dialog');
                     $('.success').removeClass('success'); //去除之前选中的行的，选中样式
                     $(element).addClass('success'); //添加当前选中的 success样式用于区别
@@ -394,7 +395,7 @@ function OrderDetail(costno) {
             field: 'tkmoney',
             align: 'center',
             formatter: function(value, row, index) {
-                return '<input  type="number" min="1" style="width:100%;float:left; height:24px;text-align:center;border: solid 1px #e5e5e5;"  value="0" onfocus="this.select()" onchange="editqkze(\'' + index + '\',\'other\');"  id="tkmoney' + index + '">';
+                return '<input  type="number" style="width:100%;float:left; height:24px;text-align:center;border: solid 1px #e5e5e5;"  value="0" onfocus="this.select()" onchange="editqkze(\'' + index + '\',\'tkmoney\');"  id="tkmoney' + index + '">';
             }
         },
         {
@@ -409,7 +410,14 @@ function OrderDetail(costno) {
 }
 $('#sqtk').on('click',
 function() {
-    var tkze = $("#tkze").html();
+    //var tkze = $("#tkze").html();
+  	//遍历 计算 收费单的 退款总金额
+    var list = $('#dykdxm').bootstrapTable('getData');
+    var newtkze = 0;
+    for (var i = 0; i < list.length; i++) {
+        newtkze += Number($("#tkmoney" + i).val());
+    }
+    var tkze=newtkze.toFixed(2);
     var tkyy = false; //退款原因： 只要由一项退款原因填写了 则通过验证
     var tsqk = false; //全部免除的项目也可以提款（防止开错项目的）
     var list = $('#dykdxm').bootstrapTable('getData');
@@ -511,18 +519,32 @@ function editqkze(index, name) {
     //判断 修改的收费项目的退费总金额是否超过实收总金额
     //收费项目的退费总金额
     var tkmoney = $("#tkmoney" + index).val();
-    if (Number(tkmoney).toFixed(2) < 0) {
-        $("#" + name + index).val(0);
-        layer.alert('退款金额不能小于0！' );
-        return false;
+    if(sszje>0){
+    	if (Number(tkmoney).toFixed(2) < 0) {
+            $("#" + name + index).val(0);
+            layer.alert('退款金额不能小于0！' );
+            traverseTkze();
+            return false;
+        }
+    }else{
+    	if (Number(tkmoney).toFixed(2) != sszje) {
+    		$("#" + name + index).val(sszje);
+            layer.alert('退款金额保持一致！' );
+            traverseTkze();
+            return false;
+        }
     }
     if ((Number(tkmoney).toFixed(2) - Number(sszje).toFixed(2)) > 0) {
         $("#" + name + index).val(0);
         $("#tkmoney" + index).val(0);
         layer.alert('该收费项目的退款金额大于缴费金额！' );
+        traverseTkze();
         return false;
     }
-    //遍历 计算 收费单的 退款总金额
+    traverseTkze();
+}
+function traverseTkze(){
+	//遍历 计算 收费单的 退款总金额
     var list = $('#dykdxm').bootstrapTable('getData');
     var newtkze = 0;
     for (var i = 0; i < list.length; i++) {

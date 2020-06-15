@@ -52,33 +52,48 @@
 	    width: 10%;
 	    margin:10px 0 10px 0;
 	}
+  /*分隔线 */
+    .line {
+        display: block;
+        border-top:2px dotted #776c6c;
+        padding:10px 0;
+    }
+    .gap{
+     	margin:10px 0;
+    }
+	@page{
+		size:auto;
+		margin: 20px auto;
+	}
 </style>
 <body>
+<!--startprint-->
 	<div id="repair_continer" class="container-fluid">
 		<!-- 标题 -->
 		<div class="row restore" style="border-bottom: 2px solid #776c6c;margin-top:20px;">
 			<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
+			<i class="line"></i>
 			<div style="padding-bottom: 10px;">
 				<span class="bigtitle">修复方案确认单</span>
 			</div>
 		</div>
 		<!-- 患者详细信息 -->
 		<div class="row patient" style="border-bottom: 2px solid #776c6c;">
-			<div class="col-md-3 col-sm-3 col-xs-3 colDefined">
+			<div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="line-height: 60px;">
 				<!-- 信息输入组合框 -->
 				<div class="rpInfo_import">
 					<span>患者姓名：</span>
 					<input id="patient_name" type="text" disabled="disabled"/>
 				</div>
 			</div>
-			<div class="col-md-3 col-sm-3 col-xs-3 colDefined">
+			<div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="line-height: 60px;">
 				<!-- 信息输入组合框 -->
 				<div class="rpInfo_import">
 					<span>患者编号：</span>
 					<input id="patient_usercode" type="text" disabled="disabled"/>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined" style="line-height: 60px;">
 				<!-- 信息输入组合框 -->
 				<div class="rpInfo_import">
 					<span>性别：</span>
@@ -95,7 +110,7 @@
 			<div class="col-md-1 col-sm-1 col-xs-1 colDefined"></div>
 		</div>
 		<!-- 整体计划恢复牙位 -->
-		<div class="entiretybg">1.整体计划恢复牙位：</div>
+		<div class="entiretybg gap">1.整体计划恢复牙位：</div>
 		<div class="row map">
 			<div class="col-md-6 col-sm-6 col-xs-6 colDefined">
 				<!-- 牙位图 -->
@@ -120,7 +135,7 @@
 			<div class="col-md-6 col-sm-6 col-xs-6 colDefined"></div>
 		</div>
         
-        <div class="overstriking">2.本次计划：</div>
+        <div class="overstriking gap">2.本次计划：</div>
         <div style="background: #f5f5f5;">
         <!-- 本次计划 -->
 		<div class="row" style="margin:0 10px;">
@@ -388,7 +403,7 @@
 			</div>
 		</div>
         </div>
-        <div class="overstriking">最终修复：</div>
+        <div class="overstriking gap">最终修复：</div>
 		<div class="row" style="background: #f5f5f5;padding:0 16px;">
 <!-- 			<div class="col-md-12 col-sm-12 col-xs-12 colDefined">
 				
@@ -396,7 +411,7 @@
 		
 		<!-- 牙位图加多选框 -->
 		<div class="row">
-			<div class="col-md-12 col-sm-12 col-xs-12 colDefined" style="margin-bottom: 5px;">
+			<div class="col-md-12 col-sm-12 col-xs-12 colDefined" style="margin: 14px 7px;">
 				<!-- 牙位图 -->
 				<div class="zl_toothMapdiv">
 				<div class="col-md-12 col-sm-12 col-xs-12 colDefined" style="width:100%;padding:0px;">
@@ -526,36 +541,37 @@
 					<input id="servicetime" type="text" class="consent_time signature_time"/>
 				</div>
 			</div> -->
-			<div class="col-md-4 col-sm-4 col-xs-4 colDefined">
+			<div class="col-md-12 col-sm-12 col-xs-12 colDefined" style="margin-top: 13px;">
 				<div class="zl_signature">
 					<span id="doctorSignature" style="display: inline;">手术医生：</span>
-					<img id="img" style="display: inline-block;width: 100px;height: 30px;"/>
-					<input id="operationdoctortime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期" style="width:35%;"/>
+					<img id="img" style="display: inline-block;width: 12%;height: 30px;"/>
+					<input id="operationdoctortime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期" style="width:12%;"/>
 				</div>
 			</div>
-			 <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
+			 <div class="col-md-12 col-sm-12 col-xs-12 colDefined">
 				<div class="zl_signature">
 					<span id="repairDoctorSignature" style="display: inline;">修复医生：</span>
-					<img id="repairImg" style="display: inline-block;width: 100px;height: 30px;"/>
-					<input id="doctortime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期" style="width:35%;"/>
+					<img id="repairImg" style="display: inline-block;width: 12%;height: 30px;"/>
+					<input id="doctortime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期" style="width:12%;"/>
 				</div>
 			</div> 
-			<div class="col-md-4 col-sm-4 col-xs-4 colDefined">
+			<div class="col-md-12 col-sm-12 col-xs-12 colDefined">
 				<div class="zl_signature">
 					<span id="patientSignature" style="display: inline;">患者签名：</span>
-					<img id="patientimg" style="display: inline-block;width: 100px;height: 30px;"/>
-					<input id="patienttime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期" style="width:35%;"/>
+					<img id="patientimg" style="display: inline-block;width: 12%;height: 30px;"/>
+					<input id="patienttime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期" style="width:12%;"/>
 				</div>
 		</div>
 	</div>
-	
+		<canvas></canvas>
+	<!--endprint-->
 	<!-- 按钮 -->
 	<div class="btns">
 		<button id="consent_saveBtn" onclick="save()">保存</button>
 		<button id="consent_updateBtn" style="display: none;" class="consent_updateBtn hidden" onclick="update()">修改表单</button>
 		<button id="print_Btn" onclick="myPreviewAll()">打印本页内容</button>
 	</div>
-	
+
 </body>
 
 <script language="javascript"  src="<%=contextPath%>/static/js/kqdsFront/LodopFuncs.js"></script>
@@ -1352,6 +1368,18 @@
 		    $("#bottomBarDdiv").append(menubutton1);
 		}
 		
+		function doPrint() {
+		    bdhtml=window.document.body.innerHTML;
+		    sprnstr="<!--startprint-->";
+		    eprnstr="<!--endprint-->";
+		    prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);
+		    prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
+		    var htmlStyle="<style>#repairDoctorSignature{display: inline-block;}#repairImg{width:80px !important;}#img{width:80px !important;}#operationdoctortime{display: inline-block;}button{display:none;}.distance{margin-top: 10px !important;}#repair_continer .rp_toothGroup>ul>li{margin-left: 3%;}*{font-size: 12px;line-height: 16px;}#repair_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.lodopPrintborder{border-right: 2px solid black !important;}.patient{padding:0!important;margin:0!important;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}#logoImg{text-align:left!important;width:27%!important;left:0%!important;top:17px!important;}#requirerestor{height:40px!important;}</style>";
+		    window.document.body.innerHTML=prnhtml+htmlStyle;
+		    window.print();  //打印
+		    document.body.innerHTML=bdhtml; //恢复页面
+		}
+		
 		function myPreviewAll(){
 			if(doctorstatus&&signature==""){
 				   $("#img").css("display","none");
@@ -1362,12 +1390,13 @@
 			if(patientstatus&&patientsignature==""){
 				   $("#patientimg").css("display","none");
 			}
-			LODOP=getLodop();  
+			doPrint();
+			/* LODOP=getLodop();  
 			LODOP.PRINT_INIT("打印控件功能演示_Lodop功能_完整全页");
 			var htmlStyle="<style>#repairDoctorSignature{display: inline-block;}#repairImg{width:80px !important;}#img{width:80px !important;}#operationdoctortime{display: inline-block;}button{display:none;}.distance{margin-top: 10px !important;}#repair_continer .rp_toothGroup>ul>li{margin-left: 3%;}*{font-size: 12px;line-height: 16px;}#repair_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.lodopPrintborder{border-right: 2px solid black !important;}.patient{padding:0!important;margin:0!important;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}#logoImg{text-align:left!important;width:17%!important;left:0%!important;top:17px!important;}#requirerestor{height:40px!important;}</style>";
 			var html="<!DOCTYPE html>"+document.getElementsByTagName("html")[0].innerHTML+htmlStyle;
 			LODOP.ADD_PRINT_HTM(0,0,"100%","100%",html);
-			LODOP.PREVIEW();	
+			LODOP.PREVIEW(); */	
 		};
 
 </script>
