@@ -116,7 +116,7 @@
 
     .btns button {
         font-size: 16px;
-        line-height: 34px;
+        line-height: 30px;
         background-color: #00A6C0;
         font-weight: normal;
         color: white;
@@ -155,7 +155,8 @@
     #content {
         font-weight: bold;
         margin-bottom: 20px;
-        padding-top: 10px;
+        width: 100%;
+        padding: 0 20px;
     }
 
     /* 输入框 */
@@ -263,6 +264,8 @@
         width: 100%;
         color: #00a6c0;
         border-bottom: 1px solid black;
+        font-size: 16px;
+        font-weight: bold;
     }
 
     /* 	分隔线 */
@@ -335,6 +338,18 @@
     .input {
         color: #00a6c0;
     }
+    .scheme{
+        width: 100%;
+        overflow: hidden;
+    }
+    .blueprint{
+        float: left;
+    }
+    .itembook{
+        float:left;
+        width:73%;
+        position: relative;
+    }
 
     ul li {
         float: left;
@@ -379,31 +394,31 @@
         padding:7px 0;
     }
      	#logoImg{
-	    width: 13%;
-	    margin: 10px 0;
+	    width: 15%;
+	    margin: 15px 0;
 	}
 	.scheme{
 		border-bottom: 1px solid #b3b3b3;
 		height: 134px;
 	}
 	.before{
-		height:477px;
+		height:467px;
 	}
 	.before-preoperative{
 		float: left;
 		border-right: 1px solid #b3b3b3;
 		width: 20%;
-		height:94%;
+		height:100%;
 	}
     @page{
         size:auto;
-        margin: 0mm auto;
+        margin: 30px auto;
     }
 </style>
 
 <body>
 <!--startprint-->
-    <div id="content" style="width: 1000px;margin: 0 auto;">
+    <div id="content">
     <img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
      <i class="line-logo"></i>
         <h2 class="bigtitle">基本信息</h2>
@@ -419,7 +434,7 @@
                         <input id="patient_time" type="text" disabled="disabled" class="input" />
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-3 colDefined">
+                <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
                     <div class="rpInfo_import">
                         <span>编号：</span>
                         <font class="alreadyInfo input" id="patient_num" class="input"></font>
@@ -462,14 +477,13 @@
                 <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
                     <div class="rpInfo_import">
                         <span>出生年月：</span>
-                        <input id="patient_date" type="text" disabled="disabled" style="width: 100px;color: #00a6c0;" />
+                        <input id="patient_date" type="text" disabled="disabled"/>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
-                    <!-- 信息输入组合框 -->
                     <div class="rpInfo_import">
                         <span>联系电话：</span>
                         <input id="patient_phone" type="text" disabled="disabled" />
@@ -513,11 +527,11 @@
             <div class="scheme">
 
                 <div class="col-md-12 col-sm-12 col-xs-12 colDefined fangan">
-                    <div class="rpInfo_import" style="width: 100%;overflow: hidden;">
-                        <span style="float:left;">方案1：</font></span>
-                        <div style="float:left;width:73%;position: relative;">
+                    <div class="rpInfo_import schemeitem">
+                        <span class="blueprint">方案1：</font></span>
+                        <div class="itembook">
                             <span id="treatmentparts1" class="textAuto_element treatmentparts" placeholder='有医生自行议填写'
-                                style="font-size: 16px;font-weight: bold;" contenteditable="true"></span>
+                                 contenteditable="true"></span>
                         </div>
 
                         <input name="consultation_opinion" id="consultation_opinionA" value="0" type="radio"
@@ -526,11 +540,11 @@
                 </div>
                 <br>
                 <div class="col-md-12 col-sm-12 col-xs-12 colDefined fangan">
-                    <div class="rpInfo_import" style="width: 100%;overflow: hidden;">
-                        <span style="float:left;">方案2：</font></span>
-                        <div style="float:left;width:73%;position: relative;">
+                    <div class="rpInfo_import schemeitem">
+                        <span class="blueprint">方案2：</font></span>
+                        <div class="itembook">
                             <span id="treatmentparts2" class="textAuto_element treatmentparts" placeholder='有医生自行议填写'
-                                style="font-size: 16px;font-weight: bold;" contenteditable="true"></span>
+                                 contenteditable="true"></span>
                         </div>
                         <input name="consultation_opinion" id="consultation_opinionA" value="1" type="radio"
                             type="radio" />
@@ -538,11 +552,11 @@
                 </div>
                 <br>
                 <div class="col-md-12 col-sm-12 col-xs-12 colDefined fangan">
-                    <div class="rpInfo_import" style="width: 100%;overflow: hidden;">
-                        <span style="float:left;">方案3：</font></span>
-                        <div style="float:left;width:73%;position: relative;">
+                    <div class="rpInfo_import schemeitem">
+                        <span class="blueprint">方案3：</font></span>
+                        <div class="itembook">
                             <span id="treatmentparts3" class="textAuto_element treatmentparts" placeholder='有医生自行议填写'
-                                style="font-size: 16px;font-weight: bold;" contenteditable="true"></span>
+                                contenteditable="true"></span>
                         </div>
                         <input name="consultation_opinion" id="consultation_opinionA" value="2" type="radio"
                             type="radio" />
@@ -1927,7 +1941,7 @@
         </div>
         </div>
         <div class="row">
-            <div class="consent_remark">
+            <div class="consent_remark" style="width: 100%;">
                 <div class="overstriking" style="margin: 0 10px;">备注:</div>
                 <textarea id="requirerestor" rows="" cols="" onblur="TextLengthCheck(this.id,200);"
                     style="border: 1px solid #ddd;margin:0 10px 5px 10px;width: 99%;"></textarea>
@@ -2756,34 +2770,32 @@
 		}
     
     function doPrint() {
+        /*判断打印时选择的临床路径，只展示选择的路径*/
         if($("#renovate:checked").val() == undefined && $("#growFull:checked").val() == undefined && $("#implantRepair:checked").val() == undefined){
             $(".route").css('display','none');
         }
+        $(".route").css('height','325px');
         if($("#implantRepair:checked").val() != undefined){
             $(".article_three").css('display','none');
             $(".article_two").css('display','none');
-            $(".route").css('height','325px');
         }else if($("#growFull:checked").val() != undefined){
             $(".article_one").css('display','none');
             $(".article_three").css('display','none');
-            $(".route").css('height','325px');
         }else if($("#renovate:checked").val() != undefined){
             $(".article_one").css('display','none');
             $(".article_two").css('display','none');
-            $(".route").css('height','325px');
         }
-
-
-
+        $(".btns").css('display','none');
 	    bdhtml=window.document.body.innerHTML;   
 	    sprnstr="<!--startprint-->";   
 	    eprnstr="<!--endprint-->";   
 	    prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);   
 	    prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));   
-	    var htmlStyle="<style>.before-preoperative{height:100%;}.before{height:450px;}.scheme{height:87px;}button{display:none;}textarea{height:50px!important;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}#diagnosis_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.inputheight2{border: 1px solid transparent!important;}#consent_signature{width:100%!important;}	.consent_updateBtn{display:none!important;}.btns{display:none;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;top:17px!important;}</style>";
-	    window.document.body.innerHTML=prnhtml+htmlStyle;  
-	    window.print();  //打印
+	    var htmlStyle="<style>#logoImg{widht:20%;}.before-preoperative{height:100%;}.before{height:450px;}.scheme{height:87px;}button{display:none;}textarea{height:50px!important;}span{font-size: 14px!important;}*{font-size: 12px;line-height: 16px;}#diagnosis_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.inputheight2{border: 1px solid transparent!important;}#consent_signature{width:100%!important;}.consent_updateBtn{display:none!important;}</style>";
+	    window.document.body.innerHTML=prnhtml+htmlStyle;
 	    document.body.innerHTML=bdhtml; //恢复页面
+        window.print();
+        window.location.reload()
 	} 
     
     //打印方法

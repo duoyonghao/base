@@ -548,6 +548,7 @@ public class   KsllColorServiceImpl implements IKsllColorService {
 							if(list1.get(i).getInt("innum")>=outNum){
 								//存入outNum数量
 								money = addOut(person, menzhen, dp, detail, outNum, list1, money, i);
+								break;
 							}else{
 								//存入全部
 								money = addOut(person, menzhen, dp, detail, list1.get(i).getInt("innum"), list1, money, i);

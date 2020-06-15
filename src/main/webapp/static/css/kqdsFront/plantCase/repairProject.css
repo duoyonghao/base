@@ -48,7 +48,7 @@
 }
 /* 栅格布局自定义样式 */
 #repair_continer>.row>.colDefined{
-    height:50px; 
+    height:65px;
 	float:left;
 	display:flex;
 	flex-direction: row;
@@ -225,7 +225,7 @@
 /* 备注输入框 */
 #repair_continer .consent_remark>textarea{
 	width: 98%;
-   	height: 60px;
+   	height: 80px;
    	float: left;
    	font-size: 16px;
    	line-height:28px;

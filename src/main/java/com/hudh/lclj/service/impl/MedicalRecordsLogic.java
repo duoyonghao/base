@@ -12,6 +12,7 @@ package com.hudh.lclj.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.hudh.lclj.entity.LcljVerification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -171,4 +172,39 @@ public class MedicalRecordsLogic {
 		dao.save(TableNameUtil.HUDH_Acography+".insert", dp);
 	}
 
+	/**
+	  * @Title: findVerification
+	  * @Description: [id](这里用一句话描述这个方法的作用)
+	  * @author admin
+	  * @param:  * @param id
+	  * @return: void
+	  * @dateTime: 2020/6/12 17:18
+	  */
+    public List<JSONObject> findVerification(String id) throws Exception {
+    	return (List<JSONObject>) dao.findForList(TableNameUtil.HUDH_LCLJ_Verification+".selectVerificationByCode", id);
+    }
+
+    /**
+      * @Title: updateVerification
+      * @Description: [dp](这里用一句话描述这个方法的作用)
+      * @author admin
+      * @param:  * @param dp
+      * @return: void
+      * @dateTime: 2020/6/12 17:24
+      */
+	public void updateVerification(LcljVerification dp) throws Exception {
+		dao.update(TableNameUtil.HUDH_LCLJ_Verification+".updateByPrimaryKey", dp);
+	}
+
+	/**
+	  * @Title: SaveVerification
+	  * @Description: [dp](这里用一句话描述这个方法的作用)
+	  * @author admin
+	  * @param:  * @param dp
+	  * @return: void
+	  * @dateTime: 2020/6/12 17:24
+	  */
+	public void SaveVerification(LcljVerification dp) throws Exception {
+		dao.save(TableNameUtil.HUDH_LCLJ_Verification+".insert",dp);
+	}
 }

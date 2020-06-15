@@ -78,6 +78,7 @@ public class TableNameUtil {
 	public static String HUDH_SpecialityCheck = "HUDH_SpecialityCheck";
 	public static String HUDH_operationNote = "HUDH_operationNote";
 	public static String HUDH_Acography = "HUDH_Acography";
+	public static String HUDH_LCLJ_Verification = "HUDH_LCLJ_Verification";
 
 	// KQDS_HZLY_TYPE
 	public static String KQDS_IMAGE_DATA = "KQDS_IMAGE_DATA";
