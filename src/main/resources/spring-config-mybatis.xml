@@ -44,11 +44,7 @@
 
 		<!-- 配置监控统计拦截的filters -->
 		<property name="filters" value="${db.jdbc.filters}" />
-		
-		<!-- 开启druid的超时回收 -->
-		<property name="removeAbandoned" value="${db.jdbc.removeAbandoned}"/>
-		<property name="removeAbandonedTimeout" value="${db.jdbc.removeAbandonedTimeout}"/>
-		<property name="logAbandoned" value="${db.jdbc.logAbandoned}"/>
+
 	</bean>
 	
 	<!-- 数据源 开票系统-->

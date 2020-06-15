@@ -29,9 +29,6 @@
 <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/plugins/select/bootstrap-select.js"></script>
 </head>
 <style id="styleA" type="text/css">
-	textarea {
-    	min-height: 40px !important;
-    }
 	*{
 		margin: 0px; 
 		padding: 0px;
@@ -144,26 +141,24 @@
 	}
 	/* 备注 */
 	#content #consent_remark{
-		position: relative;
 		width:100%;
-		height: 90px;
+		height: 140px;
     	background-color: #ddd;
     	margin: 5px 0px;
 	}
 	/* 备注 */
 	#content #consent_remark>span{
-		position: absolute;
 		display: block;
-    	/* width: 7%;
-		float: left; */
-		margin-left: 3%;
+    	width: 7%;
+		float: left;
+		margin-left: 2%;
 /*     	margin: 10px 0px 0px 30px; */
-     	/* margin-top:1%;  */
+     	margin-top:1%; 
 	}
 	/* 备注输入框 */
 	#content #consent_remark>textarea{
 		width: 95%;
-    	height: 60%;
+    	height: 40%;
     	float: left;
     	background-color: transparent;
 /*     	border:0px; */
@@ -176,11 +171,11 @@
 	 	overflow: hidden;
 /* 	 	height: 120px; */
 /* 	 	margin-top: 10px; */
-	 	/* margin-bottom: 20px; */
+	 	margin-bottom: 20px;
 	}
 	#content #consent_signature>.signature_time{
 		width:40%;
-		/* margin-left:60%; */
+		margin-left:60%;
 /* 		height:100%; */
 /* 		float:left; */
 		position: relative;
@@ -388,27 +383,27 @@
 		</div>
 		<!-- 备注 -->
 		<div id="consent_remark" style="margin-top:1%;">
-			<span>备注:</span>
+			<span>备注:</span><br/>
 			<textarea id="remarks" class="height" rows="3" cols="60" onblur="TextLengthCheck(this.id,200);" style="border: 1px solid #7e7b7b;"></textarea>
 		</div>
-		<div class="consent_text" style="font-weight: bold;">
-			<p class="font"><i class="colorRed">*</i>以上情况已知悉并确认签字。</p>
+		<div class="consent_text" style="font-weight: bold;margin-top:2%;">
+			<p style="margin-left: 60%;" class="font"><i class="colorRed">*</i>以上情况已知悉并确认签字。</p>
 		</div>
 		<!-- 手术签名 -->
 		<div id="consent_signature">
 			<!-- 患者签名 -->
-			<div class="signature_time" style="margin-top: 1%;float: left;">
+			<div class="signature_time" style="margin-top: 1%;">
 				<div class="signature_box">
-					<span id="patientSignature">患者签名:</span>
-					<img id="patientimg" style="width:156px;height:auto;"/>
+					<span>患者签名:</span>
+					<div id="PatientSignature"></div>
 				</div>
 				<input id="patienttime" type="text" class="consent_time inputheight inputheight2" readonly="readonly" placeholder="请选择日期"/>
 			</div>	
 			<!-- 医生签名 -->
-			<div class="signature_time" style="margin-top: 1%;float:right;">
+			<div class="signature_time" style="margin-top: 2%;float:right;">
 				<div class="signature_box">
-					<span id="doctorSignature">医生签名:</span>
-					<img id="img" style="width:156px;height:auto;"/>
+					<span>医生签名:</span>
+					<div id="doctorSignature"></div>
 				</div>
 				<input id="doctortime" type="text" class="consent_time inputheight inputheight2" readonly="readonly" placeholder="请选择日期"/>
 			</div>
@@ -425,10 +420,6 @@
 </body>
 	<script language="javascript"  src="<%=contextPath%>/static/js/kqdsFront/LodopFuncs.js"></script>
 	<script type="text/javascript">
-		var signature="";
-		var patientsignature="";
-		var doctorstatus=true;
-		var patientstatus=true;
 		var contextPath = "<%=contextPath%>";	
 		var id= window.parent.patientObj.id;	//选中患者id
 		var order_number= window.parent.patientObj.orderNumber;//选中患者order_number
@@ -473,6 +464,9 @@
 			document.ondragstart = function() {
 	            return false;
 	        };
+			//获取当前页面所有按钮
+ 			getButtonAllCurPage(menuid);
+			
  			$('.selectpicker').selectpicker({});//初始化种植体系下拉框
 		});
 		
@@ -531,20 +525,6 @@
 					if(result.seqId){
 						$("#consent_saveBtn").css("display","none");//隐藏保存按钮
 						$("#consent_updateBtn").css("display","inline-block");//显示修改按钮
-						signature=result.doctorsignature;
-						if(signature!=""){
-							$("#img").attr('src', signature);
-							doctorstatus=false;
-						}else{
-							$("#img").attr('display', 'none');
-						}
-						patientsignature=result.patientsignature;
-						if(patientsignature!=""){
-							$("#patientimg").attr('src', patientsignature);
-							patientstatus=false;
-						}else{
-							$("#patientimg").attr('display', 'none');
-						}
 						//赋值 
 						for(var key in result){
 							//console.log(key+"-------------"+result[key]);
@@ -592,22 +572,13 @@
 							}
 						}
 						//$("input").attr("disabled","disabled").css("background","transparent");//查看信息的时候禁止在填写
-						
 					} 
-					//获取当前页面所有按钮
-		 			getButtonAllCurPage(menuid);
 				}
 		  });
 		}
 		
 		/* 打印本页面方法 */
 		function myPreviewAll(){
-			if(doctorstatus&&signature==""){
-				$("#img").css("display","none");
-			}
-			if(patientstatus&&patientsignature==""){
-				$("#patientimg").css("display","none");
-			}
 			LODOP=getLodop();  
 			LODOP.PRINT_INIT("人工种植牙知情同意书");
 			//LODOP.SET_PRINT_PAGESIZE(1,0,0,"A4");
@@ -645,9 +616,9 @@
 			var lowRightToothBitTwo = $("#lowrighttoothbittwo").val();
 			var assistOperation = $("#assistoperation").text();//种植辅助手术
 			var remarks = $("#remarks").val();//备注
-			//var PatientSignature = $("#PatientSignature").val();//患者签字
+			var PatientSignature = $("#PatientSignature").val();//患者签字
 			var PatientTime = $("#patienttime").val();//患者签字时间
-			//var doctorSignature = $("#doctorSignature").val();//医生签字
+			var doctorSignature = $("#doctorSignature").val();//医生签字
 			var doctorTime = $("#doctortime").val();//医生签字时间
 			var createtime= new Date().Format("yyyy-MM-dd HH:mm:ss");
 			var fixedDenture = "";
@@ -681,9 +652,9 @@
 	        		 lowRightToothBitTwo :  lowRightToothBitTwo,
 	        		 assistOperation :  assistOperation,
 	        		 remarks :  remarks,
-	        		 //PatientSignature :  PatientSignature,
+	        		 PatientSignature :  PatientSignature,
 	        		 patientTime :  PatientTime,
-	        		 //doctorSignature :  doctorSignature,
+	        		 doctorSignature :  doctorSignature,
 	        		 doctorTime :  doctorTime,
 	        		 createtime :  createtime,
 	        		 fixedDenture : fixedDenture,
@@ -729,9 +700,9 @@
 			var lowRightToothBitTwo = $("#lowrighttoothbittwo").val();
 			var assistOperation = $("#assistoperation").text();//种植辅助手术
 			var remarks = $("#remarks").val();//备注
-			//var PatientSignature = $("#PatientSignature").val();//患者签字
+			var PatientSignature = $("#PatientSignature").val();//患者签字
 			var PatientTime = $("#patienttime").val();//患者签字时间
-			//var doctorSignature = $("#doctorSignature").val();//医生签字
+			var doctorSignature = $("#doctorSignature").val();//医生签字
 			var doctorTime = $("#doctortime").val();//医生签字时间
 			var createtime= new Date().Format("yyyy-MM-dd HH:mm:ss");
 			var fixedDenture = "";
@@ -764,9 +735,9 @@
 	        		 lowRightToothBitTwo :  lowRightToothBitTwo,
 	        		 assistOperation :  assistOperation,
 	        		 remarks :  remarks,
-	        		 //PatientSignature :  PatientSignature,
+	        		 PatientSignature :  PatientSignature,
 	        		 patientTime :  PatientTime,
-	        		 //doctorSignature :  doctorSignature,
+	        		 doctorSignature :  doctorSignature,
 	        		 doctorTime :  doctorTime,
 	        		 createtime :  createtime,
 	        		 fixedDenture : fixedDenture,
@@ -829,7 +800,7 @@
 		function getButtonPower() {
 		    var menubutton1 = "";
 		    for (var i = 0; i < listbutton.length; i++) {
-		        if (listbutton[i].qxName == "zsbs_xgbd"&&doctorstatus&&patientstatus) {
+		        if (listbutton[i].qxName == "zsbs_xgbd") {
 		           $("#consent_updateBtn").removeClass("hidden");
 		        }
 		    }

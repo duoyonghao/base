@@ -104,7 +104,7 @@ label{
 }
 
 #diagnosis_continer .rpInfo_import>input{
-	width:47%;
+	width:30%;
 	/* background-color: #ddd; */
 	border:0px;
 	font-weight: bold;
@@ -114,6 +114,7 @@ label{
 	width:100%;
 	font-size: 26px;
 	line-height: 26px;
+  	margin: 70px auto 0;
   	letter-spacing: 1px;
   	font-weight: bold;
     border-bottom: 2px solid #776c6c; 

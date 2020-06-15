@@ -53,9 +53,6 @@
     width: 50%;
 
 	}
-	#logoImg{
-	    width: 10%;
-	}
 </style>
 </head>
 <body>
@@ -64,7 +61,7 @@
 		<!-- 标题 -->
 		<div class="row">
 			<div>
-				<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
+				<!-- <div class="big_title"><span class="bigtitle">检查及诊断</span></div> -->
 				<h2 class="bigtitle" style="border-bottom: 2px solid #776c6c;padding-bottom: 15px;">检查及诊断</h2>
 			</div>
 			
@@ -76,13 +73,6 @@
 				<div class="rpInfo_import">
 					<span style="font-weight: 600;">患者姓名：</span>
 					<input id="patient_name" type="text" disabled="disabled" style=" width:34%;color: #00a6c0;"/>
-				</div>
-			</div>
-			<div class="col-md-3 col-sm-3 col-xs-3 colDefined">
-				<!-- 信息输入组合框 -->
-				<div class="rpInfo_import">
-					<span style="font-weight: 600;">编号：</span>
-					<input id="patient_usercode" type="text" disabled="disabled" style=" width:100px;color: #00a6c0;"/>
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="width:20%">
@@ -723,13 +713,13 @@
 				
 			</div>
 			<div class="zl_optiondiv" style="margin-left: 20px;">
-				<span>其他</span><input id="others" placeholder="" onblur="TextLengthCheck(this.id,30);" style="width: 60%;" type="text"/>
+				<span>其他</span><input id="others" placeholder="" onblur="TextLengthCheck(this.id,10);" style="width: 60%;" type="text"/>
 			</div>
 		</div>
 			<div class="row" style="margin-top: 27px;"> 
 			<div class="col-md-6 col-sm-6 col-xs-6 colDefined">
 			</div>
-			<div class="signature_time" style="width: 50%;margin-left: 50%;position: relative;">
+			<div class="signature_time" style="width: 40%;margin-left: 60%;position: relative;">
 				<div class="zl_signature">
 					<span id="doctorSignature">医生签字：</span>
 					<img id="img" style="width:156px;height:35px;"/>
@@ -784,7 +774,6 @@
 			$("#patient_name").attr("value",window.parent.patientObj.username);
 			$("#patient_sex").attr("value",window.parent.patientObj.sex);
 			$("#patient_age").attr("value",window.parent.patientObj.age);
-			$("#patient_usercode").attr("value",window.parent.patientObj.blcode);
 		    
 			initZzblInfor();
 			// 2019/7/24 lutian 禁止页面拖拽
@@ -796,16 +785,15 @@
 		
 		var userAgent = navigator.userAgent; 
 		if (userAgent.indexOf("iPad") > -1){
-	        $(".zhonglei").css('width', '22%');
-	        $(".yijian").css('width','15%');
-	        $(".shoushu").css('width','15%');
-	        $(".wd").css('width','18%');
-	        $(".xindian").css('width','24%');
-	        $(".quankou").css('width','20%');
-	        $(".xiufu").css('width','14%');
-	        $(".yuanyin").css('width','16%');
-	        $(".yuanyin1").css('width','20%');
-	        $("#print_Btn").css("display","none");  //隐藏打印按钮
+        $(".zhonglei").css('width', '22%');
+        $(".yijian").css('width','15%');
+        $(".shoushu").css('width','15%');
+        $(".wd").css('width','18%');
+        $(".xindian").css('width','24%');
+        $(".quankou").css('width','20%');
+        $(".xiufu").css('width','14%');
+        $(".yuanyin").css('width','16%');
+        $(".yuanyin1").css('width','20%');
 		}
 		
 		
@@ -1437,7 +1425,7 @@
 			   }
 			LODOP=getLodop();  
 			LODOP.PRINT_INIT("检查及诊断");
-			var htmlStyle="<style>button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}.examine_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.consent_updateBtn{display:none!important;}#doctortime{border:none;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;top:17px!important;}</style>";
+			var htmlStyle="<style>button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}.examine_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.consent_updateBtn{display:none!important;}#doctortime{border:none;}</style>";
 			var html="<!DOCTYPE html>"+document.getElementsByTagName("html")[0].innerHTML+htmlStyle;
 			LODOP.ADD_PRINT_HTM(10,10,"100%","100%",html);
 			LODOP.PREVIEW();	

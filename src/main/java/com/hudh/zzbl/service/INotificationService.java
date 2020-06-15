@@ -1,13 +1,13 @@
 package com.hudh.zzbl.service;
 
+import com.hudh.zzbl.entity.Notification;
 import java.util.Map;
 
-import com.hudh.zzbl.entity.Notification;
-
-public interface INotificationService {
-	String saveNotification(Notification notification) throws Exception;
-	
-	Notification findNotificationByLcljId(Map<String,String> map) throws Exception;
-	
-	int updateNotification(Notification notification) throws Exception;
+public abstract interface INotificationService
+{
+  public abstract String saveNotification(Notification paramNotification)
+    throws Exception;
+  
+  public abstract Notification findNotificationByLcljId(Map<String, String> paramMap)
+    throws Exception;
 }

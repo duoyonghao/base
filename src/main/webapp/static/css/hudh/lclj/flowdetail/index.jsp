@@ -201,7 +201,7 @@
 						<li class="rightDownTooth"><span class="num numrg8 ToothBit_checkbox4" name="zzadultdownYa2">8</span><span class="yaIcon rg8"></span></li>
 						<!-- <li><input class="ToothBit_checkbox" type="checkbox" id="rightdown" disabled="disabled" /></li> -->
 					</ul>
-					<span class="showToothMap" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>
+					<span class="showToothMap" onclick="showToothMap(0);" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>
 				</div>
 			</div>			
 			<!--修复-->
@@ -254,7 +254,7 @@
 						<li class="rightDownTooth"><span class="num numrg8 ToothBit_checkbox8" name="zzadultdownYa2">8</span><span class="yaIcon rg8"></span></li>
 						<!-- <li><input class="ToothBit_checkbox" type="checkbox" id="rightdown" disabled="disabled" /></li> -->
 					</ul>
-					<span class="showToothMap" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>
+					<span class="showToothMap" onclick="showToothMap(1);" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>
 				</div>
 			</div>
 			<!-- </div> -->
@@ -437,19 +437,6 @@
 				showVariationInfo(data); 
 			}
 		});
-		
-		//全局监听
-        /* document.addEventListener("click",function(event){
-        	event=event||window.event;
-            var eve=event.target||eve.elementSrc;
-        	if(eve.className=='ask_Previous' || eve.className=='examine_diagnose' || eve.className=='diagnosis_case' || eve.className=='xiufu_test'){
-        	}else{
-        		$("#myiframe").contents().find(".caseContiner").each(function(i,obj){
-        			$(this).css("display","none");
-        		});
-        	}
-        });//所有组件添加点击事件  */
-        
 	});
 	//更改牙位：弹出牙位图
 	function showToothMap(i){

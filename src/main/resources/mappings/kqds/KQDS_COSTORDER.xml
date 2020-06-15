@@ -517,11 +517,11 @@
 	<select id="selectRealQfUserListArr" parameterType="map" resultType="json">
 		select
 		u.usercode,
-		isnull(sum(totalcost),0) as totalcost,
-		isnull(sum(voidmoney),0) as voidmoney,
-		isnull(sum(shouldmoney),0) as shouldmoney,
-		isnull(sum(y2),0) as y2,
-		isnull(sum(actualmoney),0) as actualmoney
+		sum(totalcost) as totalcost,
+		sum(voidmoney) as voidmoney,
+		sum(shouldmoney) as shouldmoney,
+		sum(y2) as y2,
+		sum(actualmoney) as actualmoney
 		from KQDS_UserDocument u
 		LEFT JOIN KQDS_COSTORDER c on u.usercode = c.usercode
 		where 1=1 and (c.cjstatus = '1' or c.status=2)
@@ -648,7 +648,8 @@
 		cost.isprint
 		from KQDS_COSTORDER cost
 		LEFT JOIN KQDS_UserDocument u on cost.usercode = u.UserCode
-		LEFT JOIN KQDS_PAYCOST p on cost.costno =p.costno
+		LEFT JOIN KQDS_PAYCOST p on cost.costno =
+		p.costno
 		LEFT JOIN KQDS_reg r on cost.regno = r.seq_id
 		LEFT JOIN SYS_DICT kcit1 on r.recesort = kcit1.seq_id
 		LEFT JOIN SYS_DICT kcit2 on r.regsort = kcit2.seq_id
@@ -685,7 +686,8 @@
 			or cost.doctor in (${visualstaff})
 			or cost.sfuser in (${visualstaff})
 			or r.createuser in (${visualstaff})
-			or r.askperson in (${visualstaff})
+			or r.askperson in
+			(${visualstaff})
 			or r.doctor in (${visualstaff})
 			or cost.techperson in (${visualstaff})
 			or u.createuser in (${visualstaff})
@@ -721,7 +723,8 @@
 			or cost.doctor in (${visualstaff})
 			or cost.sfuser in (${visualstaff})
 			or r.createuser in (${visualstaff})
-			or r.askperson in (${visualstaff})
+			or r.askperson in
+			(${visualstaff})
 			or r.doctor in (${visualstaff})
 			or cost.techperson in (${visualstaff})
 			or u.createuser in (${visualstaff})
@@ -734,11 +737,11 @@
 	</select>
 	<select id="getTotalNumFields" parameterType="map" resultType="json">
 		select
-		isnull(sum(cost.totalcost),0) as totalcost,
-		isnull(sum(cost.voidmoney),0) as voidmoney,
-		isnull(sum(cost.shouldmoney),0) as shouldmoney,
-		isnull(sum(cost.actualmoney),0) as actualmoney,
-		isnull(sum(cost.y2),0) as y2
+		sum(cost.totalcost) as totalcost,
+		sum(cost.voidmoney) as voidmoney,
+		sum(cost.shouldmoney) as shouldmoney,
+		sum(cost.actualmoney) as actualmoney,
+		sum(cost.y2) as y2
 		from
 		KQDS_COSTORDER cost
 		LEFT JOIN KQDS_UserDocument u on cost.usercode = u.UserCode
@@ -819,6 +822,9 @@
 			or u.pym like '%' + #{searchValue} + '%'
 			)
 		</if>
+<!-- 	<if test="isyjjitem != null and isyjjitem !='' ">
+			and cost.costno not in (select costno from KQDS_COSTORDER_DETAIL where isyjjitem = 1)
+		</if> -->
 		<if test="seq_id != null and seq_id !='' ">
 			and cost.seq_id =#{seq_id}
 		</if>
@@ -853,147 +859,30 @@
 		and cost.organization = #{organization}
 	</select>
 	
-	<select id="getTotalNumFieldsByYjj" parameterType="map" resultType="json">
+		<select id="getTotalNumFieldsByYjj" parameterType="map" resultType="json">
 		SELECT
-			isnull(SUM(payyjj),0) AS paymoney
+			SUM(payyjj) AS paymoney
 		FROM
 			KQDS_COSTORDER_DETAIL
-		where costno in (
-		select
-		DISTINCT cost.costno
-		from KQDS_COSTORDER cost
-		LEFT JOIN KQDS_UserDocument u on cost.usercode = u.UserCode
-		LEFT JOIN KQDS_PAYCOST p on cost.costno = p.costno
-		LEFT JOIN KQDS_reg r on cost.regno = r.seq_id
-		LEFT JOIN KQDS_UserDocument u2 on u2.usercode = u.introducer
-		LEFT JOIN SYS_DEPT dept on cost.organization = dept.dept_code and dept.dept_parent = '0'
-		where 1=1 and (cost.cjstatus = '1' or cost.status=2)
-		<if test="starttime != null and starttime !='' ">
-			and cost.sftime <![CDATA[ >= ]]> #{starttime}
-		</if>
-		<if test="endtime != null and endtime !='' ">
-			and cost.sftime <![CDATA[ <= ]]> #{endtime}
-		</if>
-		<if test="queryinput != null and queryinput !='' ">
-			and (u.usercode like '%' + #{queryinput} + '%'
-			or u.username like '%' + #{queryinput} + '%'
-			or ${p1}
-			or ${p2}
-			or u.pym like '%' + #{queryinput} + '%'
-			)
-		</if>
-		<if test="askperson != null and askperson !='' ">
-			and p.askperson = #{askperson}
-		</if>
-		<if test="doctor != null and doctor !='' ">
-			and (cost.doctor =#{doctor} or cost.doctor in (select d.doctor from KQDS_COSTORDER_DETAIL d where d.costno = cost.costno ))
-		</if>
-		<if test="regdept != null and regdept !='' ">
-			and r.regdept =#{regdept}
-		</if>
-		<if test="nurse != null and nurse !='' ">
-			and ( cost.nurse =#{nurse} or cost.techperson =#{nurse})
-		</if>
-		<if test="createuser != null and createuser !='' ">
-			and u.createuser =#{createuser}
-		</if>
-		<if test="devchannel != null and devchannel !='' ">
-			and u.devchannel =#{devchannel}
-		</if>
-		<if test="nexttype != null and nexttype !='' ">
-			and u.nexttype =#{nexttype}
-		</if>
-		<if test="recesort != null and recesort !='' ">
-			and r.recesort =#{recesort}
-		</if>
-		<if test="regsort != null and regsort !='' ">
-			and r.regsort =#{regsort}
-		</if>
-		<if test="remark != null and remark !='' ">
-			and r.remark =like '%' + #{remark} + '%'
-		</if>
-		<if test="searchValue != null and searchValue !='' ">
-			and (u.usercode like '%' + #{searchValue} + '%'
-			or u.username like '%' + #{searchValue} + '%'
-			or ${p1}
-			or ${p2}
-			or u.pym like '%' + #{searchValue} + '%'
-			)
-		</if>
-		<if test="seq_id != null and seq_id !='' ">
-			and cost.seq_id =#{seq_id}
-		</if>
-		<if test="usercode != null and usercode !='' ">
-			and cost.usercode =#{usercode}
-		</if>
-		<if test="istk != null and istk !='' ">
-			${istk}
-		</if>
-		<if test="visualstaff != null and visualstaff !='' ">
-			and (
-			cost.createuser in (${visualstaff})
-			or cost.doctor in (${visualstaff})
-			or cost.doctor in (select d.doctor from KQDS_COSTORDER_DETAIL d where d.costno = cost.costno
-			)
-			or cost.sfuser in (${visualstaff})
-			or r.createuser in (${visualstaff})
-			or r.askperson in (${visualstaff})
-			or u.createuser in (${visualstaff})
-			or p.createuser in (${visualstaff})
-			)
-		</if>
-		<if test="regno != null and regno !='' ">
-			and cost.regno =#{regno}
-		</if>
-		<if test="status != null and status !='' ">
-			and cost.status =#{status}
-		</if>
-		<if test="cjStatus != null and cjStatus !='' ">
-			and cost.cjStatus =#{cjStatus}
-		</if>
-		and cost.organization = #{organization}
-		)
-	</select>
-	<select id="getTotalNumFieldsByYjjchongzhi" parameterType="map" resultType="json">
-		SELECT
-			isnull(SUM(paymoney),0) as paymoney
-		FROM
-			KQDS_COSTORDER_DETAIL
-		where 
-		isyjjitem=1 and
+		where
 		costno in (
 		select
 		DISTINCT cost.costno
-		from KQDS_COSTORDER cost
+		from
+		KQDS_COSTORDER cost
 		LEFT JOIN KQDS_UserDocument u on cost.usercode = u.UserCode
 		LEFT JOIN KQDS_PAYCOST p on cost.costno = p.costno
 		LEFT JOIN KQDS_reg r on cost.regno = r.seq_id
-		LEFT JOIN SYS_DICT kcit1 on r.recesort = kcit1.seq_id
-		LEFT JOIN SYS_DICT kcit2 on r.regsort = kcit2.seq_id
-		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = p.askperson
-		LEFT JOIN SYS_DEPT dept1 on r.regdept = dept1.seq_id
-		LEFT JOIN SYS_PERSON per2 on per2.SEQ_ID = p.doctor
-		LEFT JOIN SYS_PERSON per3 on per3.SEQ_ID = p.nurse
-		LEFT JOIN SYS_PERSON per11 on per11.SEQ_ID =p.techperson
-		LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID = cost.createuser
-		LEFT JOIN SYS_PERSON per5 on per5.SEQ_ID = u.createuser
-		LEFT JOIN SYS_PERSON per6 on per6.SEQ_ID =u.developer
-		LEFT JOIN SYS_PERSON per7 on per7.SEQ_ID = u.guider
-		LEFT JOIN SYS_PERSON per8 on per8.SEQ_ID = cost.sfuser
-		LEFT JOIN SYS_PERSON per9 on per9.SEQ_ID = r.createuser
-		LEFT JOIN SYS_PERSON per10 on per10.SEQ_ID = r.receiveno
-		LEFT JOIN SYS_PERSON per12 on per12.SEQ_ID = u.askperson
-		LEFT JOIN SYS_PERSON per13 on per13.SEQ_ID = r.doctor
 		LEFT JOIN KQDS_UserDocument u2 on u2.usercode = u.introducer
-		LEFT JOIN SYS_DICT kcit3 on u.devchannel = kcit3.seq_id
-		LEFT JOIN SYS_DICT hzly on u.nexttype = hzly.seq_id
 		LEFT JOIN SYS_DEPT dept on cost.organization = dept.dept_code and dept.dept_parent = '0'
 		where 1=1 and (cost.cjstatus = '1' or cost.status=2)
 		<if test="starttime != null and starttime !='' ">
-			and cost.sftime <![CDATA[ >= ]]> #{starttime}
+			and cost.sftime <![CDATA[ >= ]]>
+			#{starttime}
 		</if>
 		<if test="endtime != null and endtime !='' ">
-			and cost.sftime <![CDATA[ <= ]]> #{endtime}
+			and cost.sftime <![CDATA[ <= ]]>
+			#{endtime}
 		</if>
 		<if test="queryinput != null and queryinput !='' ">
 			and (u.usercode like '%' + #{queryinput} + '%'
@@ -1041,6 +930,9 @@
 			or u.pym like '%' + #{searchValue} + '%'
 			)
 		</if>
+		<!-- <if test="isyjjitem != null and isyjjitem !='' ">
+			and cost.costno not in (select costno from KQDS_COSTORDER_DETAIL where isyjjitem = 1)
+		</if> -->
 		<if test="seq_id != null and seq_id !='' ">
 			and cost.seq_id =#{seq_id}
 		</if>
@@ -1084,7 +976,8 @@
 		kcit3.dict_name as devchannel,
 		per1.USER_NAME as askperson,
 		per12.USER_NAME as faskperson,
-		per2.USER_NAME as doctorname,
+		per2.USER_NAME as
+		doctorname,
 		cost.doctor,
 		per3.USER_NAME as nurse,
 		per4.USER_NAME as createuser,
@@ -1096,7 +989,8 @@
 		per10.USER_NAME as receiveno,
 		per11.USER_NAME as techperson,
 		per13.user_name as regdoctorname,
-		dept.DEPT_NAME as organizationname,
+		dept.DEPT_NAME as
+		organizationname,
 		u.phonenumber1,
 		u.costLevel,
 		u.blcode,
@@ -1127,26 +1021,36 @@
 		from KQDS_COSTORDER cost
 		LEFT JOIN KQDS_UserDocument u on cost.usercode = u.UserCode
 		LEFT JOIN KQDS_PAYCOST p on cost.costno = p.costno
-		LEFT JOIN KQDS_reg r on cost.regno = r.seq_id
+		LEFT
+		JOIN KQDS_reg r on cost.regno = r.seq_id
 		LEFT JOIN SYS_DICT kcit1 on r.recesort = kcit1.seq_id
 		LEFT JOIN SYS_DICT kcit2 on r.regsort = kcit2.seq_id
-		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = p.askperson
+		LEFT JOIN SYS_PERSON per1 on
+		per1.SEQ_ID = p.askperson
 		LEFT JOIN SYS_DEPT dept1 on r.regdept = dept1.seq_id
 		LEFT JOIN SYS_PERSON per2 on per2.SEQ_ID = p.doctor
-		LEFT JOIN SYS_PERSON per3 on per3.SEQ_ID =p.nurse
+		LEFT JOIN SYS_PERSON per3 on per3.SEQ_ID =
+		p.nurse
 		LEFT JOIN SYS_PERSON per11 on per11.SEQ_ID = p.techperson
 		LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID = cost.createuser
 		LEFT JOIN SYS_PERSON per5 on per5.SEQ_ID = u.createuser
-		LEFT JOIN SYS_PERSON per6 on per6.SEQ_ID = u.developer
+		LEFT
+		JOIN SYS_PERSON per6 on per6.SEQ_ID = u.developer
 		LEFT JOIN SYS_PERSON per7 on per7.SEQ_ID = u.guider
 		LEFT JOIN SYS_PERSON per8 on per8.SEQ_ID = cost.sfuser
-		LEFT JOIN SYS_PERSON per9 on per9.SEQ_ID = r.createuser
+		LEFT JOIN
+		SYS_PERSON per9
+		on per9.SEQ_ID = r.createuser
 		LEFT JOIN SYS_PERSON per10 on per10.SEQ_ID = r.receiveno
 		LEFT JOIN SYS_PERSON per12 on per12.SEQ_ID = u.askperson
-		LEFT JOIN SYS_PERSON per13 on per13.SEQ_ID = r.doctor
+		LEFT JOIN SYS_PERSON
+		per13 on
+		per13.SEQ_ID = r.doctor
 		LEFT JOIN KQDS_UserDocument u2 on u2.usercode = u.introducer
 		LEFT JOIN SYS_DICT kcit3 on u.devchannel = kcit3.seq_id
-		LEFT JOIN SYS_DICT hzly on u.nexttype =hzly.seq_id
+		LEFT JOIN SYS_DICT hzly on
+		u.nexttype =
+		hzly.seq_id
 		LEFT JOIN SYS_DEPT dept on cost.organization = dept.dept_code and dept.dept_parent = '0'
 		where 1=1 and (cost.cjstatus = '1' or cost.status=2)
 		<if test="starttime != null and starttime !='' ">
@@ -1397,7 +1301,7 @@
 		cost.cjstatus,
 		cost.isprint,
 		cost.username,cost.isback,cost.backremark,cost.isreg,cost.isdrugs,cost.issend, <!-- 查询结果集包含isdeugs、issend -->
-		(select isnull(sum(d.payyjj),0) AS payyjj from KQDS_COSTORDER_DETAIL d where d.costno=cost.costno group by d.costno)  as payyjj
+		(select sum(d.payyjj) from KQDS_COSTORDER_DETAIL d where d.costno=cost.costno group by d.costno)  as payyjj
 		from KQDS_COSTORDER cost
 		left join kqds_userdocument u on u.usercode = cost.usercode
 		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = cost.nurse
@@ -1517,17 +1421,20 @@
 		per4.user_name as askpersonname,
 		per5.user_name as regdoctorname,
 		per6.user_name as receiveno,
-		per7.user_name as createusername,
+		per7.user_name
+		as createusername,
 		c.seq_id,
 		u.familyship,
 		u.iscreateLclj
 		from KQDS_COSTORDER c
 		LEFT JOIN KQDS_REG reg on reg.SEQ_ID = c.regno
 		LEFT JOIN KQDS_UserDocument u on c.usercode = u.UserCode
-		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = c.nurse
+		LEFT JOIN SYS_PERSON per1 on
+		per1.SEQ_ID = c.nurse
 		LEFT JOIN SYS_PERSON per2 on per2.SEQ_ID = c.doctor
 		LEFT JOIN SYS_PERSON per3 on per3.SEQ_ID = c.techperson
-		LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID =reg.askperson
+		LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID =
+		reg.askperson
 		LEFT JOIN SYS_PERSON per5 on per5.SEQ_ID = reg.doctor
 		LEFT JOIN SYS_PERSON per6 on per6.SEQ_ID = reg.receiveno
 		LEFT JOIN SYS_PERSON per7 on per7.SEQ_ID = c.createuser
@@ -1588,9 +1495,10 @@
 		<if test="visualstaff != null and visualstaff !='' ">
 			and (
 			reg.doctor in (${visualstaff})
-			or EXISTS (select d.doctor from KQDS_COSTORDER_DETAIL d where c.doctor=d.doctor and d.costno = c.costno )
+			or c.doctor in (select d.doctor from KQDS_COSTORDER_DETAIL d where d.costno = c.costno )
 			or reg.askperson in (${visualstaff})
-			or reg.createuser in (${visualstaff})
+			or
+			reg.createuser in (${visualstaff})
 			or c.doctor in (${visualstaff})
 			or c.nurse in (${visualstaff})
 			or c.techperson in (${visualstaff})
@@ -1638,11 +1546,11 @@
 		from SYS_DICT tcode
 		LEFT JOIN (
 		select
-		isnull(sum(detail.paymoney),0) as ys,
-		isnull(sum(detail.y2),0) as y2,
-		isnull(sum(detail.payother2),0) as zs,
-		isnull(sum(detail.payintegral),0) as integral,
-		isnull(sum(detail.paydjq),0) as djq,basetype
+		sum(detail.paymoney)as ys,
+		sum(detail.y2) as y2,
+		sum(detail.payother2) as zs,
+		sum(detail.payintegral) as integral,
+		sum(detail.paydjq) as djq,basetype
 		from KQDS_CostOrder_Detail detail
 		LEFT JOIN KQDS_TREATITEM
 		item on detail.itemno = item.treatitemno
@@ -1667,11 +1575,11 @@
 	</select>
 	<select id="getYysr" parameterType="map" resultType="json">
 		select
-		isnull(sum(detail.paymoney),0) as skze,
-		isnull(sum(detail.y2),0) as y2,
-		isnull(sum(detail.payother2),0) as zs,
-		isnull(sum(detail.payintegral),0) as integral,
-		isnull(sum(detail.paydjq),0) as djq
+		sum(detail.paymoney)as skze,
+		sum(detail.y2) as y2,
+		sum(detail.payother2) as zs,
+		sum(detail.payintegral) as integral,
+		sum(detail.paydjq) as djq
 		from KQDS_COSTORDER_DETAIL detail
 		LEFT JOIN KQDS_COSTORDER cost on cost.costno = detail.costno
 		left join KQDS_UserDocument u on u.usercode = detail.usercode
@@ -1696,11 +1604,11 @@
 	</select>
 	<select id="getYysrList" parameterType="map" resultType="json">
 		select detail.doctor,regsort,
-		isnull(sum(detail.paymoney),0) as skze,
-		isnull(sum(detail.y2),0) as y2,
-		isnull(sum(detail.payother2),0) as zs,
-		isnull(sum(detail.payintegral),0) as integral,
-		isnull(sum(detail.paydjq),0) as djq
+		sum(detail.paymoney)as skze,
+		sum(detail.y2) as y2,
+		sum(detail.payother2) as zs,
+		sum(detail.payintegral) as integral,
+		sum(detail.paydjq) as djq
 		from
 		KQDS_COSTORDER_DETAIL detail
 		LEFT JOIN KQDS_COSTORDER cost on cost.costno = detail.costno
@@ -1731,11 +1639,11 @@
 	</select>
 	<select id="getYysr2" parameterType="map" resultType="json">
 		select
-		isnull(sum(detail.paymoney),0) as paymoney,
-		isnull(sum(detail.payyjj) ,0) as yjj,
-		isnull(sum(detail.payother2) ,0) as zs,
-		isnull(sum(detail.payintegral) ,0) as integral,
-		isnull(sum(detail.paydjq) ,0) as djq
+		sum(detail.paymoney)as paymoney,
+		sum(detail.payyjj) as yjj,
+		sum(detail.payother2) as zs,
+		sum(detail.payintegral) as integral,
+		sum(detail.paydjq) as djq
 		from
 		KQDS_COSTORDER_DETAIL detail
 		LEFT JOIN KQDS_COSTORDER cost on cost.costno = detail.costno
@@ -1781,11 +1689,12 @@
 	
 	<select id="getYysrList2" parameterType="map" resultType="json">
 		select u.createuser,devchannel,nexttype,detail.askperson,regsort,
-		isnull(sum(detail.paymoney),0) as paymoney,
-		isnull(sum(detail.payyjj) ,0) as yjj,
-		isnull(sum(detail.payother2) ,0) as zs,
-		isnull(sum(detail.payintegral),0) as integral,
-		isnull(sum(detail.paydjq) ,0) as djq
+		sum(detail.paymoney)as paymoney,
+		sum(detail.payyjj) as yjj,
+		sum(detail.payother2) as zs,
+		sum(detail.payintegral) as
+		integral,
+		sum(detail.paydjq) as djq
 		from KQDS_COSTORDER_DETAIL detail
 		LEFT JOIN KQDS_COSTORDER cost on cost.costno = detail.costno
 		left join KQDS_UserDocument u on u.usercode =
@@ -2423,7 +2332,7 @@
 	</select>
 	<select id="findCostOrderByUserdocumentDay" parameterType="map" resultType="json">
 	SELECT
-	isnull(SUM (a.actualmoney),0) as actualmoney,
+	SUM (a.actualmoney) as actualmoney,
 	a.usercode,
 	a.years,
 	a.months,
@@ -2485,7 +2394,7 @@
 	</select>
 	<select id="findCostOrderByUserdocumentMonth" parameterType="map" resultType="json">
 	SELECT
-	isnull(SUM (a.actualmoney),0) as actualmoney,
+	SUM (a.actualmoney) as actualmoney,
 	a.usercode,
 	a.years,
 	a.months
@@ -2542,7 +2451,7 @@
 	</select>
 	<select id="findCostOrderByUserdocumentYear" parameterType="map" resultType="json">
 	SELECT
-	isnull(SUM (a.actualmoney),0) as actualmoney,
+	SUM (a.actualmoney) as actualmoney,
 	a.usercode,
 	a.years
 	FROM
@@ -2607,7 +2516,7 @@
 	
 	<select id="findCostOrderYjj" parameterType="map" resultType="json">
 		SELECT 
-		isnull(sum(paymoney),0) as paymoney,
+		sum(paymoney) as paymoney,
 		usercode
 		FROM KQDS_COSTORDER_DETAIL
 		WHERE usercode in (${usercodes}) and isyjjitem=1

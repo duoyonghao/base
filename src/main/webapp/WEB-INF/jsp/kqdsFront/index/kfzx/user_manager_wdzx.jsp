@@ -628,10 +628,10 @@ function initTable(nums) {
         cache: false,
         pagination: true,//是否显示分页（*）
         pageSize: 25,
-        pageList : [15, 20, 25],//可以选择每页大小
+        pageList : [15, 20, 25, 50, 100],//可以选择每页大小
         striped: true,
         clickToSelect: false,
-        singleSelect: true,
+        singleSelect: false,
         paginationShowPageGo: true,
         sidePagination: "server",//后端分页 
         onLoadSuccess: function(data) { //加载成功时执行

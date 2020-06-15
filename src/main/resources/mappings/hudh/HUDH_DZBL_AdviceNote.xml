@@ -80,13 +80,6 @@
 		<result column="doctorSignature" jdbcType="VARCHAR" property="doctorSignature" />
 		<result column="doctorTime" jdbcType="VARCHAR" property="doctorTime" />
 		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
-		<result column="hypertensionmedicine" jdbcType="VARCHAR" property="hypertensionmedicine" />
-		<result column="heardieasemedicine" jdbcType="VARCHAR" property="heardieasemedicine" />
-		<result column="diabetesoralmedicine" jdbcType="VARCHAR" property="diabetesoralmedicine" />
-		<result column="diabetesinjectionmedicine" jdbcType="VARCHAR" property="diabetesinjectionmedicine" />
-		<result column="antifreezingmedicine" jdbcType="VARCHAR" property="antifreezingmedicine" />
-		<result column="pharmacymedicine" jdbcType="VARCHAR" property="pharmacymedicine" />
-		<result column="glucocorticoidsmedicine" jdbcType="VARCHAR" property="glucocorticoidsmedicine" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
@@ -97,8 +90,7 @@
 		glucocorticoids,isOtherDiseases,otherDiseases,isDrugAllergy,allergicLength,drugAllergy,isPregnancy,pregnancy,onMedication,habit,smokeTime,
 		smokeNum,
 		drinkTime,drinkScale,odontoprisis,odontoprisisDegree,chewingHabits,Others,LastToothExtractionTime,HaveYouHadDenture,ReasonsImplantDentures,
-		PatientSignature,PatientTime,doctorSignature,doctorTime,createtime,status,hypertensionmedicine,heardieasemedicine,diabetesoralmedicine,diabetesinjectionmedicine,
-		antifreezingmedicine,pharmacymedicine,glucocorticoidsmedicine
+		PatientSignature,PatientTime,doctorSignature,doctorTime,createtime
 	</sql>
 
 	<!-- 保存主诉及既往病史 -->
@@ -111,8 +103,7 @@
 		glucocorticoids,isOtherDiseases,otherDiseases,isDrugAllergy,allergicLength,drugAllergy,isPregnancy,pregnancy,onMedication,habit,smokeTime,
 		smokeNum,
 		drinkTime,drinkScale,odontoprisis,odontoprisisDegree,chewingHabits,Others,LastToothExtractionTime,HaveYouHadDenture,ReasonsImplantDentures,
-		PatientSignature,PatientTime,doctorSignature,doctorTime,createtime,status,hypertensionmedicine,heardieasemedicine,diabetesoralmedicine,diabetesinjectionmedicine,
-		antifreezingmedicine,pharmacymedicine,glucocorticoidsmedicine)
+		PatientSignature,PatientTime,doctorSignature,doctorTime,createtime)
 		values(#{SEQ_ID,jdbcType=VARCHAR},#{LcljNum,jdbcType=VARCHAR},#{LcljId,jdbcType=VARCHAR},#{username,jdbcType=VARCHAR},#{agomphosTime,jdbcType=VARCHAR},#{symptom,jdbcType=VARCHAR},#{plantTime,jdbcType=VARCHAR},
 		#{isHypertension,jdbcType=VARCHAR},#{hypertension,jdbcType=VARCHAR},#{isTakeMedicie,jdbcType=VARCHAR},#{isControl,jdbcType=VARCHAR},#{pressure,jdbcType=VARCHAR},
 		#{IsHearDiease,jdbcType=VARCHAR},#{hearDiease,jdbcType=VARCHAR},#{isPrepareMedication,jdbcType=VARCHAR},#{isDiabetes,jdbcType=VARCHAR},#{diabetes,jdbcType=VARCHAR},
@@ -125,8 +116,7 @@
 		#{otherDiseases,jdbcType=VARCHAR},#{isDrugAllergy,jdbcType=VARCHAR},#{allergicLength,jdbcType=VARCHAR},#{drugAllergy,jdbcType=VARCHAR},#{isPregnancy,jdbcType=VARCHAR},#{pregnancy,jdbcType=VARCHAR},#{onMedication,jdbcType=VARCHAR},
 		#{habit,jdbcType=VARCHAR},#{smokeTime,jdbcType=VARCHAR},#{smokeNum,jdbcType=VARCHAR},#{drinkTime,jdbcType=VARCHAR},#{drinkScale,jdbcType=VARCHAR},#{odontoprisis,jdbcType=VARCHAR},#{odontoprisisDegree,jdbcType=VARCHAR},
 		#{chewingHabits,jdbcType=VARCHAR},#{Others,jdbcType=VARCHAR},#{LastToothExtractionTime,jdbcType=VARCHAR},#{HaveYouHadDenture,jdbcType=VARCHAR},#{ReasonsImplantDentures,jdbcType=VARCHAR},#{PatientSignature,jdbcType=VARCHAR},
-		#{PatientTime,jdbcType=VARCHAR},#{doctorSignature,jdbcType=VARCHAR},#{doctorTime,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{hypertensionmedicine,jdbcType=VARCHAR},#{heardieasemedicine,jdbcType=VARCHAR},
-		#{diabetesoralmedicine,jdbcType=VARCHAR},#{diabetesinjectionmedicine,jdbcType=VARCHAR},#{antifreezingmedicine,jdbcType=VARCHAR},#{pharmacymedicine,jdbcType=VARCHAR},#{glucocorticoidsmedicine,jdbcType=VARCHAR})
+		#{PatientTime,jdbcType=VARCHAR},#{doctorSignature,jdbcType=VARCHAR},#{doctorTime,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR})
 	</insert>
 
 	<!-- 根据id查询主诉及既往病史 -->
@@ -361,28 +351,7 @@
 			doctorTime = #{doctorTime,jdbcType=VARCHAR},
 		</if>
 		<if test="createtime != null">
-			createtime = #{createtime,jdbcType=VARCHAR},
-		</if>
-		<if test="hypertensionmedicine != null">
-			hypertensionmedicine = #{hypertensionmedicine,jdbcType=VARCHAR},
-		</if>
-		<if test="heardieasemedicine != null">
-			heardieasemedicine = #{heardieasemedicine,jdbcType=VARCHAR},
-		</if>
-		<if test="diabetesoralmedicine != null">
-			diabetesoralmedicine = #{diabetesoralmedicine,jdbcType=VARCHAR},
-		</if>
-		<if test="diabetesinjectionmedicine != null">
-			diabetesinjectionmedicine = #{diabetesinjectionmedicine,jdbcType=VARCHAR},
-		</if>
-		<if test="antifreezingmedicine != null">
-			antifreezingmedicine = #{antifreezingmedicine,jdbcType=VARCHAR},
-		</if>
-		<if test="pharmacymedicine != null">
-			pharmacymedicine = #{pharmacymedicine,jdbcType=VARCHAR},
-		</if>
-		<if test="glucocorticoidsmedicine != null">
-			glucocorticoidsmedicine = #{glucocorticoidsmedicine,jdbcType=VARCHAR}
+			createtime = #{createtime,jdbcType=VARCHAR}
 		</if>
 		where SEQ_ID = #{SEQ_ID,jdbcType=VARCHAR}
 	</update>
@@ -391,13 +360,4 @@
 	<delete id="deleteCaseHistoryById" parameterType="String">
 		delete from HUDH_AdviceNote where seq_Id = #{seq_Id,jdbcType=VARCHAR}
 	</delete>
-	
-	<update id="selectedAnamnesisInfor" parameterType="map">
-  		UPDATE HUDH_AdviceNote
-	  	<set>
-	  		status = #{status}
-	  	</set>
-		Where 1=1
-		AND SEQ_ID = #{id}
-    </update>
 </mapper>

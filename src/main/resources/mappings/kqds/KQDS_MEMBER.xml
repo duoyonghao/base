@@ -505,10 +505,10 @@
 		GROUP BY dd.cardno
 	</select>
 	<select id="getMemberListByUserCode" parameterType="java.lang.String" resultType="json">
-		select <include refid="Base_Column_List" /> from KQDS_MEMBER where usercode = #{_parameter}
+		select * from KQDS_MEMBER where usercode = #{_parameter}
 	</select>
 	<select id="getMemberListByMember" parameterType="map" resultType="json">
-		select <include refid="Base_Column_List" /> from KQDS_MEMBER where seq_id != #{seqId} and (memberno = #{memberno} or icno = #{memberno})
+		select * from KQDS_MEMBER where seq_id != #{seqId} and (memberno = #{memberno} or icno = #{memberno})
 	</select>
 
 	<update id="updateCardno" parameterType="map">

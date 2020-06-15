@@ -1,115 +1,70 @@
-/*
- *  
- *
- *  Copyright (C) 2013, SafeNet, Inc. All rights reserved.
- *  Use is subject to license terms.
- */
-
 package Aladdin;
 
-public class HaspTime {
-	private long time[] = { 0 };
-	private int day[] = { 0 };
-	private int month[] = { 0 };
-	private int year[] = { 0 };
-	private int hour[] = { 0 };
-	private int minute[] = { 0 };
-	private int second[] = { 0 };
-	private int status;
-
-	/*
-	 * private native functions
-	 */
-	private static native int DatetimeToHasptime(int day, int month, int year, int hour, int minute, int second, long time[]);
-
-	private static native int HasptimeToDatetime(long time, int day[], int month[], int year[], int hour[], int minute[], int second[]);
-
-	/**
-	 * IA 64 not considered yet
-	 */
-	static {
-		HaspStatus.Init();
-	}
-
-	/**
-	 * HaspTime constructor.
-	 * 
-	 * @param year
-	 *            input year
-	 * @param month
-	 *            input month
-	 * @param day
-	 *            input day
-	 * @param hour
-	 *            input hour
-	 * @param minute
-	 *            input minute
-	 * @param second
-	 *            input second
-	 * 
-	 */
-	public HaspTime(int year, int month, int day, int hour, int minute, int second) {
-		status = DatetimeToHasptime(day, month, year, hour, minute, second, time);
-	}
-
-	public HaspTime(long hasptime) {
-		time[0] = hasptime;
-		status = HasptimeToDatetime(hasptime, day, month, year, hour, minute, second);
-	}
-
-	/**
-	 * Returns the error that occurred in the last function call.
-	 */
-	public int getLastError() {
-		return status;
-	}
-
-	/**
-	 * Returns the HASP Time value in UTC format.
-	 */
-	public long getHaspTime() {
-		return time[0];
-	}
-
-	/**
-	 * Returns the month value of the time.
-	 */
-	public int getMonth() {
-		return month[0];
-	}
-
-	/**
-	 * Returns the year value of the time.
-	 */
-	public int getYear() {
-		return year[0];
-	}
-
-	/**
-	 * Returns the day value of the time.
-	 */
-	public int getDay() {
-		return day[0];
-	}
-
-	/**
-	 * Returns the hour value of the time.
-	 */
-	public int getHour() {
-		return hour[0];
-	}
-
-	/**
-	 * Returns the minute value of the time.
-	 */
-	public int getMinute() {
-		return minute[0];
-	}
-
-	/**
-	 * Returns the second value of the time.
-	 */
-	public int getSecond() {
-		return second[0];
-	}
+public class HaspTime
+{
+  private long[] time = new long[1];
+  private int[] day = new int[1];
+  private int[] month = new int[1];
+  private int[] year = new int[1];
+  private int[] hour = new int[1];
+  private int[] minute = new int[1];
+  private int[] second = new int[1];
+  private int status;
+  
+  static {}
+  
+  private static native int DatetimeToHasptime(int paramInt1, int paramInt2, int paramInt3, int paramInt4, int paramInt5, int paramInt6, long[] paramArrayOfLong);
+  
+  private static native int HasptimeToDatetime(long paramLong, int[] paramArrayOfInt1, int[] paramArrayOfInt2, int[] paramArrayOfInt3, int[] paramArrayOfInt4, int[] paramArrayOfInt5, int[] paramArrayOfInt6);
+  
+  public HaspTime(int year, int month, int day, int hour, int minute, int second)
+  {
+    this.status = DatetimeToHasptime(day, month, year, hour, minute, second, this.time);
+  }
+  
+  public HaspTime(long hasptime)
+  {
+    this.time[0] = hasptime;
+    this.status = HasptimeToDatetime(hasptime, this.day, this.month, this.year, this.hour, this.minute, this.second);
+  }
+  
+  public int getLastError()
+  {
+    return this.status;
+  }
+  
+  public long getHaspTime()
+  {
+    return this.time[0];
+  }
+  
+  public int getMonth()
+  {
+    return this.month[0];
+  }
+  
+  public int getYear()
+  {
+    return this.year[0];
+  }
+  
+  public int getDay()
+  {
+    return this.day[0];
+  }
+  
+  public int getHour()
+  {
+    return this.hour[0];
+  }
+  
+  public int getMinute()
+  {
+    return this.minute[0];
+  }
+  
+  public int getSecond()
+  {
+    return this.second[0];
+  }
 }

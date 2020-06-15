@@ -4,10 +4,10 @@
 	<resultMap id="KsllGoodMap" type="com.hudh.ksll.entity.KsllGoods">
 		<id column="id" jdbcType="VARCHAR" property="id" />
 		<result column="deptpart" jdbcType="VARCHAR" property="deptpart" />
-		<result column="goodscode" jdbcType="VARCHAR" property="goodscode" />
-		<result column="goodsname" jdbcType="VARCHAR" property="goodsname" />
-		<result column="house" jdbcType="VARCHAR" property="house" />
-		<result column="goodsnorms" jdbcType="VARCHAR" property="goodsnorms" />
+		<result column="goodscode" jdbcType="VARCHAR" property="type" />
+		<result column="goodsname" jdbcType="VARCHAR" property="remark" />
+		<result column="house" jdbcType="VARCHAR" property="creator" />
+		<result column="goodsnorms" jdbcType="VARCHAR" property="status" />
 		<result column="goodsunit" jdbcType="VARCHAR" property="createtime" />
 		<result column="nums" jdbcType="INTEGER" property="organization" />
 		<result column="validity" jdbcType="VARCHAR" property="organization" />

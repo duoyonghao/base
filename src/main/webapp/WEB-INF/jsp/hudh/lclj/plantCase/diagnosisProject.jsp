@@ -35,10 +35,6 @@
 		width: 149px;
 	    height: 35px;
 	}
-	#logoImg{
-	    width: 10%;
-	    margin: 40px auto 0;
-	}
 </style>
 </head>
 <body>
@@ -47,7 +43,6 @@
 	<div id="diagnosis_continer" class="container-fluid">
 		<div class="row">
 				<div>
-					<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
 					<h2 class="bigtitle">诊疗方案</h2>
 				</div>
 		</div>
@@ -60,13 +55,6 @@
 				<div class="rpInfo_import">
 					<span>患者姓名：</span>
 					<input id="patient_name" type="text" disabled="disabled"/>
-				</div>
-			</div>
-			<div class="col-md-3 col-sm-3 col-xs-3 colDefined">
-				<!-- 信息输入组合框 -->
-				<div class="rpInfo_import">
-					<span>患者编号：</span>
-					<input id="patient_usercode" type="text" disabled="disabled"/>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
@@ -572,12 +560,12 @@
 	</div>
 	
 	<!-- 手术签名 -->
-	<div id="consent_signature" style="float: right;width:48%;">
+	<div id="consent_signature" style="float: right;">
 	    <div style="margin-bottom: 16px;">
 		   <span style="font-size: 15px;font-weight: bold;"><i style="color:red;">*</i> 以上情况我已知情并签字确认。</span>
 		</div>
 		<!-- 患者签名 -->
-		<div class="signature_time" style="margin-bottom: 17px;">
+		<div class="signature_time">
 			<span id="patientSignature">患者签名:</span>
 			<img id="patientimg"/>
 			<input id="patienttime" type="text" class="consent_time inputheight2" readonly="readonly" placeholder="请选择日期"/>
@@ -637,7 +625,6 @@
 			$("#patient_name").attr("value",window.parent.patientObj.username);
 			$("#patient_sex").attr("value",window.parent.patientObj.sex);
 			$("#patient_age").attr("value",window.parent.patientObj.age);
-			$("#patient_usercode").attr("value",window.parent.patientObj.blcode);
 		  
 			/* for(var key in window.parent.consultSelectPatient){
 				console.log(key+"---得到选中的患者信息---"+window.parent.consultSelectPatient[key]);
@@ -652,10 +639,9 @@
 		
 		var userAgent = navigator.userAgent; 
 		if (userAgent.indexOf("iPad") > -1){
-	        $("#diagnosis_continer .zl_optiondiv").css('width', '150px');
-	        $(".zl_toothMapdiv>.toothExtraction>span").css('left', '110px');
-	        $(".assist").css('width','18%');
-	        $("#print_Btn").css("display","none");  //隐藏打印按钮
+        $("#diagnosis_continer .zl_optiondiv").css('width', '150px');
+        $(".zl_toothMapdiv>.toothExtraction>span").css('left', '110px');
+        $(".assist").css('width','18%');
 		}
 		
 		/* 2019/7/16 lutian input文字长度校验方法   obj：元素id  textNum：限制文字长度 */
@@ -1083,7 +1069,7 @@
 			}
 			LODOP=getLodop();  
 			LODOP.PRINT_INIT("诊疗方案");
-			var htmlStyle="<style>button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}#diagnosis_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.consent_updateBtn{display:none!important;}.consent_time{border:none}#logoImg{text-align:left!important;width:20%!important;left:0%!important;top:17px!important;}</style>";
+			var htmlStyle="<style>button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}#diagnosis_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.consent_updateBtn{display:none!important;}.consent_time{border:none}</style>";
 			var html="<!DOCTYPE html>"+document.getElementsByTagName("html")[0].innerHTML+htmlStyle;
 			LODOP.ADD_PRINT_HTM(10,10,"100%","100%",html);
 			LODOP.PREVIEW();	

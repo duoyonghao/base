@@ -88,7 +88,7 @@
     periodontal_lesion, diagnosis, others,organization, alveloarBoneResorptionLeftUp, alveloarBoneResorptionRightUp, 
     alveloarBoneResorptionLeftDown, alveloarBoneResorptionRightDown, periodontal_lesionLeftUp, periodontal_lesionRightUp,
     periodontal_lesionLeftDown, periodontal_lesionRightDown, doctor_signatory,doctorTime, remark, patientsignature, 
-    doctorsignature, moduloDesign, username, sex, age,status
+    doctorsignature, moduloDesign, username, sex, age
   </sql>
   <select id="findZzblOprationById" resultType="json" parameterType="java.lang.String" >
     select 
@@ -137,7 +137,7 @@
       , alveloarBoneResorptionLeftUp, alveloarBoneResorptionRightUp, 
     alveloarBoneResorptionLeftDown, alveloarBoneResorptionRightDown, periodontal_lesionLeftUp, periodontal_lesionRightUp,
     periodontal_lesionLeftDown, periodontal_lesionRightDown, doctor_signatory,doctorTime
-    , remark, patientsignature, doctorsignature, moduloDesign, username, sex, age,status)
+    , remark, patientsignature, doctorsignature, moduloDesign, username, sex, age)
     values (#{SEQ_ID,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, 
       #{id,jdbcType=VARCHAR}, #{order_number,jdbcType=VARCHAR}, #{physical_assessment,jdbcType=VARCHAR}, 
       #{consultation_opinion,jdbcType=VARCHAR}, #{stomatology_check,jdbcType=VARCHAR}, 
@@ -167,7 +167,7 @@
       #{doctor_signatory,jdbcType=VARCHAR},#{doctorTime,jdbcType=VARCHAR}
       ,#{remark,jdbcType=VARCHAR},#{patientsignature,jdbcType=VARCHAR},#{doctorsignature,jdbcType=VARCHAR},
       #{moduloDesign,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
-      #{sex,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR}
+      #{sex,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.hudh.zzbl.entity.ZzblCheck" >
@@ -717,13 +717,5 @@
       others = #{others,jdbcType=VARCHAR},
       organization = #{organization,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
-  </update>
-    <update id="selectedExamineDiagnoseInfor" parameterType="map">
-  	UPDATE HUDH_ZZBL_CHECK
-	  	<set>
-	  		status = #{status}
-	  	</set>
-	 Where 1=1
-	 AND SEQ_ID = #{id}
   </update>
 </mapper>

@@ -69,8 +69,6 @@
 		<result column="barcode" jdbcType="CLOB" property="barcode" />
 		<result column="headPic" jdbcType="CLOB" property="headPic" />
 		<result column="photoDisplay" jdbcType="CLOB" property="photoDisplay" />
-		<result column="emergencyContact" jdbcType="VARCHAR" property="emergencyContact"/>
-		<result column="emergencyPhone" jdbcType="VARCHAR" property="emergencyPhone" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		SEQ_ID, UserCode, UserName, Sex, BirthDay, Age, Profession, IDCardNo, PhoneNumber1,
@@ -79,8 +77,8 @@
 		Province, City, Address, DevChannel, CreateTime, CreateUser, AskPerson, isdelete,
 		organization, medicalhistory, drugllergy, remark, experience, habit, email, type,
 		xueli, qq, doctor, important, nexttype, totalpay, developer, doorstatus, glr, glrremark,
-		xgr, xgtime, town, kefu, usersort, openid, bindstatus, pym, integral, blcode, familyship, area, hobby, activity, introduce,iscreateLclj,clipAddress,
-		area, hobby, activity, introduce, iscreateLclj,accepttool,headPic, photoDisplay,emergencyContact,emergencyPhone
+		xgr, xgtime, town, kefu, usersort, openid, bindstatus, pym, integral, blcode, familyship, area, hobby, activity, introduce,iscreateLclj,clipAddress
+		area, hobby, activity, introduce, iscreateLclj,accepttool,headPic, photoDisplay
 	</sql>
 	<sql id="Blob_Column_List">
 		barcode
@@ -931,9 +929,7 @@
 	</select>
 
 	<select id="getBindUserDocByOpenId" parameterType="java.lang.String" resultType="KqdsUserdocument">
-		select <include refid="Base_Column_List" />
-		,
-		<include refid="Blob_Column_List" /> from KQDS_USERDOCUMENT
+		select * from KQDS_USERDOCUMENT
 		where openid = #{_parameter} and bindstatus = 0
 	</select>
 	<select id="phoneIsExist" parameterType="map" resultType="int">
@@ -944,9 +940,7 @@
 		and isdelete !=1
 	</select>
 	<select id="getUserDocByNameAndPhonenumber" parameterType="map" resultType="json">
-		select <include refid="Base_Column_List" />
-		,
-		<include refid="Blob_Column_List" /> from KQDS_USERDOCUMENT where 1=1
+		select * from KQDS_USERDOCUMENT where 1=1
 		and ( phonenumber1 = #{phonenumber1} or phonenumber2 =
 		#{phonenumber1} )
 		and username = #{username}
@@ -961,9 +955,7 @@
 		select max(blcode) as maxblcode from KQDS_USERDOCUMENT
 	</select>
 	<select id="getSingUserByPhoneNumber" parameterType="java.lang.String" resultType="json">
-		select <include refid="Base_Column_List" />
-		,
-		<include refid="Blob_Column_List" /> from KQDS_USERDOCUMENT where 1=1 and (phonenumber1 = #{_parameter} or
+		select * from KQDS_USERDOCUMENT where 1=1 and (phonenumber1 = #{_parameter} or
 		phonenumber2=#{_parameter})
 	</select>
 	<select id="getSingUserNameAndCodeByPhoneNumber" parameterType="java.lang.String" resultType="json">
@@ -972,9 +964,7 @@
 	</select>
 	<select id="selectNoPymList" parameterType="java.lang.String" resultType="json">
 		select
-		<include refid="Base_Column_List" />
-		,
-		<include refid="Blob_Column_List" />
+		*
 		from KQDS_UserDocument
 		where 1=1 and (pym is null or pym='')
 	</select>
@@ -989,15 +979,7 @@
 		( SELECT MAX ( repairdoctor ) AS repairdoctor FROM KQDS_REG WHERE usercode = u.usercode GROUP BY usercode ) kr
 		LEFT JOIN sys_person sy ON sy.SEQ_ID = kr.repairdoctor 
 	) AS repairdoctor,
-	u.SEQ_ID,u.UserCode,u.UserName, u.Sex, u.BirthDay, u.Age, u.Profession, u.IDCardNo, u.PhoneNumber1,
-	u.PhoneNumber2, u.guider, u.UserImpress, u.Introducer, u.PlateNumber, u.CostLevel, u.Dress,
-	u.FirstWord,u.Province, u.City, u.Address, u.DevChannel, u.CreateTime, u.CreateUser, u.AskPerson, u.isdelete,
-	u.organization, u.medicalhistory, u.drugllergy, u.remark, u.experience, u.habit, u.email, u.type,
-	u.xueli, u.qq, u.doctor, u.important, u.nexttype, u.totalpay, u.developer, u.doorstatus, u.glr, u.glrremark,
-	u.xgr, u.xgtime, u.town, u.kefu, u.usersort, u.openid, u.bindstatus, u.pym, u.integral, u.blcode, u.familyship,
-	u.area, u.hobby, u.activity, u.introduce,u.iscreateLclj,u.clipAddress,
-	u.area, u.hobby, u.activity, u.introduce, u.iscreateLclj,u.accepttool,
-	u.headPic, u.photoDisplay,u.emergencyContact,u.emergencyPhone,u.barcode,
+	u.*,
 	per1.user_name AS doctorname,
 	per2.user_name AS askpersonname,
 	per3.user_name AS developername,
@@ -1044,9 +1026,7 @@ WHERE
 		select usercode from KQDS_USERDOCUMENT where username=#{_parameter}
 	</select>
 	<select id="selectWithNopage" parameterType="map" resultType="json">
-		select <include refid="Base_Column_List" />
-		,
-		<include refid="Blob_Column_List" /> from KQDS_USERDOCUMENT where 1=1
+		select * from KQDS_USERDOCUMENT where 1=1
 		<if test="username != null and username !=''">
 			and (username like '%' + #{username} + '%' or pym like '%' + #{username} + '%')
 		</if>
@@ -1071,9 +1051,7 @@ WHERE
 		ORDER BY CreateTime desc
 	</select>
 	<select id="selectWithNopageReg" parameterType="map" resultType="json">
-		select <include refid="Base_Column_List" />
-		,
-		<include refid="Blob_Column_List" /> from KQDS_USERDOCUMENT where 1=1
+		select * from KQDS_USERDOCUMENT where 1=1
 		<!-- <if test="username != null and username !=''">
 			and (username like '%' + #{username} + '%' or pym like '%' + #{username} + '%')
 		</if> -->
@@ -1218,10 +1196,7 @@ WHERE
 		per3.USER_NAME as firstaskpersonname,
 		odept.dept_name as organizationname
 		from KQDS_USERDOCUMENT u
-		LEFT JOIN (select a.SEQ_ID, a.createuser, a.createtime, a.usercode, a.acceptdate, a.acceptphone, a.accepttype, a.accepttool,
-		a.askitem, a.askperson, a.askno, a.organization, a.orderperson, a.ordertime, a.doorstatus,a.guidetime,
-		a.jzxx, a.regdept, a.remark, a.username, a.daoyi, a.cjstatus, a.zxremark, a.regno, a.source, a.isdelete,
-		a.askcontent from KQDS_REG a,(select usercode,max(createtime) createtime from
+		LEFT JOIN (select a.* from KQDS_REG a,(select usercode,max(createtime) createtime from
 		KQDS_REG group by usercode) b where a.usercode=b.usercode and
 		a.createtime = b.createtime) n on n.usercode = u.usercode
 		LEFT JOIN SYS_DEPT odept on odept.dept_code = u.organization and odept.dept_parent = '0'
@@ -1397,8 +1372,8 @@ WHERE
 		<!-- 2019-3-10 修改信息查询页面可以查询到所有患者，去掉此处的权限校验 -->
 		<if test="visualstaff != null and visualstaff !='' ">
 			and (u.askperson in (${visualstaff}) or u.createuser in (${visualstaff}) or u.doctor in (${visualstaff})
-			or EXISTS (select usercode from KQDS_COSTORDER_DETAIL where u.usercode=usercode and askperson in( ${visualstaff}) or doctor in (${visualstaff}) )
-			or EXISTS (select usercode from KQDS_REG where u.usercode=usercode AND askperson in( ${visualstaff}) or doctor in (${visualstaff}) )
+			or u.usercode in (select usercode from KQDS_COSTORDER_DETAIL where askperson in( ${visualstaff}) or doctor in (${visualstaff}) )
+			or u.usercode in (select usercode from KQDS_REG where askperson in( ${visualstaff}) or doctor in (${visualstaff}) )
 			)
 		</if>
 		<if test="sortName != null and sortName != '' ">
@@ -1489,9 +1464,12 @@ WHERE
 			and u.type = #{type}
 		</if>
 		<if test="visualstaff != null and visualstaff !='' ">
-			and (u.askperson in (${visualstaff}) or u.createuser in (${visualstaff}) or u.doctor in (${visualstaff})
-			or EXISTS (select usercode from KQDS_COSTORDER_DETAIL where u.usercode=usercode AND askperson in( ${visualstaff}) or doctor in (${visualstaff}) )
-			or EXISTS (select usercode from KQDS_REG where u.usercode=usercode AND askperson in( ${visualstaff}) or doctor in (${visualstaff}) )
+			and (
+			u.askperson in (${visualstaff}) or u.createuser in (${visualstaff}) or u.doctor in (${visualstaff})
+			or u.usercode in (select usercode from KQDS_COSTORDER_DETAIL
+			where askperson in( ${visualstaff}) or doctor in (${visualstaff}) )
+			or u.usercode in (select usercode from KQDS_REG where askperson in( ${visualstaff}) or doctor in
+			(${visualstaff}) )
 			)
 		</if>
 	</select>
@@ -2057,10 +2035,7 @@ WHERE
 		sum(n.cjstatus) as cjstatus,
 		sum(n.doorstatus) as doorstatus
 		from kqds_userdocument u 
-		left join (select a.SEQ_ID, a.createuser, a.createtime, a.usercode, a.acceptdate, a.acceptphone, a.accepttype, a.accepttool,
-		a.askitem, a.askperson, a.askno, a.organization, a.orderperson, a.ordertime, a.doorstatus,a.guidetime,
-		a.jzxx, a.regdept, a.remark, a.username, a.daoyi, a.cjstatus, a.zxremark, a.regno, a.source, a.isdelete,
-		a.askcontent  from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
+		left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
 		usercode) b where a.usercode=b.usercode and
 		a.createtime=b.createtime ) n on n.usercode = u.usercode
 		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = u.createuser
@@ -2157,10 +2132,7 @@ WHERE
 		sum(n.cjstatus) as cjstatus,
 		sum(n.doorstatus) as doorstatus
 		from kqds_userdocument u 
-		left join (select a.SEQ_ID, a.createuser, a.createtime, a.usercode, a.acceptdate, a.acceptphone, a.accepttype, a.accepttool,
-		a.askitem, a.askperson, a.askno, a.organization, a.orderperson, a.ordertime, a.doorstatus,a.guidetime,
-		a.jzxx, a.regdept, a.remark, a.username, a.daoyi, a.cjstatus, a.zxremark, a.regno, a.source, a.isdelete,
-		a.askcontent  from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
+		left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
 		usercode) b where a.usercode=b.usercode and
 		a.createtime=b.createtime ) n on n.usercode = u.usercode
 		where 1=1 and u.isdelete != '1'
@@ -2279,10 +2251,7 @@ WHERE
 		n.doorstatus,
 		(select count(v.usercode) from KQDS_Visit v where v.usercode=u.UserCode) as ywhf
 		from kqds_userdocument u 
-		left join (select a.SEQ_ID, a.createuser, a.createtime, a.usercode, a.acceptdate, a.acceptphone, a.accepttype, a.accepttool,
-		a.askitem, a.askperson, a.askno, a.organization, a.orderperson, a.ordertime, a.doorstatus,a.guidetime,
-		a.jzxx, a.regdept, a.remark, a.username, a.daoyi, a.cjstatus, a.zxremark, a.regno, a.source, a.isdelete,
-		a.askcontent  from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
+		left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
 		usercode) b where a.usercode=b.usercode and
 		a.createtime=b.createtime ) n on n.usercode = u.usercode
 		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = u.createuser
@@ -2391,10 +2360,7 @@ WHERE
 		select
 		count(*) as linage
 		from kqds_userdocument u 
-		left join (select a.SEQ_ID, a.createuser, a.createtime, a.usercode, a.acceptdate, a.acceptphone, a.accepttype, a.accepttool,
-			a.askitem, a.askperson, a.askno, a.organization, a.orderperson, a.ordertime, a.doorstatus,a.guidetime,
-			a.jzxx, a.regdept, a.remark, a.username, a.daoyi, a.cjstatus, a.zxremark, a.regno, a.source, a.isdelete,
-			a.askcontent  from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
+		left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
 		usercode) b where a.usercode=b.usercode and
 		a.createtime=b.createtime ) n on n.usercode = u.usercode
 		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = u.createuser
@@ -2533,10 +2499,7 @@ WHERE
 		n.doorstatus,
 		(select count(v.usercode) from KQDS_Visit v where v.usercode=u.UserCode) as ywhf
 		from kqds_userdocument u 
-		left join (select a.SEQ_ID, a.createuser, a.createtime, a.usercode, a.acceptdate, a.acceptphone, a.accepttype, a.accepttool,
-		a.askitem, a.askperson, a.askno, a.organization, a.orderperson, a.ordertime, a.doorstatus,a.guidetime,
-		a.jzxx, a.regdept, a.remark, a.username, a.daoyi, a.cjstatus, a.zxremark, a.regno, a.source, a.isdelete,
-		a.askcontent  from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
+		left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
 		usercode) b where a.usercode=b.usercode and
 		a.createtime=b.createtime ) n on n.usercode = u.usercode
 		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = u.createuser
@@ -2892,10 +2855,7 @@ WHERE
 		kcit2.dict_name as accepttool,
 		n.doorstatus
 		from kqds_userdocument u
-		left join (select a.SEQ_ID, a.createuser, a.createtime, a.usercode, a.acceptdate, a.acceptphone, a.accepttype, a.accepttool,
-		a.askitem, a.askperson, a.askno, a.organization, a.orderperson, a.ordertime, a.doorstatus,a.guidetime,
-		a.jzxx, a.regdept, a.remark, a.username, a.daoyi, a.cjstatus, a.zxremark, a.regno, a.source, a.isdelete,
-		a.askcontent  from KQDS_NET_ORDER a,(select
+		left join (select a.* from KQDS_NET_ORDER a,(select
 		usercode,max(createtime) createtime from KQDS_NET_ORDER group by usercode) b where a.usercode=b.usercode and
 		a.createtime=b.createtime ) n
 		on n.usercode = u.usercode
@@ -2929,14 +2889,7 @@ WHERE
 		ORDER BY u.createtime desc
 	</select>
 	<select id="selectWithPage" parameterType="map" resultType="json">
-		select u.SEQ_ID, u.UserCode, u.UserName, u.Sex, u.BirthDay, u.Age, u.Profession, u.IDCardNo, u.PhoneNumber1,
-		u.PhoneNumber2, u.guider, u.UserImpress, u.Introducer, u.PlateNumber, u.CostLevel, u.Dress,
-		u.FirstWord, u.Province, u.City, u.Address, u.DevChannel, u.CreateTime, u.CreateUser, u.AskPerson, u.isdelete,
-		u.organization, u.medicalhistory, u.drugllergy, u.remark, u.experience, u.habit, u.email, u.type,
-		u.xueli, u.qq, u.doctor, u.important, u.nexttype, u.totalpay, u.developer, u.doorstatus, u.glr, u.glrremark,
-		u.xgr, u.xgtime, u.town, u.kefu, u.usersort, u.openid, u.bindstatus, u.pym, u.integral, u.blcode, u.familyship, u.area,
-		u.hobby, u.activity, u.introduce,u.iscreateLclj,u.clipAddress,u.area, u.hobby, u.activity, u.introduce, u.iscreateLclj,
-		u.accepttool,u.headPic, u.photoDisplay,u.emergencyContact,u.emergencyPhone,u.barcode,p.user_name as createusername from KQDS_USERDOCUMENT u
+		select u.*,p.user_name as createusername from KQDS_USERDOCUMENT u
 		LEFT JOIN SYS_PERSON p on p.SEQ_ID = u.CreateUser
 		LEFT JOIN SYS_DEPT d1 on p.DEPT_ID = d1.SEQ_ID
 		LEFT JOIN
@@ -2972,9 +2925,7 @@ WHERE
 		ORDER BY u.CreateTime desc
 	</select>
 	<select id="selectListByBirth" parameterType="map" resultType="json">
-		select <include refid="Base_Column_List" />
-		,
-		<include refid="Blob_Column_List" /> from KQDS_USERDOCUMENT where 1=1
+		select * from KQDS_USERDOCUMENT where 1=1
 		<if test="month != null and month !='' ">
 			and Month(Birthday) = #{month}
 		</if>
@@ -3061,10 +3012,7 @@ WHERE
 	
 	<select id="getCountJdItem" parameterType="map" resultType="int">
 		select count(1) nums from KQDS_UserDocument u
-		left join (select a.SEQ_ID, a.createuser, a.createtime, a.usercode, a.acceptdate, a.acceptphone, a.accepttype, a.accepttool,
-		a.askitem, a.askperson, a.askno, a.organization, a.orderperson, a.ordertime, a.doorstatus,a.guidetime,
-		a.jzxx, a.regdept, a.remark, a.username, a.daoyi, a.cjstatus, a.zxremark, a.regno, a.source, a.isdelete,
-		a.askcontent  from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by usercode) b
+		left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by usercode) b
 		where a.usercode=b.usercode and a.createtime=b.createtime ) n
 		on n.usercode = u.usercode
 		where 1=1
@@ -3178,11 +3126,7 @@ WHERE
 		u.usercode = #{_parameter}
 	</select>
 	<select id="getHfList" parameterType="map" resultType="json">
-		select p.user_name as visitorname,kcit1.dict_name as hfflname,kcit2.dict_name as mydname,
-		v.SEQ_ID, v.createuser, v.createtime, v.visittime, v.visitor, v.usercode, v.username, v.sex, v.telphone,
-		v.hffl, v.finishtime, v.hfyd, v.organization, v.myd, v.postperson, v.hfresult, v.status, v.regno,
-		v.remark, v.purpose, v.isauto, v.isfirstday
-		from KQDS_VISIT v
+		select p.user_name as visitorname,kcit1.dict_name as hfflname,kcit2.dict_name as mydname,v.* from KQDS_VISIT v
 		LEFT JOIN SYS_DICT kcit1 on v.hffl = kcit1.seq_id
 		LEFT JOIN
 		SYS_PERSON p on p.SEQ_ID = v.visitor
@@ -3198,16 +3142,14 @@ WHERE
 		order by v.visittime desc
 	</select>
 	<select id="getHfListByUsercode" parameterType="map" resultType="json">
-		select p.user_name as visitorname,kcit1.dict_name as hfflname,kcit2.dict_name as mydname,
-		v.SEQ_ID, v.createuser, v.createtime, v.visittime, v.visitor, v.usercode, v.username, v.sex, v.telphone,
-		v.hffl, v.finishtime, v.hfyd, v.organization, v.myd, v.postperson, v.hfresult, v.status, v.regno,
-		v.remark, v.purpose, v.isauto, v.isfirstday
-		from KQDS_VISIT v
+		select p.user_name as visitorname,kcit1.dict_name as hfflname,kcit2.dict_name as mydname,v.* from KQDS_VISIT
+		v
 		LEFT JOIN SYS_DICT kcit1 on v.hffl = kcit1.seq_id
 		LEFT JOIN SYS_PERSON p on p.SEQ_ID = v.visitor
 		LEFT JOIN SYS_DICT kcit2 on v.myd = kcit2.seq_id
 		where 1=1
-		and v.usercode =#{usercode}
+		and v.usercode =
+		#{usercode}
 		and v.organization = #{organization}
 		order by v.visittime desc
 	</select>
@@ -4048,8 +3990,10 @@ WHERE
 		<if test="visualstaff != null and visualstaff !='' ">
 			and (
 			u.askperson in (${visualstaff}) or u.createuser in (${visualstaff}) or u.doctor in (${visualstaff})
-			or EXISTS (select usercode from KQDS_COSTORDER_DETAIL where u.usercode=usercode AND askperson in( ${visualstaff}) or doctor in (${visualstaff}) )
-			or EXISTS (select usercode from KQDS_REG where u.usercode=usercode AND askperson in( ${visualstaff}) or doctor in (${visualstaff}) )
+			or u.usercode in (select usercode from KQDS_COSTORDER_DETAIL
+			where askperson in( ${visualstaff}) or doctor in (${visualstaff}) )
+			or u.usercode in (select usercode from KQDS_REG where askperson in( ${visualstaff}) or doctor in
+			(${visualstaff}) )
 			)
 		</if>
 		<if test="sortName != null and sortName != '' ">

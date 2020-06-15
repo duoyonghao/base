@@ -311,6 +311,87 @@
 	</select>
 
 	<select id="findOrderTrackInforByOrderNumber" parameterType="map" resultType="json">
+		<!-- select 
+		a.id,
+		a.order_number,
+		a.nodeName,
+		a.flowStatus,
+		b.blcode as usercode,
+		b.type,
+		b.bone,
+		b.createtime,
+		per3.USER_NAME as counsellor,
+		per2.USER_NAME as plant_physician,
+		per1.USER_NAME as repair_physician,
+		c.UserName,
+		c.PhoneNumber1,
+		b.id as seqId
+ 		from HUDH_LCLJ_WORKLIST a
+		LEFT JOIN HUDH_LCLJ_ORDERTRACK b on a.order_number = b.order_number
+		LEFT JOIN KQDS_UserDocument c ON b.blcode = c.UserCode
+		LEFT JOIN sys_person per1 ON per1.USER_ID = b.repair_physician
+		LEFT JOIN sys_person per2 ON per2.USER_ID = b.plant_physician
+		LEFT JOIN sys_person per3 ON per3.USER_ID = b.counsellor
+		WHERE nodeStatus=1 
+		and b.isobsolete=0 --> <!-- 过滤作废的数据 -->
+		<!-- SELECT
+		a.id,
+		a.sstime,
+		c.UserName,
+		c.UserCode,
+		c.PhoneNumber1,
+		a.flow_link,
+		a.tooth,
+		a.type,
+		a.bone,
+		a.ss_status,
+		a.creatorname,
+		a.order_number,
+		a.createtime,
+		s.SEQ_ID,
+		b.SEQ_ID as id1,
+		d.SEQ_ID as id2
+		FROM HUDH_LCLJ_ORDERTRACK a
+		LEFT JOIN KQDS_UserDocument c ON a.blcode = c.UserCode
+		LEFT JOIN sys_person s ON s.USER_ID = a.repair_physician
+		LEFT JOIN sys_person b ON b.USER_ID = a.plant_physician
+		LEFT JOIN sys_person d ON d.USER_ID = a.counsellor
+		WHERE 1=1 
+		and isobsolete = 0  过滤作废的数据 -->
+		<!-- <if test="usercodeorname != null and usercodeorname !='' ">
+			and (c.UserCode like '%' + #{usercodeorname} + '%'
+			or c.UserName like '%' + #{usercodeorname} + '%'
+			or c.PhoneNumber1 like '%' + #{usercodeorname} + '%'
+			)
+		</if>
+		<if test="username != null and username !='' ">
+			and c.username = #{username}
+		</if>
+		<if test="phonenumber != null and phonenumber !='' ">
+			and c.phonenumber1 = #{phonenumber}
+		</if>
+		<if test="ssType != null and ssType !='' ">
+			and b.type = #{ssType}
+		</if>
+		<if test="isBone != null and isBone !='' ">
+			and b.bone = #{isBone}
+		</if>
+		<if test="counsellor != null and counsellor !='' ">
+			and b.counsellor = #{counsellor}
+		</if>
+		<if test="plant_physician != null and plant_physician !='' ">
+			and b.plant_physician = #{plant_physician}
+		</if>
+		<if test="repair_physician != null and repair_physician !='' ">
+			and b.repair_physician = #{repair_physician}
+		</if>
+		<if test="sort != null and sort != ''">
+			order by c.UserCode asc
+		</if>
+		<if test="querytype != null or querytype !='' ">
+			and (per1.SEQ_ID in (${querytype}) or per2.SEQ_ID in (${querytype}) or per3.SEQ_ID in (${querytype}) )
+		</if>
+		order by b.createtime desc -->
 		SELECT
 		a.id as seqId,
 		a.sstime,
@@ -329,7 +410,6 @@
 		a.createtime,
 		a.plant_physician,
 		a.repair_physician,
-		a.clinic_nurse,
 		a.counsellor,
 		s.SEQ_ID,
 		b.SEQ_ID as id1,

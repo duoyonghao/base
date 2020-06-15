@@ -5,3 +5,4 @@ target/
 .settings
 .externalToolBuilders
 *.iml
+dbparam.properties

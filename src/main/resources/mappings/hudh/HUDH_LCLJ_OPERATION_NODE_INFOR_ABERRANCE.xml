@@ -29,7 +29,7 @@
     <result column="twoOperationTime" property="twoOperationTime" jdbcType="VARCHAR" />
     <result column="checkPlantSituation" property="checkPlantSituation" jdbcType="VARCHAR" />
     <result column="checkPlantBoneCombine" property="checkPlantBoneCombine" jdbcType="VARCHAR" />
-    <result column="completeTwoOperation"  property="completeTwoOperation" jdbcType="VARCHAR" />
+    <result column="completeTwoOperatio" property="completeTwoOperatio" jdbcType="VARCHAR" />
     <result column="twoDateStitchesTime" property="twoDateStitchesTime" jdbcType="VARCHAR" />
     <result column="transfer" property="transfer" jdbcType="VARCHAR" />
     <result column="ismodule" property="ismodule" jdbcType="VARCHAR" />

@@ -3,7 +3,7 @@
 <mapper namespace="HUDH_LCLJ_CHECKRECORD">
 	
 	<resultMap id="LcljcheckrecordMap" type="com.hudh.lclj.entity.LcljApprovedMemo">
-		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="SEQ_ID" />
 		<result column="LcljId" jdbcType="VARCHAR" property="LcljId" />
 		<result column="nodeId" jdbcType="VARCHAR" property="nodeId" />
 		<result column="nodeName" jdbcType="VARCHAR" property="nodeName" />

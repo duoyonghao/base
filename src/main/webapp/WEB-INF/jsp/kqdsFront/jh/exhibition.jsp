@@ -108,7 +108,7 @@
 
 #video {
 	width: 100%;
-   /*  height: 485px; */
+    /*height: 485px;*/
 	float: right;
 	padding: 10px 10px 0 10px;
 }
@@ -365,9 +365,9 @@ function showVideo(){
      //判断当前浏览器是否支持WebSocket
      if ('WebSocket' in window) {
     	 if('<%=ChainUtil.getCurrentOrganization(request)%>'=='HUDH'){
-    	     websocket = new WebSocket("ws://192.168.3.24:8081/base/WSwebsocket");
+    	     websocket = new WebSocket("ws://192.168.1.138:10001/base/WSwebsocket");
    		 }else{
-   			 websocket = new WebSocket("ws://192.168.3.24:8080/base/WSwebsocket");
+   			 websocket = new WebSocket("ws://192.168.1.138:11111/base/WSwebsocket");
    		 }
      }
      else {

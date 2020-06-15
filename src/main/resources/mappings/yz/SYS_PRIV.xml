@@ -18,7 +18,6 @@
 		<result column="visual_dept" jdbcType="CLOB" property="visualDept" />
 		<result column="order_visual_person" jdbcType="CLOB" property="orderVisualPerson" />
 		<result column="order_visual_dept" jdbcType="CLOB" property="orderVisualDept" />
-		<result column="visit_dept" jdbcType="CLOB" property="visitDept" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		SEQ_ID, PRIV_NAME, PRIV_NO, createtime, createuser, organization
@@ -183,9 +182,6 @@
 			</if>
 			<if test="upstair != null">
 				upstair = #{upstair,jdbcType=CLOB},
-			</if>
-			<if test="visitDept != null">
-				visit_dept = #{visitDept,jdbcType=CLOB},
 			</if>
 		</set>
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}

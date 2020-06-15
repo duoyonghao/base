@@ -1,308 +1,227 @@
-/**  
-  *
-  * @Title:  KqdsMachiningType.java   
-  * @Package com.kqds.entity.base   
-  * @Description:    TODO(用一句话描述该文件做什么)   
-  * @author: 海德堡联合空腔     
-  * @date:   2019年12月13日 上午9:02:17   
-  * @version V1.0  
-  */ 
 package com.kqds.entity.base;
 
 import java.io.Serializable;
 
-/**  
-  * 
-  * @ClassName:  KqdsMachiningType   
-  * @Description:TODO(这里用一句话描述这个类的作用)   
-  * @author: 海德堡联合口腔
-  * @date:   2019年12月13日 上午9:02:17   
-  *      
-  */
-public class KqdsMachiningType implements Serializable{
-
-	/**   
-	  * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)   
-	  */   
-	private static final long serialVersionUID = 1L;
-	
-	private String seqId;
-
-	private String typename;
-	
-	private String parentId;
-
-	private String isCategory;
-
-	private String createuser;
-
-	private String createtime;
-
-	private Integer useflag;
-
-	private String organization;
-	
-	private String remark;
-
-	/**  
-	  * @Title:  getSeqId <BR>  
-	  * @Description: please write your description <BR>  
-	  * @return: String <BR>  
-	  */
-	public String getSeqId() {
-		return seqId;
-	}
-
-	/**  
-	  * @Title:  setSeqId <BR>  
-	  * @Description: please write your description <BR>  
-	  * @return: String <BR>  
-	  */
-	public void setSeqId(String seqId) {
-		this.seqId = seqId;
-	}
-
-	/**  
-	  * @Title:  getTypename <BR>  
-	  * @Description: please write your description <BR>  
-	  * @return: String <BR>  
-	  */
-	public String getTypename() {
-		return typename;
-	}
-
-	/**  
-	  * @Title:  setTypename <BR>  
-	  * @Description: please write your description <BR>  
-	  * @return: String <BR>  
-	  */
-	public void setTypename(String typename) {
-		this.typename = typename;
-	}
-
-	/**  
-	  * @Title:  getParentId <BR>  
-	  * @Description: please write your description <BR>  
-	  * @return: String <BR>  
-	  */
-	public String getParentId() {
-		return parentId;
-	}
-
-	/**  
-	  * @Title:  setParentId <BR>  
-	  * @Description: please write your description <BR>  
-	  * @return: String <BR>  
-	  */
-	public void setParentId(String parentId) {
-		this.parentId = parentId;
-	}
-
-	/**  
-	  * @Title:  getTypeno <BR>  
-	  * @Description: please write your description <BR>  
-	  * @return: String <BR>  
-	  */
-	public String getIsCategory() {
-		return isCategory;
-	}
-
-	/**  
-	  * @Title:  setTypeno <BR>  
-	  * @Description: please write your description <BR>  
-	  * @return: String <BR>  
-	  */
-	public void setIsCategory(String isCategory) {
-		this.isCategory = isCategory;
-	}
-
-	/**  
-	  * @Title:  getCreateuser <BR>  
-	  * @Description: please write your description <BR>  
-	  * @return: String <BR>  
-	  */
-	public String getCreateuser() {
-		return createuser;
-	}
-
-	/**  
-	  * @Title:  setCreateuser <BR>  
-	  * @Description: please write your description <BR>  
-	  * @return: String <BR>  
-	  */
-	public void setCreateuser(String createuser) {
-		this.createuser = createuser;
-	}
-
-	/**  
-	  * @Title:  getCreatetime <BR>  
-	  * @Description: please write your description <BR>  
-	  * @return: String <BR>  
-	  */
-	public String getCreatetime() {
-		return createtime;
-	}
-
-	/**  
-	  * @Title:  setCreatetime <BR>  
-	  * @Description: please write your description <BR>  
-	  * @return: String <BR>  
-	  */
-	public void setCreatetime(String createtime) {
-		this.createtime = createtime;
-	}
-
-	/**  
-	  * @Title:  getUseflag <BR>  
-	  * @Description: please write your description <BR>  
-	  * @return: Integer <BR>  
-	  */
-	public Integer getUseflag() {
-		return useflag;
-	}
-
-	/**  
-	  * @Title:  setUseflag <BR>  
-	  * @Description: please write your description <BR>  
-	  * @return: Integer <BR>  
-	  */
-	public void setUseflag(Integer useflag) {
-		this.useflag = useflag;
-	}
-
-	/**  
-	  * @Title:  getOrganization <BR>  
-	  * @Description: please write your description <BR>  
-	  * @return: String <BR>  
-	  */
-	public String getOrganization() {
-		return organization;
-	}
-
-	/**  
-	  * @Title:  setOrganization <BR>  
-	  * @Description: please write your description <BR>  
-	  * @return: String <BR>  
-	  */
-	public void setOrganization(String organization) {
-		this.organization = organization;
-	}
-
-	/**  
-	  * @Title:  getRemark <BR>  
-	  * @Description: please write your description <BR>  
-	  * @return: String <BR>  
-	  */
-	public String getRemark() {
-		return remark;
-	}
-
-	/**  
-	  * @Title:  setRemark <BR>  
-	  * @Description: please write your description <BR>  
-	  * @return: String <BR>  
-	  */
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
-
-	/**   
-	  * <p>Title: hashCode</p>   
-	  * <p>Description: </p>   
-	  * @return   
-	  * @see java.lang.Object#hashCode()   
-	  */  
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((createtime == null) ? 0 : createtime.hashCode());
-		result = prime * result + ((createuser == null) ? 0 : createuser.hashCode());
-		result = prime * result + ((organization == null) ? 0 : organization.hashCode());
-		result = prime * result + ((parentId == null) ? 0 : parentId.hashCode());
-		result = prime * result + ((remark == null) ? 0 : remark.hashCode());
-		result = prime * result + ((seqId == null) ? 0 : seqId.hashCode());
-		result = prime * result + ((typename == null) ? 0 : typename.hashCode());
-		result = prime * result + ((isCategory == null) ? 0 : isCategory.hashCode());
-		result = prime * result + ((useflag == null) ? 0 : useflag.hashCode());
-		return result;
-	}
-
-	/**   
-	  * <p>Title: equals</p>   
-	  * <p>Description: </p>   
-	  * @param obj
-	  * @return   
-	  * @see java.lang.Object#equals(java.lang.Object)   
-	  */  
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		KqdsMachiningType other = (KqdsMachiningType) obj;
-		if (createtime == null) {
-			if (other.createtime != null)
-				return false;
-		} else if (!createtime.equals(other.createtime))
-			return false;
-		if (createuser == null) {
-			if (other.createuser != null)
-				return false;
-		} else if (!createuser.equals(other.createuser))
-			return false;
-		if (organization == null) {
-			if (other.organization != null)
-				return false;
-		} else if (!organization.equals(other.organization))
-			return false;
-		if (parentId == null) {
-			if (other.parentId != null)
-				return false;
-		} else if (!parentId.equals(other.parentId))
-			return false;
-		if (remark == null) {
-			if (other.remark != null)
-				return false;
-		} else if (!remark.equals(other.remark))
-			return false;
-		if (seqId == null) {
-			if (other.seqId != null)
-				return false;
-		} else if (!seqId.equals(other.seqId))
-			return false;
-		if (typename == null) {
-			if (other.typename != null)
-				return false;
-		} else if (!typename.equals(other.typename))
-			return false;
-		if (isCategory == null) {
-			if (other.isCategory != null)
-				return false;
-		} else if (!isCategory.equals(other.isCategory))
-			return false;
-		if (useflag == null) {
-			if (other.useflag != null)
-				return false;
-		} else if (!useflag.equals(other.useflag))
-			return false;
-		return true;
-	}
-
-	/**   
-	  * <p>Title: toString</p>   
-	  * <p>Description: </p>   
-	  * @return   
-	  * @see java.lang.Object#toString()   
-	  */  
-	@Override
-	public String toString() {
-		return "KqdsMachiningType [seqId=" + seqId + ", typename=" + typename + ", parentId=" + parentId + ", isCategory="
-				+ isCategory + ", createuser=" + createuser + ", createtime=" + createtime + ", useflag=" + useflag
-				+ ", organization=" + organization + ", remark=" + remark + "]";
-	}
-
+public class KqdsMachiningType
+  implements Serializable
+{
+  private static final long serialVersionUID = 1L;
+  private String seqId;
+  private String typename;
+  private String parentId;
+  private String isCategory;
+  private String createuser;
+  private String createtime;
+  private Integer useflag;
+  private String organization;
+  private String remark;
+  
+  public String getSeqId()
+  {
+    return this.seqId;
+  }
+  
+  public void setSeqId(String seqId)
+  {
+    this.seqId = seqId;
+  }
+  
+  public String getTypename()
+  {
+    return this.typename;
+  }
+  
+  public void setTypename(String typename)
+  {
+    this.typename = typename;
+  }
+  
+  public String getParentId()
+  {
+    return this.parentId;
+  }
+  
+  public void setParentId(String parentId)
+  {
+    this.parentId = parentId;
+  }
+  
+  public String getIsCategory()
+  {
+    return this.isCategory;
+  }
+  
+  public void setIsCategory(String isCategory)
+  {
+    this.isCategory = isCategory;
+  }
+  
+  public String getCreateuser()
+  {
+    return this.createuser;
+  }
+  
+  public void setCreateuser(String createuser)
+  {
+    this.createuser = createuser;
+  }
+  
+  public String getCreatetime()
+  {
+    return this.createtime;
+  }
+  
+  public void setCreatetime(String createtime)
+  {
+    this.createtime = createtime;
+  }
+  
+  public Integer getUseflag()
+  {
+    return this.useflag;
+  }
+  
+  public void setUseflag(Integer useflag)
+  {
+    this.useflag = useflag;
+  }
+  
+  public String getOrganization()
+  {
+    return this.organization;
+  }
+  
+  public void setOrganization(String organization)
+  {
+    this.organization = organization;
+  }
+  
+  public String getRemark()
+  {
+    return this.remark;
+  }
+  
+  public void setRemark(String remark)
+  {
+    this.remark = remark;
+  }
+  
+  public int hashCode()
+  {
+    int prime = 31;
+    int result = 1;
+    result = 31 * result + (this.createtime == null ? 0 : this.createtime.hashCode());
+    result = 31 * result + (this.createuser == null ? 0 : this.createuser.hashCode());
+    result = 31 * result + (this.organization == null ? 0 : this.organization.hashCode());
+    result = 31 * result + (this.parentId == null ? 0 : this.parentId.hashCode());
+    result = 31 * result + (this.remark == null ? 0 : this.remark.hashCode());
+    result = 31 * result + (this.seqId == null ? 0 : this.seqId.hashCode());
+    result = 31 * result + (this.typename == null ? 0 : this.typename.hashCode());
+    result = 31 * result + (this.isCategory == null ? 0 : this.isCategory.hashCode());
+    result = 31 * result + (this.useflag == null ? 0 : this.useflag.hashCode());
+    return result;
+  }
+  
+  public boolean equals(Object obj)
+  {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    KqdsMachiningType other = (KqdsMachiningType)obj;
+    if (this.createtime == null)
+    {
+      if (other.createtime != null) {
+        return false;
+      }
+    }
+    else if (!this.createtime.equals(other.createtime)) {
+      return false;
+    }
+    if (this.createuser == null)
+    {
+      if (other.createuser != null) {
+        return false;
+      }
+    }
+    else if (!this.createuser.equals(other.createuser)) {
+      return false;
+    }
+    if (this.organization == null)
+    {
+      if (other.organization != null) {
+        return false;
+      }
+    }
+    else if (!this.organization.equals(other.organization)) {
+      return false;
+    }
+    if (this.parentId == null)
+    {
+      if (other.parentId != null) {
+        return false;
+      }
+    }
+    else if (!this.parentId.equals(other.parentId)) {
+      return false;
+    }
+    if (this.remark == null)
+    {
+      if (other.remark != null) {
+        return false;
+      }
+    }
+    else if (!this.remark.equals(other.remark)) {
+      return false;
+    }
+    if (this.seqId == null)
+    {
+      if (other.seqId != null) {
+        return false;
+      }
+    }
+    else if (!this.seqId.equals(other.seqId)) {
+      return false;
+    }
+    if (this.typename == null)
+    {
+      if (other.typename != null) {
+        return false;
+      }
+    }
+    else if (!this.typename.equals(other.typename)) {
+      return false;
+    }
+    if (this.isCategory == null)
+    {
+      if (other.isCategory != null) {
+        return false;
+      }
+    }
+    else if (!this.isCategory.equals(other.isCategory)) {
+      return false;
+    }
+    if (this.useflag == null)
+    {
+      if (other.useflag != null) {
+        return false;
+      }
+    }
+    else if (!this.useflag.equals(other.useflag)) {
+      return false;
+    }
+    return true;
+  }
+  
+  public String toString()
+  {
+    return 
+    
+      "KqdsMachiningType [seqId=" + this.seqId + ", typename=" + this.typename + ", parentId=" + this.parentId + ", isCategory=" + this.isCategory + ", createuser=" + this.createuser + ", createtime=" + this.createtime + ", useflag=" + this.useflag + ", organization=" + this.organization + ", remark=" + this.remark + "]";
+  }
 }

@@ -1,29 +1,28 @@
 package com.hudh.doctorpick.service;
 
-import java.util.List;
-
 import com.hudh.doctorpick.entity.GoodsDoctorPickInDetail;
-
+import java.util.List;
 import net.sf.json.JSONObject;
 
-public interface IGoodsDoctorPickInDetailService {
-	
-	void batchSaveInDetail(List<GoodsDoctorPickInDetail> list);
-	
-	List<JSONObject> findDoctorPickInDetailByIncode(String incode, String visualstaff) throws Exception;
-	
-	GoodsDoctorPickInDetail findDoctorPickInDetailBySeqId(String seqId) throws Exception;
-	
-	void updateGoodsDoctorPickInDetail(String seq_id) throws Exception;
-	
-	void deleteDoctorPickInDetailBySeqId(String seqId) throws Exception;
-	
-	/**
-	 * 批量删除领料明细
-	 * @param incode
-	 * @throws Exception
-	 */
-	void deleteDoctorPickInDetailByIncode(String incode) throws Exception;
-	
-	JSONObject findDoctorPickInDetailById(String seqId) throws Exception;
+public abstract interface IGoodsDoctorPickInDetailService
+{
+  public abstract void batchSaveInDetail(List<GoodsDoctorPickInDetail> paramList);
+  
+  public abstract List<JSONObject> findDoctorPickInDetailByIncode(String paramString1, String paramString2)
+    throws Exception;
+  
+  public abstract GoodsDoctorPickInDetail findDoctorPickInDetailBySeqId(String paramString)
+    throws Exception;
+  
+  public abstract void updateGoodsDoctorPickInDetail(String paramString)
+    throws Exception;
+  
+  public abstract void deleteDoctorPickInDetailBySeqId(String paramString)
+    throws Exception;
+  
+  public abstract void deleteDoctorPickInDetailByIncode(String paramString)
+    throws Exception;
+  
+  public abstract JSONObject findDoctorPickInDetailById(String paramString)
+    throws Exception;
 }

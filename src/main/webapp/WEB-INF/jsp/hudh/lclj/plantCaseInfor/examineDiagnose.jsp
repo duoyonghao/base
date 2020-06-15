@@ -59,32 +59,16 @@
 	img[src=""],img:not([src]){
       opacity:0;
  	}
- 	#logoImg{
-	    width: 10%;
-	    padding: 10px 0;
-	}
-	 /*分隔线 */
-    .line {
-        display: block;
-        border-top:2px dotted #776c6c;
-        padding:10px 0;
-    }
-	@page{
-		size:auto;
-		margin: 0mm auto;
-	}
 </style>
 </head>
 <body>
-<!--startprint-->
    <div class="boxBig">
    	<div class="container-fluid examine_continer">
 		<!-- 标题 -->
 		<div class="row">
 			<div>
-				<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
-				<i class="line"></i>
-				<h2 class="bigtitle" style="margin-top: 0!important;">检查及诊断</h2>
+				<!-- <div class="big_title"><span class="bigtitle">检查及诊断</span></div> -->
+				<h2 class="bigtitle" style="border-bottom: 2px solid #776c6c;padding-bottom: 15px;">检查及诊断</h2>
 			</div>
 			
 		</div>	
@@ -96,13 +80,6 @@
 					<span style="font-weight: 600;">患者姓名：</span>
 					<input id="patient_name" type="text" disabled="disabled" style=" width:27%;color: #00a6c0;"/>
 				</div>
-			</div>
-			<div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="width:20%;">
-				<!-- 信息输入组合框 -->
-				<div class="rpInfo_import">
-					<span style="font-weight: 600;">编号：</span>
-					<input id="patient_usercode" type="text" disabled="disabled" style="    width: 100px;color: #00a6c0;"/>
-				</div>	
 			</div>
 			<div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="width:20%">
 				<!-- 信息输入组合框 -->
@@ -742,7 +719,7 @@
 				
 			</div>
 			<div class="zl_optiondiv" style="margin-left: 20px;">
-				<span>其他</span><input id="others" placeholder="" onblur="TextLengthCheck(this.id,30);" style="width: 60%;" type="text"/>
+				<span>其他</span><input id="others" placeholder="" onblur="TextLengthCheck(this.id,10);" style="width: 60%;" type="text"/>
 			</div>
 		</div>
 			<div class="row" style="margin-top: 27px;"> 
@@ -759,7 +736,6 @@
 			</div>
 		</div>
     </div> 
-    <!--endprint-->
 	<!-- 按钮 -->
 	<div class="btns">
 		<button id="consent_saveBtn" onclick="save()">保存</button>
@@ -803,7 +779,6 @@
 			$("#patient_name").attr("value",window.parent.consultSelectPatient.username);
 			$("#patient_sex").attr("value",window.parent.consultSelectPatient.sex);
 			$("#patient_age").attr("value",window.parent.consultSelectPatient.age);
-			$("#patient_usercode").attr("value",window.parent.consultSelectPatient.usercode);
 			initZzblInfor();
 			// 2019/7/24 lutian 禁止页面拖拽
 			document.ondragstart = function() {
@@ -818,7 +793,7 @@
 			        title: '签字',
 			        shadeClose: true,
 			        shade: 0.6,
-			        area: ['70%', '65%'],
+			        area: ['70%', '60%'],
 			        content: contextPath + '/SignatureAct/toSignature.act?category=种植'
 			    });
 			}
@@ -1314,28 +1289,23 @@
 		    for (var i = 0; i < listbutton.length; i++) {
 		        if (listbutton[i].qxName == "zsbs_xgbd"&&doctorstatus) {
 		           $("#consent_updateBtn").removeClass("hidden");
-		        }
+		        }else if(listbutton[i].qxName =="lclj_ban_signature"){
+                    doctorstatus=false;
+                }
 		    }
 		    $("#bottomBarDdiv").append(menubutton1);
 		}
-		
-		function doPrint() {   
-		    bdhtml=window.document.body.innerHTML;   
-		    sprnstr="<!--startprint-->";   
-		    eprnstr="<!--endprint-->";   
-		    prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);   
-		    prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));   
-		    var htmlStyle="<style>#others{border-style: none;border-bottom: 1px solid #5b5b5b;}button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}.examine_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 10px !important;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}.btns{display:none!important;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;}</style>";
-		    window.document.body.innerHTML=prnhtml+htmlStyle;  
-		    window.print();  //打印
-		    document.body.innerHTML=bdhtml; //恢复页面
-		} 
 		
 		function myPreviewAll(){
 			if(doctorstatus&&signature==""){
 				   $("#img").css("display","none");
 			   }
-			doPrint();
+			LODOP=getLodop();  
+			LODOP.PRINT_INIT("检查及诊断");
+			var htmlStyle="<style>#others{border-style: none;border-bottom: 1px solid #5b5b5b;}button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}.examine_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 10px !important;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}.btns{display:none!important;}</style>";
+			var html="<!DOCTYPE html>"+document.getElementsByTagName("html")[0].innerHTML+htmlStyle;
+			LODOP.ADD_PRINT_HTM(0,0,"100%","100%",html);
+			LODOP.PREVIEW();	
 		};
 
 </script>

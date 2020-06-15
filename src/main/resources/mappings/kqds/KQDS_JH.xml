@@ -65,7 +65,7 @@
 	</insert>
 	
 	<select id="select" resultType="json" parameterType="java.util.Map">
-		select j.*,p.user_name as askpersonname,u.PhoneNumber1 as phone,u.BirthDay as birthday from KQDS_JH j
+		select j.*,p.user_name as askpersonname,u.PhoneNumber1 as phone from KQDS_JH j
 		left join sys_person p on j.askperson=p.seq_id
 		left join KQDS_UserDocument u on u.usercode=j.usercode
 		where 1=1
@@ -106,7 +106,7 @@
 	</select>
 	
 	<select id="selectdel" resultType="json" parameterType="java.util.Map">
-		select j.*,p.user_name as askpersonname,u.PhoneNumber1 as phone,u.BirthDay as birthday from KQDS_JH j
+		select j.*,p.user_name as askpersonname,u.PhoneNumber1 as phone from KQDS_JH j
 		left join sys_person p on j.askperson=p.seq_id
 		left join KQDS_UserDocument u on u.usercode=j.usercode
 		where 1=1
@@ -210,14 +210,7 @@
 	<update id="update" parameterType="com.kqds.entity.base.KqdsJh">
 		update KQDS_JH 
 		<set>
-			<if test="floor !=null and organization != null">
-				del=0,
-				number =(select case when max(number) is null then 1 
-				else max(number)+1 end from KQDS_JH where 
-				floor=#{floor} and organization =#{organization} and DateDiff(dd,createtime,getdate())=0),
-			</if>
 			<if test="status != null">
-				
 				status = #{status},
 			</if>
 			<if test="operator != null">

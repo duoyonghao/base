@@ -57,6 +57,7 @@
 							<input type="text" name="maxDiscount" id="maxDiscount" value="100"> <span style="color:tomato;font-size:12px;">只支持填写整数，如85折，填写85</span>
 							&nbsp;&nbsp;&nbsp;&nbsp;
 						</td>
+						<!-- <td rowspan="3" style="border-left:1px solid #ddd;"><input type="button" value="保 存" onclick="savePersonPriv();"></td> -->
 					</tr>
 					<tr>
 						<td style="padding:5px 10px 0; border:1px solid #ddd;" colspan="4">最大免除：
@@ -112,7 +113,9 @@
 							<textarea rows="" cols="100" style="" name="visualPersonDesc" id="visualPersonDesc" readonly 
 							onClick="javascript:multi_select_user(['visualPerson', 'visualPersonDesc']);"></textarea>
 						</td>
-
+						<!-- <td rowspan="2" style="border-left:1px solid #ddd;">
+							 <input type="button" value="保 存" onclick="saveVisual();">	
+						</td> -->
 					</tr>
 					<tr>
 						<td class="bdr">
@@ -141,7 +144,9 @@
 							<textarea rows="" cols="100" style="" name="orderVisualPersonDesc" id="orderVisualPersonDesc" readonly
 								onClick="javascript:multi_select_user(['orderVisualPerson', 'orderVisualPersonDesc']);"></textarea>
 						</td>
-
+						<!-- <td rowspan="2" style="border-left:1px solid #ddd;">
+							<input type="button" value="保 存" onclick="saveOrderVisual();">
+						</td> -->
 					</tr>
 					<tr>
 						<td class="bdr"><span class="commonText">可见部门</span></td>
@@ -186,6 +191,9 @@
 							<textarea rows="" cols="100" style="" name="CkPersonDesc" id="CkPersonDesc" readonly
 								onClick="javascript:multi_select_user(['CkPerson', 'CkPersonDesc']);"></textarea>
 						</td>
+						<!-- <td rowspan="2" style="border-left:1px solid #ddd;">
+							<input type="button" value="保 存" onclick="saveOrderVisual();">
+						</td> -->
 					</tr>
 					<tr>
 						<td class="bdr"><span class="commonText">二楼可见人员</span></td>
@@ -252,6 +260,22 @@ function saveAll(){
 	});
 }
 
+/**
+ * 物资管理可见人员可见人员20200406
+ */
+// function saveCkVisual() {
+//     var param = $('#ckVisualForm').kqds_serialize();
+//     param += "&privid=" + static_priv_seqId;
+//     var url = 'YZPrivAct/setOrderVisal.act';
+//     var serverData = getDataFromServer(url,param);
+//     if (serverData) {
+//         /* layer.alert('操作成功', {
+              
+//             end: function() {
+// 			}
+//         }); */
+//     }
+// }
 
 /**
  * 可见人员
@@ -262,7 +286,11 @@ function saveVisual() {
     var url = 'YZPrivAct/setVisal.act';
     var serverData = getDataFromServer(url,param);
     if (serverData) {
-
+        /* layer.alert('操作成功', {
+              
+            end: function() {
+			}
+        }); */
     }
 }
 
@@ -271,7 +299,11 @@ function updateOnlineData(){
 	var url = 'YZPrivAct/updateOnlineData.act?privid=' + static_priv_seqId;
     var serverData = getDataFromServer(url,param);
     if (serverData) {
-
+        /* layer.alert('操作成功', {
+              
+            end: function() {
+			}
+        }); */
     }
 	
 }
@@ -285,7 +317,11 @@ function saveOrderVisual() {
     var url = 'YZPrivAct/setOrderVisal.act';
     var serverData = getDataFromServer(url,param);
     if (serverData) {
-
+        /* layer.alert('操作成功', {
+              
+            end: function() {
+			}
+        }); */
     }
 }
 
@@ -298,7 +334,11 @@ function saveVisit() {
     var url = 'YZPrivAct/setVisitDept.act';
     var serverData = getDataFromServer(url,param);
     if (serverData) {
-
+        /* layer.alert('操作成功', {
+              
+            end: function() {
+			}
+        }); */
     }
 }
 
@@ -311,7 +351,11 @@ function savePersonPriv() {
     var url = 'YZPrivAct/setPersonPriv.act?' + param;
     var serverData = getDataFromServer(url);
     if (serverData) {
-
+        /* layer.alert('操作成功', {
+              
+            end: function() {
+			}
+        }); */
     }
 }
 

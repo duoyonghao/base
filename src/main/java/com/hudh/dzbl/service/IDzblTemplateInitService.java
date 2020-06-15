@@ -1,11 +1,10 @@
 package com.hudh.dzbl.service;
 
+import com.hudh.dzbl.entity.DzblTemplate;
 import java.util.List;
 
-import com.hudh.dzbl.entity.DzblTemplate;
-
-public interface IDzblTemplateInitService {
-	
-	void initDzblTemplate(List<DzblTemplate> list) throws Exception;
-	
+public abstract interface IDzblTemplateInitService
+{
+  public abstract void initDzblTemplate(List<DzblTemplate> paramList)
+    throws Exception;
 }

@@ -1,107 +1,68 @@
 package com.hudh.lclj.dao;
 
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.hudh.lclj.entity.LcljWorklist;
 import com.kqds.dao.DaoSupport;
+import java.util.List;
+import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import net.sf.json.JSONObject;
 @Service
-public class LcljWorkListDao {
-	@Autowired
-	private DaoSupport dao;
-	
-	/**
-	 * 创建流程
-	 * @param ykzzType
-	 * @return
-	 * @throws Exception
-	 */
-	public int insertWorkList(LcljWorklist LcljWorklist) throws Exception{
-		return (int) dao.save("HUDH_LCLJ_WORKLIST.insertWorkList", LcljWorklist);
-	}
-	
-	/**
-	 * 根据临床路径编号查找当前实例下的待办
-	 * @param ykzzType
-	 * @return
-	 * @throws Exception
-	 */
-	@SuppressWarnings("unchecked")
-	public List<LcljWorklist> findWorkByOrderNumber(LcljWorklist LcljWorklist) throws Exception{
-		List<LcljWorklist> list = (List<LcljWorklist>) dao.findForList("HUDH_LCLJ_WORKLIST.findWorkByOrderNumber", LcljWorklist);
-		return list;
-	}
-	
-	/**
-	 * 根据编号更新流程信息（提交下一步时待办更新成已办）
-	 * @param ykzzType
-	 * @return
-	 * @throws Exception
-	 */
-	public void updateWorkByOrderNumber(LcljWorklist LcljWorklist) throws Exception{
-		dao.update("HUDH_LCLJ_WORKLIST.updateWorkByOrderNumber", LcljWorklist);
-	}
-	
-	/**
-	 * 根据临床路径编号查找当前实例所有记录
-	 * @param ykzzType
-	 * @return
-	 * @throws Exception
-	 */
-	@SuppressWarnings("unchecked")
-	public List<LcljWorklist> findHadWorkList(String orderNumber) throws Exception{
-		List<LcljWorklist> list = (List<LcljWorklist>) dao.findForList("HUDH_LCLJ_WORKLIST.findHadWorkList", orderNumber);
-		return list;
-	}
-	
-	/**
-	 * 根据临床路径编号查找当前实例所有记录
-	 * @param ykzzType
-	 * @return
-	 * @throws Exception
-	 */
-	@SuppressWarnings("unchecked")
-	public List<LcljWorklist> findHadWorkByOrderNumberAndNodeId(Map<String,String> dataMap) throws Exception{
-		List<LcljWorklist> list = (List<LcljWorklist>) dao.findForList("HUDH_LCLJ_WORKLIST.findHadWorkByOrderNumberAndNodeId", dataMap);
-		return list;
-	}
-	
-	/**
-	 * 获取所有的流程实例记录
-	 * @param ykzzType
-	 * @return
-	 * @throws Exception
-	 */
-	@SuppressWarnings("unchecked")
-	public List<LcljWorklist> findAllWorkList() throws Exception{
-		List<LcljWorklist> list = (List<LcljWorklist>) dao.findForList("HUDH_LCLJ_WORKLIST.findAllWorkList", null);
-		return list;
-	}
-	
-	/**
-	 * 改变流程记录的超期状态
-	 * @param ykzzType
-	 * @return
-	 * @throws Exception
-	 */
-	public void updateOverdueStatus(Map<String,String> dataMap) throws Exception{
-		dao.update("HUDH_LCLJ_WORKLIST.updateOverdueStatus", dataMap);
-	}
-	
-	/**
-	 * 退回时获取以前办理时保存的业务数据
-	 * @param ykzzType
-	 * @return
-	 * @throws Exception
-	 */
-	@SuppressWarnings("unchecked")
-	public LcljWorklist selectHadWorkData(Map<String,String> dataMap) throws Exception{
-		LcljWorklist lcljWorklist = (LcljWorklist) dao.findForObject("HUDH_LCLJ_WORKLIST.selectHadWorkData", dataMap);
-		return lcljWorklist;
-	}
-	
+public class LcljWorkListDao
+{
+  @Autowired
+  private DaoSupport dao;
+  
+  public int insertWorkList(LcljWorklist LcljWorklist)
+    throws Exception
+  {
+    return ((Integer)this.dao.save("HUDH_LCLJ_WORKLIST.insertWorkList", LcljWorklist)).intValue();
+  }
+  
+  public List<LcljWorklist> findWorkByOrderNumber(LcljWorklist LcljWorklist)
+    throws Exception
+  {
+    List<LcljWorklist> list = (List)this.dao.findForList("HUDH_LCLJ_WORKLIST.findWorkByOrderNumber", LcljWorklist);
+    return list;
+  }
+  
+  public void updateWorkByOrderNumber(LcljWorklist LcljWorklist)
+    throws Exception
+  {
+    this.dao.update("HUDH_LCLJ_WORKLIST.updateWorkByOrderNumber", LcljWorklist);
+  }
+  
+  public List<LcljWorklist> findHadWorkList(String orderNumber)
+    throws Exception
+  {
+    List<LcljWorklist> list = (List)this.dao.findForList("HUDH_LCLJ_WORKLIST.findHadWorkList", orderNumber);
+    return list;
+  }
+  
+  public List<LcljWorklist> findHadWorkByOrderNumberAndNodeId(Map<String, String> dataMap)
+    throws Exception
+  {
+    List<LcljWorklist> list = (List)this.dao.findForList("HUDH_LCLJ_WORKLIST.findHadWorkByOrderNumberAndNodeId", dataMap);
+    return list;
+  }
+  
+  public List<LcljWorklist> findAllWorkList()
+    throws Exception
+  {
+    List<LcljWorklist> list = (List)this.dao.findForList("HUDH_LCLJ_WORKLIST.findAllWorkList", null);
+    return list;
+  }
+  
+  public void updateOverdueStatus(Map<String, String> dataMap)
+    throws Exception
+  {
+    this.dao.update("HUDH_LCLJ_WORKLIST.updateOverdueStatus", dataMap);
+  }
+  
+  public LcljWorklist selectHadWorkData(Map<String, String> dataMap)
+    throws Exception
+  {
+    LcljWorklist lcljWorklist = (LcljWorklist)this.dao.findForObject("HUDH_LCLJ_WORKLIST.selectHadWorkData", dataMap);
+    return lcljWorklist;
+  }
 }

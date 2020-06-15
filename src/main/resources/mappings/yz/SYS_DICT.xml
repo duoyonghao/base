@@ -299,7 +299,6 @@
 		from
 		<include refid="tableName"></include>
 		p where 1=1
-		and useflag != 1
 		and parent_code = #{parentCode}
 		and organization = #{organization}
 		order by orderno asc

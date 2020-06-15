@@ -7,7 +7,7 @@
 		<result column="explanation" jdbcType="VARCHAR" property="explanation" />
 		<result column="remark" jdbcType="VARCHAR" property="remark" />
 		<result column="creartuser" jdbcType="VARCHAR" property="creartuser" />
-		<result column="crearttime" jdbcType="VARCHAR" property="crearttime" />
+		<result column="crearttime" jdbcType="VARCHAR" property="createTime" />
 		<result column="organization" jdbcType="VARCHAR" property="organization" />
 		<result column="status" jdbcType="VARCHAR" property="status" />
 	</resultMap>
