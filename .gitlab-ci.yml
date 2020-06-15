@@ -25,6 +25,7 @@ deploy-test:
   stage: test
   script:
     - ls target
+    - .\deploy.ps1
   dependencies:
     - build
   tags:
