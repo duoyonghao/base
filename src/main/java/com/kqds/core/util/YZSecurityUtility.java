@@ -1,6 +1,7 @@
 package com.kqds.core.util;
 
 import java.io.InputStream;
+
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.SecretKey;
@@ -9,31 +10,92 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 
 public class YZSecurityUtility {
-  public static Cipher getPassWordCipher(int mode) throws Exception {
-    return getPassWordCipher(YZAuthKeys.getPassword(null), YZAuthKeys.getSalt(null), YZAuthKeys.getItCnt(null), mode);
-  }
-  
-  public static Cipher getPassWordCipher(char[] passWord, byte[] salt, int itCnt, int mode) throws Exception {
-    PBEKeySpec pbeKeySpec = null;
-    PBEParameterSpec pbeParamSpec = null;
-    SecretKeyFactory keyFac = null;
-    pbeParamSpec = new PBEParameterSpec(salt, itCnt);
-    pbeKeySpec = new PBEKeySpec(passWord);
-    keyFac = SecretKeyFactory.getInstance("PBEWithMD5AndDES");
-    SecretKey pbeKey = keyFac.generateSecret(pbeKeySpec);
-    Cipher pbeCipher = Cipher.getInstance("PBEWithMD5AndDES");
-    pbeCipher.init(mode, pbeKey, pbeParamSpec);
-    return pbeCipher;
-  }
-  
-  public static InputStream buildPassWordInputStream(Cipher cipher, InputStream is) throws Exception {
-    CipherInputStream rtIs = new CipherInputStream(is, cipher);
-    return rtIs;
-  }
-  
-  public static InputStream buildPassWordInputStream(char[] passWord, byte[] salt, int itCnt, int mode, InputStream is) throws Exception {
-    Cipher cipher = getPassWordCipher(passWord, salt, itCnt, mode);
-    CipherInputStream rtIs = new CipherInputStream(is, cipher);
-    return rtIs;
-  }
+	/**
+	 * 取得默认的密码保护的加密/解密对象
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public static Cipher getPassWordCipher(int mode) throws Exception {
+		return getPassWordCipher(YZAuthKeys.getPassword(null), YZAuthKeys.getSalt(null), YZAuthKeys.getItCnt(null), mode);
+	}
+
+	/**
+	 * 取得密码保护的加密/解密对象
+	 * 
+	 * @param passWord
+	 *            密码
+	 * @param salt
+	 *            干扰字节码
+	 * 
+	 * @param itCnt
+	 *            迭代次数
+	 * @param mode
+	 *            加密/解密
+	 * @return
+	 */
+	public static Cipher getPassWordCipher(char[] passWord, byte[] salt, int itCnt, int mode) throws Exception {
+
+		PBEKeySpec pbeKeySpec = null;
+		PBEParameterSpec pbeParamSpec = null;
+		SecretKeyFactory keyFac = null;
+
+		pbeParamSpec = new PBEParameterSpec(salt, itCnt);
+		pbeKeySpec = new PBEKeySpec(passWord);
+		keyFac = SecretKeyFactory.getInstance("PBEWithMD5AndDES");
+		SecretKey pbeKey = keyFac.generateSecret(pbeKeySpec);
+		Cipher pbeCipher = Cipher.getInstance("PBEWithMD5AndDES");
+		pbeCipher.init(mode, pbeKey, pbeParamSpec);
+
+		return pbeCipher;
+	}
+
+	/**
+	 * 取得具有加密/解密的输入流对象
+	 * 
+	 * @param passWord
+	 *            密码
+	 * @param salt
+	 *            干扰字节
+	 * @param itCnt
+	 *            迭代次数
+	 * @param mode
+	 *            模式，加密/解密
+	 * @param is
+	 *            输入流
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public static InputStream buildPassWordInputStream(Cipher cipher, InputStream is) throws Exception {
+
+		CipherInputStream rtIs = new CipherInputStream(is, cipher);
+
+		return rtIs;
+	}
+
+	/**
+	 * 取得具有加密/解密的输入流对象
+	 * 
+	 * @param passWord
+	 *            密码
+	 * @param salt
+	 *            干扰字节
+	 * @param itCnt
+	 *            迭代次数
+	 * @param mode
+	 *            模式，加密/解密
+	 * @param is
+	 *            输入流
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public static InputStream buildPassWordInputStream(char[] passWord, byte[] salt, int itCnt, int mode, InputStream is) throws Exception {
+
+		Cipher cipher = getPassWordCipher(passWord, salt, itCnt, mode);
+		CipherInputStream rtIs = new CipherInputStream(is, cipher);
+
+		return rtIs;
+	}
 }

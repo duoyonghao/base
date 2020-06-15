@@ -1,3 +1,11 @@
 package com.kqds.util.sys.sys;
 
-public class DeptUtil {}
+/**
+ * 部门类
+ * 
+ * @author Administrator
+ * 
+ */
+public class DeptUtil {
+
+}

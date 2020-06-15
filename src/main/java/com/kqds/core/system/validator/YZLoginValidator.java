@@ -1,20 +1,22 @@
 package com.kqds.core.system.validator;
 
-import com.kqds.entity.sys.YZPerson;
 import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.kqds.entity.sys.YZPerson;
+
 public interface YZLoginValidator {
-  public static final Logger log = LoggerFactory.getLogger(YZLoginValidator.class);
-  
-  boolean isValid(HttpServletRequest paramHttpServletRequest, YZPerson paramYZPerson) throws Exception;
-  
-  void addSysLog(HttpServletRequest paramHttpServletRequest, YZPerson paramYZPerson) throws Exception;
-  
-  String getValidatorType();
-  
-  int getValidatorCode();
-  
-  String getValidatorMsg();
+	public static Logger log = LoggerFactory.getLogger(YZLoginValidator.class);
+
+	public boolean isValid(HttpServletRequest request, YZPerson person) throws Exception;
+
+	public void addSysLog(HttpServletRequest request, YZPerson person) throws Exception;
+
+	public String getValidatorType();
+
+	public int getValidatorCode();
+
+	public String getValidatorMsg();
 }

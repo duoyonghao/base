@@ -1,21 +1,57 @@
 package com.hudh.ykzz.service;
 
-import com.hudh.ykzz.entity.YkzzType;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
-import net.sf.json.JSONObject;
 
+import javax.servlet.http.HttpServletRequest;
+
+import com.hudh.ykzz.entity.YkzzType;
+
+import net.sf.json.JSONObject;
 public interface IYkzzTypeService {
-  void insertYkzzType(YkzzType paramYkzzType, HttpServletRequest paramHttpServletRequest) throws Exception;
-  
-  YkzzType findYkzzTypeById(String paramString) throws Exception;
-  
-  void deleteYkzzTypeById(String paramString) throws Exception;
-  
-  void updateYkzzTypeById(YkzzType paramYkzzType) throws Exception;
-  
-  List<JSONObject> findChildTypesByParentId(Map<String, String> paramMap) throws Exception;
-  
-  List<JSONObject> findAllTypes(String paramString) throws Exception;
+	/**
+	 * 新增分类
+	 * @param ykzzType
+	 * @return
+	 * @throws Exception
+	 */
+	void insertYkzzType(YkzzType ykzzType,HttpServletRequest request) throws Exception;
+	
+	/**
+	 * 根据id查找分类
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	YkzzType findYkzzTypeById(String id) throws Exception;
+	
+	/**
+	 * 根据id删除分类
+	 * @param id
+	 * @throws Exception
+	 */
+	void deleteYkzzTypeById(String id) throws Exception;
+	
+	/**
+	 * 根据id更新分类信息
+	 * @param ykzzType
+	 * @throws Exception
+	 */
+	void updateYkzzTypeById(YkzzType ykzzType) throws Exception;
+	
+	/**
+	 * 根据id查找子级分类
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	List<JSONObject> findChildTypesByParentId(Map<String, String> map) throws Exception;
+	
+	/**
+	 * 获取全部分类
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	List<JSONObject> findAllTypes(String organization) throws Exception;
 }
