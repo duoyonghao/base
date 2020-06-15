@@ -22,66 +22,54 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"YZDictBLKAct"})
-public class YZDictBLKAct
-{
+public class YZDictBLKAct {
   private Logger logger = LoggerFactory.getLogger(YZDictBLKAct.class);
+  
   @Autowired
   private YZDictLogic dictLogic;
+  
   @Autowired
   private KQDS_BLKLogic blkLogic;
   
   @RequestMapping({"/getSelectBlkTree.act"})
-  public void getSelectBlkTree(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public void getSelectBlkTree(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
       String type = request.getParameter("type");
       String search = request.getParameter("search");
       List<YZDict> list = this.dictLogic.getListByParentCode("BLKFL", null);
       StringBuffer sb = new StringBuffer();
-      
       String organization = null;
-      
       String IS_OPEN_CHAIN_SELECT = YZSysProps.getProp(SysParaUtil.IS_OPEN_CHAIN_SELECT);
-      if ((YZUtility.isNullorEmpty(IS_OPEN_CHAIN_SELECT)) || (!"1".equals(IS_OPEN_CHAIN_SELECT))) {
-        organization = ChainUtil.getCurrentOrganization(request);
-      }
-      if ((list != null) && (list.size() > 0))
-      {
+      if (YZUtility.isNullorEmpty(IS_OPEN_CHAIN_SELECT) || !"1".equals(IS_OPEN_CHAIN_SELECT))
+        organization = ChainUtil.getCurrentOrganization(request); 
+      if (list != null && list.size() > 0) {
         sb.append("[");
-        for (int i = 0; i < list.size(); i++)
-        {
-          YZDict base = (YZDict)list.get(i);
+        for (int i = 0; i < list.size(); i++) {
+          YZDict base = list.get(i);
           sb.append("{ id:\"" + base.getSeqId() + "-" + i + "\", pId:\"0\", name:\"" + base.getDictName() + "\", nocheck:true},");
           List<KqdsBlk> itemlist = this.blkLogic.getTreatItemBlk(base.getSeqId(), type, search, person, organization);
-          if ((itemlist != null) && (itemlist.size() > 0)) {
-            for (int k = 0; k < itemlist.size(); k++)
-            {
-              KqdsBlk item = (KqdsBlk)itemlist.get(k);
+          if (itemlist != null && itemlist.size() > 0)
+            for (int k = 0; k < itemlist.size(); k++) {
+              KqdsBlk item = itemlist.get(k);
               String blname = "";
               if (item.getMtype().equals("0")) {
                 blname = "【初诊】" + item.getBlname();
               } else if (item.getMtype().equals("1")) {
                 blname = "<span style='color:red;margin-right:0px;'>【复诊】</span>" + item.getBlname();
-              }
+              } 
               sb.append("{ id:\"" + item.getSeqId() + "\", pId:\"" + base.getSeqId() + "-" + i + "\", name:\"" + blname + "\"},");
-            }
-          }
-        }
-        if (sb.length() > 1) {
-          sb.deleteCharAt(sb.length() - 1);
-        }
+            }  
+        } 
+        if (sb.length() > 1)
+          sb.deleteCharAt(sb.length() - 1); 
         sb.append("]");
-      }
+      } 
       JSONObject jobj = new JSONObject();
       jobj.put("tree", sb.toString());
       YZUtility.DEAL_SUCCESS(jobj, null, response, this.logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, this.logger);
-    }
+    } 
   }
 }

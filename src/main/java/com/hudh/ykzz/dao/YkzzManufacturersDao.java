@@ -10,49 +10,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class YkzzManufacturersDao
-{
+public class YkzzManufacturersDao {
   @Autowired
   private DaoSupport dao;
   
-  public int insertManufacturers(YkzzManufacturers ykzzManufacturers)
-    throws Exception
-  {
+  public int insertManufacturers(YkzzManufacturers ykzzManufacturers) throws Exception {
     int i = ((Integer)this.dao.save("HUDH_YKZZ_MANUFACTURERS.insert", ykzzManufacturers)).intValue();
     return i;
   }
   
-  public void deleteManufacturers(String id)
-    throws Exception
-  {
+  public void deleteManufacturers(String id) throws Exception {
     this.dao.delete("HUDH_YKZZ_MANUFACTURERS.deleteByPrimaryKey", id);
   }
   
-  public void updateManufacturers(YkzzManufacturers ykzzManufacturers)
-    throws Exception
-  {
+  public void updateManufacturers(YkzzManufacturers ykzzManufacturers) throws Exception {
     this.dao.update("HUDH_YKZZ_MANUFACTURERS.updateByPrimaryKeySelective", ykzzManufacturers);
   }
   
-  public List<JSONObject> findAllManufacturers(String organization)
-    throws Exception
-  {
-    Map<String, String> dataMap = new HashMap();
+  public List<JSONObject> findAllManufacturers(String organization) throws Exception {
+    Map<String, String> dataMap = new HashMap<>();
     dataMap.put("organization", organization);
-    List<JSONObject> list = (List)this.dao.findForList("HUDH_YKZZ_MANUFACTURERS.findAllManufacturers", dataMap);
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList("HUDH_YKZZ_MANUFACTURERS.findAllManufacturers", dataMap);
     return list;
   }
   
-  public JSONObject findManufacturersById(String id)
-    throws Exception
-  {
+  public JSONObject findManufacturersById(String id) throws Exception {
     JSONObject json = (JSONObject)this.dao.findForObject("HUDH_YKZZ_MANUFACTURERS.selectByPrimaryKey", id);
     return json;
   }
   
-  public JSONObject findManufacturersByCode(String manufacturersCode)
-    throws Exception
-  {
+  public JSONObject findManufacturersByCode(String manufacturersCode) throws Exception {
     JSONObject json = (JSONObject)this.dao.findForObject("HUDH_YKZZ_MANUFACTURERS.findManufacturersByCode", manufacturersCode);
     return json;
   }

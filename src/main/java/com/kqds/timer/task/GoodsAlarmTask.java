@@ -20,59 +20,42 @@ import org.springframework.stereotype.Controller;
 
 @Component
 @Controller
-public class GoodsAlarmTask
-  implements Job
-{
+public class GoodsAlarmTask implements Job {
   @Autowired
   private KQDS_Ck_Goods_DetailLogic logic;
+  
   @Autowired
   private YZParaLogic paraLogic;
   
-  public void execute(JobExecutionContext arg0)
-    throws JobExecutionException
-  {
-    try
-    {
+  public void execute(JobExecutionContext arg0) throws JobExecutionException {
+    try {
       doTask();
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       e.printStackTrace();
-    }
+    } 
   }
   
-  public void doTask()
-    throws Exception
-  {
-    if ((ChainUtil.isOpenChain()) || (ChainUtil.isOpenTry()))
-    {
+  public void doTask() throws Exception {
+    if (ChainUtil.isOpenChain() || ChainUtil.isOpenTry()) {
       List<YZDept> list = ChainUtil.getHosList(null);
       for (YZDept yzDept : list) {
-        if (!YZUtility.isNullorEmpty(yzDept.getDeptCode())) {
-          goodsAlarm(yzDept.getDeptCode());
-        }
-      }
-    }
-    else
-    {
+        if (YZUtility.isNullorEmpty(yzDept.getDeptCode()))
+          continue; 
+        goodsAlarm(yzDept.getDeptCode());
+      } 
+    } else {
       String organization = YZSysProps.getProp(SysParaUtil.ORGANIZATION);
       goodsAlarm(organization);
-    }
+    } 
   }
   
-  private void goodsAlarm(String organization)
-    throws Exception
-  {
+  private void goodsAlarm(String organization) throws Exception {
     JSONObject sysPara = this.paraLogic.getSysPara(organization);
     String ckpriv = sysPara.getString(SysParaUtil.PRIV_CK_SEQID);
-    
-
-    Map<String, String> map3 = new HashMap();
-    if (!YZUtility.isNullorEmpty(organization)) {
-      map3.put("organization", organization);
-    }
+    Map<String, String> map3 = new HashMap<>();
+    if (!YZUtility.isNullorEmpty(organization))
+      map3.put("organization", organization); 
     List<JSONObject> list = this.logic.selectGoodsGjNoHousseList(map3);
-    
     this.logic.selectGoodsGjTx(list, ckpriv, organization);
   }
 }

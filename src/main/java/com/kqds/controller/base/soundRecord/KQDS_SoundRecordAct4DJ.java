@@ -24,40 +24,31 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_SoundRecordAct4DJ"})
-public class KQDS_SoundRecordAct4DJ
-{
+public class KQDS_SoundRecordAct4DJ {
   private static Logger logger = LoggerFactory.getLogger(KQDS_SoundRecordAct4DJ.class);
+  
   @Autowired
   private KQDS_UserDocumentLogic userlogic;
   
   @RequestMapping({"/toDetail4dj.act"})
-  public ModelAndView toDetail4dj(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toDetail4dj(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/kqdsFront/soundRecord/detail4dj.jsp");
     return mv;
   }
   
   @RequestMapping({"/toListchannel4dj.act"})
-  public ModelAndView toListchannel4dj(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toListchannel4dj(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/kqdsFront/soundRecord/listchannel4dj.jsp");
     return mv;
   }
   
   @RequestMapping({"/selectList.act"})
-  public String selectList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       BootStrapPage bp = new BootStrapPage();
-      
       BeanUtils.populate(bp, request.getParameterMap());
-      
       String startdate = request.getParameter("startdate");
       String enddate = request.getParameter("enddate");
       String localcode = request.getParameter("localcode");
@@ -68,18 +59,14 @@ public class KQDS_SoundRecordAct4DJ
       String mintalklong = request.getParameter("mintalklong");
       String pagestart = request.getParameter("pagestart");
       int pagelimit = bp.getLimit();
-      
       int offset = bp.getOffset();
       pagestart = String.valueOf(offset / pagelimit);
-      if (YZUtility.isNullorEmpty(startdate)) {
-        throw new Exception("开始日期不能为空");
-      }
-      if (YZUtility.isNullorEmpty(enddate)) {
-        throw new Exception("结束日期不能为空");
-      }
-      if (YZUtility.isNullorEmpty(pagestart)) {
-        pagestart = "0";
-      }
+      if (YZUtility.isNullorEmpty(startdate))
+        throw new Exception("开始日期不能为空"); 
+      if (YZUtility.isNullorEmpty(enddate))
+        throw new Exception("结束日期不能为空"); 
+      if (YZUtility.isNullorEmpty(pagestart))
+        pagestart = "0"; 
       JSONObject jsonParam = new JSONObject();
       jsonParam.put("action", "QueryTalklog");
       jsonParam.put("rpccallkey", "VocLogRpcKey");
@@ -96,42 +83,29 @@ public class KQDS_SoundRecordAct4DJ
       jsonParam.put("tags", "");
       jsonParam.put("pagestart", pagestart);
       jsonParam.put("pagelimit", Integer.valueOf(pagelimit));
-      
       String queryUrl = getQueryUrl(jsonParam);
-      
       JSONObject httpResult = HttpRequestUtils.httpPostJson("http://192.168.0.200/friextra/unite_call.php", queryUrl, false);
-      if ((httpResult.has("result")) && ("ok".equals(httpResult.getString("result"))))
-      {
-        List<JSONObject> list = (List)httpResult.get("datas");
-        
+      if (httpResult.has("result") && "ok".equals(httpResult.getString("result"))) {
+        List<JSONObject> list = (List<JSONObject>)httpResult.get("datas");
         getNameAndCode4List(list, request);
         JSONObject jobj = new JSONObject();
         jobj.put("total", httpResult.getString("totalcount"));
         jobj.put("rows", list);
         YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-      }
-      else
-      {
+      } else {
         throw new Exception("请求录音数据失败，请确保网络/设备正常！");
-      }
-    }
-    catch (Exception ex)
-    {
+      } 
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectList4Grxx.act"})
-  public String selectList4Grxx(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectList4Grxx(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       BootStrapPage bp = new BootStrapPage();
-      
       BeanUtils.populate(bp, request.getParameterMap());
-      
       String startdate = request.getParameter("startdate");
       String enddate = request.getParameter("enddate");
       String usercode = request.getParameter("usercode");
@@ -139,22 +113,17 @@ public class KQDS_SoundRecordAct4DJ
       int pagelimit = bp.getLimit();
       int offset = bp.getOffset();
       pagestart = String.valueOf(offset / pagelimit);
-      if (YZUtility.isNullorEmpty(startdate)) {
-        throw new Exception("开始日期不能为空");
-      }
-      if (YZUtility.isNullorEmpty(enddate)) {
-        throw new Exception("结束日期不能为空");
-      }
-      if (YZUtility.isNullorEmpty(pagestart)) {
-        pagestart = "0";
-      }
+      if (YZUtility.isNullorEmpty(startdate))
+        throw new Exception("开始日期不能为空"); 
+      if (YZUtility.isNullorEmpty(enddate))
+        throw new Exception("结束日期不能为空"); 
+      if (YZUtility.isNullorEmpty(pagestart))
+        pagestart = "0"; 
       JSONObject userinfo = this.userlogic.getUserInfoByUserCode(usercode);
-      if (userinfo == null) {
-        throw new Exception("患者不存在");
-      }
+      if (userinfo == null)
+        throw new Exception("患者不存在"); 
       String phonenumber1 = userinfo.getString("phonenumber1");
       String phonenumber2 = userinfo.getString("phonenumber2");
-      
       JSONObject jsonParam = new JSONObject();
       jsonParam.put("action", "QueryTalklog");
       jsonParam.put("rpccallkey", "VocLogRpcKey");
@@ -170,61 +139,46 @@ public class KQDS_SoundRecordAct4DJ
       jsonParam.put("tags", "");
       jsonParam.put("pagestart", pagestart);
       jsonParam.put("pagelimit", Integer.valueOf(pagelimit));
-      
       int total = 0;
-      List<JSONObject> totalList = new ArrayList();
-      if (YZUtility.isNotNullOrEmpty(phonenumber1))
-      {
+      List<JSONObject> totalList = new ArrayList<>();
+      if (YZUtility.isNotNullOrEmpty(phonenumber1)) {
         jsonParam.put("remotecode", phonenumber1);
         String queryUrl = getQueryUrl(jsonParam);
         JSONObject httpResult = HttpRequestUtils.httpPostJson("http://192.168.0.200/friextra/unite_call.php", queryUrl, false);
-        if ((httpResult.has("result")) && ("ok".equals(httpResult.getString("result"))))
-        {
-          List<JSONObject> list = (List)httpResult.get("datas");
-          
+        if (httpResult.has("result") && "ok".equals(httpResult.getString("result"))) {
+          List<JSONObject> list = (List<JSONObject>)httpResult.get("datas");
           getNameAndCode4List(list, request);
           totalList.addAll(list);
           total += httpResult.getInt("totalcount");
-        }
-        else
-        {
+        } else {
           throw new Exception("请求录音数据失败，请确保网络/设备正常！");
-        }
-      }
-      if (YZUtility.isNotNullOrEmpty(phonenumber2))
-      {
+        } 
+      } 
+      if (YZUtility.isNotNullOrEmpty(phonenumber2)) {
         jsonParam.put("remotecode", phonenumber2);
         String queryUrl = getQueryUrl(jsonParam);
         JSONObject httpResult = HttpRequestUtils.httpPostJson("http://192.168.0.200/friextra/unite_call.php", queryUrl, false);
-        if ((httpResult.has("result")) && ("ok".equals(httpResult.getString("result"))))
-        {
-          List<JSONObject> list = (List)httpResult.get("datas");
-          
+        if (httpResult.has("result") && "ok".equals(httpResult.getString("result"))) {
+          List<JSONObject> list = (List<JSONObject>)httpResult.get("datas");
           getNameAndCode4List(list, request);
           totalList.addAll(list);
           total += httpResult.getInt("totalcount");
-        }
-        else
-        {
+        } else {
           throw new Exception("请求录音数据失败，请确保网络/设备正常！");
-        }
-      }
+        } 
+      } 
       JSONObject jobj = new JSONObject();
       jobj.put("total", Integer.valueOf(total));
       jobj.put("rows", totalList);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
-  private String getQueryUrl(JSONObject jsonParam)
-  {
+  private String getQueryUrl(JSONObject jsonParam) {
     StringBuffer queryBf = new StringBuffer();
-    
     queryBf.append("action=" + jsonParam.getString("action"));
     queryBf.append("&rpccallkey=" + jsonParam.getString("rpccallkey"));
     queryBf.append("&startdate=" + jsonParam.getString("startdate"));
@@ -240,51 +194,37 @@ public class KQDS_SoundRecordAct4DJ
     queryBf.append("&tags=" + jsonParam.getString("tags"));
     queryBf.append("&pagestart=" + jsonParam.getString("pagestart"));
     queryBf.append("&pagelimit=" + jsonParam.getString("pagelimit"));
-    
     return queryBf.toString();
   }
   
-  private void getNameAndCode4List(List<JSONObject> list, HttpServletRequest request)
-    throws SQLException, Exception
-  {
-    Set<String> numSet = new HashSet();
-    String phonenumber;
-    for (JSONObject rs : list)
-    {
-      phonenumber = rs.getString("remotecode");
-      if (YZUtility.isNotNullOrEmpty(phonenumber)) {
-        numSet.add(phonenumber);
-      }
-    }
-    Map<String, JSONObject> numberInfoMap = new HashMap();
-    for (String phonenumber : numSet)
-    {
+  private void getNameAndCode4List(List<JSONObject> list, HttpServletRequest request) throws SQLException, Exception {
+    Set<String> numSet = new HashSet<>();
+    for (JSONObject rs : list) {
+      String phonenumber = rs.getString("remotecode");
+      if (YZUtility.isNotNullOrEmpty(phonenumber))
+        numSet.add(phonenumber); 
+    } 
+    Map<String, JSONObject> numberInfoMap = new HashMap<>();
+    for (String phonenumber : numSet) {
       JSONObject json = this.userlogic.getSingUserNameAndCodeByPhoneNumber(phonenumber);
-      if ((json != null) && (json.containsKey("usercode")) && (YZUtility.isNotNullOrEmpty(json.getString("usercode")))) {
-        numberInfoMap.put(phonenumber, json);
-      }
-    }
-    for (JSONObject info : list)
-    {
+      if (json != null && json.containsKey("usercode") && YZUtility.isNotNullOrEmpty(json.getString("usercode")))
+        numberInfoMap.put(phonenumber, json); 
+    } 
+    for (JSONObject info : list) {
       String phonenumber = info.getString("remotecode");
-      if (!YZUtility.isNullorEmpty(phonenumber))
-      {
-        JSONObject userjson = (JSONObject)numberInfoMap.get(phonenumber);
-        if (userjson != null)
-        {
-          info.put("usercode", userjson.getString("usercode"));
-          info.put("username", userjson.getString("username"));
-        }
-      }
-    }
+      if (YZUtility.isNullorEmpty(phonenumber))
+        continue; 
+      JSONObject userjson = numberInfoMap.get(phonenumber);
+      if (userjson != null) {
+        info.put("usercode", userjson.getString("usercode"));
+        info.put("username", userjson.getString("username"));
+      } 
+    } 
   }
   
   @RequestMapping({"/selectChannelList.act"})
-  public String selectChannelList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectChannelList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       StringBuffer queryBf = new StringBuffer();
       JSONObject jsonParam = new JSONObject();
       jsonParam.put("action", "QueryChannel");
@@ -293,52 +233,40 @@ public class KQDS_SoundRecordAct4DJ
       jsonParam.put("channel", "");
       jsonParam.put("localname", "");
       jsonParam.put("localdepart", "");
-      
       queryBf.append("action=" + jsonParam.getString("action"));
       queryBf.append("&rpccallkey=" + jsonParam.getString("rpccallkey"));
       queryBf.append("&localcode=" + jsonParam.getString("localcode"));
       queryBf.append("&channel=" + jsonParam.getString("channel"));
       queryBf.append("&localname=" + jsonParam.getString("localname"));
       queryBf.append("&localdepart=" + jsonParam.getString("localdepart"));
-      
       JSONObject httpResult = HttpRequestUtils.httpPostJson("http://192.168.0.200/friextra/unite_call.php", queryBf.toString(), false);
-      if ((httpResult.has("result")) && ("ok".equals(httpResult.getString("result")))) {
+      if (httpResult.has("result") && "ok".equals(httpResult.getString("result"))) {
         YZUtility.RETURN_LIST((List)httpResult.get("datas"), response, logger);
       } else {
         throw new Exception("查询录音通道数据失败，请确保网络/设备正常！");
-      }
-    }
-    catch (Exception ex)
-    {
+      } 
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/deviceDetail.act"})
-  public String deviceDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String deviceDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       StringBuffer queryBf = new StringBuffer();
       JSONObject jsonParam = new JSONObject();
       jsonParam.put("action", "QueryDevice");
       jsonParam.put("rpccallkey", "VocLogRpcKey");
-      
       queryBf.append("action=" + jsonParam.getString("action"));
       queryBf.append("&rpccallkey=" + jsonParam.getString("rpccallkey"));
-      
       JSONObject httpResult = HttpRequestUtils.httpPostJson("http://192.168.0.200/friextra/unite_call.php", queryBf.toString(), false);
-      if ((!httpResult.has("result")) || (!"ok".equals(httpResult.getString("result")))) {
-        throw new Exception("查询录音通道数据失败，请确保网络/设备正常！");
-      }
+      if (!httpResult.has("result") || !"ok".equals(httpResult.getString("result")))
+        throw new Exception("查询录音通道数据失败，请确保网络/设备正常！"); 
       YZUtility.DEAL_SUCCESS(httpResult, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

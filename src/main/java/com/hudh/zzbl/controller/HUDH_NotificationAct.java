@@ -18,16 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"/HUDH_NotificationAct"})
-public class HUDH_NotificationAct
-{
+public class HUDH_NotificationAct {
   private Logger logger = LoggerFactory.getLogger(HUDH_NotificationAct.class);
+  
   @Autowired
   private INotificationService iNotificationService;
   
   @RequestMapping({"/saveNotification.act"})
-  public String saveNotification(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String saveNotification(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String usercode = request.getParameter("usercode");
     String username = request.getParameter("username");
     String lcljId = request.getParameter("LcljId");
@@ -51,36 +49,28 @@ public class HUDH_NotificationAct
     notification.setDoctortime(doctortime);
     notification.setPatienttime(patienttime);
     notification.setWhether(whether);
-    try
-    {
+    try {
       this.iNotificationService.saveNotification(notification);
       YZUtility.DEAL_SUCCESS(null, null, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/findNotificationByLcljId.act"})
-  public String findNotificationByLcljId(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String findNotificationByLcljId(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String lcljId = request.getParameter("LcljId");
     String lcljNum = request.getParameter("LcljNum");
-    Map<String, String> map = new HashMap();
-    try
-    {
+    Map<String, String> map = new HashMap<>();
+    try {
       map.put("lcljId", lcljId);
       map.put("lcljNum", lcljNum);
       Notification notification = this.iNotificationService.findNotificationByLcljId(map);
       YZUtility.RETURN_OBJ(notification, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
 }

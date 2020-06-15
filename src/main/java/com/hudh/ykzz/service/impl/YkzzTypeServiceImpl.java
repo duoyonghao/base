@@ -19,15 +19,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class YkzzTypeServiceImpl
-  implements IYkzzTypeService
-{
+public class YkzzTypeServiceImpl implements IYkzzTypeService {
   @Autowired
   private YkzzTypeDao ykzzTypeDao;
   
-  public void insertYkzzType(YkzzType ykzzType, HttpServletRequest request)
-    throws Exception
-  {
+  public void insertYkzzType(YkzzType ykzzType, HttpServletRequest request) throws Exception {
     ykzzType.setId(YZUtility.getUUID());
     YZPerson person = SessionUtil.getLoginPerson(request);
     String organization = ChainUtil.getCurrentOrganization(request);
@@ -37,53 +33,39 @@ public class YkzzTypeServiceImpl
     this.ykzzTypeDao.insertYkzzType(ykzzType);
   }
   
-  public YkzzType findYkzzTypeById(String id)
-    throws Exception
-  {
+  public YkzzType findYkzzTypeById(String id) throws Exception {
     return this.ykzzTypeDao.findYkzzTypeById(id);
   }
   
-  public void deleteYkzzTypeById(String id)
-    throws Exception
-  {
+  public void deleteYkzzTypeById(String id) throws Exception {
     this.ykzzTypeDao.deleteYkzzTypeById(id);
   }
   
-  public void updateYkzzTypeById(YkzzType ykzzType)
-    throws Exception
-  {
+  public void updateYkzzTypeById(YkzzType ykzzType) throws Exception {
     this.ykzzTypeDao.updateYkzzTypeById(ykzzType);
   }
   
-  public List<JSONObject> findChildTypesByParentId(Map<String, String> map)
-    throws Exception
-  {
-    List<JSONObject> list = new ArrayList();
+  public List<JSONObject> findChildTypesByParentId(Map<String, String> map) throws Exception {
+    List<JSONObject> list = new ArrayList<>();
     list = this.ykzzTypeDao.findChildTypesByParentId(map);
-    Collections.sort(list, new Comparator()
-    {
-      public int compare(JSONObject o1, JSONObject o2)
-      {
-        int i = Integer.valueOf(o1.getString("orderno")).intValue() - Integer.valueOf(o2.getString("orderno")).intValue();
-        return i;
-      }
-    });
+    Collections.sort(list, new Comparator<JSONObject>() {
+          public int compare(JSONObject o1, JSONObject o2) {
+            int i = Integer.valueOf(o1.getString("orderno")).intValue() - Integer.valueOf(o2.getString("orderno")).intValue();
+            return i;
+          }
+        });
     return list;
   }
   
-  public List<JSONObject> findAllTypes(String organization)
-    throws Exception
-  {
-    List<JSONObject> list = new ArrayList();
+  public List<JSONObject> findAllTypes(String organization) throws Exception {
+    List<JSONObject> list = new ArrayList<>();
     list = this.ykzzTypeDao.findAllTypes(organization);
-    Collections.sort(list, new Comparator()
-    {
-      public int compare(JSONObject o1, JSONObject o2)
-      {
-        int i = Integer.valueOf(o1.getString("orderno")).intValue() - Integer.valueOf(o2.getString("orderno")).intValue();
-        return i;
-      }
-    });
+    Collections.sort(list, new Comparator<JSONObject>() {
+          public int compare(JSONObject o1, JSONObject o2) {
+            int i = Integer.valueOf(o1.getString("orderno")).intValue() - Integer.valueOf(o2.getString("orderno")).intValue();
+            return i;
+          }
+        });
     return list;
   }
 }

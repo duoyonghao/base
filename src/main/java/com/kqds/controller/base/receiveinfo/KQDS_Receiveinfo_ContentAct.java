@@ -18,23 +18,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"KQDS_Receiveinfo_ContentAct"})
-public class KQDS_Receiveinfo_ContentAct
-{
+public class KQDS_Receiveinfo_ContentAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_Receiveinfo_ContentAct.class);
+  
   @Autowired
   private KQDS_ReceiveInfo_ContentLogic logic;
   
   @RequestMapping({"/selectDetail.act"})
-  public String selectDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String receiveinfoId = request.getParameter("receiveinfoId");
-      
-      Map<String, String> map = new HashMap();
+      Map<String, String> map = new HashMap<>();
       map.put("receiveid", receiveinfoId);
-      List<KqdsReceiveinfoContent> en = (List)this.logic.loadList(TableNameUtil.KQDS_RECEIVEINFO_CONTENT, map);
+      List<KqdsReceiveinfoContent> en = (List<KqdsReceiveinfoContent>)this.logic.loadList(TableNameUtil.KQDS_RECEIVEINFO_CONTENT, map);
       JSONObject jobj = new JSONObject();
       jobj.put("retState", "0");
       jobj.put("retMsrg", "操作成功");
@@ -42,13 +38,11 @@ public class KQDS_Receiveinfo_ContentAct
         jobj.put("data", en.get(0));
       } else {
         jobj.put("data", new KqdsReceiveinfoContent());
-      }
+      } 
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

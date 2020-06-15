@@ -14,26 +14,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"HUDH_AreaAct"})
-public class HUDH_AreaAct
-{
+public class HUDH_AreaAct {
   private Logger logger = LoggerFactory.getLogger(HUDH_AreaAct.class);
+  
   @Autowired
   private IAreaService areaService;
   
   @RequestMapping({"/findAreaByCityCode.act"})
-  public String findAreaByCityCode(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String findAreaByCityCode(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String cityCode = request.getParameter("cityCode");
-    try
-    {
+    try {
       List<JSONObject> list = this.areaService.findAreaByCityCode(cityCode);
       YZUtility.RETURN_LIST(list, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
 }

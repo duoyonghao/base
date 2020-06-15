@@ -20,16 +20,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_Print_SetAct"})
-public class KQDS_Print_SetAct
-{
+public class KQDS_Print_SetAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_Print_SetAct.class);
+  
   @Autowired
   private KQDS_Print_SetLogic logic;
   
   @RequestMapping({"/toHyczPrintPage.act"})
-  public ModelAndView toHyczPrintPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toHyczPrintPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String printpage = request.getParameter("printpage");
     String printType = request.getParameter("printType");
     String cztime = request.getParameter("cztime");
@@ -69,9 +67,7 @@ public class KQDS_Print_SetAct
   }
   
   @RequestMapping({"/toJgdPrintPage.act"})
-  public ModelAndView toJgdPrintPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toJgdPrintPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String printpage = request.getParameter("printpage");
     String printType = request.getParameter("printType");
     String outprocessingsheetno = request.getParameter("outprocessingsheetno");
@@ -95,9 +91,7 @@ public class KQDS_Print_SetAct
   }
   
   @RequestMapping({"/toInGoodsPrintPage.act"})
-  public ModelAndView toInGoodsPrintPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toInGoodsPrintPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String printpage = request.getParameter("printpage");
     String printType = request.getParameter("printType");
     String incode = request.getParameter("incode");
@@ -109,9 +103,7 @@ public class KQDS_Print_SetAct
   }
   
   @RequestMapping({"/toOutGoodsPrintPage.act"})
-  public ModelAndView toOutGoodsPrintPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toOutGoodsPrintPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String printpage = request.getParameter("printpage");
     String printType = request.getParameter("printType");
     String outcode = request.getParameter("outcode");
@@ -123,9 +115,7 @@ public class KQDS_Print_SetAct
   }
   
   @RequestMapping({"/toFyqrdPrintPage.act"})
-  public ModelAndView toFyqrdPrintPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toFyqrdPrintPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String printpage = request.getParameter("printpage");
     String printType = request.getParameter("printType");
     String titles = request.getParameter("titles");
@@ -155,9 +145,7 @@ public class KQDS_Print_SetAct
   }
   
   @RequestMapping({"/toTkPrintPage.act"})
-  public ModelAndView toTkPrintPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toTkPrintPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String printpage = request.getParameter("printpage");
     String printType = request.getParameter("printType");
     String usercode = request.getParameter("usercode");
@@ -173,9 +161,7 @@ public class KQDS_Print_SetAct
   }
   
   @RequestMapping({"/toZengSongPrintPage.act"})
-  public ModelAndView toZengSongPrintPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toZengSongPrintPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String printpage = request.getParameter("printpage");
     String printType = request.getParameter("printType");
     String usercode = request.getParameter("usercode");
@@ -189,9 +175,7 @@ public class KQDS_Print_SetAct
   }
   
   @RequestMapping({"/toList.act"})
-  public ModelAndView toList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toList(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
     mv.addObject("organization", organization);
@@ -200,9 +184,7 @@ public class KQDS_Print_SetAct
   }
   
   @RequestMapping({"/toEdit.act"})
-  public ModelAndView toEdit(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toEdit(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     ModelAndView mv = new ModelAndView();
     mv.addObject("seqId", seqId);
@@ -211,9 +193,7 @@ public class KQDS_Print_SetAct
   }
   
   @RequestMapping({"/toDetail.act"})
-  public ModelAndView toDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     ModelAndView mv = new ModelAndView();
     mv.addObject("seqId", seqId);
@@ -222,9 +202,7 @@ public class KQDS_Print_SetAct
   }
   
   @RequestMapping({"/toNewAdd.act"})
-  public ModelAndView toNewAdd(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toNewAdd(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
     mv.addObject("organization", organization);
@@ -233,33 +211,25 @@ public class KQDS_Print_SetAct
   }
   
   @RequestMapping({"/getPrintTypeByUrl.act"})
-  public String getPrintTypeByUrl(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String getPrintTypeByUrl(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String printname = request.getParameter("printname");
-      
-      Map map = new HashMap();
+      Map<Object, Object> map = new HashMap<>();
       map.put("printname", printname);
       map.put("organization", ChainUtil.getCurrentOrganization(request));
-      List<KqdsPrintSet> p = (List)this.logic.loadList(TableNameUtil.KQDS_PRINT_SET, map);
-      if ((p == null) || (p.size() == 0))
-      {
+      List<KqdsPrintSet> p = (List<KqdsPrintSet>)this.logic.loadList(TableNameUtil.KQDS_PRINT_SET, map);
+      if (p == null || p.size() == 0) {
         map.put("organization", "");
-        p = (List)this.logic.loadList(TableNameUtil.KQDS_PRINT_SET, map);
-        if ((p == null) || (p.size() == 0)) {
-          throw new Exception("未查询到'" + printname + "'对应的数据");
-        }
-      }
+        p = (List<KqdsPrintSet>)this.logic.loadList(TableNameUtil.KQDS_PRINT_SET, map);
+        if (p == null || p.size() == 0)
+          throw new Exception("未查询到'" + printname + "'对应的数据"); 
+      } 
       JSONObject jobj = new JSONObject();
       jobj.put("data", p.get(0));
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

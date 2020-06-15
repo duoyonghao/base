@@ -11,22 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_changeWdLogic
-  extends BaseLogic
-{
+public class KQDS_changeWdLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public List<JSONObject> selectWithPage(String table, Map<String, String> map)
-    throws Exception
-  {
-    if (map.containsKey("starttime")) {
-      map.put("starttime", (String)map.get("starttime") + ConstUtil.TIME_START);
-    }
-    if (map.containsKey("endtime")) {
-      map.put("endtime", (String)map.get("endtime") + ConstUtil.TIME_END);
-    }
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_CHANGE_WD + ".selectWithPage", map);
+  public List<JSONObject> selectWithPage(String table, Map<String, String> map) throws Exception {
+    if (map.containsKey("starttime"))
+      map.put("starttime", String.valueOf(map.get("starttime")) + ConstUtil.TIME_START); 
+    if (map.containsKey("endtime"))
+      map.put("endtime", String.valueOf(map.get("endtime")) + ConstUtil.TIME_END); 
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_CHANGE_WD) + ".selectWithPage", map);
     return list;
   }
 }

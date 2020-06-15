@@ -11,25 +11,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class WXCoreAct
-{
+public class WXCoreAct {
   private static Logger logger = LoggerFactory.getLogger(WXCoreAct.class);
+  
   @Autowired
   private WXServiceLogic wxLogic;
   
   @RequestMapping({"/wechat"})
-  public void toDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public void toDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       this.wxLogic.coreService(request);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Throwable t)
-    {
+    } catch (Throwable t) {
       t.printStackTrace();
       logger.error(t.getMessage(), t);
-    }
+    } 
   }
 }

@@ -12,45 +12,36 @@ import org.springframework.stereotype.Controller;
 
 @Component
 @Controller
-public class JGCodeUtil
-{
+public class JGCodeUtil {
   @Autowired
   private KQDS_OutProcessingSheetLogic logic;
+  
   private static JGCodeUtil jgCodeUtil;
   
-  public void setUserDocLogic(KQDS_OutProcessingSheetLogic logic)
-  {
+  public void setUserDocLogic(KQDS_OutProcessingSheetLogic logic) {
     this.logic = logic;
   }
   
   @PostConstruct
-  public void init()
-  {
+  public void init() {
     jgCodeUtil = this;
     jgCodeUtil.logic = this.logic;
   }
   
-  public static synchronized String getSheetNo(int cishu, HttpServletRequest request)
-    throws Exception
-  {
+  public static synchronized String getSheetNo(int cishu, HttpServletRequest request) throws Exception {
     String menzhen = ChainUtil.getCurrentOrganization(request);
-    
-    String uuid = menzhen + "JG";
-    
+    String uuid = String.valueOf(menzhen) + "JG";
     String generateSource = "0123456789";
     String rtnStr = "";
-    for (int i = 0; i < cishu; i++)
-    {
+    for (int i = 0; i < cishu; i++) {
       String nowStr = String.valueOf(generateSource.charAt((int)Math.floor(Math.random() * generateSource.length())));
-      rtnStr = rtnStr + nowStr;
+      rtnStr = String.valueOf(rtnStr) + nowStr;
       generateSource = generateSource.replaceAll(nowStr, "");
-    }
-    uuid = uuid + rtnStr;
-    
+    } 
+    uuid = String.valueOf(uuid) + rtnStr;
     KqdsOutprocessingSheet sheet = (KqdsOutprocessingSheet)jgCodeUtil.logic.loadObjSingleUUID(TableNameUtil.KQDS_OUTPROCESSING_SHEET, uuid);
-    if (sheet == null) {
-      return uuid;
-    }
+    if (sheet == null)
+      return uuid; 
     return getSheetNo(cishu, request);
   }
 }

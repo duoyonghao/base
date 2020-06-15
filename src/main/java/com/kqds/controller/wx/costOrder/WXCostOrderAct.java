@@ -19,16 +19,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"WXCostOrderAct"})
-public class WXCostOrderAct
-{
+public class WXCostOrderAct {
   private static Logger logger = LoggerFactory.getLogger(WXCostOrderAct.class);
+  
   @Autowired
   private WXCostOrderLogic wxCostOrderLogic;
   
   @RequestMapping({"/toDetail.act"})
-  public ModelAndView toDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     ModelAndView mv = new ModelAndView();
     mv.addObject("seqId", seqId);
@@ -37,9 +35,7 @@ public class WXCostOrderAct
   }
   
   @RequestMapping({"/toNetOrder4wechat.act"})
-  public ModelAndView toNetOrder4wechat(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toNetOrder4wechat(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String wxOrderSeqId = request.getParameter("wxOrderSeqId");
     String usercode = request.getParameter("usercode");
     ModelAndView mv = new ModelAndView();
@@ -50,9 +46,7 @@ public class WXCostOrderAct
   }
   
   @RequestMapping({"/toHzjd4wechat.act"})
-  public ModelAndView toHzjd4wechat(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toHzjd4wechat(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String wxOrderSeqId = request.getParameter("wxOrderSeqId");
     String openid = request.getParameter("openid");
     ModelAndView mv = new ModelAndView();
@@ -63,50 +57,36 @@ public class WXCostOrderAct
   }
   
   @RequestMapping({"/selectPage.act"})
-  public String selectPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       BootStrapPage bp = new BootStrapPage();
       String usercode = request.getParameter("usercode");
-      
       BeanUtils.populate(bp, request.getParameterMap());
-      Map<String, String> map = new HashMap();
-      if (!YZUtility.isNullorEmpty(usercode)) {
-        map.put("usercode", usercode);
-      }
+      Map<String, String> map = new HashMap<>();
+      if (!YZUtility.isNullorEmpty(usercode))
+        map.put("usercode", usercode); 
       JSONObject data = this.wxCostOrderLogic.selectPage(TableNameUtil.KQDS_COSTORDER, bp, map);
       YZUtility.DEAL_SUCCESS(data, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectPageDetail.act"})
-  public String selectPageDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectPageDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       BootStrapPage bp = new BootStrapPage();
       String costno = request.getParameter("costno");
-      
       BeanUtils.populate(bp, request.getParameterMap());
-      Map<String, String> map = new HashMap();
-      if (!YZUtility.isNullorEmpty(costno)) {
-        map.put("costno", costno);
-      }
+      Map<String, String> map = new HashMap<>();
+      if (!YZUtility.isNullorEmpty(costno))
+        map.put("costno", costno); 
       JSONObject data = this.wxCostOrderLogic.selectPageDetail(TableNameUtil.KQDS_COSTORDER_DETAIL, bp, map);
       YZUtility.DEAL_SUCCESS(data, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

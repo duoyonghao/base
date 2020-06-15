@@ -15,79 +15,58 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"/GoodsDoctorPickInDetailAct"})
-public class GoodsDoctorPickInDetailAct
-{
+public class GoodsDoctorPickInDetailAct {
   private static Logger logger = LoggerFactory.getLogger(GoodsDoctorPickInDetailAct.class);
+  
   @Autowired
   private IGoodsDoctorPickInDetailService detailService;
   
   @RequestMapping({"/findDoctorPickInDetailByIncode.act"})
-  public String findDoctorPickInDetailByIncode(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String findDoctorPickInDetailByIncode(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String incode = request.getParameter("incode");
-    
     String visualstaff = SessionUtil.getVisualstaff(request);
-    try
-    {
+    try {
       List<JSONObject> list = this.detailService.findDoctorPickInDetailByIncode(incode, visualstaff);
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/updateGoodsDoctorPickInDetail.act"})
-  public String updateGoodsDoctorPickInDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String updateGoodsDoctorPickInDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seq_id = request.getParameter("seq_id");
-    try
-    {
+    try {
       this.detailService.updateGoodsDoctorPickInDetail(seq_id);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/deleteDoctorPickInDetailBySeqId.act"})
-  public String deleteDoctorPickInDetailBySeqId(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String deleteDoctorPickInDetailBySeqId(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String indetailseqId = request.getParameter("indetailseqId");
-    try
-    {
+    try {
       this.detailService.deleteDoctorPickInDetailBySeqId(indetailseqId);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/findDoctorPickInDetailById.act"})
-  public String findDoctorPickInDetailById(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String findDoctorPickInDetailById(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String id = request.getParameter("id");
-    try
-    {
+    try {
       JSONObject json = this.detailService.findDoctorPickInDetailById(id);
       YZUtility.DEAL_SUCCESS(json, null, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
 }

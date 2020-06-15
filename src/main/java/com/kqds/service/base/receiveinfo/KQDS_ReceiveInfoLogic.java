@@ -10,36 +10,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_ReceiveInfoLogic
-  extends BaseLogic
-{
+public class KQDS_ReceiveInfoLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public int countReceiveByRegNo(String regseqId)
-    throws Exception
-  {
-    int count = ((Integer)this.dao.findForObject(TableNameUtil.KQDS_RECEIVEINFO + ".countReceiveByRegNo", regseqId)).intValue();
+  public int countReceiveByRegNo(String regseqId) throws Exception {
+    int count = ((Integer)this.dao.findForObject(String.valueOf(TableNameUtil.KQDS_RECEIVEINFO) + ".countReceiveByRegNo", regseqId)).intValue();
     return count;
   }
   
-  public List<JSONObject> noSelectWithPage(String table, Map<String, String> map)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_RECEIVEINFO + ".noSelectWithPage", map);
+  public List<JSONObject> noSelectWithPage(String table, Map<String, String> map) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_RECEIVEINFO) + ".noSelectWithPage", map);
     return list;
   }
   
-  public List<JSONObject> getNoUsercode(String usercode)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_RECEIVEINFO + ".getNoUsercode", usercode);
+  public List<JSONObject> getNoUsercode(String usercode) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_RECEIVEINFO) + ".getNoUsercode", usercode);
     return list;
   }
   
-  public void deleteByrecno(String outprocessingsheetno)
-    throws Exception
-  {
-    this.dao.delete(TableNameUtil.KQDS_RECEIVEINFO + ".deleteByrecno", outprocessingsheetno);
+  public void deleteByrecno(String outprocessingsheetno) throws Exception {
+    this.dao.delete(String.valueOf(TableNameUtil.KQDS_RECEIVEINFO) + ".deleteByrecno", outprocessingsheetno);
   }
 }

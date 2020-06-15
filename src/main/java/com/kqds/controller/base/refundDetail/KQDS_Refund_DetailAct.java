@@ -20,77 +20,57 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"KQDS_Refund_DetailAct"})
-public class KQDS_Refund_DetailAct
-{
+public class KQDS_Refund_DetailAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_Refund_DetailAct.class);
+  
   @Autowired
   private KQDS_Refund_detailLogic logic;
   
   @RequestMapping({"/selectDetail.act"})
-  public String selectDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
       KqdsRefundDetail en = (KqdsRefundDetail)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_REFUND_DETAIL, seqId);
-      if (en == null) {
-        throw new Exception("数据不存在");
-      }
+      if (en == null)
+        throw new Exception("数据不存在"); 
       JSONObject jobj = new JSONObject();
       jobj.put("data", en);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectWithNopage.act"})
-  public String selectWithNopage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectWithNopage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
       String refundid = request.getParameter("refundid");
-      
-      Map<String, String> map = new HashMap();
-      if (!YZUtility.isNullorEmpty(refundid)) {
-        map.put("refundid", refundid);
-      }
+      Map<String, String> map = new HashMap<>();
+      if (!YZUtility.isNullorEmpty(refundid))
+        map.put("refundid", refundid); 
       List<JSONObject> list = this.logic.selectWithNopage(TableNameUtil.KQDS_REFUND_DETAIL, map, person);
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectWithNopage4.act"})
-  public String selectWithNopage4(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectWithNopage4(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
       String refundid = request.getParameter("refundid");
-      
-      Map<String, String> map = new HashMap();
-      if (!YZUtility.isNullorEmpty(refundid)) {
-        map.put("refundid", refundid);
-      }
+      Map<String, String> map = new HashMap<>();
+      if (!YZUtility.isNullorEmpty(refundid))
+        map.put("refundid", refundid); 
       List<JSONObject> list = this.logic.selectWithNopage4(TableNameUtil.KQDS_REFUND_DETAIL, map, person);
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

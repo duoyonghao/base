@@ -12,20 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_OutProcessingSheetLogic
-  extends BaseLogic
-{
+public class KQDS_OutProcessingSheetLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public List<JSONObject> selectWithPageLzjl(String table, Map<String, String> map)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_OUTPROCESSING_SHEET + ".selectWithPageLzjl", map);
-    for (JSONObject job : list)
-    {
+  public List<JSONObject> selectWithPageLzjl(String table, Map<String, String> map) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_OUTPROCESSING_SHEET) + ".selectWithPageLzjl", map);
+    for (JSONObject job : list) {
       String status = job.getString("status");
-      
       String value = "";
       if (ConstUtil.JG_STATUS_0.equals(status)) {
         value = "未发件";
@@ -39,28 +33,22 @@ public class KQDS_OutProcessingSheetLogic
         value = "返工";
       } else if (ConstUtil.JG_STATUS_5.equals(status)) {
         value = "作废";
-      }
+      } 
       job.put("statusname", value);
-    }
+    } 
     return list;
   }
   
-  public List<JSONObject> selectListByQuery(String table, Map<String, String> map, String num)
-    throws Exception
-  {
-    if (num.equals("0")) {
-      map.put("num", "0");
-    }
-    if (map.containsKey("queryInput"))
-    {
-      map.put("p1", YZAuthenticator.phonenumberLike("u.PhoneNumber1", (String)map.get("queryInput")));
-      map.put("p2", YZAuthenticator.phonenumberLike("u.PhoneNumber2", (String)map.get("queryInput")));
-    }
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_OUTPROCESSING_SHEET + ".selectListByQuery", map);
-    for (JSONObject job : list)
-    {
+  public List<JSONObject> selectListByQuery(String table, Map<String, String> map, String num) throws Exception {
+    if (num.equals("0"))
+      map.put("num", "0"); 
+    if (map.containsKey("queryInput")) {
+      map.put("p1", YZAuthenticator.phonenumberLike("u.PhoneNumber1", map.get("queryInput")));
+      map.put("p2", YZAuthenticator.phonenumberLike("u.PhoneNumber2", map.get("queryInput")));
+    } 
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_OUTPROCESSING_SHEET) + ".selectListByQuery", map);
+    for (JSONObject job : list) {
       String status = job.getString("status");
-      
       String value = "";
       if (ConstUtil.JG_STATUS_0.equals(status)) {
         value = "未发件";
@@ -74,29 +62,23 @@ public class KQDS_OutProcessingSheetLogic
         value = "返工";
       } else if (ConstUtil.JG_STATUS_5.equals(status)) {
         value = "作废";
-      }
+      } 
       job.put("statusname", value);
-    }
+    } 
     return list;
   }
   
-  public List<JSONObject> getAllJiagongPerson(String organization)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_OUTPROCESSING_SHEET + ".getAllJiagongPerson", organization);
+  public List<JSONObject> getAllJiagongPerson(String organization) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_OUTPROCESSING_SHEET) + ".getAllJiagongPerson", organization);
     return list;
   }
   
-  public List<JSONObject> getNoUsercode(String usercode)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_OUTPROCESSING_SHEET + ".getNoUsercode", usercode);
+  public List<JSONObject> getNoUsercode(String usercode) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_OUTPROCESSING_SHEET) + ".getNoUsercode", usercode);
     return list;
   }
   
-  public void deleteBySheetno(String outprocessingsheetno)
-    throws Exception
-  {
-    this.dao.delete(TableNameUtil.KQDS_OUTPROCESSING_SHEET_DETAIL + ".deleteBySheetno", outprocessingsheetno);
+  public void deleteBySheetno(String outprocessingsheetno) throws Exception {
+    this.dao.delete(String.valueOf(TableNameUtil.KQDS_OUTPROCESSING_SHEET_DETAIL) + ".deleteBySheetno", outprocessingsheetno);
   }
 }

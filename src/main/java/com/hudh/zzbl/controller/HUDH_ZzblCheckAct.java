@@ -18,84 +18,63 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"/HUDH_ZzblCheckAct"})
-public class HUDH_ZzblCheckAct
-{
+public class HUDH_ZzblCheckAct {
   private Logger logger = LoggerFactory.getLogger(HUDH_ZzblCheckAct.class);
+  
   @Autowired
   private IZzblCheckService zzblCheckService;
   
   @RequestMapping({"/save.act"})
-  public String save(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String save(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ZzblCheck dp = new ZzblCheck();
     YZPerson person = SessionUtil.getLoginPerson(request);
     String organization = ChainUtil.getCurrentOrganization(request);
     dp.setCreateuser(person.getUserId());
     dp.setOrganization(organization);
-    try
-    {
+    try {
       this.zzblCheckService.insertZzblCheck(dp, request);
       YZUtility.DEAL_SUCCESS(null, null, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/findZzblOprationById.act"})
-  public JSONObject findZzblOprationById(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public JSONObject findZzblOprationById(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String id = request.getParameter("id");
-    try
-    {
-      JSONObject json = this.zzblCheckService.findZzblOprationById(id);
-      YZUtility.DEAL_SUCCESS(json, null, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    try {
+      List<JSONObject> json = this.zzblCheckService.findZzblOprationById(id);
+      YZUtility.RETURN_LIST(json, response, this.logger);
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/findAllZzblInfor.act"})
-  public String findAllZzblInfor(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String findAllZzblInfor(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       List<JSONObject> list = this.zzblCheckService.findAllZzblInfor();
       YZUtility.RETURN_LIST(list, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/updateZzblOprationById.act"})
-  public String updateZzblOprationById(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String updateZzblOprationById(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String id = request.getParameter("seqId");
     ZzblCheck dp = this.zzblCheckService.selectZzblCheckById(id);
-    if (YZUtility.isNotNullOrEmpty(id)) {
-      dp.setSEQ_ID(id);
-    }
-    try
-    {
+    if (YZUtility.isNotNullOrEmpty(id))
+      dp.setSEQ_ID(id); 
+    try {
       this.zzblCheckService.updateZzblOprationById(dp, request);
       YZUtility.DEAL_SUCCESS(null, null, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
 }

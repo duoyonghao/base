@@ -12,28 +12,19 @@ import java.math.BigDecimal;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
-public class ActualMoneyDealAdapter
-  implements DealAdapter
-{
-  public boolean isDeal(KqdsReg reg, KqdsCostorder cost, List<KqdsCostorderDetail> list, HttpServletRequest request, Kqds_PayCostLogic logic, YZDictLogic dictLogic, KQDS_UserDocumentLogic userDocLogic)
-    throws Exception
-  {
+public class ActualMoneyDealAdapter implements DealAdapter {
+  public boolean isDeal(KqdsReg reg, KqdsCostorder cost, List<KqdsCostorderDetail> list, HttpServletRequest request, Kqds_PayCostLogic logic, YZDictLogic dictLogic, KQDS_UserDocumentLogic userDocLogic) throws Exception {
     boolean dealStatus = false;
-    
-
     boolean tsxmflag = false;
     for (KqdsCostorderDetail detail : list) {
-      if ((detail.getIstsxm() == null) || (detail.getIstsxm().intValue() == 0)) {
-        tsxmflag = true;
-      }
-    }
-    if (tsxmflag)
-    {
+      if (detail.getIstsxm() == null || detail.getIstsxm().intValue() == 0)
+        tsxmflag = true; 
+    } 
+    if (tsxmflag) {
       BigDecimal ssje = userDocLogic.getSsjeOne(cost.getCostno());
-      if (KqdsBigDecimal.compareTo(ssje, BigDecimal.ZERO) == 1) {
-        dealStatus = true;
-      }
-    }
+      if (KqdsBigDecimal.compareTo(ssje, BigDecimal.ZERO) == 1)
+        dealStatus = true; 
+    } 
     return dealStatus;
   }
 }

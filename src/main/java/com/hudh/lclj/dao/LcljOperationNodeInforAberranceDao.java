@@ -9,27 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LcljOperationNodeInforAberranceDao
-{
+public class LcljOperationNodeInforAberranceDao {
   @Autowired
   private DaoSupport dao;
   
-  public void saveOperationNodeInforAberrance(LcljOperationNodeInforaBerrance dp)
-    throws Exception
-  {
+  public void saveOperationNodeInforAberrance(LcljOperationNodeInforaBerrance dp) throws Exception {
     this.dao.save("HUDH_LCLJ_OPERATION_NODE_INFOR_ABERRANCE.saveOperationNodeInforAberrance", dp);
   }
   
-  public List<JSONObject> findOperationNodeInforAberranceByOrderNumberAndNodeId(Map<String, String> dataMap)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList("HUDH_LCLJ_OPERATION_NODE_INFOR_ABERRANCE.findOperationNodeInforAberranceByOrderNumberAndNodeId", dataMap);
+  public List<JSONObject> findOperationNodeInforAberranceByOrderNumberAndNodeId(Map<String, String> dataMap) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList("HUDH_LCLJ_OPERATION_NODE_INFOR_ABERRANCE.findOperationNodeInforAberranceByOrderNumberAndNodeId", dataMap);
     return list;
   }
   
-  public void insertOperationNodeInforAberrance(LcljOperationNodeInforaBerrance dp)
-    throws Exception
-  {
+  public void insertOperationNodeInforAberrance(LcljOperationNodeInforaBerrance dp) throws Exception {
     this.dao.save("HUDH_LCLJ_OPERATION_NODE_INFOR_ABERRANCE.insertOperationNodeInforAberrance", dp);
   }
 }

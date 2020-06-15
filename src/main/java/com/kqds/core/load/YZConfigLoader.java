@@ -8,54 +8,37 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
 
-public class YZConfigLoader
-{
+public class YZConfigLoader {
   private static Properties props = new Properties();
   
-  public static Properties loadSysProps(String sysPropsFile)
-  {
+  public static Properties loadSysProps(String sysPropsFile) {
     return loadSysProps(new File(sysPropsFile));
   }
   
-  public static Properties loadSysProps(File sysPropsFile)
-  {
-    if (!sysPropsFile.exists()) {
-      return props;
-    }
+  public static Properties loadSysProps(File sysPropsFile) {
+    if (!sysPropsFile.exists())
+      return props; 
     InputStream inProps = null;
-    try
-    {
+    try {
       inProps = new BufferedInputStream(new FileInputStream(sysPropsFile));
       props.load(inProps);
-    }
-    catch (IOException localIOException)
-    {
-      try
-      {
-        if (inProps != null) {
-          inProps.close();
-        }
-      }
-      catch (IOException localIOException1) {}
-    }
-    finally
-    {
-      try
-      {
-        if (inProps != null) {
-          inProps.close();
-        }
-      }
-      catch (IOException localIOException2) {}
-    }
+    } catch (IOException iOException) {
+      try {
+        if (inProps != null)
+          inProps.close(); 
+      } catch (IOException iOException1) {}
+    } finally {
+      try {
+        if (inProps != null)
+          inProps.close(); 
+      } catch (IOException iOException) {}
+    } 
     return props;
   }
   
-  public static Properties loadSysProps(List<String> fileList)
-  {
-    for (String filePath : fileList) {
-      loadSysProps(filePath);
-    }
+  public static Properties loadSysProps(List<String> fileList) {
+    for (String filePath : fileList)
+      loadSysProps(filePath); 
     return props;
   }
 }

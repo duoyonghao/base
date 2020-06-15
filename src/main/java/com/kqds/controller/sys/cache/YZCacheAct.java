@@ -16,34 +16,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"YZCacheAct"})
-public class YZCacheAct
-{
+public class YZCacheAct {
   private Logger logger = LoggerFactory.getLogger(YZCacheAct.class);
+  
   @Autowired
   private YZPersonLogic personLogic;
   
   @RequestMapping({"/loginCache.act"})
-  public String loginCache(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String loginCache(HttpServletRequest request, HttpServletResponse response) throws Exception {
     HttpSession session = request.getSession(false);
-    List<JSONObject> treeList = new ArrayList();
-    try
-    {
+    List<JSONObject> treeList = new ArrayList<>();
+    try {
       long startTime = System.currentTimeMillis();
       treeList = this.personLogic.getDeptNodeList("0", treeList, null);
       long endTime = System.currentTimeMillis();
-      
-
-
       this.logger.error("程序运行时间： " + (endTime - startTime) + "ms ### Login Cache ### SUCCESS");
-      
       session.setAttribute("PERSON_TREE_DATA", treeList);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, this.logger);
-    }
+    } 
     return null;
   }
 }

@@ -12,16 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_VisitSetLogic
-  extends BaseLogic
-{
+public class KQDS_VisitSetLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public JSONObject selectWithPage(String table, BootStrapPage bp, Map<String, String> map)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_VISIT_SET + ".selectWithPage", map);
+  public JSONObject selectWithPage(String table, BootStrapPage bp, Map<String, String> map) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_VISIT_SET) + ".selectWithPage", map);
     PageInfo<JSONObject> pageInfo = new PageInfo(list);
     JSONObject jobj = new JSONObject();
     jobj.put("total", Long.valueOf(pageInfo.getTotal()));

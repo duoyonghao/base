@@ -11,23 +11,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_Ck_SupplierLogic
-  extends BaseLogic
-{
+public class KQDS_Ck_SupplierLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public int countBySupplierCode(KqdsCkSupplier dp)
-    throws Exception
-  {
-    int count = ((Integer)this.dao.findForObject(TableNameUtil.KQDS_CK_SUPPLIER + ".countBySupplierCode", dp)).intValue();
+  public int countBySupplierCode(KqdsCkSupplier dp) throws Exception {
+    int count = ((Integer)this.dao.findForObject(String.valueOf(TableNameUtil.KQDS_CK_SUPPLIER) + ".countBySupplierCode", dp)).intValue();
     return count;
   }
   
-  public List<JSONObject> selectList(Map<String, String> map)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_CK_SUPPLIER + ".selectList", map);
+  public List<JSONObject> selectList(Map<String, String> map) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_CK_SUPPLIER) + ".selectList", map);
     return list;
   }
 }

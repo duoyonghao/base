@@ -20,16 +20,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_BCJLAct"})
-public class KQDS_BCJLAct
-{
+public class KQDS_BCJLAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_BCJLAct.class);
+  
   @Autowired
   private KQDS_BCJLLogic logic;
   
   @RequestMapping({"/toLzjlWin.act"})
-  public ModelAndView toLzjlWin(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toLzjlWin(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String usercode = request.getParameter("usercode");
     ModelAndView mv = new ModelAndView();
     mv.addObject("usercode", usercode);
@@ -38,31 +36,23 @@ public class KQDS_BCJLAct
   }
   
   @RequestMapping({"/selectPageLz.act"})
-  public String selectPageLz(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectPageLz(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       BootStrapPage bp = new BootStrapPage();
       String usercode = request.getParameter("usercode");
       String regno = request.getParameter("regno");
-      
       BeanUtils.populate(bp, request.getParameterMap());
-      Map<String, String> map = new HashMap();
+      Map<String, String> map = new HashMap<>();
       map.put("ifshow", "0");
-      if (!YZUtility.isNullorEmpty(usercode)) {
-        map.put("usercode", usercode);
-      }
-      if (!YZUtility.isNullorEmpty(regno)) {
-        map.put("regno", regno);
-      }
+      if (!YZUtility.isNullorEmpty(usercode))
+        map.put("usercode", usercode); 
+      if (!YZUtility.isNullorEmpty(regno))
+        map.put("regno", regno); 
       List<JSONObject> list = this.logic.selectWithPageLzjl(TableNameUtil.KQDS_BCJL, map);
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

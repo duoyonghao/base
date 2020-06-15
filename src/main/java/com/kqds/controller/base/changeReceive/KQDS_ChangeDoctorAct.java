@@ -29,16 +29,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_ChangeDoctorAct"})
-public class KQDS_ChangeDoctorAct
-{
+public class KQDS_ChangeDoctorAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_ChangeDoctorAct.class);
+  
   @Autowired
   private KQDS_changeDoctorLogic logic;
   
   @RequestMapping({"/toZz_Index.act"})
-  public ModelAndView toZz_Index(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toZz_Index(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String costno = request.getParameter("costno");
     String usercode = request.getParameter("usercode");
     ModelAndView mv = new ModelAndView();
@@ -49,13 +47,9 @@ public class KQDS_ChangeDoctorAct
   }
   
   @RequestMapping({"/zzDoctor.act"})
-  public String zzDoctor(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String zzDoctor(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
-      
       String doctor = request.getParameter("doctor");
       String oldDoctor = request.getParameter("oldDoctor");
       String regno = request.getParameter("regno");
@@ -63,7 +57,6 @@ public class KQDS_ChangeDoctorAct
       String remark = request.getParameter("remark");
       String usercode = request.getParameter("usercode");
       String username = request.getParameter("username");
-      
       KqdsChangeDoctor dp = new KqdsChangeDoctor();
       dp.setSeqId(YZUtility.getUUID());
       dp.setCreatetime(YZUtility.getCurDateTimeStr());
@@ -76,111 +69,84 @@ public class KQDS_ChangeDoctorAct
       dp.setUsername(username);
       dp.setOrganization(ChainUtil.getCurrentOrganization(request));
       this.logic.saveSingleUUID(TableNameUtil.KQDS_CHANGE_DOCTOR, dp);
-      
       BcjlUtil.LogBcjlWithUserCode(BcjlUtil.NEW, BcjlUtil.KQDS_CHANGE_DOCTOR, dp, dp.getUsercode(), TableNameUtil.KQDS_CHANGE_DOCTOR, request);
-      
-      Map<String, String> map = new HashMap();
+      Map<String, String> map = new HashMap<>();
       map.put("doctor", oldDoctor);
       map.put("regno", regno);
       map.put("costno", costno);
-      
-
-
-      List<KqdsCostorderDetail> detaillist = (List)this.logic.loadList(TableNameUtil.KQDS_COSTORDER_DETAIL, map);
+      List<KqdsCostorderDetail> detaillist = (List<KqdsCostorderDetail>)this.logic.loadList(TableNameUtil.KQDS_COSTORDER_DETAIL, map);
       for (KqdsCostorderDetail detail : detaillist) {
-        if (KqdsBigDecimal.compareTo(detail.getY2(), BigDecimal.ZERO) > 0)
-        {
+        if (KqdsBigDecimal.compareTo(detail.getY2(), BigDecimal.ZERO) > 0) {
           editQfTodoctor(detail, doctor, request);
-        }
-        else if ((KqdsBigDecimal.compareTo(detail.getY2(), BigDecimal.ZERO) > 0) || (detail.getQfbh() == null) || ("".equals(detail.getQfbh())))
-        {
+          continue;
+        } 
+        if (KqdsBigDecimal.compareTo(detail.getY2(), BigDecimal.ZERO) > 0 || detail.getQfbh() == null || "".equals(detail.getQfbh())) {
           detail.setDoctor(doctor);
           this.logic.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
-        }
-      }
-      List<KqdsCostorder> orderlist = (List)this.logic.loadList(TableNameUtil.KQDS_COSTORDER, map);
-      for (KqdsCostorder detail : orderlist)
-      {
+        } 
+      } 
+      List<KqdsCostorder> orderlist = (List<KqdsCostorder>)this.logic.loadList(TableNameUtil.KQDS_COSTORDER, map);
+      for (KqdsCostorder detail : orderlist) {
         detail.setDoctor(doctor);
         this.logic.updateSingleUUID(TableNameUtil.KQDS_COSTORDER, detail);
-      }
-      Object paylist = (List)this.logic.loadList(TableNameUtil.KQDS_PAYCOST, map);
-      for (KqdsPaycost detail : (List)paylist)
-      {
+      } 
+      List<KqdsPaycost> paylist = (List<KqdsPaycost>)this.logic.loadList(TableNameUtil.KQDS_PAYCOST, map);
+      for (KqdsPaycost detail : paylist) {
         detail.setDoctor(doctor);
         this.logic.updateSingleUUID(TableNameUtil.KQDS_PAYCOST, detail);
-      }
+      } 
       YZUtility.DEAL_SUCCESS(null, "转诊成功", response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/editQfTodoctor.act"})
-  private void editQfTodoctor(KqdsCostorderDetail detail, String doctor, HttpServletRequest request)
-    throws Exception
-  {
-    Map<String, String> map = new HashMap();
+  private void editQfTodoctor(KqdsCostorderDetail detail, String doctor, HttpServletRequest request) throws Exception {
+    Map<String, String> map = new HashMap<>();
     map.put("qfbh", detail.getQfbh());
-    
-    List<KqdsCostorderDetail> detaillist = (List)this.logic.loadList(TableNameUtil.KQDS_COSTORDER_DETAIL, map);
-    for (KqdsCostorderDetail detailnew : detaillist)
-    {
+    List<KqdsCostorderDetail> detaillist = (List<KqdsCostorderDetail>)this.logic.loadList(TableNameUtil.KQDS_COSTORDER_DETAIL, map);
+    for (KqdsCostorderDetail detailnew : detaillist) {
       detailnew.setDoctor(doctor);
       this.logic.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detailnew);
-    }
+    } 
   }
   
   @RequestMapping({"/selectNoPage.act"})
-  public String selectNoPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectNoPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String starttime = request.getParameter("starttime");
       String endtime = request.getParameter("endtime");
       String queryinput = request.getParameter("queryinput");
       String olddoctor = request.getParameter("olddoctor");
       String todoctor = request.getParameter("todoctor");
       String RegNo = request.getParameter("RegNo");
-      
-      String flag = request.getParameter("flag") == null ? "" : request.getParameter("flag");
-      String fieldArr = request.getParameter("fieldArr") == null ? "" : request.getParameter("fieldArr");
-      String fieldnameArr = request.getParameter("fieldnameArr") == null ? "" : request.getParameter("fieldnameArr");
-      Map<String, String> map = new HashMap();
-      if (!YZUtility.isNullorEmpty(starttime)) {
-        map.put("starttime", starttime);
-      }
-      if (!YZUtility.isNullorEmpty(endtime)) {
-        map.put("endtime", endtime);
-      }
-      if (!YZUtility.isNullorEmpty(queryinput)) {
-        map.put("queryinput", queryinput);
-      }
-      if (!YZUtility.isNullorEmpty(olddoctor)) {
-        map.put("olddoctor", olddoctor);
-      }
-      if (!YZUtility.isNullorEmpty(todoctor)) {
-        map.put("todoctor", todoctor);
-      }
-      if (!YZUtility.isNullorEmpty(RegNo)) {
-        map.put("RegNo", RegNo);
-      }
+      String flag = (request.getParameter("flag") == null) ? "" : request.getParameter("flag");
+      String fieldArr = (request.getParameter("fieldArr") == null) ? "" : request.getParameter("fieldArr");
+      String fieldnameArr = (request.getParameter("fieldnameArr") == null) ? "" : request.getParameter("fieldnameArr");
+      Map<String, String> map = new HashMap<>();
+      if (!YZUtility.isNullorEmpty(starttime))
+        map.put("starttime", starttime); 
+      if (!YZUtility.isNullorEmpty(endtime))
+        map.put("endtime", endtime); 
+      if (!YZUtility.isNullorEmpty(queryinput))
+        map.put("queryinput", queryinput); 
+      if (!YZUtility.isNullorEmpty(olddoctor))
+        map.put("olddoctor", olddoctor); 
+      if (!YZUtility.isNullorEmpty(todoctor))
+        map.put("todoctor", todoctor); 
+      if (!YZUtility.isNullorEmpty(RegNo))
+        map.put("RegNo", RegNo); 
       List<JSONObject> list = this.logic.selectWithPage(TableNameUtil.KQDS_CHANGE_DOCTOR, map);
-      if ((flag != null) && (flag.equals("exportTable")))
-      {
+      if (flag != null && flag.equals("exportTable")) {
         ExportTable.exportBootStrapTable2Excel("转诊医生列表", fieldArr, fieldnameArr, list, response, request);
         return null;
-      }
+      } 
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

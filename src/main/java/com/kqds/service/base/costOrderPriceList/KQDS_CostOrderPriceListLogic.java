@@ -8,21 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_CostOrderPriceListLogic
-  extends BaseLogic
-{
+public class KQDS_CostOrderPriceListLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public void insertPriceList(List<KqdsCostorderPriceList> list)
-    throws Exception
-  {
+  public void insertPriceList(List<KqdsCostorderPriceList> list) throws Exception {
     this.dao.batchUpdate("KQDS_COSTORDER_PRICE_LIST.insertPriceList", list);
   }
   
-  public int updatePriceList(KqdsCostorderPriceList kqdsCostorderPriceList)
-    throws Exception
-  {
+  public int updatePriceList(KqdsCostorderPriceList kqdsCostorderPriceList) throws Exception {
     int a = ((Integer)this.dao.update("KQDS_COSTORDER_PRICE_LIST.updatePriceList", kqdsCostorderPriceList)).intValue();
     return a;
   }

@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"KQDS_Give_ItemAct"})
-public class KQDS_Give_ItemAct
-{
+public class KQDS_Give_ItemAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_Give_ItemAct.class);
+  
   @Autowired
   private KQDS_Give_ItemLogic logic;
 }

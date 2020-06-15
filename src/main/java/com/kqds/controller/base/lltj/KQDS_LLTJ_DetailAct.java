@@ -26,148 +26,105 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"KQDS_LLTJ_DetailAct"})
-public class KQDS_LLTJ_DetailAct
-{
+public class KQDS_LLTJ_DetailAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_LLTJ_DetailAct.class);
+  
   @Autowired
   private Kqds_LLTJ_DetailLogic logic;
   
   @RequestMapping({"/zlStatusUpdate.act"})
-  public String zlStatusUpdate(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String zlStatusUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
-      if (YZUtility.isNullorEmpty(seqId)) {
-        throw new Exception("主键为空或者null");
-      }
+      if (YZUtility.isNullorEmpty(seqId))
+        throw new Exception("主键为空或者null"); 
       KqdsLltjDetail good = (KqdsLltjDetail)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_LLTJ_DETAIL, seqId);
-      if (good == null) {
-        throw new Exception("操作失败，记录不存在");
-      }
+      if (good == null)
+        throw new Exception("操作失败，记录不存在"); 
       good.setIszl(Integer.valueOf(ConstUtil.ISZJL_1));
       this.logic.updateSingleUUID(TableNameUtil.KQDS_LLTJ_DETAIL, good);
-      
-
       BcjlUtil.LogBcjlWithUserCode(BcjlUtil.UPDATE_STATUS, BcjlUtil.KQDS_LLTJ_DETAIL, good, good.getUsercode(), TableNameUtil.KQDS_LLTJ_DETAIL, request);
-      
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/insertOrUpdate.act"})
-  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
       KqdsLltjDetail dp = new KqdsLltjDetail();
       BeanUtils.populate(dp, request.getParameterMap());
       String seqId = request.getParameter("seqId");
-      if (!YZUtility.isNullorEmpty(seqId))
-      {
+      if (!YZUtility.isNullorEmpty(seqId)) {
         this.logic.updateSingleUUID(TableNameUtil.KQDS_LLTJ_DETAIL, dp);
-        
-
         BcjlUtil.LogBcjlWithUserCode(BcjlUtil.MODIFY, BcjlUtil.KQDS_LLTJ_DETAIL, dp, dp.getUsercode(), TableNameUtil.KQDS_LLTJ_DETAIL, request);
-      }
-      else
-      {
+      } else {
         String listdata = request.getParameter("data");
         JSONArray jArray = JSONArray.fromObject(listdata);
         Collection collection = JSONArray.toCollection(jArray, KqdsLltjDetail.class);
-        Iterator it = collection.iterator();
-        while (it.hasNext())
-        {
-          dp = (KqdsLltjDetail)it.next();
+        Iterator<KqdsLltjDetail> it = collection.iterator();
+        while (it.hasNext()) {
+          dp = it.next();
           dp.setSeqId(YZUtility.getUUID());
           dp.setCreatetime(YZUtility.getCurDateTimeStr());
           dp.setCreateuser(person.getSeqId());
           dp.setOrganization(ChainUtil.getCurrentOrganization(request));
           this.logic.saveSingleUUID(TableNameUtil.KQDS_LLTJ_DETAIL, dp);
-          
-
           BcjlUtil.LogBcjlWithUserCode(BcjlUtil.NEW, BcjlUtil.KQDS_LLTJ_DETAIL, dp, dp.getUsercode(), TableNameUtil.KQDS_LLTJ_DETAIL, request);
-        }
-      }
+        } 
+      } 
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectList.act"})
-  public String selectList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String treatdetailno = request.getParameter("treatdetailno");
       String starttime = request.getParameter("starttime");
       String endtime = request.getParameter("endtime");
       String queryinput = request.getParameter("queryinput");
-      
-      Map<String, String> map = new HashMap();
-      
+      Map<String, String> map = new HashMap<>();
       map.put("organization", ChainUtil.getCurrentOrganization(request));
-      if (!YZUtility.isNullorEmpty(treatdetailno)) {
-        map.put("lltjid", treatdetailno);
-      }
-      if (!YZUtility.isNullorEmpty(starttime))
-      {
-        starttime = starttime + ConstUtil.TIME_START;
+      if (!YZUtility.isNullorEmpty(treatdetailno))
+        map.put("lltjid", treatdetailno); 
+      if (!YZUtility.isNullorEmpty(starttime)) {
+        starttime = String.valueOf(starttime) + ConstUtil.TIME_START;
         map.put("starttime", starttime);
-      }
-      if (!YZUtility.isNullorEmpty(endtime))
-      {
-        endtime = endtime + ConstUtil.TIME_END;
+      } 
+      if (!YZUtility.isNullorEmpty(endtime)) {
+        endtime = String.valueOf(endtime) + ConstUtil.TIME_END;
         map.put("endtime", endtime);
-      }
-      if (!YZUtility.isNullorEmpty(queryinput)) {
-        map.put("queryinput", queryinput);
-      }
+      } 
+      if (!YZUtility.isNullorEmpty(queryinput))
+        map.put("queryinput", queryinput); 
       List<KqdsLltjDetail> list = this.logic.selectList(TableNameUtil.KQDS_LLTJ_DETAIL, map, ChainUtil.getCurrentOrganization(request));
-      
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/deleteTreatDetail.act"})
-  public String deleteTreatDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String deleteTreatDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
-      if (YZUtility.isNullorEmpty(seqId)) {
-        throw new Exception("主键为空或者null");
-      }
+      if (YZUtility.isNullorEmpty(seqId))
+        throw new Exception("主键为空或者null"); 
       KqdsLltjDetail en = (KqdsLltjDetail)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_LLTJ_DETAIL, seqId);
       this.logic.deleteSingleUUID(TableNameUtil.KQDS_LLTJ_DETAIL, seqId);
-      
       BcjlUtil.LogBcjlWithUserCode(BcjlUtil.DELETE, BcjlUtil.KQDS_LLTJ_DETAIL, en, en.getUsercode(), TableNameUtil.KQDS_LLTJ_DETAIL, request);
-      
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

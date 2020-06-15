@@ -10,23 +10,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LcljOperateRejectRecordDao
-{
+public class LcljOperateRejectRecordDao {
   @Autowired
   private DaoSupport dao;
   
-  public void insertOperationNodeReject(LcljOperateRejectRecord dp)
-    throws Exception
-  {
+  public void insertOperationNodeReject(LcljOperateRejectRecord dp) throws Exception {
     this.dao.save("HUDH_LCLJ_OPERATION_NODE_REJECT.insertOperationNodeReject", dp);
   }
   
-  public List<JSONObject> findOperationNodeRejectByOrderNumber(String orderNumber)
-    throws Exception
-  {
-    Map<String, String> dataMap = new HashMap();
+  public List<JSONObject> findOperationNodeRejectByOrderNumber(String orderNumber) throws Exception {
+    Map<String, String> dataMap = new HashMap<>();
     dataMap.put("orderNumber", orderNumber);
-    List<JSONObject> list = (List)this.dao.findForList("HUDH_LCLJ_OPERATION_NODE_REJECT.findOperationNodeRejectByOrderNumber", dataMap);
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList("HUDH_LCLJ_OPERATION_NODE_REJECT.findOperationNodeRejectByOrderNumber", dataMap);
     return list;
   }
 }

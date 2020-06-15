@@ -8,12 +8,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"/SignatureAct"})
-public class SignatureAct
-{
+public class SignatureAct {
   @RequestMapping({"/toSignature.act"})
-  public ModelAndView toSignature(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toSignature(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String category = request.getParameter("category");
     String url = "/kqdsFront/signature/signature.jsp";
     ModelAndView model = new ModelAndView();

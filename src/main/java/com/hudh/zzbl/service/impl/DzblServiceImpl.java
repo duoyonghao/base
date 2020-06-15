@@ -12,86 +12,59 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DzblServiceImpl
-  implements DzblService
-{
+public class DzblServiceImpl implements DzblService {
   @Autowired
   private DzblDao dzblDao;
   
-  public void saveCaseHistory(AdviceNote adviceNote)
-    throws Exception
-  {
+  public void saveCaseHistory(AdviceNote adviceNote) throws Exception {
     this.dzblDao.saveCaseHistory(adviceNote);
   }
   
-  public JSONObject findCaseHistoryById(String id)
-    throws Exception
-  {
+  public List<JSONObject> findCaseHistoryById(String id) throws Exception {
     return this.dzblDao.findCaseHistoryById(id);
   }
   
-  public void updateCaseHistoryById(AdviceNote adviceNote)
-    throws Exception
-  {
+  public void updateCaseHistoryById(AdviceNote adviceNote) throws Exception {
     this.dzblDao.updateCaseHistoryById(adviceNote);
   }
   
-  public void deleteCaseHistory(String id)
-    throws Exception
-  {
+  public void deleteCaseHistory(String id) throws Exception {
     this.dzblDao.deleteCaseHistoryById(id);
   }
   
-  public void saveFamiliarBook(FamiliarBook familiarBook)
-    throws Exception
-  {
+  public void saveFamiliarBook(FamiliarBook familiarBook) throws Exception {
     this.dzblDao.saveFamiliarBook(familiarBook);
   }
   
-  public void updateFamiliarBook(FamiliarBook familiarBook)
-    throws Exception
-  {
+  public void updateFamiliarBook(FamiliarBook familiarBook) throws Exception {
     this.dzblDao.updateFamiliarBook(familiarBook);
   }
   
-  public JSONObject findFamiliarBook(String id)
-    throws Exception
-  {
+  public JSONObject findFamiliarBook(String id) throws Exception {
     return this.dzblDao.findFamiliarBook(id);
   }
   
-  public void deleteFamiliarBook(String id)
-    throws Exception
-  {
+  public void deleteFamiliarBook(String id) throws Exception {
     this.dzblDao.deleteFamiliarBook(id);
   }
   
-  public JSONObject findLocatorFamiliar(Map<String, Object> map)
-    throws Exception
-  {
+  public JSONObject findLocatorFamiliar(Map<String, Object> map) throws Exception {
     return this.dzblDao.findLocatorFamiliar(map);
   }
   
-  public List<JSONObject> findLocatorFamiliares(String lcljId)
-    throws Exception
-  {
+  public List<JSONObject> findLocatorFamiliares(String lcljId) throws Exception {
     return this.dzblDao.findLocatorFamiliares(lcljId);
   }
   
-  public List<JSONObject> findFamiliarBookList()
-  {
+  public List<JSONObject> findFamiliarBookList() {
     return null;
   }
   
-  public Integer saveLocatorFamiliar(LocatorFamiliar locatorFamiliar)
-    throws Exception
-  {
+  public Integer saveLocatorFamiliar(LocatorFamiliar locatorFamiliar) throws Exception {
     return (Integer)this.dzblDao.saveLocatorFamiliar(locatorFamiliar);
   }
   
-  public void updateLocatorFamiliar(LocatorFamiliar locatorFamiliar)
-    throws Exception
-  {
+  public void updateLocatorFamiliar(LocatorFamiliar locatorFamiliar) throws Exception {
     this.dzblDao.updateLocatorFamiliar(locatorFamiliar);
   }
 }

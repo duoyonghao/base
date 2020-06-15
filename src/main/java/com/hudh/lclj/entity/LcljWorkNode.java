@@ -1,49 +1,43 @@
 package com.hudh.lclj.entity;
 
-public class LcljWorkNode
-{
+public class LcljWorkNode {
   private String num;
+  
   private String nodeName;
+  
   private String nodeLimit;
+  
   private String nodeStatus;
   
-  public String getNum()
-  {
+  public String getNum() {
     return this.num;
   }
   
-  public void setNum(String num)
-  {
+  public void setNum(String num) {
     this.num = num;
   }
   
-  public String getNodeName()
-  {
+  public String getNodeName() {
     return this.nodeName;
   }
   
-  public void setNodeName(String nodeName)
-  {
+  public void setNodeName(String nodeName) {
     this.nodeName = nodeName;
   }
   
-  public String getNodeLimit()
-  {
+  public String getNodeLimit() {
     return this.nodeLimit;
   }
   
-  public void setNodeLimit(String nodeLimit)
-  {
+  public void setNodeLimit(String nodeLimit) {
     this.nodeLimit = nodeLimit;
   }
   
-  public String getNodeStatus()
-  {
+  public String getNodeStatus() {
     return this.nodeStatus;
   }
   
-  public void setNodeStatus(String nodeStatus)
-  {
+  public void setNodeStatus(String nodeStatus) {
     this.nodeStatus = nodeStatus;
   }
 }

@@ -15,22 +15,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_Jzmd_TypeLogic
-  extends BaseLogic
-{
+public class KQDS_Jzmd_TypeLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public int selectCountLocal(String dictSeqId)
-    throws Exception
-  {
-    return ((Integer)this.dao.findForObject(TableNameUtil.KQDS_JZMD_TYPE + ".selectCount", dictSeqId)).intValue();
+  public int selectCountLocal(String dictSeqId) throws Exception {
+    return ((Integer)this.dao.findForObject(String.valueOf(TableNameUtil.KQDS_JZMD_TYPE) + ".selectCount", dictSeqId)).intValue();
   }
   
-  public JSONObject selectWithPage(BootStrapPage bp, Map<String, String> map)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_JZMD_TYPE + ".selectWithPage", map);
+  public JSONObject selectWithPage(BootStrapPage bp, Map<String, String> map) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_JZMD_TYPE) + ".selectWithPage", map);
     PageInfo<JSONObject> pageInfo = new PageInfo(list);
     JSONObject jobj = new JSONObject();
     jobj.put("total", Long.valueOf(pageInfo.getTotal()));
@@ -38,27 +32,22 @@ public class KQDS_Jzmd_TypeLogic
     return jobj;
   }
   
-  public List<KqdsJzmdType> getJzmdChildTypeSelect(String jzmd, String isAdd, String organization)
-    throws Exception
-  {
-    Map<String, String> map = new HashMap();
+  public List<KqdsJzmdType> getJzmdChildTypeSelect(String jzmd, String isAdd, String organization) throws Exception {
+    Map<String, String> map = new HashMap<>();
     map.put("jzmd", jzmd);
-    if (!YZUtility.isNullorEmpty(isAdd)) {
-      map.put("isAdd", isAdd);
-    }
+    if (!YZUtility.isNullorEmpty(isAdd))
+      map.put("isAdd", isAdd); 
     map.put("organization", organization);
-    List<KqdsJzmdType> list = (List)this.dao.findForList(TableNameUtil.KQDS_JZMD_TYPE + ".getJzmdChildTypeSelect", map);
+    List<KqdsJzmdType> list = (List<KqdsJzmdType>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_JZMD_TYPE) + ".getJzmdChildTypeSelect", map);
     return list;
   }
   
-  public List<KqdsJzmdType> selectTxList(String reggoal, String jzmd, String organization)
-    throws Exception
-  {
-    Map<String, String> map = new HashMap();
+  public List<KqdsJzmdType> selectTxList(String reggoal, String jzmd, String organization) throws Exception {
+    Map<String, String> map = new HashMap<>();
     map.put("reggoal", reggoal);
     map.put("jzmd", jzmd);
     map.put("organization", organization);
-    List<KqdsJzmdType> list = (List)this.dao.findForList(TableNameUtil.KQDS_JZMD_TYPE + ".selectTxList", map);
+    List<KqdsJzmdType> list = (List<KqdsJzmdType>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_JZMD_TYPE) + ".selectTxList", map);
     return list;
   }
 }

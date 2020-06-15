@@ -1,291 +1,263 @@
 package com.kqds.entity.base;
 
-public class KqdsReg
-{
+public class KqdsReg {
   private String seqId;
+  
   private String createuser;
+  
   private String createtime;
+  
   private String usercode;
+  
   private String regway;
+  
   private String regsort;
+  
   private String recesort;
+  
   private String regmoney;
+  
   private String reggoal;
+  
   private String regdept;
+  
   private String doctor;
+  
   private String askperson;
+  
   private Integer ifmedrecord;
+  
   private Integer ifcost;
+  
   private String editreason;
+  
   private String receiveno;
+  
   private Integer status;
+  
   private String username;
+  
   private Integer del;
+  
   private Integer cjstatus;
+  
   private String remark;
+  
   private String organization;
+  
   private String beforeeditreason;
+  
   private String repairdoctor;
+  
   private String askpersondept;
+  
   private int jh;
   
-  public String getAskpersondept()
-  {
+  public String getAskpersondept() {
     return this.askpersondept;
   }
   
-  public void setAskpersondept(String askpersondept)
-  {
+  public void setAskpersondept(String askpersondept) {
     this.askpersondept = askpersondept;
   }
   
-  public String getSeqId()
-  {
+  public String getSeqId() {
     return this.seqId;
   }
   
-  public void setSeqId(String seqId)
-  {
-    this.seqId = (seqId == null ? null : seqId.trim());
+  public void setSeqId(String seqId) {
+    this.seqId = (seqId == null) ? null : seqId.trim();
   }
   
-  public String getCreateuser()
-  {
+  public String getCreateuser() {
     return this.createuser;
   }
   
-  public void setCreateuser(String createuser)
-  {
-    this.createuser = (createuser == null ? null : createuser.trim());
+  public void setCreateuser(String createuser) {
+    this.createuser = (createuser == null) ? null : createuser.trim();
   }
   
-  public String getCreatetime()
-  {
+  public String getCreatetime() {
     return this.createtime;
   }
   
-  public void setCreatetime(String createtime)
-  {
-    this.createtime = (createtime == null ? null : createtime.trim());
+  public void setCreatetime(String createtime) {
+    this.createtime = (createtime == null) ? null : createtime.trim();
   }
   
-  public String getUsercode()
-  {
+  public String getUsercode() {
     return this.usercode;
   }
   
-  public void setUsercode(String usercode)
-  {
-    this.usercode = (usercode == null ? null : usercode.trim());
+  public void setUsercode(String usercode) {
+    this.usercode = (usercode == null) ? null : usercode.trim();
   }
   
-  public String getRegway()
-  {
+  public String getRegway() {
     return this.regway;
   }
   
-  public void setRegway(String regway)
-  {
-    this.regway = (regway == null ? null : regway.trim());
+  public void setRegway(String regway) {
+    this.regway = (regway == null) ? null : regway.trim();
   }
   
-  public String getRegsort()
-  {
+  public String getRegsort() {
     return this.regsort;
   }
   
-  public void setRegsort(String regsort)
-  {
-    this.regsort = (regsort == null ? null : regsort.trim());
+  public void setRegsort(String regsort) {
+    this.regsort = (regsort == null) ? null : regsort.trim();
   }
   
-  public String getRecesort()
-  {
+  public String getRecesort() {
     return this.recesort;
   }
   
-  public void setRecesort(String recesort)
-  {
-    this.recesort = (recesort == null ? null : recesort.trim());
+  public void setRecesort(String recesort) {
+    this.recesort = (recesort == null) ? null : recesort.trim();
   }
   
-  public String getRegmoney()
-  {
+  public String getRegmoney() {
     return this.regmoney;
   }
   
-  public void setRegmoney(String regmoney)
-  {
-    this.regmoney = (regmoney == null ? null : regmoney.trim());
+  public void setRegmoney(String regmoney) {
+    this.regmoney = (regmoney == null) ? null : regmoney.trim();
   }
   
-  public String getReggoal()
-  {
+  public String getReggoal() {
     return this.reggoal;
   }
   
-  public void setReggoal(String reggoal)
-  {
-    this.reggoal = (reggoal == null ? null : reggoal.trim());
+  public void setReggoal(String reggoal) {
+    this.reggoal = (reggoal == null) ? null : reggoal.trim();
   }
   
-  public String getRegdept()
-  {
+  public String getRegdept() {
     return this.regdept;
   }
   
-  public void setRegdept(String regdept)
-  {
-    this.regdept = (regdept == null ? null : regdept.trim());
+  public void setRegdept(String regdept) {
+    this.regdept = (regdept == null) ? null : regdept.trim();
   }
   
-  public String getDoctor()
-  {
+  public String getDoctor() {
     return this.doctor;
   }
   
-  public void setDoctor(String doctor)
-  {
-    this.doctor = (doctor == null ? null : doctor.trim());
+  public void setDoctor(String doctor) {
+    this.doctor = (doctor == null) ? null : doctor.trim();
   }
   
-  public String getAskperson()
-  {
+  public String getAskperson() {
     return this.askperson;
   }
   
-  public void setAskperson(String askperson)
-  {
-    this.askperson = (askperson == null ? null : askperson.trim());
+  public void setAskperson(String askperson) {
+    this.askperson = (askperson == null) ? null : askperson.trim();
   }
   
-  public Integer getIfmedrecord()
-  {
+  public Integer getIfmedrecord() {
     return this.ifmedrecord;
   }
   
-  public void setIfmedrecord(Integer ifmedrecord)
-  {
+  public void setIfmedrecord(Integer ifmedrecord) {
     this.ifmedrecord = ifmedrecord;
   }
   
-  public Integer getIfcost()
-  {
+  public Integer getIfcost() {
     return this.ifcost;
   }
   
-  public void setIfcost(Integer ifcost)
-  {
+  public void setIfcost(Integer ifcost) {
     this.ifcost = ifcost;
   }
   
-  public String getEditreason()
-  {
+  public String getEditreason() {
     return this.editreason;
   }
   
-  public void setEditreason(String editreason)
-  {
-    this.editreason = (editreason == null ? null : editreason.trim());
+  public void setEditreason(String editreason) {
+    this.editreason = (editreason == null) ? null : editreason.trim();
   }
   
-  public String getReceiveno()
-  {
+  public String getReceiveno() {
     return this.receiveno;
   }
   
-  public void setReceiveno(String receiveno)
-  {
-    this.receiveno = (receiveno == null ? null : receiveno.trim());
+  public void setReceiveno(String receiveno) {
+    this.receiveno = (receiveno == null) ? null : receiveno.trim();
   }
   
-  public Integer getStatus()
-  {
+  public Integer getStatus() {
     return this.status;
   }
   
-  public void setStatus(Integer status)
-  {
+  public void setStatus(Integer status) {
     this.status = status;
   }
   
-  public String getUsername()
-  {
+  public String getUsername() {
     return this.username;
   }
   
-  public void setUsername(String username)
-  {
-    this.username = (username == null ? null : username.trim());
+  public void setUsername(String username) {
+    this.username = (username == null) ? null : username.trim();
   }
   
-  public Integer getDel()
-  {
+  public Integer getDel() {
     return this.del;
   }
   
-  public void setDel(Integer del)
-  {
+  public void setDel(Integer del) {
     this.del = del;
   }
   
-  public Integer getCjstatus()
-  {
+  public Integer getCjstatus() {
     return this.cjstatus;
   }
   
-  public void setCjstatus(Integer cjstatus)
-  {
+  public void setCjstatus(Integer cjstatus) {
     this.cjstatus = cjstatus;
   }
   
-  public String getRemark()
-  {
+  public String getRemark() {
     return this.remark;
   }
   
-  public void setRemark(String remark)
-  {
-    this.remark = (remark == null ? null : remark.trim());
+  public void setRemark(String remark) {
+    this.remark = (remark == null) ? null : remark.trim();
   }
   
-  public String getOrganization()
-  {
+  public String getOrganization() {
     return this.organization;
   }
   
-  public void setOrganization(String organization)
-  {
-    this.organization = (organization == null ? null : organization.trim());
+  public void setOrganization(String organization) {
+    this.organization = (organization == null) ? null : organization.trim();
   }
   
-  public String getBeforeeditreason()
-  {
+  public String getBeforeeditreason() {
     return this.beforeeditreason;
   }
   
-  public void setBeforeeditreason(String beforeeditreason)
-  {
-    this.beforeeditreason = (beforeeditreason == null ? null : beforeeditreason.trim());
+  public void setBeforeeditreason(String beforeeditreason) {
+    this.beforeeditreason = (beforeeditreason == null) ? null : beforeeditreason.trim();
   }
   
-  public String getRepairdoctor()
-  {
+  public String getRepairdoctor() {
     return this.repairdoctor;
   }
   
-  public void setRepairdoctor(String repairdoctor)
-  {
+  public void setRepairdoctor(String repairdoctor) {
     this.repairdoctor = repairdoctor;
   }
   
-  public int getJh()
-  {
+  public int getJh() {
     return this.jh;
   }
   
-  public void setJh(int jh)
-  {
+  public void setJh(int jh) {
     this.jh = jh;
   }
 }

@@ -5,14 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class QQFaceUtil
-{
-  public static Map<String, String> faceMap = new HashMap();
-  public static List<String> faceList = new ArrayList();
-  public static List<String> faceDescList = new ArrayList();
+public class QQFaceUtil {
+  public static Map<String, String> faceMap = new HashMap<>();
   
-  static
-  {
+  public static List<String> faceList = new ArrayList<>();
+  
+  public static List<String> faceDescList = new ArrayList<>();
+  
+  static {
     faceDescList.add("微笑");
     faceDescList.add("撇嘴");
     faceDescList.add("色");
@@ -28,7 +28,6 @@ public class QQFaceUtil
     faceDescList.add("调皮");
     faceDescList.add("呲牙");
     faceDescList.add("惊讶");
-    
     faceDescList.add("难过");
     faceDescList.add("酷");
     faceDescList.add("冷汗");
@@ -44,7 +43,6 @@ public class QQFaceUtil
     faceDescList.add("流汗");
     faceDescList.add("憨笑");
     faceDescList.add("悠闲");
-    
     faceDescList.add("奋斗");
     faceDescList.add("咒骂");
     faceDescList.add("疑问");
@@ -60,7 +58,6 @@ public class QQFaceUtil
     faceDescList.add("鼓掌");
     faceDescList.add("糗大了");
     faceDescList.add("坏笑");
-    
     faceDescList.add("左哼哼");
     faceDescList.add("右哼哼");
     faceDescList.add("哈欠");
@@ -76,7 +73,6 @@ public class QQFaceUtil
     faceDescList.add("啤酒");
     faceDescList.add("篮球");
     faceDescList.add("乒乓");
-    
     faceDescList.add("咖啡");
     faceDescList.add("饭");
     faceDescList.add("猪头");
@@ -92,7 +88,6 @@ public class QQFaceUtil
     faceDescList.add("足球");
     faceDescList.add("瓢虫");
     faceDescList.add("便便");
-    
     faceDescList.add("月亮");
     faceDescList.add("太阳");
     faceDescList.add("礼物");
@@ -108,7 +103,6 @@ public class QQFaceUtil
     faceDescList.add("爱你");
     faceDescList.add("NO");
     faceDescList.add("OK");
-    
     faceDescList.add("爱情");
     faceDescList.add("飞吻");
     faceDescList.add("跳跳");
@@ -124,8 +118,6 @@ public class QQFaceUtil
     faceDescList.add("献吻");
     faceDescList.add("左太极");
     faceDescList.add("右太极");
-    
-
     faceList.add("/::)");
     faceList.add("/::~");
     faceList.add("/::B");
@@ -141,7 +133,6 @@ public class QQFaceUtil
     faceList.add("/::P");
     faceList.add("/::D");
     faceList.add("/::O");
-    
     faceList.add("/::(");
     faceList.add("/::+");
     faceList.add("/:--b");
@@ -157,7 +148,6 @@ public class QQFaceUtil
     faceList.add("/::L");
     faceList.add("/::>");
     faceList.add("/::,@");
-    
     faceList.add("/:,@f");
     faceList.add("/::-S");
     faceList.add("/:?");
@@ -173,7 +163,6 @@ public class QQFaceUtil
     faceList.add("/:handclap");
     faceList.add("/:&-(");
     faceList.add("/:B-)");
-    
     faceList.add("/:<@");
     faceList.add("/:@>");
     faceList.add("/::-O");
@@ -189,7 +178,6 @@ public class QQFaceUtil
     faceList.add("/:beer");
     faceList.add("/:basketb");
     faceList.add("/:oo");
-    
     faceList.add("/:coffee");
     faceList.add("/:eat");
     faceList.add("/:pig");
@@ -205,7 +193,6 @@ public class QQFaceUtil
     faceList.add("/:footb");
     faceList.add("/:ladybug");
     faceList.add("/:shit");
-    
     faceList.add("/:moon");
     faceList.add("/:sun");
     faceList.add("/:gift");
@@ -221,7 +208,6 @@ public class QQFaceUtil
     faceList.add("/:lvu");
     faceList.add("/:no");
     faceList.add("/:ok");
-    
     faceList.add("/:love");
     faceList.add("/:<L>");
     faceList.add("/:jump");
@@ -237,26 +223,22 @@ public class QQFaceUtil
     faceList.add("/:kiss");
     faceList.add("/:<&");
     faceList.add("/:&>");
-    for (int i = 0; i < faceList.size(); i++) {
-      faceMap.put((String)faceList.get(i), "qqface" + i);
-    }
+    for (int i = 0; i < faceList.size(); i++)
+      faceMap.put(faceList.get(i), "qqface" + i); 
   }
   
-  public static String dealQQFace(String content)
-  {
-    for (int i = 0; i < faceList.size(); i++)
-    {
-      content = content.replace((CharSequence)faceList.get(i), getFaceCssImg(i));
+  public static String dealQQFace(String content) {
+    for (int i = 0; i < faceList.size(); i++) {
+      content = content.replace(faceList.get(i), getFaceCssImg(i));
       content = content.replace("[" + (String)faceDescList.get(i) + "]", getFaceCssImg(i));
-    }
+    } 
     return content;
   }
   
-  public static String getFaceCssImg(int i)
-  {
-    String faceName = (String)faceList.get(i);
-    String faceTitle = (String)faceDescList.get(i);
-    String css = (String)faceMap.get(faceName);
+  public static String getFaceCssImg(int i) {
+    String faceName = faceList.get(i);
+    String faceTitle = faceDescList.get(i);
+    String css = faceMap.get(faceName);
     return "&lt;img class='qqface " + css + "' title='" + faceTitle + "' src='static/image/kqdsFront/wechat/chat/spacer.gif'&gt;";
   }
 }

@@ -11,32 +11,23 @@ import org.springframework.stereotype.Controller;
 
 @Component
 @Controller
-public class PushMsgTimeOutTask
-  implements Job
-{
+public class PushMsgTimeOutTask implements Job {
   @Autowired
   private KQDS_ExtensionLogic tgLogic;
+  
   @Autowired
   private KQDS_VisitLogic hfLogic;
   
-  public void execute(JobExecutionContext arg0)
-    throws JobExecutionException
-  {
-    try
-    {
+  public void execute(JobExecutionContext arg0) throws JobExecutionException {
+    try {
       doTask();
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       e.printStackTrace();
-    }
+    } 
   }
   
-  public void doTask()
-    throws Exception
-  {
+  public void doTask() throws Exception {
     this.hfLogic.visitTimeOut();
-    
     this.tgLogic.JhTimeOut();
   }
 }

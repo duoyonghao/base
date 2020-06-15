@@ -13,86 +13,58 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import net.sf.json.JSONObject;
 
-public abstract interface IFlowService
-{
-  public abstract void saveLcljOrderTrackInfo(LcljOrderTrack paramLcljOrderTrack, String paramString, HttpServletRequest paramHttpServletRequest)
-    throws Exception;
+public interface IFlowService {
+  void saveLcljOrderTrackInfo(LcljOrderTrack paramLcljOrderTrack, String paramString, HttpServletRequest paramHttpServletRequest) throws Exception;
   
-  public abstract void gotoNextNode(String paramString)
-    throws Exception;
+  void gotoNextNode(String paramString) throws Exception;
   
-  public abstract void saveOptRecode(LcljOptRecode paramLcljOptRecode)
-    throws Exception;
+  void saveOptRecode(LcljOptRecode paramLcljOptRecode) throws Exception;
   
-  public abstract List<JSONObject> findOptRecodeList(String paramString1, String paramString2)
-    throws Exception;
+  List<JSONObject> findOptRecodeList(String paramString1, String paramString2) throws Exception;
   
-  public abstract JSONObject findOrderTrackInfo(String paramString)
-    throws Exception;
+  JSONObject findOrderTrackInfo(String paramString) throws Exception;
   
-  public abstract JSONObject findOrderTrackInforByOrderNumber(YZPerson paramYZPerson, BootStrapPage paramBootStrapPage, Map<String, String> paramMap, String paramString, JSONObject paramJSONObject)
-    throws Exception;
+  JSONObject findOrderTrackInforByOrderNumber(YZPerson paramYZPerson, BootStrapPage paramBootStrapPage, Map<String, String> paramMap, String paramString, JSONObject paramJSONObject) throws Exception;
   
-  public abstract JSONObject findLcljAdmin(HttpServletRequest paramHttpServletRequest)
-    throws Exception;
+  JSONObject findLcljAdmin(HttpServletRequest paramHttpServletRequest) throws Exception;
   
-  public abstract List<JSONObject> findLcljAdminOrAgency(HttpServletRequest paramHttpServletRequest)
-    throws Exception;
+  List<JSONObject> findLcljAdminOrAgency(HttpServletRequest paramHttpServletRequest) throws Exception;
   
-  public abstract void updateAgencyUser(YZPara paramYZPara)
-    throws Exception;
+  void updateAgencyUser(YZPara paramYZPara) throws Exception;
   
-  public abstract void updateRemarkStus(String paramString1, String paramString2)
-    throws Exception;
+  void updateRemarkStus(String paramString1, String paramString2) throws Exception;
   
-  public abstract List<KqdsReg> findRegListByBlcode(String paramString)
-    throws Exception;
+  List<KqdsReg> findRegListByBlcode(String paramString) throws Exception;
   
-  public abstract JSONObject findOrderTrackInforByConditionQuery(YZPerson paramYZPerson, Map<String, String> paramMap, String paramString)
-    throws Exception;
+  JSONObject findOrderTrackInforByConditionQuery(YZPerson paramYZPerson, Map<String, String> paramMap, String paramString) throws Exception;
   
-  public abstract void reject(String paramString)
-    throws Exception;
+  void reject(String paramString) throws Exception;
   
-  public abstract void updateOrderTrack(Map<String, String> paramMap)
-    throws Exception;
+  void updateOrderTrack(Map<String, String> paramMap) throws Exception;
   
-  public abstract void updateOrderTrackNodes(Map<String, String> paramMap, String paramString1, String paramString2, String paramString3, LcljOrderTrack paramLcljOrderTrack, HttpServletRequest paramHttpServletRequest)
-    throws Exception;
+  void updateOrderTrackNodes(Map<String, String> paramMap, String paramString1, String paramString2, String paramString3, LcljOrderTrack paramLcljOrderTrack, HttpServletRequest paramHttpServletRequest) throws Exception;
   
-  public abstract void updateOrderTrackById(Map<String, String> paramMap)
-    throws Exception;
+  void updateOrderTrackById(Map<String, String> paramMap) throws Exception;
   
-  public abstract void deleteOrderTrackInforById(String paramString)
-    throws Exception;
+  void deleteOrderTrackInforById(String paramString) throws Exception;
   
-  public abstract LcljOrderTrack findOrderTrackInforById(String paramString)
-    throws Exception;
+  LcljOrderTrack findOrderTrackInforById(String paramString) throws Exception;
   
-  public abstract void changeLcljOrderTrackBoneStatus(LcljOrderTrack paramLcljOrderTrack, String paramString)
-    throws Exception;
+  void changeLcljOrderTrackBoneStatus(LcljOrderTrack paramLcljOrderTrack, String paramString) throws Exception;
   
-  public abstract JSONObject findLcljOrderTrsackById(String paramString)
-    throws Exception;
+  JSONObject findLcljOrderTrsackById(String paramString) throws Exception;
   
-  public abstract LcljOrderTrack findLcljOrderTrsackByseqId(String paramString)
-    throws Exception;
+  LcljOrderTrack findLcljOrderTrsackByseqId(String paramString) throws Exception;
   
-  public abstract void updateLcljOrderTrackIsobsolete(String paramString, HttpServletRequest paramHttpServletRequest)
-    throws Exception;
+  void updateLcljOrderTrackIsobsolete(String paramString, HttpServletRequest paramHttpServletRequest) throws Exception;
   
-  public abstract void updateLcljOrderTrackById(LcljOrderTrack paramLcljOrderTrack)
-    throws Exception;
+  void updateLcljOrderTrackById(LcljOrderTrack paramLcljOrderTrack) throws Exception;
   
-  public abstract Integer editToothBit(LcljOrderTrack paramLcljOrderTrack)
-    throws Exception;
+  Integer editToothBit(LcljOrderTrack paramLcljOrderTrack) throws Exception;
   
-  public abstract void saveOperatingRecord(OperatingRecord paramOperatingRecord)
-    throws Exception;
+  void saveOperatingRecord(OperatingRecord paramOperatingRecord) throws Exception;
   
-  public abstract JSONObject findPatientInformation(String paramString1, String paramString2, String paramString3, String paramString4)
-    throws Exception;
+  JSONObject findPatientInformation(String paramString1, String paramString2, String paramString3, String paramString4) throws Exception;
   
-  public abstract List<LcljNodeConfig> findNodeName()
-    throws Exception;
+  List<LcljNodeConfig> findNodeName() throws Exception;
 }

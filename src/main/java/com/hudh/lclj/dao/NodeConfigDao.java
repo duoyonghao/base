@@ -8,47 +8,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class NodeConfigDao
-{
+public class NodeConfigDao {
   @Autowired
   private DaoSupport dao;
   
-  public int insertNodeConfig(LcljNodeConfig lcljNodeConfig)
-    throws Exception
-  {
+  public int insertNodeConfig(LcljNodeConfig lcljNodeConfig) throws Exception {
     return ((Integer)this.dao.save("HUDH_LCLJ_NODE_CONFIG.insertNodeConfig", lcljNodeConfig)).intValue();
   }
   
-  public void deleteNodeConfigByCodeAndNodeId(Map<String, String> dataMap)
-    throws Exception
-  {
+  public void deleteNodeConfigByCodeAndNodeId(Map<String, String> dataMap) throws Exception {
     this.dao.delete("HUDH_LCLJ_NODE_CONFIG.deleteNodeConfigByCodeAndNodeId", dataMap);
   }
   
-  public List<LcljNodeConfig> findAllNodeConfigByFlowCode(Map<String, String> dataMap)
-    throws Exception
-  {
-    List<LcljNodeConfig> list = (List)this.dao.findForList("HUDH_LCLJ_NODE_CONFIG.findAllNodeConfigByFlowCode", dataMap);
+  public List<LcljNodeConfig> findAllNodeConfigByFlowCode(Map<String, String> dataMap) throws Exception {
+    List<LcljNodeConfig> list = (List<LcljNodeConfig>)this.dao.findForList("HUDH_LCLJ_NODE_CONFIG.findAllNodeConfigByFlowCode", dataMap);
     return list;
   }
   
-  public void batchSaveNodeConfig(List<LcljNodeConfig> list)
-    throws Exception
-  {
+  public void batchSaveNodeConfig(List<LcljNodeConfig> list) throws Exception {
     this.dao.batchUpdate("HUDH_LCLJ_NODE_CONFIG.batchSaveNodeConfig", list);
   }
   
-  public List<LcljNodeConfig> findLcljNodeConfig(String flowCode)
-    throws Exception
-  {
-    List<LcljNodeConfig> list = (List)this.dao.findForList("HUDH_LCLJ_NODE_CONFIG.findLcljNodeConfig", flowCode);
+  public List<LcljNodeConfig> findLcljNodeConfig(String flowCode) throws Exception {
+    List<LcljNodeConfig> list = (List<LcljNodeConfig>)this.dao.findForList("HUDH_LCLJ_NODE_CONFIG.findLcljNodeConfig", flowCode);
     return list;
   }
   
-  public List<LcljNodeConfig> findLcljNodeName()
-    throws Exception
-  {
-    List<LcljNodeConfig> list = (List)this.dao.findForList("HUDH_LCLJ_NODE_CONFIG.findLcljNodeName", null);
+  public List<LcljNodeConfig> findLcljNodeName() throws Exception {
+    List<LcljNodeConfig> list = (List<LcljNodeConfig>)this.dao.findForList("HUDH_LCLJ_NODE_CONFIG.findLcljNodeName", null);
     return list;
   }
 }

@@ -7,84 +7,72 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Random;
 
-public class YZGuid
-{
+public class YZGuid {
   public static final int BEFORE_MD5 = 1;
+  
   public static final int AFTER_M5 = 2;
+  
   public static final int FORMAT_STRING = 3;
+  
   private static Random myRand = null;
+  
   private static SecureRandom mySecureRand = null;
+  
   private static String s_id = null;
+  
   private String seedingString = "";
+  
   private String rawGUID = "";
   
-  static
-  {
+  static {
     mySecureRand = new SecureRandom();
     long secureInitializer = mySecureRand.nextLong();
     myRand = new Random(secureInitializer);
-    try
-    {
+    try {
       s_id = InetAddress.getLocalHost().toString();
-    }
-    catch (UnknownHostException e)
-    {
+    } catch (UnknownHostException e) {
       e.printStackTrace();
-    }
+    } 
   }
   
-  private void getRandomGUID(boolean secure)
-    throws NoSuchAlgorithmException
-  {
+  private void getRandomGUID(boolean secure) throws NoSuchAlgorithmException {
     MessageDigest md5 = null;
     StringBuffer sbValueBeforeMD5 = new StringBuffer();
-    try
-    {
+    try {
       md5 = MessageDigest.getInstance("MD5");
-    }
-    catch (NoSuchAlgorithmException ex)
-    {
+    } catch (NoSuchAlgorithmException ex) {
       throw ex;
-    }
-    try
-    {
+    } 
+    try {
       long time = System.currentTimeMillis();
       long rand = 0L;
       if (secure) {
         rand = mySecureRand.nextLong();
       } else {
         rand = myRand.nextLong();
-      }
+      } 
       sbValueBeforeMD5.append(s_id);
       sbValueBeforeMD5.append(":");
       sbValueBeforeMD5.append(Long.toString(time));
       sbValueBeforeMD5.append(":");
       sbValueBeforeMD5.append(Long.toString(rand));
-      
       this.seedingString = sbValueBeforeMD5.toString();
       md5.update(this.seedingString.getBytes());
-      
       byte[] array = md5.digest();
       StringBuffer sb = new StringBuffer();
-      for (int j = 0; j < array.length; j++)
-      {
+      for (int j = 0; j < array.length; j++) {
         int b = array[j] & 0xFF;
-        if (b < 16) {
-          sb.append('0');
-        }
+        if (b < 16)
+          sb.append('0'); 
         sb.append(Integer.toHexString(b));
-      }
+      } 
       this.rawGUID = sb.toString();
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       throw e;
-    }
+    } 
   }
   
-  public static String getGuid(int nFormatType, boolean secure)
-    throws NoSuchAlgorithmException
-  {
+  public static String getGuid(int nFormatType, boolean secure) throws NoSuchAlgorithmException {
     YZGuid builder = new YZGuid();
     builder.getRandomGUID(secure);
     String sGuid = "";
@@ -94,30 +82,23 @@ public class YZGuid
       sGuid = builder.getRawGUID();
     } else {
       sGuid = builder.toString();
-    }
+    } 
     return sGuid;
   }
   
-  public static String getGuid(int nFormatType)
-    throws NoSuchAlgorithmException
-  {
+  public static String getGuid(int nFormatType) throws NoSuchAlgorithmException {
     return getGuid(nFormatType, false);
   }
   
-  public static String getGuid()
-    throws NoSuchAlgorithmException
-  {
+  public static String getGuid() throws NoSuchAlgorithmException {
     return getGuid(3, false);
   }
   
-  public static String getRawGuid()
-    throws NoSuchAlgorithmException
-  {
+  public static String getRawGuid() throws NoSuchAlgorithmException {
     return getGuid(2, false);
   }
   
-  public String toString()
-  {
+  public String toString() {
     String raw = this.rawGUID.toUpperCase();
     StringBuffer sb = new StringBuffer();
     sb.append(raw.substring(0, 8));
@@ -129,17 +110,14 @@ public class YZGuid
     sb.append(raw.substring(16, 20));
     sb.append("-");
     sb.append(raw.substring(20));
-    
     return sb.toString();
   }
   
-  public String getSeedingString()
-  {
+  public String getSeedingString() {
     return this.seedingString;
   }
   
-  public String getRawGUID()
-  {
+  public String getRawGUID() {
     return this.rawGUID;
   }
 }

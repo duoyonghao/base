@@ -9,56 +9,38 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
 
-public abstract interface IKsllColorService
-{
-  public abstract List<JSONObject> findAllCKDept(Map<String, String> paramMap)
-    throws Exception;
+public interface IKsllColorService {
+  List<JSONObject> findAllCKDept(Map<String, String> paramMap) throws Exception;
   
-  public abstract void saveKsllData(KsllCollor paramKsllCollor, String paramString, HttpServletRequest paramHttpServletRequest)
-    throws Exception;
+  void saveKsllData(KsllCollor paramKsllCollor, String paramString, HttpServletRequest paramHttpServletRequest) throws Exception;
   
-  public abstract List<JSONObject> findAllKsllColor(Map<String, String> paramMap)
-    throws Exception;
+  List<JSONObject> findAllKsllColor(Map<String, String> paramMap) throws Exception;
   
-  public abstract JSONObject findKsllColorAndDetails(String paramString)
-    throws Exception;
+  JSONObject findKsllColorAndDetails(String paramString) throws Exception;
   
-  public abstract JSONObject findKsllColorAndDetail(String paramString)
-    throws Exception;
+  JSONObject findKsllColorAndDetail(String paramString) throws Exception;
   
-  public abstract List<KqdsCkHouse> findAllCKHouse(Map<String, String> paramMap)
-    throws Exception;
+  List<KqdsCkHouse> findAllCKHouse(Map<String, String> paramMap) throws Exception;
   
-  public abstract void ksllOutGoods(HttpServletRequest paramHttpServletRequest, HttpServletResponse paramHttpServletResponse)
-    throws Exception;
+  void ksllOutGoods(HttpServletRequest paramHttpServletRequest, HttpServletResponse paramHttpServletResponse) throws Exception;
   
-  public abstract List<JSONObject> findKsllColorDetailByparentid(String paramString)
-    throws Exception;
+  List<JSONObject> findKsllColorDetailByparentid(String paramString) throws Exception;
   
-  public abstract void updateNumsById(Map<String, String> paramMap)
-    throws Exception;
+  void updateNumsById(Map<String, String> paramMap) throws Exception;
   
-  public abstract void deleteKsllNotCK(String paramString)
-    throws Exception;
+  void deleteKsllNotCK(String paramString) throws Exception;
   
-  public abstract Map<String, JSONObject> findAllCKGood()
-    throws Exception;
+  Map<String, JSONObject> findAllCKGood() throws Exception;
   
-  public abstract String findCKGoodSshouse(String paramString1, String paramString2)
-    throws Exception;
+  String findCKGoodSshouse(String paramString1, String paramString2) throws Exception;
   
-  public abstract List<JSONObject> findAllKsllColorGoods(Map<String, String> paramMap)
-    throws Exception;
+  List<JSONObject> findAllKsllColorGoods(Map<String, String> paramMap) throws Exception;
   
-  public abstract JSONObject findAllKsllColorGoods(Map<String, String> paramMap, BootStrapPage paramBootStrapPage)
-    throws Exception;
+  JSONObject findAllKsllColorGoods(Map<String, String> paramMap, BootStrapPage paramBootStrapPage) throws Exception;
   
-  public abstract Map<String, JSONObject> findAllCkGoodsByGoodscode(String paramString1, String paramString2)
-    throws Exception;
+  Map<String, JSONObject> findAllCkGoodsByGoodscode(String paramString1, String paramString2) throws Exception;
   
-  public abstract List<JSONObject> selectAllGoodPhByGoodCode(Map<String, String> paramMap)
-    throws Exception;
+  List<JSONObject> selectAllGoodPhByGoodCode(Map<String, String> paramMap) throws Exception;
   
-  public abstract Map<String, JSONObject> findAllKsllColorGoodsByGoodscode(Map<String, String> paramMap)
-    throws Exception;
+  Map<String, JSONObject> findAllKsllColorGoodsByGoodscode(Map<String, String> paramMap) throws Exception;
 }

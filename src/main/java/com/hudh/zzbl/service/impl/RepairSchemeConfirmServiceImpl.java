@@ -11,15 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RepairSchemeConfirmServiceImpl
-  implements IRepairSchemeConfirmService
-{
+public class RepairSchemeConfirmServiceImpl implements IRepairSchemeConfirmService {
   @Autowired
   private RepairSchemeConfirmDao repairSchemeConfirmDao;
   
-  public void saveRepairSchemeConfirmInfro(RepairSchemeConfirm dp, HttpServletRequest request)
-    throws Exception
-  {
+  public void saveRepairSchemeConfirmInfro(RepairSchemeConfirm dp, HttpServletRequest request) throws Exception {
     dp.setCreatetime(YZUtility.getCurDateTimeStr());
     dp.setSeqId(YZUtility.getUUID());
     String orderNumber = request.getParameter("order_number");
@@ -85,7 +81,6 @@ public class RepairSchemeConfirmServiceImpl
     String localplantrightdown = request.getParameter("localplantrightdown");
     String localplantselect = request.getParameter("localPlantSelect");
     String requirerestor = request.getParameter("requireRestor");
-    
     String operationDoctorTime = request.getParameter("operationDoctorTime");
     String serviceTime = request.getParameter("serviceTime");
     String servicesignature = request.getParameter("servicesignature");
@@ -94,7 +89,6 @@ public class RepairSchemeConfirmServiceImpl
     String patientsignature = request.getParameter("patientsignature");
     String patientTime = request.getParameter("patientTime");
     String doctorTime = request.getParameter("doctorTime");
-    
     String nobelpmcleftup = request.getParameter("nobelpmcleftup");
     String nobelpmcleftdown = request.getParameter("nobelpmcleftdown");
     String nobelpmcrightup = request.getParameter("nobelpmcrightup");
@@ -191,15 +185,11 @@ public class RepairSchemeConfirmServiceImpl
     this.repairSchemeConfirmDao.saveRepairSchemeConfirmInfro(dp);
   }
   
-  public void deleteRepairInforById(String id)
-    throws Exception
-  {
+  public void deleteRepairInforById(String id) throws Exception {
     this.repairSchemeConfirmDao.deleteRepairInforById(id);
   }
   
-  public void updateRepairInforById(RepairSchemeConfirm dp, HttpServletRequest request)
-    throws Exception
-  {
+  public void updateRepairInforById(RepairSchemeConfirm dp, HttpServletRequest request) throws Exception {
     String tprgleftup = request.getParameter("tprgLeftUp");
     String tprgleftdown = request.getParameter("tprgLeftDown");
     String tprgrightup = request.getParameter("tprgRightUp");
@@ -261,7 +251,6 @@ public class RepairSchemeConfirmServiceImpl
     String localplantrightdown = request.getParameter("localplantrightdown");
     String localplantselect = request.getParameter("localPlantSelect");
     String requirerestor = request.getParameter("requireRestor");
-    
     String operationDoctorTime = request.getParameter("operationDoctorTime");
     String serviceTime = request.getParameter("serviceTime");
     String servicesignature = request.getParameter("servicesignature");
@@ -270,7 +259,6 @@ public class RepairSchemeConfirmServiceImpl
     String patientsignature = request.getParameter("patientsignature");
     String patientTime = request.getParameter("patientTime");
     String doctorTime = request.getParameter("doctorTime");
-    
     String nobelpmcleftup = request.getParameter("nobelpmcleftup");
     String nobelpmcleftdown = request.getParameter("nobelpmcleftdown");
     String nobelpmcrightup = request.getParameter("nobelpmcrightup");
@@ -301,8 +289,6 @@ public class RepairSchemeConfirmServiceImpl
     dp.setOperationDoctorsignature(operationDoctorsignature);
     dp.setRepairDoctorsignature(repairDoctorsignature);
     dp.setPatientsignature(patientsignature);
-    
-
     dp.setTprgleftup(tprgleftup);
     dp.setTprgleftdown(tprgleftdown);
     dp.setTprgrightup(tprgrightup);
@@ -367,29 +353,21 @@ public class RepairSchemeConfirmServiceImpl
     this.repairSchemeConfirmDao.updateRepairInforById(dp);
   }
   
-  public JSONObject findRepairInforById(String id)
-    throws Exception
-  {
-    JSONObject json = this.repairSchemeConfirmDao.findRepairInforById(id);
+  public List<JSONObject> findRepairInforById(String id) throws Exception {
+    List<JSONObject> json = this.repairSchemeConfirmDao.findRepairInforById(id);
     return json;
   }
   
-  public List<JSONObject> findReapirInforAll()
-    throws Exception
-  {
+  public List<JSONObject> findReapirInforAll() throws Exception {
     List<JSONObject> list = this.repairSchemeConfirmDao.findReapirInforAll();
     return list;
   }
   
-  public RepairSchemeConfirm selectRepairSchemeConfirmById(String id)
-    throws Exception
-  {
+  public RepairSchemeConfirm selectRepairSchemeConfirmById(String id) throws Exception {
     return this.repairSchemeConfirmDao.selectRepairSchemeConfirmById(id);
   }
   
-  public JSONObject selectRepairInforById(String id)
-    throws Exception
-  {
+  public JSONObject selectRepairInforById(String id) throws Exception {
     return this.repairSchemeConfirmDao.selectRepairInforById(id);
   }
 }

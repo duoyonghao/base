@@ -11,20 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class YZDictWeChatLogic
-  extends BaseLogic
-{
+public class YZDictWeChatLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public List<YZDict> getLeve1SortList(String search, String organization)
-    throws Exception
-  {
+  public List<YZDict> getLeve1SortList(String search, String organization) throws Exception {
     JSONObject json = new JSONObject();
     json.put("parentCode", DictUtil.WECHAT_KEYWORD);
-    
     json.put("organization", organization);
-    List<YZDict> list = (List)this.dao.findForList(TableNameUtil.SYS_DICT + ".getLeve1SortList", json);
+    List<YZDict> list = (List<YZDict>)this.dao.findForList(String.valueOf(TableNameUtil.SYS_DICT) + ".getLeve1SortList", json);
     return list;
   }
 }

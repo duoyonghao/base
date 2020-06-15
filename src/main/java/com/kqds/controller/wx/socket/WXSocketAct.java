@@ -5,7 +5,6 @@ import com.kqds.service.sys.person.YZPersonLogic;
 import com.kqds.util.base.websocket.WeChat_Talk_Window;
 import com.kqds.util.sys.TableNameUtil;
 import com.kqds.util.sys.YZUtility;
-import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
@@ -17,33 +16,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"WXSocketAct"})
-public class WXSocketAct
-{
+public class WXSocketAct {
   private static Logger logger = LoggerFactory.getLogger(WXSocketAct.class);
+  
   @Autowired
   private YZPersonLogic personLogic;
   
   @RequestMapping({"/check4Chat.act"})
-  public String check4Chat(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String check4Chat(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String openid = request.getParameter("openid");
       String userseqid = (String)WeChat_Talk_Window.WeChat_Talk_UserSeqIdList.get(openid);
       JSONObject result = new JSONObject();
       YZPerson person = null;
-      if (!YZUtility.isNullorEmpty(userseqid))
-      {
+      if (!YZUtility.isNullorEmpty(userseqid)) {
         person = (YZPerson)this.personLogic.loadObjSingleUUID(TableNameUtil.SYS_PERSON, userseqid);
         result.put("userid", person.getUserId());
-      }
+      } 
       YZUtility.DEAL_SUCCESS(result, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

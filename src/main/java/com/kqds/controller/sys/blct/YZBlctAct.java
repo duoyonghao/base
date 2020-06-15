@@ -26,34 +26,28 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"YZBlctAct"})
-public class YZBlctAct
-{
+public class YZBlctAct {
   private static Logger logger = LoggerFactory.getLogger(YZBlctAct.class);
+  
   @Autowired
   private YZBlctLogic logic;
   
   @RequestMapping({"/toIndexLs.act"})
-  public ModelAndView toIndexLs(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toIndexLs(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/kqdsFront/medicalRecord/blct/index_ls.jsp");
     return mv;
   }
   
   @RequestMapping({"/toListBlctQt.act"})
-  public ModelAndView toListBlctQt(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toListBlctQt(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/kqdsFront/medicalRecord/blct/list_kqds_blct_qt.jsp");
     return mv;
   }
   
   @RequestMapping({"/toSubIndex.act"})
-  public ModelAndView toSubIndex(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toSubIndex(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
     mv.addObject("organization", organization);
@@ -62,9 +56,7 @@ public class YZBlctAct
   }
   
   @RequestMapping({"/toList.act"})
-  public ModelAndView toList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toList(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String parentCode = request.getParameter("parentCode");
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
@@ -75,9 +67,7 @@ public class YZBlctAct
   }
   
   @RequestMapping({"/toLeft.act"})
-  public ModelAndView toLeft(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toLeft(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
     mv.addObject("organization", organization);
@@ -86,9 +76,7 @@ public class YZBlctAct
   }
   
   @RequestMapping({"/toEdit.act"})
-  public ModelAndView toEdit(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toEdit(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     ModelAndView mv = new ModelAndView();
     mv.addObject("seqId", seqId);
@@ -97,9 +85,7 @@ public class YZBlctAct
   }
   
   @RequestMapping({"/toNewAdd.act"})
-  public ModelAndView toNewAdd(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toNewAdd(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String parentCode = request.getParameter("parentCode");
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
@@ -110,9 +96,7 @@ public class YZBlctAct
   }
   
   @RequestMapping({"/toBlctList.act"})
-  public ModelAndView toBlctList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toBlctList(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
     mv.addObject("organization", organization);
@@ -121,9 +105,7 @@ public class YZBlctAct
   }
   
   @RequestMapping({"/toBlctEdit.act"})
-  public ModelAndView toBlctEdit(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toBlctEdit(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
@@ -134,9 +116,7 @@ public class YZBlctAct
   }
   
   @RequestMapping({"/toBlctDetail.act"})
-  public ModelAndView toBlctDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toBlctDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
@@ -147,9 +127,7 @@ public class YZBlctAct
   }
   
   @RequestMapping({"/toBlctAdd.act"})
-  public ModelAndView toBlctAdd(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toBlctAdd(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     String cttype = request.getParameter("cttype");
     String ctnexttype = request.getParameter("ctnexttype");
@@ -162,25 +140,18 @@ public class YZBlctAct
   }
   
   @RequestMapping({"/insertOrUpdate.act"})
-  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
-      
       KqdsBlct dp = new KqdsBlct();
       BeanUtils.populate(dp, request.getParameterMap());
       String seqId = request.getParameter("seqId");
-      if (YZUtility.isNullorEmpty(dp.getCtname())) {
-        throw new Exception("名称不能为空");
-      }
-      if (!YZUtility.isNullorEmpty(seqId))
-      {
+      if (YZUtility.isNullorEmpty(dp.getCtname()))
+        throw new Exception("名称不能为空"); 
+      if (!YZUtility.isNullorEmpty(seqId)) {
         KqdsBlct tmp = (KqdsBlct)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_BLCT, seqId);
-        if (tmp == null) {
-          throw new Exception("记录不存在");
-        }
+        if (tmp == null)
+          throw new Exception("记录不存在"); 
         tmp.setCtname(dp.getCtname());
         tmp.setOrderno(dp.getOrderno());
         tmp.setCttype(dp.getCttype());
@@ -189,185 +160,132 @@ public class YZBlctAct
         tmp.setCreateuser(person.getSeqId());
         this.logic.updateSingleUUID(TableNameUtil.KQDS_BLCT, tmp);
         SysLogUtil.log(SysLogUtil.MODIFY, "病历词条", dp, TableNameUtil.KQDS_BLCT, request);
-      }
-      else
-      {
+      } else {
         String uuid = YZUtility.getUUID();
         dp.setSeqId(uuid);
         dp.setCreatetime(YZUtility.getCurDateTimeStr());
         dp.setCreateuser(person.getSeqId());
         this.logic.saveSingleUUID(TableNameUtil.KQDS_BLCT, dp);
-        
         BcjlUtil.LogBcjl(BcjlUtil.NEW, BcjlUtil.KQDS_BLCT, dp, TableNameUtil.KQDS_BLCT, request);
-      }
+      } 
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(ex.getMessage(), true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/deleteObj.act"})
-  public String deleteObj(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String deleteObj(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
-      if (YZUtility.isNullorEmpty(seqId)) {
-        throw new Exception("主键为空或者null");
-      }
+      if (YZUtility.isNullorEmpty(seqId))
+        throw new Exception("主键为空或者null"); 
       KqdsBlct en = (KqdsBlct)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_BLCT, seqId);
       this.logic.deleteSingleUUID(TableNameUtil.KQDS_BLCT, seqId);
-      
       BcjlUtil.LogBcjl(BcjlUtil.DELETE, BcjlUtil.KQDS_BLCT, en, TableNameUtil.KQDS_BLCT, request);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/updateFlagBySeqIds.act"})
-  public String updateFlagBySeqIds(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String updateFlagBySeqIds(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
       String flag = request.getParameter("flag");
-      if ((!"0".equals(flag)) && (!"1".equals(flag))) {
-        throw new Exception("状态标识不正确");
-      }
-      if (YZUtility.isNullorEmpty(seqId)) {
-        throw new Exception("主键为空或者null");
-      }
+      if (!"0".equals(flag) && !"1".equals(flag))
+        throw new Exception("状态标识不正确"); 
+      if (YZUtility.isNullorEmpty(seqId))
+        throw new Exception("主键为空或者null"); 
       this.logic.updateFlagBySeqIds(seqId, flag, request);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectDetail.act"})
-  public String selectDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
-      
       KqdsBlct en = (KqdsBlct)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_BLCT, seqId);
-      if (en == null) {
-        throw new Exception("数据不存在");
-      }
+      if (en == null)
+        throw new Exception("数据不存在"); 
       JSONObject jobj = new JSONObject();
       jobj.put("data", en);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectPage.act"})
-  public String selectPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       BootStrapPage bp = new BootStrapPage();
-      
       BeanUtils.populate(bp, request.getParameterMap());
-      
       String ctnexttype = request.getParameter("ctnexttype");
       String cttype = request.getParameter("cttype");
       String ctname = request.getParameter("ctname");
       String useflag = request.getParameter("useflag");
-      
-      Map<String, String> map = new HashMap();
-      if (YZUtility.isNotNullOrEmpty(ctnexttype)) {
-        map.put("ctnexttype", ctnexttype);
-      }
-      if (YZUtility.isNotNullOrEmpty(cttype)) {
-        map.put("cttype", cttype);
-      }
-      if (YZUtility.isNotNullOrEmpty(ctname)) {
-        map.put("ctname", ctname);
-      }
-      if (YZUtility.isNotNullOrEmpty(useflag)) {
-        map.put("useflag", useflag);
-      }
+      Map<String, String> map = new HashMap<>();
+      if (YZUtility.isNotNullOrEmpty(ctnexttype))
+        map.put("ctnexttype", ctnexttype); 
+      if (YZUtility.isNotNullOrEmpty(cttype))
+        map.put("cttype", cttype); 
+      if (YZUtility.isNotNullOrEmpty(ctname))
+        map.put("ctname", ctname); 
+      if (YZUtility.isNotNullOrEmpty(useflag))
+        map.put("useflag", useflag); 
       JSONObject jobj = this.logic.selectWithPage(TableNameUtil.KQDS_BLCT, bp, map, ChainUtil.getOrganizationFromUrlCanNull(request));
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectNoPage.act"})
-  public String selectNoPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectNoPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String ctnexttype = request.getParameter("ctnexttype");
       String cttype = request.getParameter("cttype");
       String ctname = request.getParameter("ctname");
       String useflag = request.getParameter("useflag");
-      
-      Map<String, String> map = new HashMap();
-      if (YZUtility.isNotNullOrEmpty(ctnexttype)) {
-        map.put("ctnexttype", ctnexttype);
-      }
-      if (YZUtility.isNotNullOrEmpty(cttype)) {
-        map.put("cttype", cttype);
-      }
-      if (YZUtility.isNotNullOrEmpty(ctname)) {
-        map.put("ctname", ctname);
-      }
-      if (YZUtility.isNotNullOrEmpty(useflag)) {
-        map.put("useflag", useflag);
-      }
+      Map<String, String> map = new HashMap<>();
+      if (YZUtility.isNotNullOrEmpty(ctnexttype))
+        map.put("ctnexttype", ctnexttype); 
+      if (YZUtility.isNotNullOrEmpty(cttype))
+        map.put("cttype", cttype); 
+      if (YZUtility.isNotNullOrEmpty(ctname))
+        map.put("ctname", ctname); 
+      if (YZUtility.isNotNullOrEmpty(useflag))
+        map.put("useflag", useflag); 
       List<JSONObject> list = this.logic.selectList(TableNameUtil.KQDS_BLCT, map);
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/getBlctList.act"})
-  public String getBlctList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
-      Map<String, String> map = new HashMap();
+  public String getBlctList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
+      Map<String, String> map = new HashMap<>();
       map.put("useflag", "0");
       List<JSONObject> en = this.logic.selectList(TableNameUtil.KQDS_BLCT, map);
       JSONObject jobj = new JSONObject();
       jobj.put("data", en);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

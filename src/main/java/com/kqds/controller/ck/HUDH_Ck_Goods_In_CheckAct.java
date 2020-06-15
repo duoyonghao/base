@@ -19,31 +19,28 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"HUDH_Ck_Goods_In_CheckAct"})
-public class HUDH_Ck_Goods_In_CheckAct
-{
+public class HUDH_Ck_Goods_In_CheckAct {
   private static Logger logger = LoggerFactory.getLogger(HUDH_Ck_Goods_In_CheckAct.class);
+  
   @Autowired
   private HUDH_Ck_Goods_In_CheckLogic logic;
   
   @RequestMapping({"/toGoodsInCheck.act"})
-  public ModelAndView toGoodsInCheck(HttpServletRequest request, HttpServletResponse response)
-  {
+  public ModelAndView toGoodsInCheck(HttpServletRequest request, HttpServletResponse response) {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/kqdsFront/ck/goodsIn/in_goods_examine.jsp");
     return mv;
   }
   
   @RequestMapping({"toGoodsCheck.act"})
-  public ModelAndView toGoodsCheck(HttpServletRequest request, HttpServletResponse response)
-  {
+  public ModelAndView toGoodsCheck(HttpServletRequest request, HttpServletResponse response) {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/kqdsFront/ck/childhouse/inGoods/in_goods_examine.jsp");
     return mv;
   }
   
   @RequestMapping({"/toGoodsInCollate.act"})
-  public ModelAndView toGoodsInCollate(HttpServletRequest request, HttpServletResponse response)
-  {
+  public ModelAndView toGoodsInCollate(HttpServletRequest request, HttpServletResponse response) {
     String goodsinid = request.getParameter("goodsinid");
     String incode = request.getParameter("incode");
     ModelAndView mv = new ModelAndView();
@@ -54,9 +51,7 @@ public class HUDH_Ck_Goods_In_CheckAct
   }
   
   @RequestMapping({"/saveGoodsInCheck.act"})
-  public String saveGoodsInCheck(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String saveGoodsInCheck(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String goodsinid = request.getParameter("goodsinid");
     String incode = request.getParameter("incode");
     String remark = request.getParameter("remark");
@@ -75,32 +70,24 @@ public class HUDH_Ck_Goods_In_CheckAct
     dp.setCertificate(certificate);
     dp.setPacking(packing);
     dp.setReport(report);
-    try
-    {
+    try {
       this.logic.saveGoodsInCheck(dp, incode);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/findGoodsInExamineByInId.act"})
-  public String findGoodsInExamineByInId(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String findGoodsInExamineByInId(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String goodsInId = request.getParameter("goodsinid");
-    try
-    {
+    try {
       List<JSONObject> json = this.logic.findGoodsInExamineByInId(goodsInId);
       YZUtility.RETURN_LIST(json, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
 }

@@ -16,40 +16,32 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_RegisterAct"})
-public class KQDS_RegisterAct
-{
+public class KQDS_RegisterAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_RegisterAct.class);
+  
   @Autowired
   private YZRegisterLogic logic;
   
   @RequestMapping({"/toDetailRegister.act"})
-  public ModelAndView toRoomSearch(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toRoomSearch(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/admin/register/list_kqds_register.jsp");
     return mv;
   }
   
   @RequestMapping({"/selectDetail.act"})
-  public String selectDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
       YZRegister en = (YZRegister)this.logic.loadObjSingleUUID(TableNameUtil.SYS_REGISTER, seqId);
-      if (en == null) {
-        throw new Exception("数据不存在");
-      }
+      if (en == null)
+        throw new Exception("数据不存在"); 
       JSONObject jobj = new JSONObject();
       jobj.put("data", en);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

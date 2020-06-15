@@ -16,42 +16,39 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import net.sf.json.JSONObject;
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.fileupload.FileUploadBase.SizeLimitExceededException;
+import org.apache.commons.fileupload.FileUploadBase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"/HUDH_YkzzAct"})
-public class HUDH_YkzzAct
-{
+public class HUDH_YkzzAct {
   private static Logger logger = LoggerFactory.getLogger(HUDH_YkzzAct.class);
+  
   @Autowired
   private IYkzzDrugsService IYkzzDrugsService;
   
   @RequestMapping({"/insertDrugsInfor.act"})
-  public String insertDrugsInfor(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String insertDrugsInfor(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String good_name = request.getParameter("good_name");
       String company = request.getParameter("company");
       String drug_retail_price = request.getParameter("drug_retail_price");
@@ -86,12 +83,9 @@ public class HUDH_YkzzAct
       String organization = ChainUtil.getCurrentOrganization(request);
       YkzzDrugs ykzzDrugs = new YkzzDrugs();
       BeanUtils.populate(ykzzDrugs, request.getParameterMap());
-      if (!YZUtility.isNullorEmpty(id))
-      {
+      if (!YZUtility.isNullorEmpty(id)) {
         this.IYkzzDrugsService.updateDrugsByPrimaryId(ykzzDrugs);
-      }
-      else
-      {
+      } else {
         ykzzDrugs.setId(YZUtility.getUUID());
         ykzzDrugs.setComments(comments);
         ykzzDrugs.setPacking_unit(packing_unit);
@@ -105,7 +99,7 @@ public class HUDH_YkzzAct
           ykzzDrugs.setDiscount("100.0");
         } else {
           ykzzDrugs.setDiscount(discount);
-        }
+        } 
         ykzzDrugs.setGood_type(good_type);
         ykzzDrugs.setDrugs_typeone(drugs_typeone);
         ykzzDrugs.setDrugs_typetwo(drugs_typetwo);
@@ -117,10 +111,9 @@ public class HUDH_YkzzAct
         ykzzDrugs.setClassify(classify);
         List<YkzzDrugs> list = this.IYkzzDrugsService.findDeugsByContryCode(contry_code, organization);
         for (int j = 0; j < list.size(); j++) {
-          if (list != null) {
-            throw new Exception("药品国家编码已存在，不能重复添加！");
-          }
-        }
+          if (list != null)
+            throw new Exception("药品国家编码已存在，不能重复添加！"); 
+        } 
         ykzzDrugs.setContry_code(contry_code);
         ykzzDrugs.setPharm_class(pharm_class);
         ykzzDrugs.setPharm_dos(pharm_dos);
@@ -143,312 +136,196 @@ public class HUDH_YkzzAct
         YZPerson person = SessionUtil.getLoginPerson(request);
         ykzzDrugs.setCreator(person.getSeqId());
         ykzzDrugs.setOrganization(organization);
-        
-        CreateOrderNoUtil.getInstance();String orderNumber = CreateOrderNoUtil.getNextOrderNumber();
+        CreateOrderNoUtil.getInstance();
+        String orderNumber = CreateOrderNoUtil.getNextOrderNumber();
         ykzzDrugs.setOrder_no(orderNumber);
         ykzzDrugs.setUserflag("0");
-        
         this.IYkzzDrugsService.insertDrugsinfor(ykzzDrugs, request);
-      }
+      } 
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(ex.getMessage(), true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectDrugsByPrimaryId.act"})
-  public String selectDrugsByPrimaryId(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String selectDrugsByPrimaryId(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String id = request.getParameter("id");
-    try
-    {
+    try {
       JSONObject json = this.IYkzzDrugsService.selectDrugsByPrimaryId(id);
       YZUtility.DEAL_SUCCESS(json, null, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectAllDrugsInfor.act"})
-  public String selectAllDrugsInfor(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String selectAllDrugsInfor(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String basetype = request.getParameter("basetype");
     String nexttype = request.getParameter("nexttype");
     String queryInput = request.getParameter("queryInput");
     String organization = ChainUtil.getCurrentOrganization(request);
-    Map<String, String> map = new HashMap();
-    if (!YZUtility.isNullorEmpty(basetype)) {
-      map.put("basetype", basetype);
-    }
-    if (!YZUtility.isNullorEmpty(nexttype)) {
-      map.put("nexttype", nexttype);
-    }
-    if (!YZUtility.isNullorEmpty(queryInput)) {
-      map.put("queryInput", queryInput);
-    }
-    if (!YZUtility.isNullorEmpty(organization)) {
-      map.put("organization", organization);
-    }
-    try
-    {
+    Map<String, String> map = new HashMap<>();
+    if (!YZUtility.isNullorEmpty(basetype))
+      map.put("basetype", basetype); 
+    if (!YZUtility.isNullorEmpty(nexttype))
+      map.put("nexttype", nexttype); 
+    if (!YZUtility.isNullorEmpty(queryInput))
+      map.put("queryInput", queryInput); 
+    if (!YZUtility.isNullorEmpty(organization))
+      map.put("organization", organization); 
+    try {
       List<JSONObject> list = this.IYkzzDrugsService.selectAllDrugsInfor(map);
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/deleteDrugsByPrimaryId.act"})
-  public String deleteDrugsByPrimaryId(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String deleteDrugsByPrimaryId(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String id = request.getParameter("id");
-    try
-    {
+    try {
       this.IYkzzDrugsService.deleteDrugsByPrimaryId(id);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/updateDrugsByPrimaryId.act"})
-  public String updateDrugsByPrimaryId(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String updateDrugsByPrimaryId(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectDrugsInforByConditionQuery.act"})
-  public String selectDrugsInforByConditionQuery(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    String flag = request.getParameter("flag") == null ? "" : request.getParameter("flag");
-    String fieldArr = request.getParameter("fieldArr") == null ? "" : request.getParameter("fieldArr");
-    String fieldnameArr = request.getParameter("fieldnameArr") == null ? "" : request.getParameter("fieldnameArr");
+  public String selectDrugsInforByConditionQuery(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    String flag = (request.getParameter("flag") == null) ? "" : request.getParameter("flag");
+    String fieldArr = (request.getParameter("fieldArr") == null) ? "" : request.getParameter("fieldArr");
+    String fieldnameArr = (request.getParameter("fieldnameArr") == null) ? "" : request.getParameter("fieldnameArr");
     String organization = ChainUtil.getCurrentOrganization(request);
     String basetype = request.getParameter("basetype");
     String nexttype = request.getParameter("nexttype");
     String queryInput = request.getParameter("queryInput");
-    Map<String, String> map = new HashMap();
-    if (!YZUtility.isNullorEmpty(basetype)) {
-      map.put("basetype", basetype);
-    }
-    if (!YZUtility.isNullorEmpty(nexttype)) {
-      map.put("nexttype", nexttype);
-    }
-    if (!YZUtility.isNullorEmpty(queryInput)) {
-      map.put("queryInput", queryInput);
-    }
-    if (!YZUtility.isNullorEmpty(organization)) {
-      map.put("organization", organization);
-    }
-    try
-    {
+    Map<String, String> map = new HashMap<>();
+    if (!YZUtility.isNullorEmpty(basetype))
+      map.put("basetype", basetype); 
+    if (!YZUtility.isNullorEmpty(nexttype))
+      map.put("nexttype", nexttype); 
+    if (!YZUtility.isNullorEmpty(queryInput))
+      map.put("queryInput", queryInput); 
+    if (!YZUtility.isNullorEmpty(organization))
+      map.put("organization", organization); 
+    try {
       List<JSONObject> json = this.IYkzzDrugsService.selectDrugsInforByConditionQuery(map);
-      if ((flag != null) && (flag.equals("exportTable")))
-      {
+      if (flag != null && flag.equals("exportTable")) {
         ExportTable.exportBootStrapTable2Excel("药品信息", fieldArr, fieldnameArr, json, response, request);
         return null;
-      }
+      } 
       YZUtility.RETURN_LIST(json, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/excelDownloadStandardDrugsTemplateOut.act"})
-  public void excelDownloadStandardDrugsTemplateOut(HttpServletRequest request, HttpServletResponse response)
-    throws IOException
-  {
-    File file = new File(ConstUtil.ROOT_DIR + "\\model\\药品导入模板.xls");
-    
+  public void excelDownloadStandardDrugsTemplateOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    File file = new File(String.valueOf(ConstUtil.ROOT_DIR) + "\\model\\药品导入模板.xls");
     response.reset();
     response.setContentType("application/vnd.ms-excel;charset=utf-8");
-    try
-    {
+    try {
       response.setHeader("Content-Disposition", "attachment;filename=" + new String("药品导入模板.xls".getBytes(), "iso-8859-1"));
-    }
-    catch (UnsupportedEncodingException e)
-    {
+    } catch (UnsupportedEncodingException e) {
       e.printStackTrace();
-    }
+    } 
     ServletOutputStream out = response.getOutputStream();
     BufferedInputStream bis = null;
     BufferedOutputStream bos = null;
-    try
-    {
+    try {
       bis = new BufferedInputStream(new FileInputStream(file));
-      bos = new BufferedOutputStream(out);
+      bos = new BufferedOutputStream((OutputStream)out);
       byte[] buff = new byte[2048];
       int bytesRead;
       while (-1 != (bytesRead = bis.read(buff, 0, buff.length)))
-      {
-        int bytesRead;
-        bos.write(buff, 0, bytesRead);
-      }
-    }
-    catch (IOException e)
-    {
+        bos.write(buff, 0, bytesRead); 
+    } catch (IOException e) {
       throw e;
-    }
-    finally
-    {
-      if (bis != null) {
-        bis.close();
-      }
-      if (bos != null) {
-        bos.close();
-      }
-    }
+    } finally {
+      if (bis != null)
+        bis.close(); 
+      if (bos != null)
+        bos.close(); 
+    } 
   }
   
-  @RequestMapping(value={"/FileUploadAct"}, method={org.springframework.web.bind.annotation.RequestMethod.POST}, produces={"application/json; charset=UTF-8"})
-  public ModelAndView FileUploadAct(HttpServletRequest request, HttpServletResponse response, @RequestParam("files") MultipartFile[] files)
-    throws Exception
-  {
+  @RequestMapping(value = {"/FileUploadAct"}, method = {RequestMethod.POST}, produces = {"application/json; charset=UTF-8"})
+  public ModelAndView FileUploadAct(HttpServletRequest request, HttpServletResponse response, @RequestParam("files") MultipartFile[] files) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/hudh/ykzz/upload/upload_excel.jsp");
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    Map<String, String> map = new HashMap();
+    Map<String, String> map = new HashMap<>();
     JSONObject result = new JSONObject();
     List<List<String>> list = null;
-    try
-    {
-      if (files != null) {
-        files.length;
-      }
-      for (MultipartFile file : files)
-      {
+    try {
+      if (files != null)
+        files.length; 
+      byte b;
+      int i;
+      MultipartFile[] arrayOfMultipartFile;
+      for (i = (arrayOfMultipartFile = files).length, b = 0; b < i; ) {
+        MultipartFile file = arrayOfMultipartFile[b];
         File dir = null;
         String docsPath = request.getSession().getServletContext().getRealPath("WEB-INF/lsfile");
         dir = new File(docsPath);
-        if (!dir.exists()) {
-          dir.mkdirs();
-        }
+        if (!dir.exists())
+          dir.mkdirs(); 
         String fileName = file.getOriginalFilename();
         byte[] bytes = file.getBytes();
-        File localFile1 = new File(docsPath + fileName);
-      }
+        File file1 = new File(String.valueOf(docsPath) + fileName);
+        b++;
+      } 
       list = ExcelTool.read(files[0].getInputStream(), true);
       this.IYkzzDrugsService.saveBatchInsert(list, request);
-      
       String Msg = "批量导入EXCEL成功！";
       request.getSession().setAttribute("msg", Msg);
-    }
-    catch (FileUploadBase.SizeLimitExceededException ex)
-    {
+    } catch (FileUploadBase.SizeLimitExceededException ex) {
       request.getSession().setAttribute("msg", "文件上传失败：文件需要小于" + YZSysProps.getInt("maxUploadFileSize") + "M");
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       request.getSession().setAttribute("msg", ex.getMessage());
-    }
+    } 
     return mv;
   }
   
   @RequestMapping({"/forbiddenDrugs.act"})
-  public String forbiddenDrugs(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String forbiddenDrugs(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String id = request.getParameter("id");
-    try
-    {
+    try {
       this.IYkzzDrugsService.forbiddenDrugs(id);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"recoverDrugs.act"})
-  public String recoverDrugs(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String recoverDrugs(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String id = request.getParameter("id");
-    try
-    {
+    try {
       this.IYkzzDrugsService.recoverDrugs(id);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
 }

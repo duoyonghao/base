@@ -17,114 +17,81 @@ import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DBUtil
-{
+public class DBUtil {
   private static Logger logger = LoggerFactory.getLogger(DBUtil.class);
   
-  public static boolean isMysql()
-  {
+  public static boolean isMysql() {
     String dbms = YZSysProps.getProp("db.jdbc.dbms");
-    if (YZUtility.isNullorEmpty(dbms)) {
-      logger.error("isMysql Error：系统未配置数据库类型是mysql还是sqlserver");
-    }
+    if (YZUtility.isNullorEmpty(dbms))
+      logger.error("isMysql Error：系统未配置数据库类型是mysql还是sqlserver"); 
     dbms = dbms.trim();
     dbms = dbms.toLowerCase();
-    if ("mysql".equals(dbms)) {
-      return true;
-    }
+    if ("mysql".equals(dbms))
+      return true; 
     return false;
   }
   
-  public static void getJsonListByResultSet(ResultSet rs, List<JSONObject> list, int count, boolean isMysql)
-    throws SQLException, Exception
-  {
+  public static void getJsonListByResultSet(ResultSet rs, List<JSONObject> list, int count, boolean isMysql) throws SQLException, Exception {
     DataTableEntity dataTable = YZORMSelect.getDataTableEntity(rs, true);
-    
     int nColumnCount = dataTable.getColumnCount();
     int[] strColumnTypes = dataTable.getColumnTypes();
     String[] strColumnNames = dataTable.getColumnNames();
-    while (rs.next())
-    {
+    while (rs.next()) {
       JSONObject obj = new JSONObject();
-      for (int i = 0; i < nColumnCount; i++)
-      {
+      for (int i = 0; i < nColumnCount; i++) {
         String colName = strColumnNames[i];
-        if (!"barcode".equals(colName))
-        {
+        if (!"barcode".equals(colName)) {
           Object objColumnValue = YZORMSelect.getColumnValByIndex(rs, strColumnTypes[i], i + 1);
-          String value = null;
-          if (objColumnValue == null)
-          {
-            value = "";
-          }
-          else
-          {
-            value = objColumnValue;
-            value = YZAuthenticator.decryKqdsPhonenumber(colName, value);
-          }
-          obj.put(colName, value);
-          if (colName.contains("_"))
-          {
+          Object object1 = null;
+          if (objColumnValue == null) {
+            object1 = "";
+          } else {
+            object1 = objColumnValue;
+            object1 = YZAuthenticator.decryKqdsPhonenumber(colName, (String)object1);
+          } 
+          obj.put(colName, object1);
+          if (colName.contains("_")) {
             String field2 = YZStringFormat.unformat(colName);
-            obj.put(field2, value);
-          }
-        }
-      }
+            obj.put(field2, object1);
+          } 
+        } 
+      } 
       count++;
-      if (isMysql) {
-        obj.put("rownumber", Integer.valueOf(count));
-      }
+      if (isMysql)
+        obj.put("rownumber", Integer.valueOf(count)); 
       list.add(obj);
-    }
+    } 
   }
   
-  public static void close(Statement stmt, ResultSet rs, Logger log)
-  {
-    try
-    {
-      if (rs != null) {
-        rs.close();
-      }
-    }
-    catch (Exception ex)
-    {
-      if ((log != null) && (log.isDebugEnabled())) {
-        log.error(ex.getMessage(), ex);
-      }
-    }
-    try
-    {
-      if (stmt != null) {
-        stmt.close();
-      }
-    }
-    catch (Exception ex)
-    {
-      if ((log != null) && (log.isDebugEnabled())) {
-        log.error("close Error：" + ex.getMessage(), ex);
-      }
-    }
+  public static void close(Statement stmt, ResultSet rs, Logger log) {
+    try {
+      if (rs != null)
+        rs.close(); 
+    } catch (Exception ex) {
+      if (log != null && log.isDebugEnabled())
+        log.error(ex.getMessage(), ex); 
+    } 
+    try {
+      if (stmt != null)
+        stmt.close(); 
+    } catch (Exception ex) {
+      if (log != null && log.isDebugEnabled())
+        log.error("close Error：" + ex.getMessage(), ex); 
+    } 
   }
   
-  public static int EXECUTE_UPDATE(Connection dbConn, String sql, HttpServletRequest request)
-    throws Exception
-  {
+  public static int EXECUTE_UPDATE(Connection dbConn, String sql, HttpServletRequest request) throws Exception {
     int count = 0;
     PreparedStatement ps = null;
-    try
-    {
+    try {
       ps = dbConn.prepareStatement(sql);
       count = ps.executeUpdate();
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       logger.error("EXECUTE_UPDATE Error：" + e.getMessage());
       throw e;
-    }
-    finally
-    {
+    } finally {
       close(ps, null, logger);
-    }
+    } 
     return count;
   }
 }

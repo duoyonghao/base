@@ -8,10 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_ImageDataLogic
-  extends BaseLogic
-{
+public class KQDS_ImageDataLogic extends BaseLogic {
   private Logger log = LoggerFactory.getLogger(KQDS_ImageDataLogic.class);
+  
   @Autowired
   private DaoSupport dao;
 }

@@ -7,14 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_InitRegLogic
-{
+public class KQDS_InitRegLogic {
   @Autowired
   private DaoSupport dao;
   
-  public void batchSaveReg(List<KqdsReg> regList)
-    throws Exception
-  {
+  public void batchSaveReg(List<KqdsReg> regList) throws Exception {
     this.dao.batchUpdate("KQDS_REG.batchSaveReg", regList);
   }
 }

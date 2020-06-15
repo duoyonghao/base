@@ -1,148 +1,133 @@
 package com.hudh.area.entity;
 
-public class City
-{
+public class City {
   private Integer cityId;
+  
   private String cityCode;
+  
   private String cityName;
+  
   private String shortName;
+  
   private String proviceCode;
+  
   private String lng;
+  
   private String lat;
+  
   private Integer sort;
+  
   private String gmyCreate;
+  
   private String gmtModified;
+  
   private String memo;
+  
   private Integer dataState;
+  
   private String tenantCode;
   
-  public Integer getCityId()
-  {
+  public Integer getCityId() {
     return this.cityId;
   }
   
-  public void setCityId(Integer cityId)
-  {
+  public void setCityId(Integer cityId) {
     this.cityId = cityId;
   }
   
-  public String getCityCode()
-  {
+  public String getCityCode() {
     return this.cityCode;
   }
   
-  public void setCityCode(String cityCode)
-  {
+  public void setCityCode(String cityCode) {
     this.cityCode = cityCode;
   }
   
-  public String getCityName()
-  {
+  public String getCityName() {
     return this.cityName;
   }
   
-  public void setCityName(String cityName)
-  {
+  public void setCityName(String cityName) {
     this.cityName = cityName;
   }
   
-  public String getShortName()
-  {
+  public String getShortName() {
     return this.shortName;
   }
   
-  public void setShortName(String shortName)
-  {
+  public void setShortName(String shortName) {
     this.shortName = shortName;
   }
   
-  public String getProviceCode()
-  {
+  public String getProviceCode() {
     return this.proviceCode;
   }
   
-  public void setProviceCode(String proviceCode)
-  {
+  public void setProviceCode(String proviceCode) {
     this.proviceCode = proviceCode;
   }
   
-  public String getLng()
-  {
+  public String getLng() {
     return this.lng;
   }
   
-  public void setLng(String lng)
-  {
+  public void setLng(String lng) {
     this.lng = lng;
   }
   
-  public String getLat()
-  {
+  public String getLat() {
     return this.lat;
   }
   
-  public void setLat(String lat)
-  {
+  public void setLat(String lat) {
     this.lat = lat;
   }
   
-  public Integer getSort()
-  {
+  public Integer getSort() {
     return this.sort;
   }
   
-  public void setSort(Integer sort)
-  {
+  public void setSort(Integer sort) {
     this.sort = sort;
   }
   
-  public String getGmyCreate()
-  {
+  public String getGmyCreate() {
     return this.gmyCreate;
   }
   
-  public void setGmyCreate(String gmyCreate)
-  {
+  public void setGmyCreate(String gmyCreate) {
     this.gmyCreate = gmyCreate;
   }
   
-  public String getGmtModified()
-  {
+  public String getGmtModified() {
     return this.gmtModified;
   }
   
-  public void setGmtModified(String gmtModified)
-  {
+  public void setGmtModified(String gmtModified) {
     this.gmtModified = gmtModified;
   }
   
-  public String getMemo()
-  {
+  public String getMemo() {
     return this.memo;
   }
   
-  public void setMemo(String memo)
-  {
+  public void setMemo(String memo) {
     this.memo = memo;
   }
   
-  public Integer getDataState()
-  {
+  public Integer getDataState() {
     return this.dataState;
   }
   
-  public void setDataState(Integer dataState)
-  {
+  public void setDataState(Integer dataState) {
     this.dataState = dataState;
   }
   
-  public String getTenantCode()
-  {
+  public String getTenantCode() {
     return this.tenantCode;
   }
   
-  public void setTenantCode(String tenantCode)
-  {
+  public void setTenantCode(String tenantCode) {
     this.tenantCode = tenantCode;
   }
 }

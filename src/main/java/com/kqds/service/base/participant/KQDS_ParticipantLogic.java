@@ -10,16 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_ParticipantLogic
-  extends BaseLogic
-{
+public class KQDS_ParticipantLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public List<JSONObject> selectNoPage(String table, Map<String, String> map)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_PARTICIPANT + ".selectNoPage", map);
+  public List<JSONObject> selectNoPage(String table, Map<String, String> map) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_PARTICIPANT) + ".selectNoPage", map);
     return list;
   }
 }

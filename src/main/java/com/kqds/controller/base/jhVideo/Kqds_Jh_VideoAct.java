@@ -21,41 +21,40 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"/Kqds_Jh_VideoAct"})
-public class Kqds_Jh_VideoAct
-{
+public class Kqds_Jh_VideoAct {
   private static Logger logger = LoggerFactory.getLogger(Kqds_Jh_VideoAct.class);
+  
   @Autowired
   private Kqds_JhVideo_Logic logic;
   
-  @RequestMapping(value={"/FileUploadAct"}, method={org.springframework.web.bind.annotation.RequestMethod.POST}, produces={"application/json; charset=UTF-8"})
-  public String FileUploadAct(HttpServletRequest request, HttpServletResponse response, @RequestParam("files") MultipartFile[] files)
-    throws Exception
-  {
-    try
-    {
-      Map<String, String> map = new HashMap();
-      if ((files == null) || (files.length <= 0))
-      {
+  @RequestMapping(value = {"/FileUploadAct"}, method = {RequestMethod.POST}, produces = {"application/json; charset=UTF-8"})
+  public String FileUploadAct(HttpServletRequest request, HttpServletResponse response, @RequestParam("files") MultipartFile[] files) throws Exception {
+    try {
+      Map<String, String> map = new HashMap<>();
+      if (files == null || files.length <= 0) {
         map.put("result", "failure");
         map.put("reason", "文件不存在");
-      }
-      List<KqdsJhVideo> list = new ArrayList();
+      } 
+      List<KqdsJhVideo> list = new ArrayList<>();
       YZPerson person = SessionUtil.getLoginPerson(request);
-      for (MultipartFile file : files)
-      {
+      byte b;
+      int i;
+      MultipartFile[] arrayOfMultipartFile;
+      for (i = (arrayOfMultipartFile = files).length, b = 0; b < i; ) {
+        MultipartFile file = arrayOfMultipartFile[b];
         String fileName = file.getOriginalFilename();
         String suffix = fileName.substring(fileName.lastIndexOf('.'));
-        String newFileName = new Date().getTime() + suffix;
+        String newFileName = String.valueOf((new Date()).getTime()) + suffix;
         String path = "D:/radiologyVideo/" + ChainUtil.getCurrentOrganization(request) + "/";
-        File newFile = new File(path + newFileName);
+        File newFile = new File(String.valueOf(path) + newFileName);
         file.transferTo(newFile);
-        
         Encoder encoder = new Encoder();
         MultimediaInfo m = encoder.getInfo(newFile);
         long ls = m.getDuration();
@@ -67,55 +66,44 @@ public class Kqds_Jh_VideoAct
         jhVideo.setCreateuser(person.getSeqId());
         jhVideo.setDel(0);
         jhVideo.setOrganization(ChainUtil.getCurrentOrganization(request));
-        if (ls / 1000L / 60L <= 9L)
-        {
+        if (ls / 1000L / 60L <= 9L) {
           if (ls / 1000L % 60L <= 9L) {
-            jhVideo.setBurningTime("0" + ls / 1000L / 60L + ":0" + ls / 1000L % 60L);
+            jhVideo.setBurningTime("0" + (ls / 1000L / 60L) + ":0" + (ls / 1000L % 60L));
           } else {
-            jhVideo.setBurningTime("0" + ls / 1000L / 60L + ":" + ls / 1000L % 60L);
-          }
-        }
-        else {
-          jhVideo.setBurningTime(ls / 1000L / 60L + ":0" + ls / 1000L % 60L);
-        }
+            jhVideo.setBurningTime("0" + (ls / 1000L / 60L) + ":" + (ls / 1000L % 60L));
+          } 
+        } else {
+          jhVideo.setBurningTime(String.valueOf(ls / 1000L / 60L) + ":0" + (ls / 1000L % 60L));
+        } 
         list.add(jhVideo);
-      }
+        b++;
+      } 
       if (list.size() == 1) {
-        this.logic.insert((KqdsJhVideo)list.get(0));
+        this.logic.insert(list.get(0));
       } else if (list.size() > 1) {
         this.logic.batchInsert(list);
-      }
+      } 
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(ex.getMessage(), true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/select.act"})
-  public String select(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String select(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       List<KqdsJhVideo> list = this.logic.selectUrl(ChainUtil.getCurrentOrganization(request));
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(ex.getMessage(), true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/del.act"})
-  public String del(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String del(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String url = request.getParameter("url");
       YZPerson person = SessionUtil.getLoginPerson(request);
       KqdsJhVideo jhVideo = new KqdsJhVideo();
@@ -125,21 +113,17 @@ public class Kqds_Jh_VideoAct
       jhVideo.setOrganization(ChainUtil.getCurrentOrganization(request));
       this.logic.del(jhVideo);
       String path = "D:/radiologyVideo/" + ChainUtil.getCurrentOrganization(request) + "/";
-      File temp = new File(path + url);
+      File temp = new File(String.valueOf(path) + url);
       temp.delete();
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(ex.getMessage(), true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/toJhVideo.act"})
-  public ModelAndView toJhVideo(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toJhVideo(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String url = "/kqdsFront/jhVideo/jh_video.jsp";
     ModelAndView model = new ModelAndView();
     model.setViewName(url);

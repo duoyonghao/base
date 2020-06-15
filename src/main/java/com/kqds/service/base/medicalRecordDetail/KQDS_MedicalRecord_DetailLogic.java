@@ -8,10 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_MedicalRecord_DetailLogic
-  extends BaseLogic
-{
+public class KQDS_MedicalRecord_DetailLogic extends BaseLogic {
   private Logger log = LoggerFactory.getLogger(KQDS_MedicalRecord_DetailLogic.class);
+  
   @Autowired
   private DaoSupport dao;
 }

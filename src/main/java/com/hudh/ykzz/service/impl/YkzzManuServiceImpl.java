@@ -16,15 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class YkzzManuServiceImpl
-  implements IYkzzManuService
-{
+public class YkzzManuServiceImpl implements IYkzzManuService {
   @Autowired
   private YkzzManuDao ykzzManuDao;
   
-  public void insertYkzzManu(YkzzManu ykzzManu, HttpServletRequest request)
-    throws Exception
-  {
+  public void insertYkzzManu(YkzzManu ykzzManu, HttpServletRequest request) throws Exception {
     ykzzManu.setId(YZUtility.getUUID());
     YZPerson person = SessionUtil.getLoginPerson(request);
     String organization = ChainUtil.getCurrentOrganization(request);
@@ -34,35 +30,25 @@ public class YkzzManuServiceImpl
     this.ykzzManuDao.insertYkzzManu(ykzzManu);
   }
   
-  public YkzzManu findYkzzManuById(String id)
-    throws Exception
-  {
+  public YkzzManu findYkzzManuById(String id) throws Exception {
     return this.ykzzManuDao.findYkzzManuById(id);
   }
   
-  public void deleteYkzzManuById(String id)
-    throws Exception
-  {
+  public void deleteYkzzManuById(String id) throws Exception {
     this.ykzzManuDao.deleteYkzzManuById(id);
   }
   
-  public void updateYkzzManuById(YkzzManu ykzzManu)
-    throws Exception
-  {
+  public void updateYkzzManuById(YkzzManu ykzzManu) throws Exception {
     this.ykzzManuDao.updateYkzzManuById(ykzzManu);
   }
   
-  public List<JSONObject> findAllManu(String organization)
-    throws Exception
-  {
-    List<JSONObject> list = new ArrayList();
+  public List<JSONObject> findAllManu(String organization) throws Exception {
+    List<JSONObject> list = new ArrayList<>();
     list = this.ykzzManuDao.findAllManu(organization);
     return list;
   }
   
-  public JSONObject findManuByCode(String manuCode)
-    throws Exception
-  {
+  public JSONObject findManuByCode(String manuCode) throws Exception {
     JSONObject jo = new JSONObject();
     jo = this.ykzzManuDao.findManuByCode(manuCode);
     return jo;

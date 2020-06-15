@@ -7,21 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StreetDao
-{
+public class StreetDao {
   @Autowired
   private DaoSupport dao;
   
-  public List<JSONObject> findStreetByAreaCode(String areaCode)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList("bs_street.findStreetByAreaCode", areaCode);
+  public List<JSONObject> findStreetByAreaCode(String areaCode) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList("bs_street.findStreetByAreaCode", areaCode);
     return list;
   }
   
-  public JSONObject findStreetByTownCode(String townCode)
-    throws Exception
-  {
+  public JSONObject findStreetByTownCode(String townCode) throws Exception {
     JSONObject json = (JSONObject)this.dao.findForObject("bs_street.findStreetByTownCode", townCode);
     return json;
   }

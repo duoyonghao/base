@@ -7,43 +7,30 @@ import java.util.List;
 import java.util.Map;
 import net.sf.json.JSONObject;
 
-public abstract interface DzblService
-{
-  public abstract void saveCaseHistory(AdviceNote paramAdviceNote)
-    throws Exception;
+public interface DzblService {
+  void saveCaseHistory(AdviceNote paramAdviceNote) throws Exception;
   
-  public abstract JSONObject findCaseHistoryById(String paramString)
-    throws Exception;
+  List<JSONObject> findCaseHistoryById(String paramString) throws Exception;
   
-  public abstract void updateCaseHistoryById(AdviceNote paramAdviceNote)
-    throws Exception;
+  void updateCaseHistoryById(AdviceNote paramAdviceNote) throws Exception;
   
-  public abstract void deleteCaseHistory(String paramString)
-    throws Exception;
+  void deleteCaseHistory(String paramString) throws Exception;
   
-  public abstract void saveFamiliarBook(FamiliarBook paramFamiliarBook)
-    throws Exception;
+  void saveFamiliarBook(FamiliarBook paramFamiliarBook) throws Exception;
   
-  public abstract void updateFamiliarBook(FamiliarBook paramFamiliarBook)
-    throws Exception;
+  void updateFamiliarBook(FamiliarBook paramFamiliarBook) throws Exception;
   
-  public abstract JSONObject findFamiliarBook(String paramString)
-    throws Exception;
+  JSONObject findFamiliarBook(String paramString) throws Exception;
   
-  public abstract void deleteFamiliarBook(String paramString)
-    throws Exception;
+  void deleteFamiliarBook(String paramString) throws Exception;
   
-  public abstract List<JSONObject> findFamiliarBookList();
+  List<JSONObject> findFamiliarBookList();
   
-  public abstract JSONObject findLocatorFamiliar(Map<String, Object> paramMap)
-    throws Exception;
+  JSONObject findLocatorFamiliar(Map<String, Object> paramMap) throws Exception;
   
-  public abstract Integer saveLocatorFamiliar(LocatorFamiliar paramLocatorFamiliar)
-    throws Exception;
+  Integer saveLocatorFamiliar(LocatorFamiliar paramLocatorFamiliar) throws Exception;
   
-  public abstract void updateLocatorFamiliar(LocatorFamiliar paramLocatorFamiliar)
-    throws Exception;
+  void updateLocatorFamiliar(LocatorFamiliar paramLocatorFamiliar) throws Exception;
   
-  public abstract List<JSONObject> findLocatorFamiliares(String paramString)
-    throws Exception;
+  List<JSONObject> findLocatorFamiliares(String paramString) throws Exception;
 }

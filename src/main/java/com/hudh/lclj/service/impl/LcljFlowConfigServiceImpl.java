@@ -13,52 +13,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LcljFlowConfigServiceImpl
-  implements ILcljFlowConfigService
-{
+public class LcljFlowConfigServiceImpl implements ILcljFlowConfigService {
   @Autowired
   private FlowConfigDao flowConfigDao;
   
-  public void insertLcljFlow(LcljFlow lcljFlow)
-    throws Exception
-  {
+  public void insertLcljFlow(LcljFlow lcljFlow) throws Exception {
     lcljFlow.setId(YZUtility.getUUID());
     lcljFlow.setCreatetime(HUDHUtil.getCurrentTime("yyyy-MM-dd HH:mm:ss"));
     this.flowConfigDao.insertLcljFlow(lcljFlow);
   }
   
-  public LcljFlow findLcljFlowById(String flowCode)
-    throws Exception
-  {
+  public LcljFlow findLcljFlowById(String flowCode) throws Exception {
     return null;
   }
   
-  public void deleteLcljFlowById(String flowCode)
-    throws Exception
-  {}
+  public void deleteLcljFlowById(String flowCode) throws Exception {}
   
-  public void updateLcljFlowById(LcljFlow lcljFlow)
-    throws Exception
-  {}
+  public void updateLcljFlowById(LcljFlow lcljFlow) throws Exception {}
   
-  public List<JSONObject> findAllLcljFlow(Map<String, String> dataMap)
-    throws Exception
-  {
-    List<JSONObject> list = new ArrayList();
+  public List<JSONObject> findAllLcljFlow(Map<String, String> dataMap) throws Exception {
+    List<JSONObject> list = new ArrayList<>();
     list = this.flowConfigDao.findAllLcljFlowByParentId(dataMap);
     return list;
   }
   
-  public List<JSONObject> findLcljFlowByDentalJaw(Map<String, String> map)
-    throws Exception
-  {
+  public List<JSONObject> findLcljFlowByDentalJaw(Map<String, String> map) throws Exception {
     List<JSONObject> List = this.flowConfigDao.findLcljFlowByDentalJaw(map);
     return List;
   }
   
-  public List<JSONObject> findLcljFlowInforByDentalJaw(String dentalJaw)
-    throws Exception
-  {
+  public List<JSONObject> findLcljFlowInforByDentalJaw(String dentalJaw) throws Exception {
     List<JSONObject> list = this.flowConfigDao.findLcljFlowInforByDentalJaw(dentalJaw);
     return list;
   }

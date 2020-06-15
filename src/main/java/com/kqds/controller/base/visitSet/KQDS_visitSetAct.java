@@ -24,25 +24,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_visitSetAct"})
-public class KQDS_visitSetAct
-{
+public class KQDS_visitSetAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_visitSetAct.class);
+  
   @Autowired
   private KQDS_VisitSetLogic logic;
   
   @RequestMapping({"/toIndexLs.act"})
-  public ModelAndView toIndexLs(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toIndexLs(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/kqds/visitSet/index_ls.jsp");
     return mv;
   }
   
   @RequestMapping({"/toList.act"})
-  public ModelAndView toList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toList(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
     mv.addObject("organization", organization);
@@ -51,9 +47,7 @@ public class KQDS_visitSetAct
   }
   
   @RequestMapping({"/toEdit.act"})
-  public ModelAndView toEdit(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toEdit(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
@@ -64,9 +58,7 @@ public class KQDS_visitSetAct
   }
   
   @RequestMapping({"/toDetail.act"})
-  public ModelAndView toDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
@@ -77,9 +69,7 @@ public class KQDS_visitSetAct
   }
   
   @RequestMapping({"/toNewAdd.act"})
-  public ModelAndView toNewAdd(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toNewAdd(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
     mv.addObject("organization", organization);
@@ -88,112 +78,81 @@ public class KQDS_visitSetAct
   }
   
   @RequestMapping({"/insertOrUpdate.act"})
-  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
       KqdsVisitSet dp = new KqdsVisitSet();
       BeanUtils.populate(dp, request.getParameterMap());
       String seqId = request.getParameter("seqId");
-      if (!YZUtility.isNullorEmpty(seqId))
-      {
+      if (!YZUtility.isNullorEmpty(seqId)) {
         this.logic.updateSingleUUID(TableNameUtil.KQDS_VISIT_SET, dp);
-        
         BcjlUtil.LogBcjl(BcjlUtil.UPDATE, BcjlUtil.KQDS_VISIT_SET, dp, TableNameUtil.KQDS_VISIT_SET, request);
-      }
-      else
-      {
+      } else {
         String uuid = YZUtility.getUUID();
         dp.setSeqId(uuid);
         dp.setCreatetime(YZUtility.getCurDateTimeStr());
         dp.setCreateuser(person.getSeqId());
         dp.setOrganization(ChainUtil.getOrganizationFromUrl(request));
         this.logic.saveSingleUUID(TableNameUtil.KQDS_VISIT_SET, dp);
-        
         BcjlUtil.LogBcjl(BcjlUtil.NEW, BcjlUtil.KQDS_VISIT_SET, dp, TableNameUtil.KQDS_VISIT_SET, request);
-      }
+      } 
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/deleteObj.act"})
-  public String deleteObj(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String deleteObj(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
-      if (YZUtility.isNullorEmpty(seqId)) {
-        throw new Exception("主键为空或者null");
-      }
+      if (YZUtility.isNullorEmpty(seqId))
+        throw new Exception("主键为空或者null"); 
       KqdsVisitSet en = (KqdsVisitSet)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_VISIT_SET, seqId);
       this.logic.deleteSingleUUID(TableNameUtil.KQDS_VISIT_SET, seqId);
-      
       BcjlUtil.LogBcjl(BcjlUtil.DELETE, BcjlUtil.KQDS_VISIT_SET, en, TableNameUtil.KQDS_VISIT_SET, request);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectDetail.act"})
-  public String selectDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
       KqdsVisitSet en = (KqdsVisitSet)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_VISIT_SET, seqId);
-      if (en == null) {
-        throw new Exception("数据不存在");
-      }
+      if (en == null)
+        throw new Exception("数据不存在"); 
       JSONObject jobj = new JSONObject();
       jobj.put("data", en);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectPage.act"})
-  public String selectPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       BootStrapPage bp = new BootStrapPage();
-      
       BeanUtils.populate(bp, request.getParameterMap());
       String hffl = request.getParameter("hffl");
       String userpriv = request.getParameter("userpriv");
-      Map<String, String> map = new HashMap();
-      if (!YZUtility.isNullorEmpty(hffl)) {
-        map.put("hffl", hffl);
-      }
-      if (!YZUtility.isNullorEmpty(userpriv)) {
-        map.put("userpriv", userpriv);
-      }
+      Map<String, String> map = new HashMap<>();
+      if (!YZUtility.isNullorEmpty(hffl))
+        map.put("hffl", hffl); 
+      if (!YZUtility.isNullorEmpty(userpriv))
+        map.put("userpriv", userpriv); 
       map.put("organization", ChainUtil.getOrganizationFromUrl(request));
       JSONObject data = this.logic.selectWithPage(TableNameUtil.KQDS_VISIT_SET, bp, map);
       YZUtility.DEAL_SUCCESS(data, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

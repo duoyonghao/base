@@ -23,96 +23,80 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class WXUtil4TemplateMsgLogic
-{
+public class WXUtil4TemplateMsgLogic {
   public static final String GET_METHOD = "GET";
+  
   public static final String POST_METHOD = "POST";
+  
   public static final String COLOR = "#173177";
+  
   @Autowired
   private WXUserDocLogic wxUserLogic;
+  
   @Autowired
   private WXTemplateMsgLogic tempMsgLogic;
+  
   @Autowired
   private WXTemplateItemLogic itemlogic;
+  
   @Autowired
   private YZDictLogic dictLogic;
   
-  public JSONObject orderSuccessNotify(String usercode, String openid, KqdsNetOrder netorder, HttpServletRequest request)
-    throws Exception
-  {
+  public JSONObject orderSuccessNotify(String usercode, String openid, KqdsNetOrder netorder, HttpServletRequest request) throws Exception {
     JSONObject json = null;
     String askItemName = this.dictLogic.getDictNameBySeqId(netorder.getAskitem());
-    
     String crete_doc_templateid = YZSysProps.getString("ORDER_SUCCESS_TEMPLATEID");
-    if (!YZUtility.isNullorEmpty(crete_doc_templateid))
-    {
+    if (!YZUtility.isNullorEmpty(crete_doc_templateid)) {
       WXTemplateitem dp = new WXTemplateitem();
       dp.setFirst("您已预约成功!");
       dp.setKeyword1(askItemName);
       dp.setKeyword2(netorder.getOrdertime());
       dp.setRemark("如有任何疑问，请及时与我们联系，谢谢！");
-      
       WXTemplatemsg temp = this.tempMsgLogic.getWXTemplateMsgById(crete_doc_templateid, request);
-      if (temp != null)
-      {
+      if (temp != null) {
         dp.setTemplateSeqid(temp.getSeqId());
         dp.setTemplateId(crete_doc_templateid);
-        
         JSONObject postParam = this.itemlogic.getTemplateItem4Send(dp, request);
         json = template_send(postParam, openid, request);
-      }
-    }
+      } 
+    } 
     return json;
   }
   
-  public JSONObject createDocSuccessNotify(KqdsUserdocument user, KqdsNetOrder netorder, HttpServletRequest request)
-    throws Exception
-  {
+  public JSONObject createDocSuccessNotify(KqdsUserdocument user, KqdsNetOrder netorder, HttpServletRequest request) throws Exception {
     JSONObject json = null;
     String crete_doc_templateid = YZSysProps.getString("CRETE_DOC_TEMPLATEID");
-    if (!YZUtility.isNullorEmpty(crete_doc_templateid))
-    {
+    if (!YZUtility.isNullorEmpty(crete_doc_templateid)) {
       WXTemplateitem dp = new WXTemplateitem();
       dp.setFirst("您已建档成功!");
       dp.setKeyword1(user.getUsername());
       dp.setKeyword2(user.getUsercode());
       dp.setRemark("如有任何疑问，请及时与我们联系，谢谢！");
-      
       WXTemplatemsg temp = this.tempMsgLogic.getWXTemplateMsgById(crete_doc_templateid, request);
-      if (temp != null)
-      {
+      if (temp != null) {
         dp.setTemplateSeqid(temp.getSeqId());
         dp.setTemplateId(crete_doc_templateid);
-        
         JSONObject postParam = this.itemlogic.getTemplateItem4Send(dp, request);
         json = template_send(postParam, user.getOpenid(), request);
-      }
-    }
+      } 
+    } 
     return json;
   }
   
-  public JSONObject get_all_private_template(HttpServletRequest request)
-    throws Exception
-  {
+  public JSONObject get_all_private_template(HttpServletRequest request) throws Exception {
     String accountid = YZSysProps.getString("WEIXIN_ACCOUNTID");
     String get_all_private_template_url = YZSysProps.getString("GET_ALL_PRIVATE_TEMPLATE_URL");
-    
-    get_all_private_template_url = get_all_private_template_url + "&wxaccountid=" + accountid;
-    
+    get_all_private_template_url = String.valueOf(get_all_private_template_url) + "&wxaccountid=" + accountid;
     JSONObject jsonObject = WXUtilLogic.httpRequest(get_all_private_template_url, "GET", null);
-    if (jsonObject == null) {
-      throw new Exception("获取消息模板列表失败！URL地址不正确。");
-    }
+    if (jsonObject == null)
+      throw new Exception("获取消息模板列表失败！URL地址不正确。"); 
     String template_list = jsonObject.getString("template_list");
     JSONArray templateArray = JSONArray.fromObject(template_list);
-    for (Object object : templateArray)
-    {
+    for (Object object : templateArray) {
       JSONObject template = JSONObject.fromObject(object);
-      
       String template_id = template.getString("template_id");
       WXTemplatemsg dbObj = this.tempMsgLogic.getWXTemplateMsgById(template_id, request);
-      if (dbObj == null)
-      {
+      if (dbObj == null) {
         WXTemplatemsg msg = new WXTemplatemsg();
         msg.setContent(template.getString("content"));
         msg.setCreatetime(YZUtility.getCurDateTimeStr());
@@ -125,77 +109,55 @@ public class WXUtil4TemplateMsgLogic
         msg.setTemplateId(template.getString("template_id"));
         msg.setTitle(template.getString("title"));
         this.tempMsgLogic.saveSingleUUID(TableNameUtil.WX_TEMPLATEMSG, msg);
-      }
-      else
-      {
-        dbObj.setContent(template.getString("content"));
-        dbObj.setCreatetime(YZUtility.getCurDateTimeStr());
-        dbObj.setCreateuser(YZUtility.getCurrLoginPersonSeqId(request));
-        dbObj.setDeputyIndustry(template.getString("deputy_industry"));
-        dbObj.setExample(template.getString("example"));
-        dbObj.setPrimaryIndustry(template.getString("primary_industry"));
-        
-
-        dbObj.setTemplateId(template.getString("template_id"));
-        dbObj.setTitle(template.getString("title"));
-        this.tempMsgLogic.updateSingleUUID(TableNameUtil.WX_TEMPLATEMSG, dbObj);
-      }
-    }
+        continue;
+      } 
+      dbObj.setContent(template.getString("content"));
+      dbObj.setCreatetime(YZUtility.getCurDateTimeStr());
+      dbObj.setCreateuser(YZUtility.getCurrLoginPersonSeqId(request));
+      dbObj.setDeputyIndustry(template.getString("deputy_industry"));
+      dbObj.setExample(template.getString("example"));
+      dbObj.setPrimaryIndustry(template.getString("primary_industry"));
+      dbObj.setTemplateId(template.getString("template_id"));
+      dbObj.setTitle(template.getString("title"));
+      this.tempMsgLogic.updateSingleUUID(TableNameUtil.WX_TEMPLATEMSG, dbObj);
+    } 
     return JSONObject.fromObject(jsonObject);
   }
   
-  public static JSONObject del_private_template(String template_id, HttpServletRequest request)
-    throws Exception
-  {
+  public static JSONObject del_private_template(String template_id, HttpServletRequest request) throws Exception {
     String accountid = YZSysProps.getString("WEIXIN_ACCOUNTID");
     String del_private_template = YZSysProps.getString("DEL_PRIVATE_TEMPLATE_URL");
-    
-    del_private_template = del_private_template + "&wxaccountid=" + accountid;
-    del_private_template = del_private_template + "&template_id=" + template_id;
-    
+    del_private_template = String.valueOf(del_private_template) + "&wxaccountid=" + accountid;
+    del_private_template = String.valueOf(del_private_template) + "&template_id=" + template_id;
     JSONObject jsonObject = WXUtilLogic.httpRequest(del_private_template, "GET", null);
-    if (jsonObject == null) {
-      throw new Exception("删除消息模板列表失败！URL地址不正确。");
-    }
-    if (jsonObject.getInt("errcode") != 0) {
-      throw new Exception("删除消息模板列表失败！错误码为：" + jsonObject.getInt("errcode") + "错误信息为：" + jsonObject.getString("errmsg"));
-    }
+    if (jsonObject == null)
+      throw new Exception("删除消息模板列表失败！URL地址不正确。"); 
+    if (jsonObject.getInt("errcode") != 0)
+      throw new Exception("删除消息模板列表失败！错误码为：" + jsonObject.getInt("errcode") + "错误信息为：" + jsonObject.getString("errmsg")); 
     return JSONObject.fromObject(jsonObject);
   }
   
-  public JSONObject template_send(JSONObject postParam, String openid, HttpServletRequest request)
-    throws Exception
-  {
+  public JSONObject template_send(JSONObject postParam, String openid, HttpServletRequest request) throws Exception {
     YZPerson person = SessionUtil.getLoginPerson(request);
-    
     String accountid = YZSysProps.getString("WEIXIN_ACCOUNTID");
     String template_send_url = YZSysProps.getString("TEMPLATE_SEND_URL");
-    
     JSONObject wxPostParam = JSONObject.fromObject(postParam.toString());
-    
     wxPostParam.put("touser", openid);
     wxPostParam.remove("local_content");
     wxPostParam.remove("local_title");
-    
-
-    template_send_url = template_send_url + "&wxaccountid=" + accountid;
-    
+    template_send_url = String.valueOf(template_send_url) + "&wxaccountid=" + accountid;
     JSONObject jsonObject = WXUtilLogic.httpRequestJSON(template_send_url, wxPostParam);
-    if (jsonObject == null) {
-      throw new Exception("发送模板消息失败！URL地址不正确。");
-    }
-    if (jsonObject.getInt("errcode") != 0) {
-      throw new Exception("发送模板消息失败！错误码为：" + jsonObject.getInt("errcode") + "错误信息为：" + jsonObject.getString("errmsg"));
-    }
+    if (jsonObject == null)
+      throw new Exception("发送模板消息失败！URL地址不正确。"); 
+    if (jsonObject.getInt("errcode") != 0)
+      throw new Exception("发送模板消息失败！错误码为：" + jsonObject.getInt("errcode") + "错误信息为：" + jsonObject.getString("errmsg")); 
     String usercode = null;
     KqdsUserdocument userinfo = this.wxUserLogic.getBindUserDocByOpenId(openid, request);
-    if (userinfo != null) {
-      usercode = userinfo.getUsercode();
-    }
+    if (userinfo != null)
+      usercode = userinfo.getUsercode(); 
     String content = postParam.getString("local_content");
     String title = postParam.getString("local_title");
-    content = title + "：<br>" + content;
-    
+    content = String.valueOf(title) + "：<br>" + content;
     WXReceivetext text = new WXReceivetext();
     text.setAccountid(accountid);
     text.setContent(content);
@@ -207,25 +169,19 @@ public class WXUtil4TemplateMsgLogic
     text.setMsgtype("template");
     text.setSeqId(YZUtility.getUUID());
     text.setCreateuser(person.getSeqId());
-    
     this.tempMsgLogic.saveSingleUUID(TableNameUtil.WX_RECEIVETEXT, text);
-    
     return JSONObject.fromObject(text);
   }
   
-  public static void main(String[] args)
-  {
+  public static void main(String[] args) {
     String str = "{{first.DATA}}</br>诊前提示：{{keyword1.DATA}}</br>提示时间：{{keyword2.DATA}}</br>{{remark.DATA}}";
     String regEx = "\\{\\{.*?\\.DATA\\}\\}";
-    
     Pattern pattern = Pattern.compile(regEx);
-    
     Matcher matcher = pattern.matcher(str);
-    while (matcher.find())
-    {
+    while (matcher.find()) {
       String ss = matcher.group();
       ss = ss.replace(".DATA}}", "");
       ss = ss.replace("{{", "");
-    }
+    } 
   }
 }

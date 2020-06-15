@@ -6,14 +6,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import net.sf.json.JSONObject;
 
-public abstract interface IGoodsPickSendBackService
-{
-  public abstract int insertGoodsPickSendBack(GoodsPickSendBack paramGoodsPickSendBack, HttpServletRequest paramHttpServletRequest)
-    throws Exception;
+public interface IGoodsPickSendBackService {
+  int insertGoodsPickSendBack(GoodsPickSendBack paramGoodsPickSendBack, HttpServletRequest paramHttpServletRequest) throws Exception;
   
-  public abstract List<JSONObject> findGoodsPickSendBackAll(Map<String, String> paramMap)
-    throws Exception;
+  List<JSONObject> findGoodsPickSendBackAll(Map<String, String> paramMap) throws Exception;
   
-  public abstract JSONObject findGoodsPickSendBackById(String paramString)
-    throws Exception;
+  JSONObject findGoodsPickSendBackById(String paramString) throws Exception;
 }

@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"KQDS_OutProcessing_TypeAct"})
-public class KQDS_OutProcessing_TypeAct
-{
+public class KQDS_OutProcessing_TypeAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_OutProcessing_TypeAct.class);
+  
   @Autowired
   private KQDS_OutProcessing_TypeLogic logic;
 }

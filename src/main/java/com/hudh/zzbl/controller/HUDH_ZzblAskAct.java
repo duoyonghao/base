@@ -8,6 +8,7 @@ import com.kqds.util.sys.YZUtility;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,16 +21,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"/HUDH_ZzblAskAct"})
-public class HUDH_ZzblAskAct
-{
+public class HUDH_ZzblAskAct {
   private Logger logger = LoggerFactory.getLogger(HUDH_ZzblAct.class);
+  
   @Autowired
   private DzblService dzblService;
   
   @RequestMapping({"/saveCaseHistory.act"})
-  public String saveCaseHistory(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String saveCaseHistory(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seq_id = YZUtility.getUUID();
     String LcljNum = request.getParameter("LcljNum");
     String userName = request.getParameter("username");
@@ -105,11 +104,16 @@ public class HUDH_ZzblAskAct
     String PatientTime = request.getParameter("PatientTime");
     String doctorSignature = request.getParameter("doctorSignature");
     String doctorTime = request.getParameter("doctorTime");
+    String hypertensionmedicine = request.getParameter("hypertensionmedicine");
+    String heardieasemedicine = request.getParameter("heardieasemedicine");
+    String diabetesoralmedicine = request.getParameter("diabetesoralmedicine");
+    String diabetesinjectionmedicine = request.getParameter("diabetesinjectionmedicine");
+    String antifreezingmedicine = request.getParameter("antifreezingmedicine");
+    String pharmacymedicine = request.getParameter("pharmacymedicine");
+    String glucocorticoidsmedicine = request.getParameter("glucocorticoidsmedicine");
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String createtime = df.format(new Date());
-    
     AdviceNote adviceNote = new AdviceNote();
-    
     adviceNote.setSEQ_ID(seq_id);
     adviceNote.setLcljNum(LcljNum);
     adviceNote.setLcljId(LcljId);
@@ -189,39 +193,36 @@ public class HUDH_ZzblAskAct
     adviceNote.setDoctorTime(doctorTime);
     adviceNote.setCreatetime(createtime);
     adviceNote.setOdontoprisis(odontoprisis);
-    try
-    {
+    adviceNote.setHypertensionmedicine(hypertensionmedicine);
+    adviceNote.setHeardieasemedicine(heardieasemedicine);
+    adviceNote.setDiabetesinjectionmedicine(diabetesinjectionmedicine);
+    adviceNote.setDiabetesoralmedicine(diabetesoralmedicine);
+    adviceNote.setAntifreezingmedicine(antifreezingmedicine);
+    adviceNote.setPharmacymedicine(pharmacymedicine);
+    adviceNote.setGlucocorticoidsmedicine(glucocorticoidsmedicine);
+    try {
       this.dzblService.saveCaseHistory(adviceNote);
       YZUtility.DEAL_SUCCESS(null, "true", response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/findCaseHistoryById.act"})
-  public JSONObject findCaseHistoryById(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public JSONObject findCaseHistoryById(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String id = request.getParameter("id");
-    try
-    {
-      JSONObject caseHistory = this.dzblService.findCaseHistoryById(id);
-      YZUtility.DEAL_SUCCESS(caseHistory, null, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    try {
+      List<JSONObject> caseHistory = this.dzblService.findCaseHistoryById(id);
+      YZUtility.RETURN_LIST(caseHistory, response, this.logger);
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/updateCaseHistoryById.act"})
-  public String updateCaseHistoryById(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String updateCaseHistoryById(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String id = request.getParameter("id");
     String LcljNum = request.getParameter("LcljNum");
     String userName = request.getParameter("username");
@@ -297,6 +298,13 @@ public class HUDH_ZzblAskAct
     String PatientTime = request.getParameter("PatientTime");
     String doctorSignature = request.getParameter("doctorSignature");
     String doctorTime = request.getParameter("doctorTime");
+    String hypertensionmedicine = request.getParameter("hypertensionmedicine");
+    String heardieasemedicine = request.getParameter("heardieasemedicine");
+    String diabetesoralmedicine = request.getParameter("diabetesoralmedicine");
+    String diabetesinjectionmedicine = request.getParameter("diabetesinjectionmedicine");
+    String antifreezingmedicine = request.getParameter("antifreezingmedicine");
+    String pharmacymedicine = request.getParameter("pharmacymedicine");
+    String glucocorticoidsmedicine = request.getParameter("glucocorticoidsmedicine");
     AdviceNote adviceNote = new AdviceNote();
     adviceNote.setSEQ_ID(id);
     adviceNote.setLcljNum(LcljNum);
@@ -377,39 +385,36 @@ public class HUDH_ZzblAskAct
     adviceNote.setDoctorTime(doctorTime);
     adviceNote.setCreatetime(YZUtility.getCurDateTimeStr());
     adviceNote.setOdontoprisis(odontoprisis);
-    try
-    {
+    adviceNote.setHypertensionmedicine(hypertensionmedicine);
+    adviceNote.setHeardieasemedicine(heardieasemedicine);
+    adviceNote.setDiabetesoralmedicine(diabetesoralmedicine);
+    adviceNote.setDiabetesinjectionmedicine(diabetesinjectionmedicine);
+    adviceNote.setAntifreezingmedicine(antifreezingmedicine);
+    adviceNote.setPharmacymedicine(pharmacymedicine);
+    adviceNote.setGlucocorticoidsmedicine(glucocorticoidsmedicine);
+    try {
       this.dzblService.updateCaseHistoryById(adviceNote);
       YZUtility.DEAL_SUCCESS(null, null, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/deleteCaseHistoryById.act"})
-  public String deleteCaseHistoryById(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String deleteCaseHistoryById(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String id = request.getParameter("id");
-    try
-    {
+    try {
       this.dzblService.deleteCaseHistory(id);
       YZUtility.DEAL_SUCCESS(null, null, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/saveFamiliarBook.act"})
-  public String saveFamiliarBook(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String saveFamiliarBook(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String SEQ_ID = YZUtility.getUUID();
     String LcljId = request.getParameter("LcljId");
     String LcljNum = request.getParameter("LcljNum");
@@ -433,110 +438,81 @@ public class HUDH_ZzblAskAct
     String createtime = df.format(new Date());
     String fixedDenture = request.getParameter("fixedDenture");
     String removableDenture = request.getParameter("removableDenture");
+    String plantingsystemselect = request.getParameter("plantingsystemselect");
     FamiliarBook familiarBook = new FamiliarBook();
     familiarBook.setSEQ_ID(SEQ_ID);
-    if (YZUtility.isNotNullOrEmpty(fixedDenture)) {
-      familiarBook.setFixedDenture(fixedDenture);
-    }
-    if (YZUtility.isNotNullOrEmpty(removableDenture)) {
-      familiarBook.setRemovableDenture(removableDenture);
-    }
-    if ((LcljId != null) && (!LcljId.equals(""))) {
-      familiarBook.setLcljId(LcljId);
-    }
-    if ((LcljNum != null) && (!LcljNum.equals(""))) {
-      familiarBook.setLcljNum(LcljNum);
-    }
-    if ((plantingSystem != null) && (!plantingSystem.equals(""))) {
-      familiarBook.setPlantingSystem(plantingSystem);
-    }
-    if ((modelNumber != null) && (!modelNumber.equals(""))) {
-      familiarBook.setModelNumber(modelNumber);
-    }
-    if ((upleftToothBitOne != null) && (!upleftToothBitOne.equals(""))) {
-      familiarBook.setUpleftToothBitOne(upleftToothBitOne);
-    }
-    if ((uperRightToothBitOne != null) && (!uperRightToothBitOne.equals(""))) {
-      familiarBook.setUperRightToothBitOne(uperRightToothBitOne);
-    }
-    if ((leftLowerToothBitOne != null) && (!leftLowerToothBitOne.equals(""))) {
-      familiarBook.setLeftLowerToothBitOne(leftLowerToothBitOne);
-    }
-    if ((lowRightToothBitOne != null) && (!lowRightToothBitOne.equals(""))) {
-      familiarBook.setLowRightToothBitOne(lowRightToothBitOne);
-    }
-    if ((upleftToothBitTwo != null) && (!upleftToothBitTwo.equals(""))) {
-      familiarBook.setUpleftToothBitTwo(upleftToothBitTwo);
-    }
-    if ((uperRightToothBitTwo != null) && (!uperRightToothBitTwo.equals(""))) {
-      familiarBook.setUperRightToothBitTwo(uperRightToothBitTwo);
-    }
-    if ((leftLowerToothBitTwo != null) && (!leftLowerToothBitTwo.equals(""))) {
-      familiarBook.setLeftLowerToothBitTwo(leftLowerToothBitTwo);
-    }
-    if ((lowRightToothBitTwo != null) && (!lowRightToothBitTwo.equals(""))) {
-      familiarBook.setLowRightToothBitTwo(lowRightToothBitTwo);
-    }
-    if ((assistOperation != null) && (!assistOperation.equals(""))) {
-      familiarBook.setAssistOperation(assistOperation);
-    }
-    if ((remarks != null) && (!remarks.equals(""))) {
-      familiarBook.setRemarks(remarks);
-    }
-    if ((PatientSignature != null) && (!PatientSignature.equals(""))) {
-      familiarBook.setPatientSignature(PatientSignature);
-    }
-    if (PatientTime != "") {
-      familiarBook.setPatientTime(PatientTime);
-    }
-    if ((doctorSignature != null) && (!doctorSignature.equals(""))) {
-      familiarBook.setDoctorSignature(doctorSignature);
-    }
-    if (doctorTime != "") {
-      familiarBook.setDoctorTime(doctorTime);
-    }
+    if (YZUtility.isNotNullOrEmpty(fixedDenture))
+      familiarBook.setFixedDenture(fixedDenture); 
+    if (YZUtility.isNotNullOrEmpty(removableDenture))
+      familiarBook.setRemovableDenture(removableDenture); 
+    if (LcljId != null && !LcljId.equals(""))
+      familiarBook.setLcljId(LcljId); 
+    if (LcljNum != null && !LcljNum.equals(""))
+      familiarBook.setLcljNum(LcljNum); 
+    if (plantingSystem != null && !plantingSystem.equals(""))
+      familiarBook.setPlantingSystem(plantingSystem); 
+    if (modelNumber != null && !modelNumber.equals(""))
+      familiarBook.setModelNumber(modelNumber); 
+    if (upleftToothBitOne != null && !upleftToothBitOne.equals(""))
+      familiarBook.setUpleftToothBitOne(upleftToothBitOne); 
+    if (uperRightToothBitOne != null && !uperRightToothBitOne.equals(""))
+      familiarBook.setUperRightToothBitOne(uperRightToothBitOne); 
+    if (leftLowerToothBitOne != null && !leftLowerToothBitOne.equals(""))
+      familiarBook.setLeftLowerToothBitOne(leftLowerToothBitOne); 
+    if (lowRightToothBitOne != null && !lowRightToothBitOne.equals(""))
+      familiarBook.setLowRightToothBitOne(lowRightToothBitOne); 
+    if (upleftToothBitTwo != null && !upleftToothBitTwo.equals(""))
+      familiarBook.setUpleftToothBitTwo(upleftToothBitTwo); 
+    if (uperRightToothBitTwo != null && !uperRightToothBitTwo.equals(""))
+      familiarBook.setUperRightToothBitTwo(uperRightToothBitTwo); 
+    if (leftLowerToothBitTwo != null && !leftLowerToothBitTwo.equals(""))
+      familiarBook.setLeftLowerToothBitTwo(leftLowerToothBitTwo); 
+    if (lowRightToothBitTwo != null && !lowRightToothBitTwo.equals(""))
+      familiarBook.setLowRightToothBitTwo(lowRightToothBitTwo); 
+    if (assistOperation != null && !assistOperation.equals(""))
+      familiarBook.setAssistOperation(assistOperation); 
+    if (remarks != null && !remarks.equals(""))
+      familiarBook.setRemarks(remarks); 
+    if (PatientSignature != null && !PatientSignature.equals(""))
+      familiarBook.setPatientSignature(PatientSignature); 
+    if (PatientTime != "")
+      familiarBook.setPatientTime(PatientTime); 
+    if (doctorSignature != null && !doctorSignature.equals(""))
+      familiarBook.setDoctorSignature(doctorSignature); 
+    if (doctorTime != "")
+      familiarBook.setDoctorTime(doctorTime); 
     familiarBook.setCreatetime(createtime);
-    try
-    {
+    if (plantingsystemselect != null && !plantingsystemselect.equals(""))
+      familiarBook.setPlantingsystemselect(plantingsystemselect); 
+    try {
       JSONObject json = this.dzblService.findFamiliarBook(LcljId);
       if (json == null) {
         this.dzblService.saveFamiliarBook(familiarBook);
       } else {
         throw new Exception("已保存种植同意书…………");
-      }
+      } 
       YZUtility.DEAL_SUCCESS(null, null, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/findFamiliarBookById.act"})
-  public JSONObject findFamiliarBookById(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public JSONObject findFamiliarBookById(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String id = request.getParameter("id");
-    try
-    {
+    try {
       JSONObject json = this.dzblService.findFamiliarBook(id);
       YZUtility.DEAL_SUCCESS(json, null, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/updateFamiliarBookById.act"})
-  public String updateFamiliarBookById(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String updateFamiliarBookById(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String id = request.getParameter("seqId");
-    
-
     String plantingSystem = request.getParameter("plantingSystem");
     String modelNumber = request.getParameter("modelNumber");
     String upleftToothBitOne = request.getParameter("upleftToothBitOne");
@@ -556,20 +532,17 @@ public class HUDH_ZzblAskAct
     String createtime = request.getParameter("createtime");
     String fixedDenture = request.getParameter("fixedDenture");
     String removableDenture = request.getParameter("removableDenture");
+    String plantingsystemselect = request.getParameter("plantingsystemselect");
     FamiliarBook familiarBook = new FamiliarBook();
     familiarBook.setSEQ_ID(id);
-    if (YZUtility.isNotNullOrEmpty(removableDenture)) {
-      familiarBook.setRemovableDenture(removableDenture);
-    }
-    if (YZUtility.isNotNullOrEmpty(fixedDenture)) {
-      familiarBook.setFixedDenture(fixedDenture);
-    }
-    if ((!plantingSystem.equals(null)) && (!plantingSystem.equals(""))) {
-      familiarBook.setPlantingSystem(plantingSystem);
-    }
-    if ((!modelNumber.equals(null)) && (!modelNumber.equals(""))) {
-      familiarBook.setModelNumber(modelNumber);
-    }
+    if (YZUtility.isNotNullOrEmpty(removableDenture))
+      familiarBook.setRemovableDenture(removableDenture); 
+    if (YZUtility.isNotNullOrEmpty(fixedDenture))
+      familiarBook.setFixedDenture(fixedDenture); 
+    if (!plantingSystem.equals(null) && !plantingSystem.equals(""))
+      familiarBook.setPlantingSystem(plantingSystem); 
+    if (!modelNumber.equals(null) && !modelNumber.equals(""))
+      familiarBook.setModelNumber(modelNumber); 
     familiarBook.setUpleftToothBitOne(upleftToothBitOne);
     familiarBook.setUperRightToothBitOne(uperRightToothBitOne);
     familiarBook.setLeftLowerToothBitOne(leftLowerToothBitOne);
@@ -578,60 +551,45 @@ public class HUDH_ZzblAskAct
     familiarBook.setUperRightToothBitTwo(uperRightToothBitTwo);
     familiarBook.setLeftLowerToothBitTwo(leftLowerToothBitTwo);
     familiarBook.setLowRightToothBitTwo(lowRightToothBitTwo);
-    if ((!assistOperation.equals(null)) && (!assistOperation.equals(""))) {
-      familiarBook.setAssistOperation(assistOperation);
-    }
-    if ((!remarks.equals(null)) && (!remarks.equals(""))) {
-      familiarBook.setRemarks(remarks);
-    }
-    if ((!PatientSignature.equals(null)) && (!plantingSystem.equals(""))) {
-      familiarBook.setPatientSignature(PatientSignature);
-    }
-    if ((!patientTime.equals(null)) && (!patientTime.equals(""))) {
-      familiarBook.setPatientTime(patientTime);
-    }
-    if ((!doctorSignature.equals(null)) && (!doctorSignature.equals(""))) {
-      familiarBook.setDoctorSignature(doctorSignature);
-    }
-    if ((!doctorTime.equals(null)) && (!doctorTime.equals(""))) {
-      familiarBook.setDoctorTime(doctorTime);
-    }
-    if ((!createtime.equals(null)) && (!createtime.equals(""))) {
-      familiarBook.setCreatetime(createtime);
-    }
-    try
-    {
+    if (!assistOperation.equals(null) && !assistOperation.equals(""))
+      familiarBook.setAssistOperation(assistOperation); 
+    if (!remarks.equals(null) && !remarks.equals(""))
+      familiarBook.setRemarks(remarks); 
+    if (!PatientSignature.equals(null) && !plantingSystem.equals(""))
+      familiarBook.setPatientSignature(PatientSignature); 
+    if (!patientTime.equals(null) && !patientTime.equals(""))
+      familiarBook.setPatientTime(patientTime); 
+    if (!doctorSignature.equals(null) && !doctorSignature.equals(""))
+      familiarBook.setDoctorSignature(doctorSignature); 
+    if (!doctorTime.equals(null) && !doctorTime.equals(""))
+      familiarBook.setDoctorTime(doctorTime); 
+    if (!createtime.equals(null) && !createtime.equals(""))
+      familiarBook.setCreatetime(createtime); 
+    if (!plantingsystemselect.equals(null) && !plantingsystemselect.equals(""))
+      familiarBook.setPlantingsystemselect(plantingsystemselect); 
+    try {
       this.dzblService.updateFamiliarBook(familiarBook);
       YZUtility.DEAL_SUCCESS(null, null, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/deleteFamiliarBookById.act"})
-  public String deleteFamiliarBookById(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String deleteFamiliarBookById(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String id = request.getParameter("id");
-    try
-    {
+    try {
       this.dzblService.deleteFamiliarBook(id);
       YZUtility.DEAL_SUCCESS(null, null, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/saveLocatorFamiliar.act"})
-  public String saveLocatorFamiliar(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String saveLocatorFamiliar(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String uuid = YZUtility.getUUID();
     String lcljId = request.getParameter("LcljId");
     String lcljNum = request.getParameter("LcljNum");
@@ -651,7 +609,6 @@ public class HUDH_ZzblAskAct
     String patientSignature = request.getParameter("patientSignature");
     String patientTime = request.getParameter("patientTime");
     String creatTime = request.getParameter("createtime");
-    
     LocatorFamiliar locatorFamiliar = new LocatorFamiliar();
     locatorFamiliar.setSeqId(uuid);
     locatorFamiliar.setLcljId(lcljId);
@@ -672,54 +629,42 @@ public class HUDH_ZzblAskAct
     locatorFamiliar.setPatientSignature(patientSignature);
     locatorFamiliar.setPatientTime(patientTime);
     locatorFamiliar.setCreattime(creatTime);
-    Map<String, Object> map = new HashMap();
+    Map<String, Object> map = new HashMap<>();
     map.put("LcljId", lcljId);
     map.put("classify", classify);
-    try
-    {
+    try {
       JSONObject findLocatorFamiliar = this.dzblService.findLocatorFamiliar(map);
-      if (findLocatorFamiliar != null)
-      {
-        if ((findLocatorFamiliar != null) && (findLocatorFamiliar.get("classify").equals("0"))) {
-          throw new Exception("Locator种植知情书已存在…………………………");
-        }
+      if (findLocatorFamiliar != null) {
+        if (findLocatorFamiliar != null && findLocatorFamiliar.get("classify").equals("0"))
+          throw new Exception("Locator种植知情书已存在…………………………"); 
         throw new Exception("拔牙知情书已存在…………………………");
-      }
+      } 
       int object = this.dzblService.saveLocatorFamiliar(locatorFamiliar).intValue();
       YZUtility.DEAL_SUCCESS(null, "save ok!", response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/findLocatorFamiliar.act"})
-  public String findLocatorFamiliar(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String findLocatorFamiliar(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String lcljId = request.getParameter("id");
     String classify = request.getParameter("classify");
-    Map<String, Object> map = new HashMap();
+    Map<String, Object> map = new HashMap<>();
     map.put("lcljId", lcljId);
     map.put("classify", classify);
-    try
-    {
+    try {
       JSONObject findLocatorFamiliar = this.dzblService.findLocatorFamiliar(map);
       YZUtility.DEAL_SUCCESS(findLocatorFamiliar, "select ok!", response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/updateLocatorFamiliar.act"})
-  public String updateLocatorFamiliar(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String updateLocatorFamiliar(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String id = request.getParameter("id");
     String lcljId = request.getParameter("LcljId");
     String lcljNum = request.getParameter("LcljNum");
@@ -739,72 +684,50 @@ public class HUDH_ZzblAskAct
     String patientSignature = request.getParameter("patientSignature");
     String patientTime = request.getParameter("patientTime");
     String creatTime = request.getParameter("createtime");
-    
     LocatorFamiliar locatorFamiliar = new LocatorFamiliar();
     locatorFamiliar.setSeqId(id);
-    if ((lcljId != null) && (!lcljId.equals(""))) {
-      locatorFamiliar.setLcljId(lcljId);
-    }
-    if ((lcljNum != null) && (!lcljNum.equals(""))) {
-      locatorFamiliar.setLcljNum(lcljNum);
-    }
-    if ((name != null) && (!name.equals(""))) {
-      locatorFamiliar.setName(name);
-    }
-    if ((age != null) && (!age.equals(""))) {
-      locatorFamiliar.setAge(age);
-    }
-    if ((sex != null) && (!sex.equals(""))) {
-      locatorFamiliar.setSex(sex);
-    }
-    if ((address != null) && (!address.equals(""))) {
-      locatorFamiliar.setAddress(address);
-    }
-    if ((phone != null) && (!phone.equals(""))) {
-      locatorFamiliar.setPhone(phone);
-    }
-    if ((allergy != null) && (!allergy.equals(""))) {
-      locatorFamiliar.setAllergy(allergy);
-    }
-    if ((diagnose != null) && (!diagnose.equals(""))) {
-      locatorFamiliar.setDiagnose(diagnose);
-    }
-    if ((treatmentParts != null) && (!treatmentParts.equals(""))) {
-      locatorFamiliar.setTreatmentParts(treatmentParts);
-    }
-    if ((treatmentTime != null) && (!treatmentTime.equals(""))) {
-      locatorFamiliar.setTreatmentTime(treatmentTime);
-    }
-    if ((profession != null) && (!profession.equals(""))) {
-      locatorFamiliar.setProfession(profession);
-    }
-    if ((classify != null) && (!classify.equals(""))) {
-      locatorFamiliar.setClassify(classify);
-    }
-    if ((doctorSignature != null) && (!doctorSignature.equals(""))) {
-      locatorFamiliar.setDoctorSignature(doctorSignature);
-    }
-    if ((doctorTime != null) && (!doctorTime.equals(""))) {
-      locatorFamiliar.setDoctorTime(doctorTime);
-    }
-    if ((patientSignature != null) && (!patientSignature.equals(""))) {
-      locatorFamiliar.setPatientSignature(patientSignature);
-    }
-    if ((patientTime != null) && (!patientTime.equals(""))) {
-      locatorFamiliar.setPatientTime(patientTime);
-    }
-    if ((creatTime != null) && (!creatTime.equals(""))) {
-      locatorFamiliar.setCreattime(creatTime);
-    }
-    try
-    {
+    if (lcljId != null && !lcljId.equals(""))
+      locatorFamiliar.setLcljId(lcljId); 
+    if (lcljNum != null && !lcljNum.equals(""))
+      locatorFamiliar.setLcljNum(lcljNum); 
+    if (name != null && !name.equals(""))
+      locatorFamiliar.setName(name); 
+    if (age != null && !age.equals(""))
+      locatorFamiliar.setAge(age); 
+    if (sex != null && !sex.equals(""))
+      locatorFamiliar.setSex(sex); 
+    if (address != null && !address.equals(""))
+      locatorFamiliar.setAddress(address); 
+    if (phone != null && !phone.equals(""))
+      locatorFamiliar.setPhone(phone); 
+    if (allergy != null && !allergy.equals(""))
+      locatorFamiliar.setAllergy(allergy); 
+    if (diagnose != null && !diagnose.equals(""))
+      locatorFamiliar.setDiagnose(diagnose); 
+    if (treatmentParts != null && !treatmentParts.equals(""))
+      locatorFamiliar.setTreatmentParts(treatmentParts); 
+    if (treatmentTime != null && !treatmentTime.equals(""))
+      locatorFamiliar.setTreatmentTime(treatmentTime); 
+    if (profession != null && !profession.equals(""))
+      locatorFamiliar.setProfession(profession); 
+    if (classify != null && !classify.equals(""))
+      locatorFamiliar.setClassify(classify); 
+    if (doctorSignature != null && !doctorSignature.equals(""))
+      locatorFamiliar.setDoctorSignature(doctorSignature); 
+    if (doctorTime != null && !doctorTime.equals(""))
+      locatorFamiliar.setDoctorTime(doctorTime); 
+    if (patientSignature != null && !patientSignature.equals(""))
+      locatorFamiliar.setPatientSignature(patientSignature); 
+    if (patientTime != null && !patientTime.equals(""))
+      locatorFamiliar.setPatientTime(patientTime); 
+    if (creatTime != null && !creatTime.equals(""))
+      locatorFamiliar.setCreattime(creatTime); 
+    try {
       this.dzblService.updateLocatorFamiliar(locatorFamiliar);
       YZUtility.DEAL_SUCCESS_VALID(true, response);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
 }

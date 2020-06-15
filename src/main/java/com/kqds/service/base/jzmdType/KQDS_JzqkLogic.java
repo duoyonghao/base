@@ -17,20 +17,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_JzqkLogic
-  extends BaseLogic
-{
+public class KQDS_JzqkLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public void saveJzqk(String doctor, String regno, YZPerson person, HttpServletRequest request)
-    throws Exception
-  {
-    Map<String, String> map = new HashMap();
+  public void saveJzqk(String doctor, String regno, YZPerson person, HttpServletRequest request) throws Exception {
+    Map<String, String> map = new HashMap<>();
     map.put("regno", regno);
     map.put("doctor", doctor);
-    this.dao.delete(TableNameUtil.KQDS_JZQK + ".deletejzqk", map);
-    
+    this.dao.delete(String.valueOf(TableNameUtil.KQDS_JZQK) + ".deletejzqk", map);
     KqdsJzqk jzqk = new KqdsJzqk();
     jzqk.setSeqId(YZUtility.getUUID());
     jzqk.setRegno(regno);
@@ -38,53 +33,40 @@ public class KQDS_JzqkLogic
     jzqk.setCreatetime(YZUtility.getCurDateTimeStr());
     jzqk.setCreateuser(person.getSeqId());
     jzqk.setOrganization(ChainUtil.getCurrentOrganization(request));
-    
     this.dao.saveSingleUUID(TableNameUtil.KQDS_JZQK, jzqk);
   }
   
-  public int countJzqkByRegNo(String regseqId)
-    throws Exception
-  {
-    int num = ((Integer)this.dao.findForObject(TableNameUtil.KQDS_JZQK + ".countJzqkByRegNo", regseqId)).intValue();
+  public int countJzqkByRegNo(String regseqId) throws Exception {
+    int num = ((Integer)this.dao.findForObject(String.valueOf(TableNameUtil.KQDS_JZQK) + ".countJzqkByRegNo", regseqId)).intValue();
     return num;
   }
   
-  public int deleteByRegNo(String regseqId, HttpServletRequest request)
-    throws Exception
-  {
-    return ((Integer)this.dao.delete(TableNameUtil.KQDS_JZQK + ".deletejzqkregno", regseqId)).intValue();
+  public int deleteByRegNo(String regseqId, HttpServletRequest request) throws Exception {
+    return ((Integer)this.dao.delete(String.valueOf(TableNameUtil.KQDS_JZQK) + ".deletejzqkregno", regseqId)).intValue();
   }
   
-  public List<JSONObject> jzFz(String usercode, String doctor)
-    throws Exception
-  {
-    Map<String, String> map = new HashMap();
+  public List<JSONObject> jzFz(String usercode, String doctor) throws Exception {
+    Map<String, String> map = new HashMap<>();
     map.put("usercode", usercode);
     map.put("doctor", doctor);
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_JZQK + ".jzFz", map);
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_JZQK) + ".jzFz", map);
     return list;
   }
   
-  public List<JSONObject> selectJzqk(String table, YZPerson person, Map<String, String> map, String visualstaff, String organization)
-    throws Exception
-  {
-    if (map.containsKey("usercodeorname"))
-    {
-      map.put("p1", YZAuthenticator.phonenumberLike("u.PhoneNumber1", (String)map.get("usercodeorname")));
-      map.put("p2", YZAuthenticator.phonenumberLike("u.PhoneNumber2", (String)map.get("usercodeorname")));
-    }
-    if (YZUtility.isNotNullOrEmpty(organization)) {
-      map.put("organization", organization);
-    }
+  public List<JSONObject> selectJzqk(String table, YZPerson person, Map<String, String> map, String visualstaff, String organization) throws Exception {
+    if (map.containsKey("usercodeorname")) {
+      map.put("p1", YZAuthenticator.phonenumberLike("u.PhoneNumber1", map.get("usercodeorname")));
+      map.put("p2", YZAuthenticator.phonenumberLike("u.PhoneNumber2", map.get("usercodeorname")));
+    } 
+    if (YZUtility.isNotNullOrEmpty(organization))
+      map.put("organization", organization); 
     map.put("visualstaff", visualstaff);
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_JZQK + ".selectJzqk", map);
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_JZQK) + ".selectJzqk", map);
     return list;
   }
   
-  public List<JSONObject> selectJzqkByUsercodes(String usercodes)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_JZQK + ".selectJzqkByUsercodes", usercodes);
+  public List<JSONObject> selectJzqkByUsercodes(String usercodes) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_JZQK) + ".selectJzqkByUsercodes", usercodes);
     return list;
   }
 }

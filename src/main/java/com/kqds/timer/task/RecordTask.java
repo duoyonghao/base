@@ -12,28 +12,19 @@ import org.springframework.stereotype.Controller;
 
 @Component
 @Controller
-public class RecordTask
-  implements Job
-{
+public class RecordTask implements Job {
   @Autowired
   private KQDS_SoundRecordLogic logic;
   
-  public void execute(JobExecutionContext arg0)
-    throws JobExecutionException
-  {
-    try
-    {
+  public void execute(JobExecutionContext arg0) throws JobExecutionException {
+    try {
       doTask();
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       e.printStackTrace();
-    }
+    } 
   }
   
-  public void doTask()
-    throws Exception
-  {
+  public void doTask() throws Exception {
     String record_file_dir = YZSysProps.getProp(SysParaUtil.RECORD_FILE_DIR);
     this.logic.updateRecordDataByDate(record_file_dir, null);
   }

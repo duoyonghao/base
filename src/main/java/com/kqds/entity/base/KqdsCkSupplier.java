@@ -1,82 +1,73 @@
 package com.kqds.entity.base;
 
-public class KqdsCkSupplier
-{
+public class KqdsCkSupplier {
   private String seqId;
+  
   private String suppliercode;
+  
   private String suppliername;
+  
   private Integer sortno;
+  
   private String createuser;
+  
   private String createtime;
+  
   private String organization;
   
-  public String getSeqId()
-  {
+  public String getSeqId() {
     return this.seqId;
   }
   
-  public void setSeqId(String seqId)
-  {
-    this.seqId = (seqId == null ? null : seqId.trim());
+  public void setSeqId(String seqId) {
+    this.seqId = (seqId == null) ? null : seqId.trim();
   }
   
-  public String getSuppliercode()
-  {
+  public String getSuppliercode() {
     return this.suppliercode;
   }
   
-  public void setSuppliercode(String suppliercode)
-  {
-    this.suppliercode = (suppliercode == null ? null : suppliercode.trim());
+  public void setSuppliercode(String suppliercode) {
+    this.suppliercode = (suppliercode == null) ? null : suppliercode.trim();
   }
   
-  public String getSuppliername()
-  {
+  public String getSuppliername() {
     return this.suppliername;
   }
   
-  public void setSuppliername(String suppliername)
-  {
-    this.suppliername = (suppliername == null ? null : suppliername.trim());
+  public void setSuppliername(String suppliername) {
+    this.suppliername = (suppliername == null) ? null : suppliername.trim();
   }
   
-  public Integer getSortno()
-  {
+  public Integer getSortno() {
     return this.sortno;
   }
   
-  public void setSortno(Integer sortno)
-  {
+  public void setSortno(Integer sortno) {
     this.sortno = sortno;
   }
   
-  public String getCreateuser()
-  {
+  public String getCreateuser() {
     return this.createuser;
   }
   
-  public void setCreateuser(String createuser)
-  {
-    this.createuser = (createuser == null ? null : createuser.trim());
+  public void setCreateuser(String createuser) {
+    this.createuser = (createuser == null) ? null : createuser.trim();
   }
   
-  public String getCreatetime()
-  {
+  public String getCreatetime() {
     return this.createtime;
   }
   
-  public void setCreatetime(String createtime)
-  {
-    this.createtime = (createtime == null ? null : createtime.trim());
+  public void setCreatetime(String createtime) {
+    this.createtime = (createtime == null) ? null : createtime.trim();
   }
   
-  public String getOrganization()
-  {
+  public String getOrganization() {
     return this.organization;
   }
   
-  public void setOrganization(String organization)
-  {
-    this.organization = (organization == null ? null : organization.trim());
+  public void setOrganization(String organization) {
+    this.organization = (organization == null) ? null : organization.trim();
   }
 }

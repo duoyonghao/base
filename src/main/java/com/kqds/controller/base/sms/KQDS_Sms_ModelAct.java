@@ -27,36 +27,31 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_Sms_ModelAct"})
-public class KQDS_Sms_ModelAct
-{
+public class KQDS_Sms_ModelAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_SmsAct.class);
+  
   @Autowired
   private KQDS_Sms_ModelLogic logic;
+  
   @Autowired
   private YZDictLogic dictLogic;
   
   @RequestMapping({"/toSmsModelTree.act"})
-  public ModelAndView toSmsModelTree(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toSmsModelTree(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/kqdsFront/sms/model/list_model_tree.jsp");
     return mv;
   }
   
   @RequestMapping({"/toSmsModel.act"})
-  public ModelAndView toWdyySearch(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toWdyySearch(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/kqdsFront/sms/model/sms_model.jsp");
     return mv;
   }
   
   @RequestMapping({"/toAddModel.act"})
-  public ModelAndView toAddModel(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toAddModel(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
     mv.addObject("organization", organization);
@@ -65,9 +60,7 @@ public class KQDS_Sms_ModelAct
   }
   
   @RequestMapping({"/toEditModel.act"})
-  public ModelAndView toEditModel(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toEditModel(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     ModelAndView mv = new ModelAndView();
     mv.addObject("seqId", seqId);
@@ -76,9 +69,7 @@ public class KQDS_Sms_ModelAct
   }
   
   @RequestMapping({"/toDetailModel.act"})
-  public ModelAndView toDetailModel(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toDetailModel(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     ModelAndView mv = new ModelAndView();
     mv.addObject("seqId", seqId);
@@ -87,198 +78,143 @@ public class KQDS_Sms_ModelAct
   }
   
   @RequestMapping({"/insertOrUpdate.act"})
-  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
       KqdsSmsModel dp = new KqdsSmsModel();
       BeanUtils.populate(dp, request.getParameterMap());
       String seqId = request.getParameter("seqId");
-      if (!YZUtility.isNullorEmpty(seqId))
-      {
+      if (!YZUtility.isNullorEmpty(seqId)) {
         this.logic.updateSingleUUID(TableNameUtil.KQDS_SMS_MODEL, dp);
-        
         BcjlUtil.LogBcjl(BcjlUtil.MODIFY, BcjlUtil.KQDS_SMS_MODEL, dp, TableNameUtil.KQDS_SMS_MODEL, request);
-      }
-      else
-      {
+      } else {
         String uuid = YZUtility.getUUID();
         dp.setSeqId(uuid);
         dp.setCreatetime(YZUtility.getCurDateTimeStr());
         dp.setCreateuser(person.getSeqId());
         dp.setOrganization(ChainUtil.getCurrentOrganization(request));
         this.logic.saveSingleUUID(TableNameUtil.KQDS_SMS_MODEL, dp);
-        
         BcjlUtil.LogBcjl(BcjlUtil.NEW, BcjlUtil.KQDS_SMS_MODEL, dp, TableNameUtil.KQDS_SMS_MODEL, request);
-      }
+      } 
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/deleteObj.act"})
-  public String deleteObj(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String deleteObj(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
-      if (YZUtility.isNullorEmpty(seqId)) {
-        throw new Exception("主键为空或者null");
-      }
+      if (YZUtility.isNullorEmpty(seqId))
+        throw new Exception("主键为空或者null"); 
       KqdsSmsModel en = (KqdsSmsModel)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_SMS_MODEL, seqId);
       this.logic.deleteSingleUUID(TableNameUtil.KQDS_SMS_MODEL, seqId);
-      
       BcjlUtil.LogBcjl(BcjlUtil.DELETE, BcjlUtil.KQDS_SMS_MODEL, en, TableNameUtil.KQDS_SMS_MODEL, request);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectDetail.act"})
-  public String selectDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
       KqdsSmsModel en = (KqdsSmsModel)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_SMS_MODEL, seqId);
-      if (en == null) {
-        throw new Exception("数据不存在");
-      }
+      if (en == null)
+        throw new Exception("数据不存在"); 
       JSONObject jobj = new JSONObject();
       jobj.put("data", en);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/NoselectPage.act"})
-  public String NoselectPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String NoselectPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String organization = request.getParameter("organization");
       String smstype = request.getParameter("smstype");
       String smsnexttype = request.getParameter("smsnexttype");
-      
-      Map<String, String> map = new HashMap();
-      if (!YZUtility.isNullorEmpty(organization)) {
-        map.put("organization", organization);
-      }
-      if (!YZUtility.isNullorEmpty(smstype)) {
-        map.put("smstype", smstype);
-      }
-      if (!YZUtility.isNullorEmpty(smsnexttype)) {
-        map.put("smsnexttype", smsnexttype);
-      }
+      Map<String, String> map = new HashMap<>();
+      if (!YZUtility.isNullorEmpty(organization))
+        map.put("organization", organization); 
+      if (!YZUtility.isNullorEmpty(smstype))
+        map.put("smstype", smstype); 
+      if (!YZUtility.isNullorEmpty(smsnexttype))
+        map.put("smsnexttype", smsnexttype); 
       List<JSONObject> list = this.logic.noSelectWithPage(TableNameUtil.KQDS_SMS_MODEL, map);
-      
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectPage.act"})
-  public String selectPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       BootStrapPage bp = new BootStrapPage();
-      
       BeanUtils.populate(bp, request.getParameterMap());
       String organization = request.getParameter("organization");
       String smstype = request.getParameter("smstype");
       String smsnexttype = request.getParameter("smsnexttype");
-      
-      Map<String, String> map = new HashMap();
-      if (!YZUtility.isNullorEmpty(organization)) {
-        map.put("organization", organization);
-      }
-      if (!YZUtility.isNullorEmpty(smstype)) {
-        map.put("smstype", smstype);
-      }
-      if (!YZUtility.isNullorEmpty(smsnexttype)) {
-        map.put("smsnexttype", smsnexttype);
-      }
+      Map<String, String> map = new HashMap<>();
+      if (!YZUtility.isNullorEmpty(organization))
+        map.put("organization", organization); 
+      if (!YZUtility.isNullorEmpty(smstype))
+        map.put("smstype", smstype); 
+      if (!YZUtility.isNullorEmpty(smsnexttype))
+        map.put("smsnexttype", smsnexttype); 
       JSONObject data = this.logic.selectWithPage(TableNameUtil.KQDS_SMS_MODEL, bp, map);
       YZUtility.DEAL_SUCCESS(data, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/getSelectModelTree.act"})
-  public void getSelectModelTree(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public void getSelectModelTree(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = ChainUtil.getCurrentOrganization(request);
-    try
-    {
+    try {
       StringBuffer sb = new StringBuffer();
       List<YZDict> list = this.dictLogic.getListByParentCode("DXFL", organization);
-      if ((list != null) && (list.size() > 0))
-      {
+      if (list != null && list.size() > 0) {
         sb.append("[");
-        for (int i = 0; i < list.size(); i++)
-        {
-          YZDict base = (YZDict)list.get(i);
+        for (int i = 0; i < list.size(); i++) {
+          YZDict base = list.get(i);
           sb.append("{ id:\"" + base.getSeqId() + "\", pId:\"0\", name:\"" + base.getDictName() + "\", nocheck:true},");
           List<YZDict> listnext = this.dictLogic.getListByParentCode(base.getDictCode(), organization);
-          if ((listnext != null) && (listnext.size() > 0)) {
-            for (int k = 0; k < listnext.size(); k++)
-            {
-              YZDict nexttype = (YZDict)listnext.get(k);
+          if (listnext != null && listnext.size() > 0)
+            for (int k = 0; k < listnext.size(); k++) {
+              YZDict nexttype = listnext.get(k);
               sb.append("{ id:\"" + nexttype.getSeqId() + "\", pId:\"" + base.getSeqId() + "\", name:\"" + nexttype.getDictName() + "\"},");
-              Map<String, String> map2 = new HashMap();
+              Map<String, String> map2 = new HashMap<>();
               map2.put("smstype", base.getSeqId());
               map2.put("smsnexttype", nexttype.getSeqId());
-              List<KqdsSmsModel> smslist = (List)this.logic.loadList(TableNameUtil.KQDS_SMS_MODEL, map2);
-              if ((smslist != null) && (smslist.size() > 0)) {
-                for (int ik = 0; ik < smslist.size(); ik++)
-                {
-                  KqdsSmsModel sms = (KqdsSmsModel)smslist.get(ik);
+              List<KqdsSmsModel> smslist = (List<KqdsSmsModel>)this.logic.loadList(TableNameUtil.KQDS_SMS_MODEL, map2);
+              if (smslist != null && smslist.size() > 0)
+                for (int ik = 0; ik < smslist.size(); ik++) {
+                  KqdsSmsModel sms = smslist.get(ik);
                   sb.append("{ id:\"" + sms.getSeqId() + "\", pId:\"" + nexttype.getSeqId() + "\", name:\"" + sms.getSmsname() + "\"},");
-                }
-              }
-            }
-          }
-        }
-        if (sb.length() > 1) {
-          sb.deleteCharAt(sb.length() - 1);
-        }
+                }  
+            }  
+        } 
+        if (sb.length() > 1)
+          sb.deleteCharAt(sb.length() - 1); 
         sb.append("]");
-      }
+      } 
       JSONObject jobj = new JSONObject();
       jobj.put("tree", sb.toString());
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
   }
 }

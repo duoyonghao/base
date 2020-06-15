@@ -11,37 +11,28 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class HUDH_Ck_Goods_In_CheckLogic
-  extends BaseLogic
-{
+public class HUDH_Ck_Goods_In_CheckLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
+  
   @Autowired
   private KQDS_Ck_Goods_InLogic logic;
   
-  @Transactional(rollbackFor={Exception.class})
-  public void saveGoodsInCheck(KqdsCkGoodsInCheck dp, String incode)
-    throws Exception
-  {
-    if ((dp.getPacking().equals("1")) && (dp.getReport().equals("1")) && (dp.getCertificate().equals("1")))
-    {
+  @Transactional(rollbackFor = {Exception.class})
+  public void saveGoodsInCheck(KqdsCkGoodsInCheck dp, String incode) throws Exception {
+    if (dp.getPacking().equals("1") && dp.getReport().equals("1") && dp.getCertificate().equals("1")) {
       dp.setResult("1");
-      
       this.logic.updateCheckStatus(dp.getGoodsinid());
       this.logic.updateAuditStatus(incode);
       this.logic.goodsAddInStock(dp.getGoodsinid(), dp.getOrganization());
-    }
-    else
-    {
+    } else {
       dp.setResult("0");
-    }
-    this.dao.save(TableNameUtil.KQDS_CK_GOODS_IN_CHECK + ".saveGoodsInCheck", dp);
+    } 
+    this.dao.save(String.valueOf(TableNameUtil.KQDS_CK_GOODS_IN_CHECK) + ".saveGoodsInCheck", dp);
   }
   
-  public List<JSONObject> findGoodsInExamineByInId(String goodsInId)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_CK_GOODS_IN_CHECK + ".findGoodsInExamineByInId", goodsInId);
+  public List<JSONObject> findGoodsInExamineByInId(String goodsInId) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_CK_GOODS_IN_CHECK) + ".findGoodsInExamineByInId", goodsInId);
     return list;
   }
 }

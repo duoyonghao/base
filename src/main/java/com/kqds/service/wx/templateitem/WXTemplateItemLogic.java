@@ -19,88 +19,63 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class WXTemplateItemLogic
-  extends BaseLogic
-{
+public class WXTemplateItemLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public JSONObject getTemplateItem4Send(WXTemplateitem tempItem, HttpServletRequest request)
-    throws SQLException, Exception
-  {
+  public JSONObject getTemplateItem4Send(WXTemplateitem tempItem, HttpServletRequest request) throws SQLException, Exception {
     String template_id = tempItem.getTemplateId();
     String url = request.getParameter("url");
-    
-
     WXTemplatemsg tempmsg = (WXTemplatemsg)this.dao.loadObjSingleUUID(TableNameUtil.WX_TEMPLATEMSG, tempItem.getTemplateSeqid());
     String content = tempmsg.getContent();
-    
-
-    List<String> keyList = new ArrayList();
+    List<String> keyList = new ArrayList<>();
     String regEx = "\\{\\{.*?\\.DATA\\}\\}";
-    
     Pattern pattern = Pattern.compile(regEx);
-    
     Matcher matcher = pattern.matcher(content);
-    while (matcher.find())
-    {
+    while (matcher.find()) {
       String matchStr = matcher.group();
       matchStr = matchStr.replace(".DATA}}", "");
       matchStr = matchStr.replace("{{", "");
       keyList.add(matchStr);
-    }
+    } 
     JSONObject postParam = new JSONObject();
     postParam.put("template_id", template_id);
     postParam.put("url", url);
-    
     JSONObject data = new JSONObject();
     JSONObject jsonItem = JSONObject.fromObject(tempItem);
-    for (String key : keyList)
-    {
+    for (String key : keyList) {
       JSONObject keyJson = new JSONObject();
       keyJson.put("value", jsonItem.get(key));
       keyJson.put("color", "#173177");
       data.put(key, keyJson);
-      
-
-
       String str4replace = "{{" + key + ".DATA}}";
       content = content.replace(str4replace, jsonItem.get(key).toString());
-    }
+    } 
     postParam.put("data", data);
     postParam.put("local_content", content);
     postParam.put("local_title", tempmsg.getTitle());
-    
     return postParam;
   }
   
-  public JSONObject selectPage(BootStrapPage bp, Map<String, String> map)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.WX_TEMPLATEITEM + ".selectPage", map);
+  public JSONObject selectPage(BootStrapPage bp, Map<String, String> map) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.WX_TEMPLATEITEM) + ".selectPage", map);
     PageInfo<JSONObject> pageInfo = new PageInfo(list);
     JSONObject jobj = new JSONObject();
     jobj.put("total", Long.valueOf(pageInfo.getTotal()));
-    if (map.containsKey("flag")) {
-      for (JSONObject fans : list)
-      {
+    if (map.containsKey("flag"))
+      for (JSONObject fans : list) {
         String status = fans.getString("status");
-        if ("0".equals(status)) {
-          fans.put("statusname", "正常");
-        }
-        if ("1".equals(status)) {
-          fans.put("statusname", "禁用");
-        }
-      }
-    }
+        if ("0".equals(status))
+          fans.put("statusname", "正常"); 
+        if ("1".equals(status))
+          fans.put("statusname", "禁用"); 
+      }  
     jobj.put("rows", list);
     return jobj;
   }
   
-  public List<JSONObject> selectList(Map<String, String> map)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.WX_TEMPLATEITEM + ".selectList", map);
+  public List<JSONObject> selectList(Map<String, String> map) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.WX_TEMPLATEITEM) + ".selectList", map);
     return list;
   }
 }

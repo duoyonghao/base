@@ -24,25 +24,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_BCJLBackAct"})
-public class KQDS_BCJLBackAct
-{
+public class KQDS_BCJLBackAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_BCJLBackAct.class);
+  
   @Autowired
   private KQDS_BCJLLogic logic;
   
   @RequestMapping({"/toIndexLs.act"})
-  public ModelAndView toIndexLs(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toIndexLs(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/kqds/bcjl/index_ls.jsp");
     return mv;
   }
   
   @RequestMapping({"/toListBcjl.act"})
-  public ModelAndView toListBcjl(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toListBcjl(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
     mv.addObject("organization", organization);
@@ -51,9 +47,7 @@ public class KQDS_BCJLBackAct
   }
   
   @RequestMapping({"/toDetail.act"})
-  public ModelAndView toDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     ModelAndView mv = new ModelAndView();
     mv.addObject("seqId", seqId);
@@ -62,9 +56,7 @@ public class KQDS_BCJLBackAct
   }
   
   @RequestMapping({"/toBackList.act"})
-  public ModelAndView toBackList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toBackList(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
     mv.addObject("organization", organization);
@@ -73,9 +65,7 @@ public class KQDS_BCJLBackAct
   }
   
   @RequestMapping({"/toBackDetail.act"})
-  public ModelAndView toBackDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toBackDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     ModelAndView mv = new ModelAndView();
     mv.addObject("seqId", seqId);
@@ -84,143 +74,105 @@ public class KQDS_BCJLBackAct
   }
   
   @RequestMapping({"/selectDetail.act"})
-  public String selectDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
       KqdsBcjl en = (KqdsBcjl)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_BCJL, seqId);
-      if (en == null) {
-        throw new Exception("数据不存在");
-      }
+      if (en == null)
+        throw new Exception("数据不存在"); 
       JSONObject jobj = new JSONObject();
       jobj.put("data", en);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectPage.act"})
-  public String selectPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       BootStrapPage bp = new BootStrapPage();
-      
       BeanUtils.populate(bp, request.getParameterMap());
       String username = request.getParameter("username");
       String usercode = request.getParameter("usercode");
       String createuser = request.getParameter("createuser");
-      Map<String, String> map = new HashMap();
-      if (!YZUtility.isNullorEmpty(usercode)) {
-        map.put("usercode", usercode);
-      }
-      if (!YZUtility.isNullorEmpty(username)) {
-        map.put("username", username);
-      }
-      if (!YZUtility.isNullorEmpty(createuser)) {
-        map.put("createuser", createuser);
-      }
+      Map<String, String> map = new HashMap<>();
+      if (!YZUtility.isNullorEmpty(usercode))
+        map.put("usercode", usercode); 
+      if (!YZUtility.isNullorEmpty(username))
+        map.put("username", username); 
+      if (!YZUtility.isNullorEmpty(createuser))
+        map.put("createuser", createuser); 
       map.put("logtype", "0");
       map.put("organization", ChainUtil.getOrganizationFromUrl(request));
       JSONObject data = this.logic.selectWithPage(TableNameUtil.KQDS_BCJL, bp, map);
       YZUtility.DEAL_SUCCESS(data, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectPageLogin.act"})
-  public String selectPageLogin(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectPageLogin(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       BootStrapPage bp = new BootStrapPage();
-      
       BeanUtils.populate(bp, request.getParameterMap());
-      Map<String, String> map = new HashMap();
+      Map<String, String> map = new HashMap<>();
       String starttime = request.getParameter("starttime");
       String endtime = request.getParameter("endtime");
-      if (!YZUtility.isNullorEmpty(starttime)) {
-        map.put("starttime", starttime + ConstUtil.TIME_START);
-      }
-      if (!YZUtility.isNullorEmpty(endtime)) {
-        map.put("endtime", endtime + ConstUtil.TIME_END);
-      }
+      if (!YZUtility.isNullorEmpty(starttime))
+        map.put("starttime", String.valueOf(starttime) + ConstUtil.TIME_START); 
+      if (!YZUtility.isNullorEmpty(endtime))
+        map.put("endtime", String.valueOf(endtime) + ConstUtil.TIME_END); 
       map.put("logtype", "1");
       map.put("jlname", "登录日志");
       map.put("organization", ChainUtil.getOrganizationFromUrl(request));
       JSONObject data = this.logic.selectWithPage(TableNameUtil.KQDS_BCJL, bp, map);
       YZUtility.DEAL_SUCCESS(data, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectPage4SysLog.act"})
-  public String selectPage4SysLog(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectPage4SysLog(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       BootStrapPage bp = new BootStrapPage();
-      
       BeanUtils.populate(bp, request.getParameterMap());
       String username = request.getParameter("username");
       String usercode = request.getParameter("usercode");
       String createuser = request.getParameter("createuser");
-      Map<String, String> map = new HashMap();
-      if (!YZUtility.isNullorEmpty(usercode)) {
-        map.put("usercode", usercode);
-      }
-      if (!YZUtility.isNullorEmpty(username)) {
-        map.put("username", username);
-      }
-      if (!YZUtility.isNullorEmpty(createuser)) {
-        map.put("createuser", createuser);
-      }
+      Map<String, String> map = new HashMap<>();
+      if (!YZUtility.isNullorEmpty(usercode))
+        map.put("usercode", usercode); 
+      if (!YZUtility.isNullorEmpty(username))
+        map.put("username", username); 
+      if (!YZUtility.isNullorEmpty(createuser))
+        map.put("createuser", createuser); 
       map.put("logtype", "1");
       map.put("organization", ChainUtil.getOrganizationFromUrl(request));
       JSONObject data = this.logic.selectWithPage(TableNameUtil.KQDS_BCJL, bp, map);
       YZUtility.DEAL_SUCCESS(data, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
-  public String askpersonList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String askpersonList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
-      if (YZUtility.isNullorEmpty(seqId)) {
-        throw new Exception("会员卡操作记录主键不能为空");
-      }
-      String specialFlag = BcjlUtil.UPDATE_ASKPERSON + seqId;
+      if (YZUtility.isNullorEmpty(seqId))
+        throw new Exception("会员卡操作记录主键不能为空"); 
+      String specialFlag = String.valueOf(BcjlUtil.UPDATE_ASKPERSON) + seqId;
       List<JSONObject> list = this.logic.getListByJlName(specialFlag);
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

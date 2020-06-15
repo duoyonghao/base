@@ -9,24 +9,18 @@ import org.springframework.stereotype.Component;
 
 @DependsOn({"springContextUtils"})
 @Component
-public class CacheContextUtil
-  implements ApplicationContextAware
-{
-  private static ApplicationContext commonApplicationContext = new ClassPathXmlApplicationContext("spring-config.xml");
+public class CacheContextUtil implements ApplicationContextAware {
+  private static ApplicationContext commonApplicationContext = (ApplicationContext)new ClassPathXmlApplicationContext("spring-config.xml");
   
-  public void setApplicationContext(ApplicationContext applicationContext)
-    throws BeansException
-  {
+  public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
     commonApplicationContext = applicationContext;
   }
   
-  public static Object getBean(String beanId)
-  {
+  public static Object getBean(String beanId) {
     return commonApplicationContext.getBean(beanId);
   }
   
-  public static <T> T getBean(String beanId, Class<T> clazz)
-  {
-    return commonApplicationContext.getBean(beanId, clazz);
+  public static <T> T getBean(String beanId, Class<T> clazz) {
+    return (T)commonApplicationContext.getBean(beanId, clazz);
   }
 }

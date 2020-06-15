@@ -25,39 +25,32 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"YZButtonAct"})
-public class YZButtonAct
-{
+public class YZButtonAct {
   private static Logger logger = LoggerFactory.getLogger(YZButtonAct.class);
+  
   @Autowired
   private YZButtonLogic buttonLogic;
+  
   @Autowired
   private ISysDeptPrivService sysDeptPrivService;
   
   @RequestMapping({"/toIndex.act"})
-  public String toIndex(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String toIndex(HttpServletRequest request, HttpServletResponse response) throws Exception {
     return "/admin/button/index.jsp";
   }
   
   @RequestMapping({"/toTop.act"})
-  public String toContent(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String toContent(HttpServletRequest request, HttpServletResponse response) throws Exception {
     return "/admin/button/top.jsp";
   }
   
   @RequestMapping({"/toLeft.act"})
-  public String toLeft(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String toLeft(HttpServletRequest request, HttpServletResponse response) throws Exception {
     return "/admin/button/left.jsp";
   }
   
   @RequestMapping({"/toList.act"})
-  public ModelAndView toList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toList(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String menuId = request.getParameter("menuId");
     ModelAndView mv = new ModelAndView();
     mv.addObject("menuId", menuId);
@@ -66,9 +59,7 @@ public class YZButtonAct
   }
   
   @RequestMapping({"/toEdit.act"})
-  public ModelAndView toEditMenu(@RequestParam("seqId") String seqId)
-    throws Exception
-  {
+  public ModelAndView toEditMenu(@RequestParam("seqId") String seqId) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.addObject("seqId", seqId);
     mv.setViewName("/admin/button/edit.jsp");
@@ -76,9 +67,7 @@ public class YZButtonAct
   }
   
   @RequestMapping({"/toDept.act"})
-  public ModelAndView toDept(@RequestParam("qxname") String qxname)
-    throws Exception
-  {
+  public ModelAndView toDept(@RequestParam("qxname") String qxname) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.addObject("qxname", qxname);
     mv.setViewName("/admin/dept/addDept.jsp");
@@ -86,9 +75,7 @@ public class YZButtonAct
   }
   
   @RequestMapping({"/toDeptId.act"})
-  public ModelAndView toDeptId(@RequestParam("deptprivid") String deptprivid)
-    throws Exception
-  {
+  public ModelAndView toDeptId(@RequestParam("deptprivid") String deptprivid) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.addObject("deptprivid", deptprivid);
     mv.setViewName("/admin/dept/updateDept.jsp");
@@ -96,9 +83,7 @@ public class YZButtonAct
   }
   
   @RequestMapping({"/toNewAdd.act"})
-  public ModelAndView toNewMenu(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toNewMenu(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String menuId = request.getParameter("menuId");
     ModelAndView mv = new ModelAndView();
     mv.addObject("menuId", menuId);
@@ -107,155 +92,109 @@ public class YZButtonAct
   }
   
   @RequestMapping({"/insertOrUpdate.act"})
-  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
-      
-
-
-
       YZButton dp = new YZButton();
       BeanUtils.populate(dp, request.getParameterMap());
       String seqId = request.getParameter("seqId");
-      if (YZUtility.isNullorEmpty(dp.getName())) {
-        throw new Exception("按钮名称不能为空");
-      }
-      if (YZUtility.isNullorEmpty(dp.getQxName())) {
-        throw new Exception("权限标识不能为空");
-      }
-      if (!YZUtility.isNullorEmpty(seqId))
-      {
+      if (YZUtility.isNullorEmpty(dp.getName()))
+        throw new Exception("按钮名称不能为空"); 
+      if (YZUtility.isNullorEmpty(dp.getQxName()))
+        throw new Exception("权限标识不能为空"); 
+      if (!YZUtility.isNullorEmpty(seqId)) {
         YZButton tmp = (YZButton)this.buttonLogic.loadObjSingleUUID(TableNameUtil.SYS_BUTTON, seqId);
-        if (tmp == null) {
-          throw new Exception("按钮不存在");
-        }
+        if (tmp == null)
+          throw new Exception("按钮不存在"); 
         dp.setParentid(tmp.getParentid());
         dp.setCreatetime(tmp.getCreatetime());
         dp.setCreateuser(tmp.getCreateuser());
-        
         this.buttonLogic.updateSingleUUID(TableNameUtil.SYS_BUTTON, dp);
-        
         SysLogUtil.log(SysLogUtil.MODIFY, SysLogUtil.SYS_BUTTON, dp, TableNameUtil.SYS_BUTTON, request);
-      }
-      else
-      {
-        if (YZUtility.isNullorEmpty(dp.getParentid())) {
-          throw new Exception("所属菜单为空，请联系系统管理员");
-        }
+      } else {
+        if (YZUtility.isNullorEmpty(dp.getParentid()))
+          throw new Exception("所属菜单为空，请联系系统管理员"); 
         dp.setSeqId(YZUtility.getUUID());
         dp.setCreatetime(YZUtility.getCurDateTimeStr());
         dp.setCreateuser(person.getSeqId());
         this.buttonLogic.saveSingleUUID(TableNameUtil.SYS_BUTTON, dp);
-        
         SysLogUtil.log(SysLogUtil.NEW, SysLogUtil.SYS_BUTTON, dp, TableNameUtil.SYS_BUTTON, request);
-      }
+      } 
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectList.act"})
-  public String selectList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String parentid = request.getParameter("menuid");
       List<JSONObject> list = this.buttonLogic.selectList(parentid);
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectDetail.act"})
-  public String selectDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
-      if (YZUtility.isNullorEmpty(seqId)) {
-        throw new Exception("主键不能为空");
-      }
+      if (YZUtility.isNullorEmpty(seqId))
+        throw new Exception("主键不能为空"); 
       YZButton button = (YZButton)this.buttonLogic.loadObjSingleUUID(TableNameUtil.SYS_BUTTON, seqId);
-      if (button == null) {
-        throw new Exception("按钮不存在");
-      }
+      if (button == null)
+        throw new Exception("按钮不存在"); 
       JSONObject jobj = new JSONObject();
       jobj.put("retData", JSONObject.fromObject(button).toString());
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/delete.act"})
-  public String delete(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
       String deptprivid = request.getParameter("deptprivid");
-      if (YZUtility.isNullorEmpty(seqId)) {
-        throw new Exception("主键为空或者null");
-      }
+      if (YZUtility.isNullorEmpty(seqId))
+        throw new Exception("主键为空或者null"); 
       this.sysDeptPrivService.deleteSysDeptPriv(deptprivid);
       this.buttonLogic.deleteBySeqIds(seqId, request);
-      
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(ex.getMessage(), true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/getButtonListByPriv.act"})
-  public String getButtonListByPriv(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    List<YZButton> btList4Rt = new ArrayList();
-    try
-    {
+  public String getButtonListByPriv(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    List<YZButton> btList4Rt = new ArrayList<>();
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
-      
       String menuid = request.getParameter("menuid");
-      
       YZPriv priv = (YZPriv)this.buttonLogic.loadObjSingleUUID(TableNameUtil.SYS_PRIV, person.getUserPriv());
       List<YZButton> btList = this.buttonLogic.getListBySeqIds(priv.getFuncbutton());
-      if ((YZUtility.isNullorEmpty(menuid)) || (menuid.equals("undefined"))) {
+      if (YZUtility.isNullorEmpty(menuid) || menuid.equals("undefined")) {
         btList4Rt = btList;
       } else {
         for (YZButton yzButton : btList) {
-          if (menuid.equals(yzButton.getParentid())) {
-            btList4Rt.add(yzButton);
-          }
-        }
-      }
+          if (menuid.equals(yzButton.getParentid()))
+            btList4Rt.add(yzButton); 
+        } 
+      } 
       JSONObject jobj = new JSONObject();
       jobj.put("retData", btList4Rt);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

@@ -7,15 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SysDictDao
-{
+public class SysDictDao {
   @Autowired
   private DaoSupport dao;
   
-  public List<YZDict> findSysDictList()
-    throws Exception
-  {
-    List<YZDict> YZDictList = (List)this.dao.findForList("SYS_DICT.selectAllBeanList", null);
+  public List<YZDict> findSysDictList() throws Exception {
+    List<YZDict> YZDictList = (List<YZDict>)this.dao.findForList("SYS_DICT.selectAllBeanList", null);
     return YZDictList;
   }
 }

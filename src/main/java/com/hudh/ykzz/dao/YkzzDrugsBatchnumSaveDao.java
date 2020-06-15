@@ -7,14 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class YkzzDrugsBatchnumSaveDao
-{
+public class YkzzDrugsBatchnumSaveDao {
   @Autowired
   private DaoSupport dao;
   
-  public void insertDrugsBatchnumSave(List<YkzzDrugsBatchnumSave> list)
-    throws Exception
-  {
+  public void insertDrugsBatchnumSave(List<YkzzDrugsBatchnumSave> list) throws Exception {
     this.dao.batchUpdate("HUDH_YKZZ_DRUGS_BATCHNUM_SAVE.insertDrugsBatchnumSave", list);
   }
 }

@@ -17,25 +17,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_InformationAct"})
-public class KQDS_InformationAct
-{
+public class KQDS_InformationAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_InformationAct.class);
+  
   @Autowired
   private KQDS_InformationLogic logic;
   
   @RequestMapping({"/toIndexLs.act"})
-  public ModelAndView toWdyySearch(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toWdyySearch(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/kqds/information/index_ls.jsp");
     return mv;
   }
   
   @RequestMapping({"/toDetail.act"})
-  public ModelAndView toEdit(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toEdit(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     ModelAndView mv = new ModelAndView();
     mv.addObject("seqId", seqId);
@@ -44,21 +40,16 @@ public class KQDS_InformationAct
   }
   
   @RequestMapping({"/getInfoList.act"})
-  public String getInfoList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String getInfoList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String searchinput = request.getParameter("searchinput");
       List<JSONObject> en = this.logic.selectList(TableNameUtil.KQDS_INFORMATION, searchinput, ChainUtil.getCurrentOrganization(request));
       JSONObject jobj = new JSONObject();
       jobj.put("data", en);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

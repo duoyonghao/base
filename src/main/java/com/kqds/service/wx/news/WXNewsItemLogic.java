@@ -13,16 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class WXNewsItemLogic
-  extends BaseLogic
-{
+public class WXNewsItemLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public JSONObject selectWithPage(String table, BootStrapPage bp, Map<String, String> map)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.WX_NEWSITEM + ".selectWithPage", map);
+  public JSONObject selectWithPage(String table, BootStrapPage bp, Map<String, String> map) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.WX_NEWSITEM) + ".selectWithPage", map);
     PageInfo<JSONObject> pageInfo = new PageInfo(list);
     JSONObject jobj = new JSONObject();
     jobj.put("total", Long.valueOf(pageInfo.getTotal()));
@@ -30,24 +26,18 @@ public class WXNewsItemLogic
     return jobj;
   }
   
-  public List<JSONObject> getList(String newsid)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.WX_NEWSITEM + ".getList", newsid);
+  public List<JSONObject> getList(String newsid) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.WX_NEWSITEM) + ".getList", newsid);
     return list;
   }
   
-  public int getCountByNewsId(String newsid)
-    throws Exception
-  {
-    int count = ((Integer)this.dao.findForObject(TableNameUtil.WX_NEWSITEM + ".getCountByNewsId", newsid)).intValue();
+  public int getCountByNewsId(String newsid) throws Exception {
+    int count = ((Integer)this.dao.findForObject(String.valueOf(TableNameUtil.WX_NEWSITEM) + ".getCountByNewsId", newsid)).intValue();
     return count;
   }
   
-  public int deleteByParentId(String newsid, HttpServletRequest request)
-    throws Exception
-  {
-    int count = ((Integer)this.dao.delete(TableNameUtil.WX_NEWSITEM + ".deleteByParentId", newsid)).intValue();
+  public int deleteByParentId(String newsid, HttpServletRequest request) throws Exception {
+    int count = ((Integer)this.dao.delete(String.valueOf(TableNameUtil.WX_NEWSITEM) + ".deleteByParentId", newsid)).intValue();
     return count;
   }
 }

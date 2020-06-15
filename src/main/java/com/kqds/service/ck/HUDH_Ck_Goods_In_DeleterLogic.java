@@ -6,14 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class HUDH_Ck_Goods_In_DeleterLogic
-{
+public class HUDH_Ck_Goods_In_DeleterLogic {
   @Autowired
   private DaoSupport dao;
   
-  public void saveDeletePersonInfor(KqdsCkGoodsDeleter dp)
-    throws Exception
-  {
+  public void saveDeletePersonInfor(KqdsCkGoodsDeleter dp) throws Exception {
     this.dao.save("KQDS_CK_GOODS_IN_DELETERE.saveDeletePersonInfor", dp);
   }
 }

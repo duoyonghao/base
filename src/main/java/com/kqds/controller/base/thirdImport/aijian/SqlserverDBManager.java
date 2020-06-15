@@ -1,48 +1,40 @@
 package com.kqds.controller.base.thirdImport.aijian;
 
-import java.io.PrintStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class SqlserverDBManager
-{
+public class SqlserverDBManager {
   private static String user = "sa";
+  
   private static String password = "1qaz2wsx,,,";
+  
   private static String url = "jdbc:jtds:sqlserver://localhost:1433/aijian";
+  
   private Connection con = null;
+  
   private static SqlserverDBManager dbm = null;
   
-  private SqlserverDBManager(String user, String password)
-  {
-    try
-    {
+  private SqlserverDBManager(String user, String password) {
+    try {
       Class.forName("net.sourceforge.jtds.jdbc.Driver");
-    }
-    catch (ClassNotFoundException e)
-    {
+    } catch (ClassNotFoundException e) {
       System.err.println("class not found:" + e.getMessage());
-    }
-    try
-    {
+    } 
+    try {
       this.con = DriverManager.getConnection(url, user, password);
-    }
-    catch (SQLException a)
-    {
+    } catch (SQLException a) {
       System.err.println("sql exception:" + a.getMessage());
-    }
+    } 
   }
   
-  public static SqlserverDBManager getInstance()
-  {
-    if (dbm == null) {
-      dbm = new SqlserverDBManager(user, password);
-    }
+  public static SqlserverDBManager getInstance() {
+    if (dbm == null)
+      dbm = new SqlserverDBManager(user, password); 
     return dbm;
   }
   
-  public Connection getCon()
-  {
+  public Connection getCon() {
     return this.con;
   }
 }

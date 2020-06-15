@@ -6,11 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import net.sf.json.JSONObject;
 
-public abstract interface ILcljOperationNodeRemarkService
-{
-  public abstract void saveNodeRemark(LcljOperationNodeRemark paramLcljOperationNodeRemark, HttpServletRequest paramHttpServletRequest)
-    throws Exception;
+public interface ILcljOperationNodeRemarkService {
+  void saveNodeRemark(LcljOperationNodeRemark paramLcljOperationNodeRemark, HttpServletRequest paramHttpServletRequest) throws Exception;
   
-  public abstract List<JSONObject> findNodeRemarkByNodeId(Map<String, String> paramMap)
-    throws Exception;
+  List<JSONObject> findNodeRemarkByNodeId(Map<String, String> paramMap) throws Exception;
 }

@@ -14,16 +14,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KqdsUserdocumentMergeRecordAct"})
-public class KqdsUserdocumentMergeRecordAct
-{
+public class KqdsUserdocumentMergeRecordAct {
   private Logger logger = LoggerFactory.getLogger(KqdsUserdocumentMergeRecordAct.class);
+  
   @Autowired
   private UserdocumentMergeRecordLogic mergeLogic;
   
   @RequestMapping({"/toHzjd_NetPlantDept.act"})
-  public ModelAndView toHzjd_NetPlantDept(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toHzjd_NetPlantDept(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String usercode = request.getParameter("usercode");
     ModelAndView mv = new ModelAndView();
     mv.addObject("usercode", usercode);
@@ -32,19 +30,14 @@ public class KqdsUserdocumentMergeRecordAct
   }
   
   @RequestMapping({"/saveMergeRecord.act"})
-  public String saveMergeRecord(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String saveMergeRecord(HttpServletRequest request, HttpServletResponse response) throws Exception {
     KqdsUserdocumentMergeRecord dp = new KqdsUserdocumentMergeRecord();
-    try
-    {
+    try {
       this.mergeLogic.saveMergeRecord(dp, request);
       YZUtility.DEAL_SUCCESS(null, null, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
 }

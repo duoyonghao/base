@@ -13,81 +13,58 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AddVisitServcieImpl
-  implements IAddVisitService
-{
+public class AddVisitServcieImpl implements IAddVisitService {
   @Autowired
   private AddVisitDao visitDao;
+  
   @Autowired
   private DaoSupport dao;
   
-  public void saveVisitTemalate(List<VisitTemplate> attribute)
-    throws Exception
-  {
+  public void saveVisitTemalate(List<VisitTemplate> attribute) throws Exception {
     this.visitDao.saveVisitTemalate(attribute);
   }
   
-  public void saveVisitPlanTemalate(List<VisitPlanTemplate> list)
-    throws Exception
-  {
+  public void saveVisitPlanTemalate(List<VisitPlanTemplate> list) throws Exception {
     this.visitDao.saveVisitPlanTemalate(list);
   }
   
-  public List<VisitTemplate> findTemplate(Map<String, String> map)
-    throws Exception
-  {
+  public List<VisitTemplate> findTemplate(Map<String, String> map) throws Exception {
     return this.visitDao.findTemalate(map);
   }
   
-  public List<VisitTemplate> findvisitPlanTemplate(String managarId)
-    throws Exception
-  {
+  public List<VisitTemplate> findvisitPlanTemplate(String managarId) throws Exception {
     return this.visitDao.findvisitPlanTemplate(managarId);
   }
   
-  public List<JSONObject> findvisitByTime(Map<String, String> map)
-    throws Exception
-  {
+  public List<JSONObject> findvisitByTime(Map<String, String> map) throws Exception {
     return this.visitDao.findvisitByTime(map);
   }
   
-  public int findvisitByTimeNum(Map<String, String> map)
-    throws Exception
-  {
+  public int findvisitByTimeNum(Map<String, String> map) throws Exception {
     return this.visitDao.findvisitByTimeNum(map);
   }
   
-  public int deleteManagarPlan(String managarId)
-    throws Exception
-  {
+  public int deleteManagarPlan(String managarId) throws Exception {
     int i = this.visitDao.deleteManagarPlan(managarId);
     return i;
   }
   
-  public int deleteManagar(String managarId)
-    throws Exception
-  {
+  public int deleteManagar(String managarId) throws Exception {
     int i = this.visitDao.deleteManagar(managarId);
     int y = this.visitDao.deleteManagarPlanByManagarId(managarId);
     return i;
   }
   
-  public int updateManagarStatus(VisitTemplate visit)
-    throws Exception
-  {
+  public int updateManagarStatus(VisitTemplate visit) throws Exception {
     int i = this.visitDao.updateManagarStatus(visit);
     return i;
   }
   
-  public List<JSONObject> findoperator(String sysPosition)
-    throws Exception
-  {
-    return (List)this.dao.findForObject(TableNameUtil.SYS_PARA + ".findoperator", sysPosition);
+  public List<JSONObject> findoperator(String sysPosition) throws Exception {
+    return (List<JSONObject>)this.dao.findForObject(String.valueOf(TableNameUtil.SYS_PARA) + ".findoperator", sysPosition);
   }
   
-  public List<JSONObject> findvisitTemplate(Map<String, String> map)
-    throws Exception
-  {
+  public List<JSONObject> findvisitTemplate(Map<String, String> map) throws Exception {
     return this.visitDao.findVisitTemalate(map);
   }
 }

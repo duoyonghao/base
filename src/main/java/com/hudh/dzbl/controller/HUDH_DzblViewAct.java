@@ -8,11 +8,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"/HUDH_DzblViewAct"})
-public class HUDH_DzblViewAct
-{
+public class HUDH_DzblViewAct {
   @RequestMapping({"/toDzblOptation.act"})
-  public ModelAndView toDzblOptation(HttpServletRequest request, HttpServletResponse response)
-  {
+  public ModelAndView toDzblOptation(HttpServletRequest request, HttpServletResponse response) {
     String usercode = request.getParameter("usercode");
     ModelAndView mv = new ModelAndView();
     mv.addObject("usercode", usercode);
@@ -21,16 +19,14 @@ public class HUDH_DzblViewAct
   }
   
   @RequestMapping({"/toAddDzbl.act"})
-  public ModelAndView toAddDzbl(HttpServletRequest request, HttpServletResponse response)
-  {
+  public ModelAndView toAddDzbl(HttpServletRequest request, HttpServletResponse response) {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/hudh/dzbl/add_dzbl.jsp");
     return mv;
   }
   
   @RequestMapping({"/toBlDetail.act"})
-  public ModelAndView toBlDetail(HttpServletRequest request, HttpServletResponse response)
-  {
+  public ModelAndView toBlDetail(HttpServletRequest request, HttpServletResponse response) {
     ModelAndView mv = new ModelAndView();
     String blId = request.getParameter("blId");
     String blCode = request.getParameter("blCode");
@@ -41,8 +37,7 @@ public class HUDH_DzblViewAct
   }
   
   @RequestMapping({"/toCaseHistory.act"})
-  public ModelAndView toCaseHistory(HttpServletRequest request, HttpServletResponse response)
-  {
+  public ModelAndView toCaseHistory(HttpServletRequest request, HttpServletResponse response) {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/hudh/dzbl/dzbl_ck.jsp");
     return mv;

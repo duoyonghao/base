@@ -8,50 +8,34 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import net.sf.json.JSONObject;
 
-public abstract interface IYkzzDrugsService
-{
-  public abstract int insertDrugsinfor(YkzzDrugs paramYkzzDrugs, HttpServletRequest paramHttpServletRequest)
-    throws Exception;
+public interface IYkzzDrugsService {
+  int insertDrugsinfor(YkzzDrugs paramYkzzDrugs, HttpServletRequest paramHttpServletRequest) throws Exception;
   
-  public abstract List<YkzzDrugs> findDeugsByContryCode(String paramString1, String paramString2)
-    throws Exception;
+  List<YkzzDrugs> findDeugsByContryCode(String paramString1, String paramString2) throws Exception;
   
-  public abstract JSONObject selectDrugsByPrimaryId(String paramString)
-    throws Exception;
+  JSONObject selectDrugsByPrimaryId(String paramString) throws Exception;
   
-  public abstract List<JSONObject> selectAllDrugsInfor(Map<String, String> paramMap)
-    throws Exception;
+  List<JSONObject> selectAllDrugsInfor(Map<String, String> paramMap) throws Exception;
   
-  public abstract void deleteDrugsByPrimaryId(String paramString)
-    throws Exception;
+  void deleteDrugsByPrimaryId(String paramString) throws Exception;
   
-  public abstract void updateDrugsByPrimaryId(YkzzDrugs paramYkzzDrugs)
-    throws Exception;
+  void updateDrugsByPrimaryId(YkzzDrugs paramYkzzDrugs) throws Exception;
   
-  public abstract List<JSONObject> selectDrugsInforByConditionQuery(Map<String, String> paramMap)
-    throws Exception;
+  List<JSONObject> selectDrugsInforByConditionQuery(Map<String, String> paramMap) throws Exception;
   
-  public abstract List<YkzzDrugs> selectDrugsByOrderNoStr(List<String> paramList)
-    throws Exception;
+  List<YkzzDrugs> selectDrugsByOrderNoStr(List<String> paramList) throws Exception;
   
-  public abstract List<YkzzDrugs> selectDrugsByIdStr(List<YkzzDrugsInDetail> paramList)
-    throws Exception;
+  List<YkzzDrugs> selectDrugsByIdStr(List<YkzzDrugsInDetail> paramList) throws Exception;
   
-  public abstract List<YkzzDrugs> selectDrugsOutByIdStr(List<YkzzDrugsOutDetail> paramList)
-    throws Exception;
+  List<YkzzDrugs> selectDrugsOutByIdStr(List<YkzzDrugsOutDetail> paramList) throws Exception;
   
-  public abstract void batchUpdateDrugsByPrimaryId(List<YkzzDrugs> paramList)
-    throws Exception;
+  void batchUpdateDrugsByPrimaryId(List<YkzzDrugs> paramList) throws Exception;
   
-  public abstract void saveBatchInsert(List<List<String>> paramList, HttpServletRequest paramHttpServletRequest)
-    throws Exception;
+  void saveBatchInsert(List<List<String>> paramList, HttpServletRequest paramHttpServletRequest) throws Exception;
   
-  public abstract List<YkzzDrugs> getAllDrugsInfor(Map<String, String> paramMap)
-    throws Exception;
+  List<YkzzDrugs> getAllDrugsInfor(Map<String, String> paramMap) throws Exception;
   
-  public abstract void forbiddenDrugs(String paramString)
-    throws Exception;
+  void forbiddenDrugs(String paramString) throws Exception;
   
-  public abstract void recoverDrugs(String paramString)
-    throws Exception;
+  void recoverDrugs(String paramString) throws Exception;
 }

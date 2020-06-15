@@ -24,16 +24,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_ParticipantAct"})
-public class KQDS_ParticipantAct
-{
+public class KQDS_ParticipantAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_ParticipantAct.class);
+  
   @Autowired
   private KQDS_ParticipantLogic logic;
   
   @RequestMapping({"/toAdd.act"})
-  public ModelAndView toAdd(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toAdd(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String usercode = request.getParameter("usercode");
     ModelAndView mv = new ModelAndView();
     mv.addObject("usercode", usercode);
@@ -42,9 +40,7 @@ public class KQDS_ParticipantAct
   }
   
   @RequestMapping({"/toQygxList.act"})
-  public ModelAndView toQygxList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toQygxList(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String usercode = request.getParameter("usercode");
     ModelAndView mv = new ModelAndView();
     mv.addObject("usercode", usercode);
@@ -53,84 +49,58 @@ public class KQDS_ParticipantAct
   }
   
   @RequestMapping({"/insertOrUpdate.act"})
-  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
       KqdsParticipant dp = new KqdsParticipant();
       BeanUtils.populate(dp, request.getParameterMap());
       String seqId = request.getParameter("seqId");
-      if (!YZUtility.isNullorEmpty(seqId))
-      {
+      if (!YZUtility.isNullorEmpty(seqId)) {
         this.logic.updateSingleUUID(TableNameUtil.KQDS_PARTICIPANT, dp);
-        
         BcjlUtil.LogBcjlWithUserCode(BcjlUtil.MODIFY, BcjlUtil.KQDS_PARTICIPANT, dp, dp.getUsercode(), TableNameUtil.KQDS_PARTICIPANT, request);
-      }
-      else
-      {
+      } else {
         String uuid = YZUtility.getUUID();
         dp.setSeqId(uuid);
         dp.setCreatetime(YZUtility.getCurDateTimeStr());
         dp.setCreateuser(person.getSeqId());
         dp.setOrganization(ChainUtil.getCurrentOrganization(request));
-        
         this.logic.saveSingleUUID(TableNameUtil.KQDS_PARTICIPANT, dp);
-        
-
         BcjlUtil.LogBcjlWithUserCode(BcjlUtil.NEW, BcjlUtil.KQDS_PARTICIPANT, dp, dp.getUsercode(), TableNameUtil.KQDS_PARTICIPANT, request);
-      }
+      } 
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/deleteObj.act"})
-  public String deleteObj(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String deleteObj(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
-      if (YZUtility.isNullorEmpty(seqId)) {
-        throw new Exception("主键为空或者null");
-      }
+      if (YZUtility.isNullorEmpty(seqId))
+        throw new Exception("主键为空或者null"); 
       KqdsParticipant en = (KqdsParticipant)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_PARTICIPANT, seqId);
       this.logic.deleteSingleUUID(TableNameUtil.KQDS_PARTICIPANT, seqId);
-      
       BcjlUtil.LogBcjlWithUserCode(BcjlUtil.DELETE, BcjlUtil.KQDS_PARTICIPANT, en, en.getUsercode(), TableNameUtil.KQDS_PARTICIPANT, request);
-      
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectNoPage.act"})
-  public String selectNoPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectNoPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String usercode = request.getParameter("usercode");
-      Map map = new HashMap();
+      Map<Object, Object> map = new HashMap<>();
       map.put("usercode", usercode);
       List<JSONObject> list = this.logic.selectNoPage(TableNameUtil.KQDS_PARTICIPANT, map);
-      
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

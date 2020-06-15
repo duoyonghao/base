@@ -8,18 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_makeInvoiceLogic
-  extends BaseLogic
-{
+public class KQDS_makeInvoiceLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public void deleteUserDoc(String usercode, String table)
-    throws Exception
-  {
+  public void deleteUserDoc(String usercode, String table) throws Exception {
     JSONObject json = new JSONObject();
     json.put("tablename", table);
     json.put("usercode", usercode);
-    this.dao.update(TableNameUtil.KQDS_USERDOCUMENT + ".deleteuser", json);
+    this.dao.update(String.valueOf(TableNameUtil.KQDS_USERDOCUMENT) + ".deleteuser", json);
   }
 }

@@ -19,54 +19,45 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_TreatItemAct"})
-public class KQDS_TreatItemAct
-{
+public class KQDS_TreatItemAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_TreatItemAct.class);
+  
   @Autowired
   private KQDS_TreatItemLogic logic;
   
   @RequestMapping({"/toIndex.act"})
-  public ModelAndView toWdyySearch(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toWdyySearch(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/kqds/treatItemType/index.jsp");
     return mv;
   }
   
   @RequestMapping({"/toIndexLs.act"})
-  public ModelAndView toIndexLs(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toIndexLs(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/kqds/treatItem/index_ls.jsp");
     return mv;
   }
   
   @RequestMapping({"/getOneBytreatitemno.act"})
-  public String getOneBytreatitemno(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String getOneBytreatitemno(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String treatitemno = request.getParameter("treatitemno");
-      Map<String, String> map = new HashMap();
+      Map<String, String> map = new HashMap<>();
       map.put("treatitemno", treatitemno);
-      List<KqdsTreatitem> en = (List)this.logic.loadList(TableNameUtil.KQDS_TREATITEM, map);
+      List<KqdsTreatitem> en = (List<KqdsTreatitem>)this.logic.loadList(TableNameUtil.KQDS_TREATITEM, map);
       JSONObject jobj = new JSONObject();
       jobj.put("retState", "0");
       jobj.put("retMsrg", "操作成功");
-      if ((en != null) && (en.size() > 0)) {
+      if (en != null && en.size() > 0) {
         jobj.put("data", en.get(0));
       } else {
         jobj.put("data", "");
-      }
+      } 
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

@@ -8,11 +8,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"/HUDH_FlowViewAct"})
-public class HUDH_FlowViewAct
-{
+public class HUDH_FlowViewAct {
   @RequestMapping({"/toLcljOpreation.act"})
-  public ModelAndView toLcljOpreation(HttpServletRequest request, HttpServletResponse response)
-  {
+  public ModelAndView toLcljOpreation(HttpServletRequest request, HttpServletResponse response) {
     String id = request.getParameter("id");
     ModelAndView mv = new ModelAndView();
     mv.addObject("id", id);
@@ -21,8 +19,7 @@ public class HUDH_FlowViewAct
   }
   
   @RequestMapping({"/toConsultOperationPrepare.act"})
-  public ModelAndView toConsultOperationPrepare(HttpServletRequest request, HttpServletResponse response)
-  {
+  public ModelAndView toConsultOperationPrepare(HttpServletRequest request, HttpServletResponse response) {
     String id = request.getParameter("id");
     ModelAndView mv = new ModelAndView();
     mv.addObject("id", id);
@@ -31,8 +28,7 @@ public class HUDH_FlowViewAct
   }
   
   @RequestMapping({"/toOperationRejectRecord.act"})
-  public ModelAndView toOperationRejectRecord(HttpServletRequest request, HttpServletResponse response)
-  {
+  public ModelAndView toOperationRejectRecord(HttpServletRequest request, HttpServletResponse response) {
     String orderNumber = request.getParameter("orderNumber");
     ModelAndView mv = new ModelAndView();
     mv.addObject("orderNumber", orderNumber);
@@ -41,8 +37,7 @@ public class HUDH_FlowViewAct
   }
   
   @RequestMapping({"/toLcljInformation.act"})
-  public ModelAndView toLcljInformation(HttpServletRequest request, HttpServletResponse response)
-  {
+  public ModelAndView toLcljInformation(HttpServletRequest request, HttpServletResponse response) {
     ModelAndView mv = new ModelAndView();
     String usercode = request.getParameter("usercode");
     String orderno = request.getParameter("orderno");
@@ -57,8 +52,7 @@ public class HUDH_FlowViewAct
   }
   
   @RequestMapping({"/toAddRemark.act"})
-  public ModelAndView toAddRemark()
-  {
+  public ModelAndView toAddRemark() {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/hudh/lclj/lclj_remark.jsp");
     return mv;

@@ -21,16 +21,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"KQDS_MachineSendAct"})
-public class KQDS_MachineSendAct
-{
+public class KQDS_MachineSendAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_MachineSendAct.class);
+  
   @Autowired
   private KQDS_MachineSendLogic machineSendLogic;
   
   @RequestMapping({"/saveMachineSend.act"})
-  public String saveMachineSend(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String saveMachineSend(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String username = request.getParameter("username");
     String usercode = request.getParameter("usercode");
     String phoneNumber = request.getParameter("phoneNumber");
@@ -38,8 +36,7 @@ public class KQDS_MachineSendAct
     String machineId = request.getParameter("machineId");
     String orderNumber = request.getParameter("orderNumber");
     String systemNumber = request.getParameter("systemNumber");
-    try
-    {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
       String organization = ChainUtil.getCurrentOrganization(request);
       KqdsMachineSend dp = new KqdsMachineSend();
@@ -57,66 +54,49 @@ public class KQDS_MachineSendAct
       dp.setSystemNumber(systemNumber);
       this.machineSendLogic.saveMachineSend(dp);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/updateMachineSendById.act"})
-  public String updateMachineSendById(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String updateMachineSendById(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       KqdsMachineSend dp = new KqdsMachineSend();
       BeanUtils.populate(dp, request.getParameterMap());
       this.machineSendLogic.updateMachineSendById(dp);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectMachineSend.act"})
-  public String selectMachineSend(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    Map<String, String> dataMap = new HashMap();
+  public String selectMachineSend(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    Map<String, String> dataMap = new HashMap<>();
     String username = request.getParameter("username");
     String usercode = request.getParameter("usercode");
     String phoneNumber = request.getParameter("phoneNumber");
     String orderNumber = request.getParameter("orderNumber");
     String machineId = request.getParameter("machineId");
-    if (!YZUtility.isNullorEmpty(username)) {
-      dataMap.put("username", username);
-    }
-    if (!YZUtility.isNullorEmpty(usercode)) {
-      dataMap.put("usercode", usercode);
-    }
-    if (!YZUtility.isNullorEmpty(phoneNumber)) {
-      dataMap.put("phoneNumber", phoneNumber);
-    }
-    if (!YZUtility.isNullorEmpty(orderNumber)) {
-      dataMap.put("orderNumber", orderNumber);
-    }
-    if (!YZUtility.isNullorEmpty(machineId)) {
-      dataMap.put("machineId", machineId);
-    }
-    try
-    {
+    if (!YZUtility.isNullorEmpty(username))
+      dataMap.put("username", username); 
+    if (!YZUtility.isNullorEmpty(usercode))
+      dataMap.put("usercode", usercode); 
+    if (!YZUtility.isNullorEmpty(phoneNumber))
+      dataMap.put("phoneNumber", phoneNumber); 
+    if (!YZUtility.isNullorEmpty(orderNumber))
+      dataMap.put("orderNumber", orderNumber); 
+    if (!YZUtility.isNullorEmpty(machineId))
+      dataMap.put("machineId", machineId); 
+    try {
       List<JSONObject> list = this.machineSendLogic.selectMachineSend(dataMap);
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
 }

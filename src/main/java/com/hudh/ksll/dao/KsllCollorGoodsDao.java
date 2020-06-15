@@ -10,76 +10,53 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KsllCollorGoodsDao
-{
+public class KsllCollorGoodsDao {
   @Autowired
   private DaoSupport dao;
   
-  public int insertKsllGoods(KsllGoods KsllGoods)
-    throws Exception
-  {
-    return ((Integer)this.dao.save("HUDH_KSLL_GOODS.insertKsllGoods", KsllGoods)).intValue();
+  public int insertKsllGoods(KsllGoods ksllGoods) throws Exception {
+    return ((Integer)this.dao.save("HUDH_KSLL_GOODS.insertKsllGoods", ksllGoods)).intValue();
   }
   
-  public List<JSONObject> findAllKsllGoods(Map<String, String> dataMap)
-    throws Exception
-  {
-    return (List)this.dao.findForList("HUDH_KSLL_GOODS.findAllKsllGoods", dataMap);
+  public List<JSONObject> findAllKsllGoods(Map<String, String> dataMap) throws Exception {
+    return (List<JSONObject>)this.dao.findForList("HUDH_KSLL_GOODS.findAllKsllGoods", dataMap);
   }
   
-  public List<JSONObject> findAllKsllColorGoodsByGoodscode(Map<String, String> dataMap)
-    throws Exception
-  {
-    return (List)this.dao.findForList("HUDH_KSLL_GOODS.findAllKsllColorGoodsByGoodscode", dataMap);
+  public List<JSONObject> findAllKsllColorGoodsByGoodscode(Map<String, String> dataMap) throws Exception {
+    return (List<JSONObject>)this.dao.findForList("HUDH_KSLL_GOODS.findAllKsllColorGoodsByGoodscode", dataMap);
   }
   
-  public List<JSONObject> findAllCKDept(Map<String, String> dataMap)
-    throws Exception
-  {
-    return (List)this.dao.findForList("KQDS_CK_DEPT.selectList", dataMap);
+  public List<JSONObject> findAllCKDept(Map<String, String> dataMap) throws Exception {
+    return (List<JSONObject>)this.dao.findForList("KQDS_CK_DEPT.selectList", dataMap);
   }
   
-  public List<KqdsCkHouse> findAllCKHouse(Map<String, Map<String, String>> dataMap)
-    throws Exception
-  {
-    return (List)this.dao.findForList("KQDS_CK_HOUSE.selectBeanListByMap", dataMap);
+  public List<KqdsCkHouse> findAllCKHouse(Map<String, Map<String, String>> dataMap) throws Exception {
+    return (List<KqdsCkHouse>)this.dao.findForList("KQDS_CK_HOUSE.selectBeanListByMap", dataMap);
   }
   
-  public void batchSaveKsllGoodsDetail(List<KsllGoods> list)
-    throws Exception
-  {
+  public void batchSaveKsllGoodsDetail(List<KsllGoods> list) throws Exception {
     this.dao.batchUpdate("HUDH_KSLL_GOODS.batchSaveKsllGoodsDetail", list);
   }
   
-  public void batchUpdateKsllGoodsByPrimaryId(List<KsllGoods> list)
-    throws Exception
-  {
+  public void batchUpdateKsllGoodsByPrimaryId(List<KsllGoods> list) throws Exception {
     this.dao.batchUpdate("HUDH_KSLL_GOODS.batchUpdateKsllGoodsByPrimaryId", list);
   }
   
-  public JSONObject findKsllGoodsByPrimaryId(String id)
-    throws Exception
-  {
+  public JSONObject findKsllGoodsByPrimaryId(String id) throws Exception {
     JSONObject json = (JSONObject)this.dao.findForObject("HUDH_KSLL_GOODS.findKsllGoodsByPrimaryId", id);
     return json;
   }
   
-  public void updateKsllGoodsByPrimaryId(KsllGoods ksllGoods)
-    throws Exception
-  {
+  public void updateKsllGoodsByPrimaryId(KsllGoods ksllGoods) throws Exception {
     this.dao.update("HUDH_KSLL_GOODS.updateKsllGoodsByPrimaryId", ksllGoods);
   }
   
-  public KsllGoods findKsllGoodsByGoodsCode(String goodsCode)
-    throws Exception
-  {
+  public KsllGoods findKsllGoodsByGoodsCode(String goodsCode) throws Exception {
     KsllGoods ksllGoods = (KsllGoods)this.dao.findForObject("HUDH_KSLL_GOODS.findKsllGoodsByGoodsCode", goodsCode);
     return ksllGoods;
   }
   
-  public KsllGoods findKsllGoodsByDeptpartAndGoodscode(Map<String, String> map)
-    throws Exception
-  {
+  public KsllGoods findKsllGoodsByDeptpartAndGoodscode(Map<String, String> map) throws Exception {
     KsllGoods ksllGoods = (KsllGoods)this.dao.findForObject("HUDH_KSLL_GOODS.findKsllGoodsByDeptpartAndGoodscode", map);
     return ksllGoods;
   }

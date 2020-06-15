@@ -22,118 +22,87 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_Paiban_TypeBackAct"})
-public class KQDS_Paiban_TypeBackAct
-{
+public class KQDS_Paiban_TypeBackAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_Paiban_TypeBackAct.class);
+  
   @Autowired
   private KQDS_Paiban_TypeLogic logic;
   
   @RequestMapping({"/toIndexLs.act"})
-  public ModelAndView toJgIndex(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toJgIndex(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/kqdsFront/paiban/index_ls.jsp");
     return mv;
   }
   
   @RequestMapping({"/insertOrUpdate.act"})
-  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
       KqdsPaibanType dp = new KqdsPaibanType();
       BeanUtils.populate(dp, request.getParameterMap());
       String seqId = request.getParameter("seqId");
-      if (!YZUtility.isNullorEmpty(seqId))
-      {
+      if (!YZUtility.isNullorEmpty(seqId)) {
         this.logic.updateSingleUUID(TableNameUtil.KQDS_PAIBAN_TYPE, dp);
-        
         BcjlUtil.LogBcjl(BcjlUtil.MODIFY, BcjlUtil.KQDS_PAIBAN_TYPE, dp, TableNameUtil.KQDS_PAIBAN_TYPE, request);
-      }
-      else
-      {
+      } else {
         String uuid = YZUtility.getUUID();
         dp.setSeqId(uuid);
         dp.setCreatetime(YZUtility.getCurDateTimeStr());
         dp.setCreateuser(person.getSeqId());
         dp.setOrganization(ChainUtil.getOrganizationFromUrl(request));
         this.logic.saveSingleUUID(TableNameUtil.KQDS_PAIBAN_TYPE, dp);
-        
         BcjlUtil.LogBcjl(BcjlUtil.NEW, BcjlUtil.KQDS_PAIBAN_TYPE, dp, TableNameUtil.KQDS_PAIBAN_TYPE, request);
-      }
+      } 
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/deleteObj.act"})
-  public String deleteObj(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String deleteObj(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
-      if (YZUtility.isNullorEmpty(seqId)) {
-        throw new Exception("主键为空或者null");
-      }
+      if (YZUtility.isNullorEmpty(seqId))
+        throw new Exception("主键为空或者null"); 
       KqdsPaibanType en = (KqdsPaibanType)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_PAIBAN_TYPE, seqId);
       this.logic.deleteSingleUUID(TableNameUtil.KQDS_PAIBAN_TYPE, seqId);
-      
       BcjlUtil.LogBcjl(BcjlUtil.DELETE, BcjlUtil.KQDS_PAIBAN_TYPE, en, TableNameUtil.KQDS_PAIBAN_TYPE, request);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectDetail.act"})
-  public String selectDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
       KqdsPaibanType en = (KqdsPaibanType)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_PAIBAN_TYPE, seqId);
-      if (en == null) {
-        throw new Exception("数据不存在");
-      }
+      if (en == null)
+        throw new Exception("数据不存在"); 
       JSONObject jobj = new JSONObject();
       jobj.put("data", en);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectPage.act"})
-  public String selectPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       BootStrapPage bp = new BootStrapPage();
-      
       BeanUtils.populate(bp, request.getParameterMap());
       JSONObject data = this.logic.selectWithPage(TableNameUtil.KQDS_PAIBAN_TYPE, bp, ChainUtil.getOrganizationFromUrlCanNull(request));
       YZUtility.DEAL_SUCCESS(data, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

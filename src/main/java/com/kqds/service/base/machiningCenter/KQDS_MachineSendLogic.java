@@ -9,27 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_MachineSendLogic
-{
+public class KQDS_MachineSendLogic {
   @Autowired
   private DaoSupport dao;
   
-  public void saveMachineSend(KqdsMachineSend dp)
-    throws Exception
-  {
+  public void saveMachineSend(KqdsMachineSend dp) throws Exception {
     this.dao.save("KQDS_MACHINING_SEND.saveMachineSend", dp);
   }
   
-  public void updateMachineSendById(KqdsMachineSend dp)
-    throws Exception
-  {
+  public void updateMachineSendById(KqdsMachineSend dp) throws Exception {
     this.dao.update("KQDS_MACHINING_SEND.updateMachineSendById", dp);
   }
   
-  public List<JSONObject> selectMachineSend(Map<String, String> dataMap)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList("KQDS_MACHINING_SEND.selectMachineSend", dataMap);
+  public List<JSONObject> selectMachineSend(Map<String, String> dataMap) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList("KQDS_MACHINING_SEND.selectMachineSend", dataMap);
     return list;
   }
 }

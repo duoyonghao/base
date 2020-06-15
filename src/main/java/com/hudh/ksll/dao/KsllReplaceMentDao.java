@@ -11,39 +11,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KsllReplaceMentDao
-{
+public class KsllReplaceMentDao {
   @Autowired
   private DaoSupport dao;
   
-  public int insertReplacement(KsllReplaceMent ksllReplaceMent)
-    throws Exception
-  {
+  public int insertReplacement(KsllReplaceMent ksllReplaceMent) throws Exception {
     return ((Integer)this.dao.save("HUDH_KSLL_REPLACEMENT.insertReplacement", ksllReplaceMent)).intValue();
   }
   
-  public List<JSONObject> findAllReplacement(Map<String, String> dataMap)
-    throws Exception
-  {
-    return (List)this.dao.findForList("HUDH_KSLL_REPLACEMENT.findAllReplacement", dataMap);
+  public List<JSONObject> findAllReplacement(Map<String, String> dataMap) throws Exception {
+    return (List<JSONObject>)this.dao.findForList("HUDH_KSLL_REPLACEMENT.findAllReplacement", dataMap);
   }
   
-  public void updateReplacementStatus(Map<String, String> dataMap)
-    throws Exception
-  {
+  public void updateReplacementStatus(Map<String, String> dataMap) throws Exception {
     this.dao.delete("HUDH_KSLL_REPLACEMENT.updateReplacementStatus", dataMap);
   }
   
-  public void batchUpdateCKGoodsByPrimaryId(List<KqdsCkGoods> kqdsCkGoods)
-    throws Exception
-  {
+  public void batchUpdateCKGoodsByPrimaryId(List<KqdsCkGoods> kqdsCkGoods) throws Exception {
     this.dao.batchUpdate("HUDH_KSLL_REPLACEMENT.batchUpdateCKGoodsByPrimaryId", kqdsCkGoods);
   }
   
-  public KsllReplaceMent findReplacementById(String id, String organization)
-    throws Exception
-  {
-    Map<String, String> map = new HashMap();
+  public KsllReplaceMent findReplacementById(String id, String organization) throws Exception {
+    Map<String, String> map = new HashMap<>();
     map.put("id", id);
     map.put("organization", organization);
     return (KsllReplaceMent)this.dao.findForObject("HUDH_KSLL_REPLACEMENT.findReplacementById", map);

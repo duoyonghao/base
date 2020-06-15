@@ -1,148 +1,133 @@
 package com.kqds.entity.wx;
 
-public class WXTemplateitem
-{
+public class WXTemplateitem {
   private String seqId;
+  
   private String templateId;
+  
   private String templateSeqid;
+  
   private String first;
+  
   private String keyword1;
+  
   private String keyword2;
+  
   private String keyword3;
+  
   private String keyword4;
+  
   private String keyword5;
+  
   private String remark;
+  
   private Integer status;
+  
   private String createuser;
+  
   private String createtime;
   
-  public String getSeqId()
-  {
+  public String getSeqId() {
     return this.seqId;
   }
   
-  public void setSeqId(String seqId)
-  {
-    this.seqId = (seqId == null ? null : seqId.trim());
+  public void setSeqId(String seqId) {
+    this.seqId = (seqId == null) ? null : seqId.trim();
   }
   
-  public String getTemplateId()
-  {
+  public String getTemplateId() {
     return this.templateId;
   }
   
-  public void setTemplateId(String templateId)
-  {
-    this.templateId = (templateId == null ? null : templateId.trim());
+  public void setTemplateId(String templateId) {
+    this.templateId = (templateId == null) ? null : templateId.trim();
   }
   
-  public String getTemplateSeqid()
-  {
+  public String getTemplateSeqid() {
     return this.templateSeqid;
   }
   
-  public void setTemplateSeqid(String templateSeqid)
-  {
-    this.templateSeqid = (templateSeqid == null ? null : templateSeqid.trim());
+  public void setTemplateSeqid(String templateSeqid) {
+    this.templateSeqid = (templateSeqid == null) ? null : templateSeqid.trim();
   }
   
-  public String getFirst()
-  {
+  public String getFirst() {
     return this.first;
   }
   
-  public void setFirst(String first)
-  {
-    this.first = (first == null ? null : first.trim());
+  public void setFirst(String first) {
+    this.first = (first == null) ? null : first.trim();
   }
   
-  public String getKeyword1()
-  {
+  public String getKeyword1() {
     return this.keyword1;
   }
   
-  public void setKeyword1(String keyword1)
-  {
-    this.keyword1 = (keyword1 == null ? null : keyword1.trim());
+  public void setKeyword1(String keyword1) {
+    this.keyword1 = (keyword1 == null) ? null : keyword1.trim();
   }
   
-  public String getKeyword2()
-  {
+  public String getKeyword2() {
     return this.keyword2;
   }
   
-  public void setKeyword2(String keyword2)
-  {
-    this.keyword2 = (keyword2 == null ? null : keyword2.trim());
+  public void setKeyword2(String keyword2) {
+    this.keyword2 = (keyword2 == null) ? null : keyword2.trim();
   }
   
-  public String getKeyword3()
-  {
+  public String getKeyword3() {
     return this.keyword3;
   }
   
-  public void setKeyword3(String keyword3)
-  {
-    this.keyword3 = (keyword3 == null ? null : keyword3.trim());
+  public void setKeyword3(String keyword3) {
+    this.keyword3 = (keyword3 == null) ? null : keyword3.trim();
   }
   
-  public String getKeyword4()
-  {
+  public String getKeyword4() {
     return this.keyword4;
   }
   
-  public void setKeyword4(String keyword4)
-  {
-    this.keyword4 = (keyword4 == null ? null : keyword4.trim());
+  public void setKeyword4(String keyword4) {
+    this.keyword4 = (keyword4 == null) ? null : keyword4.trim();
   }
   
-  public String getKeyword5()
-  {
+  public String getKeyword5() {
     return this.keyword5;
   }
   
-  public void setKeyword5(String keyword5)
-  {
-    this.keyword5 = (keyword5 == null ? null : keyword5.trim());
+  public void setKeyword5(String keyword5) {
+    this.keyword5 = (keyword5 == null) ? null : keyword5.trim();
   }
   
-  public String getRemark()
-  {
+  public String getRemark() {
     return this.remark;
   }
   
-  public void setRemark(String remark)
-  {
-    this.remark = (remark == null ? null : remark.trim());
+  public void setRemark(String remark) {
+    this.remark = (remark == null) ? null : remark.trim();
   }
   
-  public Integer getStatus()
-  {
+  public Integer getStatus() {
     return this.status;
   }
   
-  public void setStatus(Integer status)
-  {
+  public void setStatus(Integer status) {
     this.status = status;
   }
   
-  public String getCreateuser()
-  {
+  public String getCreateuser() {
     return this.createuser;
   }
   
-  public void setCreateuser(String createuser)
-  {
-    this.createuser = (createuser == null ? null : createuser.trim());
+  public void setCreateuser(String createuser) {
+    this.createuser = (createuser == null) ? null : createuser.trim();
   }
   
-  public String getCreatetime()
-  {
+  public String getCreatetime() {
     return this.createtime;
   }
   
-  public void setCreatetime(String createtime)
-  {
-    this.createtime = (createtime == null ? null : createtime.trim());
+  public void setCreatetime(String createtime) {
+    this.createtime = (createtime == null) ? null : createtime.trim();
   }
 }

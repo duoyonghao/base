@@ -18,55 +18,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"KQDS_ChangeWdAct"})
-public class KQDS_ChangeWdAct
-{
+public class KQDS_ChangeWdAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_ChangeWdAct.class);
+  
   @Autowired
   private KQDS_changeWdLogic logic;
   
   @RequestMapping({"/selectNoPage.act"})
-  public String selectNoPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectNoPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String starttime = request.getParameter("starttime");
       String endtime = request.getParameter("endtime");
       String queryinput = request.getParameter("queryinput");
       String toper = request.getParameter("toper");
       String oldper = request.getParameter("oldper");
-      
-      String flag = request.getParameter("flag") == null ? "" : request.getParameter("flag");
-      String fieldArr = request.getParameter("fieldArr") == null ? "" : request.getParameter("fieldArr");
-      String fieldnameArr = request.getParameter("fieldnameArr") == null ? "" : request.getParameter("fieldnameArr");
-      Map<String, String> map = new HashMap();
-      if (!YZUtility.isNullorEmpty(starttime)) {
-        map.put("starttime", starttime);
-      }
-      if (!YZUtility.isNullorEmpty(endtime)) {
-        map.put("endtime", endtime);
-      }
-      if (!YZUtility.isNullorEmpty(queryinput)) {
-        map.put("queryinput", queryinput);
-      }
-      if (!YZUtility.isNullorEmpty(toper)) {
-        map.put("toper", toper);
-      }
-      if (!YZUtility.isNullorEmpty(oldper)) {
-        map.put("oldper", oldper);
-      }
+      String flag = (request.getParameter("flag") == null) ? "" : request.getParameter("flag");
+      String fieldArr = (request.getParameter("fieldArr") == null) ? "" : request.getParameter("fieldArr");
+      String fieldnameArr = (request.getParameter("fieldnameArr") == null) ? "" : request.getParameter("fieldnameArr");
+      Map<String, String> map = new HashMap<>();
+      if (!YZUtility.isNullorEmpty(starttime))
+        map.put("starttime", starttime); 
+      if (!YZUtility.isNullorEmpty(endtime))
+        map.put("endtime", endtime); 
+      if (!YZUtility.isNullorEmpty(queryinput))
+        map.put("queryinput", queryinput); 
+      if (!YZUtility.isNullorEmpty(toper))
+        map.put("toper", toper); 
+      if (!YZUtility.isNullorEmpty(oldper))
+        map.put("oldper", oldper); 
       List<JSONObject> list = this.logic.selectWithPage(TableNameUtil.KQDS_CHANGE_WD, map);
-      if ((flag != null) && (flag.equals("exportTable")))
-      {
+      if (flag != null && flag.equals("exportTable")) {
         ExportTable.exportBootStrapTable2Excel("关联人修改列表", fieldArr, fieldnameArr, list, response, request);
         return null;
-      }
+      } 
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

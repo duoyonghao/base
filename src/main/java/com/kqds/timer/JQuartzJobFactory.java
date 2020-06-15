@@ -7,19 +7,13 @@ import org.springframework.scheduling.quartz.SpringBeanJobFactory;
 import org.springframework.stereotype.Component;
 
 @Component("jQuartzJobFactory")
-public class JQuartzJobFactory
-  extends SpringBeanJobFactory
-{
+public class JQuartzJobFactory extends SpringBeanJobFactory {
   @Autowired
   private AutowireCapableBeanFactory beanFactory;
   
-  protected Object createJobInstance(TriggerFiredBundle bundle)
-    throws Exception
-  {
+  protected Object createJobInstance(TriggerFiredBundle bundle) throws Exception {
     Object jobInstance = super.createJobInstance(bundle);
-    
     this.beanFactory.autowireBean(jobInstance);
-    
     return jobInstance;
   }
 }

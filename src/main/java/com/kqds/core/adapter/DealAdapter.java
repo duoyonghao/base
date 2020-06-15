@@ -9,8 +9,6 @@ import com.kqds.service.sys.dict.YZDictLogic;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
-public abstract interface DealAdapter
-{
-  public abstract boolean isDeal(KqdsReg paramKqdsReg, KqdsCostorder paramKqdsCostorder, List<KqdsCostorderDetail> paramList, HttpServletRequest paramHttpServletRequest, Kqds_PayCostLogic paramKqds_PayCostLogic, YZDictLogic paramYZDictLogic, KQDS_UserDocumentLogic paramKQDS_UserDocumentLogic)
-    throws Exception;
+public interface DealAdapter {
+  boolean isDeal(KqdsReg paramKqdsReg, KqdsCostorder paramKqdsCostorder, List<KqdsCostorderDetail> paramList, HttpServletRequest paramHttpServletRequest, Kqds_PayCostLogic paramKqds_PayCostLogic, YZDictLogic paramYZDictLogic, KQDS_UserDocumentLogic paramKQDS_UserDocumentLogic) throws Exception;
 }

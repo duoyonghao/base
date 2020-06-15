@@ -10,48 +10,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class YkzzManuDao
-{
+public class YkzzManuDao {
   @Autowired
   private DaoSupport dao;
   
-  public int insertYkzzManu(YkzzManu ykzzManu)
-    throws Exception
-  {
+  public int insertYkzzManu(YkzzManu ykzzManu) throws Exception {
     return ((Integer)this.dao.save("HUDH_YKZZ_MANU.insertYkzzManu", ykzzManu)).intValue();
   }
   
-  public YkzzManu findYkzzManuById(String id)
-    throws Exception
-  {
+  public YkzzManu findYkzzManuById(String id) throws Exception {
     YkzzManu ykzzManu = (YkzzManu)this.dao.findForObject("HUDH_YKZZ_MANU.findYkzzManuById", id);
     return ykzzManu;
   }
   
-  public void deleteYkzzManuById(String id)
-    throws Exception
-  {
+  public void deleteYkzzManuById(String id) throws Exception {
     this.dao.delete("HUDH_YKZZ_MANU.deleteManuTypeById", id);
   }
   
-  public void updateYkzzManuById(YkzzManu ykzzManu)
-    throws Exception
-  {
+  public void updateYkzzManuById(YkzzManu ykzzManu) throws Exception {
     this.dao.update("HUDH_YKZZ_MANU.updateManuTypeById", ykzzManu);
   }
   
-  public List<JSONObject> findAllManu(String organization)
-    throws Exception
-  {
-    Map<String, String> dataMap = new HashMap();
+  public List<JSONObject> findAllManu(String organization) throws Exception {
+    Map<String, String> dataMap = new HashMap<>();
     dataMap.put("organization", organization);
-    List<JSONObject> list = (List)this.dao.findForList("HUDH_YKZZ_MANU.findAllManu", dataMap);
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList("HUDH_YKZZ_MANU.findAllManu", dataMap);
     return list;
   }
   
-  public JSONObject findManuByCode(String manuCode)
-    throws Exception
-  {
+  public JSONObject findManuByCode(String manuCode) throws Exception {
     JSONObject jo = (JSONObject)this.dao.findForList("HUDH_YKZZ_MANU.findManuByCode", null);
     return jo;
   }

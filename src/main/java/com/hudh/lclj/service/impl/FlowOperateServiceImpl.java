@@ -15,7 +15,6 @@ import com.hudh.lclj.service.IFlowOperateService;
 import com.hudh.lclj.service.ILcljOperationNodeInforService;
 import com.hudh.lclj.service.ILcljOperationNodeRejectService;
 import com.hudh.util.HUDHUtil;
-import com.kqds.entity.sys.YZPerson;
 import com.kqds.util.sys.SessionUtil;
 import com.kqds.util.sys.YZUtility;
 import com.kqds.util.sys.chain.ChainUtil;
@@ -32,50 +31,66 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class FlowOperateServiceImpl
-  implements IFlowOperateService
-{
+public class FlowOperateServiceImpl implements IFlowOperateService {
   public static final String FLOW_OPERATE_SUBMIT = "Submit";
+  
   public static final String FLOW_OPERATE_REJECT = "reject";
+  
   public static final String FLOW_OPERATE_CREATE = "Create";
+  
   public static final Integer FLOW_EXAMINE_NO = Integer.valueOf(0);
+  
   public static final Integer FLOW_EXAMINE_YES = Integer.valueOf(1);
+  
   public static final Integer FLOW_OVERDUE_NO = Integer.valueOf(0);
+  
   public static final Integer FLOW_OVERDUE_YES = Integer.valueOf(1);
+  
   public static final String FLOW_STATUS_STAST = "Start";
+  
   public static final String FLOW_STATUS_PERSURMOUSET = "PerSurMouset";
+  
   public static final String FLOW_STATUS_AFTERSURMOUSET = "AfterSurMouset";
+  
   public static final String FLOW_STATUS_SURTRE = "Surtre";
+  
   public static final String FLOW_STATUS_THIRDREVIEW = "ThirdReview";
+  
   public static final String FLOW_STATUS_SECPHASE = "SecPhase";
+  
   public static final String FLOW_STATUS_SECPHASEREVIEW = "SecPhaseReview";
+  
   public static final String FLOW_STATUS_TRYON = "Tryon";
+  
   public static final String FLOW_STATUS_SECMOUSET = "SecMouset";
+  
   public static final String FLOW_STATUS_SECTRYON = "SecTryon";
+  
   public static final String FLOW_STATUS_END = "End";
+  
   @Autowired
   private LcljTrackDao lcljTrackDao;
+  
   @Autowired
   private LcljWorkListDao lcljWorkListDao;
+  
   @Autowired
   public HUDH_LcljVerificationSheetServiceImpl logic;
+  
   @Autowired
   private NodeConfigDao nodeConfigDao;
+  
   @Autowired
   private ILcljOperationNodeInforService iLcljOperationNodeInforService;
+  
   @Autowired
   private ILcljOperationNodeRejectService rejectService;
   
-  public void createFlow(LcljOrderTrack lcljOrderTrack, HttpServletRequest request)
-    throws Exception
-  {
+  public void createFlow(LcljOrderTrack lcljOrderTrack, HttpServletRequest request) throws Exception {
     String nodeJson = lcljOrderTrack.getNodes();
     List<LcljNodeConfig> nodeList = HUDHUtil.parseJsonToObjectList(nodeJson, LcljNodeConfig.class);
-    
-
     LcljWorklist workObj = new LcljWorklist();
-    if ((((LcljNodeConfig)nodeList.get(1)).getNodeName().equals("手术治疗")) || (((LcljNodeConfig)nodeList.get(1)).getNodeName().equals("手术治疗取模")))
-    {
+    if (((LcljNodeConfig)nodeList.get(1)).getNodeName().equals("手术治疗") || ((LcljNodeConfig)nodeList.get(1)).getNodeName().equals("手术治疗取模")) {
       workObj.setId(YZUtility.getUUID());
       workObj.setNodeStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_YWC);
       workObj.setFlowStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_JXZ);
@@ -92,11 +107,6 @@ public class FlowOperateServiceImpl
       workObj.setOverdue(FLOW_OVERDUE_NO);
       workObj.setOrganization(ChainUtil.getCurrentOrganization(request));
       this.lcljWorkListDao.insertWorkList(workObj);
-      
-
-
-
-
       workObj = new LcljWorklist();
       workObj.setId(YZUtility.getUUID());
       workObj.setNodeStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_JXZ);
@@ -111,9 +121,7 @@ public class FlowOperateServiceImpl
       workObj.setExamine(FLOW_EXAMINE_NO);
       workObj.setOverdue(FLOW_OVERDUE_NO);
       this.lcljWorkListDao.insertWorkList(workObj);
-    }
-    else
-    {
+    } else {
       workObj.setId(YZUtility.getUUID());
       workObj.setNodeStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_YWC);
       workObj.setFlowStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_JXZ);
@@ -130,7 +138,6 @@ public class FlowOperateServiceImpl
       workObj.setOverdue(FLOW_OVERDUE_NO);
       workObj.setOrganization(ChainUtil.getCurrentOrganization(request));
       this.lcljWorkListDao.insertWorkList(workObj);
-      
       workObj.setId(YZUtility.getUUID());
       workObj.setNodeStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_YWC);
       workObj.setFlowStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_JXZ);
@@ -147,8 +154,6 @@ public class FlowOperateServiceImpl
       workObj.setOverdue(FLOW_OVERDUE_NO);
       workObj.setOrganization(ChainUtil.getCurrentOrganization(request));
       this.lcljWorkListDao.insertWorkList(workObj);
-      
-
       workObj = new LcljWorklist();
       workObj.setId(YZUtility.getUUID());
       workObj.setNodeStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_JXZ);
@@ -163,48 +168,35 @@ public class FlowOperateServiceImpl
       workObj.setExamine(FLOW_EXAMINE_NO);
       workObj.setOverdue(FLOW_OVERDUE_NO);
       this.lcljWorkListDao.insertWorkList(workObj);
-    }
+    } 
   }
   
-  @Transactional(rollbackFor={Exception.class})
-  public void submitFlow(String orderNumber, HttpServletRequest request)
-    throws Exception
-  {
+  @Transactional(rollbackFor = {Exception.class})
+  public void submitFlow(String orderNumber, HttpServletRequest request) throws Exception {
     String nodeLimit = request.getParameter("nodeLimit");
     OperationNodeInfor dp = new OperationNodeInfor();
-    
     LcljWorklist tempWork = new LcljWorklist();
     tempWork.setFlowStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_JXZ);
     tempWork.setNodeStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_JXZ);
     tempWork.setOrderNumber(orderNumber);
     List<LcljWorklist> workList = this.lcljWorkListDao.findWorkByOrderNumber(tempWork);
-    if ((workList != null) && (workList.size() > 0))
-    {
-      LcljWorklist currentWork = (LcljWorklist)workList.get(0);
-      
-
+    if (workList != null && workList.size() > 0) {
+      LcljWorklist currentWork = workList.get(0);
       String dataId = currentWork.getDataId();
-      
       LcljNodeConfig nextNode = null;
-      
       List<LcljNodeConfig> nodes = HUDHUtil.parseJsonToObjectList(currentWork.getFlowInfo(), LcljNodeConfig.class);
       Collections.sort(nodes);
       int size = nodes.size();
       for (int i = 0; i < size; i++) {
-        if (currentWork.getNodeId().equals(((LcljNodeConfig)nodes.get(i)).getNodeId())) {
-          nextNode = (LcljNodeConfig)nodes.get(i + 1);
-        }
-      }
-      if (nextNode != null)
-      {
+        if (currentWork.getNodeId().equals(((LcljNodeConfig)nodes.get(i)).getNodeId()))
+          nextNode = nodes.get(i + 1); 
+      } 
+      if (nextNode != null) {
         dp.setOrder_number(currentWork.getOrderNumber());
         dp.setNodeId(currentWork.getNodeId());
         dp.setNodeName(currentWork.getNodeName());
-        
         OperationNodeInfor operationNodeInfor = this.iLcljOperationNodeInforService.insertOperationNodeInfor(dp, request, dataId);
-        
         LcljApprovedMemo lMemo = new LcljApprovedMemo();
-        
         lMemo.setSeqId(YZUtility.getUUID());
         lMemo.setLcljId(request.getParameter("lcljId"));
         lMemo.setNodeId(operationNodeInfor.getNodeId());
@@ -225,18 +217,14 @@ public class FlowOperateServiceImpl
           lMemo.setIsRejectStatus("0");
         } else {
           lMemo.setIsRejectStatus("1");
-        }
+        } 
         bachsaveRecord(lMemo);
-        
         currentWork.setDataId(operationNodeInfor.getSeqId());
         currentWork.setNodeStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_YWC);
         currentWork.setOperate("Submit");
         currentWork.setCreatetime(HUDHUtil.getCurrentTime("yyyy-MM-dd HH:mm:ss"));
         currentWork.setCreator(SessionUtil.getLoginPerson(request).getSeqId());
         this.lcljWorkListDao.updateWorkByOrderNumber(currentWork);
-        
-
-
         LcljWorklist nextWork = new LcljWorklist();
         nextWork = currentWork;
         nextWork.setId(YZUtility.getUUID());
@@ -250,60 +238,47 @@ public class FlowOperateServiceImpl
         nextWork.setCreator(null);
         nextWork.setDataId(null);
         nextWork.setFlowInfo(currentWork.getFlowInfo());
-        if (nextNode.getNodeId().equals("End"))
-        {
+        if (nextNode.getNodeId().equals("End")) {
           nextWork.setNodeStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_JXZ);
           nextWork.setFlowStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_YWC);
           nextWork.setCreatetime(HUDHUtil.getCurrentTime("yyyy-MM-dd HH:mm:ss"));
-        }
-        else
-        {
+        } else {
           nextWork.setNodeStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_JXZ);
           nextWork.setFlowStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_JXZ);
-        }
+        } 
         this.lcljWorkListDao.insertWorkList(nextWork);
-      }
-    }
+      } 
+    } 
   }
   
-  public void bachsaveRecord(LcljApprovedMemo lMemo)
-    throws Exception
-  {
+  public void bachsaveRecord(LcljApprovedMemo lMemo) throws Exception {
     this.logic.insert(lMemo);
   }
   
-  @Transactional(rollbackFor={Exception.class})
-  public void rejectFlow(String orderNumber, HttpServletRequest request)
-    throws Exception
-  {
+  @Transactional(rollbackFor = {Exception.class})
+  public void rejectFlow(String orderNumber, HttpServletRequest request) throws Exception {
     LcljOperateRejectRecord dp = new LcljOperateRejectRecord();
-    
     LcljWorklist tempWork = new LcljWorklist();
     tempWork.setFlowStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_JXZ);
     tempWork.setNodeStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_JXZ);
     tempWork.setOrderNumber(orderNumber);
     List<LcljWorklist> workList = this.lcljWorkListDao.findWorkByOrderNumber(tempWork);
-    if ((workList != null) && (workList.size() > 0))
-    {
-      LcljWorklist currentWork = (LcljWorklist)workList.get(0);
+    if (workList != null && workList.size() > 0) {
+      LcljWorklist currentWork = workList.get(0);
       LcljNodeConfig nextNode = null;
-      
       List<LcljNodeConfig> nodes = HUDHUtil.parseJsonToObjectList(currentWork.getFlowInfo(), LcljNodeConfig.class);
       Collections.sort(nodes);
       int size = nodes.size();
       for (int i = 0; i < size; i++) {
-        if (currentWork.getNodeId().equals(((LcljNodeConfig)nodes.get(i)).getNodeId())) {
-          nextNode = (LcljNodeConfig)nodes.get(i - 1);
-        }
-      }
-      if (nextNode != null)
-      {
+        if (currentWork.getNodeId().equals(((LcljNodeConfig)nodes.get(i)).getNodeId()))
+          nextNode = nodes.get(i - 1); 
+      } 
+      if (nextNode != null) {
         currentWork.setNodeStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_YWC);
         currentWork.setOperate("reject");
         currentWork.setCreatetime(HUDHUtil.getCurrentTime("yyyy-MM-dd HH:mm:ss"));
         currentWork.setCreator(SessionUtil.getLoginPerson(request).getSeqId());
         this.lcljWorkListDao.updateWorkByOrderNumber(currentWork);
-        
         LcljWorklist nextWork = new LcljWorklist();
         nextWork = currentWork;
         nextWork.setId(YZUtility.getUUID());
@@ -315,7 +290,6 @@ public class FlowOperateServiceImpl
         nextWork.setOverdue(FLOW_OVERDUE_NO);
         nextWork.setCreatetime(null);
         nextWork.setCreator(null);
-        
         nextWork.setDataId(selectHadWorkData(orderNumber, nextNode.getNodeId()));
         nextWork.setNodeStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_JXZ);
         nextWork.setFlowStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_JXZ);
@@ -324,206 +298,164 @@ public class FlowOperateServiceImpl
         dp.setNodeName(nextNode.getNodeName());
         dp.setOrderNumber(orderNumber);
         this.rejectService.insertOperationNodeReject(dp, request);
-      }
-    }
+      } 
+    } 
   }
   
-  public List<LcljWorklist> findHadWorkList(String orderNumber, HttpServletRequest request)
-    throws Exception
-  {
-    List<LcljWorklist> list = new ArrayList();
+  public List<LcljWorklist> findHadWorkList(String orderNumber, HttpServletRequest request) throws Exception {
+    List<LcljWorklist> list = new ArrayList<>();
     list = this.lcljWorkListDao.findHadWorkList(orderNumber);
     return list;
   }
   
-  private String selectHadWorkData(String orderNumber, String nodeId)
-    throws Exception
-  {
-    Map<String, String> dataMap = new HashMap();
+  private String selectHadWorkData(String orderNumber, String nodeId) throws Exception {
+    Map<String, String> dataMap = new HashMap<>();
     dataMap.put("orderNumber", orderNumber);
     dataMap.put("nodeId", nodeId);
     String dataId = null;
     LcljWorklist lcljWorklist = this.lcljWorkListDao.selectHadWorkData(dataMap);
-    if (lcljWorklist != null) {
-      dataId = lcljWorklist.getDataId();
-    }
+    if (lcljWorklist != null)
+      dataId = lcljWorklist.getDataId(); 
     return dataId;
   }
   
-  private String specialFlowDeal(OperationNodeInfor dp, LcljWorklist currentWork, HttpServletRequest request)
-    throws Exception
-  {
-    List<LcljNodeConfig> newNodeList = new ArrayList();
-    
+  private String specialFlowDeal(OperationNodeInfor dp, LcljWorklist currentWork, HttpServletRequest request) throws Exception {
+    List<LcljNodeConfig> newNodeList = new ArrayList<>();
     newNodeList = HUDHUtil.parseJsonToObjectList(currentWork.getFlowInfo(), LcljNodeConfig.class);
-    if (currentWork.getNodeId().equals("Surtre"))
-    {
+    if (currentWork.getNodeId().equals("Surtre")) {
       String assistOperation = dp.getAssist_operation();
-      if (YZUtility.isNotNullOrEmpty(assistOperation))
-      {
-        boolean preFiveSel = (assistOperation.indexOf("内提") != -1) || 
-          (assistOperation.indexOf("外提") != -1) || 
-          (assistOperation.indexOf("骨劈开") != -1) || 
-          (assistOperation.indexOf("骨挤压") != -1) || 
-          (assistOperation.indexOf("自体骨移植") != -1);
-        boolean isSixBone = assistOperation.indexOf("植骨") != -1;
-        if ((currentWork.getFlowCode().equals("SingleOrMultiNoBone")) || 
-          (currentWork.getFlowCode().equals("LocatorNoBone")) || 
-          (currentWork.getFlowCode().equals("AllonxNoBone")))
-        {
-          if (preFiveSel)
-          {
+      if (YZUtility.isNotNullOrEmpty(assistOperation)) {
+        boolean preFiveSel = !(assistOperation.indexOf("内提") == -1 && 
+          assistOperation.indexOf("外提") == -1 && 
+          assistOperation.indexOf("骨劈开") == -1 && 
+          assistOperation.indexOf("骨挤压") == -1 && 
+          assistOperation.indexOf("自体骨移植") == -1);
+        boolean isSixBone = (assistOperation.indexOf("植骨") != -1);
+        if (currentWork.getFlowCode().equals("SingleOrMultiNoBone") || 
+          currentWork.getFlowCode().equals("LocatorNoBone") || 
+          currentWork.getFlowCode().equals("AllonxNoBone")) {
+          if (preFiveSel) {
             newNodeList = findNodesToBone(currentWork, currentWork.getFlowCode(), request);
             updateOrderTrackBone(currentWork.getOrderNumber());
-            
             newNodeList = changeNodeLimit(newNodeList, "ThirdReview", "270");
-          }
-          else if ((isSixBone) && (!preFiveSel))
-          {
+          } else if (isSixBone && !preFiveSel) {
             newNodeList = findNodesToBone(currentWork, currentWork.getFlowCode(), request);
             updateOrderTrackBone(currentWork.getOrderNumber());
-          }
-        }
-        else if (((currentWork.getFlowCode().equals("SingleOrMultiBone")) || 
-          (currentWork.getFlowCode().equals("LocatorBone")) || 
-          (currentWork.getFlowCode().equals("AllonxBone"))) && 
-          (preFiveSel)) {
+          } 
+        } else if ((currentWork.getFlowCode().equals("SingleOrMultiBone") || 
+          currentWork.getFlowCode().equals("LocatorBone") || 
+          currentWork.getFlowCode().equals("AllonxBone")) && 
+          preFiveSel) {
           newNodeList = changeNodeLimit(newNodeList, "ThirdReview", "270");
-        }
-      }
-    }
-    if (currentWork.getNodeId().equals("Surtre"))
-    {
+        } 
+      } 
+    } 
+    if (currentWork.getNodeId().equals("Surtre")) {
       String abutmentStation = dp.getAbutment_station();
-      if (YZUtility.isNotNullOrEmpty(abutmentStation))
-      {
-        boolean isAbutment = (abutmentStation.indexOf("复合基台") != -1) || 
-          (abutmentStation.indexOf("locator基台") != -1) || 
-          (abutmentStation.indexOf("螺丝") != -1);
-        boolean idYhAbutment = abutmentStation.indexOf("愈合基台") != -1;
-        if ((idYhAbutment) && (!isAbutment))
-        {
+      if (YZUtility.isNotNullOrEmpty(abutmentStation)) {
+        boolean isAbutment = !(abutmentStation.indexOf("复合基台") == -1 && 
+          abutmentStation.indexOf("locator基台") == -1 && 
+          abutmentStation.indexOf("螺丝") == -1);
+        boolean idYhAbutment = (abutmentStation.indexOf("愈合基台") != -1);
+        if (idYhAbutment && !isAbutment) {
           newNodeList = deleteNodes(newNodeList, "SecPhase");
           newNodeList = deleteNodes(newNodeList, "SecPhaseReview");
-        }
-      }
-    }
-    if (currentWork.getNodeId().equals("Surtre"))
-    {
+        } 
+      } 
+    } 
+    if (currentWork.getNodeId().equals("Surtre")) {
       String connectingBridge = dp.getConnectingBridge();
-      if ((YZUtility.isNullorEmpty(connectingBridge)) && (
-        (currentWork.getFlowCode().equals("SingleOrMultiNoBone")) || 
-        (currentWork.getFlowCode().equals("SingleOrMultiBone")))) {
-        deleteNodes(newNodeList, "Tryon");
-      }
-    }
+      if (YZUtility.isNullorEmpty(connectingBridge) && (
+        currentWork.getFlowCode().equals("SingleOrMultiNoBone") || 
+        currentWork.getFlowCode().equals("SingleOrMultiBone")))
+        deleteNodes(newNodeList, "Tryon"); 
+    } 
     return JSON.toJSONString(newNodeList);
   }
   
-  private void specialCreateFlowDeal(List<LcljNodeConfig> nodeList, LcljWorklist workObj, LcljOrderTrack lcljOrderTrack)
-    throws Exception
-  {
-    if ((workObj.getFlowCode().equals("LocatorNoBone")) || (workObj.getFlowCode().equals("LocatorBone")) || 
-      (workObj.getFlowCode().equals("AllonxNoBone")) || (workObj.getFlowCode().equals("AllonxBone")))
-    {
+  private void specialCreateFlowDeal(List<LcljNodeConfig> nodeList, LcljWorklist workObj, LcljOrderTrack lcljOrderTrack) throws Exception {
+    if (workObj.getFlowCode().equals("LocatorNoBone") || workObj.getFlowCode().equals("LocatorBone") || 
+      workObj.getFlowCode().equals("AllonxNoBone") || workObj.getFlowCode().equals("AllonxBone")) {
       String modeoperation = lcljOrderTrack.getModeoperation();
-      if ((YZUtility.isNotNullOrEmpty(modeoperation)) && (modeoperation.equals("0"))) {
+      if (YZUtility.isNotNullOrEmpty(modeoperation) && modeoperation.equals("0")) {
         deleteNodes(nodeList, "AfterSurMouset");
-      } else if ((YZUtility.isNotNullOrEmpty(modeoperation)) && (modeoperation.equals("1"))) {
+      } else if (YZUtility.isNotNullOrEmpty(modeoperation) && modeoperation.equals("1")) {
         deleteNodes(nodeList, "PerSurMouset");
       } else {
         throw new Exception("操作失败");
-      }
-    }
+      } 
+    } 
   }
   
-  private List<LcljNodeConfig> findNodesToBone(LcljWorklist currentWork, String flowCode, HttpServletRequest request)
-    throws Exception
-  {
-    Map<String, String> dataMap = new HashMap();
-    List<LcljNodeConfig> list = new ArrayList();
+  private List<LcljNodeConfig> findNodesToBone(LcljWorklist currentWork, String flowCode, HttpServletRequest request) throws Exception {
+    Map<String, String> dataMap = new HashMap<>();
+    List<LcljNodeConfig> list = new ArrayList<>();
     dataMap.put("organization", ChainUtil.getCurrentOrganization(request));
     String orderNumber = currentWork.getOrderNumber();
-    if (flowCode.equals("SingleOrMultiNoBone"))
-    {
+    if (flowCode.equals("SingleOrMultiNoBone")) {
       dataMap.put("flowCode", "SingleOrMultiBone");
       list = this.nodeConfigDao.findAllNodeConfigByFlowCode(dataMap);
       currentWork.setFlowCode("SingleOrMultiBone");
-    }
-    if (flowCode.equals("LocatorNoBone"))
-    {
+    } 
+    if (flowCode.equals("LocatorNoBone")) {
       dataMap.put("flowCode", "LocatorBone");
       list = this.nodeConfigDao.findAllNodeConfigByFlowCode(dataMap);
       currentWork.setFlowCode("LocatorBone");
-      
       List<JSONObject> orderTrackList = this.lcljTrackDao.findLcljOrderTrackByOrderNumber(orderNumber);
       String modeoperation = ((JSONObject)orderTrackList.get(0)).getString("modeoperation");
       if (modeoperation.equals("0")) {
         deleteNodes(list, "AfterSurMouset");
       } else {
         deleteNodes(list, "PerSurMouset");
-      }
-    }
-    if (flowCode.equals("AllonxNoBone"))
-    {
+      } 
+    } 
+    if (flowCode.equals("AllonxNoBone")) {
       dataMap.put("flowCode", "AllonxBone");
       list = this.nodeConfigDao.findAllNodeConfigByFlowCode(dataMap);
       currentWork.setFlowCode("AllonxBone");
-      
       List<JSONObject> orderTrackList = this.lcljTrackDao.findLcljOrderTrackByOrderNumber(orderNumber);
       String modeoperation = ((JSONObject)orderTrackList.get(0)).getString("modeoperation");
       if (modeoperation.equals("0")) {
         deleteNodes(list, "AfterSurMouset");
       } else {
         deleteNodes(list, "PerSurMouset");
-      }
-    }
+      } 
+    } 
     return list;
   }
   
-  private List<LcljNodeConfig> changeNodeLimit(List<LcljNodeConfig> nodeList, String nodeId, String nodeLimit)
-  {
-    if (nodeList != null) {
+  private List<LcljNodeConfig> changeNodeLimit(List<LcljNodeConfig> nodeList, String nodeId, String nodeLimit) {
+    if (nodeList != null)
       for (LcljNodeConfig node : nodeList) {
-        if (node.getNodeId().equals(nodeId))
-        {
+        if (node.getNodeId().equals(nodeId)) {
           node.setNodeLimit(nodeLimit);
           break;
-        }
-      }
-    }
+        } 
+      }  
     return nodeList;
   }
   
-  private List<LcljNodeConfig> deleteNodes(List<LcljNodeConfig> nodeList, String nodeId)
-  {
-    if (nodeList != null)
-    {
+  private List<LcljNodeConfig> deleteNodes(List<LcljNodeConfig> nodeList, String nodeId) {
+    if (nodeList != null) {
       Iterator<LcljNodeConfig> it = nodeList.iterator();
       while (it.hasNext()) {
-        if (((LcljNodeConfig)it.next()).getNodeId().equals(nodeId)) {
-          it.remove();
-        }
-      }
-    }
+        if (((LcljNodeConfig)it.next()).getNodeId().equals(nodeId))
+          it.remove(); 
+      } 
+    } 
     return nodeList;
   }
   
-  public LcljWorklist findHadWorkByOrderNumberAndNodeId(Map<String, String> dataMap)
-    throws Exception
-  {
-    List<LcljWorklist> list = new ArrayList();
+  public LcljWorklist findHadWorkByOrderNumberAndNodeId(Map<String, String> dataMap) throws Exception {
+    List<LcljWorklist> list = new ArrayList<>();
     list = this.lcljWorkListDao.findHadWorkByOrderNumberAndNodeId(dataMap);
-    if (list.size() > 0) {
-      return (LcljWorklist)list.get(0);
-    }
+    if (list.size() > 0)
+      return list.get(0); 
     return null;
   }
   
-  private void updateOrderTrackBone(String orderNumber)
-    throws Exception
-  {
-    Map<String, String> dataMap = new HashMap();
+  private void updateOrderTrackBone(String orderNumber) throws Exception {
+    Map<String, String> dataMap = new HashMap<>();
     dataMap.put("bone", "是");
     dataMap.put("orderNumber", orderNumber);
     this.lcljTrackDao.updateOrderTrack(dataMap);

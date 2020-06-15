@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_ReceiveInfo_ContentLogic
-  extends BaseLogic
-{
+public class KQDS_ReceiveInfo_ContentLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
 }

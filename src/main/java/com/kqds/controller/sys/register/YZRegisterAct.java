@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"YZRegisterAct"})
-public class YZRegisterAct
-{
+public class YZRegisterAct {
   private Logger logger = LoggerFactory.getLogger(YZRegisterAct.class);
+  
   private YZRegisterLogic logic = new YZRegisterLogic();
 }

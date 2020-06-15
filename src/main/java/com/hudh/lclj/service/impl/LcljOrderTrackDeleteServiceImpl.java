@@ -12,15 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LcljOrderTrackDeleteServiceImpl
-  implements ILcljOrderTrackDeleteService
-{
+public class LcljOrderTrackDeleteServiceImpl implements ILcljOrderTrackDeleteService {
   @Autowired
   private LcljOrderTrackDeleteDao orderTrackDeleteDao;
   
-  public void save(LcljOrderTrackDeleteRecord dp, HttpServletRequest request)
-    throws Exception
-  {
+  public void save(LcljOrderTrackDeleteRecord dp, HttpServletRequest request) throws Exception {
     String order_number = request.getParameter("order_number");
     String lcljId = request.getParameter("lcljId");
     YZPerson person = SessionUtil.getLoginPerson(request);

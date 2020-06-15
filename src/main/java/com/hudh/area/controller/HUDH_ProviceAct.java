@@ -14,25 +14,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"HUDH_ProviceAct"})
-public class HUDH_ProviceAct
-{
+public class HUDH_ProviceAct {
   private Logger logger = LoggerFactory.getLogger(HUDH_ProviceAct.class);
+  
   @Autowired
   private IProviceService proviceService;
   
   @RequestMapping({"/findAll.act"})
-  public String findAll(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String findAll(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       List<JSONObject> list = this.proviceService.findAll();
       YZUtility.RETURN_LIST(list, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
 }

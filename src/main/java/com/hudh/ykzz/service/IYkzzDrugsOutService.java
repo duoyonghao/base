@@ -6,38 +6,26 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import net.sf.json.JSONObject;
 
-public abstract interface IYkzzDrugsOutService
-{
-  public abstract void insertDrugsOut(YkzzDrugsOut paramYkzzDrugsOut, String paramString, HttpServletRequest paramHttpServletRequest)
-    throws Exception;
+public interface IYkzzDrugsOutService {
+  void insertDrugsOut(YkzzDrugsOut paramYkzzDrugsOut, String paramString, HttpServletRequest paramHttpServletRequest) throws Exception;
   
-  public abstract List<JSONObject> findAllDrugsOut(Map<String, String> paramMap)
-    throws Exception;
+  List<JSONObject> findAllDrugsOut(Map<String, String> paramMap) throws Exception;
   
-  public abstract List<JSONObject> findDetailByParendId(String paramString)
-    throws Exception;
+  List<JSONObject> findDetailByParendId(String paramString) throws Exception;
   
-  public abstract String deleteDrugsOut(String paramString)
-    throws Exception;
+  String deleteDrugsOut(String paramString) throws Exception;
   
-  public abstract void deleteDrugsOutById(String paramString)
-    throws Exception;
+  void deleteDrugsOutById(String paramString) throws Exception;
   
-  public abstract void deleteDrugsOutDetailByParendId(String paramString)
-    throws Exception;
+  void deleteDrugsOutDetailByParendId(String paramString) throws Exception;
   
-  public abstract String getDrugsInBatchnum(String paramString1, String paramString2)
-    throws Exception;
+  String getDrugsInBatchnum(String paramString1, String paramString2) throws Exception;
   
-  public abstract String findOutNumByOrderno(String paramString1, String paramString2)
-    throws Exception;
+  String findOutNumByOrderno(String paramString1, String paramString2) throws Exception;
   
-  public abstract String findOutNumsByAll()
-    throws Exception;
+  String findOutNumsByAll() throws Exception;
   
-  public abstract String findBatchnumSaveOutNumsByOrdernoAndBatchnum(String paramString1, String paramString2)
-    throws Exception;
+  String findBatchnumSaveOutNumsByOrdernoAndBatchnum(String paramString1, String paramString2) throws Exception;
   
-  public abstract String findOutNumsByBatchnumSave()
-    throws Exception;
+  String findOutNumsByBatchnumSave() throws Exception;
 }

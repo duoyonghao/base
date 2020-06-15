@@ -28,16 +28,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_BLK_ChaiXianAct"})
-public class KQDS_BLK_ChaiXianAct
-{
+public class KQDS_BLK_ChaiXianAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_BLK_ChaiXianAct.class);
+  
   @Autowired
   private KQDS_BLKLogic logic;
   
   @RequestMapping({"/toZhongZhi_Suture_Removal_Huifu.act"})
-  public ModelAndView toZhongZhi_Suture_Removal_Huifu(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toZhongZhi_Suture_Removal_Huifu(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     String mtype = request.getParameter("mtype");
     String type = request.getParameter("type");
@@ -52,9 +50,7 @@ public class KQDS_BLK_ChaiXianAct
   }
   
   @RequestMapping({"/toZhongZhi_Suture_Removal_Detail.act"})
-  public ModelAndView toZhongZhi_Suture_Removal_Detail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toZhongZhi_Suture_Removal_Detail(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     String mtype = request.getParameter("mtype");
     String type = request.getParameter("type");
@@ -69,9 +65,7 @@ public class KQDS_BLK_ChaiXianAct
   }
   
   @RequestMapping({"/toZhongZhi_Suture_Removal_Add.act"})
-  public ModelAndView toZhongZhi_Suture_Removal_Add(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toZhongZhi_Suture_Removal_Add(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String usercode = request.getParameter("usercode");
     String regno = request.getParameter("regno");
     ModelAndView mv = new ModelAndView();
@@ -82,11 +76,8 @@ public class KQDS_BLK_ChaiXianAct
   }
   
   @RequestMapping({"/insertOrUpdate.act"})
-  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
       KqdsBlk dp = new KqdsBlk();
       KqdsBlkReview chaixian = new KqdsBlkReview();
@@ -94,68 +85,52 @@ public class KQDS_BLK_ChaiXianAct
       BeanUtils.populate(chaixian, request.getParameterMap());
       String seqId = request.getParameter("seqId");
       String subSeqId = request.getParameter("subSeqId");
-      if (!YZUtility.isNullorEmpty(seqId))
-      {
-        if (YZUtility.isNullorEmpty(subSeqId)) {
-          throw new Exception("病历内容表主键不能为空");
-        }
+      if (!YZUtility.isNullorEmpty(seqId)) {
+        if (YZUtility.isNullorEmpty(subSeqId))
+          throw new Exception("病历内容表主键不能为空"); 
         KqdsBlk m = (KqdsBlk)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_BLK, seqId);
-        if (m == null) {
-          throw new Exception("病历不存在");
-        }
+        if (m == null)
+          throw new Exception("病历不存在"); 
         dp.setMtype(m.getMtype());
-        
         KqdsBlkReview subM = (KqdsBlkReview)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_BLK_REVIEW, subSeqId);
-        if (subM == null) {
-          throw new Exception("病历内容不存在");
-        }
+        if (subM == null)
+          throw new Exception("病历内容不存在"); 
         dp.setCreatetime(YZUtility.getCurDateTimeStr());
         dp.setCreateuser(person.getSeqId());
         dp.setOrganization(ChainUtil.getCurrentOrganization(request));
         this.logic.updateSingleUUID(TableNameUtil.KQDS_BLK, dp);
-        
         chaixian.setSeqId(subSeqId);
         this.logic.updateSingleUUID(TableNameUtil.KQDS_BLK_REVIEW, chaixian);
-        
         BcjlUtil.LogBcjl(BcjlUtil.MODIFY, BcjlUtil.KQDS_BLK_REVIEW, chaixian, TableNameUtil.KQDS_BLK_REVIEW, request);
-      }
-      else
-      {
+      } else {
         String type = request.getParameter("type");
         String meid = request.getParameter("meid");
         String blname = request.getParameter("blname");
-        if (YZUtility.isNullorEmpty(meid))
-        {
+        if (YZUtility.isNullorEmpty(meid)) {
           dp.setMtype(BLUtil.MTYPE_3);
           dp.setSeqId(YZUtility.getUUID());
           dp.setCreatetime(YZUtility.getCurDateTimeStr());
-          dp.setCreateuser(person.getSeqId());
+          dp.setCreateuser((new StringBuilder(String.valueOf(person.getSeqId()))).toString());
           dp.setOrganization(ChainUtil.getCurrentOrganization(request));
           this.logic.saveSingleUUID(TableNameUtil.KQDS_BLK, dp);
-          
           chaixian.setSeqId(YZUtility.getUUID());
           chaixian.setMeid(dp.getSeqId());
           chaixian.setOrganization(ChainUtil.getCurrentOrganization(request));
-          
           chaixian.setCreatetime(YZUtility.getCurDateTimeStr());
-          chaixian.setCreateuser(person.getSeqId());
+          chaixian.setCreateuser((new StringBuilder(String.valueOf(person.getSeqId()))).toString());
           this.logic.saveSingleUUID(TableNameUtil.KQDS_BLK_REVIEW, chaixian);
-        }
-        else
-        {
+        } else {
           KqdsMedicalrecord m = (KqdsMedicalrecord)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_MEDICALRECORD, meid);
-          if (m == null) {
-            throw new Exception("病历不存在");
-          }
-          Map<String, String> map = new HashMap();
+          if (m == null)
+            throw new Exception("病历不存在"); 
+          Map<String, String> map = new HashMap<>();
           map.put("meid", meid);
-          List<KqdsMedicalrecordReview> list = (List)this.logic.loadList(TableNameUtil.KQDS_MEDICALRECORD_REVIEW, map);
-          if ((list == null) || (list.isEmpty())) {
-            throw new Exception("病历内容不存在");
-          }
-          KqdsMedicalrecordReview zhongzhiM = (KqdsMedicalrecordReview)list.get(0);
+          List<KqdsMedicalrecordReview> list = (List<KqdsMedicalrecordReview>)this.logic.loadList(TableNameUtil.KQDS_MEDICALRECORD_REVIEW, map);
+          if (list == null || list.isEmpty())
+            throw new Exception("病历内容不存在"); 
+          KqdsMedicalrecordReview zhongzhiM = list.get(0);
           String mseqId = YZUtility.getUUID();
-          dp.setMtype(m.getMtype());
+          dp.setMtype((String)m.getMtype());
           dp.setBlname(blname);
           dp.setSeqId(mseqId);
           dp.setType(type);
@@ -163,28 +138,23 @@ public class KQDS_BLK_ChaiXianAct
           dp.setCreateuser(person.getSeqId());
           dp.setOrganization(ChainUtil.getCurrentOrganization(request));
           this.logic.saveSingleUUID(TableNameUtil.KQDS_BLK, dp);
-          
-
           chaixian = (KqdsBlkReview)YZUtility.Obj1ToObj2(zhongzhiM, chaixian);
           chaixian.setSeqId(YZUtility.getUUID());
           chaixian.setMeid(dp.getSeqId());
           chaixian.setOrganization(ChainUtil.getCurrentOrganization(request));
-          
           chaixian.setCreatetime(YZUtility.getCurDateTimeStr());
           chaixian.setCreateuser(person.getSeqId());
           this.logic.saveSingleUUID(TableNameUtil.KQDS_BLK_REVIEW, chaixian);
-        }
+        } 
         BcjlUtil.LogBcjl(BcjlUtil.NEW, BcjlUtil.KQDS_BLK_REVIEW, chaixian, TableNameUtil.KQDS_BLK_REVIEW, request);
-      }
+      } 
       JSONObject jobj = new JSONObject();
       jobj.put("retState", "0");
       jobj.put("id", dp.getSeqId());
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

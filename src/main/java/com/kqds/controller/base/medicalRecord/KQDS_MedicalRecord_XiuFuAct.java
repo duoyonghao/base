@@ -23,18 +23,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"KQDS_MedicalRecord_XiuFuAct"})
-public class KQDS_MedicalRecord_XiuFuAct
-{
+public class KQDS_MedicalRecord_XiuFuAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_MedicalRecord_XiuFuAct.class);
+  
   @Autowired
   private Kqds_MediaRecordLogic logic;
   
   @RequestMapping({"/insertOrUpdate.act"})
-  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
       KqdsMedicalrecord dp = new KqdsMedicalrecord();
       KqdsMedicalrecordRestoration xiufu = new KqdsMedicalrecordRestoration();
@@ -42,48 +39,35 @@ public class KQDS_MedicalRecord_XiuFuAct
       BeanUtils.populate(xiufu, request.getParameterMap());
       String seqId = request.getParameter("seqId");
       String subSeqId = request.getParameter("subSeqId");
-      if (!YZUtility.isNullorEmpty(seqId))
-      {
-        if (YZUtility.isNullorEmpty(subSeqId)) {
-          throw new Exception("病历内容表主键不能为空");
-        }
+      if (!YZUtility.isNullorEmpty(seqId)) {
+        if (YZUtility.isNullorEmpty(subSeqId))
+          throw new Exception("病历内容表主键不能为空"); 
         KqdsMedicalrecord m = (KqdsMedicalrecord)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_MEDICALRECORD, seqId);
-        if (m == null) {
-          throw new Exception("病历不存在");
-        }
-        if (2 == m.getStatus().intValue())
-        {
+        if (m == null)
+          throw new Exception("病历不存在"); 
+        if (2 == m.getStatus().intValue()) {
           String yuanzhang = SysParaUtil.getSysValueByName(request, SysParaUtil.PRIV_YUANZHANG_SEQID);
-          if ((!"admin".equals(person.getUserId())) && (YZUtility.isStrInArrayEach(person.getUserPriv(), yuanzhang)) && 
-            (YZUtility.isStrInArrayEach(person.getUserPrivOther(), yuanzhang))) {
-            throw new Exception("不允许修改已提交的病历");
-          }
-        }
+          if (!"admin".equals(person.getUserId()) && YZUtility.isStrInArrayEach(person.getUserPriv(), yuanzhang) && 
+            YZUtility.isStrInArrayEach(person.getUserPrivOther(), yuanzhang))
+            throw new Exception("不允许修改已提交的病历"); 
+        } 
         dp.setMtype(m.getMtype());
         dp.setUsercode(m.getUsercode());
         dp.setRegno(m.getRegno());
-        
         KqdsMedicalrecordRestoration subM = (KqdsMedicalrecordRestoration)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_MEDICALRECORD_RESTORATION, subSeqId);
-        if (subM == null) {
-          throw new Exception("病历内容不存在");
-        }
+        if (subM == null)
+          throw new Exception("病历内容不存在"); 
         dp.setRegno(m.getRegno());
         dp.setCreatetime(YZUtility.getCurDateTimeStr());
         dp.setCreateuser(person.getSeqId());
         dp.setOrganization(ChainUtil.getCurrentOrganization(request));
         this.logic.updateSingleUUID(TableNameUtil.KQDS_MEDICALRECORD, dp);
-        
         xiufu.setSeqId(subSeqId);
         this.logic.updateSingleUUID(TableNameUtil.KQDS_MEDICALRECORD_RESTORATION, xiufu);
-        
-
         BcjlUtil.LogBcjlWithUserCode(BcjlUtil.MODIFY, BcjlUtil.KQDS_MEDICALRECORD_RESTORATION, xiufu, xiufu.getUsercode(), TableNameUtil.KQDS_MEDICALRECORD_RESTORATION, 
-          request);
-      }
-      else
-      {
+            request);
+      } else {
         String organization = ChainUtil.getCurrentOrganization(request);
-        
         String mseqId = BLCodeUtil.getBLCode(organization);
         dp.setMtype(Integer.valueOf(5));
         dp.setSeqId(mseqId);
@@ -91,28 +75,22 @@ public class KQDS_MedicalRecord_XiuFuAct
         dp.setCreateuser(person.getSeqId());
         dp.setOrganization(ChainUtil.getCurrentOrganization(request));
         this.logic.saveSingleUUID(TableNameUtil.KQDS_MEDICALRECORD, dp);
-        
         xiufu.setSeqId(YZUtility.getUUID());
         xiufu.setMeid(dp.getSeqId());
         xiufu.setOrganization(ChainUtil.getCurrentOrganization(request));
-        
         xiufu.setCreatetime(YZUtility.getCurDateTimeStr());
         xiufu.setCreateuser(person.getSeqId());
         this.logic.saveSingleUUID(TableNameUtil.KQDS_MEDICALRECORD_RESTORATION, xiufu);
-        
-
         BcjlUtil.LogBcjlWithUserCode(BcjlUtil.NEW, BcjlUtil.KQDS_MEDICALRECORD_RESTORATION, xiufu, xiufu.getUsercode(), TableNameUtil.KQDS_MEDICALRECORD_RESTORATION, 
-          request);
-      }
+            request);
+      } 
       JSONObject jobj = new JSONObject();
       jobj.put("retState", "0");
       jobj.put("id", dp.getSeqId());
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

@@ -24,16 +24,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_Ck_HouseAct"})
-public class KQDS_Ck_HouseAct
-{
+public class KQDS_Ck_HouseAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_Ck_HouseAct.class);
+  
   @Autowired
   private KQDS_Ck_HouseLogic logic;
   
   @RequestMapping({"/toGoodsHouse.act"})
-  public ModelAndView toGoodsHouse(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toGoodsHouse(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String sshouse = request.getParameter("sshouse");
     String type = request.getParameter("type");
     String menuid = request.getParameter("menuid");
@@ -46,9 +44,7 @@ public class KQDS_Ck_HouseAct
   }
   
   @RequestMapping({"/toSave.act"})
-  public ModelAndView toSave(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toSave(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     ModelAndView mv = new ModelAndView();
     mv.addObject("seqId", seqId);
@@ -57,128 +53,92 @@ public class KQDS_Ck_HouseAct
   }
   
   @RequestMapping({"/toCkHouse.act"})
-  public ModelAndView toCkHouse(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toCkHouse(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/kqdsFront/ck/house/ck_house.jsp");
     return mv;
   }
   
   @RequestMapping({"/insertOrUpdate.act"})
-  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
       KqdsCkHouse dp = new KqdsCkHouse();
       BeanUtils.populate(dp, request.getParameterMap());
       String seqId = request.getParameter("seqId");
-      if (!YZUtility.isNullorEmpty(seqId))
-      {
+      if (!YZUtility.isNullorEmpty(seqId)) {
         this.logic.updateSingleUUID(TableNameUtil.KQDS_CK_HOUSE, dp);
-        
         BcjlUtil.LogBcjl(BcjlUtil.MODIFY, BcjlUtil.KQDS_CK_HOUSE, dp, TableNameUtil.KQDS_CK_HOUSE, request);
-      }
-      else
-      {
+      } else {
         String uuid = YZUtility.getUUID();
         dp.setSeqId(uuid);
         dp.setCreatetime(YZUtility.getCurDateTimeStr());
         dp.setCreateuser(person.getSeqId());
         dp.setOrganization(ChainUtil.getCurrentOrganization(request));
         this.logic.saveSingleUUID(TableNameUtil.KQDS_CK_HOUSE, dp);
-        
         BcjlUtil.LogBcjl(BcjlUtil.NEW, BcjlUtil.KQDS_CK_HOUSE, dp, TableNameUtil.KQDS_CK_HOUSE, request);
-      }
+      } 
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/deleteObj.act"})
-  public String deleteObj(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String deleteObj(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
-      if (YZUtility.isNullorEmpty(seqId)) {
-        throw new Exception("主键为空或者null");
-      }
+      if (YZUtility.isNullorEmpty(seqId))
+        throw new Exception("主键为空或者null"); 
       KqdsCkHouse en = (KqdsCkHouse)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_CK_HOUSE, seqId);
       this.logic.deleteSingleUUID(TableNameUtil.KQDS_CK_HOUSE, seqId);
-      
       BcjlUtil.LogBcjl(BcjlUtil.DELETE, BcjlUtil.KQDS_CK_HOUSE, en, TableNameUtil.KQDS_CK_HOUSE, request);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectDetail.act"})
-  public String selectDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
       KqdsCkHouse en = (KqdsCkHouse)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_CK_HOUSE, seqId);
-      if (en == null) {
-        throw new Exception("数据不存在");
-      }
+      if (en == null)
+        throw new Exception("数据不存在"); 
       JSONObject jobj = new JSONObject();
       jobj.put("data", en);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectList.act"})
-  public String selectList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
-      Map<String, String> map = new HashMap();
+  public String selectList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
+      Map<String, String> map = new HashMap<>();
       map.put("type", request.getParameter("type"));
       map.put("organization", ChainUtil.getCurrentOrganization(request));
       List<JSONObject> list = this.logic.selectList(map);
-      
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/emptyCK.act"})
-  public String emptyCK(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String emptyCK(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       this.logic.emptyCK();
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

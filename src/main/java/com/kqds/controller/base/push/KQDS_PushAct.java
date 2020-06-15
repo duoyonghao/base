@@ -31,27 +31,24 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_PushAct"})
-public class KQDS_PushAct
-{
+public class KQDS_PushAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_PushAct.class);
+  
   @Autowired
   private KQDS_Pushogic logic;
+  
   @Autowired
   private IAddVisitService visitService;
   
   @RequestMapping({"/toPushIndex.act"})
-  public ModelAndView toPushIndex(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toPushIndex(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/kqdsFront/push/pushIndex.jsp");
     return mv;
   }
   
   @RequestMapping({"/toPushList.act"})
-  public ModelAndView toPushList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toPushList(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String iscs = request.getParameter("iscs");
     ModelAndView mv = new ModelAndView();
     mv.addObject("iscs", iscs);
@@ -60,164 +57,124 @@ public class KQDS_PushAct
   }
   
   @RequestMapping({"/selectPage.act"})
-  public String selectPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       BootStrapPage bp = new BootStrapPage();
-      
       BeanUtils.populate(bp, request.getParameterMap());
       YZPerson person = SessionUtil.getLoginPerson(request);
-      Map<String, String> map = new HashMap();
+      Map<String, String> map = new HashMap<>();
       String notifytype = request.getParameter("notifytype");
-      if (!YZUtility.isNullorEmpty(notifytype)) {
-        map.put("notifytype", notifytype);
-      }
+      if (!YZUtility.isNullorEmpty(notifytype))
+        map.put("notifytype", notifytype); 
       String pcpushed = request.getParameter("pcpushed");
-      if (!YZUtility.isNullorEmpty(pcpushed)) {
+      if (!YZUtility.isNullorEmpty(pcpushed))
         if ("已推送".equals(pcpushed)) {
           map.put("pcpushed", "1");
         } else {
           map.put("pcpushed", "0");
-        }
-      }
+        }  
       String pcpushreaded = request.getParameter("pcpushreaded");
-      if (!YZUtility.isNullorEmpty(pcpushreaded)) {
+      if (!YZUtility.isNullorEmpty(pcpushreaded))
         if ("已读".equals(pcpushreaded)) {
           map.put("pcpushreaded", "1");
         } else {
           map.put("pcpushreaded", "0");
-        }
-      }
+        }  
       JSONObject json = new JSONObject();
       String iscs = request.getParameter("iscs");
-      if (!YZUtility.isNullorEmpty(iscs)) {
-        map.put("iscs", iscs);
-      }
+      if (!YZUtility.isNullorEmpty(iscs))
+        map.put("iscs", iscs); 
       map.put("reciveuser", person.getSeqId());
       JSONObject data = this.logic.selectWithPage(TableNameUtil.KQDS_PUSH, bp, map, json);
       YZUtility.DEAL_SUCCESS(data, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectPageNum.act"})
-  public String selectPageNum(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectPageNum(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
       int total = this.logic.selectPageNum(person.getSeqId());
       JSONObject jobj = new JSONObject();
       jobj.put("total", Integer.valueOf(total));
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/updateReadStatus.act"})
-  public String updateReadStatus(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String updateReadStatus(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       KqdsPush dp = new KqdsPush();
       BeanUtils.populate(dp, request.getParameterMap());
-      if (YZUtility.isNullorEmpty(dp.getSeqId()))
-      {
+      if (YZUtility.isNullorEmpty(dp.getSeqId())) {
         YZPerson person = SessionUtil.getLoginPerson(request);
         dp.setReciveuser(person.getSeqId());
-      }
+      } 
       this.logic.updateReadStatus(dp);
-      
       BcjlUtil.LogBcjl(BcjlUtil.UPDATE_STATUS, BcjlUtil.KQDS_PUSH, dp, TableNameUtil.KQDS_PUSH, request);
-      
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/updatePushStatus.act"})
-  public String updatePushStatus(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String updatePushStatus(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       KqdsPush dp = new KqdsPush();
       BeanUtils.populate(dp, request.getParameterMap());
       this.logic.updatePushStatus(dp);
-      
       BcjlUtil.LogBcjl(BcjlUtil.UPDATE_STATUS, BcjlUtil.KQDS_PUSH, dp, TableNameUtil.KQDS_PUSH, request);
-      
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectTop5ByTime.act"})
-  public String selectTop5ByTime(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectTop5ByTime(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String userId = request.getParameter("subPageUserId");
       SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
       String time = df.format(new Date());
-      
-      Map<String, String> map2 = new HashMap();
+      Map<String, String> map2 = new HashMap<>();
       YZPerson person = SessionUtil.getLoginPerson(request);
       map2.put("seqid", person.getSeqId());
       map2.put("time", time);
       map2.put("reciveuser", person.getSeqId());
       map2.put("notifyType", "回访提醒");
       map2.put("organization", ChainUtil.getCurrentOrganization(request));
-      map2.put("starttime", time + ConstUtil.TIME_START);
-      map2.put("endtime", time + ConstUtil.TIME_END);
-      
+      map2.put("starttime", String.valueOf(time) + ConstUtil.TIME_START);
+      map2.put("endtime", String.valueOf(time) + ConstUtil.TIME_END);
       String seqid = this.logic.selectPushSeqid(map2);
-      if (YZUtility.isNullorEmpty(seqid))
-      {
+      if (YZUtility.isNullorEmpty(seqid)) {
         int l = this.visitService.findvisitByTimeNum(map2);
-        if (l > 0)
-        {
+        if (l > 0) {
           KqdsVisit visit = new KqdsVisit();
           visit.setVisitor(person.getSeqId());
           visit.setUsername(person.getUserName());
           visit.setVisittime(time);
           PushUtil.selectTx4NewVisit(visit, request);
-        }
-      }
-      Map<String, String> map1 = new HashMap();
+        } 
+      } 
+      Map<String, String> map1 = new HashMap<>();
       map1.put("userId", userId);
-      map1.put("starttime", time + ConstUtil.TIME_START);
-      map1.put("endtime", time + ConstUtil.TIME_END);
+      map1.put("starttime", String.valueOf(time) + ConstUtil.TIME_START);
+      map1.put("endtime", String.valueOf(time) + ConstUtil.TIME_END);
       List<JSONObject> list = this.logic.selectTop5ByTime(map1);
-      
       BcjlUtil.LogBcjl("查询推送消息", BcjlUtil.KQDS_PUSH, userId, TableNameUtil.KQDS_PUSH, request);
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

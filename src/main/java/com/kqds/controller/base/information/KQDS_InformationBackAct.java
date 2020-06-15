@@ -15,6 +15,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,16 +33,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_InformationBackAct"})
-public class KQDS_InformationBackAct
-{
+public class KQDS_InformationBackAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_InformationBackAct.class);
+  
   @Autowired
   private KQDS_InformationLogic logic = new KQDS_InformationLogic();
   
   @RequestMapping({"/toIndex.act"})
-  public ModelAndView toIndex(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toIndex(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
     mv.addObject("organization", organization);
@@ -50,9 +49,7 @@ public class KQDS_InformationBackAct
   }
   
   @RequestMapping({"/toEdit.act"})
-  public ModelAndView toEdit(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toEdit(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     ModelAndView mv = new ModelAndView();
     mv.addObject("seqId", seqId);
@@ -61,9 +58,7 @@ public class KQDS_InformationBackAct
   }
   
   @RequestMapping({"/toDetail.act"})
-  public ModelAndView toDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     ModelAndView mv = new ModelAndView();
     mv.addObject("seqId", seqId);
@@ -72,9 +67,7 @@ public class KQDS_InformationBackAct
   }
   
   @RequestMapping({"/toNewAdd.act"})
-  public ModelAndView toNewAdd(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toNewAdd(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
     mv.addObject("organization", organization);
@@ -83,159 +76,111 @@ public class KQDS_InformationBackAct
   }
   
   @RequestMapping({"/insertOrUpdate.act"})
-  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
-      
       KqdsInformation dp = new KqdsInformation();
       BeanUtils.populate(dp, request.getParameterMap());
       String seqId = request.getParameter("seqId");
-      if (!YZUtility.isNullorEmpty(seqId))
-      {
+      if (!YZUtility.isNullorEmpty(seqId)) {
         this.logic.updateSingleUUID(TableNameUtil.KQDS_INFORMATION, dp);
-        
         BcjlUtil.LogBcjl(BcjlUtil.MODIFY, BcjlUtil.KQDS_INFORMATION, dp, TableNameUtil.KQDS_INFORMATION, request);
-      }
-      else
-      {
+      } else {
         String uuid = YZUtility.getUUID();
         dp.setSeqId(uuid);
         dp.setCreatetime(YZUtility.getCurDateTimeStr());
         dp.setCreateuser(person.getSeqId());
         dp.setOrganization(ChainUtil.getOrganizationFromUrlCanNull(request));
         this.logic.saveSingleUUID(TableNameUtil.KQDS_INFORMATION, dp);
-        
         BcjlUtil.LogBcjl(BcjlUtil.NEW, BcjlUtil.KQDS_INFORMATION, dp, TableNameUtil.KQDS_INFORMATION, request);
-      }
+      } 
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/deleteObj.act"})
-  public String deleteObj(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String deleteObj(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
-      if (YZUtility.isNullorEmpty(seqId)) {
-        throw new Exception("主键为空或者null");
-      }
+      if (YZUtility.isNullorEmpty(seqId))
+        throw new Exception("主键为空或者null"); 
       KqdsInformation en = (KqdsInformation)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_INFORMATION, seqId);
       this.logic.deleteSingleUUID(TableNameUtil.KQDS_INFORMATION, seqId);
-      
       BcjlUtil.LogBcjl(BcjlUtil.DELETE, BcjlUtil.KQDS_INFORMATION, en, TableNameUtil.KQDS_INFORMATION, request);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectDetail.act"})
-  public String selectDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
       KqdsInformation en = (KqdsInformation)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_INFORMATION, seqId);
-      if (en == null) {
-        throw new Exception("数据不存在");
-      }
+      if (en == null)
+        throw new Exception("数据不存在"); 
       JSONObject jobj = new JSONObject();
       jobj.put("data", en);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectPage.act"})
-  public String selectPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       BootStrapPage bp = new BootStrapPage();
-      
       BeanUtils.populate(bp, request.getParameterMap());
       String type = request.getParameter("type");
       String title = request.getParameter("title");
-      Map<String, String> map = new HashMap();
-      if (!YZUtility.isNullorEmpty(type)) {
-        map.put("type", type);
-      }
-      if (!YZUtility.isNullorEmpty(title)) {
-        map.put("title", title);
-      }
+      Map<String, String> map = new HashMap<>();
+      if (!YZUtility.isNullorEmpty(type))
+        map.put("type", type); 
+      if (!YZUtility.isNullorEmpty(title))
+        map.put("title", title); 
       map.put("organization", ChainUtil.getOrganizationFromUrlCanNull(request));
       JSONObject data = this.logic.selectWithPage(TableNameUtil.KQDS_INFORMATION, bp, map);
       YZUtility.DEAL_SUCCESS(data, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/excelStandardTemplateOut.act"})
-  public void excelStandardTemplateOut(HttpServletRequest request, HttpServletResponse response)
-    throws IOException
-  {
-    File f = new File(ConstUtil.ROOT_DIR + "\\model\\信息库导入模板.xls");
-    
+  public void excelStandardTemplateOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    File f = new File(String.valueOf(ConstUtil.ROOT_DIR) + "\\model\\信息库导入模板.xls");
     response.reset();
     response.setContentType("application/vnd.ms-excel;charset=utf-8");
-    try
-    {
+    try {
       response.setHeader("Content-Disposition", "attachment;filename=" + new String("信息库导入模板.xls".getBytes(), "iso-8859-1"));
-    }
-    catch (UnsupportedEncodingException e)
-    {
+    } catch (UnsupportedEncodingException e) {
       e.printStackTrace();
-    }
+    } 
     ServletOutputStream out = response.getOutputStream();
     BufferedInputStream bis = null;
     BufferedOutputStream bos = null;
-    try
-    {
+    try {
       bis = new BufferedInputStream(new FileInputStream(f));
-      bos = new BufferedOutputStream(out);
+      bos = new BufferedOutputStream((OutputStream)out);
       byte[] buff = new byte[2048];
       int bytesRead;
       while (-1 != (bytesRead = bis.read(buff, 0, buff.length)))
-      {
-        int bytesRead;
-        bos.write(buff, 0, bytesRead);
-      }
-    }
-    catch (IOException e)
-    {
+        bos.write(buff, 0, bytesRead); 
+    } catch (IOException e) {
       throw e;
-    }
-    finally
-    {
-      if (bis != null) {
-        bis.close();
-      }
-      if (bos != null) {
-        bos.close();
-      }
-    }
+    } finally {
+      if (bis != null)
+        bis.close(); 
+      if (bos != null)
+        bos.close(); 
+    } 
   }
 }

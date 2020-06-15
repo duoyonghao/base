@@ -11,15 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_Ck_HouseLogic
-  extends BaseLogic
-{
+public class KQDS_Ck_HouseLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public void emptyCK()
-    throws Exception
-  {
+  public void emptyCK() throws Exception {
     this.dao.deleteAll(TableNameUtil.KQDS_CK_DEPT);
     this.dao.deleteAll(TableNameUtil.KQDS_CK_GOODS);
     this.dao.deleteAll(TableNameUtil.KQDS_CK_GOODS_DETAIL);
@@ -32,21 +28,16 @@ public class KQDS_Ck_HouseLogic
     this.dao.deleteAll(TableNameUtil.KQDS_CK_SUPPLIER);
   }
   
-  public List<JSONObject> selectList(Map<String, String> map)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_CK_HOUSE + ".selectList", map);
+  public List<JSONObject> selectList(Map<String, String> map) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_CK_HOUSE) + ".selectList", map);
     return list;
   }
   
-  public String getUniCodeByName(String housename)
-    throws Exception
-  {
+  public String getUniCodeByName(String housename) throws Exception {
     String code = ChineseCharToEn.getAllFirstLetter_RandNum(housename);
-    int count = ((Integer)this.dao.findForObject(TableNameUtil.KQDS_CK_HOUSE + ".getUniCodeByName", housename)).intValue();
-    if (count == 0) {
-      return code;
-    }
+    int count = ((Integer)this.dao.findForObject(String.valueOf(TableNameUtil.KQDS_CK_HOUSE) + ".getUniCodeByName", housename)).intValue();
+    if (count == 0)
+      return code; 
     return getUniCodeByName(housename);
   }
 }

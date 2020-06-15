@@ -8,11 +8,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"/HUDH_ZzblViewAct"})
-public class HUDH_ZzblViewAct
-{
+public class HUDH_ZzblViewAct {
   @RequestMapping({"/toAnamnesis.act"})
-  public ModelAndView toAnamnesis(HttpServletRequest request, HttpServletResponse response)
-  {
+  public ModelAndView toAnamnesis(HttpServletRequest request, HttpServletResponse response) {
     ModelAndView mView = new ModelAndView();
     mView.setViewName("");
     return mView;

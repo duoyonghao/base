@@ -8,22 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StreetServiceImpl
-  implements IStreetService
-{
+public class StreetServiceImpl implements IStreetService {
   @Autowired
   private StreetDao streetDao;
   
-  public List<JSONObject> findStreetByAreaCode(String areaCode)
-    throws Exception
-  {
+  public List<JSONObject> findStreetByAreaCode(String areaCode) throws Exception {
     List<JSONObject> list = this.streetDao.findStreetByAreaCode(areaCode);
     return list;
   }
   
-  public JSONObject findStreetByTownCode(String townCode)
-    throws Exception
-  {
+  public JSONObject findStreetByTownCode(String townCode) throws Exception {
     JSONObject json = this.streetDao.findStreetByTownCode(townCode);
     return json;
   }

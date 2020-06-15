@@ -2,85 +2,76 @@ package com.hudh.ykzz.entity;
 
 import java.io.Serializable;
 
-public class YkzzManufacturers
-  implements Serializable
-{
+public class YkzzManufacturers implements Serializable {
   private String id;
+  
   private String orderno;
+  
   private String manufacturersName;
+  
   private String createtime;
+  
   private String creator;
+  
   private String manufacturersCode;
+  
   private String organization;
+  
   private static final long serialVersionUID = 1L;
   
-  public String getOrganization()
-  {
+  public String getOrganization() {
     return this.organization;
   }
   
-  public void setOrganization(String organization)
-  {
+  public void setOrganization(String organization) {
     this.organization = organization;
   }
   
-  public String getId()
-  {
+  public String getId() {
     return this.id;
   }
   
-  public void setId(String id)
-  {
-    this.id = (id == null ? null : id.trim());
+  public void setId(String id) {
+    this.id = (id == null) ? null : id.trim();
   }
   
-  public String getOrderno()
-  {
+  public String getOrderno() {
     return this.orderno;
   }
   
-  public void setOrderno(String orderno)
-  {
-    this.orderno = (orderno == null ? null : orderno.trim());
+  public void setOrderno(String orderno) {
+    this.orderno = (orderno == null) ? null : orderno.trim();
   }
   
-  public String getManufacturersName()
-  {
+  public String getManufacturersName() {
     return this.manufacturersName;
   }
   
-  public void setManufacturersName(String manufacturersName)
-  {
-    this.manufacturersName = (manufacturersName == null ? null : manufacturersName.trim());
+  public void setManufacturersName(String manufacturersName) {
+    this.manufacturersName = (manufacturersName == null) ? null : manufacturersName.trim();
   }
   
-  public String getCreatetime()
-  {
+  public String getCreatetime() {
     return this.createtime;
   }
   
-  public void setCreatetime(String createtime)
-  {
-    this.createtime = (createtime == null ? null : createtime.trim());
+  public void setCreatetime(String createtime) {
+    this.createtime = (createtime == null) ? null : createtime.trim();
   }
   
-  public String getCreator()
-  {
+  public String getCreator() {
     return this.creator;
   }
   
-  public void setCreator(String creator)
-  {
-    this.creator = (creator == null ? null : creator.trim());
+  public void setCreator(String creator) {
+    this.creator = (creator == null) ? null : creator.trim();
   }
   
-  public String getManufacturersCode()
-  {
+  public String getManufacturersCode() {
     return this.manufacturersCode;
   }
   
-  public void setManufacturersCode(String manufacturersCode)
-  {
-    this.manufacturersCode = (manufacturersCode == null ? null : manufacturersCode.trim());
+  public void setManufacturersCode(String manufacturersCode) {
+    this.manufacturersCode = (manufacturersCode == null) ? null : manufacturersCode.trim();
   }
 }

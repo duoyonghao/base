@@ -26,22 +26,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_ReceiveInfoAct"})
-public class KQDS_ReceiveInfoAct
-{
+public class KQDS_ReceiveInfoAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_ReceiveInfoAct.class);
+  
   @Autowired
   private KQDS_ReceiveInfoLogic logic;
+  
   @Autowired
   private KQDS_UserDocumentLogic userLogic;
+  
   @Autowired
   private YZDictLogic dictLogic;
+  
   @Autowired
   private KQDS_REGLogic reglogic;
   
   @RequestMapping({"/toReceiveWin.act"})
-  public ModelAndView toReceiveWin(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toReceiveWin(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String usercode = request.getParameter("usercode");
     ModelAndView mv = new ModelAndView();
     mv.addObject("usercode", usercode);
@@ -50,9 +51,7 @@ public class KQDS_ReceiveInfoAct
   }
   
   @RequestMapping({"/toReceive.act"})
-  public ModelAndView toReceive(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toReceive(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String usercode = request.getParameter("usercode");
     ModelAndView mv = new ModelAndView();
     mv.addObject("usercode", usercode);
@@ -61,76 +60,55 @@ public class KQDS_ReceiveInfoAct
   }
   
   @RequestMapping({"/insertOrUpdate.act"})
-  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       KqdsReceiveinfo dp = new KqdsReceiveinfo();
       BeanUtils.populate(dp, request.getParameterMap());
       String seqId = request.getParameter("seqId");
       String isauto = request.getParameter("isauto");
       String devItem = request.getParameter("devItem");
-      if (!YZUtility.isNullorEmpty(seqId))
-      {
+      if (!YZUtility.isNullorEmpty(seqId)) {
         KqdsReceiveinfo en = (KqdsReceiveinfo)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_RECEIVEINFO, seqId);
         en.setDetaildesc(dp.getDetaildesc());
         en.setFailreason1(dp.getFailreason1());
-        if ((!YZUtility.isNullorEmpty(dp.getFailreason1())) || (!YZUtility.isNullorEmpty(dp.getDetaildesc()))) {
+        if (!YZUtility.isNullorEmpty(dp.getFailreason1()) || !YZUtility.isNullorEmpty(dp.getDetaildesc())) {
           en.setAskstatus(Integer.valueOf(1));
         } else {
           en.setAskstatus(Integer.valueOf(0));
-        }
+        } 
         en.setDevItem(devItem);
-        if ((!en.getDetaildesc().equals("")) || (!en.getFailreason1().equals(""))) {
-          if (YZUtility.isNullorEmpty(isauto)) {
-            BcjlUtil.LogBcjlWithUserCode(BcjlUtil.UPDATE, BcjlUtil.KQDS_RECEIVEINFO, en, en.getUsercode(), TableNameUtil.KQDS_RECEIVEINFO, request);
-          }
-        }
+        if (!en.getDetaildesc().equals("") || !en.getFailreason1().equals(""))
+          if (YZUtility.isNullorEmpty(isauto))
+            BcjlUtil.LogBcjlWithUserCode(BcjlUtil.UPDATE, BcjlUtil.KQDS_RECEIVEINFO, en, en.getUsercode(), TableNameUtil.KQDS_RECEIVEINFO, request);  
         this.logic.updateSingleUUID(TableNameUtil.KQDS_RECEIVEINFO, en);
-        
-
         KqdsReg reg = (KqdsReg)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_REG, en.getRegno());
-        if ((en.getAskstatus().intValue() == 1) && (!YZUtility.isNullorEmpty(reg.getAskperson()))) {
-          this.userLogic.setUserDocAskPerson(request, en.getUsercode(), reg.getAskperson());
-        }
-      }
+        if (en.getAskstatus().intValue() == 1 && !YZUtility.isNullorEmpty(reg.getAskperson()))
+          this.userLogic.setUserDocAskPerson(request, en.getUsercode(), reg.getAskperson()); 
+      } 
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/NoselectPage.act"})
-  public String NoselectPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String NoselectPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       BootStrapPage bp = new BootStrapPage();
       String usercode = request.getParameter("usercode");
       String regno = request.getParameter("regno");
-      
-
       BeanUtils.populate(bp, request.getParameterMap());
-      Map<String, String> map = new HashMap();
-      if ((usercode != null) && (!usercode.equals(""))) {
-        map.put("usercode", usercode);
-      }
-      if ((regno != null) && (!regno.equals(""))) {
-        map.put("regno", regno);
-      }
+      Map<String, String> map = new HashMap<>();
+      if (usercode != null && !usercode.equals(""))
+        map.put("usercode", usercode); 
+      if (regno != null && !regno.equals(""))
+        map.put("regno", regno); 
       List<JSONObject> list = this.logic.noSelectWithPage(TableNameUtil.KQDS_RECEIVEINFO, map);
-      
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

@@ -16,16 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"HUDH_Ck_Goods_In_DeleterAct"})
-public class HUDH_Ck_Goods_In_DeleterAct
-{
+public class HUDH_Ck_Goods_In_DeleterAct {
   private static Logger logger = LoggerFactory.getLogger(HUDH_Ck_Goods_In_DeleterAct.class);
+  
   @Autowired
   private HUDH_Ck_Goods_In_DeleterLogic logic;
   
   @RequestMapping({"/saveDeletePersonInfor.act"})
-  public String saveDeletePersonInfor(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String saveDeletePersonInfor(HttpServletRequest request, HttpServletResponse response) throws Exception {
     YZPerson person = SessionUtil.getLoginPerson(request);
     String menzhen = ChainUtil.getCurrentOrganization(request);
     String inseqId = request.getParameter("inseqId");
@@ -47,15 +45,12 @@ public class HUDH_Ck_Goods_In_DeleterAct
     dp.setGoodsname(goodsname);
     dp.setGoodsnorms(goodsnorms);
     dp.setGoodscode(goodscode);
-    try
-    {
+    try {
       this.logic.saveDeletePersonInfor(dp);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
 }

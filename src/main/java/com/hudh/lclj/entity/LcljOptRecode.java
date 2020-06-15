@@ -1,93 +1,83 @@
 package com.hudh.lclj.entity;
 
-public class LcljOptRecode
-{
+public class LcljOptRecode {
   private String id;
+  
   private String orderNumber;
+  
   private String createtime;
+  
   private String creator;
+  
   private String flowLink;
+  
   private String remarks;
+  
   private String variation;
+  
   private String status;
   
-  public String getVariation()
-  {
+  public String getVariation() {
     return this.variation;
   }
   
-  public void setVariation(String variation)
-  {
+  public void setVariation(String variation) {
     this.variation = variation;
   }
   
-  public String getId()
-  {
+  public String getId() {
     return this.id;
   }
   
-  public void setId(String id)
-  {
+  public void setId(String id) {
     this.id = id;
   }
   
-  public String getOrderNumber()
-  {
+  public String getOrderNumber() {
     return this.orderNumber;
   }
   
-  public void setOrderNumber(String orderNumber)
-  {
+  public void setOrderNumber(String orderNumber) {
     this.orderNumber = orderNumber;
   }
   
-  public String getCreatetime()
-  {
+  public String getCreatetime() {
     return this.createtime;
   }
   
-  public void setCreatetime(String createtime)
-  {
+  public void setCreatetime(String createtime) {
     this.createtime = createtime;
   }
   
-  public String getCreator()
-  {
+  public String getCreator() {
     return this.creator;
   }
   
-  public void setCreator(String creator)
-  {
+  public void setCreator(String creator) {
     this.creator = creator;
   }
   
-  public String getFlowLink()
-  {
+  public String getFlowLink() {
     return this.flowLink;
   }
   
-  public void setFlowLink(String flowLink)
-  {
+  public void setFlowLink(String flowLink) {
     this.flowLink = flowLink;
   }
   
-  public String getRemarks()
-  {
+  public String getRemarks() {
     return this.remarks;
   }
   
-  public void setRemarks(String remarks)
-  {
+  public void setRemarks(String remarks) {
     this.remarks = remarks;
   }
   
-  public String getStatus()
-  {
+  public String getStatus() {
     return this.status;
   }
   
-  public void setStatus(String status)
-  {
+  public void setStatus(String status) {
     this.status = status;
   }
 }

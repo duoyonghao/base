@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import javax.servlet.http.HttpServletRequest;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,24 +30,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class YkzzDrugsInServiceImpl
-  implements IYkzzDrugsInService
-{
+public class YkzzDrugsInServiceImpl implements IYkzzDrugsInService {
   @Autowired
   private YkzzDrugsInDao ykzzDrugsInDao;
+  
   @Autowired
   private YkzzDrugsInDetailDao ykzzDrugsInDetailDao;
+  
   @Autowired
   private IYkzzDrugsService ykzzDrugsService;
+  
   @Autowired
   private SysParaDao sysParaDao;
+  
   @Autowired
   private YkzzDrugsBatchnumSaveDao batchnumDao;
   
-  @Transactional(rollbackFor={Exception.class})
-  public void insertDrugsIn(YkzzDrugsIn ykzzDrugsIn, String drugsIndetails, HttpServletRequest request)
-    throws Exception
-  {
+  @Transactional(rollbackFor = {Exception.class})
+  public void insertDrugsIn(YkzzDrugsIn ykzzDrugsIn, String drugsIndetails, HttpServletRequest request) throws Exception {
     String id = YZUtility.getUUID();
     ykzzDrugsIn.setId(id);
     YZPerson person = SessionUtil.getLoginPerson(request);
@@ -58,230 +57,168 @@ public class YkzzDrugsInServiceImpl
     ykzzDrugsIn.setStatus(0);
     ykzzDrugsIn.setCheckStatus(0);
     ykzzDrugsIn.setOrganization(organization);
-    
-
     drugsIndetails = URLDecoder.decode(drugsIndetails, "UTF-8");
     List<YkzzDrugsInDetail> drugsInDetailList = HUDHUtil.parseJsonToObjectList(drugsIndetails, YkzzDrugsInDetail.class);
-    for (YkzzDrugsInDetail ykzzDrugsInDetail : drugsInDetailList)
-    {
+    for (YkzzDrugsInDetail ykzzDrugsInDetail : drugsInDetailList) {
       ykzzDrugsInDetail.setId(YZUtility.getUUID());
       ykzzDrugsInDetail.setParentid(id);
       ykzzDrugsInDetail.setStatus(0);
       ykzzDrugsInDetail.setCreatetime(ykzzDrugsIn.getCreatetime());
       ykzzDrugsInDetail.setBatchnoNum(Integer.valueOf(ykzzDrugsInDetail.getQuantity()));
       ykzzDrugsInDetail.setOrganization(organization);
-    }
+    } 
     this.ykzzDrugsInDao.insertDrugsIn(ykzzDrugsIn);
     this.ykzzDrugsInDetailDao.batchSaveInDetail(drugsInDetailList);
   }
   
-  public void drugsAddInStock(String drugsInId)
-    throws Exception
-  {
-    if (YZUtility.isNullorEmpty(drugsInId)) {
-      throw new Exception("入库单不存在");
-    }
+  public void drugsAddInStock(String drugsInId) throws Exception {
+    if (YZUtility.isNullorEmpty(drugsInId))
+      throw new Exception("入库单不存在"); 
     List<JSONObject> drugsIndetails = this.ykzzDrugsInDetailDao.findDetailByParendId(drugsInId);
     List<YkzzDrugsInDetail> drugsInDetailList = HUDHUtil.parseJsonToObjectList(JSON.toJSONString(drugsIndetails), YkzzDrugsInDetail.class);
-    
     List<YkzzDrugs> drugsList = this.ykzzDrugsService.selectDrugsByIdStr(drugsInDetailList);
-    Map<String, YkzzDrugs> drugsMap = new HashMap();
-    for (YkzzDrugs ykzzDrugs : drugsList) {
-      drugsMap.put(ykzzDrugs.getId(), ykzzDrugs);
-    }
+    Map<String, YkzzDrugs> drugsMap = new HashMap<>();
+    for (YkzzDrugs ykzzDrugs : drugsList)
+      drugsMap.put(ykzzDrugs.getId(), ykzzDrugs); 
     YkzzDrugs drugsTemp = null;
-    for (YkzzDrugsInDetail ykzzDrugsInDetail : drugsInDetailList)
-    {
-      drugsTemp = (YkzzDrugs)drugsMap.get(ykzzDrugsInDetail.getDrugsId());
+    for (YkzzDrugsInDetail ykzzDrugsInDetail : drugsInDetailList) {
+      drugsTemp = drugsMap.get(ykzzDrugsInDetail.getDrugsId());
       drugsTemp.setDrug_total_num(Integer.valueOf(drugsTemp.getDrug_total_num().intValue() + ykzzDrugsInDetail.getQuantity()));
       drugsTemp.setDrgs_total_money(drugsTemp.getDrgs_total_money().add(ykzzDrugsInDetail.getAmount()));
       drugsTemp.setNuit_price(drugsTemp.getDrgs_total_money().divide(new BigDecimal(drugsTemp.getDrug_total_num().toString()), 3, 0));
       drugsMap.put(ykzzDrugsInDetail.getDrugsId(), drugsTemp);
-    }
-    Object tempList = new ArrayList();
-    for (Object entry : drugsMap.entrySet()) {
-      ((List)tempList).add((YkzzDrugs)((Entry)entry).getValue());
-    }
-    this.ykzzDrugsService.batchUpdateDrugsByPrimaryId((List)tempList);
+    } 
+    List<YkzzDrugs> tempList = new ArrayList<>();
+    for (Map.Entry<String, YkzzDrugs> entry : drugsMap.entrySet())
+      tempList.add(entry.getValue()); 
+    this.ykzzDrugsService.batchUpdateDrugsByPrimaryId(tempList);
   }
   
-  @Transactional(rollbackFor={Exception.class})
-  public String deleteDrugsIn(String id)
-    throws Exception
-  {
+  @Transactional(rollbackFor = {Exception.class})
+  public String deleteDrugsIn(String id) throws Exception {
     String backMsg = "";
-    
-    Map<String, String> dataMap = new HashMap();
+    Map<String, String> dataMap = new HashMap<>();
     dataMap.put("id", id);
     List<JSONObject> drugsInObj = this.ykzzDrugsInDao.findAllDrugsIn(dataMap);
-    if ((drugsInObj == null) || (drugsInObj.size() <= 0))
-    {
+    if (drugsInObj == null || drugsInObj.size() <= 0) {
       backMsg = "入库单不存在";
       return backMsg;
-    }
+    } 
     List<JSONObject> drugsInDetailObj = this.ykzzDrugsInDetailDao.findDetailByParendId(((JSONObject)drugsInObj.get(0)).getString("id"));
     List<YkzzDrugsInDetail> drugsInDetailList = HUDHUtil.parseJsonToObjectList(JSON.toJSONString(drugsInDetailObj), YkzzDrugsInDetail.class);
-    
     List<YkzzDrugs> drugsList = this.ykzzDrugsService.selectDrugsByIdStr(drugsInDetailList);
-    
-    Map<String, YkzzDrugs> drugsMap = new HashMap();
-    for (YkzzDrugs drug : drugsList) {
-      drugsMap.put(drug.getId(), drug);
-    }
+    Map<String, YkzzDrugs> drugsMap = new HashMap<>();
+    for (YkzzDrugs drug : drugsList)
+      drugsMap.put(drug.getId(), drug); 
     YkzzDrugs drugsTemp = null;
-    int drugTotalNum;
-    for (YkzzDrugsInDetail ykzzDrugsInDetail : drugsInDetailList)
-    {
-      drugsTemp = (YkzzDrugs)drugsMap.get(ykzzDrugsInDetail.getDrugsId());
-      drugTotalNum = drugsTemp.getDrug_total_num().intValue();
+    for (YkzzDrugsInDetail ykzzDrugsInDetail : drugsInDetailList) {
+      drugsTemp = drugsMap.get(ykzzDrugsInDetail.getDrugsId());
+      int drugTotalNum = drugsTemp.getDrug_total_num().intValue();
       BigDecimal drugTotalMoney = drugsTemp.getDrgs_total_money();
-      
-
       drugTotalNum -= ykzzDrugsInDetail.getQuantity();
-      if (drugTotalNum < 0)
-      {
-        backMsg = drugsTemp.getChemistry_name() + "库存数量不足";
+      if (drugTotalNum < 0) {
+        backMsg = String.valueOf(drugsTemp.getChemistry_name()) + "库存数量不足";
         return backMsg;
-      }
+      } 
       drugsTemp.setDrug_total_num(Integer.valueOf(drugTotalNum));
-      if (drugTotalMoney.compareTo(ykzzDrugsInDetail.getAmount()) < 0)
-      {
-        backMsg = drugsTemp.getChemistry_name() + "库存金额不足";
+      if (drugTotalMoney.compareTo(ykzzDrugsInDetail.getAmount()) < 0) {
+        backMsg = String.valueOf(drugsTemp.getChemistry_name()) + "库存金额不足";
         return backMsg;
-      }
+      } 
       drugsTemp.setDrgs_total_money(drugTotalMoney.subtract(ykzzDrugsInDetail.getAmount()));
       drugsTemp.setNuit_price(drugsTemp.getDrgs_total_money().divide(
-        new BigDecimal(drugsTemp.getDrug_total_num().toString()), 3, 0));
+            new BigDecimal(drugsTemp.getDrug_total_num().toString()), 3, 0));
       drugsMap.put(ykzzDrugsInDetail.getDrugsId(), drugsTemp);
-    }
-    Object tempList = new ArrayList();
-    for (Object entry : drugsMap.entrySet()) {
-      ((List)tempList).add((YkzzDrugs)((Entry)entry).getValue());
-    }
+    } 
+    List<YkzzDrugs> tempList = new ArrayList<>();
+    for (Map.Entry<String, YkzzDrugs> entry : drugsMap.entrySet())
+      tempList.add(entry.getValue()); 
     deleteDrugsInById(id);
     deleteDrugsInDetailByParendId(id);
-    this.ykzzDrugsService.batchUpdateDrugsByPrimaryId((List)tempList);
+    this.ykzzDrugsService.batchUpdateDrugsByPrimaryId(tempList);
     backMsg = "操作成功";
     return backMsg;
   }
   
-  public List<JSONObject> findAllDrugsIn(Map<String, String> dataMap)
-    throws Exception
-  {
-    List<JSONObject> list = new ArrayList();
+  public List<JSONObject> findAllDrugsIn(Map<String, String> dataMap) throws Exception {
+    List<JSONObject> list = new ArrayList<>();
     list = this.ykzzDrugsInDao.findAllDrugsIn(dataMap);
     return list;
   }
   
-  public List<JSONObject> findDetailByParendId(String parentid)
-    throws Exception
-  {
-    List<JSONObject> list = new ArrayList();
+  public List<JSONObject> findDetailByParendId(String parentid) throws Exception {
+    List<JSONObject> list = new ArrayList<>();
     list = this.ykzzDrugsInDetailDao.findDetailByParendId(parentid);
     return list;
   }
   
-  public String findByParendId(String parentid)
-    throws Exception
-  {
+  public String findByParendId(String parentid) throws Exception {
     String list = this.ykzzDrugsInDao.findByParendId(parentid);
     return list;
   }
   
-  public void deleteDrugsInById(String id)
-    throws Exception
-  {
+  public void deleteDrugsInById(String id) throws Exception {
     this.ykzzDrugsInDao.deleteDrugsIn(id);
   }
   
-  public void deleteDrugsInDetailByParendId(String id)
-    throws Exception
-  {
+  public void deleteDrugsInDetailByParendId(String id) throws Exception {
     this.ykzzDrugsInDetailDao.deleteDrugsIn(id);
   }
   
-  public List<JSONObject> findAllCostOrder(Map<String, Object> dataMap)
-    throws Exception
-  {
-    List<JSONObject> list = new ArrayList();
+  public List<JSONObject> findAllCostOrder(Map<String, Object> dataMap) throws Exception {
+    List<JSONObject> list = new ArrayList<>();
     list = this.ykzzDrugsInDao.findAllCostOrder(dataMap);
     return list;
   }
   
-  public List<JSONObject> findCostOrderDetailByCostno(String costno)
-    throws Exception
-  {
-    List<JSONObject> list = new ArrayList();
+  public List<JSONObject> findCostOrderDetailByCostno(String costno) throws Exception {
+    List<JSONObject> list = new ArrayList<>();
     list = this.ykzzDrugsInDao.findCostOrderDetailByCostno(costno);
     return list;
   }
   
-  public KqdsCostorderDetail findCostOrderDetailBySeqid(String seqId)
-    throws Exception
-  {
+  public KqdsCostorderDetail findCostOrderDetailBySeqid(String seqId) throws Exception {
     KqdsCostorderDetail kqdsCostorderDetail = this.ykzzDrugsInDao.findCostOrderDetailBySeqid(seqId);
     return kqdsCostorderDetail;
   }
   
-  public List<JSONObject> findCostOrderDetailReturnBySeqid(String seqid)
-    throws Exception
-  {
-    List<JSONObject> list = new ArrayList();
+  public List<JSONObject> findCostOrderDetailReturnBySeqid(String seqid) throws Exception {
+    List<JSONObject> list = new ArrayList<>();
     list = this.ykzzDrugsInDao.findCostOrderDetailReturnBySeqid(seqid);
     return list;
   }
   
-  @Transactional(rollbackFor={Exception.class})
-  public void grantDrugs(String organization, String costno, String[] batchnoNum, String[] seqId, String[] costseqIdArr, HttpServletRequest request)
-    throws Exception
-  {
-    if ((costno != null) && (!costno.equals("")) && (!costno.equals(null)))
-    {
-      List<YkzzDrugsBatchnumSave> list = new ArrayList();
-      
-      List<String> drugsOrderNoList = new ArrayList();
+  @Transactional(rollbackFor = {Exception.class})
+  public void grantDrugs(String organization, String costno, String[] batchnoNum, String[] seqId, String[] costseqIdArr, HttpServletRequest request) throws Exception {
+    if (costno != null && !costno.equals("") && !costno.equals(null)) {
+      List<YkzzDrugsBatchnumSave> list = new ArrayList<>();
+      List<String> drugsOrderNoList = new ArrayList<>();
       YZPerson person = SessionUtil.getLoginPerson(request);
-      YkzzDrugsInDetail drugsInDetail;
-      for (int i = 0; i < costseqIdArr.length; i++)
-      {
+      for (int i = 0; i < costseqIdArr.length; i++) {
         KqdsCostorderDetail kqdsCostorderDetail = findCostOrderDetailBySeqid(costseqIdArr[i]);
-        
-
         KqdsCostorderDetail kqdsCostorderDetail2 = this.ykzzDrugsInDao.findCostOrderDetailByParentid(costseqIdArr[i]);
-        if (kqdsCostorderDetail2 != null)
-        {
+        if (kqdsCostorderDetail2 != null) {
           int nums = Integer.parseInt(kqdsCostorderDetail.getNum()) + Integer.parseInt(kqdsCostorderDetail2.getNum());
           kqdsCostorderDetail.setNum(String.valueOf(nums));
-        }
-        else
-        {
+        } else {
           String qfbh = kqdsCostorderDetail.getQfbh();
-          if ((qfbh != null) && (!qfbh.equals("")))
-          {
+          if (qfbh != null && !qfbh.equals("")) {
             KqdsCostorderDetail kqdsCostorderDetail1 = this.ykzzDrugsInDao.findCostOrderDetailSubtotalByQfbh(qfbh);
-            if (kqdsCostorderDetail1 != null)
-            {
+            if (kqdsCostorderDetail1 != null) {
               int nums = Integer.parseInt(kqdsCostorderDetail.getNum()) + Integer.parseInt(kqdsCostorderDetail1.getNum());
               kqdsCostorderDetail.setNum(String.valueOf(nums));
-            }
-          }
-        }
-        drugsInDetail = this.ykzzDrugsInDetailDao.findYkzzDrugsInDatailById(seqId[i]);
+            } 
+          } 
+        } 
+        YkzzDrugsInDetail drugsInDetail = this.ykzzDrugsInDetailDao.findYkzzDrugsInDatailById(seqId[i]);
         YkzzDrugsBatchnumSave dp = new YkzzDrugsBatchnumSave();
-        
         dp.setCostOrderDetailId(costseqIdArr[i]);
-        
         dp.setId(costseqIdArr[i]);
-        
         dp.setDrugsname(kqdsCostorderDetail.getItemname());
-        
         dp.setDrugsno(kqdsCostorderDetail.getItemno());
-        
         Integer batchno = drugsInDetail.getBatchnoNum();
-        dp.setBatchnum(batchno);
-        
+        dp.setBatchnum((String)batchno);
         dp.setNumber(kqdsCostorderDetail.getNum());
-        
         dp.setBatchno(drugsInDetail.getBatchnum());
         dp.setOrganization(organization);
         dp.setCreatename(person.getUserName());
@@ -291,254 +228,186 @@ public class YkzzDrugsInServiceImpl
         int cknum = Integer.parseInt(String.valueOf(ckNum));
         int num = batchno.intValue() - cknum;
         drugsInDetail.setBatchnoNum(Integer.valueOf(num));
-        
         this.ykzzDrugsInDetailDao.updateDrugsInDetail(drugsInDetail);
         drugsOrderNoList.add(kqdsCostorderDetail.getItemno());
-      }
+      } 
       List<YkzzDrugs> drugsList = this.ykzzDrugsService.selectDrugsByOrderNoStr(drugsOrderNoList);
-      
-      Map<String, YkzzDrugs> drugsMap = new HashMap();
-      for (YkzzDrugs drug : drugsList) {
-        drugsMap.put(drug.getOrder_no(), drug);
-      }
+      Map<String, YkzzDrugs> drugsMap = new HashMap<>();
+      for (YkzzDrugs drug : drugsList)
+        drugsMap.put(drug.getOrder_no(), drug); 
       YkzzDrugs drugsTemp = null;
-      BigDecimal zj;
-      for (int i = 0; i < costseqIdArr.length; i++)
-      {
-        KqdsCostorderDetail kqdsCostorderDetail = findCostOrderDetailBySeqid(costseqIdArr[i]);
-        drugsTemp = (YkzzDrugs)drugsMap.get(kqdsCostorderDetail.getItemno());
-        if (drugsTemp.getDrug_total_num().intValue() - Integer.parseInt(kqdsCostorderDetail.getNum()) < 0) {
-          throw new Exception(drugsTemp.getChemistry_name() + "库存不足");
-        }
-        zj = null;
+      for (int j = 0; j < costseqIdArr.length; j++) {
+        KqdsCostorderDetail kqdsCostorderDetail = findCostOrderDetailBySeqid(costseqIdArr[j]);
+        drugsTemp = drugsMap.get(kqdsCostorderDetail.getItemno());
+        if (drugsTemp.getDrug_total_num().intValue() - Integer.parseInt(kqdsCostorderDetail.getNum()) < 0)
+          throw new Exception(String.valueOf(drugsTemp.getChemistry_name()) + "库存不足"); 
+        BigDecimal zj = null;
         BigDecimal dj = new BigDecimal(0.0D);
         String order_no = drugsTemp.getOrder_no();
         List<YkzzDrugsInDetail> lt = this.ykzzDrugsInDetailDao.findBatchnumByOrderno(order_no);
-        if (lt.size() > 0)
-        {
-          for (YkzzDrugsInDetail ykzzDrugsInDetail1 : lt)
-          {
-            BigDecimal phzj = new BigDecimal(ykzzDrugsInDetail1.getBatchnoNum().intValue()).multiply(ykzzDrugsInDetail1.getNuitPrice()).setScale(3, 4);
+        if (lt.size() > 0) {
+          for (YkzzDrugsInDetail ykzzDrugsInDetail1 : lt) {
+            BigDecimal phzj = (new BigDecimal(ykzzDrugsInDetail1.getBatchnoNum().intValue())).multiply(ykzzDrugsInDetail1.getNuitPrice()).setScale(3, 4);
             if (zj == null) {
               zj = phzj;
-            } else {
-              zj = zj.add(phzj);
-            }
-          }
+              continue;
+            } 
+            zj = zj.add(phzj);
+          } 
           dj = zj.divide(new BigDecimal(drugsTemp.getDrug_total_num().intValue() - Integer.parseInt(kqdsCostorderDetail.getNum())), 4);
-        }
-        else
-        {
+        } else {
           zj = new BigDecimal(0);
-        }
+        } 
         drugsTemp.setDrgs_total_money(zj);
-        
         drugsTemp.setNuit_price(dj);
         drugsTemp.setDrug_total_num(Integer.valueOf(drugsTemp.getDrug_total_num().intValue() - Integer.parseInt(kqdsCostorderDetail.getNum())));
         drugsMap.put(kqdsCostorderDetail.getItemno(), drugsTemp);
-      }
-      List<YkzzDrugs> tempList = new ArrayList();
-      for (Entry<String, YkzzDrugs> entry : drugsMap.entrySet()) {
-        tempList.add((YkzzDrugs)entry.getValue());
-      }
+      } 
+      List<YkzzDrugs> tempList = new ArrayList<>();
+      for (Map.Entry<String, YkzzDrugs> entry : drugsMap.entrySet())
+        tempList.add(entry.getValue()); 
       this.ykzzDrugsService.batchUpdateDrugsByPrimaryId(tempList);
       Integer status = updateCostOrderById(costno);
       if (status.intValue() > 0) {
         this.batchnumDao.insertDrugsBatchnumSave(list);
       } else {
         throw new Exception("此操作非发药操作触发!");
-      }
-    }
+      } 
+    } 
   }
   
-  public List<JSONObject> findCostOrderDetailById(String id)
-    throws Exception
-  {
-    List<JSONObject> list = new ArrayList();
+  public List<JSONObject> findCostOrderDetailById(String id) throws Exception {
+    List<JSONObject> list = new ArrayList<>();
     list = this.ykzzDrugsInDao.findCostOrderDetailById(id);
     return list;
   }
   
-  @Transactional(rollbackFor={Exception.class})
-  public void returnDrugs(String batchnoNum, String seqId, String costseqIdArr, String outnum, YZPerson person)
-    throws Exception
-  {
-    List<YkzzDrugsBatchnumSave> list = new ArrayList();
+  @Transactional(rollbackFor = {Exception.class})
+  public void returnDrugs(String batchnoNum, String seqId, String costseqIdArr, String outnum, YZPerson person) throws Exception {
+    List<YkzzDrugsBatchnumSave> list = new ArrayList<>();
     YkzzDrugsBatchnumSave dp = new YkzzDrugsBatchnumSave();
-    Map<String, String> dataMap = new HashMap();
+    Map<String, String> dataMap = new HashMap<>();
     dataMap.put(costseqIdArr, seqId);
-    
-
     KqdsCostorderDetail kcd = new KqdsCostorderDetail();
     kcd.setSeqId(costseqIdArr);
     kcd.setReturnDrugsNum(outnum);
     kcd.setReturnTime(HUDHUtil.getCurrentTime("yyyy-MM-dd HH:mm:ss"));
     kcd.setReturnName(person.getUserName());
     insertCostOrderDetailReturnBySeqId(kcd);
-    
-
     List<JSONObject> costOrderDetail = findCostOrderDetailById(costseqIdArr);
     BigDecimal nuitPrice = null;
-    if ((costOrderDetail != null) && (costOrderDetail.size() > 0))
-    {
-      List<String> drugsOrderNoList = new ArrayList();
-      
+    if (costOrderDetail != null && costOrderDetail.size() > 0) {
+      List<String> drugsOrderNoList = new ArrayList<>();
       int cs = 0;
       for (JSONObject js : costOrderDetail) {
         if (Integer.parseInt(outnum) == Integer.parseInt((String)js.get("num"))) {
           cs = 1;
-        } else if (Integer.parseInt(outnum) < Integer.parseInt((String)js.get("num"))) {
-          cs = Integer.parseInt(outnum);
-        }
-      }
-      YkzzDrugsInDetail drugsInDetail;
-      int cknum;
-      for (int i = 0; i < cs; i++)
-      {
+          continue;
+        } 
+        if (Integer.parseInt(outnum) < Integer.parseInt((String)js.get("num")))
+          cs = Integer.parseInt(outnum); 
+      } 
+      for (int i = 0; i < cs; i++) {
         String[] b = seqId.split(",");
-        for (int j = 0; j < b.length; j++)
-        {
-          drugsInDetail = this.ykzzDrugsInDetailDao.findYkzzDrugsInDatailById(b[j]);
-          if (drugsInDetail.getBatchnum().equals(batchnoNum))
-          {
+        for (int k = 0; k < b.length; k++) {
+          YkzzDrugsInDetail drugsInDetail = this.ykzzDrugsInDetailDao.findYkzzDrugsInDatailById(b[k]);
+          if (drugsInDetail.getBatchnum().equals(batchnoNum)) {
             nuitPrice = drugsInDetail.getNuitPrice();
-            
             dp.setCostOrderDetailId(costseqIdArr);
-            
             dp.setId(((JSONObject)costOrderDetail.get(i)).getString("seqid"));
-            
             dp.setDrugsname(((JSONObject)costOrderDetail.get(i)).getString("itemname"));
-            
             dp.setDrugsno(((JSONObject)costOrderDetail.get(i)).getString("itemno"));
-            
-
             Integer batchno = drugsInDetail.getBatchnoNum();
             dp.setBatchnum(Integer.toString(batchno.intValue()));
-            
             dp.setNumber(Integer.toString(Integer.parseInt(((JSONObject)costOrderDetail.get(i)).getString("num")) - Integer.parseInt(outnum)));
-            
             dp.setBatchno(drugsInDetail.getBatchnum());
             list.add(dp);
-            cknum = Integer.parseInt(outnum);
+            int cknum = Integer.parseInt(outnum);
             int num = batchno.intValue() + cknum;
             drugsInDetail.setBatchnoNum(Integer.valueOf(num));
-            
             this.ykzzDrugsInDetailDao.updateDrugsInDetail(drugsInDetail);
             drugsOrderNoList.add(((JSONObject)costOrderDetail.get(i)).getString("itemno"));
-          }
-        }
-      }
+          } 
+        } 
+      } 
       List<YkzzDrugs> drugsList = this.ykzzDrugsService.selectDrugsByOrderNoStr(drugsOrderNoList);
-      
-      Object drugsMap = new HashMap();
-      for (YkzzDrugs drug : drugsList) {
-        ((Map)drugsMap).put(drug.getOrder_no(), drug);
-      }
+      Map<String, YkzzDrugs> drugsMap = new HashMap<>();
+      for (YkzzDrugs drug : drugsList)
+        drugsMap.put(drug.getOrder_no(), drug); 
       YkzzDrugs drugsTemp = null;
-      for (int i = 0; i < cs; i++)
-      {
-        drugsTemp = (YkzzDrugs)((Map)drugsMap).get(((JSONObject)costOrderDetail.get(i)).getString("itemno"));
-        
+      for (int j = 0; j < cs; j++) {
+        drugsTemp = drugsMap.get(((JSONObject)costOrderDetail.get(j)).getString("itemno"));
         drugsTemp.setDrug_total_num(Integer.valueOf(drugsTemp.getDrug_total_num().intValue() + Integer.parseInt(outnum)));
-        
         BigDecimal yj = null;
-        if (drugsTemp.getNuit_price() == null)
-        {
+        if (drugsTemp.getNuit_price() == null) {
           drugsTemp.setNuit_price(nuitPrice);
           yj = nuitPrice.multiply(new BigDecimal(drugsTemp.getDrug_total_num().toString())).setScale(3, 4);
-        }
-        else
-        {
+        } else {
           yj = drugsTemp.getNuit_price().multiply(new BigDecimal(drugsTemp.getDrug_total_num().toString())).setScale(3, 4);
-        }
+        } 
         drugsTemp.setDrgs_total_money(yj);
-        ((Map)drugsMap).put(((JSONObject)costOrderDetail.get(i)).getString("itemno"), drugsTemp);
-      }
-      List<YkzzDrugs> tempList = new ArrayList();
-      for (Entry<String, YkzzDrugs> entry : ((Map)drugsMap).entrySet()) {
-        tempList.add((YkzzDrugs)entry.getValue());
-      }
+        drugsMap.put(((JSONObject)costOrderDetail.get(j)).getString("itemno"), drugsTemp);
+      } 
+      List<YkzzDrugs> tempList = new ArrayList<>();
+      for (Map.Entry<String, YkzzDrugs> entry : drugsMap.entrySet())
+        tempList.add(entry.getValue()); 
       this.ykzzDrugsService.batchUpdateDrugsByPrimaryId(tempList);
-    }
+    } 
   }
   
-  private Integer updateCostOrderById(String costno)
-    throws Exception
-  {
+  private Integer updateCostOrderById(String costno) throws Exception {
     return this.ykzzDrugsInDao.updateCostOrderById(costno);
   }
   
-  private void insertCostOrderDetailReturnBySeqId(KqdsCostorderDetail kcd)
-    throws Exception
-  {
+  private void insertCostOrderDetailReturnBySeqId(KqdsCostorderDetail kcd) throws Exception {
     this.ykzzDrugsInDao.insertCostOrderDetailReturnBySeqId(kcd);
   }
   
-  public void updateCheckStatus(String id)
-    throws Exception
-  {
+  public void updateCheckStatus(String id) throws Exception {
     this.ykzzDrugsInDao.updateCheckStatus(id);
   }
   
-  public List<JSONObject> findDrugsInAdmin(HttpServletRequest request)
-    throws Exception
-  {
+  public List<JSONObject> findDrugsInAdmin(HttpServletRequest request) throws Exception {
     String organization = ChainUtil.getCurrentOrganization(request);
-    List<String> list = new ArrayList();
+    List<String> list = new ArrayList<>();
     list.add("DRUGS_IN_ADMIN");
     List<JSONObject> jsonO = this.sysParaDao.getParaValueListByName(list, request, organization);
     return jsonO;
   }
   
-  public List<YkzzDrugsInDetail> findBatchnumByOrderno(String order_no)
-    throws Exception
-  {
+  public List<YkzzDrugsInDetail> findBatchnumByOrderno(String order_no) throws Exception {
     List<YkzzDrugsInDetail> list = this.ykzzDrugsInDetailDao.findBatchnumByOrderno(order_no);
     return list;
   }
   
-  public List<YkzzDrugsInDetail> findBatchnumByOrderno1(String order_no)
-    throws Exception
-  {
+  public List<YkzzDrugsInDetail> findBatchnumByOrderno1(String order_no) throws Exception {
     List<YkzzDrugsInDetail> list = this.ykzzDrugsInDetailDao.findBatchnumByOrderno1(order_no);
     return list;
   }
   
-  public YkzzDrugsInDetail findYkzzDrugsInDatailByInDetail(String inDetail)
-    throws Exception
-  {
+  public YkzzDrugsInDetail findYkzzDrugsInDatailByInDetail(String inDetail) throws Exception {
     return this.ykzzDrugsInDetailDao.findYkzzDrugsInDatailByInDetail(inDetail);
   }
   
-  public List<JSONObject> findYkzzDrugsInDetailByOrderno(String orderno)
-    throws Exception
-  {
+  public List<JSONObject> findYkzzDrugsInDetailByOrderno(String orderno) throws Exception {
     return this.ykzzDrugsInDetailDao.findYkzzDrugsInDetailByOrderno(orderno);
   }
   
-  public int updateYkzzDrugsInDatailByParentId(YkzzDrugsInDetail ykzzDrugsInDetail)
-    throws Exception
-  {
+  public int updateYkzzDrugsInDatailByParentId(YkzzDrugsInDetail ykzzDrugsInDetail) throws Exception {
     return this.ykzzDrugsInDetailDao.updateYkzzDrugsInDatailByParentId(ykzzDrugsInDetail);
   }
   
-  public KqdsCostorderDetail findCostOrderDetailByParentid(String seqid)
-    throws Exception
-  {
+  public KqdsCostorderDetail findCostOrderDetailByParentid(String seqid) throws Exception {
     KqdsCostorderDetail kqdsCostorderDetail = this.ykzzDrugsInDao.findCostOrderDetailByParentid(seqid);
     return kqdsCostorderDetail;
   }
   
-  public List<JSONObject> findCostOrderDetailByQfbh(String qfbh)
-    throws Exception
-  {
+  public List<JSONObject> findCostOrderDetailByQfbh(String qfbh) throws Exception {
     List<JSONObject> kqdsCostorderDetail = this.ykzzDrugsInDao.findCostOrderDetailByQfbh(qfbh);
     return kqdsCostorderDetail;
   }
   
-  public KqdsCostorderDetail findCostOrderDetailSubtotalByQfbh(String qfbh)
-    throws Exception
-  {
+  public KqdsCostorderDetail findCostOrderDetailSubtotalByQfbh(String qfbh) throws Exception {
     KqdsCostorderDetail kqdsCostorderDetail = this.ykzzDrugsInDao.findCostOrderDetailSubtotalByQfbh(qfbh);
     return kqdsCostorderDetail;
   }

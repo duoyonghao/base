@@ -31,18 +31,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_TreatItem_TcBackAct"})
-public class KQDS_TreatItem_TcBackAct
-{
+public class KQDS_TreatItem_TcBackAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_TreatItem_TcBackAct.class);
+  
   @Autowired
   private KQDS_TreatItem_TcLogic logic;
+  
   @Autowired
   private KQDS_TreatItemLogic treatlogic;
   
   @RequestMapping({"/toList.act"})
-  public ModelAndView toList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toList(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
     mv.addObject("organization", organization);
@@ -51,9 +50,7 @@ public class KQDS_TreatItem_TcBackAct
   }
   
   @RequestMapping({"/toEdit.act"})
-  public ModelAndView toEdit(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toEdit(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String tcnameid = request.getParameter("tcnameid");
     String organization = request.getParameter("organization");
     String tctype = request.getParameter("tctype");
@@ -68,9 +65,7 @@ public class KQDS_TreatItem_TcBackAct
   }
   
   @RequestMapping({"/toDetail.act"})
-  public ModelAndView toDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String tcnameid = request.getParameter("tcnameid");
     String organization = request.getParameter("organization");
     String tctype = request.getParameter("tctype");
@@ -85,9 +80,7 @@ public class KQDS_TreatItem_TcBackAct
   }
   
   @RequestMapping({"/toNewAdd.act"})
-  public ModelAndView toNewAdd(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toNewAdd(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
     mv.addObject("organization", organization);
@@ -96,9 +89,7 @@ public class KQDS_TreatItem_TcBackAct
   }
   
   @RequestMapping({"/toTypeIndex.act"})
-  public ModelAndView toTypeIndex(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toTypeIndex(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
     mv.addObject("organization", organization);
@@ -107,9 +98,7 @@ public class KQDS_TreatItem_TcBackAct
   }
   
   @RequestMapping({"/toTypeList.act"})
-  public ModelAndView toTypeList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toTypeList(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String parentCode = request.getParameter("parentCode");
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
@@ -120,9 +109,7 @@ public class KQDS_TreatItem_TcBackAct
   }
   
   @RequestMapping({"/toTypeEdit.act"})
-  public ModelAndView toTypeEdit(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toTypeEdit(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     ModelAndView mv = new ModelAndView();
     mv.addObject("seqId", seqId);
@@ -131,9 +118,7 @@ public class KQDS_TreatItem_TcBackAct
   }
   
   @RequestMapping({"/toTypeNewAdd.act"})
-  public ModelAndView toTypeNewAdd(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toTypeNewAdd(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String parentCode = request.getParameter("parentCode");
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
@@ -144,9 +129,7 @@ public class KQDS_TreatItem_TcBackAct
   }
   
   @RequestMapping({"/toTypeLeft.act"})
-  public ModelAndView toTypeLeft(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toTypeLeft(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
     mv.addObject("organization", organization);
@@ -155,106 +138,80 @@ public class KQDS_TreatItem_TcBackAct
   }
   
   @RequestMapping({"/insertList4Back.act"})
-  public String insertList4Back(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String insertList4Back(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String tctype = request.getParameter("tctype");
       String tcname = request.getParameter("tcname");
       String organization = ChainUtil.getOrganizationFromUrlCanNull(request);
-      
-      Map<String, String> map = new HashMap();
+      Map<String, String> map = new HashMap<>();
       map.put("name", tctype);
       map.put("parentid", "0");
       map.put("organization", organization);
       this.logic.newAddTc(tctype, tcname, map, request);
-      
       JSONObject json = new JSONObject();
       map.put("tctype", tctype);
       map.put("tcname", tcname);
       BcjlUtil.LogBcjl(BcjlUtil.SAVE_TC, BcjlUtil.KQDS_TREATITEM_TC_TYPE, json, TableNameUtil.KQDS_TREATITEM_TC_TYPE, request);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/insertList.act"})
-  public String insertList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String insertList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String tctype = request.getParameter("tctype");
       String tcname = request.getParameter("tcname");
       String organization = ChainUtil.getCurrentOrganization(request);
-      
-
-      Map<String, String> map = new HashMap();
+      Map<String, String> map = new HashMap<>();
       map.put("name", tctype);
       map.put("parentid", "0");
       map.put("organization", organization);
       this.logic.newAddTc(tctype, tcname, map, request);
-      
       JSONObject json = new JSONObject();
       map.put("tctype", tctype);
       map.put("tcname", tcname);
       BcjlUtil.LogBcjl(BcjlUtil.SAVE_TC, BcjlUtil.KQDS_TREATITEM_TC_TYPE, json, TableNameUtil.KQDS_TREATITEM_TC_TYPE, request);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/editList.act"})
-  public String editList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String editList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
       String tcnameid = request.getParameter("tcnameid");
       String tcname = request.getParameter("tcname");
-      if (YZUtility.isNullorEmpty(tcnameid)) {
-        throw new Exception("tcnameid参数值为空");
-      }
+      if (YZUtility.isNullorEmpty(tcnameid))
+        throw new Exception("tcnameid参数值为空"); 
       KqdsTreatitemTcType tctypeNameObj = (KqdsTreatitemTcType)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_TREATITEM_TC_TYPE, tcnameid);
-      if (tctypeNameObj == null) {
-        throw new Exception("根据tcnameid查询不到对应套餐记录");
-      }
-      if (!tctypeNameObj.getName().equals(tcname))
-      {
+      if (tctypeNameObj == null)
+        throw new Exception("根据tcnameid查询不到对应套餐记录"); 
+      if (!tctypeNameObj.getName().equals(tcname)) {
         int count = this.logic.checkTc(tctypeNameObj.getParentid(), tcname, tctypeNameObj.getSeqId());
-        if (count > 0) {
-          throw new Exception("该套餐类型下已存在该套餐名称！");
-        }
+        if (count > 0)
+          throw new Exception("该套餐类型下已存在该套餐名称！"); 
         tctypeNameObj.setName(tcname);
         this.logic.updateSingleUUID(TableNameUtil.KQDS_TREATITEM_TC_TYPE, tctypeNameObj);
-      }
-      Map<String, String> map = new HashMap();
+      } 
+      Map<String, String> map = new HashMap<>();
       map.put("tcnameid", tcnameid);
-      List<KqdsTreatitemTc> en = (List)this.logic.loadList(TableNameUtil.KQDS_TREATITEM_TC, map);
-      if ((en != null) && (en.size() > 0)) {
-        for (KqdsTreatitemTc tc : en) {
-          this.logic.deleteSingleUUID(TableNameUtil.KQDS_TREATITEM_TC, tc.getSeqId());
-        }
-      }
+      List<KqdsTreatitemTc> en = (List<KqdsTreatitemTc>)this.logic.loadList(TableNameUtil.KQDS_TREATITEM_TC, map);
+      if (en != null && en.size() > 0)
+        for (KqdsTreatitemTc tc : en)
+          this.logic.deleteSingleUUID(TableNameUtil.KQDS_TREATITEM_TC, tc.getSeqId());  
       String listdata = request.getParameter("params");
       JSONArray jArray = JSONArray.fromObject(listdata);
       Collection collection = JSONArray.toCollection(jArray, KqdsTreatitemTc.class);
-      Iterator it = collection.iterator();
-      
+      Iterator<KqdsTreatitemTc> it = collection.iterator();
       KqdsTreatitemTc detail = new KqdsTreatitemTc();
-      while (it.hasNext())
-      {
-        detail = (KqdsTreatitemTc)it.next();
+      while (it.hasNext()) {
+        detail = it.next();
         detail.setTcnameid(tcnameid);
         detail.setSeqId(YZUtility.getUUID());
         detail.setArrearmoney("0");
@@ -263,107 +220,79 @@ public class KQDS_TreatItem_TcBackAct
         detail.setCreatetime(YZUtility.getCurDateTimeStr());
         detail.setCreateuser(person.getSeqId());
         detail.setOrganization(tctypeNameObj.getOrganization());
-        
         KqdsTreatitem treatitem = this.treatlogic.getByTreatItemno(detail.getItemno());
-        if (treatitem == null) {
-          throw new Exception("收费编号对应的收费项目不存在");
-        }
-        if (1 == treatitem.getIsyjjitem().intValue()) {
-          throw new Exception("预交金不能作为收费套餐项目");
-        }
+        if (treatitem == null)
+          throw new Exception("收费编号对应的收费项目不存在"); 
+        if (1 == treatitem.getIsyjjitem().intValue())
+          throw new Exception("预交金不能作为收费套餐项目"); 
         this.logic.saveSingleUUID(TableNameUtil.KQDS_TREATITEM_TC, detail);
-      }
+      } 
       JSONObject json = new JSONObject();
       json.put("tcnameid", tcnameid);
       BcjlUtil.LogBcjl(BcjlUtil.MODIFY, BcjlUtil.KQDS_TREATITEM_TC_TYPE, json, TableNameUtil.KQDS_TREATITEM_TC, request);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(ex.getMessage(), true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/openOrcloseTc.act"})
-  public String openOrcloseTc(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String openOrcloseTc(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String isopen = request.getParameter("isopen");
       String tcnameid = request.getParameter("tcnameid");
       KqdsTreatitemTcType en = (KqdsTreatitemTcType)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_TREATITEM_TC_TYPE, tcnameid);
       en.setIsopen(Integer.valueOf(Integer.parseInt(isopen)));
       this.logic.updateSingleUUID(TableNameUtil.KQDS_TREATITEM_TC_TYPE, en);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectPage.act"})
-  public String selectPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       BootStrapPage bp = new BootStrapPage();
-      
       BeanUtils.populate(bp, request.getParameterMap());
       String tctype = request.getParameter("tctype");
       String tcname = request.getParameter("tcname");
-      Map<String, String> map = new HashMap();
-      if (!YZUtility.isNullorEmpty(tctype)) {
-        map.put("tctype", tctype);
-      }
-      if (!YZUtility.isNullorEmpty(tcname)) {
-        map.put("tcname", tcname);
-      }
+      Map<String, String> map = new HashMap<>();
+      if (!YZUtility.isNullorEmpty(tctype))
+        map.put("tctype", tctype); 
+      if (!YZUtility.isNullorEmpty(tcname))
+        map.put("tcname", tcname); 
       String organization = ChainUtil.getOrganizationFromUrlCanNull(request);
       map.put("organization", organization);
       JSONObject data = this.logic.selectWithPage(TableNameUtil.KQDS_TREATITEM_TC, bp, map);
       YZUtility.DEAL_SUCCESS(data, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectPageByTctypeAndTcname.act"})
-  public String selectPageByTctypeAndTcname(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String selectPageByTctypeAndTcname(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String tcnameid = request.getParameter("tcnameid");
-    try
-    {
+    try {
       BootStrapPage bp = new BootStrapPage();
-      
       BeanUtils.populate(bp, request.getParameterMap());
       JSONObject jobj = this.logic.selectWithPageBytctypeAndname(TableNameUtil.KQDS_TREATITEM_TC, bp, tcnameid);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectNoPageByTctypeAndTcname.act"})
-  public String selectNoPageByTctypeAndTcname(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String selectNoPageByTctypeAndTcname(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String tcnameid = request.getParameter("tcnameid");
-    try
-    {
+    try {
       BootStrapPage bp = new BootStrapPage();
-      
       BeanUtils.populate(bp, request.getParameterMap());
       int total = this.logic.selectTcxmCount(TableNameUtil.KQDS_TREATITEM_TC, tcnameid);
       List<JSONObject> list = this.logic.selectNoPageBytctypeAndname(TableNameUtil.KQDS_TREATITEM_TC, bp, tcnameid);
@@ -371,11 +300,9 @@ public class KQDS_TreatItem_TcBackAct
       jobj.put("total", Integer.valueOf(total));
       jobj.put("rows", list);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

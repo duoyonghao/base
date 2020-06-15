@@ -13,21 +13,18 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class SystemInitUtil
-{
+public class SystemInitUtil {
   private static Logger log = LoggerFactory.getLogger(YZConfigLoader.class);
   
-  public static void sysStartInit()
-  {
-    String dbparamFile = ConstUtil.ROOT_DIR + "WEB-INF" + File.separator + "classes/config" + File.separator + "dbparam.properties";
-    String sysConfFile = ConstUtil.ROOT_DIR + "WEB-INF" + File.separator + "classes/config" + File.separator + "sysconfig.properties";
-    String kaipiao = ConstUtil.ROOT_DIR + "WEB-INF" + File.separator + "classes/config" + File.separator + "kaipiao.properties";
-    String sms = ConstUtil.ROOT_DIR + "WEB-INF" + File.separator + "classes/config" + File.separator + "sms.properties";
-    String weixin = ConstUtil.ROOT_DIR + "WEB-INF" + File.separator + "classes/config" + File.separator + "weixin.properties";
-    String record = ConstUtil.ROOT_DIR + "WEB-INF" + File.separator + "classes/config" + File.separator + "record.properties";
-    String app = ConstUtil.ROOT_DIR + "WEB-INF" + File.separator + "classes/config" + File.separator + "app.properties";
-    
-    List<String> propFileList = new ArrayList();
+  public static void sysStartInit() {
+    String dbparamFile = String.valueOf(ConstUtil.ROOT_DIR) + "WEB-INF" + File.separator + "classes/config" + File.separator + "dbparam.properties";
+    String sysConfFile = String.valueOf(ConstUtil.ROOT_DIR) + "WEB-INF" + File.separator + "classes/config" + File.separator + "sysconfig.properties";
+    String kaipiao = String.valueOf(ConstUtil.ROOT_DIR) + "WEB-INF" + File.separator + "classes/config" + File.separator + "kaipiao.properties";
+    String sms = String.valueOf(ConstUtil.ROOT_DIR) + "WEB-INF" + File.separator + "classes/config" + File.separator + "sms.properties";
+    String weixin = String.valueOf(ConstUtil.ROOT_DIR) + "WEB-INF" + File.separator + "classes/config" + File.separator + "weixin.properties";
+    String record = String.valueOf(ConstUtil.ROOT_DIR) + "WEB-INF" + File.separator + "classes/config" + File.separator + "record.properties";
+    String app = String.valueOf(ConstUtil.ROOT_DIR) + "WEB-INF" + File.separator + "classes/config" + File.separator + "app.properties";
+    List<String> propFileList = new ArrayList<>();
     propFileList.add(dbparamFile);
     propFileList.add(sysConfFile);
     propFileList.add(kaipiao);
@@ -36,19 +33,15 @@ public class SystemInitUtil
     propFileList.add(record);
     propFileList.add(app);
     YZSysProps.setProps(YZConfigLoader.loadSysProps(propFileList));
-    
-
     String usekey = YZSysProps.getProp("IS_USE_USBKEY");
-    if ((!YZUtility.isNullorEmpty(usekey)) && (!"0".equals(usekey)))
-    {
+    if (!YZUtility.isNullorEmpty(usekey) && !"0".equals(usekey)) {
       String dogData = SentinelkeyUtil.readFormKey();
       log.error("系统端口数为：" + dogData);
-      if (!YZUtility.isNullorEmpty(dogData))
-      {
-        Map<String, String> datamap = new HashMap();
+      if (!YZUtility.isNullorEmpty(dogData)) {
+        Map<String, String> datamap = new HashMap<>();
         datamap.put("maxUserAccount", dogData);
         YZSysProps.addProps(datamap);
-      }
-    }
+      } 
+    } 
   }
 }

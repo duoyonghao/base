@@ -20,16 +20,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"/HUDH_LcljOperationNodeInforAct"})
-public class HUDH_LcljOperationNodeInforAct
-{
+public class HUDH_LcljOperationNodeInforAct {
   private static Logger logger = LoggerFactory.getLogger(HUDH_LcljOperationNodeInforAct.class);
+  
   @Autowired
   private ILcljOperationNodeInforService inforService;
   
   @RequestMapping({"/insertOperationNodeInfor.act"})
-  public String insertOperationNodeInfor(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String insertOperationNodeInfor(HttpServletRequest request, HttpServletResponse response) throws Exception {
     YZPerson person = SessionUtil.getLoginPerson(request);
     String organization = ChainUtil.getCurrentOrganization(request);
     String remark = request.getParameter("remark");
@@ -53,114 +51,82 @@ public class HUDH_LcljOperationNodeInforAct
     dp.setNodeId("PerSurMouset");
     dp.setOrder_number(orderNumber);
     String dataId = null;
-    try
-    {
+    try {
       this.inforService.insertOperationNodeInfor(dp, request, dataId);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectOperationNodeInforById.act"})
-  public String selectOperationNodeInforById(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String selectOperationNodeInforById(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String id = request.getParameter("id");
-    try
-    {
+    try {
       JSONObject json = this.inforService.selectOperationNodeInforById(id);
       YZUtility.DEAL_SUCCESS(json, null, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectOperationNodeInforAll.act"})
-  public String selectOperationNodeInforAll(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectOperationNodeInforAll(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       List<JSONObject> list = this.inforService.selectOperationNodeInforAll();
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/updateOperationNodeInforById.act"})
-  public String updateOperationNodeInforById(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String updateOperationNodeInforById(HttpServletRequest request, HttpServletResponse response) throws Exception {
     OperationNodeInfor dp = new OperationNodeInfor();
-    try
-    {
+    try {
       this.inforService.updateOperationNodeInforById(dp);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/deleteOperationNodeInforById.act"})
-  public String deleteOperationNodeInforById(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String deleteOperationNodeInforById(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String id = request.getParameter("id");
-    try
-    {
+    try {
       this.inforService.deleteOperationNodeInforById(id);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectOperationNodeInforByOrdernumberAndNodeId.act"})
-  public String selectOperationNodeInforByOrdernumberAndNodeId(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String selectOperationNodeInforByOrdernumberAndNodeId(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String orderNumber = request.getParameter("orderNumber");
     String nodeId = request.getParameter("nodeId");
-    Map<String, String> map = new HashMap();
-    if (YZUtility.isNotNullOrEmpty(orderNumber)) {
-      map.put("orderNumber", orderNumber);
-    }
-    if (YZUtility.isNotNullOrEmpty(nodeId)) {
-      map.put("nodeId", nodeId);
-    }
-    try
-    {
+    Map<String, String> map = new HashMap<>();
+    if (YZUtility.isNotNullOrEmpty(orderNumber))
+      map.put("orderNumber", orderNumber); 
+    if (YZUtility.isNotNullOrEmpty(nodeId))
+      map.put("nodeId", nodeId); 
+    try {
       JSONObject jsonObject = this.inforService.selectOperationNodeInforByOrdernumberAndNodeId(map);
       YZUtility.DEAL_SUCCESS(jsonObject, null, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/saveOperationNodeInforAberrance.act"})
-  public String saveOperationNodeInforAberrance(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String saveOperationNodeInforAberrance(HttpServletRequest request, HttpServletResponse response) throws Exception {
     YZPerson person = SessionUtil.getLoginPerson(request);
     String organization = ChainUtil.getCurrentOrganization(request);
     String remark = request.getParameter("remark");
@@ -186,38 +152,28 @@ public class HUDH_LcljOperationNodeInforAct
   }
   
   @RequestMapping({"/updateOrderTimeHospital.act"})
-  public String updateOrderTimeHospital(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String updateOrderTimeHospital(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String order_number = request.getParameter("order_number");
     String nodeId = request.getParameter("nodeId");
     String orderTime = request.getParameter("orderTime");
-    try
-    {
+    try {
       this.inforService.updateOrderTimeHospital(order_number, nodeId, orderTime);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
   
-  public String cancelTimeHospital(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String cancelTimeHospital(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String order_number = request.getParameter("order_number");
     String nodeId = request.getParameter("nodeId");
-    try
-    {
+    try {
       this.inforService.cancelTimeHospital(order_number, nodeId);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, logger);
-    }
+    } 
     return null;
   }
 }

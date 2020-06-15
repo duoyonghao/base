@@ -12,15 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserdocumentMergeRecordLogic
-  extends BaseLogic
-{
+public class UserdocumentMergeRecordLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public void saveMergeRecord(KqdsUserdocumentMergeRecord dp, HttpServletRequest request)
-    throws Exception
-  {
+  public void saveMergeRecord(KqdsUserdocumentMergeRecord dp, HttpServletRequest request) throws Exception {
     String organization = ChainUtil.getCurrentOrganization(request);
     YZPerson person = SessionUtil.getLoginPerson(request);
     dp.setCrateuser(person.getSeqId());

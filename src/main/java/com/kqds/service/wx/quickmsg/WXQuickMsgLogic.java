@@ -13,30 +13,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class WXQuickMsgLogic
-  extends BaseLogic
-{
+public class WXQuickMsgLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public int getCount(HttpServletRequest request, String table, Map<String, String> map)
-    throws Exception
-  {
-    int count = ((Integer)this.dao.findForObject(TableNameUtil.WX_QUICKMSG + ".getCount", map)).intValue();
+  public int getCount(HttpServletRequest request, String table, Map<String, String> map) throws Exception {
+    int count = ((Integer)this.dao.findForObject(String.valueOf(TableNameUtil.WX_QUICKMSG) + ".getCount", map)).intValue();
     return count;
   }
   
-  public List<JSONObject> noSelectWithPage(String table, Map<String, String> map)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.WX_QUICKMSG + ".getListsql", map);
+  public List<JSONObject> noSelectWithPage(String table, Map<String, String> map) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.WX_QUICKMSG) + ".getListsql", map);
     return list;
   }
   
-  public JSONObject selectWithPage(String table, BootStrapPage bp, Map<String, String> map)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.WX_QUICKMSG + ".getListsql", map);
+  public JSONObject selectWithPage(String table, BootStrapPage bp, Map<String, String> map) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.WX_QUICKMSG) + ".getListsql", map);
     PageInfo<JSONObject> pageInfo = new PageInfo(list);
     JSONObject jobj = new JSONObject();
     jobj.put("total", Long.valueOf(pageInfo.getTotal()));

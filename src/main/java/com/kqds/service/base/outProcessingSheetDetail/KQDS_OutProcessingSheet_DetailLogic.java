@@ -13,47 +13,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_OutProcessingSheet_DetailLogic
-  extends BaseLogic
-{
+public class KQDS_OutProcessingSheet_DetailLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public int getCountByItemCodes(String wjgxmbhs)
-    throws Exception
-  {
-    int count = ((Integer)this.dao.findForObject(TableNameUtil.KQDS_OUTPROCESSING_SHEET_DETAIL + ".getCountByItemCodes", YZUtility.ConvertStringIds4Query(wjgxmbhs))).intValue();
+  public int getCountByItemCodes(String wjgxmbhs) throws Exception {
+    int count = ((Integer)this.dao.findForObject(String.valueOf(TableNameUtil.KQDS_OUTPROCESSING_SHEET_DETAIL) + ".getCountByItemCodes", YZUtility.ConvertStringIds4Query(wjgxmbhs))).intValue();
     return count;
   }
   
-  public int getCount(String factoryCode)
-    throws Exception
-  {
-    int count = ((Integer)this.dao.findForObject(TableNameUtil.KQDS_OUTPROCESSING_SHEET_DETAIL + ".getCount", factoryCode)).intValue();
+  public int getCount(String factoryCode) throws Exception {
+    int count = ((Integer)this.dao.findForObject(String.valueOf(TableNameUtil.KQDS_OUTPROCESSING_SHEET_DETAIL) + ".getCount", factoryCode)).intValue();
     return count;
   }
   
-  public List<JSONObject> selectByitem(Map<String, String> map)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_OUTPROCESSING_SHEET_DETAIL + ".selectByitem", map);
+  public List<JSONObject> selectByitem(Map<String, String> map) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_OUTPROCESSING_SHEET_DETAIL) + ".selectByitem", map);
     return list;
   }
   
-  public List<JSONObject> selectListByQuery(String table, Map<String, String> map, String num)
-    throws Exception
-  {
-    if (num.equals("0")) {
-      map.put("num", "0");
-    }
-    if (map.containsKey("queryInput"))
-    {
-      map.put("p1", YZAuthenticator.phonenumberLike("u.PhoneNumber1", (String)map.get("queryInput")));
-      map.put("p2", YZAuthenticator.phonenumberLike("u.PhoneNumber2", (String)map.get("queryInput")));
-    }
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_OUTPROCESSING_SHEET_DETAIL + ".selectListByQuery", map);
-    for (JSONObject job : list)
-    {
+  public List<JSONObject> selectListByQuery(String table, Map<String, String> map, String num) throws Exception {
+    if (num.equals("0"))
+      map.put("num", "0"); 
+    if (map.containsKey("queryInput")) {
+      map.put("p1", YZAuthenticator.phonenumberLike("u.PhoneNumber1", map.get("queryInput")));
+      map.put("p2", YZAuthenticator.phonenumberLike("u.PhoneNumber2", map.get("queryInput")));
+    } 
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_OUTPROCESSING_SHEET_DETAIL) + ".selectListByQuery", map);
+    for (JSONObject job : list) {
       String status = job.getString("status");
       String value = "";
       if (ConstUtil.JG_STATUS_0.equals(status)) {
@@ -68,9 +55,9 @@ public class KQDS_OutProcessingSheet_DetailLogic
         value = "返工";
       } else if (ConstUtil.JG_STATUS_5.equals(status)) {
         value = "作废";
-      }
+      } 
       job.put("statusname", value);
-    }
+    } 
     return list;
   }
 }

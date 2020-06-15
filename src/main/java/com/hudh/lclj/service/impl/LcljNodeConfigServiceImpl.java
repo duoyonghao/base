@@ -14,36 +14,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LcljNodeConfigServiceImpl
-  implements ILcljNodeConfigService
-{
+public class LcljNodeConfigServiceImpl implements ILcljNodeConfigService {
   @Autowired
   private NodeConfigDao nodeConfigDao;
   
-  public void insertNodeConfig(LcljNodeConfig lcljNodeConfig)
-    throws Exception
-  {
+  public void insertNodeConfig(LcljNodeConfig lcljNodeConfig) throws Exception {
     lcljNodeConfig.setId(YZUtility.getUUID());
     lcljNodeConfig.setCreatrtime(HUDHUtil.getCurrentTime("yyyy-MM-dd HH:mm:ss"));
     this.nodeConfigDao.insertNodeConfig(lcljNodeConfig);
   }
   
-  public void deleteNodeConfigByCodeAndNodeId(Map<String, String> dataMap)
-    throws Exception
-  {}
+  public void deleteNodeConfigByCodeAndNodeId(Map<String, String> dataMap) throws Exception {}
   
-  public List<JSONObject> findAllNodeConfigByFlowCode(Map<String, String> dataMap)
-    throws Exception
-  {
-    List<LcljNodeConfig> list = new ArrayList();
+  public List<JSONObject> findAllNodeConfigByFlowCode(Map<String, String> dataMap) throws Exception {
+    List<LcljNodeConfig> list = new ArrayList<>();
     list = this.nodeConfigDao.findAllNodeConfigByFlowCode(dataMap);
     return HUDHUtil.parseJsonToObjectList(JSON.toJSONString(list), JSONObject.class);
   }
   
-  public List<LcljNodeConfig> findAllNodeConfigByFlowCodeObj(Map<String, String> dataMap)
-    throws Exception
-  {
-    List<LcljNodeConfig> list = new ArrayList();
+  public List<LcljNodeConfig> findAllNodeConfigByFlowCodeObj(Map<String, String> dataMap) throws Exception {
+    List<LcljNodeConfig> list = new ArrayList<>();
     list = this.nodeConfigDao.findAllNodeConfigByFlowCode(dataMap);
     return list;
   }

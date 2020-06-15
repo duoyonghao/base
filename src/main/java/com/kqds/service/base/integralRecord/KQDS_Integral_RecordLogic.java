@@ -15,21 +15,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_Integral_RecordLogic
-  extends BaseLogic
-{
+public class KQDS_Integral_RecordLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public JSONObject selectWithPage(BootStrapPage bp, String table, YZPerson person, Map<String, String> map, String visualstaff)
-    throws Exception
-  {
-    if (!YZUtility.isNullorEmpty((String)map.get("usercodeorname")))
-    {
-      map.put("p1", YZAuthenticator.phonenumberLike("u.PhoneNumber1", (String)map.get("usercodeorname")));
-      map.put("p2", YZAuthenticator.phonenumberLike("u.PhoneNumber2", (String)map.get("usercodeorname")));
-    }
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_INTEGRAL_RECORD + ".selectWithPage", map);
+  public JSONObject selectWithPage(BootStrapPage bp, String table, YZPerson person, Map<String, String> map, String visualstaff) throws Exception {
+    if (!YZUtility.isNullorEmpty(map.get("usercodeorname"))) {
+      map.put("p1", YZAuthenticator.phonenumberLike("u.PhoneNumber1", map.get("usercodeorname")));
+      map.put("p2", YZAuthenticator.phonenumberLike("u.PhoneNumber2", map.get("usercodeorname")));
+    } 
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_INTEGRAL_RECORD) + ".selectWithPage", map);
     PageInfo<JSONObject> pageInfo = new PageInfo(list);
     JSONObject jobj = new JSONObject();
     jobj.put("total", Long.valueOf(pageInfo.getTotal()));

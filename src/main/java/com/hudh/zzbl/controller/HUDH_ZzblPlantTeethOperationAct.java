@@ -17,47 +17,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"/HUDH_ZzblPlantTeethOperationAct"})
-public class HUDH_ZzblPlantTeethOperationAct
-{
+public class HUDH_ZzblPlantTeethOperationAct {
   private Logger logger = LoggerFactory.getLogger(HUDH_ZzblPlantTeethOperationAct.class);
+  
   @Autowired
   private IZzblPlantTeethOperationService operationService;
   
   @RequestMapping({"/save.act"})
-  public String save(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String save(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ZzblPlantTeethOperation dp = new ZzblPlantTeethOperation();
     YZPerson person = SessionUtil.getLoginPerson(request);
     String organization = ChainUtil.getCurrentOrganization(request);
     dp.setCreateuser(person.getUserId());
     dp.setOrganization(organization);
-    try
-    {
+    try {
       this.operationService.insertZzblPlantTeethOperation(dp, request);
       YZUtility.DEAL_SUCCESS(null, null, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/findZzblOprationById.act"})
-  public JSONObject findZzblOprationById(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public JSONObject findZzblOprationById(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String id = request.getParameter("id");
-    try
-    {
+    try {
       JSONObject json = this.operationService.findZzblPlantTeethOperationById(id);
       YZUtility.DEAL_SUCCESS(json, null, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
 }

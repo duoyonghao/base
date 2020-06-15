@@ -14,20 +14,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_InformationLogic
-  extends BaseLogic
-{
+public class KQDS_InformationLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public JSONObject selectWithPage(String table, BootStrapPage bp, Map<String, String> filter)
-    throws Exception
-  {
+  public JSONObject selectWithPage(String table, BootStrapPage bp, Map<String, String> filter) throws Exception {
     PageHelper.offsetPage(bp.getOffset(), bp.getLimit());
-    
-    Map<String, Map<String, String>> map = new HashMap();
+    Map<String, Map<String, String>> map = new HashMap<>();
     map.put("params", filter);
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_INFORMATION + ".selectWithPage", map);
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_INFORMATION) + ".selectWithPage", map);
     PageInfo<JSONObject> pageInfo = new PageInfo(list);
     JSONObject jobj = new JSONObject();
     jobj.put("total", Long.valueOf(pageInfo.getTotal()));
@@ -35,13 +30,11 @@ public class KQDS_InformationLogic
     return jobj;
   }
   
-  public List<JSONObject> selectList(String table, String searchinput, String organization)
-    throws Exception
-  {
+  public List<JSONObject> selectList(String table, String searchinput, String organization) throws Exception {
     JSONObject json = new JSONObject();
     json.put("organization", organization);
     json.put("searchinput", searchinput);
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_INFORMATION + ".selectList", json);
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_INFORMATION) + ".selectList", json);
     return list;
   }
 }

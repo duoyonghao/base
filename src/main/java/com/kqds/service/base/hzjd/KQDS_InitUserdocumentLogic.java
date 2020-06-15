@@ -7,14 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_InitUserdocumentLogic
-{
+public class KQDS_InitUserdocumentLogic {
   @Autowired
   private DaoSupport dao;
   
-  public void batchSaveUserDocument(List<KqdsUserdocument> list)
-    throws Exception
-  {
+  public void batchSaveUserDocument(List<KqdsUserdocument> list) throws Exception {
     this.dao.batchUpdate("KQDS_USERDOCUMENT.batchSaveUserDocument", list);
   }
 }

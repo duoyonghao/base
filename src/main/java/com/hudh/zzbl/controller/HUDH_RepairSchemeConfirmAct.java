@@ -18,82 +18,62 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"/HUDH_RepairSchemeConfirmAct"})
-public class HUDH_RepairSchemeConfirmAct
-{
+public class HUDH_RepairSchemeConfirmAct {
   private Logger logger = LoggerFactory.getLogger(HUDH_RepairSchemeConfirmAct.class);
+  
   @Autowired
   private IRepairSchemeConfirmService repairSchemeConfirmService;
   
   @RequestMapping({"/saveRepairSchemeConfirmInfro.act"})
-  public String saveRepairSchemeConfirmInfro(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String saveRepairSchemeConfirmInfro(HttpServletRequest request, HttpServletResponse response) throws Exception {
     RepairSchemeConfirm dp = new RepairSchemeConfirm();
     YZPerson person = SessionUtil.getLoginPerson(request);
     String organization = ChainUtil.getCurrentOrganization(request);
     dp.setCreateuser(person.getUserId());
     dp.setOrganization(organization);
-    try
-    {
+    try {
       this.repairSchemeConfirmService.saveRepairSchemeConfirmInfro(dp, request);
       YZUtility.DEAL_SUCCESS(null, null, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/updateRepairInforById.act"})
-  public String updateRepairInforById(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String updateRepairInforById(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String id = request.getParameter("seqId");
     JSONObject json = this.repairSchemeConfirmService.selectRepairInforById(id);
     RepairSchemeConfirm dp = (RepairSchemeConfirm)JSONObject.toBean(json, RepairSchemeConfirm.class);
-    try
-    {
+    try {
       this.repairSchemeConfirmService.updateRepairInforById(dp, request);
       YZUtility.DEAL_SUCCESS(null, null, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/findRepairInforById.act"})
-  public String findRepairInforById(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String findRepairInforById(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String id = request.getParameter("id");
-    try
-    {
-      JSONObject json = this.repairSchemeConfirmService.findRepairInforById(id);
-      YZUtility.DEAL_SUCCESS(json, null, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    try {
+      List<JSONObject> json = this.repairSchemeConfirmService.findRepairInforById(id);
+      YZUtility.RETURN_LIST(json, response, this.logger);
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/findReapirInforAll.act"})
-  public String findReapirInforAll(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String findReapirInforAll(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       List<JSONObject> list = this.repairSchemeConfirmService.findReapirInforAll();
       YZUtility.RETURN_LIST(list, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
 }

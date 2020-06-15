@@ -30,36 +30,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"KQDS_Member_RecordAct"})
-public class KQDS_Member_RecordAct
-{
+public class KQDS_Member_RecordAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_Member_RecordAct.class);
+  
   @Autowired
   private KQDS_Member_RecordLogic logic;
+  
   @Autowired
   private YZPersonLogic personLogic;
   
   @RequestMapping({"/methodModify.act"})
-  public String methodModify(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String methodModify(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       KqdsMemberRecord dp = new KqdsMemberRecord();
       BeanUtils.populate(dp, request.getParameterMap());
       String seqId = request.getParameter("seqId");
-      if (YZUtility.isNullorEmpty(seqId)) {
-        throw new Exception("主键为空");
-      }
+      if (YZUtility.isNullorEmpty(seqId))
+        throw new Exception("主键为空"); 
       KqdsMemberRecord record = (KqdsMemberRecord)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_MEMBER_RECORD, seqId);
-      if (record == null) {
-        throw new Exception("会员卡操作记录不存在");
-      }
+      if (record == null)
+        throw new Exception("会员卡操作记录不存在"); 
       BigDecimal total1 = dp.getXjmoney().add(dp.getYhkmoney()).add(dp.getWxmoney()).add(dp.getMmdmoney()).add(dp.getZfbmoney()).add(dp.getBdfqmoney()).add(dp.getQtmoney());
       BigDecimal total2 = record.getXjmoney().add(record.getYhkmoney()).add(record.getWxmoney()).add(record.getMmdmoney()).add(record.getZfbmoney())
         .add(record.getBdfqmoney()).add(record.getQtmoney());
-      if (KqdsBigDecimal.compareTo(total1, total2) != 0) {
-        throw new Exception("页面总金额和数据库总金额不一致！");
-      }
+      if (KqdsBigDecimal.compareTo(total1, total2) != 0)
+        throw new Exception("页面总金额和数据库总金额不一致！"); 
       record.setXjmoney(dp.getXjmoney());
       record.setYhkmoney(dp.getYhkmoney());
       record.setWxmoney(dp.getWxmoney());
@@ -68,207 +63,156 @@ public class KQDS_Member_RecordAct
       record.setBdfqmoney(dp.getBdfqmoney());
       record.setQtmoney(dp.getQtmoney());
       this.logic.updateSingleUUID(TableNameUtil.KQDS_MEMBER_RECORD, dp);
-      
       BcjlUtil.LogBcjl(seqId, BcjlUtil.KQDS_MEMBER_RECORD, record, TableNameUtil.KQDS_MEMBER_RECORD, request);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(ex.getMessage(), true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectList.act"})
-  public String selectList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
-      Map<String, String> map = new HashMap();
+  public String selectList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
+      Map<String, String> map = new HashMap<>();
       String cardno = request.getParameter("cardno");
-      if (!YZUtility.isNullorEmpty(cardno)) {
-        map.put("cardno", cardno);
-      }
+      if (!YZUtility.isNullorEmpty(cardno))
+        map.put("cardno", cardno); 
       String queryInput = request.getParameter("cardqueryInputno");
-      if (!YZUtility.isNullorEmpty(queryInput)) {
-        map.put("memberno", queryInput);
-      }
+      if (!YZUtility.isNullorEmpty(queryInput))
+        map.put("memberno", queryInput); 
       List<JSONObject> list = this.logic.selectList(TableNameUtil.KQDS_MEMBER_RECORD, map);
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectListForCzjl.act"})
-  public String selectListForCzjl(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
-      Map<String, String> map = new HashMap();
+  public String selectListForCzjl(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
+      Map<String, String> map = new HashMap<>();
       String cardno = request.getParameter("cardno");
-      if (!YZUtility.isNullorEmpty(cardno)) {
-        map.put("cardno", cardno);
-      }
+      if (!YZUtility.isNullorEmpty(cardno))
+        map.put("cardno", cardno); 
       String queryInput = request.getParameter("cardqueryInputno");
-      if (!YZUtility.isNullorEmpty(queryInput)) {
-        map.put("memberno", queryInput);
-      }
+      if (!YZUtility.isNullorEmpty(queryInput))
+        map.put("memberno", queryInput); 
       map.put("nosz", "1");
       List<JSONObject> list1 = this.logic.selectList(TableNameUtil.KQDS_MEMBER_RECORD, map);
       List<JSONObject> list2 = this.logic.selectListForCzjl(TableNameUtil.KQDS_MEMBER_RECORD, map);
-      List<JSONObject> list = new ArrayList();
+      List<JSONObject> list = new ArrayList<>();
       list.addAll(list1);
       list.addAll(list2);
       SortList<JSONObject> sortList = new SortList();
       sortList.SortJSONObject(list, "createtime", "desc");
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectListByType.act"})
-  public String selectListByType(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
-      String flag = request.getParameter("flag") == null ? "" : request.getParameter("flag");
-      String fieldArr = request.getParameter("fieldArr") == null ? "" : request.getParameter("fieldArr");
-      String fieldnameArr = request.getParameter("fieldnameArr") == null ? "" : request.getParameter("fieldnameArr");
-      Map<String, String> map = new HashMap();
+  public String selectListByType(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
+      String flag = (request.getParameter("flag") == null) ? "" : request.getParameter("flag");
+      String fieldArr = (request.getParameter("fieldArr") == null) ? "" : request.getParameter("fieldArr");
+      String fieldnameArr = (request.getParameter("fieldnameArr") == null) ? "" : request.getParameter("fieldnameArr");
+      Map<String, String> map = new HashMap<>();
       String cardno = request.getParameter("cardno");
-      if (!YZUtility.isNullorEmpty(cardno)) {
-        map.put("cardno", cardno);
-      }
+      if (!YZUtility.isNullorEmpty(cardno))
+        map.put("cardno", cardno); 
       String queryInput = request.getParameter("cardqueryInputno");
-      if (!YZUtility.isNullorEmpty(queryInput)) {
-        map.put("memberno", queryInput);
-      }
+      if (!YZUtility.isNullorEmpty(queryInput))
+        map.put("memberno", queryInput); 
       String type = request.getParameter("type");
-      if (!YZUtility.isNullorEmpty(type)) {
-        map.put("type", type);
-      }
+      if (!YZUtility.isNullorEmpty(type))
+        map.put("type", type); 
       String queryinput = request.getParameter("queryinput");
-      if (!YZUtility.isNullorEmpty(queryinput)) {
-        map.put("queryinput", queryinput);
-      }
+      if (!YZUtility.isNullorEmpty(queryinput))
+        map.put("queryinput", queryinput); 
       String starttime = request.getParameter("starttime");
-      if (!YZUtility.isNullorEmpty(starttime)) {
-        map.put("starttime", starttime + ConstUtil.TIME_START);
-      }
+      if (!YZUtility.isNullorEmpty(starttime))
+        map.put("starttime", String.valueOf(starttime) + ConstUtil.TIME_START); 
       String endtime = request.getParameter("endtime");
-      if (!YZUtility.isNullorEmpty(endtime)) {
-        map.put("endtime", endtime + ConstUtil.TIME_END);
-      }
+      if (!YZUtility.isNullorEmpty(endtime))
+        map.put("endtime", String.valueOf(endtime) + ConstUtil.TIME_END); 
       String visualstaff = SessionUtil.getVisualstaff(request);
       map.put("visualstaff", visualstaff);
       String organization = ChainUtil.getOrganizationFromUrlCanNull(request);
-      if (YZUtility.isNullorEmpty(organization)) {
-        organization = ChainUtil.getCurrentOrganization(request);
-      }
+      if (YZUtility.isNullorEmpty(organization))
+        organization = ChainUtil.getCurrentOrganization(request); 
       map.put("organization", organization);
       List<JSONObject> list = this.logic.selectListByType(TableNameUtil.KQDS_MEMBER_RECORD, map);
-      if ((flag != null) && (flag.equals("exportTable")))
-      {
+      if (flag != null && flag.equals("exportTable")) {
         ExportTable.exportBootStrapTable2Excel("会员卡记录", fieldArr, fieldnameArr, list, response, request);
         return null;
-      }
+      } 
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/printSfxm.act"})
-  public String printSfxm(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String printSfxm(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String recordId = request.getParameter("recordId");
       String table = request.getParameter("table");
-      if (YZUtility.isNullorEmpty(recordId)) {
-        throw new Exception("退费编号为null");
-      }
-      if (YZUtility.isNullorEmpty(table)) {
-        throw new Exception("表为null");
-      }
+      if (YZUtility.isNullorEmpty(recordId))
+        throw new Exception("退费编号为null"); 
+      if (YZUtility.isNullorEmpty(table))
+        throw new Exception("表为null"); 
       JSONObject jobj = new JSONObject();
       JSONObject FKFS = this.logic.printSfxm(table, recordId, request);
       jobj.put("FKFS", FKFS);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/setAskperson.act"})
-  public String setAskperson(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String setAskperson(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
       String seqId = request.getParameter("seqId");
       String askperson = request.getParameter("askperson");
       KqdsMemberRecord record = (KqdsMemberRecord)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_MEMBER_RECORD, seqId);
-      if (record == null) {
-        throw new Exception("操作记录不存在");
-      }
+      if (record == null)
+        throw new Exception("操作记录不存在"); 
       String Oldaskperson = this.personLogic.getNameStrBySeqIds(record.getAskperson());
       record.setAskperson(askperson);
       this.logic.updateSingleUUID(TableNameUtil.KQDS_MEMBER_RECORD, record);
-      
-
       String Newaskperson = this.personLogic.getNameStrBySeqIds(askperson);
       String logText = "系统用户" + person.getUserName() + "进行了会员接诊咨询修改操作，原咨询：" + Oldaskperson + "，现咨询：" + Newaskperson + "，患者编号：" + record.getUsercode() + "，患者姓名：" + 
         record.getUsername() + "。";
-      BcjlUtil.LogBcjlWithUserCode(BcjlUtil.UPDATE_ASKPERSON + record.getSeqId(), BcjlUtil.KQDS_MEMBER_RECORD, logText, record.getUsercode(), 
-        TableNameUtil.KQDS_MEMBER_RECORD, request);
+      BcjlUtil.LogBcjlWithUserCode(String.valueOf(BcjlUtil.UPDATE_ASKPERSON) + record.getSeqId(), BcjlUtil.KQDS_MEMBER_RECORD, logText, record.getUsercode(), 
+          TableNameUtil.KQDS_MEMBER_RECORD, request);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectDetail.act"})
-  public String selectDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
       KqdsMemberRecord en = (KqdsMemberRecord)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_MEMBER_RECORD, seqId);
-      if (en == null) {
-        throw new Exception("数据不存在");
-      }
+      if (en == null)
+        throw new Exception("数据不存在"); 
       JSONObject jobj = new JSONObject();
       jobj.put("data", en);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

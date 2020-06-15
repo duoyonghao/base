@@ -8,15 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DzblTemplateInitServiceImpl
-  implements IDzblTemplateInitService
-{
+public class DzblTemplateInitServiceImpl implements IDzblTemplateInitService {
   @Autowired
   private DzblTemplateInitDao dInitDao;
   
-  public void initDzblTemplate(List<DzblTemplate> list)
-    throws Exception
-  {
+  public void initDzblTemplate(List<DzblTemplate> list) throws Exception {
     this.dInitDao.initDzblTemplate(list);
   }
 }

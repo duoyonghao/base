@@ -15,15 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LcljOperationNodeInforAberranceImpl
-  implements ILcljOperationNodeInforAberrance
-{
+public class LcljOperationNodeInforAberranceImpl implements ILcljOperationNodeInforAberrance {
   @Autowired
   private LcljOperationNodeInforAberranceDao nodeInforDao;
   
-  public void LcljOperationNodeInforAberrance(LcljOperationNodeInforaBerrance dp, HttpServletRequest request)
-    throws Exception
-  {
+  public void LcljOperationNodeInforAberrance(LcljOperationNodeInforaBerrance dp, HttpServletRequest request) throws Exception {
     String nodeName = request.getParameter("nodeName");
     String nodeLimit = request.getParameter("nodeLimit");
     String operation_time = request.getParameter("operation_time");
@@ -86,7 +82,6 @@ public class LcljOperationNodeInforAberranceImpl
     String nostitches = request.getParameter("nostitches");
     String intraoperativeMedication = request.getParameter("intraoperativeMedication");
     String enterLclj = request.getParameter("enterLclj");
-    
     String operator = request.getParameter("operator");
     String finish_norm_first = request.getParameter("finish_norm_first");
     String finish_norm_second = request.getParameter("finish_norm_second");
@@ -111,32 +106,30 @@ public class LcljOperationNodeInforAberranceImpl
     String extractionleftup1_r = request.getParameter("extractionleftup1_r");
     String extractionleftdown1_l = request.getParameter("extractionleftdown1_l");
     String extractionleftdown1_r = request.getParameter("extractionleftdown1_r");
-    
     YZPerson person = SessionUtil.getLoginPerson(request);
     String organization = ChainUtil.getCurrentOrganization(request);
     String orderNumber = request.getParameter("orderNumber");
     String nodeId = request.getParameter("nodeId");
-    if ((YZUtility.isNullorEmpty(operation_time)) && (YZUtility.isNullorEmpty(review_time)) && (YZUtility.isNullorEmpty(visit_time)) && (YZUtility.isNullorEmpty(preoperation_one_houres)) && (YZUtility.isNullorEmpty(preoperative_verification)) && 
-      (YZUtility.isNullorEmpty(abutment_station)) && (YZUtility.isNullorEmpty(healing_cap_station)) && 
-      (YZUtility.isNullorEmpty(postoperation_user_deugs)) && (YZUtility.isNullorEmpty(connectingBridge)) && (YZUtility.isNullorEmpty(collutory)) && 
-      (YZUtility.isNullorEmpty(small_teeth)) && (YZUtility.isNullorEmpty(announcements)) && (YZUtility.isNullorEmpty(opration_record)) && 
-      (YZUtility.isNullorEmpty(remark)) && (YZUtility.isNullorEmpty(assist_operation)) && (YZUtility.isNullorEmpty(observe_wound)) && (YZUtility.isNullorEmpty(check_wound)) && (YZUtility.isNullorEmpty(is_stitches)) && 
-      (YZUtility.isNullorEmpty(panoramic_view_piece)) && (YZUtility.isNullorEmpty(next_hospital_time)) && (YZUtility.isNullorEmpty(twoDateStitchesTime)) && (YZUtility.isNullorEmpty(twoOperationAttention)) && (YZUtility.isNullorEmpty(completeTwoOperation)) && 
-      (YZUtility.isNullorEmpty(ismodule)) && (YZUtility.isNullorEmpty(transfer)) && (YZUtility.isNullorEmpty(basalCrowns)) && (YZUtility.isNullorEmpty(colorimetric)) && (YZUtility.isNullorEmpty(localBridge)) && (YZUtility.isNullorEmpty(try_in)) && 
-      (YZUtility.isNullorEmpty(askAboutUsage)) && (YZUtility.isNullorEmpty(check_surgical_healing)) && (YZUtility.isNullorEmpty(confirmOcclusalRelationship)) && (YZUtility.isNullorEmpty(makeTransitionDenture)) && (YZUtility.isNullorEmpty(tryInTransitionDenture)) && 
-      (YZUtility.isNullorEmpty(jawrelationRecord)) && (YZUtility.isNullorEmpty(tryBaseStationInnerCrown)) && (YZUtility.isNullorEmpty(secondGetModulus)) && (YZUtility.isNullorEmpty(toTryAgain)) && (YZUtility.isNullorEmpty(complete_case_record)) && 
-      (YZUtility.isNullorEmpty(checkPlantBoneCombine)) && (YZUtility.isNullorEmpty(wearTooth)) && (YZUtility.isNullorEmpty(isphotograph)) && (YZUtility.isNullorEmpty(checkCavityCleanSitu)) && (YZUtility.isNullorEmpty(antimicrobial_use)) && 
-      (YZUtility.isNullorEmpty(tryHolderOrBasalCrowns)) && (YZUtility.isNullorEmpty(askUserSituation)) && (YZUtility.isNullorEmpty(resinSealing)) && (YZUtility.isNullorEmpty(checkOcclusion)) && (YZUtility.isNullorEmpty(postoperativeModulus)) && 
-      (YZUtility.isNullorEmpty(checkPlantSituation)) && (YZUtility.isNullorEmpty(modulusToMakePersonalizedTrays)) && (YZUtility.isNullorEmpty(ectolophUse)) && (YZUtility.isNullorEmpty(accord)) && (YZUtility.isNullorEmpty(checkWearToothSitu)) && 
-      (YZUtility.isNullorEmpty(satisfactionPatients)) && (YZUtility.isNullorEmpty(doctorWrittenRecords)) && (YZUtility.isNullorEmpty(anesthesiaMethod)) && (YZUtility.isNullorEmpty(nostitches)) && (YZUtility.isNullorEmpty(intraoperativeMedication)) && 
-      (YZUtility.isNullorEmpty(enterLclj)) && (YZUtility.isNullorEmpty(operator)) && 
-      (YZUtility.isNullorEmpty(finish_norm_first)) && (YZUtility.isNullorEmpty(finish_norm_second)) && (YZUtility.isNullorEmpty(finish_norm_third)) && (YZUtility.isNullorEmpty(finish_norm_fourth)) && (YZUtility.isNullorEmpty(finish_norm_fifth)) && 
-      (YZUtility.isNullorEmpty(before_Modulo_bite)) && (YZUtility.isNullorEmpty(after_Modulo_bite)) && (YZUtility.isNullorEmpty(fixation_tooth_bridge)) && (YZUtility.isNullorEmpty(decision_bite)) && (YZUtility.isNullorEmpty(upper_frame)) && 
-      (YZUtility.isNullorEmpty(is_loose)) && (YZUtility.isNullorEmpty(health_education)) && (YZUtility.isNullorEmpty(neonychium)) && (YZUtility.isNullorEmpty(clean_toothbridge)) && (YZUtility.isNullorEmpty(outside_bone_grafting)) && 
-      (YZUtility.isNullorEmpty(extractionleftup_l)) && (YZUtility.isNullorEmpty(extractionleftup_r)) && (YZUtility.isNullorEmpty(extractionleftdown_l)) && (YZUtility.isNullorEmpty(extractionleftdown_r)) && (YZUtility.isNullorEmpty(extractionleftup1_l)) && 
-      (YZUtility.isNullorEmpty(extractionleftup1_r)) && (YZUtility.isNullorEmpty(extractionleftdown1_l)) && (YZUtility.isNullorEmpty(extractionleftdown1_r))) {
-      throw new Exception("需要填写的信息不能全部为空！");
-    }
+    if (YZUtility.isNullorEmpty(operation_time) && YZUtility.isNullorEmpty(review_time) && YZUtility.isNullorEmpty(visit_time) && YZUtility.isNullorEmpty(preoperation_one_houres) && YZUtility.isNullorEmpty(preoperative_verification) && 
+      YZUtility.isNullorEmpty(abutment_station) && YZUtility.isNullorEmpty(healing_cap_station) && 
+      YZUtility.isNullorEmpty(postoperation_user_deugs) && YZUtility.isNullorEmpty(connectingBridge) && YZUtility.isNullorEmpty(collutory) && 
+      YZUtility.isNullorEmpty(small_teeth) && YZUtility.isNullorEmpty(announcements) && YZUtility.isNullorEmpty(opration_record) && 
+      YZUtility.isNullorEmpty(remark) && YZUtility.isNullorEmpty(assist_operation) && YZUtility.isNullorEmpty(observe_wound) && YZUtility.isNullorEmpty(check_wound) && YZUtility.isNullorEmpty(is_stitches) && 
+      YZUtility.isNullorEmpty(panoramic_view_piece) && YZUtility.isNullorEmpty(next_hospital_time) && YZUtility.isNullorEmpty(twoDateStitchesTime) && YZUtility.isNullorEmpty(twoOperationAttention) && YZUtility.isNullorEmpty(completeTwoOperation) && 
+      YZUtility.isNullorEmpty(ismodule) && YZUtility.isNullorEmpty(transfer) && YZUtility.isNullorEmpty(basalCrowns) && YZUtility.isNullorEmpty(colorimetric) && YZUtility.isNullorEmpty(localBridge) && YZUtility.isNullorEmpty(try_in) && 
+      YZUtility.isNullorEmpty(askAboutUsage) && YZUtility.isNullorEmpty(check_surgical_healing) && YZUtility.isNullorEmpty(confirmOcclusalRelationship) && YZUtility.isNullorEmpty(makeTransitionDenture) && YZUtility.isNullorEmpty(tryInTransitionDenture) && 
+      YZUtility.isNullorEmpty(jawrelationRecord) && YZUtility.isNullorEmpty(tryBaseStationInnerCrown) && YZUtility.isNullorEmpty(secondGetModulus) && YZUtility.isNullorEmpty(toTryAgain) && YZUtility.isNullorEmpty(complete_case_record) && 
+      YZUtility.isNullorEmpty(checkPlantBoneCombine) && YZUtility.isNullorEmpty(wearTooth) && YZUtility.isNullorEmpty(isphotograph) && YZUtility.isNullorEmpty(checkCavityCleanSitu) && YZUtility.isNullorEmpty(antimicrobial_use) && 
+      YZUtility.isNullorEmpty(tryHolderOrBasalCrowns) && YZUtility.isNullorEmpty(askUserSituation) && YZUtility.isNullorEmpty(resinSealing) && YZUtility.isNullorEmpty(checkOcclusion) && YZUtility.isNullorEmpty(postoperativeModulus) && 
+      YZUtility.isNullorEmpty(checkPlantSituation) && YZUtility.isNullorEmpty(modulusToMakePersonalizedTrays) && YZUtility.isNullorEmpty(ectolophUse) && YZUtility.isNullorEmpty(accord) && YZUtility.isNullorEmpty(checkWearToothSitu) && 
+      YZUtility.isNullorEmpty(satisfactionPatients) && YZUtility.isNullorEmpty(doctorWrittenRecords) && YZUtility.isNullorEmpty(anesthesiaMethod) && YZUtility.isNullorEmpty(nostitches) && YZUtility.isNullorEmpty(intraoperativeMedication) && 
+      YZUtility.isNullorEmpty(enterLclj) && YZUtility.isNullorEmpty(operator) && 
+      YZUtility.isNullorEmpty(finish_norm_first) && YZUtility.isNullorEmpty(finish_norm_second) && YZUtility.isNullorEmpty(finish_norm_third) && YZUtility.isNullorEmpty(finish_norm_fourth) && YZUtility.isNullorEmpty(finish_norm_fifth) && 
+      YZUtility.isNullorEmpty(before_Modulo_bite) && YZUtility.isNullorEmpty(after_Modulo_bite) && YZUtility.isNullorEmpty(fixation_tooth_bridge) && YZUtility.isNullorEmpty(decision_bite) && YZUtility.isNullorEmpty(upper_frame) && 
+      YZUtility.isNullorEmpty(is_loose) && YZUtility.isNullorEmpty(health_education) && YZUtility.isNullorEmpty(neonychium) && YZUtility.isNullorEmpty(clean_toothbridge) && YZUtility.isNullorEmpty(outside_bone_grafting) && 
+      YZUtility.isNullorEmpty(extractionleftup_l) && YZUtility.isNullorEmpty(extractionleftup_r) && YZUtility.isNullorEmpty(extractionleftdown_l) && YZUtility.isNullorEmpty(extractionleftdown_r) && YZUtility.isNullorEmpty(extractionleftup1_l) && 
+      YZUtility.isNullorEmpty(extractionleftup1_r) && YZUtility.isNullorEmpty(extractionleftdown1_l) && YZUtility.isNullorEmpty(extractionleftdown1_r))
+      throw new Exception("需要填写的信息不能全部为空！"); 
     dp.setNodeName(nodeName);
     dp.setNodeLimit(nodeLimit);
     dp.setOrder_number(orderNumber);
@@ -207,10 +200,6 @@ public class LcljOperationNodeInforAberranceImpl
     dp.setIs_stitches(is_stitches);
     dp.setCheck_wound(check_wound);
     dp.setReview_time(review_time);
-    
-
-
-
     dp.setOperation_time(operation_time);
     dp.setPreoperation_one_houres(preoperation_one_houres);
     dp.setPreoperative_verification(preoperative_verification);
@@ -225,8 +214,6 @@ public class LcljOperationNodeInforAberranceImpl
     dp.setAssist_operation(assist_operation);
     dp.setCreatetime(YZUtility.getCurDateTimeStr());
     dp.setSeqId(YZUtility.getUUID());
-    
-
     dp.setExtractionleftup_l(extractionleftup_l);
     dp.setExtractionleftup_r(extractionleftup_r);
     dp.setExtractionleftdown_l(extractionleftdown_l);
@@ -235,20 +222,15 @@ public class LcljOperationNodeInforAberranceImpl
     dp.setExtractionleftup1_r(extractionleftup1_r);
     dp.setExtractionleftdown1_l(extractionleftdown1_l);
     dp.setExtractionleftdown1_r(extractionleftdown1_r);
-    
     this.nodeInforDao.saveOperationNodeInforAberrance(dp);
   }
   
-  public List<JSONObject> findOperationNodeInforAberranceByOrderNumberAndNodeId(Map<String, String> dataMap)
-    throws Exception
-  {
+  public List<JSONObject> findOperationNodeInforAberranceByOrderNumberAndNodeId(Map<String, String> dataMap) throws Exception {
     List<JSONObject> list = this.nodeInforDao.findOperationNodeInforAberranceByOrderNumberAndNodeId(dataMap);
     return list;
   }
   
-  public void insertOperationNodeInforAberrance(LcljOperationNodeInforaBerrance dp, HttpServletRequest request)
-    throws Exception
-  {
+  public void insertOperationNodeInforAberrance(LcljOperationNodeInforaBerrance dp, HttpServletRequest request) throws Exception {
     String operation_time = request.getParameter("operation_time");
     String review_time = request.getParameter("review_time");
     String visit_time = request.getParameter("visit_time");
@@ -309,7 +291,6 @@ public class LcljOperationNodeInforAberranceImpl
     String nostitches = request.getParameter("nostitches");
     String intraoperativeMedication = request.getParameter("intraoperativeMedication");
     String enterLclj = request.getParameter("enterLclj");
-    
     String operator = request.getParameter("operator");
     String finish_norm_first = request.getParameter("finish_norm_first");
     String finish_norm_second = request.getParameter("finish_norm_second");
@@ -326,31 +307,28 @@ public class LcljOperationNodeInforAberranceImpl
     String neonychium = request.getParameter("neonychium");
     String clean_toothbridge = request.getParameter("clean_toothbridge");
     String outside_bone_grafting = request.getParameter("outside_bone_grafting");
-    
-
     YZPerson person = SessionUtil.getLoginPerson(request);
     String organization = ChainUtil.getCurrentOrganization(request);
     String orderNumber = request.getParameter("orderNumber");
     String nodeId = request.getParameter("nodeId");
-    if ((YZUtility.isNullorEmpty(operation_time)) && (YZUtility.isNullorEmpty(review_time)) && (YZUtility.isNullorEmpty(visit_time)) && (YZUtility.isNullorEmpty(preoperation_one_houres)) && (YZUtility.isNullorEmpty(preoperative_verification)) && 
-      (YZUtility.isNullorEmpty(abutment_station)) && (YZUtility.isNullorEmpty(healing_cap_station)) && 
-      (YZUtility.isNullorEmpty(postoperation_user_deugs)) && (YZUtility.isNullorEmpty(connectingBridge)) && (YZUtility.isNullorEmpty(collutory)) && 
-      (YZUtility.isNullorEmpty(small_teeth)) && (YZUtility.isNullorEmpty(announcements)) && (YZUtility.isNullorEmpty(opration_record)) && 
-      (YZUtility.isNullorEmpty(remark)) && (YZUtility.isNullorEmpty(assist_operation)) && (YZUtility.isNullorEmpty(observe_wound)) && (YZUtility.isNullorEmpty(check_wound)) && (YZUtility.isNullorEmpty(is_stitches)) && 
-      (YZUtility.isNullorEmpty(panoramic_view_piece)) && (YZUtility.isNullorEmpty(next_hospital_time)) && (YZUtility.isNullorEmpty(twoDateStitchesTime)) && (YZUtility.isNullorEmpty(twoOperationAttention)) && (YZUtility.isNullorEmpty(completeTwoOperation)) && 
-      (YZUtility.isNullorEmpty(ismodule)) && (YZUtility.isNullorEmpty(transfer)) && (YZUtility.isNullorEmpty(basalCrowns)) && (YZUtility.isNullorEmpty(colorimetric)) && (YZUtility.isNullorEmpty(localBridge)) && (YZUtility.isNullorEmpty(try_in)) && 
-      (YZUtility.isNullorEmpty(askAboutUsage)) && (YZUtility.isNullorEmpty(check_surgical_healing)) && (YZUtility.isNullorEmpty(confirmOcclusalRelationship)) && (YZUtility.isNullorEmpty(makeTransitionDenture)) && (YZUtility.isNullorEmpty(tryInTransitionDenture)) && 
-      (YZUtility.isNullorEmpty(jawrelationRecord)) && (YZUtility.isNullorEmpty(tryBaseStationInnerCrown)) && (YZUtility.isNullorEmpty(secondGetModulus)) && (YZUtility.isNullorEmpty(toTryAgain)) && (YZUtility.isNullorEmpty(complete_case_record)) && 
-      (YZUtility.isNullorEmpty(checkPlantBoneCombine)) && (YZUtility.isNullorEmpty(wearTooth)) && (YZUtility.isNullorEmpty(isphotograph)) && (YZUtility.isNullorEmpty(checkCavityCleanSitu)) && (YZUtility.isNullorEmpty(antimicrobial_use)) && 
-      (YZUtility.isNullorEmpty(tryHolderOrBasalCrowns)) && (YZUtility.isNullorEmpty(askUserSituation)) && (YZUtility.isNullorEmpty(resinSealing)) && (YZUtility.isNullorEmpty(checkOcclusion)) && (YZUtility.isNullorEmpty(postoperativeModulus)) && 
-      (YZUtility.isNullorEmpty(checkPlantSituation)) && (YZUtility.isNullorEmpty(modulusToMakePersonalizedTrays)) && (YZUtility.isNullorEmpty(ectolophUse)) && (YZUtility.isNullorEmpty(accord)) && (YZUtility.isNullorEmpty(checkWearToothSitu)) && 
-      (YZUtility.isNullorEmpty(satisfactionPatients)) && (YZUtility.isNullorEmpty(doctorWrittenRecords)) && (YZUtility.isNullorEmpty(anesthesiaMethod)) && (YZUtility.isNullorEmpty(nostitches)) && (YZUtility.isNullorEmpty(intraoperativeMedication)) && 
-      (YZUtility.isNullorEmpty(enterLclj)) && (YZUtility.isNullorEmpty(operator)) && 
-      (YZUtility.isNullorEmpty(finish_norm_first)) && (YZUtility.isNullorEmpty(finish_norm_second)) && (YZUtility.isNullorEmpty(finish_norm_third)) && (YZUtility.isNullorEmpty(finish_norm_fourth)) && (YZUtility.isNullorEmpty(finish_norm_fifth)) && 
-      (YZUtility.isNullorEmpty(before_Modulo_bite)) && (YZUtility.isNullorEmpty(after_Modulo_bite)) && (YZUtility.isNullorEmpty(fixation_tooth_bridge)) && (YZUtility.isNullorEmpty(decision_bite)) && (YZUtility.isNullorEmpty(upper_frame)) && 
-      (YZUtility.isNullorEmpty(is_loose)) && (YZUtility.isNullorEmpty(health_education)) && (YZUtility.isNullorEmpty(neonychium)) && (YZUtility.isNullorEmpty(clean_toothbridge)) && (YZUtility.isNullorEmpty(outside_bone_grafting))) {
-      throw new Exception("需要填写的信息不能全部为空！");
-    }
+    if (YZUtility.isNullorEmpty(operation_time) && YZUtility.isNullorEmpty(review_time) && YZUtility.isNullorEmpty(visit_time) && YZUtility.isNullorEmpty(preoperation_one_houres) && YZUtility.isNullorEmpty(preoperative_verification) && 
+      YZUtility.isNullorEmpty(abutment_station) && YZUtility.isNullorEmpty(healing_cap_station) && 
+      YZUtility.isNullorEmpty(postoperation_user_deugs) && YZUtility.isNullorEmpty(connectingBridge) && YZUtility.isNullorEmpty(collutory) && 
+      YZUtility.isNullorEmpty(small_teeth) && YZUtility.isNullorEmpty(announcements) && YZUtility.isNullorEmpty(opration_record) && 
+      YZUtility.isNullorEmpty(remark) && YZUtility.isNullorEmpty(assist_operation) && YZUtility.isNullorEmpty(observe_wound) && YZUtility.isNullorEmpty(check_wound) && YZUtility.isNullorEmpty(is_stitches) && 
+      YZUtility.isNullorEmpty(panoramic_view_piece) && YZUtility.isNullorEmpty(next_hospital_time) && YZUtility.isNullorEmpty(twoDateStitchesTime) && YZUtility.isNullorEmpty(twoOperationAttention) && YZUtility.isNullorEmpty(completeTwoOperation) && 
+      YZUtility.isNullorEmpty(ismodule) && YZUtility.isNullorEmpty(transfer) && YZUtility.isNullorEmpty(basalCrowns) && YZUtility.isNullorEmpty(colorimetric) && YZUtility.isNullorEmpty(localBridge) && YZUtility.isNullorEmpty(try_in) && 
+      YZUtility.isNullorEmpty(askAboutUsage) && YZUtility.isNullorEmpty(check_surgical_healing) && YZUtility.isNullorEmpty(confirmOcclusalRelationship) && YZUtility.isNullorEmpty(makeTransitionDenture) && YZUtility.isNullorEmpty(tryInTransitionDenture) && 
+      YZUtility.isNullorEmpty(jawrelationRecord) && YZUtility.isNullorEmpty(tryBaseStationInnerCrown) && YZUtility.isNullorEmpty(secondGetModulus) && YZUtility.isNullorEmpty(toTryAgain) && YZUtility.isNullorEmpty(complete_case_record) && 
+      YZUtility.isNullorEmpty(checkPlantBoneCombine) && YZUtility.isNullorEmpty(wearTooth) && YZUtility.isNullorEmpty(isphotograph) && YZUtility.isNullorEmpty(checkCavityCleanSitu) && YZUtility.isNullorEmpty(antimicrobial_use) && 
+      YZUtility.isNullorEmpty(tryHolderOrBasalCrowns) && YZUtility.isNullorEmpty(askUserSituation) && YZUtility.isNullorEmpty(resinSealing) && YZUtility.isNullorEmpty(checkOcclusion) && YZUtility.isNullorEmpty(postoperativeModulus) && 
+      YZUtility.isNullorEmpty(checkPlantSituation) && YZUtility.isNullorEmpty(modulusToMakePersonalizedTrays) && YZUtility.isNullorEmpty(ectolophUse) && YZUtility.isNullorEmpty(accord) && YZUtility.isNullorEmpty(checkWearToothSitu) && 
+      YZUtility.isNullorEmpty(satisfactionPatients) && YZUtility.isNullorEmpty(doctorWrittenRecords) && YZUtility.isNullorEmpty(anesthesiaMethod) && YZUtility.isNullorEmpty(nostitches) && YZUtility.isNullorEmpty(intraoperativeMedication) && 
+      YZUtility.isNullorEmpty(enterLclj) && YZUtility.isNullorEmpty(operator) && 
+      YZUtility.isNullorEmpty(finish_norm_first) && YZUtility.isNullorEmpty(finish_norm_second) && YZUtility.isNullorEmpty(finish_norm_third) && YZUtility.isNullorEmpty(finish_norm_fourth) && YZUtility.isNullorEmpty(finish_norm_fifth) && 
+      YZUtility.isNullorEmpty(before_Modulo_bite) && YZUtility.isNullorEmpty(after_Modulo_bite) && YZUtility.isNullorEmpty(fixation_tooth_bridge) && YZUtility.isNullorEmpty(decision_bite) && YZUtility.isNullorEmpty(upper_frame) && 
+      YZUtility.isNullorEmpty(is_loose) && YZUtility.isNullorEmpty(health_education) && YZUtility.isNullorEmpty(neonychium) && YZUtility.isNullorEmpty(clean_toothbridge) && YZUtility.isNullorEmpty(outside_bone_grafting))
+      throw new Exception("需要填写的信息不能全部为空！"); 
     dp.setOrder_number(orderNumber);
     dp.setNodeId("PerSurMouset");
     dp.setCreateuser(person.getUserId());
@@ -419,10 +397,6 @@ public class LcljOperationNodeInforAberranceImpl
     dp.setIs_stitches(is_stitches);
     dp.setCheck_wound(check_wound);
     dp.setReview_time(review_time);
-    
-
-
-
     dp.setOperation_time(operation_time);
     dp.setPreoperation_one_houres(preoperation_one_houres);
     dp.setPreoperative_verification(preoperative_verification);

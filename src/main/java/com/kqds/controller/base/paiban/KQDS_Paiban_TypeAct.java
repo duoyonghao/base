@@ -19,16 +19,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_Paiban_TypeAct"})
-public class KQDS_Paiban_TypeAct
-{
+public class KQDS_Paiban_TypeAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_Paiban_TypeAct.class);
+  
   @Autowired
   private KQDS_Paiban_TypeLogic logic;
   
   @RequestMapping({"/toPaibanTypeList.act"})
-  public ModelAndView toPaibanTypeList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toPaibanTypeList(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
     mv.addObject("organization", organization);
@@ -37,9 +35,7 @@ public class KQDS_Paiban_TypeAct
   }
   
   @RequestMapping({"/toPaibanTypeEdit.act"})
-  public ModelAndView toPaibanTypeEdit(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toPaibanTypeEdit(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     ModelAndView mv = new ModelAndView();
     mv.addObject("seqId", seqId);
@@ -48,9 +44,7 @@ public class KQDS_Paiban_TypeAct
   }
   
   @RequestMapping({"/toPaibanTypeDetail.act"})
-  public ModelAndView toPaibanTypeDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toPaibanTypeDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     ModelAndView mv = new ModelAndView();
     mv.addObject("seqId", seqId);
@@ -59,9 +53,7 @@ public class KQDS_Paiban_TypeAct
   }
   
   @RequestMapping({"/toPaibanTypeAdd.act"})
-  public ModelAndView toPaibanTypeAdd(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toPaibanTypeAdd(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
     mv.addObject("organization", organization);
@@ -70,25 +62,19 @@ public class KQDS_Paiban_TypeAct
   }
   
   @RequestMapping({"/selectDetailBytpename.act"})
-  public String selectDetailBytpename(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectDetailBytpename(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String typename = request.getParameter("typename");
-      Map<String, String> map = new HashMap();
-      if (!YZUtility.isNullorEmpty(typename)) {
-        map.put("typename", typename);
-      }
+      Map<String, String> map = new HashMap<>();
+      if (!YZUtility.isNullorEmpty(typename))
+        map.put("typename", typename); 
       List<JSONObject> list = this.logic.selectList(TableNameUtil.KQDS_PAIBAN_TYPE, map, ChainUtil.getCurrentOrganization(request));
       JSONObject jobj = new JSONObject();
       jobj.put("data", list);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

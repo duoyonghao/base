@@ -24,35 +24,28 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_Ck_SupplierAct"})
-public class KQDS_Ck_SupplierAct
-{
+public class KQDS_Ck_SupplierAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_Ck_SupplierAct.class);
+  
   @Autowired
   private KQDS_Ck_SupplierLogic logic;
   
   @RequestMapping({"/toSupplier.act"})
-  public ModelAndView toSupplier(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toSupplier(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ModelAndView mv = new ModelAndView();
-    
     mv.setViewName("/kqdsFront/ck/supplier/ck_supplier.jsp");
     return mv;
   }
   
   @RequestMapping({"/toCkSupplierSearch.act"})
-  public ModelAndView toCkSupplierSearch(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toCkSupplierSearch(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/kqdsFront/ck/search/supplier_search.jsp");
     return mv;
   }
   
   @RequestMapping({"/toSave.act"})
-  public ModelAndView toSave(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toSave(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     ModelAndView mv = new ModelAndView();
     mv.addObject("seqId", seqId);
@@ -61,47 +54,34 @@ public class KQDS_Ck_SupplierAct
   }
   
   @RequestMapping({"/insertOrUpdate.act"})
-  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
       KqdsCkSupplier dp = new KqdsCkSupplier();
       BeanUtils.populate(dp, request.getParameterMap());
       String seqId = request.getParameter("seqId");
-      if (!YZUtility.isNullorEmpty(seqId))
-      {
+      if (!YZUtility.isNullorEmpty(seqId)) {
         this.logic.updateSingleUUID(TableNameUtil.KQDS_CK_SUPPLIER, dp);
-        
         BcjlUtil.LogBcjl(BcjlUtil.MODIFY, BcjlUtil.KQDS_CK_SUPPLIER, dp, TableNameUtil.KQDS_CK_SUPPLIER, request);
-      }
-      else
-      {
+      } else {
         String uuid = YZUtility.getUUID();
         dp.setSeqId(uuid);
         dp.setCreatetime(YZUtility.getCurDateTimeStr());
         dp.setCreateuser(person.getSeqId());
         dp.setOrganization(ChainUtil.getCurrentOrganization(request));
         this.logic.saveSingleUUID(TableNameUtil.KQDS_CK_SUPPLIER, dp);
-        
         BcjlUtil.LogBcjl(BcjlUtil.NEW, BcjlUtil.KQDS_CK_SUPPLIER, dp, TableNameUtil.KQDS_CK_SUPPLIER, request);
-      }
+      } 
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/YzCode.act"})
-  public String YzCode(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String YzCode(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
       String suppliercode = request.getParameter("suppliercode");
       KqdsCkSupplier dp4query = new KqdsCkSupplier();
@@ -109,80 +89,58 @@ public class KQDS_Ck_SupplierAct
       dp4query.setSuppliercode(suppliercode);
       dp4query.setOrganization(ChainUtil.getCurrentOrganization(request));
       int count = this.logic.countBySupplierCode(dp4query);
-      boolean flag = count <= 0;
+      boolean flag = !(count > 0);
       JSONObject jobj = new JSONObject();
       jobj.put("data", Boolean.valueOf(flag));
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/deleteObj.act"})
-  public String deleteObj(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String deleteObj(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
-      if (YZUtility.isNullorEmpty(seqId)) {
-        throw new Exception("主键为空或者null");
-      }
+      if (YZUtility.isNullorEmpty(seqId))
+        throw new Exception("主键为空或者null"); 
       KqdsCkSupplier en = (KqdsCkSupplier)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_CK_SUPPLIER, seqId);
       this.logic.deleteSingleUUID(TableNameUtil.KQDS_CK_SUPPLIER, seqId);
-      
       BcjlUtil.LogBcjl(BcjlUtil.DELETE, BcjlUtil.KQDS_CK_SUPPLIER, en, TableNameUtil.KQDS_CK_SUPPLIER, request);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectDetail.act"})
-  public String selectDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
-      
       KqdsCkSupplier en = (KqdsCkSupplier)this.logic.loadObjSingleUUID(TableNameUtil.KQDS_CK_SUPPLIER, seqId);
-      if (en == null) {
-        throw new Exception("数据不存在");
-      }
+      if (en == null)
+        throw new Exception("数据不存在"); 
       JSONObject jobj = new JSONObject();
       jobj.put("data", en);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectList.act"})
-  public String selectList(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
-      Map<String, String> map = new HashMap();
+  public String selectList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
+      Map<String, String> map = new HashMap<>();
       map.put("organization", ChainUtil.getCurrentOrganization(request));
       List<JSONObject> list = this.logic.selectList(map);
-      
       YZUtility.RETURN_LIST(list, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

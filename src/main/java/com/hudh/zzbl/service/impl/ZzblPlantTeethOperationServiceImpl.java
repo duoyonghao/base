@@ -10,15 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ZzblPlantTeethOperationServiceImpl
-  implements IZzblPlantTeethOperationService
-{
+public class ZzblPlantTeethOperationServiceImpl implements IZzblPlantTeethOperationService {
   @Autowired
   private ZzblPlantTeethOperationDao opertaionDao;
   
-  public void insertZzblPlantTeethOperation(ZzblPlantTeethOperation dp, HttpServletRequest request)
-    throws Exception
-  {
+  public void insertZzblPlantTeethOperation(ZzblPlantTeethOperation dp, HttpServletRequest request) throws Exception {
     dp.setSEQ_ID(YZUtility.getUUID());
     dp.setCreatetime(YZUtility.getCurDateTimeStr());
     String id = request.getParameter("id");
@@ -35,7 +31,6 @@ public class ZzblPlantTeethOperationServiceImpl
     String coveringPeriosteum = request.getParameter("coveringPeriosteum");
     String doctorSignature = request.getParameter("doctorSignature");
     String signatureTime = request.getParameter("signatureTime");
-    
     String blm_milliliter = request.getParameter("blm_milliliter");
     String plant_bonemeal = request.getParameter("plant_bonemeal");
     String operation_date = request.getParameter("operation_date");
@@ -69,9 +64,7 @@ public class ZzblPlantTeethOperationServiceImpl
     this.opertaionDao.insertZzblPlantTeethOperation(dp);
   }
   
-  public JSONObject findZzblPlantTeethOperationById(String id)
-    throws Exception
-  {
+  public JSONObject findZzblPlantTeethOperationById(String id) throws Exception {
     return this.opertaionDao.findZzblPlantTeethOperationById(id);
   }
 }

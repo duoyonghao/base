@@ -13,26 +13,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping({"/HUDH_LcljOrderTrackDeleteAct"})
-public class HUDH_LcljOrderTrackDeleteAct
-{
+public class HUDH_LcljOrderTrackDeleteAct {
   private Logger logger = LoggerFactory.getLogger(HUDH_LcljOrderTrackDeleteAct.class);
+  
   @Autowired
   private ILcljOrderTrackDeleteService trackDeleteService;
   
   @RequestMapping({"/save.act"})
-  public String save(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public String save(HttpServletRequest request, HttpServletResponse response) throws Exception {
     LcljOrderTrackDeleteRecord dp = new LcljOrderTrackDeleteRecord();
-    try
-    {
+    try {
       this.trackDeleteService.save(dp, request);
       YZUtility.DEAL_SUCCESS(null, null, response, this.logger);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
-    }
+    } 
     return null;
   }
 }

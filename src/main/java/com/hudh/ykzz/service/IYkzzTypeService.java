@@ -6,23 +6,16 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import net.sf.json.JSONObject;
 
-public abstract interface IYkzzTypeService
-{
-  public abstract void insertYkzzType(YkzzType paramYkzzType, HttpServletRequest paramHttpServletRequest)
-    throws Exception;
+public interface IYkzzTypeService {
+  void insertYkzzType(YkzzType paramYkzzType, HttpServletRequest paramHttpServletRequest) throws Exception;
   
-  public abstract YkzzType findYkzzTypeById(String paramString)
-    throws Exception;
+  YkzzType findYkzzTypeById(String paramString) throws Exception;
   
-  public abstract void deleteYkzzTypeById(String paramString)
-    throws Exception;
+  void deleteYkzzTypeById(String paramString) throws Exception;
   
-  public abstract void updateYkzzTypeById(YkzzType paramYkzzType)
-    throws Exception;
+  void updateYkzzTypeById(YkzzType paramYkzzType) throws Exception;
   
-  public abstract List<JSONObject> findChildTypesByParentId(Map<String, String> paramMap)
-    throws Exception;
+  List<JSONObject> findChildTypesByParentId(Map<String, String> paramMap) throws Exception;
   
-  public abstract List<JSONObject> findAllTypes(String paramString)
-    throws Exception;
+  List<JSONObject> findAllTypes(String paramString) throws Exception;
 }

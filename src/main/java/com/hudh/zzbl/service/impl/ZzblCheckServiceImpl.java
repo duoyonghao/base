@@ -11,15 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ZzblCheckServiceImpl
-  implements IZzblCheckService
-{
+public class ZzblCheckServiceImpl implements IZzblCheckService {
   @Autowired
   private ZzblCheckDao zzblCheckDao;
   
-  public void insertZzblCheck(ZzblCheck dp, HttpServletRequest request)
-    throws Exception
-  {
+  public void insertZzblCheck(ZzblCheck dp, HttpServletRequest request) throws Exception {
     dp.setSEQ_ID(YZUtility.getUUID());
     dp.setCreatetime(YZUtility.getCurDateTimeStr());
     String id = request.getParameter("id");
@@ -72,7 +68,6 @@ public class ZzblCheckServiceImpl
     String others = request.getParameter("others");
     String bonePowder = request.getParameter("bonePowder");
     String doctorTime = request.getParameter("doctor_signatoryTime");
-    
     String alveloarBoneResorptionLeftUp = request.getParameter("alveloarBoneResorptionLeftUp");
     String alveloarBoneResorptionRightUp = request.getParameter("alveloarBoneResorptionRightUp");
     String alveloarBoneResorptionLeftDown = request.getParameter("alveloarBoneResorptionLeftDown");
@@ -153,15 +148,11 @@ public class ZzblCheckServiceImpl
     this.zzblCheckDao.insertZzblCheck(dp);
   }
   
-  public JSONObject findZzblOprationById(String id)
-    throws Exception
-  {
+  public List<JSONObject> findZzblOprationById(String id) throws Exception {
     return this.zzblCheckDao.findZzblOprationById(id);
   }
   
-  public void updateZzblOprationById(ZzblCheck dp, HttpServletRequest request)
-    throws Exception
-  {
+  public void updateZzblOprationById(ZzblCheck dp, HttpServletRequest request) throws Exception {
     String physical_assessment = request.getParameter("physical_assessment");
     String consultation_opinion = request.getParameter("consultation_opinion");
     String stomatology_check = request.getParameter("stomatology_check");
@@ -210,7 +201,6 @@ public class ZzblCheckServiceImpl
     String others = request.getParameter("others");
     String bonePowder = request.getParameter("bonePowder");
     String doctorTime = request.getParameter("doctor_signatoryTime");
-    
     String alveloarBoneResorptionLeftUp = request.getParameter("alveloarBoneResorptionLeftUp");
     String alveloarBoneResorptionRightUp = request.getParameter("alveloarBoneResorptionRightUp");
     String alveloarBoneResorptionLeftDown = request.getParameter("alveloarBoneResorptionLeftDown");
@@ -283,19 +273,13 @@ public class ZzblCheckServiceImpl
     this.zzblCheckDao.updateZzblOprationById(dp);
   }
   
-  public void deleteZzblInforById(String id)
-    throws Exception
-  {}
+  public void deleteZzblInforById(String id) throws Exception {}
   
-  public List<JSONObject> findAllZzblInfor()
-    throws Exception
-  {
+  public List<JSONObject> findAllZzblInfor() throws Exception {
     return null;
   }
   
-  public ZzblCheck selectZzblCheckById(String id)
-    throws Exception
-  {
+  public ZzblCheck selectZzblCheckById(String id) throws Exception {
     return this.zzblCheckDao.selectZzblCheckById(id);
   }
 }

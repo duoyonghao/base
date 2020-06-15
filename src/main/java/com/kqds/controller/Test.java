@@ -3,7 +3,6 @@ package com.kqds.controller;
 import com.kqds.controller.base.hzjd.KQDS_UserDocumentAct;
 import com.kqds.util.sys.YZUtility;
 import java.io.IOException;
-import java.io.PrintStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
@@ -15,38 +14,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_TestACT"})
-public class Test
-{
+public class Test {
   private Logger logger = LoggerFactory.getLogger(KQDS_UserDocumentAct.class);
   
   @RequestMapping({"/test.act"})
-  public ModelAndView test()
-  {
+  public ModelAndView test() {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("/test.jsp");
     return mv;
   }
   
   @RequestMapping({"/test_save.act"})
-  public String testSave(HttpServletRequest request, HttpServletResponse response)
-  {
+  public String testSave(HttpServletRequest request, HttpServletResponse response) {
     String name = request.getParameter("name");
-    
     JSONObject jobj = new JSONObject();
     jobj.put("backMsg", "This is Back");
-    try
-    {
+    try {
       YZUtility.DEAL_SUCCESS(jobj, null, response, this.logger);
-    }
-    catch (IOException e)
-    {
+    } catch (IOException e) {
       e.printStackTrace();
-    }
+    } 
     return null;
-  }
-  
-  public static void main(String[] args)
-  {
-    System.out.println(YZUtility.getSystemID());
   }
 }

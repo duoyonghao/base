@@ -25,16 +25,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"WXNewsItemAct"})
-public class WXNewsItemAct
-{
+public class WXNewsItemAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_Print_SetBackAct.class);
+  
   @Autowired
   private WXNewsItemLogic logic;
   
   @RequestMapping({"/toAddNew.act"})
-  public ModelAndView toAddNew(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toAddNew(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     String newsid = request.getParameter("newsid");
     ModelAndView mv = new ModelAndView();
@@ -45,9 +43,7 @@ public class WXNewsItemAct
   }
   
   @RequestMapping({"/toDetail.act"})
-  public ModelAndView toDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String seqId = request.getParameter("seqId");
     ModelAndView mv = new ModelAndView();
     mv.addObject("seqId", seqId);
@@ -56,9 +52,7 @@ public class WXNewsItemAct
   }
   
   @RequestMapping({"/toShowMessage.act"})
-  public ModelAndView toShowMessage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toShowMessage(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String newsid = request.getParameter("newsid");
     ModelAndView mv = new ModelAndView();
     mv.addObject("newsid", newsid);
@@ -67,9 +61,7 @@ public class WXNewsItemAct
   }
   
   @RequestMapping({"/toEdit.act"})
-  public ModelAndView toEdit(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toEdit(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String newsid = request.getParameter("newsid");
     ModelAndView mv = new ModelAndView();
     mv.addObject("newsid", newsid);
@@ -78,27 +70,19 @@ public class WXNewsItemAct
   }
   
   @RequestMapping({"/insertOrUpdate.act"})
-  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       YZPerson person = SessionUtil.getLoginPerson(request);
       WXNewsitem dp = new WXNewsitem();
       BeanUtils.populate(dp, request.getParameterMap());
       String seqId = request.getParameter("seqId");
-      if (!YZUtility.isNullorEmpty(seqId))
-      {
+      if (!YZUtility.isNullorEmpty(seqId)) {
         this.logic.updateSingleUUID(TableNameUtil.WX_NEWSITEM, dp);
-        
         BcjlUtil.LogBcjl(BcjlUtil.MODIFY, BcjlUtil.WX_NEWSITEM, dp, TableNameUtil.WX_NEWSITEM, request);
-      }
-      else
-      {
+      } else {
         String organization = ChainUtil.getOrganizationFromUrlCanNull(request);
-        if (YZUtility.isNullorEmpty(organization)) {
-          organization = ChainUtil.getCurrentOrganization(request);
-        }
+        if (YZUtility.isNullorEmpty(organization))
+          organization = ChainUtil.getCurrentOrganization(request); 
         String uuid = YZUtility.getUUID();
         dp.setSeqId(uuid);
         dp.setCreatetime(YZUtility.getCurDateTimeStr());
@@ -106,88 +90,62 @@ public class WXNewsItemAct
         dp.setOrganization(organization);
         dp.setCreatedate(dp.getCreatetime().substring(0, 10));
         this.logic.saveSingleUUID(TableNameUtil.WX_NEWSITEM, dp);
-        
         BcjlUtil.LogBcjl(BcjlUtil.NEW, BcjlUtil.WX_NEWSITEM, dp, TableNameUtil.WX_NEWSITEM, request);
-      }
+      } 
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/deleteObj.act"})
-  public String deleteObj(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String deleteObj(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
-      if (YZUtility.isNullorEmpty(seqId)) {
-        throw new Exception("主键为空或者null");
-      }
+      if (YZUtility.isNullorEmpty(seqId))
+        throw new Exception("主键为空或者null"); 
       WXNewsitem en = (WXNewsitem)this.logic.loadObjSingleUUID(TableNameUtil.WX_NEWSITEM, seqId);
       this.logic.deleteSingleUUID(TableNameUtil.WX_NEWSITEM, seqId);
-      
       BcjlUtil.LogBcjl(BcjlUtil.DELETE, BcjlUtil.WX_NEWSITEM, en, TableNameUtil.WX_NEWSITEM, request);
       YZUtility.DEAL_SUCCESS(null, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectDetail.act"})
-  public String selectDetail(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String seqId = request.getParameter("seqId");
-      
       WXNewsitem en = (WXNewsitem)this.logic.loadObjSingleUUID(TableNameUtil.WX_NEWSITEM, seqId);
-      if (en == null) {
-        throw new Exception("数据不存在");
-      }
+      if (en == null)
+        throw new Exception("数据不存在"); 
       JSONObject jobj = new JSONObject();
       jobj.put("data", en);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
   
   @RequestMapping({"/selectPage.act"})
-  public String selectPage(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public String selectPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       BootStrapPage bp = new BootStrapPage();
-      
       BeanUtils.populate(bp, request.getParameterMap());
-      
-      Map<String, String> map = new HashMap();
+      Map<String, String> map = new HashMap<>();
       String organization = ChainUtil.getOrganizationFromUrlCanNull(request);
-      if (YZUtility.isNullorEmpty(organization)) {
-        organization = ChainUtil.getCurrentOrganization(request);
-      }
+      if (YZUtility.isNullorEmpty(organization))
+        organization = ChainUtil.getCurrentOrganization(request); 
       map.put("organization", organization);
-      
       JSONObject data = this.logic.selectWithPage(TableNameUtil.WX_NEWSITEM, bp, map);
       YZUtility.DEAL_SUCCESS(data, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
     return null;
   }
 }

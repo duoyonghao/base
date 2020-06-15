@@ -8,20 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KsllCollerDetailDaoUtil
-{
+public class KsllCollerDetailDaoUtil {
   @Autowired
   private static KsllCollorDetailDao ksllCollorDetailDao = (KsllCollorDetailDao)BeanUtil.getBean("ksllCollorDetailDao");
   
-  public static void save(List<KsllCollorDetail> ksllCollorDetailList)
-  {
-    try
-    {
+  public static void save(List<KsllCollorDetail> ksllCollorDetailList) {
+    try {
       ksllCollorDetailDao.batchSaveCollorDetail(ksllCollorDetailList);
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       e.printStackTrace();
-    }
+    } 
   }
 }

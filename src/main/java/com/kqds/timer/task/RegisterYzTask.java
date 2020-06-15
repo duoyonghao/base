@@ -10,26 +10,17 @@ import org.springframework.stereotype.Controller;
 
 @Component
 @Controller
-public class RegisterYzTask
-  implements Job
-{
+public class RegisterYzTask implements Job {
   @Autowired
   private YZRegisterLogic logic;
   
-  public void execute(JobExecutionContext arg0)
-    throws JobExecutionException
-  {
-    try
-    {
+  public void execute(JobExecutionContext arg0) throws JobExecutionException {
+    try {
       doTask();
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       e.printStackTrace();
-    }
+    } 
   }
   
-  public void doTask()
-    throws Exception
-  {}
+  public void doTask() throws Exception {}
 }

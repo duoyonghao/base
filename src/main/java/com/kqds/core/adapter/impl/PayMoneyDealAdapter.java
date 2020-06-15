@@ -12,26 +12,17 @@ import java.math.BigDecimal;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
-public class PayMoneyDealAdapter
-  implements DealAdapter
-{
-  public boolean isDeal(KqdsReg reg, KqdsCostorder cost, List<KqdsCostorderDetail> list, HttpServletRequest request, Kqds_PayCostLogic logic, YZDictLogic dictLogic, KQDS_UserDocumentLogic userDocLogic)
-    throws Exception
-  {
+public class PayMoneyDealAdapter implements DealAdapter {
+  public boolean isDeal(KqdsReg reg, KqdsCostorder cost, List<KqdsCostorderDetail> list, HttpServletRequest request, Kqds_PayCostLogic logic, YZDictLogic dictLogic, KQDS_UserDocumentLogic userDocLogic) throws Exception {
     boolean dealStatus = false;
-    
-
     boolean tsxmflag = false;
     for (KqdsCostorderDetail detail : list) {
-      if ((detail.getIstsxm() == null) || (detail.getIstsxm().intValue() == 0)) {
-        tsxmflag = true;
-      }
-    }
-    if (tsxmflag) {
-      if (KqdsBigDecimal.compareTo(cost.getActualmoney(), BigDecimal.ZERO) == 1) {
-        dealStatus = true;
-      }
-    }
+      if (detail.getIstsxm() == null || detail.getIstsxm().intValue() == 0)
+        tsxmflag = true; 
+    } 
+    if (tsxmflag)
+      if (KqdsBigDecimal.compareTo(cost.getActualmoney(), BigDecimal.ZERO) == 1)
+        dealStatus = true;  
     return dealStatus;
   }
 }

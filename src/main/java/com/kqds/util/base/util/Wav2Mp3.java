@@ -5,11 +5,8 @@ import it.sauronsoftware.jave.Encoder;
 import it.sauronsoftware.jave.EncodingAttributes;
 import java.io.File;
 
-public class Wav2Mp3
-{
-  public static File execute(File source, String desFileName)
-    throws Exception
-  {
+public class Wav2Mp3 {
+  public static File execute(File source, String desFileName) throws Exception {
     File target = new File(desFileName);
     AudioAttributes audio = new AudioAttributes();
     audio.setCodec("libmp3lame");
@@ -24,9 +21,7 @@ public class Wav2Mp3
     return target;
   }
   
-  public static void main(String[] args)
-    throws Exception
-  {
+  public static void main(String[] args) throws Exception {
     File file = new File("c://11.wav");
     execute(file, "c://11.mp3");
   }

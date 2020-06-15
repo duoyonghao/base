@@ -17,16 +17,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping({"KQDS_Jzmd_TypeAct"})
-public class KQDS_Jzmd_TypeAct
-{
+public class KQDS_Jzmd_TypeAct {
   private static Logger logger = LoggerFactory.getLogger(KQDS_Jzmd_TypeAct.class);
+  
   @Autowired
   private KQDS_Jzmd_TypeLogic logic;
   
   @RequestMapping({"/toIndex.act"})
-  public ModelAndView toJzmdSubIndex(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toJzmdSubIndex(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String organization = request.getParameter("organization");
     ModelAndView mv = new ModelAndView();
     mv.addObject("organization", organization);
@@ -35,9 +33,7 @@ public class KQDS_Jzmd_TypeAct
   }
   
   @RequestMapping({"/toNewAdd.act"})
-  public ModelAndView toNewAdd(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
+  public ModelAndView toNewAdd(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String fid = request.getParameter("fid");
     String cid = request.getParameter("cid");
     String seqId = request.getParameter("seqId");
@@ -52,22 +48,16 @@ public class KQDS_Jzmd_TypeAct
   }
   
   @RequestMapping({"/getJzmdChildTypeSelect.act"})
-  public void getJzmdChildTypeSelect(HttpServletRequest request, HttpServletResponse response)
-    throws Exception
-  {
-    try
-    {
+  public void getJzmdChildTypeSelect(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    try {
       String jzmd = request.getParameter("jzmd");
       String isAdd = request.getParameter("isAdd");
-      
       List<KqdsJzmdType> list = this.logic.getJzmdChildTypeSelect(jzmd, isAdd, ChainUtil.getCurrentOrganization(request));
       JSONObject jobj = new JSONObject();
       jobj.put("list", list);
       YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
-    }
-    catch (Exception ex)
-    {
+    } catch (Exception ex) {
       YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-    }
+    } 
   }
 }

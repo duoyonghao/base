@@ -11,23 +11,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_Refund_detailLogic
-  extends BaseLogic
-{
+public class KQDS_Refund_detailLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public List<JSONObject> selectWithNopage(String table, Map<String, String> map, YZPerson person)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_REFUND_DETAIL + ".selectWithNopage", map);
+  public List<JSONObject> selectWithNopage(String table, Map<String, String> map, YZPerson person) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_REFUND_DETAIL) + ".selectWithNopage", map);
     return list;
   }
   
-  public List<JSONObject> selectWithNopage4(String table, Map<String, String> map, YZPerson person)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_REFUND_DETAIL + ".selectWithNopage4", map);
+  public List<JSONObject> selectWithNopage4(String table, Map<String, String> map, YZPerson person) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_REFUND_DETAIL) + ".selectWithNopage4", map);
     return list;
   }
 }

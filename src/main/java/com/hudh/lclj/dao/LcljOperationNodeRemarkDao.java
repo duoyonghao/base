@@ -9,21 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LcljOperationNodeRemarkDao
-{
+public class LcljOperationNodeRemarkDao {
   @Autowired
   private DaoSupport dao;
   
-  public void saveNodeRemark(LcljOperationNodeRemark dp)
-    throws Exception
-  {
+  public void saveNodeRemark(LcljOperationNodeRemark dp) throws Exception {
     this.dao.save("HUDH_LCLJ_OPERATION_NODE_REMARK.saveNodeRemark", dp);
   }
   
-  public List<JSONObject> findNodeRemarkByNodeId(Map<String, String> dataMap)
-    throws Exception
-  {
-    List<JSONObject> list = (List)this.dao.findForList("HUDH_LCLJ_OPERATION_NODE_REMARK.findNodeRemarkByNodeId", dataMap);
+  public List<JSONObject> findNodeRemarkByNodeId(Map<String, String> dataMap) throws Exception {
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList("HUDH_LCLJ_OPERATION_NODE_REMARK.findNodeRemarkByNodeId", dataMap);
     return list;
   }
 }

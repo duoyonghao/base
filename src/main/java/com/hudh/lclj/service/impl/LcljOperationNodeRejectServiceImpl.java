@@ -14,15 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LcljOperationNodeRejectServiceImpl
-  implements ILcljOperationNodeRejectService
-{
+public class LcljOperationNodeRejectServiceImpl implements ILcljOperationNodeRejectService {
   @Autowired
   private LcljOperateRejectRecordDao rejectDao;
   
-  public void insertOperationNodeReject(LcljOperateRejectRecord dp, HttpServletRequest request)
-    throws Exception
-  {
+  public void insertOperationNodeReject(LcljOperateRejectRecord dp, HttpServletRequest request) throws Exception {
     dp.setSEQ_ID(YZUtility.getUUID());
     dp.setCreatetime(YZUtility.getCurDateTimeStr());
     String organization = ChainUtil.getCurrentOrganization(request);
@@ -32,9 +28,7 @@ public class LcljOperationNodeRejectServiceImpl
     this.rejectDao.insertOperationNodeReject(dp);
   }
   
-  public List<JSONObject> findOperationNodeRejectByOrderNumber(String orderNumber)
-    throws Exception
-  {
+  public List<JSONObject> findOperationNodeRejectByOrderNumber(String orderNumber) throws Exception {
     return this.rejectDao.findOperationNodeRejectByOrderNumber(orderNumber);
   }
 }

@@ -9,46 +9,46 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-public class XMLParser
-{
+public class XMLParser {
   private String xml;
+  
   private Element root;
+  
   private String mode;
+  
   private String todayLabel;
+  
   private String[][] rows;
+  
   private String profile;
+  
   private String header = "false";
+  
   private String footer = "false";
-  private ArrayList<SchedulerEvent> multiday = new ArrayList();
-  private ArrayList<SchedulerEvent> events = new ArrayList();
+  
+  private ArrayList<SchedulerEvent> multiday = new ArrayList<>();
+  
+  private ArrayList<SchedulerEvent> events = new ArrayList<>();
+  
   private String[] cols = null;
   
-  public void setXML(String xml)
-    throws DOMException, ParserConfigurationException, SAXException
-  {
+  public void setXML(String xml) throws DOMException, ParserConfigurationException, SAXException {
     this.xml = xml;
     DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
     DocumentBuilder db = dbf.newDocumentBuilder();
     Document dom = null;
-    try
-    {
+    try {
       dom = db.parse(new InputSource(new StringReader(this.xml)));
-    }
-    catch (SAXException se)
-    {
+    } catch (SAXException se) {
       se.printStackTrace();
-    }
-    catch (IOException ioe)
-    {
+    } catch (IOException ioe) {
       ioe.printStackTrace();
-    }
+    } 
     this.root = dom.getDocumentElement();
-    
     NodeList n1 = this.root.getElementsByTagName("scale");
     Element scale = (Element)n1.item(0);
     this.mode = scale.getAttribute("mode");
@@ -59,170 +59,137 @@ public class XMLParser
     eventsParsing();
   }
   
-  public String[] monthColsParsing()
-  {
+  public String[] monthColsParsing() {
     NodeList n1 = this.root.getElementsByTagName("column");
-    if ((n1 != null) && (n1.getLength() > 0))
-    {
+    if (n1 != null && n1.getLength() > 0) {
       this.cols = new String[n1.getLength()];
-      for (int i = 0; i < n1.getLength(); i++)
-      {
+      for (int i = 0; i < n1.getLength(); i++) {
         Element col = (Element)n1.item(i);
         this.cols[i] = col.getChildNodes().item(0).getNodeValue();
-      }
-    }
+      } 
+    } 
     return this.cols;
   }
   
-  public String[][] monthRowsParsing()
-  {
+  public String[][] monthRowsParsing() {
     NodeList n1 = this.root.getElementsByTagName("row");
-    if ((n1 != null) && (n1.getLength() > 0))
-    {
+    if (n1 != null && n1.getLength() > 0) {
       this.rows = new String[n1.getLength()][];
-      for (int i = 0; i < n1.getLength(); i++)
-      {
+      for (int i = 0; i < n1.getLength(); i++) {
         Element row = (Element)n1.item(i);
         String week = row.getChildNodes().item(0).getNodeValue();
         this.rows[i] = week.split("\\|");
-      }
-    }
+      } 
+    } 
     return this.rows;
   }
   
-  public void eventsParsing()
-  {
+  public void eventsParsing() {
     NodeList n1 = this.root.getElementsByTagName("event");
-    if ((n1 != null) && (n1.getLength() > 0)) {
-      for (int i = 0; i < n1.getLength(); i++)
-      {
+    if (n1 != null && n1.getLength() > 0)
+      for (int i = 0; i < n1.getLength(); i++) {
         Element ev = (Element)n1.item(i);
         SchedulerEvent oEv = new SchedulerEvent();
         oEv.parse(ev);
-        if ((oEv.getType().compareTo("event_line") == 0) && (this.mode.compareTo("month") != 0) && (this.mode.compareTo("timeline") != 0)) {
+        if (oEv.getType().compareTo("event_line") == 0 && this.mode.compareTo("month") != 0 && this.mode.compareTo("timeline") != 0) {
           this.multiday.add(oEv);
         } else {
           this.events.add(oEv);
-        }
-      }
-    }
+        } 
+      }  
   }
   
-  public SchedulerEvent[] getEvents()
-  {
+  public SchedulerEvent[] getEvents() {
     SchedulerEvent[] events_list = new SchedulerEvent[this.events.size()];
-    for (int i = 0; i < this.events.size(); i++) {
-      events_list[i] = ((SchedulerEvent)this.events.get(i));
-    }
+    for (int i = 0; i < this.events.size(); i++)
+      events_list[i] = this.events.get(i); 
     return events_list;
   }
   
-  public SchedulerEvent[] getMultidayEvents()
-  {
+  public SchedulerEvent[] getMultidayEvents() {
     SchedulerEvent[] events_list = new SchedulerEvent[this.multiday.size()];
-    for (int i = 0; i < this.multiday.size(); i++) {
-      events_list[i] = ((SchedulerEvent)this.multiday.get(i));
-    }
+    for (int i = 0; i < this.multiday.size(); i++)
+      events_list[i] = this.multiday.get(i); 
     return events_list;
   }
   
-  public String[] weekColsParsing()
-  {
-    if (this.cols != null) {
-      return this.cols;
-    }
+  public String[] weekColsParsing() {
+    if (this.cols != null)
+      return this.cols; 
     NodeList n1 = this.root.getElementsByTagName("column");
-    if ((n1 != null) && (n1.getLength() > 0))
-    {
+    if (n1 != null && n1.getLength() > 0) {
       this.cols = new String[n1.getLength()];
-      for (int i = 0; i < n1.getLength(); i++)
-      {
+      for (int i = 0; i < n1.getLength(); i++) {
         Element col = (Element)n1.item(i);
         this.cols[i] = col.getChildNodes().item(0).getNodeValue();
-      }
-    }
+      } 
+    } 
     return this.cols;
   }
   
-  public String[] weekRowsParsing()
-  {
+  public String[] weekRowsParsing() {
     String[] rows = null;
     NodeList n1 = this.root.getElementsByTagName("row");
-    if ((n1 != null) && (n1.getLength() > 0))
-    {
+    if (n1 != null && n1.getLength() > 0) {
       rows = new String[n1.getLength()];
-      for (int i = 0; i < n1.getLength(); i++)
-      {
+      for (int i = 0; i < n1.getLength(); i++) {
         Element row = (Element)n1.item(i);
         rows[i] = row.getChildNodes().item(0).getNodeValue();
-      }
-    }
+      } 
+    } 
     return rows;
   }
   
-  public SchedulerMonth[] yearParsing()
-  {
+  public SchedulerMonth[] yearParsing() {
     SchedulerMonth[] monthes = null;
     NodeList n1 = this.root.getElementsByTagName("month");
-    if ((n1 != null) && (n1.getLength() > 0))
-    {
+    if (n1 != null && n1.getLength() > 0) {
       monthes = new SchedulerMonth[n1.getLength()];
-      for (int i = 0; i < n1.getLength(); i++)
-      {
+      for (int i = 0; i < n1.getLength(); i++) {
         monthes[i] = new SchedulerMonth();
         Element mon = (Element)n1.item(i);
         monthes[i].parse(mon);
-      }
-    }
+      } 
+    } 
     return monthes;
   }
   
-  public String[] agendaColsParsing()
-  {
+  public String[] agendaColsParsing() {
     String[] cols = null;
     NodeList n1 = this.root.getElementsByTagName("column");
-    if ((n1 != null) && (n1.getLength() > 0))
-    {
+    if (n1 != null && n1.getLength() > 0) {
       cols = new String[n1.getLength()];
-      for (int i = 0; i < n1.getLength(); i++)
-      {
+      for (int i = 0; i < n1.getLength(); i++) {
         Element col = (Element)n1.item(i);
         cols[i] = col.getChildNodes().item(0).getNodeValue();
-      }
-    }
+      } 
+    } 
     return cols;
   }
   
-  public String getMode()
-  {
+  public String getMode() {
     return this.mode;
   }
   
-  public String getTodatLabel()
-  {
+  public String getTodatLabel() {
     return this.todayLabel;
   }
   
-  public String getColorProfile()
-  {
+  public String getColorProfile() {
     return this.profile;
   }
   
-  public boolean getHeader()
-  {
+  public boolean getHeader() {
     boolean result = false;
-    if (this.header.compareTo("true") == 0) {
-      result = true;
-    }
+    if (this.header.compareTo("true") == 0)
+      result = true; 
     return result;
   }
   
-  public boolean getFooter()
-  {
+  public boolean getFooter() {
     boolean result = false;
-    if (this.footer.compareTo("true") == 0) {
-      result = true;
-    }
+    if (this.footer.compareTo("true") == 0)
+      result = true; 
     return result;
   }
 }

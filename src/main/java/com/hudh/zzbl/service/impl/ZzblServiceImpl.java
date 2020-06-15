@@ -11,15 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ZzblServiceImpl
-  implements IZzblService
-{
+public class ZzblServiceImpl implements IZzblService {
   @Autowired
   private ZzblDao zzblDao;
   
-  public void save(ZzblOperation dp, HttpServletRequest request)
-    throws Exception
-  {
+  public void save(ZzblOperation dp, HttpServletRequest request) throws Exception {
     dp.setSEQ_ID(YZUtility.getUUID());
     dp.setCreatetime(YZUtility.getCurDateTimeStr());
     String id = request.getParameter("id");
@@ -108,11 +104,9 @@ public class ZzblServiceImpl
     String treamentPlan = request.getParameter("treamentPlan");
     String implantSystem = request.getParameter("implantSystem");
     String moduloDesign = request.getParameter("moduloDesign");
-    
     String status = request.getParameter("status");
     String doctorSignature = request.getParameter("doctorSignature");
     String patientsignature = request.getParameter("patientsignature");
-    
     dp.setModuloDesign(moduloDesign);
     dp.setImplantSystem(implantSystem);
     dp.setTreamentPlan(treamentPlan);
@@ -215,15 +209,11 @@ public class ZzblServiceImpl
     this.zzblDao.save(dp);
   }
   
-  public List<ZzblOperation> findZzblOprationById(String id)
-    throws Exception
-  {
+  public List<ZzblOperation> findZzblOprationById(String id) throws Exception {
     return this.zzblDao.findZzblOprationById(id);
   }
   
-  public void updateZzblOprationById(ZzblOperation dp, HttpServletRequest request)
-    throws Exception
-  {
+  public void updateZzblOprationById(ZzblOperation dp, HttpServletRequest request) throws Exception {
     String physical_assessment = request.getParameter("physical_assessment");
     String consultation_opinion = request.getParameter("consultation_opinion");
     String stomatology_check = request.getParameter("stomatology_check");
@@ -411,22 +401,16 @@ public class ZzblServiceImpl
     this.zzblDao.updateZzblOprationById(dp);
   }
   
-  public void deleteZzblInforById(String id)
-    throws Exception
-  {
+  public void deleteZzblInforById(String id) throws Exception {
     this.zzblDao.deleteZzblInforById(id);
   }
   
-  public List<JSONObject> findAllZzblInfor()
-    throws Exception
-  {
+  public List<JSONObject> findAllZzblInfor() throws Exception {
     List<JSONObject> list = this.zzblDao.findAllZzblInfor();
     return list;
   }
   
-  public JSONObject selectZzblOperationById(String id)
-    throws Exception
-  {
+  public JSONObject selectZzblOperationById(String id) throws Exception {
     return this.zzblDao.selectZzblOperationById(id);
   }
 }

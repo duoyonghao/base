@@ -9,32 +9,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("utilLogic")
-public class UtilLogic
-  extends BaseLogic
-{
+public class UtilLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public int updateUseFlag(String tableName, String useFlag, String seqId)
-    throws Exception
-  {
+  public int updateUseFlag(String tableName, String useFlag, String seqId) throws Exception {
     JSONObject json = new JSONObject();
     json.put("tableName", tableName);
     json.put("useFlag", useFlag);
     json.put("seqId", seqId);
-    
     int flag = ((Integer)this.dao.update("UtilMapper.updateUseFlag", json)).intValue();
     return flag;
   }
   
-  public int selectCount(String tableName, String fieldName, String fieldValule)
-    throws Exception
-  {
-    Map<String, String> json = new HashMap();
+  public int selectCount(String tableName, String fieldName, String fieldValule) throws Exception {
+    Map<String, String> json = new HashMap<>();
     json.put("tableName", tableName);
     json.put("fieldName", fieldName);
     json.put("fieldValue", fieldValule);
-    
     int flag = ((Integer)this.dao.update("UtilMapper.selectCount", json)).intValue();
     return flag;
   }

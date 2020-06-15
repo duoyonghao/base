@@ -15,25 +15,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KQDS_GiveItem_TCLogic
-  extends BaseLogic
-{
+public class KQDS_GiveItem_TCLogic extends BaseLogic {
   @Autowired
   private DaoSupport dao;
   
-  public int getCountByItemnos(String costitemSeqId)
-    throws Exception
-  {
-    int count = ((Integer)this.dao.findForObject(TableNameUtil.KQDS_GIVEITEM_TC + ".getCountByItemnos", costitemSeqId)).intValue();
+  public int getCountByItemnos(String costitemSeqId) throws Exception {
+    int count = ((Integer)this.dao.findForObject(String.valueOf(TableNameUtil.KQDS_GIVEITEM_TC) + ".getCountByItemnos", costitemSeqId)).intValue();
     return count;
   }
   
-  public JSONObject selectWithPage(String table, BootStrapPage bp, Map<String, String> map)
-    throws Exception
-  {
+  public JSONObject selectWithPage(String table, BootStrapPage bp, Map<String, String> map) throws Exception {
     PageHelper.offsetPage(bp.getOffset(), bp.getLimit());
-    
-    List<JSONObject> list = (List)this.dao.findForList(TableNameUtil.KQDS_GIVEITEM_TC + ".selectWithPage", map);
+    List<JSONObject> list = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_GIVEITEM_TC) + ".selectWithPage", map);
     PageInfo<JSONObject> pageInfo = new PageInfo(list);
     JSONObject jobj = new JSONObject();
     jobj.put("total", Long.valueOf(pageInfo.getTotal()));
@@ -41,19 +34,16 @@ public class KQDS_GiveItem_TCLogic
     return jobj;
   }
   
-  public List getSelectTc(String organization)
-    throws Exception
-  {
-    List<KqdsGiveitemTc> list = new ArrayList();
-    List<JSONObject> listJson = (List)this.dao.findForList(TableNameUtil.KQDS_GIVEITEM_TC + ".getSelectTc", organization);
-    for (JSONObject typeRs : listJson)
-    {
+  public List getSelectTc(String organization) throws Exception {
+    List<KqdsGiveitemTc> list = new ArrayList<>();
+    List<JSONObject> listJson = (List<JSONObject>)this.dao.findForList(String.valueOf(TableNameUtil.KQDS_GIVEITEM_TC) + ".getSelectTc", organization);
+    for (JSONObject typeRs : listJson) {
       KqdsGiveitemTc dict = new KqdsGiveitemTc();
       dict.setSeqId(typeRs.getString("seq_id"));
       dict.setName(typeRs.getString("name"));
       dict.setNum(typeRs.getString("num"));
       list.add(dict);
-    }
+    } 
     return list;
   }
 }
