@@ -28,7 +28,7 @@ deploy-test:
     - echo -n "remove old artifacts..."
     - rm -r D:\tomcat\apache-tomcat-8.0.36\webapps\base
     - echo -n "copy new artifacts..."
-    - cp -r targe\base D:\tomcat\apache-tomcat-8.0.36\webapps
+    - cp -r target\base D:\tomcat\apache-tomcat-8.0.36\webapps
     - echo -n "start tomcat server..."
     - Start-Service Tomcat8
   dependencies:
