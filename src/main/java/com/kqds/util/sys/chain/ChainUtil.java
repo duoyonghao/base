@@ -63,7 +63,7 @@ public class ChainUtil {
   public static void main(String[] args) {
     String sql = "select * from a where 1=1 aa";
     String[] sqlArray = sql.split("1=1");
-    sqlArray.length;
+//    sqlArray.length;
   }
   
   public static String addSqlHosCodeFilter4Delete(String sql, Class cls, HttpServletRequest request) throws Exception {

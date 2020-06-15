@@ -150,8 +150,8 @@ public class HUDH_InvoiceDetailAct {
     mv.setViewName("/kqdsFront/index/jdzx/invoice_leading.jsp");
     List<List<String>> list = null;
     try {
-      if (files != null)
-        files.length; 
+//      if (files != null)
+//        files.length;
       String fileName = "";
       byte b;
       int i;

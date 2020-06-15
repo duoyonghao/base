@@ -276,8 +276,8 @@ public class HUDH_YkzzAct {
     JSONObject result = new JSONObject();
     List<List<String>> list = null;
     try {
-      if (files != null)
-        files.length; 
+//      if (files != null)
+//        files.length;
       byte b;
       int i;
       MultipartFile[] arrayOfMultipartFile;
