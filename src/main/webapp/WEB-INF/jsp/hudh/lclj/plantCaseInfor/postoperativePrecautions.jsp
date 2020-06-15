@@ -329,10 +329,12 @@
 		var patientsignature="";//患者签字
 		var doctorstatus=true;
 		var patientstatus=true;
-		var contextPath = "<%=contextPath%>";	
-//  		var id= window.parent.consultSelectPatient.seqid;	//选中患者id
-// 		var order_number= window.parent.consultSelectPatient.orderNumber;//选中患者order_number
+		var contextPath = "<%=contextPath%>";
+		var id= window.parent.consultSelectPatient.seqid;	//选中患者临床id
+		var order_number= window.parent.consultSelectPatient.orderNumber;//选中患者order_number
+		var selectPatient= window.parent.consultSelectPatient;//选中患者
 		$(function(){
+			console.log(JSON.stringify(selectPatient)+"-----------------selectPatient");
 			//时间选择
 		    $(".consent_time").datetimepicker({
 		        language:  'zh-CN',  
@@ -501,83 +503,28 @@
 		
 		
 		function save() {
-			var patient_name = $("#patient_name").val();//患者姓名
-			var patient_sex = $("#patient_sex").val();//患者性别
-			var patient_age = $("#patient_age").val();//患者年龄
-			//var plantingSystem = $("#plantingsystem").val();//种植体系
-			//var modelNumber = $("#modelnumber").val();//型号
-			var plantingSystem = $("#plantingsystem").text();//种植体系
-			var modelNumber = $("#modelnumber").text();//型号
-			var upleftToothBitOne = $("#uplefttoothbitone").val();
-			var uperRightToothBitOne = $("#uperrighttoothbitone").val();
-			var leftLowerToothBitOne = $("#leftlowertoothbitone").val();
-			var lowRightToothBitOne = $("#lowrighttoothbitone").val();
-			var upleftToothBitTwo = $("#uplefttoothbittwo").val();
-			var uperRightToothBitTwo = $("#uperrighttoothbittwo").val();
-			var leftLowerToothBitTwo = $("#leftlowertoothbittwo").val();
-			var lowRightToothBitTwo = $("#lowrighttoothbittwo").val();
-			//var assistOperation = $("#assistoperation").val();//种植辅助手术
-			var assistOperation = $("#assistoperation").text();//种植辅助手术
-			var remarks = $("#remarks").val();//备注
 			var PatientSignature = $("#PatientSignature").val();//患者签字
 			var PatientTime = $("#patienttime").val();//患者签字时间
 			var doctorSignature = $("#doctorSignature").val();//医生签字
 			var doctorTime = $("#doctortime").val();//医生签字时间
 			var createtime= new Date().Format("yyyy-MM-dd HH:mm:ss");
-
-			var url = contextPath + '/HUDH_ZzblAskAct/saveFamiliarBook.act';
-	       /*  var param = {
-	        		 LcljId :  id,
-	        		 LcljNum :  order_number,
-	        		 username :patient_name,
-		        	 sex : patient_sex,
-		        	 age : patient_age,
-	        		 plantingSystem :  plantingSystem,
-	        		 modelNumber :  modelNumber,
-	        		 upleftToothBitOne :  upleftToothBitOne,
-	        		 uperRightToothBitOne :  uperRightToothBitOne,
-	        		 leftLowerToothBitOne :  leftLowerToothBitOne,
-	        		 lowRightToothBitOne :  lowRightToothBitOne,
-	        		 upleftToothBitTwo :  upleftToothBitTwo,
-	        		 uperRightToothBitTwo :  uperRightToothBitTwo,
-	        		 leftLowerToothBitTwo :  leftLowerToothBitTwo,
-	        		 lowRightToothBitTwo :  lowRightToothBitTwo,
-	        		 assistOperation :  assistOperation,
-	        		 remarks :  remarks,
-	        		 PatientSignature :  PatientSignature,
-	        		 patientTime :  PatientTime,
-	        		 doctorSignature :  doctorSignature,
-	        		 doctorTime :  doctorTime,
-	        		 createtime :  createtime
-	        }; */
+			var param={
+				LcljId :  id,
+				LcljNum :  order_number,
+				patientsignature : patientsignature,
+				patientTime :  PatientTime,
+				doctorsignature : signature,
+				doctorTime :  doctorTime,
+				createtime :  createtime
+			};
+			console.log(JSON.stringify(param)+"---------保存参数");
+			return;
+			var url = contextPath + '';
 	        $.ajax({
 				url: url,
 				type:"POST",
 				dataType:"json",
-				data : {
-					LcljId :  id,
-	        		 LcljNum :  order_number,
-	        		 username :patient_name,
-		        	 sex : patient_sex,
-		        	 age : patient_age,
-	        		 plantingSystem :  plantingSystem,
-	        		 modelNumber :  modelNumber,
-	        		 upleftToothBitOne :  upleftToothBitOne,
-	        		 uperRightToothBitOne :  uperRightToothBitOne,
-	        		 leftLowerToothBitOne :  leftLowerToothBitOne,
-	        		 lowRightToothBitOne :  lowRightToothBitOne,
-	        		 upleftToothBitTwo :  upleftToothBitTwo,
-	        		 uperRightToothBitTwo :  uperRightToothBitTwo,
-	        		 leftLowerToothBitTwo :  leftLowerToothBitTwo,
-	        		 lowRightToothBitTwo :  lowRightToothBitTwo,
-	        		 assistOperation :  assistOperation,
-	        		 remarks :  remarks,
-	        		 PatientSignature :  PatientSignature,
-	        		 patientTime :  PatientTime,
-	        		 doctorSignature :  doctorSignature,
-	        		 doctorTime :  doctorTime,
-	        		 createtime :  createtime
-				},
+				data : param,
 				success:function(result){
 					//console.log(JSON.stringify(result)+"----------------返回内容");
 					layer.alert("保存成功！", {
@@ -588,18 +535,6 @@
 			      	});
 				}
 		  });
-	        //console.log(JSON.stringify(param)+"------------提交参数");
-	        /* $.axseSubmit(url, param,function() {},function(r) {
-	        	layer.alert("保存成功！", {
-		            end: function() {
-		            	//window.parent.location.reload(); //刷新父页面
-		                var frameindex = parent.layer.getFrameIndex(window.name);
-		                parent.layer.close(frameindex); //再执行关闭
-		            }
-		      	});
-	        },function(r){
-	        	layer.alert("保存失败！");
-		    }); */ 
 		}
 		
 		/* 获取拼接牙位并校验 */
