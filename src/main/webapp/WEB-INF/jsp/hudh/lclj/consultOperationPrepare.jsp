@@ -402,7 +402,7 @@
 	  		type:2,
 	  		closeBtn:1,
 	  		content:contextPath + "/ZzblViewAct/toAnamnesisSecondInfor.act",
-	  		area:['90%','80%'],
+	  		area:['100%','95%'],
 	  		cancel: function(){
 	  		},
 	  		end:function(){
