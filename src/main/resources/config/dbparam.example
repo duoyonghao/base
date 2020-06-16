@@ -2,6 +2,7 @@ db.jdbc.dbms = sqlserver
 #sqlserver 1 mysql 0
 system_dbType=1
 #sqlserver
+
 db.jdbc.driver = net.sourceforge.jtds.jdbc.Driver
 #db.jdbc.conurl = jdbc:jtds:sqlserver://192.168.1.164:1433;DatabaseName=kqds;SelectMethod=Cursor
 ############### 测试环境
