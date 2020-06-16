@@ -29,9 +29,9 @@
 <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/plugins/select/bootstrap-select.js"></script>
 </head>
 <style id="styleA" type="text/css">
-	textarea {
-    	min-height: 40px !important;
-    }
+	/*textarea {*/
+    /*	min-height: 40px !important;*/
+    /*}*/
 	*{
 		margin: 0px; 
 		padding: 0px;
@@ -388,7 +388,11 @@
 		<!-- 备注 -->
 		<div id="consent_remark" style="margin-top:1%;">
 			<span>备注:</span>
-			<textarea id="remarks" class="height" rows="3" cols="60" onblur="TextLengthCheck(this.id,200);" style="border: 1px solid #7e7b7b;"></textarea>
+			<textarea id="remarks" onblur="TextLengthCheck(this.id,200);" style="border: 1px solid #7e7b7b;"></textarea>
+		</div>
+		<div class="consent_remark" style="margin-top:35%;">
+			<span style="vertical-align:top">备注:</span>
+			<textarea class="remarks" style="border: 1px solid #7e7b7b;width: 95%;"></textarea>
 		</div>
 		<div class="consent_text" style="font-weight: bold;">
 			<p  class="font"><i class="colorRed">*</i>以上情况已知悉并确认签字。</p>
