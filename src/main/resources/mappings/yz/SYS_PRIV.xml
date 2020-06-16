@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="SYS_PRIV">
+
+	<resultMap id="BaseResultMap" type="com.kqds.entity.sys.YZPriv">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="PRIV_NAME" jdbcType="VARCHAR" property="privName" />
+		<result column="PRIV_NO" jdbcType="INTEGER" property="privNo" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.sys.YZPriv">
+		<result column="FUNC_ID_STR" jdbcType="CLOB" property="funcIdStr" />
+		<result column="funcbutton" jdbcType="CLOB" property="funcbutton" />
+		<result column="PRIV_ID_STR" jdbcType="CLOB" property="privIdStr" />
+		<result column="visual_person" jdbcType="CLOB" property="visualPerson" />
+		<result column="visual_dept" jdbcType="CLOB" property="visualDept" />
+		<result column="order_visual_person" jdbcType="CLOB" property="orderVisualPerson" />
+		<result column="order_visual_dept" jdbcType="CLOB" property="orderVisualDept" />
+		<result column="visit_dept" jdbcType="CLOB" property="visitDept" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, PRIV_NAME, PRIV_NO, createtime, createuser, organization
+	</sql>
+	<sql id="Blob_Column_List">
+		FUNC_ID_STR, funcbutton, PRIV_ID_STR, visual_person, visual_dept, order_visual_person,
+		order_visual_dept,visit_dept<!-- ,firstFloor,upstair -->
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from sys_priv
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from sys_priv
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.sys.YZPriv">
+		insert into sys_priv (SEQ_ID, PRIV_NAME, PRIV_NO,
+		createtime, createuser, organization,
+		FUNC_ID_STR, funcbutton, PRIV_ID_STR,
+		visual_person,
+		visual_dept, order_visual_person,
+		order_visual_dept)
+		values (#{seqId,jdbcType=VARCHAR}, #{privName,jdbcType=VARCHAR}, #{privNo,jdbcType=INTEGER},
+		#{createtime,jdbcType=VARCHAR},
+		#{createuser,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR},
+		#{funcIdStr,jdbcType=CLOB}, #{funcbutton,jdbcType=CLOB}, #{privIdStr,jdbcType=CLOB},
+		#{visualPerson,jdbcType=CLOB}, #{visualDept,jdbcType=CLOB}, #{orderVisualPerson,jdbcType=CLOB},
+		#{orderVisualDept,jdbcType=CLOB})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.sys.YZPriv">
+		insert into sys_priv
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="privName != null">
+				PRIV_NAME,
+			</if>
+			<if test="privNo != null">
+				PRIV_NO,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="funcIdStr != null">
+				FUNC_ID_STR,
+			</if>
+			<if test="funcbutton != null">
+				funcbutton,
+			</if>
+			<if test="privIdStr != null">
+				PRIV_ID_STR,
+			</if>
+			<if test="visualPerson != null">
+				visual_person,
+			</if>
+			<if test="visualDept != null">
+				visual_dept,
+			</if>
+			<if test="orderVisualPerson != null">
+				order_visual_person,
+			</if>
+			<if test="orderVisualDept != null">
+				order_visual_dept,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="privName != null">
+				#{privName,jdbcType=VARCHAR},
+			</if>
+			<if test="privNo != null">
+				#{privNo,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="funcIdStr != null">
+				#{funcIdStr,jdbcType=CLOB},
+			</if>
+			<if test="funcbutton != null">
+				#{funcbutton,jdbcType=CLOB},
+			</if>
+			<if test="privIdStr != null">
+				#{privIdStr,jdbcType=CLOB},
+			</if>
+			<if test="visualPerson != null">
+				#{visualPerson,jdbcType=CLOB},
+			</if>
+			<if test="visualDept != null">
+				#{visualDept,jdbcType=CLOB},
+			</if>
+			<if test="orderVisualPerson != null">
+				#{orderVisualPerson,jdbcType=CLOB},
+			</if>
+			<if test="orderVisualDept != null">
+				#{orderVisualDept,jdbcType=CLOB},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.sys.YZPriv">
+		update sys_priv
+		<set>
+			<if test="privName != null">
+				PRIV_NAME = #{privName,jdbcType=VARCHAR},
+			</if>
+			<if test="privNo != null">
+				PRIV_NO = #{privNo,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="funcIdStr != null">
+				FUNC_ID_STR = #{funcIdStr,jdbcType=CLOB},
+			</if>
+			<if test="funcbutton != null">
+				funcbutton = #{funcbutton,jdbcType=CLOB},
+			</if>
+			<if test="privIdStr != null">
+				PRIV_ID_STR = #{privIdStr,jdbcType=CLOB},
+			</if>
+			<if test="visualPerson != null">
+				visual_person = #{visualPerson,jdbcType=CLOB},
+			</if>
+			<if test="visualDept != null">
+				visual_dept = #{visualDept,jdbcType=CLOB},
+			</if>
+			<if test="orderVisualPerson != null">
+				order_visual_person = #{orderVisualPerson,jdbcType=CLOB},
+			</if>
+			<if test="orderVisualDept != null">
+				order_visual_dept = #{orderVisualDept,jdbcType=CLOB},
+			</if>
+			<if test="firstFloor != null">
+				firstFloor = #{firstFloor,jdbcType=CLOB},
+			</if>
+			<if test="upstair != null">
+				upstair = #{upstair,jdbcType=CLOB},
+			</if>
+			<if test="visitDept != null">
+				visit_dept = #{visitDept,jdbcType=CLOB},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.kqds.entity.sys.YZPriv">
+		update sys_priv
+		set PRIV_NAME = #{privName,jdbcType=VARCHAR},
+		PRIV_NO = #{privNo,jdbcType=INTEGER},
+		createtime =
+		#{createtime,jdbcType=VARCHAR},
+		createuser = #{createuser,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR},
+		FUNC_ID_STR = #{funcIdStr,jdbcType=CLOB},
+		funcbutton =
+		#{funcbutton,jdbcType=CLOB},
+		PRIV_ID_STR = #{privIdStr,jdbcType=CLOB},
+		visual_person = #{visualPerson,jdbcType=CLOB},
+		visual_dept = #{visualDept,jdbcType=CLOB},
+		order_visual_person =
+		#{orderVisualPerson,jdbcType=CLOB},
+		order_visual_dept = #{orderVisualDept,jdbcType=CLOB}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.sys.YZPriv">
+		update sys_priv
+		set PRIV_NAME = #{privName,jdbcType=VARCHAR},
+		PRIV_NO = #{privNo,jdbcType=INTEGER},
+		createtime =
+		#{createtime,jdbcType=VARCHAR},
+		createuser = #{createuser,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		sys_priv
+	</sql>
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="YZPriv">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+
+
+	<select id="getRoleNamesBySeqIds" resultType="json">
+		select priv_name from
+		<include refid="tableName"></include>
+		p
+		where p.seq_id in
+		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<delete id="deleteBySeqIds">
+		delete from
+		<include refid="tableName"></include>
+		where seq_id in
+		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<select id="getSlectUserPriv" parameterType="java.lang.String" resultType="json">
+		select seq_id, priv_name from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		<if test="organization != null and organization != ''">
+			and p.organization = #{_parameter}
+		</if>
+		order by priv_name
+	</select>
+
+	<select id="getSlectUserPrivWithCommon" parameterType="java.lang.String" resultType="json">
+		select SEQ_ID, PRIV_NAME from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		<if test="_parameter != null and _parameter != ''">
+			and (organization = #{_parameter} or organization = '' or organization is null)
+		</if>
+		order by priv_name
+	</select>
+
+	<select id="IsHaveChild" parameterType="java.lang.String" resultType="int">
+		select count(1)
+		from
+		SYS_PERSON  <!-- 这里是查看角色是否绑定用户 -->
+		p
+		where 1=1
+		and user_priv = #{_parameter}
+	</select>
+
+	<select id="IsHaveChildOther" resultType="json">
+		select user_priv_other
+		from
+		SYS_PERSON
+		p
+		where 1=1
+		and user_priv is not null
+	</select>
+
+	<select id="count" parameterType="java.lang.String" resultType="int">
+		select count(1) from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and organization = #{_parameter}
+	</select>
+
+	<select id="countByPrivName" parameterType="YZPriv" resultType="int">
+		select count(1) from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and priv_name = #{privName}
+		<if test="seqId != null and seqId != ''">
+			and seq_id != #{seqId}
+		</if>
+	</select>
+
+	<select id="selectDetail" parameterType="java.lang.String" resultType="json">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		p
+		where p.seq_id = #{_parameter}
+	</select>
+
+	<select id="selectPage" parameterType="map" resultType="json">
+		select
+		up.seq_id,
+		up.priv_name,
+		up.priv_no,
+		up.func_id_str,
+		up.funcbutton
+		from SYS_PRIV up
+		where up.organization = #{organization}
+		<if test="search != null and search != ''">
+			and up.priv_name like '%'+#{search}+'%'
+		</if>
+		<!-- 在list和数组中,index是元素的序号，在map中，index是元素的key，该参数可选。 -->
+		order by priv_no asc
+	</select>
+
+	<select id="getOneByPrivNameNoOrg" parameterType="json" resultType="json">
+		select
+		seq_id
+		from SYS_PRIV
+		where 1=1
+		and (organization = '' or organization is null or organization = #{organization} )
+		and priv_name = #{privName}
+		<!-- 在list和数组中,index是元素的序号，在map中，index是元素的key，该参数可选。 -->
+	</select>
+	<!-- 区分网电/营销员工和主管  -->
+	<select id="findGeneral" parameterType="map" resultType="com.kqds.entity.sys.YZPriv">
+		SELECT
+			*
+		FROM
+			sys_priv
+		WHERE
+			SEQ_ID = #{userPriv}
+	</select> 
+
+</mapper>

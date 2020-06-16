@@ -1,0 +1,87 @@
+@CHARSET "UTF-8";
+
+
+input[type="text"],select{
+	width:120px;
+	height:26px;
+	line-height:26px;
+	border:1px solid #ddd;
+	color:#333;
+	padding:0;
+	outline:none;
+	border-radius:3px;
+	font-size:13px;
+}
+input[type="text"]{
+	
+	
+}
+a:hover{
+	text-decoration:none;
+}
+/* 本页面 “按钮” 的基础样式 */		
+.aBtn{
+	display:inline-block;
+	color:#00A6C0 ;
+	background:#fff;
+	height:26px;
+	line-height:26px;
+	border-radius:16px;
+	text-align:center;
+	padding:0 15px;
+	border:1px solid #00A6C0 ;
+	font-size:13px;
+	margin-left:10px;
+}
+.search{
+	color:#fff;
+	background:#00A6C0 ;
+}
+.aBtn:hover{
+	cursor:pointer;
+	color:#fff;
+	background:#00A6C0 ;
+}
+/* input textarea select 用户体验效果  */
+input[type="text"]:focus,select:focus,textarea:focus{
+    box-shadow: 0 0 8px rgb(49, 165, 247);
+    border-color:transparent;
+}
+input[readonly]:focus,
+input[disabled]:focus,
+select[disabled]:focus,
+select[disabled]:focus{
+    box-shadow: none;
+    border-color:#ddd;
+    
+}
+input[readonly],input[disabled],select[disabled],select[disabled]{/*只读的input*/
+	background:rgba(246, 246, 246, 0.42);
+	cursor:not-allowed;
+	color:#777;
+}
+input[readonly]{/*只读的input*/
+	background:rgba(246, 246, 246, 0.42);
+	cursor:not-allowed;
+}
+select{
+	cursor:pointer;
+	
+}
+
+.fixed-table-header{/* table数据表首行颜色 */
+	color: white;
+   	background: #00A6C0;
+}
+#username{/* 姓名输入框 */
+	height:26px;
+	padding-left:10px;
+	font-size:12px;
+}
+.commonText{
+	display:inline-block;
+	height:26px;
+	line-height:26px;
+	margin-left:15px;
+}
+

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_ZZBL_PLANT_TEETH_OPERATION" >
+  <resultMap id="BaseResultMap" type="com.hudh.zzbl.entity.ZzblPlantTeethOperation" >
+    <id column="SEQ_ID" property="SEQ_ID" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="VARCHAR" />
+    <result column="createuser" property="createuser" jdbcType="VARCHAR" />
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="order_number" property="order_number" jdbcType="VARCHAR" />
+    <result column="remove" property="remove" jdbcType="VARCHAR" />
+    <result column="thicknessGum" property="thicknessGum" jdbcType="VARCHAR" />
+    <result column="alveolarRidgeThickness" property="alveolarRidgeThickness" jdbcType="VARCHAR" />
+    <result column="locator" property="locator" jdbcType="VARCHAR" />
+    
+    <result column="kindBone" property="kindBone" jdbcType="VARCHAR" />
+    <result column="plantSystem" property="plantSystem" jdbcType="VARCHAR" />
+    <result column="modelNumber" property="modelNumber" jdbcType="VARCHAR" />
+    <result column="twistingForce" property="twistingForce" jdbcType="VARCHAR" />
+    
+    <result column="boneMeal" property="boneMeal" jdbcType="VARCHAR" />
+    <result column="coveringPeriosteum" property="coveringPeriosteum" jdbcType="VARCHAR" />
+    <result column="doctorSignature" property="doctorSignature" jdbcType="VARCHAR" />
+    <result column="signatureTime" property="signatureTime" jdbcType="VARCHAR" />
+    <result column="organization" property="organization" jdbcType="VARCHAR" />
+    
+    <result column="blm_milliliter" property="blm_milliliter" jdbcType="VARCHAR" />
+    <result column="plant_bonemeal" property="plant_bonemeal" jdbcType="VARCHAR" />
+    <result column="operation_date" property="operation_date" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="VARCHAR" />
+    <result column="put_down" property="put_down" jdbcType="VARCHAR" />
+    <result column="operation_alltext" property="operation_alltext" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SEQ_ID, createtime, createuser, id, order_number, remove, thicknessGum, 
+    alveolarRidgeThickness, locator, kindBone, plantSystem, modelNumber, 
+    twistingForce, boneMeal, coveringPeriosteum, doctorSignature, signatureTime, 
+    organization, blm_milliliter, plant_bonemeal, operation_date, username, sex, age, put_down, operation_alltext
+  </sql>
+  <select id="findZzblPlantTeethOperationById" resultType="json" parameterType="java.lang.String" >
+    select TOP 1
+    <include refid="Base_Column_List" />
+    from HUDH_ZZBL_PLANT_TEETH_OPERATION
+    where id = #{id,jdbcType=VARCHAR} ORDER BY createtime DESC 
+  </select>
+  <select id="findAllZzblInfor" parameterType="java.lang.String" resultType="json">
+  	select 
+    <include refid="Base_Column_List" />
+    from HUDH_ZZBL_PLANT_TEETH_OPERATION
+  </select>
+  <delete id="deleteZzblInforById" parameterType="java.lang.String" >
+    delete from HUDH_ZZBL_PLANT_TEETH_OPERATION
+    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertZzblPlantTeethOperation" parameterType="com.hudh.zzbl.entity.ZzblPlantTeethOperation" >
+    insert into HUDH_ZZBL_PLANT_TEETH_OPERATION (SEQ_ID, createtime, createuser, 
+      id, order_number, remove, 
+      thicknessGum, 
+      alveolarRidgeThickness, locator, kindBone, plantSystem, modelNumber, 
+      twistingForce, boneMeal, coveringPeriosteum, doctorSignature, signatureTime, 
+      organization, blm_milliliter, plant_bonemeal, operation_date, username, sex, age, put_down, operation_alltext)
+    values (#{SEQ_ID,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, 
+      #{id,jdbcType=VARCHAR}, #{order_number,jdbcType=VARCHAR}, #{remove,jdbcType=VARCHAR}, 
+      #{thicknessGum,jdbcType=VARCHAR}, #{alveolarRidgeThickness,jdbcType=VARCHAR}, 
+      #{locator,jdbcType=VARCHAR}, #{kindBone,jdbcType=VARCHAR}, 
+      #{plantSystem,jdbcType=VARCHAR}, #{modelNumber,jdbcType=VARCHAR}, #{twistingForce,jdbcType=VARCHAR}, 
+      #{boneMeal,jdbcType=VARCHAR}, #{coveringPeriosteum,jdbcType=VARCHAR}, #{doctorSignature,jdbcType=VARCHAR}, 
+      #{signatureTime,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, #{blm_milliliter,jdbcType=VARCHAR}, #{plant_bonemeal,jdbcType=VARCHAR}
+      , #{operation_date,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
+      #{sex,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, #{put_down,jdbcType=VARCHAR}, #{operation_alltext,jdbcType=CLOB}
+      )
+  </insert>
+  
+  <update id="updateZzblOprationById" parameterType="com.hudh.zzbl.entity.ZzblPlantTeethOperation" >
+    update HUDH_ZZBL_PLANT_TEETH_OPERATION
+    <set >
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        createuser = #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        id = #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNumber != null" >
+        order_number = #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="remove != null" >
+        remove = #{remove,jdbcType=VARCHAR},
+      </if>
+      <if test="thicknessGum != null" >
+        thicknessGum = #{thicknessGum,jdbcType=VARCHAR},
+      </if>
+      <if test="alveolarRidgeThickness != null" >
+        alveolarRidgeThickness = #{alveolarRidgeThickness,jdbcType=VARCHAR},
+      </if>
+      <if test="locator != null" >
+        locator = #{locator,jdbcType=VARCHAR},
+      </if>
+      <if test="kindBone != null" >
+        kindBone = #{kindBone,jdbcType=VARCHAR},
+      </if>
+      <if test="plantSystem != null" >
+        plantSystem = #{plantSystem,jdbcType=VARCHAR},
+      </if>
+      <if test="modelNumber != null" >
+        modelNumber = #{modelNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="twistingForce != null" >
+        twistingForce = #{twistingForce,jdbcType=VARCHAR},
+      </if>
+      <if test="boneMeal != null" >
+        boneMeal = #{boneMeal,jdbcType=VARCHAR},
+      </if>
+      <if test="coveringPeriosteum != null" >
+        coveringPeriosteum = #{coveringPeriosteum,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorSignature != null" >
+        doctorSignature = #{doctorSignature,jdbcType=VARCHAR},
+      </if>
+      <if test="signatureTime != null" >
+        signatureTime = #{signatureTime,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null" >
+        organization = #{organization,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </update>
+  <!-- <update id="updateByPrimaryKey" parameterType="com.hudh.zzbl.entity.ZzblPlantTeethOperation" >
+    update HUDH_ZZBL_PLANT_TEETH_OPERATION
+    set createtime = #{createtime,jdbcType=VARCHAR},
+      createuser = #{createuser,jdbcType=VARCHAR},
+      id = #{id,jdbcType=VARCHAR},
+      order_number = #{orderNumber,jdbcType=VARCHAR},
+      physical_assessment = #{physicalAssessment,jdbcType=VARCHAR},
+      consultation_opinion = #{consultationOpinion,jdbcType=VARCHAR},
+      stomatology_check = #{stomatologyCheck,jdbcType=VARCHAR},
+      occlusion_situation = #{occlusionSituation,jdbcType=VARCHAR},
+      interarch_distance = #{interarchDistance,jdbcType=VARCHAR},
+      repaire_type = #{repaireType,jdbcType=VARCHAR},
+      periodontal_condition = #{periodontalCondition,jdbcType=VARCHAR},
+      teethMissLeftUp = #{teethmissleftup,jdbcType=VARCHAR},
+      teethMissLeftDown = #{teethmissleftdown,jdbcType=VARCHAR},
+      teethMissRightUp = #{teethmissrightup,jdbcType=VARCHAR},
+      teethMissRightDown = #{teethmissrightdown,jdbcType=VARCHAR},
+      reasonMissTeeth = #{reasonmissteeth,jdbcType=VARCHAR},
+      dentalCaryLeftUp = #{dentalcaryleftup,jdbcType=VARCHAR},
+    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </update> -->
+</mapper>

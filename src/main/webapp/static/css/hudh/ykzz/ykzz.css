@@ -1,0 +1,91 @@
+html{
+	height : 100%;
+}
+body{
+	height : 100%;
+}
+.drugs-top{
+	width:100%;
+	height:35px;
+}
+.top-opt-list{
+	margin-top:5px;
+}
+.drugs-context{
+	width:100%;
+	height:500px;
+}
+.drugs-context>.left-type-tree{
+	width:12%;
+	height:100%;
+	float: left;
+}
+.drugs-context>.left-type-tree>#treeDemo{
+	border: 1px solid #ddd;
+	height:100%;
+	border-radius: 6px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+.drugs-context>.right-drugs-list{
+	width:88%;
+	height:100%;
+	float: left;
+}
+.drugs-bottom{
+	width:100%;
+	height:200px;
+}
+.drugs-bottom>.drugs-bottom-context{
+	width:100%;
+	border: 1px solid #FFF;
+	border-radius: 6px;
+	height:85%;
+}
+.select-label{
+	height : 40px;
+    line-height : 40px;
+    margin-left: 0.5%;
+    border-bottom: 1px solid #ddd;
+    padding-left : 10px;
+}
+.select-btnBar{
+	margin-top: 10px;
+	margin-left: 20px;
+}
+.bottom-btns{
+	width:100%;
+	height: 50%;
+	margin-top: 5px;
+	border : 1px solid #ddd;
+	border-radius: 6px;
+}
+#ul1 img {
+    width: 20px;
+    height: 21px;
+    /* margin-top: 4px; */
+    margin-right: 2px;
+    display: block;
+    float: left;
+}
+#ul1>li{
+	float: left;
+    width: 5%;
+    min-width: 105px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    cursor: pointer;
+    transition: all .3s;
+}
+.bottom-opts{
+	margin-left: 20px;
+	margin-top: 25px;
+}
+.fixed-table-body {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-radius: 6px;

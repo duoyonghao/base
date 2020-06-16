@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="WX_RECEIVETEXT">
+
+	<resultMap id="BaseResultMap" type="com.kqds.entity.wx.WXReceivetext">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="fromusername" jdbcType="VARCHAR" property="fromusername" />
+		<result column="msgid" jdbcType="VARCHAR" property="msgid" />
+		<result column="msgtype" jdbcType="VARCHAR" property="msgtype" />
+		<result column="tousername" jdbcType="VARCHAR" property="tousername" />
+		<result column="accountid" jdbcType="VARCHAR" property="accountid" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="ispush" jdbcType="INTEGER" property="ispush" />
+		<result column="mediaid" jdbcType="VARCHAR" property="mediaid" />
+		<result column="picurl" jdbcType="VARCHAR" property="picurl" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.wx.WXReceivetext">
+		<result column="content" jdbcType="CLOB" property="content" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, createtime, fromusername, msgid, msgtype, tousername, accountid, usercode,
+		ispush, mediaid, picurl, createuser
+	</sql>
+	<sql id="Blob_Column_List">
+		content
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from wx_receivetext
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from wx_receivetext
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.wx.WXReceivetext">
+		insert into wx_receivetext (SEQ_ID, createtime, fromusername,
+		msgid, msgtype, tousername,
+		accountid, usercode, ispush,
+		mediaid, picurl,
+		createuser,
+		content)
+		values (#{seqId,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{fromusername,jdbcType=VARCHAR},
+		#{msgid,jdbcType=VARCHAR}, #{msgtype,jdbcType=VARCHAR},
+		#{tousername,jdbcType=VARCHAR},
+		#{accountid,jdbcType=VARCHAR}, #{usercode,jdbcType=VARCHAR}, #{ispush,jdbcType=INTEGER},
+		#{mediaid,jdbcType=VARCHAR}, #{picurl,jdbcType=VARCHAR},
+		#{createuser,jdbcType=VARCHAR},
+		#{content,jdbcType=CLOB})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.wx.WXReceivetext">
+		insert into wx_receivetext
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="fromusername != null">
+				fromusername,
+			</if>
+			<if test="msgid != null">
+				msgid,
+			</if>
+			<if test="msgtype != null">
+				msgtype,
+			</if>
+			<if test="tousername != null">
+				tousername,
+			</if>
+			<if test="accountid != null">
+				accountid,
+			</if>
+			<if test="usercode != null">
+				usercode,
+			</if>
+			<if test="ispush != null">
+				ispush,
+			</if>
+			<if test="mediaid != null">
+				mediaid,
+			</if>
+			<if test="picurl != null">
+				picurl,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="fromusername != null">
+				#{fromusername,jdbcType=VARCHAR},
+			</if>
+			<if test="msgid != null">
+				#{msgid,jdbcType=VARCHAR},
+			</if>
+			<if test="msgtype != null">
+				#{msgtype,jdbcType=VARCHAR},
+			</if>
+			<if test="tousername != null">
+				#{tousername,jdbcType=VARCHAR},
+			</if>
+			<if test="accountid != null">
+				#{accountid,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="ispush != null">
+				#{ispush,jdbcType=INTEGER},
+			</if>
+			<if test="mediaid != null">
+				#{mediaid,jdbcType=VARCHAR},
+			</if>
+			<if test="picurl != null">
+				#{picurl,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=CLOB},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.wx.WXReceivetext">
+		update wx_receivetext
+		<set>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="fromusername != null">
+				fromusername = #{fromusername,jdbcType=VARCHAR},
+			</if>
+			<if test="msgid != null">
+				msgid = #{msgid,jdbcType=VARCHAR},
+			</if>
+			<if test="msgtype != null">
+				msgtype = #{msgtype,jdbcType=VARCHAR},
+			</if>
+			<if test="tousername != null">
+				tousername = #{tousername,jdbcType=VARCHAR},
+			</if>
+			<if test="accountid != null">
+				accountid = #{accountid,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				usercode = #{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="ispush != null">
+				ispush = #{ispush,jdbcType=INTEGER},
+			</if>
+			<if test="mediaid != null">
+				mediaid = #{mediaid,jdbcType=VARCHAR},
+			</if>
+			<if test="picurl != null">
+				picurl = #{picurl,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=CLOB},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.kqds.entity.wx.WXReceivetext">
+		update wx_receivetext
+		set createtime = #{createtime,jdbcType=VARCHAR},
+		fromusername = #{fromusername,jdbcType=VARCHAR},
+		msgid = #{msgid,jdbcType=VARCHAR},
+		msgtype = #{msgtype,jdbcType=VARCHAR},
+		tousername = #{tousername,jdbcType=VARCHAR},
+		accountid = #{accountid,jdbcType=VARCHAR},
+		usercode =
+		#{usercode,jdbcType=VARCHAR},
+		ispush = #{ispush,jdbcType=INTEGER},
+		mediaid = #{mediaid,jdbcType=VARCHAR},
+		picurl = #{picurl,jdbcType=VARCHAR},
+		createuser =
+		#{createuser,jdbcType=VARCHAR},
+		content = #{content,jdbcType=CLOB}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.wx.WXReceivetext">
+		update wx_receivetext
+		set createtime = #{createtime,jdbcType=VARCHAR},
+		fromusername = #{fromusername,jdbcType=VARCHAR},
+		msgid =
+		#{msgid,jdbcType=VARCHAR},
+		msgtype = #{msgtype,jdbcType=VARCHAR},
+		tousername = #{tousername,jdbcType=VARCHAR},
+		accountid = #{accountid,jdbcType=VARCHAR},
+		usercode =
+		#{usercode,jdbcType=VARCHAR},
+		ispush = #{ispush,jdbcType=INTEGER},
+		mediaid = #{mediaid,jdbcType=VARCHAR},
+		picurl = #{picurl,jdbcType=VARCHAR},
+		createuser =
+		#{createuser,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+
+	<!--表名 -->
+	<sql id="tableName">
+		WX_RECEIVETEXT
+	</sql>
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="WXReceivetext">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+
+	<select id="getMsg4Talk" parameterType="java.lang.String" resultType="json">
+		<bind name="temp_dbType" value="${system_dbType}" />
+		<if test="temp_dbType == 0">
+			select * from WX_RECEIVETEXT where fromusername = #{_parameter}
+			and ispush = 0 order by createtime asc limit 0,1
+		</if>
+		<if test="temp_dbType == 1">
+			select TOP 1 * from WX_RECEIVETEXT where fromusername = #{_parameter}
+			and ispush = 0 order by createtime asc
+		</if>
+	</select>
+	<select id="getNotReadMsgCountByOpenid" parameterType="map" resultType="int">
+		select count(1) from WX_RECEIVETEXT
+		where 1=1
+		<if test="openid != null and openid !='' ">
+			and fromusername = #{openid}
+		</if>
+		<if test="accountid != null and accountid !='' ">
+			and tousername = #{accountid}
+		</if>
+		and ispush = 0
+	</select>
+	<select id="selectWithPage" parameterType="map" resultType="json">
+		select
+		tt.*,
+		ku.usercode,
+		ku.username
+		from WX_RECEIVETEXT tt
+		LEFT JOIN WX_FANS wxu on wxu.openid = tt.fromusername
+		LEFT JOIN KQDS_USERDOCUMENT ku on ku.usercode = wxu.usercode
+		where 1=1
+		ORDER BY tt.createtime desc
+	</select>
+	<select id="selectList" parameterType="map" resultType="json">
+		<bind name="temp_dbType" value="${system_dbType}" />
+		select
+		<if test="temp_dbType == 1">
+			TOP 5
+		</if>
+		tt.*,p.user_id from wx_receivetext tt
+		left join sys_person p on p.seq_id = tt.createuser
+		where 1=1
+		and (tt.fromusername = #{openid} or tt.tousername = #{openid})
+		<if test="createtime != null and createtime !='' ">
+			and tt.createtime <![CDATA[ < ]]>
+			#{createtime}
+		</if>
+		ORDER BY tt.createtime desc
+		<if test="temp_dbType == 0">
+			limit 0,5
+		</if>
+	</select>
+	<select id="selectList4Chat" parameterType="map" resultType="json">
+		select
+		(select count(1) from WX_RECEIVETEXT msg where msg.fromusername = dt.openid and msg.ispush = 0 ) as
+		wdcount,
+		dt.*,u.username,u.phonenumber1,u.phonenumber2
+		from WX_FANS dt
+		left join KQDS_USERDOCUMENT u
+		on u.openid = dt.openid
+		and u.bindstatus = 0
+		where 1=1
+		and dt.carestatus = 0
+		order by
+		dt.lastmsgtime desc
+	</select>
+	<select id="selectPage" parameterType="map" resultType="json">
+		select
+		(select count(1) from WX_RECEIVETEXT msg where msg.fromusername = dt.openid and msg.ispush = 0 ) as wdcount,
+		dt.*,u.username,u.phonenumber1,u.phonenumber2
+		from WX_FANS dt
+		left join KQDS_USERDOCUMENT u
+		on u.openid = dt.openid
+		and u.bindstatus = 0
+		where 1=1
+		order by dt.lastmsgtime desc
+	</select>
+	<select id="selectPageObjByOpenid" parameterType="java.lang.String" resultType="json">
+		select
+		(select count(1) from WX_RECEIVETEXT msg where msg.fromusername = dt.openid and
+		msg.ispush = 0 ) as wdcount,
+		dt.*,u.username
+		from WX_FANS dt
+		left join KQDS_USERDOCUMENT u
+		on u.openid = dt.openid
+		and u.bindstatus = 0
+		where 1=1
+		and dt.openid = #{_parameter}
+	</select>
+	<select id="getFanByOpenid" parameterType="java.lang.String" resultType="WXFans">
+		select * from WX_FANS where openid = #{_parameter}
+	</select>
+
+</mapper>

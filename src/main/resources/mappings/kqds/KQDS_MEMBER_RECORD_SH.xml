@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_MEMBER_RECORD_SH">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsMemberRecordSh">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="cardno" jdbcType="VARCHAR" property="cardno" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="cmoney" jdbcType="DECIMAL" property="cmoney" />
+		<result column="cgivemoney" jdbcType="DECIMAL" property="cgivemoney" />
+		<result column="ctotal" jdbcType="DECIMAL" property="ctotal" />
+		<result column="ymoney" jdbcType="DECIMAL" property="ymoney" />
+		<result column="ygivemoney" jdbcType="DECIMAL" property="ygivemoney" />
+		<result column="ytotal" jdbcType="DECIMAL" property="ytotal" />
+		<result column="tfremark" jdbcType="VARCHAR" property="tfremark" />
+		<result column="xjmoney" jdbcType="DECIMAL" property="xjmoney" />
+		<result column="yhkmoney" jdbcType="DECIMAL" property="yhkmoney" />
+		<result column="qtmoney" jdbcType="DECIMAL" property="qtmoney" />
+		<result column="zfbmoney" jdbcType="DECIMAL" property="zfbmoney" />
+		<result column="wxmoney" jdbcType="DECIMAL" property="wxmoney" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="sqstatus" jdbcType="INTEGER" property="sqstatus" />
+		<result column="mmdmoney" jdbcType="DECIMAL" property="mmdmoney" />
+		<result column="bdfqmoney" jdbcType="DECIMAL" property="bdfqmoney" />
+		<result column="sqremark" jdbcType="VARCHAR" property="sqremark" />
+		<result column="askperson" jdbcType="VARCHAR" property="askperson" />
+		<result column="regsort" jdbcType="VARCHAR" property="regsort" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, createuser, createtime, usercode, username, cardno, type, cmoney, cgivemoney,
+		ctotal, ymoney, ygivemoney, ytotal, tfremark, xjmoney, yhkmoney, qtmoney,
+		zfbmoney,
+		wxmoney, organization, sqstatus, mmdmoney, bdfqmoney, sqremark, askperson, regsort
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_MEMBER_RECORD_SH
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_MEMBER_RECORD_SH
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsMemberRecordSh">
+		insert into KQDS_MEMBER_RECORD_SH (SEQ_ID, createuser, createtime,
+		usercode, username, cardno,
+		type, cmoney, cgivemoney,
+		ctotal, ymoney,
+		ygivemoney,
+		ytotal, tfremark, xjmoney,
+		yhkmoney, qtmoney, zfbmoney,
+		wxmoney, organization, sqstatus,
+		mmdmoney, bdfqmoney, sqremark,
+		askperson, regsort)
+		values
+		(#{seqId,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{usercode,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{cardno,jdbcType=VARCHAR},
+		#{type,jdbcType=VARCHAR}, #{cmoney,jdbcType=DECIMAL}, #{cgivemoney,jdbcType=DECIMAL},
+		#{ctotal,jdbcType=DECIMAL}, #{ymoney,jdbcType=DECIMAL}, #{ygivemoney,jdbcType=DECIMAL},
+		#{ytotal,jdbcType=DECIMAL}, #{tfremark,jdbcType=VARCHAR}, #{xjmoney,jdbcType=DECIMAL},
+		#{yhkmoney,jdbcType=DECIMAL}, #{qtmoney,jdbcType=DECIMAL}, #{zfbmoney,jdbcType=DECIMAL},
+		#{wxmoney,jdbcType=DECIMAL}, #{organization,jdbcType=VARCHAR}, #{sqstatus,jdbcType=INTEGER},
+		#{mmdmoney,jdbcType=DECIMAL}, #{bdfqmoney,jdbcType=DECIMAL},
+		#{sqremark,jdbcType=VARCHAR},
+		#{askperson,jdbcType=VARCHAR}, #{regsort,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsMemberRecordSh">
+		insert into KQDS_MEMBER_RECORD_SH
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="usercode != null">
+				usercode,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="cardno != null">
+				cardno,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="cmoney != null">
+				cmoney,
+			</if>
+			<if test="cgivemoney != null">
+				cgivemoney,
+			</if>
+			<if test="ctotal != null">
+				ctotal,
+			</if>
+			<if test="ymoney != null">
+				ymoney,
+			</if>
+			<if test="ygivemoney != null">
+				ygivemoney,
+			</if>
+			<if test="ytotal != null">
+				ytotal,
+			</if>
+			<if test="tfremark != null">
+				tfremark,
+			</if>
+			<if test="xjmoney != null">
+				xjmoney,
+			</if>
+			<if test="yhkmoney != null">
+				yhkmoney,
+			</if>
+			<if test="qtmoney != null">
+				qtmoney,
+			</if>
+			<if test="zfbmoney != null">
+				zfbmoney,
+			</if>
+			<if test="wxmoney != null">
+				wxmoney,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="sqstatus != null">
+				sqstatus,
+			</if>
+			<if test="mmdmoney != null">
+				mmdmoney,
+			</if>
+			<if test="bdfqmoney != null">
+				bdfqmoney,
+			</if>
+			<if test="sqremark != null">
+				sqremark,
+			</if>
+			<if test="askperson != null">
+				askperson,
+			</if>
+			<if test="regsort != null">
+				regsort,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="cardno != null">
+				#{cardno,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="cmoney != null">
+				#{cmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="cgivemoney != null">
+				#{cgivemoney,jdbcType=DECIMAL},
+			</if>
+			<if test="ctotal != null">
+				#{ctotal,jdbcType=DECIMAL},
+			</if>
+			<if test="ymoney != null">
+				#{ymoney,jdbcType=DECIMAL},
+			</if>
+			<if test="ygivemoney != null">
+				#{ygivemoney,jdbcType=DECIMAL},
+			</if>
+			<if test="ytotal != null">
+				#{ytotal,jdbcType=DECIMAL},
+			</if>
+			<if test="tfremark != null">
+				#{tfremark,jdbcType=VARCHAR},
+			</if>
+			<if test="xjmoney != null">
+				#{xjmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="yhkmoney != null">
+				#{yhkmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="qtmoney != null">
+				#{qtmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="zfbmoney != null">
+				#{zfbmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="wxmoney != null">
+				#{wxmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="sqstatus != null">
+				#{sqstatus,jdbcType=INTEGER},
+			</if>
+			<if test="mmdmoney != null">
+				#{mmdmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="bdfqmoney != null">
+				#{bdfqmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="sqremark != null">
+				#{sqremark,jdbcType=VARCHAR},
+			</if>
+			<if test="askperson != null">
+				#{askperson,jdbcType=VARCHAR},
+			</if>
+			<if test="regsort != null">
+				#{regsort,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsMemberRecordSh">
+		update KQDS_MEMBER_RECORD_SH
+		<set>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				usercode = #{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="cardno != null">
+				cardno = #{cardno,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="cmoney != null">
+				cmoney = #{cmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="cgivemoney != null">
+				cgivemoney = #{cgivemoney,jdbcType=DECIMAL},
+			</if>
+			<if test="ctotal != null">
+				ctotal = #{ctotal,jdbcType=DECIMAL},
+			</if>
+			<if test="ymoney != null">
+				ymoney = #{ymoney,jdbcType=DECIMAL},
+			</if>
+			<if test="ygivemoney != null">
+				ygivemoney = #{ygivemoney,jdbcType=DECIMAL},
+			</if>
+			<if test="ytotal != null">
+				ytotal = #{ytotal,jdbcType=DECIMAL},
+			</if>
+			<if test="tfremark != null">
+				tfremark = #{tfremark,jdbcType=VARCHAR},
+			</if>
+			<if test="xjmoney != null">
+				xjmoney = #{xjmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="yhkmoney != null">
+				yhkmoney = #{yhkmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="qtmoney != null">
+				qtmoney = #{qtmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="zfbmoney != null">
+				zfbmoney = #{zfbmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="wxmoney != null">
+				wxmoney = #{wxmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="sqstatus != null">
+				sqstatus = #{sqstatus,jdbcType=INTEGER},
+			</if>
+			<if test="mmdmoney != null">
+				mmdmoney = #{mmdmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="bdfqmoney != null">
+				bdfqmoney = #{bdfqmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="sqremark != null">
+				sqremark = #{sqremark,jdbcType=VARCHAR},
+			</if>
+			<if test="askperson != null">
+				askperson = #{askperson,jdbcType=VARCHAR},
+			</if>
+			<if test="regsort != null">
+				regsort = #{regsort,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsMemberRecordSh">
+		update KQDS_MEMBER_RECORD_SH
+		set createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		usercode = #{usercode,jdbcType=VARCHAR},
+		username = #{username,jdbcType=VARCHAR},
+		cardno = #{cardno,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR},
+		cmoney =
+		#{cmoney,jdbcType=DECIMAL},
+		cgivemoney = #{cgivemoney,jdbcType=DECIMAL},
+		ctotal = #{ctotal,jdbcType=DECIMAL},
+		ymoney = #{ymoney,jdbcType=DECIMAL},
+		ygivemoney =
+		#{ygivemoney,jdbcType=DECIMAL},
+		ytotal = #{ytotal,jdbcType=DECIMAL},
+		tfremark = #{tfremark,jdbcType=VARCHAR},
+		xjmoney = #{xjmoney,jdbcType=DECIMAL},
+		yhkmoney =
+		#{yhkmoney,jdbcType=DECIMAL},
+		qtmoney = #{qtmoney,jdbcType=DECIMAL},
+		zfbmoney = #{zfbmoney,jdbcType=DECIMAL},
+		wxmoney = #{wxmoney,jdbcType=DECIMAL},
+		organization =
+		#{organization,jdbcType=VARCHAR},
+		sqstatus = #{sqstatus,jdbcType=INTEGER},
+		mmdmoney = #{mmdmoney,jdbcType=DECIMAL},
+		bdfqmoney = #{bdfqmoney,jdbcType=DECIMAL},
+		sqremark =
+		#{sqremark,jdbcType=VARCHAR},
+		askperson = #{askperson,jdbcType=VARCHAR},
+		regsort = #{regsort,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_MEMBER_RECORD_SH
+	</sql>
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsMemberRecordSh">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectListByType" parameterType="map" resultType="json">
+		select
+		p2.USER_NAME as askperson,
+		r.cardno,
+		r.organization,
+		r.sqstatus,
+		r.sqremark,
+		r.xjmoney,
+		r.yhkmoney,
+		r.qtmoney,
+		r.zfbmoney,
+		r.wxmoney,
+		r.mmdmoney,
+		r.bdfqmoney,
+		r.seq_id,
+		p.user_name as
+		createuser,
+		r.createtime,
+		r.usercode,
+		r.username,
+		r.cardno,
+		r.type,
+		r.cmoney,
+		r.cgivemoney,
+		r.ctotal,
+		r.ymoney,
+		r.ygivemoney,
+		r.ytotal,
+		r.tfremark,
+		u.createuser as jdrid,
+		p3.user_name as jdrname,
+		kcit3.dict_name as devchannel,
+		hzly.dict_name as nexttype
+		from KQDS_MEMBER_RECORD_SH r
+		LEFT JOIN SYS_PERSON p on r.createuser = p.seq_id
+		LEFT JOIN KQDS_UserDocument u on u.usercode = r.usercode
+		LEFT JOIN
+		SYS_PERSON p2 on u.AskPerson = p2.seq_id
+		LEFT JOIN SYS_PERSON p3 on u.createuser = p3.seq_id
+		LEFT JOIN SYS_DICT kcit3 on u.devchannel = kcit3.seq_id
+		LEFT JOIN SYS_DICT hzly on u.nexttype = hzly.seq_id
+		where 1=1
+		<if test="queryinput != null and queryinput !='' ">
+			and (r.usercode like '%' + #{queryinput} + '%'
+			or u.username like '%' + #{queryinput} + '%'
+			or u.pym like '%' + #{queryinput} + '%'
+			or r.cardno like '%' + #{queryinput}
+			+ '%'
+			)
+		</if>
+		<if test="type != null and type !='' ">
+			and r.type = #{type}
+		</if>
+		<if test="starttime != null and starttime !='' ">
+			and r.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and r.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="sqstatus != null and sqstatus !='' ">
+			and r.sqstatus = #{sqstatus}
+		</if>
+		<if test="organization != null and organization !='' ">
+			and r.organization = #{organization}
+		</if>
+		order by r.createtime
+	</select>
+
+</mapper>

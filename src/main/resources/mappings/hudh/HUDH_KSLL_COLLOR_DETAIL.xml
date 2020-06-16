@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_KSLL_COLLOR_DETAIL">
+	<resultMap id="CollorDetailMap" type="com.hudh.ksll.entity.KsllCollorDetail">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="basetype" jdbcType="VARCHAR" property="basetype" />
+		<result column="nexttype" jdbcType="VARCHAR" property="nexttype" />
+		<result column="goodscode" jdbcType="VARCHAR" property="goodscode" />
+		<result column="house" jdbcType="VARCHAR" property="house" />
+		<result column="goodsname" jdbcType="VARCHAR" property="goodsname" />
+		<result column="goodsnorms" jdbcType="VARCHAR" property="goodsnorms" />
+		<result column="goodsunit" jdbcType="DECIMAL" property="goodsunit" />
+		<result column="nums" jdbcType="INTEGER" property="nums" />
+		<result column="validity" jdbcType="DECIMAL" property="validity" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="goodsremark" jdbcType="VARCHAR" property="goodsremark" />
+		<result column="parentid" jdbcType="VARCHAR" property="parentid" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="ckchange" jdbcType="VARCHAR" property="ckchange" />
+		<result column="ckchangeuser" jdbcType="VARCHAR" property="ckchangeuser" />
+		<result column="goodPrice" jdbcType="DECIMAL" property="goodPrice" />
+		<result column="ph" jdbcType="VARCHAR" property="ph" />
+		<result column="phnum" jdbcType="INTEGER" property="phnum" />
+		<result column="goodsdetailId" jdbcType="VARCHAR" property="goodsdetailId" />
+		<result column="creator" jdbcType="VARCHAR" property="creator" />
+		<result column="creattime" jdbcType="VARCHAR" property="creattime" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, basetype, nexttype, goodscode ,house, goodsname,goodsnorms , goodsunit,nums,validity,organization,goodsremark,parentid ,status ,ckchange,ckchangeuser,goodPrice,goodsdetailId,creator,creattime
+	</sql>
+	
+	<insert id="batchSaveCollorDetail" parameterType="java.util.List">
+		insert into HUDH_KSLL_COLLOR_DETAIL (id, basetype, nexttype, goodscode ,house, goodsname,goodsnorms , goodsunit,nums,validity,organization,goodsremark,parentid,status,goodPrice,goodsdetailId,creator,creattime)
+		values (#{id,jdbcType=VARCHAR}, #{basetype,jdbcType=VARCHAR}, #{nexttype,jdbcType=VARCHAR},
+		#{goodscode,jdbcType=VARCHAR},#{house,jdbcType=VARCHAR},#{goodsname,jdbcType=VARCHAR},
+		#{goodsnorms,jdbcType=VARCHAR},#{goodsunit,jdbcType=DECIMAL},#{nums,jdbcType=INTEGER},
+		#{validity,jdbcType=DECIMAL},#{organization,jdbcType=VARCHAR},#{goodsremark,jdbcType=VARCHAR},
+		#{parentid,jdbcType=VARCHAR},#{status,jdbcType=INTEGER},#{goodPrice,jdbcType=DECIMAL},
+		#{goodsdetailId,jdbcType=DECIMAL},#{creator,jdbcType=DECIMAL},#{creattime,jdbcType=DECIMAL})
+	</insert>
+	
+	<!-- <select id="findDetailByParendId" resultType="json">
+		select 
+			a.id, a.basetype as firsttype, a.nexttype as goodstypename, a.goodscode ,a.house as sshouse, a.goodsname,a.goodsnorms, a.goodsunit,a.nums as cknums,a.validity,a.organization,a.goodsremark,a.parentid ,a.status,a.ckchange,p1.user_name as changeusername,
+			b.SEQ_ID as goodsid,
+			c.goodsprice as goodsprice,
+			c.nums as nums,
+			d.housename as sshousename,
+			e.status as parent_status,
+			a.goodPrice
+			from HUDH_KSLL_COLLOR_DETAIL a
+			LEFT JOIN KQDS_CK_GOODS_DETAIL b on b.goodscode =  a.goodscode
+			LEFT JOIN KQDS_CK_GOODS c on c.goodsdetailid = b.seq_id
+			LEFT JOIN KQDS_CK_HOUSE d on d.SEQ_ID = a.house
+			LEFT JOIN HUDH_KSLL_COLLOR e on e.id = a.parentid
+			LEFT JOIN SYS_PERSON p1 on a.ckchangeuser = p1.seq_id
+		where a.parentid = #{parentid,jdbcType=VARCHAR} and a.status!=3 order by a.goodscode asc
+	</select> -->
+	<!-- 重写上面相同方法 -->
+	<select id="findDetailByParendId" resultType="json">
+		SELECT
+			a.id,
+			a.house,
+			h.housename AS housename,
+			a.basetype,
+			t.goodstype AS firsttype,
+			a.nexttype,
+			tf.goodstype AS goodstypename,
+			d.goodscode,
+			d.goodsname,
+			d.goodsnorms,
+			d.goodsunit,
+			a.nums AS cknums,
+			a.validity,
+			a.organization,
+			a.goodsremark,
+			a.parentid,
+			a.status,
+			a.ckchange,
+			p.USER_NAME AS changeusername,
+			a.goodsdetailId,
+			g.goodsprice AS goodsprice,
+			g.nums AS nums,
+			c.status AS parent_status,
+			a.goodPrice
+		FROM
+			HUDH_KSLL_COLLOR_DETAIL a
+		LEFT JOIN HUDH_KSLL_COLLOR c ON c.id = a.parentid
+		LEFT JOIN KQDS_CK_GOODS_DETAIL d ON d.SEQ_ID = a.goodsdetailId
+		LEFT JOIN KQDS_CK_GOODS g ON g.goodsdetailid = d.SEQ_ID
+		LEFT JOIN KQDS_CK_GOODS_TYPE t ON t.SEQ_ID = a.basetype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf ON tf.SEQ_ID = a.nexttype
+		LEFT JOIN KQDS_CK_HOUSE h ON h.SEQ_ID = a.house
+		LEFT JOIN sys_person p ON p.SEQ_ID = a.ckchangeuser
+		WHERE
+			a.parentid = #{parentid,jdbcType=VARCHAR}
+		AND a.status != 3
+		ORDER BY
+			a.goodscode ASC
+	</select>
+	
+	<!-- 重写上面相同方法2 -->
+	<select id="findDetailByParendIds" resultType="json">
+		SELECT
+			a.id,
+			a.house,
+			h.housename AS housename,
+			a.basetype,
+			t.goodstype AS firsttype,
+			a.nexttype,
+			tf.goodstype AS goodstypename,
+			d.goodscode,
+			d.goodsname,
+			d.goodsnorms,
+			d.goodsunit,
+			a.nums AS cknums,
+			a.validity,
+			a.organization,
+			a.goodsremark,
+			a.parentid,
+			a.status,
+			a.ckchange,
+			p.USER_NAME AS changeusername,
+			a.goodsdetailId,
+			g.goodsprice AS goodsprice,
+			g.num AS num,
+			c.status AS parent_status,
+			a.goodPrice
+		FROM
+			HUDH_KSLL_COLLOR_DETAIL a
+		LEFT JOIN HUDH_KSLL_COLLOR c ON c.id = a.parentid
+		LEFT JOIN KQDS_CK_GOODS_DETAIL d ON d.SEQ_ID = a.goodsdetailId
+		LEFT JOIN KQDS_CK_GOODS g ON g.goodsdetailid = d.SEQ_ID
+		LEFT JOIN KQDS_CK_GOODS_TYPE t ON t.SEQ_ID = a.basetype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf ON tf.SEQ_ID = a.nexttype
+		LEFT JOIN KQDS_CK_HOUSE h ON h.SEQ_ID = a.house
+		LEFT JOIN sys_person p ON p.SEQ_ID = a.ckchangeuser
+		WHERE
+			a.parentid = #{parentid,jdbcType=VARCHAR}
+		AND a.status != 3
+		ORDER BY
+			a.goodscode ASC
+	</select>
+	
+	
+	<update id="updateCollorDetailByParendId">
+		update HUDH_KSLL_COLLOR_DETAIL set status = #{status,jdbcType=INTEGER}
+		where parentid=#{id,jdbcType=VARCHAR}
+	</update>
+	
+	<update id="updateNumsById">
+		update HUDH_KSLL_COLLOR_DETAIL set nums = #{nums,jdbcType=INTEGER}
+		where id=#{id,jdbcType=VARCHAR}
+	</update>
+	
+	<update id="batchUpdateKsllDetailByPrimaryId" parameterType="java.util.List" >
+    update HUDH_KSLL_COLLOR_DETAIL 
+    <set>
+      <if test="nums != null" >
+        nums = #{nums,jdbcType=INTEGER},
+      </if>
+      <if test="ckchange != null" >
+        ckchange = #{ckchange,jdbcType=VARCHAR},
+      </if>
+      <if test="ckchangeuser != null" >
+        ckchangeuser = #{ckchangeuser,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="findDetailPhByGoodscode" parameterType="java.util.Map" resultType="json">
+  	select p.ph,sum(p.phnum) as phnum from HUDH_KSLL_COLLOR c 
+  	left join HUDH_KSLL_COLLOR_DETAIL d on c.id=d.parentid
+  	left join HUDH_KSLL_COLLOR_DETAIL_PH p on p.parentid=d.id
+  	where d.goodscode=#{goodscode}
+  	and c.deptpart=#{deptpart}
+  	and p.phnum <![CDATA[ > ]]> 0
+  	group by p.ph
+  </select>
+  <select id="findCollorDetailPhByParendId" parameterType="java.util.Map" resultType="json">
+  	select p.ph,p.phnum,p.nums as llnum,p.price,p.addnumber,p.addtime,d.goodscode from HUDH_KSLL_COLLOR c 
+  	left join HUDH_KSLL_COLLOR_DETAIL d on c.id=d.parentid
+  	left join HUDH_KSLL_COLLOR_DETAIL_PH p on p.parentid=d.id
+  	where d.goodscode in (${goodscode})
+  	and c.deptpart=#{deptpart}
+  	and p.ph in (${ph})
+  	and p.phnum <![CDATA[ > ]]> 0
+  	order by p.createtime desc
+  </select>
+	<select id="findCollorDetailPriceByGoodscode" parameterType="java.util.Map" resultType="json">
+	select top 1 d.goodPrice
+	from HUDH_KSLL_COLLOR c 
+  	left join HUDH_KSLL_COLLOR_DETAIL d on c.id=d.parentid
+  	where d.goodscode =#{goodscode}
+  	and c.deptpart=#{deptpart}
+  	and c.status=0
+  	order by c.createtime desc
+	</select>
+</mapper>

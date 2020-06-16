@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<!-- 引入属性文件 -->
+	<context:property-placeholder ignore-unresolvable="true" location="classpath:config/*.properties" />
+
+	<!-- 启用注解 -->
+	<context:annotation-config />
+
+	<!-- 启动组件扫描，排除@Controller组件，该组件由SpringMVC配置文件扫描 -->
+	<context:component-scan base-package="com.kqds.dao.**" />
+	<context:component-scan base-package="com.kqds.service.**" />
+	
+	<context:component-scan base-package="com.hudh.**.service.**" />
+	<context:component-scan base-package="com.hudh.**.dao.**" />
+	
+	<context:component-scan base-package="com.kqds.core.adapter" /> 
+	<context:component-scan base-package="com.kqds.util.base.code" /> 
+	<context:component-scan base-package="com.kqds.util.base.autotask" /> 
+	<context:component-scan base-package="com.kqds.util.wx" /> 
+
+	<import resource="spring-config-mybatis.xml" />
+	<!-- 定时任务 -->
+	<import resource="spring-mvc-timeTask.xml" />
+	<!-- redis缓存 2019.7.7 lwg-->
+	<import resource="spring-redis.xml" />
+</beans>

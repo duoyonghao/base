@@ -1,0 +1,134 @@
+@CHARSET "UTF-8";
+body{
+	
+}
+.top-info{
+	margin-right:50px;
+	width:100%;
+	min-height: 80px;
+	height:auto;
+	/* color:#7C7C7C; */
+	font-weight:bold;
+	word-break: break-all; 
+	word-wrap:break-word;
+	border-radius:0.3em;
+	font-family:"Microsoft YaHei";
+	padding: 5px;
+	font-size: 8px;
+	margin-left: 10px;
+	
+}
+.top-info button{
+	font-weight:normal;
+}
+
+.tableBox {
+	border-radius: 6px;
+	overflow: hidden;
+	border-bottom: 1px solid #ddd;
+}
+.lookInfoWrap1 {
+	height: 841px;
+	border-left: 1px solid rgb(221,221,221);
+	border-bottom: 1px solid rgb(221,221,221);
+	border-top: 1px solid rgb(221,221,221)
+}
+input[type=text]{
+	width:80px;
+	height: 26px;
+	color: #333;
+	font-size: 10px;
+}
+.kqdsCommonBtn {
+	height: 28px;
+}
+
+
+.context{
+	width : 98%;
+	/* 暂时设置固定高度==4个手术 */
+	height : 680px; 
+	font-family: "Microsoft YaHei";
+	overflow-y:auto;
+}
+.no-sstrack{
+	margin-top: 10px;
+	margin-left: 10px;
+}
+.ssDiv{
+	overflow-x:auto;
+	overflow-y:hidden;
+	width : 98%;
+	height:170px ;
+	margin-left : 10px;
+	margin-top : 20px;
+	border-style:solid; 
+	border-width:1px; 
+	border-color:#DEDEDE;
+}
+.ssDiv-track-divTop{
+	width : 100%;
+	height : 20%;
+	font-size: 13px;
+	padding-top: 8px;
+	text-align:center;
+		
+}
+.ssDiv-track-line{
+	background :#DEDEDE;
+	width : 96%;
+	height : 1px;
+	margin-left: 20px;
+		
+}
+.ssDiv-track-span,.ssDiv-track-span-first{
+	font-size: 13px;
+	margin-left: 20px;
+}
+.ssDiv-track-span-first{
+	margin-left: 0px;
+}
+
+.ssDiv-track-divContext{
+	width : 100%;
+	height : 80%;
+	font-size: 13px;
+	text-align:center;
+	margin-top:30px;
+}
+.ssDiv-track-divContext ul {
+	width : 100%;
+	height : 90%;
+	margin:0 auto;
+	overflow-x:scroll;
+}
+.ssDiv-track-divContext ul li{
+	width : 25%;
+	height : 100%;
+ 	float:left;
+	margin-left: 50px;
+}
+.ssDiv-track-divContext .box{
+	width : 80%;
+	height : 60%;
+	margin-left: 10px;
+	text-align: center;
+}
+.ssDiv-track-divContext .box .box-info{
+	cursor:pointer;
+	width : 100%;
+	height : 70%;
+	text-align: center;
+	border-width:1px; 
+	border-style:solid; 
+	border-color:#DEDEDE;
+	/* 设置椭圆角 */
+	border-radius:1em;
+	padding-top: 10px;
+}
+.ssDiv-track-divContext .box .box-stus{
+	width : 100%;
+	height : 30%;
+	text-align: center;
+	margin-top: 10px;
+}

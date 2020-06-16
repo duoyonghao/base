@@ -1,0 +1,116 @@
+@CHARSET "UTF-8";
+.fixed-table-header{
+	color: #fff;
+   	background: #00A6C0;
+}
+#privForm table,#visualForm table,#orderVisualForm table{
+	
+	
+}
+.content{
+	padding:0 5px 20px 5px ;
+}
+#table{
+	
+}
+#table td{
+	height:30px;
+	padding:0;
+}
+#table td.bs-checkbox input[type="checkbox"]{
+	position:relative;
+	top:6px;
+}
+.optionTable{/*设置项的 权限设置 可见人员设置  预约可见人员设置 三个table  */
+	margin-top:5px;
+	width:90%;
+	margin:0 auto;
+}
+.optionTable td{
+	
+}
+.optionTable .bdr{	/* 表的数据项 加边框 */
+	border:1px solid #ddd;
+	background:#00A6C0;
+	/* background:#3e9fe2; 浅点*/
+	color:#fff;
+	font-weight:bold;
+	text-align:center;
+}
+.optionTable .bdr span.commonText{/*表的数据项 中的文本调整  */
+	display:block;
+	margin:0 auto;
+}
+.optionTable textarea{/* 本页面textarea的样式 */
+	width:100%;
+	position:relative;
+	top:3px;
+	border:1px solid transparent;
+}
+.optionTable input[type="checkbox"]{
+	position:relative;
+	top:2px;
+}
+.optionTable label{
+	cursor:pointer;
+}
+.optionTable td.optionTd{ /* 人员td的长度 */
+	width:700px;
+	padding:0 10px;
+}
+span.commonText{/* 数据项 */
+	width:80px;
+	height:100%;
+	display:block;
+	text-align:center;
+}
+
+input[type="button"]{/*本页面 “保存” 按钮的样式  */
+	color:#00A6C0;
+	background:#fff;
+	border:1px solid #00A6C0;
+	border-radius:5px;
+	font-size:13px;
+	height:28px;
+	margin:10px;
+}
+input[type="button"]:hover{
+	background:#00A6C0;
+	color:#fff;
+	
+}
+/* input textarea select 用户体验效果  */
+input[type="text"]{
+	outline:none;
+	border:1px solid #ddd;
+}
+input[type="text"]:focus,select:focus,textarea:focus{
+    box-shadow: 0 0 8px rgb(49, 165, 247);
+    border-color:transparent;
+}
+
+input[readonly]:focus,
+input[disabled]:focus,
+select[readonly]:focus,
+select[disabled]:focus,
+textarea[disabled]:focus,
+textarea[readonly]:focus{
+    box-shadow: none;
+    border-color:#ddd;
+}
+input[readonly],html input[disabled],select[disabled],select[disabled]{/*只读的input*/
+	background:rgba(246, 246, 246, 0.42);
+	cursor:not-allowed;
+	color:#777;
+}
+input[readonly]{/*只读的input*/
+	background:rgba(246, 246, 246, 0.42);
+	cursor:not-allowed;
+}
+input[type="text"].whiteInp{/*白色输入框 */
+	cursor:pointer;
+}
+
+select,textarea{
+	cursor:pointer;
+}

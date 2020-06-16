@@ -1,0 +1,137 @@
+@CHARSET "UTF-8";
+.continer{
+	/* border:1px solid blue; */
+}
+/* 牙位图 */
+.toothMap{
+	width:840px;
+	height:300px;
+	margin: 40px auto 0px;
+	/* padding-top: 104px; */
+	box-sizing: border-box;
+	background: url("../../hudh/lclj/flowdetail/img/yaThree.png") no-repeat;
+	background-position: 88px 0px;
+	position: relative;
+}
+.toothMap .toothMapItem{
+	display:block;
+	overflow: hidden;
+	padding-left: 42px;
+}
+.toothMap .upTooth{
+	border-bottom: 1px solid black;
+}
+.toothMap .toothMapItem>li{
+	display:block;
+	width:42.5px;
+	/* height:42px; */
+	height: 146px;
+	float: left;
+	padding:11px 0px 0px 11px;
+	box-sizing: border-box;
+}
+.toothMap .upTooth>li{
+	padding-top: 113px;
+}
+.toothMap .downTooth>li{
+	height: 140px;
+}
+/* 牙齿文字 */
+.toothMap .toothMapItem>li .toothText{
+	display:block;
+	width: 20px;
+	height:20px;
+	text-align:center;
+	font-size: 14px;
+	line-height:20px;
+	color: #434343;
+	border-radius: 50%;
+}
+.toothMap .toothMapItem>li font.toothCurrent{
+	background-color: #00A6C0;
+    color: white;
+}
+/* 左右icon */
+.toothMap .leIcon{
+	display: block;
+	position: absolute;
+    top: 134px;
+    left: -7px;
+}
+.toothMap .rgIcon{
+	display: block;
+	position: absolute;
+    top: 134px;
+    right: -7px;
+}
+/* 左右字体 */
+.toothMap>font{
+	display: inline-block;
+	font-size: 15px;
+	color: black;
+	font-weight: bold;
+}
+.toothMap .leftUpFont{
+	position: absolute;
+    top: 110px;
+    left: 20px;
+}
+.toothMap .leftDownFont{
+	position: absolute;
+    top: 154px;
+    left: 20px;
+}
+.toothMap .rightUpFont{
+	position: absolute;
+    top: 110px;
+    right: 20px;
+}
+.toothMap .rightDownFont{
+	position: absolute;
+    top: 154px;
+    right: 20px;
+}
+/* 竖线 */
+.toothMap .verticalLine{
+	display: block;
+	width: 1px;
+	height: 60px;
+	background-color: black;
+	position: absolute;
+    top: 116px;
+    left: 50.5%;
+}
+/* 按钮 */
+.btns{
+	text-align: center;
+	margin-top: 25px;
+}
+/* .btns>button{
+	margin: 0;
+	padding: 0;
+	border: 1px solid transparent;
+	outline: none;
+	background-color: transparent;
+	font-size: 14px;
+	line-height:14px;
+	color: #434343;
+	font-weight: bold;
+	padding: 0px 16px;
+} */
+.btns>button {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-color: #00a6c0;
+    font-size: 14px;
+    line-height: 14px;
+    color: #434343;
+    padding: 4px 16px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+.btns>button:nth-child(1){
+	/* border-right: 1px solid #434343; */
+	margin-right: 20px;
+}

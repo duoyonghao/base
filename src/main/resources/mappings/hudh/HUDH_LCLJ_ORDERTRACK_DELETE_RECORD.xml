@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_LCLJ_ORDERTRACK_DELETE_RECORD">
+	<resultMap type="com.hudh.lclj.entity.LcljOrderTrackDeleteRecord" id="BaseResultMap">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId"/>
+		<result column="createuser" jdbcType="VARCHAR" property="createuser"/>
+		<result column="createtime" jdbcType="VARCHAR" property="createtime"/>
+		<result column="lcljId" jdbcType="VARCHAR" property="lcljId"/>
+		<result column="order_number" jdbcType="VARCHAR" property="order_number"/>
+		<result column="organization" jdbcType="VARCHAR" property="organization"/>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		SEQ_ID, createuser, createtime, lcljId, order_number, organization
+	</sql>
+	
+	<insert id="save" parameterType="com.hudh.lclj.entity.LcljOrderTrackDeleteRecord">
+		insert into HUDH_LCLJ_ORDERTRACK_DELETE_RECORD 
+		(SEQ_ID, createuser, createtime, lcljId, order_number, organization) 
+		values 
+		(#{seqId,jdbcType=VARCHAR},#{createuser,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR},
+		 #{lcljId,jdbcType=VARCHAR},#{order_number,jdbcType=VARCHAR},#{organization,jdbcType=VARCHAR})
+	</insert>
+</mapper>

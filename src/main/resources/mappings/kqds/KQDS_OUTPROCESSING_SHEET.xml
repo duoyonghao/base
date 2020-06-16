@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_OUTPROCESSING_SHEET">
+
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsOutprocessingSheet">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="cosno" jdbcType="VARCHAR" property="cosno" />
+		<result column="outprocessingsheetno" jdbcType="VARCHAR" property="outprocessingsheetno" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="doctorno" jdbcType="VARCHAR" property="doctorno" />
+		<result column="submittime" jdbcType="VARCHAR" property="submittime" />
+		<result column="hopebacktime" jdbcType="VARCHAR" property="hopebacktime" />
+		<result column="processingfactory" jdbcType="VARCHAR" property="processingfactory" />
+		<result column="pickupperson" jdbcType="VARCHAR" property="pickupperson" />
+		<result column="pickuptime" jdbcType="VARCHAR" property="pickuptime" />
+		<result column="estimatebacktime" jdbcType="VARCHAR" property="estimatebacktime" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="yaoqiu" jdbcType="VARCHAR" property="yaoqiu" />
+		<result column="fajianperson" jdbcType="VARCHAR" property="fajianperson" />
+		<result column="fajiantime" jdbcType="VARCHAR" property="fajiantime" />
+		<result column="huijianperson" jdbcType="VARCHAR" property="huijianperson" />
+		<result column="huijiantime" jdbcType="VARCHAR" property="huijiantime" />
+		<result column="fangongperson" jdbcType="VARCHAR" property="fangongperson" />
+		<result column="fangongtime" jdbcType="VARCHAR" property="fangongtime" />
+		<result column="zuofeiperson" jdbcType="VARCHAR" property="zuofeiperson" />
+		<result column="zuofeitime" jdbcType="VARCHAR" property="zuofeitime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, usercode, cosno, outprocessingsheetno, status, organization, doctorno, submittime,
+		hopebacktime, processingfactory, pickupperson, pickuptime, estimatebacktime,
+		createuser,
+		createtime, type, yaoqiu, fajianperson, fajiantime, huijianperson, huijiantime, fangongperson,
+		fangongtime, zuofeiperson, zuofeitime
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_OUTPROCESSING_SHEET
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_OUTPROCESSING_SHEET
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsOutprocessingSheet">
+		insert into KQDS_OUTPROCESSING_SHEET (SEQ_ID, usercode, cosno,
+		outprocessingsheetno, status, organization,
+		doctorno, submittime,
+		hopebacktime,
+		processingfactory, pickupperson, pickuptime,
+		estimatebacktime, createuser, createtime,
+		type, yaoqiu, fajianperson,
+		fajiantime, huijianperson, huijiantime,
+		fangongperson, fangongtime, zuofeiperson,
+		zuofeitime)
+		values (#{seqId,jdbcType=VARCHAR}, #{usercode,jdbcType=VARCHAR}, #{cosno,jdbcType=VARCHAR},
+		#{outprocessingsheetno,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR},
+		#{doctorno,jdbcType=VARCHAR}, #{submittime,jdbcType=VARCHAR},
+		#{hopebacktime,jdbcType=VARCHAR},
+		#{processingfactory,jdbcType=VARCHAR}, #{pickupperson,jdbcType=VARCHAR}, #{pickuptime,jdbcType=VARCHAR},
+		#{estimatebacktime,jdbcType=VARCHAR},
+		#{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{type,jdbcType=VARCHAR}, #{yaoqiu,jdbcType=VARCHAR}, #{fajianperson,jdbcType=VARCHAR},
+		#{fajiantime,jdbcType=VARCHAR}, #{huijianperson,jdbcType=VARCHAR}, #{huijiantime,jdbcType=VARCHAR},
+		#{fangongperson,jdbcType=VARCHAR}, #{fangongtime,jdbcType=VARCHAR},
+		#{zuofeiperson,jdbcType=VARCHAR},
+		#{zuofeitime,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsOutprocessingSheet">
+		insert into KQDS_OUTPROCESSING_SHEET
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="usercode != null">
+				usercode,
+			</if>
+			<if test="cosno != null">
+				cosno,
+			</if>
+			<if test="outprocessingsheetno != null">
+				outprocessingsheetno,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="doctorno != null">
+				doctorno,
+			</if>
+			<if test="submittime != null">
+				submittime,
+			</if>
+			<if test="hopebacktime != null">
+				hopebacktime,
+			</if>
+			<if test="processingfactory != null">
+				processingfactory,
+			</if>
+			<if test="pickupperson != null">
+				pickupperson,
+			</if>
+			<if test="pickuptime != null">
+				pickuptime,
+			</if>
+			<if test="estimatebacktime != null">
+				estimatebacktime,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="yaoqiu != null">
+				yaoqiu,
+			</if>
+			<if test="fajianperson != null">
+				fajianperson,
+			</if>
+			<if test="fajiantime != null">
+				fajiantime,
+			</if>
+			<if test="huijianperson != null">
+				huijianperson,
+			</if>
+			<if test="huijiantime != null">
+				huijiantime,
+			</if>
+			<if test="fangongperson != null">
+				fangongperson,
+			</if>
+			<if test="fangongtime != null">
+				fangongtime,
+			</if>
+			<if test="zuofeiperson != null">
+				zuofeiperson,
+			</if>
+			<if test="zuofeitime != null">
+				zuofeitime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="cosno != null">
+				#{cosno,jdbcType=VARCHAR},
+			</if>
+			<if test="outprocessingsheetno != null">
+				#{outprocessingsheetno,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="doctorno != null">
+				#{doctorno,jdbcType=VARCHAR},
+			</if>
+			<if test="submittime != null">
+				#{submittime,jdbcType=VARCHAR},
+			</if>
+			<if test="hopebacktime != null">
+				#{hopebacktime,jdbcType=VARCHAR},
+			</if>
+			<if test="processingfactory != null">
+				#{processingfactory,jdbcType=VARCHAR},
+			</if>
+			<if test="pickupperson != null">
+				#{pickupperson,jdbcType=VARCHAR},
+			</if>
+			<if test="pickuptime != null">
+				#{pickuptime,jdbcType=VARCHAR},
+			</if>
+			<if test="estimatebacktime != null">
+				#{estimatebacktime,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="yaoqiu != null">
+				#{yaoqiu,jdbcType=VARCHAR},
+			</if>
+			<if test="fajianperson != null">
+				#{fajianperson,jdbcType=VARCHAR},
+			</if>
+			<if test="fajiantime != null">
+				#{fajiantime,jdbcType=VARCHAR},
+			</if>
+			<if test="huijianperson != null">
+				#{huijianperson,jdbcType=VARCHAR},
+			</if>
+			<if test="huijiantime != null">
+				#{huijiantime,jdbcType=VARCHAR},
+			</if>
+			<if test="fangongperson != null">
+				#{fangongperson,jdbcType=VARCHAR},
+			</if>
+			<if test="fangongtime != null">
+				#{fangongtime,jdbcType=VARCHAR},
+			</if>
+			<if test="zuofeiperson != null">
+				#{zuofeiperson,jdbcType=VARCHAR},
+			</if>
+			<if test="zuofeitime != null">
+				#{zuofeitime,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsOutprocessingSheet">
+		update KQDS_OUTPROCESSING_SHEET
+		<set>
+			<if test="usercode != null">
+				usercode = #{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="cosno != null">
+				cosno = #{cosno,jdbcType=VARCHAR},
+			</if>
+			<if test="outprocessingsheetno != null">
+				outprocessingsheetno = #{outprocessingsheetno,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="doctorno != null">
+				doctorno = #{doctorno,jdbcType=VARCHAR},
+			</if>
+			<if test="submittime != null">
+				submittime = #{submittime,jdbcType=VARCHAR},
+			</if>
+			<if test="hopebacktime != null">
+				hopebacktime = #{hopebacktime,jdbcType=VARCHAR},
+			</if>
+			<if test="processingfactory != null">
+				processingfactory = #{processingfactory,jdbcType=VARCHAR},
+			</if>
+			<if test="pickupperson != null">
+				pickupperson = #{pickupperson,jdbcType=VARCHAR},
+			</if>
+			<if test="pickuptime != null">
+				pickuptime = #{pickuptime,jdbcType=VARCHAR},
+			</if>
+			<if test="estimatebacktime != null">
+				estimatebacktime = #{estimatebacktime,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="yaoqiu != null">
+				yaoqiu = #{yaoqiu,jdbcType=VARCHAR},
+			</if>
+			<if test="fajianperson != null">
+				fajianperson = #{fajianperson,jdbcType=VARCHAR},
+			</if>
+			<if test="fajiantime != null">
+				fajiantime = #{fajiantime,jdbcType=VARCHAR},
+			</if>
+			<if test="huijianperson != null">
+				huijianperson = #{huijianperson,jdbcType=VARCHAR},
+			</if>
+			<if test="huijiantime != null">
+				huijiantime = #{huijiantime,jdbcType=VARCHAR},
+			</if>
+			<if test="fangongperson != null">
+				fangongperson = #{fangongperson,jdbcType=VARCHAR},
+			</if>
+			<if test="fangongtime != null">
+				fangongtime = #{fangongtime,jdbcType=VARCHAR},
+			</if>
+			<if test="zuofeiperson != null">
+				zuofeiperson = #{zuofeiperson,jdbcType=VARCHAR},
+			</if>
+			<if test="zuofeitime != null">
+				zuofeitime = #{zuofeitime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsOutprocessingSheet">
+		update KQDS_OUTPROCESSING_SHEET
+		set usercode = #{usercode,jdbcType=VARCHAR},
+		cosno = #{cosno,jdbcType=VARCHAR},
+		outprocessingsheetno = #{outprocessingsheetno,jdbcType=VARCHAR},
+		status = #{status,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR},
+		doctorno =
+		#{doctorno,jdbcType=VARCHAR},
+		submittime = #{submittime,jdbcType=VARCHAR},
+		hopebacktime = #{hopebacktime,jdbcType=VARCHAR},
+		processingfactory =
+		#{processingfactory,jdbcType=VARCHAR},
+		pickupperson = #{pickupperson,jdbcType=VARCHAR},
+		pickuptime = #{pickuptime,jdbcType=VARCHAR},
+		estimatebacktime =
+		#{estimatebacktime,jdbcType=VARCHAR},
+		createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR},
+		yaoqiu =
+		#{yaoqiu,jdbcType=VARCHAR},
+		fajianperson = #{fajianperson,jdbcType=VARCHAR},
+		fajiantime = #{fajiantime,jdbcType=VARCHAR},
+		huijianperson = #{huijianperson,jdbcType=VARCHAR},
+		huijiantime = #{huijiantime,jdbcType=VARCHAR},
+		fangongperson = #{fangongperson,jdbcType=VARCHAR},
+		fangongtime = #{fangongtime,jdbcType=VARCHAR},
+		zuofeiperson =
+		#{zuofeiperson,jdbcType=VARCHAR},
+		zuofeitime = #{zuofeitime,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_OUTPROCESSING_SHEET
+	</sql>
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsOutprocessingSheet">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectWithPageLzjl" parameterType="map" resultType="json">
+		select
+		t.*,
+		t.createtime,
+		t.pickuptime,
+		t.doctorno,
+		t.pickupperson,
+		p.user_name as doctornoname,
+		p2.user_name as pickuppersonname
+		from KQDS_OUTPROCESSING_SHEET t
+		left join SYS_PERSON p on
+		p.seq_id = t.doctorno
+		left join SYS_PERSON p2 on p2.seq_id = t.pickupperson
+		where 1=1
+		<if test="usercode != null and usercode !='' ">
+			and t.usercode = #{usercode}
+		</if>
+		ORDER BY t.CreateTime desc
+	</select>
+	<select id="selectListByQuery" parameterType="map" resultType="json">
+		<bind name="temp_dbType" value="${system_dbType}" />
+		select
+		o.seq_id,
+		o.organization,
+		ut.name as processingfactory,
+		o.usercode,
+		u.username as username,
+		per1.user_name as doctorno,
+		o.type,
+		o.yaoqiu,
+		o.status,
+		o.createtime,
+		per2.user_name as
+		fajianperson,
+		o.fajiantime,
+		per3.user_name as huijianperson,
+		o.huijiantime,
+		per4.user_name as pickupperson,
+		o.pickuptime,
+		per5.user_name as fangongperson,
+		o.fangongtime,
+		per6.user_name
+		as zuofeiperson,
+		o.zuofeitime
+		from KQDS_OUTPROCESSING_SHEET o
+		LEFT JOIN KQDS_UserDocument u on o.usercode = u.usercode
+		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = o.doctorno
+		LEFT JOIN
+		SYS_PERSON per2 on per2.SEQ_ID = o.fajianperson
+		LEFT JOIN SYS_PERSON per3 on per3.SEQ_ID = o.huijianperson
+		LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID = o.pickupperson
+		LEFT JOIN
+		SYS_PERSON per5 on per5.SEQ_ID = o.fangongperson
+		LEFT JOIN SYS_PERSON per6 on per6.SEQ_ID = o.zuofeiperson
+		LEFT JOIN KQDS_OUTPROCESSING_UNIT ut on ut.code = o.processingfactory
+		where 1=1
+		<if test="num != null and num !='' ">
+			<if test="temp_dbType == 0">
+				and (to_days(o.createtime) = to_days(now()) or o.status = 0 )
+			</if>
+			<if test="temp_dbType == 1">
+				and (datediff(day, o.createtime,getdate())=0 or o.status = 0 )
+			</if>
+		</if>
+		<if test="!(num != null and num !='' )">
+			<if test="usercode != null and usercode !='' ">
+				and o.usercode = #{usercode}
+			</if>
+			<if test="starttime != null and starttime !='' ">
+				and o.createtime <![CDATA[ >= ]]>
+				#{starttime}
+			</if>
+			<if test="endtime != null and endtime !='' ">
+				and o.createtime <![CDATA[ <= ]]>
+				#{endtime}
+			</if>
+			<if test="org != null and org !='' ">
+				and o.organization = #{org}
+			</if>
+			<if test="queryInput != null and queryInput !='' ">
+				and (u.usercode like '%' + #{queryInput} + '%'
+				or u.username like '%' + #{queryInput} + '%'
+				or ${p1}
+				or ${p2}
+				or u.pym like '%' + #{queryInput} + '%'
+				or o.seq_id like '%'
+				+ #{queryInput} + '%'
+				or o.processingfactory like '%' + #{queryInput} + '%'
+				)
+			</if>
+			<if test="sno != null and sno !='' ">
+				and o.seq_id = #{sno}
+			</if>
+			<if test="status != null and status !='' ">
+				and o.status = #{status}
+			</if>
+			<if test="processingfactory != null and processingfactory !='' ">
+				and o.processingfactory = #{processingfactory}
+			</if>
+			<if test="fjtime1 != null and fjtime1 !='' ">
+				and o.fajiantime <![CDATA[ >= ]]>
+				#{fjtime1}
+			</if>
+			<if test="fjtime2 != null and fjtime2 !='' ">
+				and o.fajiantime <![CDATA[ <= ]]>
+				#{fjtime2}
+			</if>
+			<if test="hjtime1 != null and hjtime1 !='' ">
+				and o.huijiantime <![CDATA[ >= ]]>
+				#{hjtime1}
+			</if>
+			<if test="hjtime2 != null and hjtime2 !='' ">
+				and o.huijiantime <![CDATA[ <= ]]>
+				#{hjtime2}
+			</if>
+			<if test="dztime1 != null and dztime1 !='' ">
+				and o.pickuptime <![CDATA[ >= ]]>
+				#{dztime1}
+			</if>
+			<if test="dztime2 != null and dztime2 !='' ">
+				and o.pickuptime <![CDATA[ <= ]]>
+				#{dztime2}
+			</if>
+			<if test="fgtime1 != null and fgtime1 !='' ">
+				and o.fangongtime <![CDATA[ >= ]]>
+				#{fgtime1}
+			</if>
+			<if test="fgtime2 != null and fgtime2 !='' ">
+				and o.fangongtime <![CDATA[ <= ]]>
+				#{fgtime2}
+			</if>
+			<if test="createtime1 != null and createtime1 !='' ">
+				and o.createtime <![CDATA[ >= ]]>
+				#{createtime1}
+			</if>
+			<if test="createtime2 != null and createtime2 !='' ">
+				and o.createtime <![CDATA[ <= ]]>
+				#{createtime2}
+			</if>
+		</if>
+		<if test="doctorno != null and doctorno !='' ">
+			and o.doctorno in (${doctorno})
+		</if>
+		ORDER BY o.CreateTime desc
+	</select>
+	<select id="getAllJiagongPerson" parameterType="java.lang.String" resultType="json">
+		select p.seq_id from SYS_PERSON p
+		LEFT JOIN SYS_PRIV u on p.user_priv = u.seq_id
+		LEFT JOIN
+		SYS_DEPT d on p.dept_id = d.seq_id
+		where 1=1
+		and d.dept_code = #{_parameter}
+		and u.priv_name = '外加工'
+	</select>
+	<select id="getNoUsercode" parameterType="java.lang.String" resultType="json">
+		select seq_id from KQDS_OUTPROCESSING_SHEET where 1=1
+		and usercode in (${_parameter})
+	</select>
+
+</mapper>

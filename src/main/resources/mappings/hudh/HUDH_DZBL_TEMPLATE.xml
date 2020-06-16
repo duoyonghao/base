@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_DZBL_TEMPLATE">
+	<resultMap id="DzblTemplateMap" type="com.hudh.dzbl.entity.DzblTemplate">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="blfl" jdbcType="VARCHAR" property="blfl" />
+		<result column="bc" jdbcType="VARCHAR" property="bc" />
+		<result column="detail" jdbcType="CLOB" property="detail" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="modifytime" jdbcType="VARCHAR" property="modifytime" />
+		<result column="sstype" jdbcType="VARCHAR" property="sstype" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, title, blfl, bc, detail ,createtime ,modifytime,sstype,organization
+	</sql>
+	
+	<insert id="insertDzblTemplate" parameterType="com.hudh.dzbl.entity.DzblTemplate">
+		insert into HUDH_DZBL_TEMPLATE (id, title, blfl,bc, detail,createtime,modifytime,sstype,organization)
+		values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{blfl,jdbcType=VARCHAR},
+		#{bc,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{modifytime,jdbcType=VARCHAR},#{sstype,jdbcType=VARCHAR},#{organization,jdbcType=VARCHAR})
+	</insert>
+	
+	<insert id="initDzblTemplate" parameterType="java.util.List">
+		insert into HUDH_DZBL_TEMPLATE (id, title, blfl,bc, detail,createtime,modifytime,sstype,organization)
+		values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{blfl,jdbcType=VARCHAR},
+		#{bc,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{modifytime,jdbcType=VARCHAR},#{sstype,jdbcType=VARCHAR},#{organization,jdbcType=VARCHAR})
+	</insert>
+
+	<select id="findDzblTemplate" resultType="json">
+		select
+		<include refid="Base_Column_List" /> 
+		from HUDH_DZBL_TEMPLATE where blfl = #{blfl} 
+		<if test="sstype != null" >and sstype=#{sstype,jdbcType=VARCHAR}</if>
+		<if test="bc != null" >and bc=#{bc,jdbcType=VARCHAR}</if> 
+		<if test="organization != null"> and organization = #{organization,jdbcType=VARCHAR}</if>
+	</select>
+	
+	<select id="findBcByBlfl" resultType="json">
+		select
+		<include refid="Base_Column_List" /> 
+		from HUDH_DZBL_TEMPLATE where blfl = #{blfl,jdbcType=VARCHAR} and sstype = #{sstype,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="findDzblTemplateById" resultType="json">
+		select
+		<include refid="Base_Column_List" /> 
+		from HUDH_DZBL_TEMPLATE where id = #{id,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="updateDzblTempleById">
+		update HUDH_DZBL_TEMPLATE set title=#{title,jdbcType=VARCHAR},blfl=#{blfl,jdbcType=VARCHAR},bc=#{bc,jdbcType=VARCHAR},
+		detail=#{detail,jdbcType=VARCHAR},modifytime=#{modifytime,jdbcType=VARCHAR},sstype=#{sstype,jdbcType=VARCHAR}
+		where id=#{id,jdbcType=VARCHAR}
+	</select>
+</mapper>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_MEDICALRECORD_RESTORATION">
+
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsMedicalrecordRestoration">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="meid" jdbcType="VARCHAR" property="meid" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="retention" jdbcType="VARCHAR" property="retention" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="restoration_number" jdbcType="VARCHAR" property="restorationNumber" />
+		<result column="appointment_record" jdbcType="VARCHAR" property="appointmentRecord" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.base.KqdsMedicalrecordRestoration">
+		<result column="restoration_type" jdbcType="CLOB" property="restorationType" />
+		<result column="bridge" jdbcType="CLOB" property="bridge" />
+		<result column="overdenture" jdbcType="CLOB" property="overdenture" />
+		<result column="cemented" jdbcType="CLOB" property="cemented" />
+		<result column="screwed" jdbcType="CLOB" property="screwed" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, organization, meid, usercode, retention, remark, restoration_number, appointment_record,
+		createuser, createtime
+	</sql>
+	<sql id="Blob_Column_List">
+		restoration_type, bridge, overdenture, cemented, screwed
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from KQDS_MEDICALRECORD_RESTORATION
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_MEDICALRECORD_RESTORATION
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsMedicalrecordRestoration">
+		insert into KQDS_MEDICALRECORD_RESTORATION (SEQ_ID, organization, meid,
+		usercode, retention, remark,
+		restoration_number, appointment_record,
+		createuser,
+		createtime, restoration_type, bridge,
+		overdenture, cemented, screwed
+		)
+		values (#{seqId,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, #{meid,jdbcType=VARCHAR},
+		#{usercode,jdbcType=VARCHAR}, #{retention,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+		#{restorationNumber,jdbcType=VARCHAR}, #{appointmentRecord,jdbcType=VARCHAR},
+		#{createuser,jdbcType=VARCHAR},
+		#{createtime,jdbcType=VARCHAR}, #{restorationType,jdbcType=CLOB}, #{bridge,jdbcType=CLOB},
+		#{overdenture,jdbcType=CLOB}, #{cemented,jdbcType=CLOB},
+		#{screwed,jdbcType=CLOB}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsMedicalrecordRestoration">
+		insert into KQDS_MEDICALRECORD_RESTORATION
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="meid != null">
+				meid,
+			</if>
+			<if test="usercode != null">
+				usercode,
+			</if>
+			<if test="retention != null">
+				retention,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="restorationNumber != null">
+				restoration_number,
+			</if>
+			<if test="appointmentRecord != null">
+				appointment_record,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="restorationType != null">
+				restoration_type,
+			</if>
+			<if test="bridge != null">
+				bridge,
+			</if>
+			<if test="overdenture != null">
+				overdenture,
+			</if>
+			<if test="cemented != null">
+				cemented,
+			</if>
+			<if test="screwed != null">
+				screwed,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="meid != null">
+				#{meid,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="retention != null">
+				#{retention,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="restorationNumber != null">
+				#{restorationNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="appointmentRecord != null">
+				#{appointmentRecord,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="restorationType != null">
+				#{restorationType,jdbcType=CLOB},
+			</if>
+			<if test="bridge != null">
+				#{bridge,jdbcType=CLOB},
+			</if>
+			<if test="overdenture != null">
+				#{overdenture,jdbcType=CLOB},
+			</if>
+			<if test="cemented != null">
+				#{cemented,jdbcType=CLOB},
+			</if>
+			<if test="screwed != null">
+				#{screwed,jdbcType=CLOB},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsMedicalrecordRestoration">
+		update KQDS_MEDICALRECORD_RESTORATION
+		<set>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="meid != null">
+				meid = #{meid,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				usercode = #{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="retention != null">
+				retention = #{retention,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="restorationNumber != null">
+				restoration_number = #{restorationNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="appointmentRecord != null">
+				appointment_record = #{appointmentRecord,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="restorationType != null">
+				restoration_type = #{restorationType,jdbcType=CLOB},
+			</if>
+			<if test="bridge != null">
+				bridge = #{bridge,jdbcType=CLOB},
+			</if>
+			<if test="overdenture != null">
+				overdenture = #{overdenture,jdbcType=CLOB},
+			</if>
+			<if test="cemented != null">
+				cemented = #{cemented,jdbcType=CLOB},
+			</if>
+			<if test="screwed != null">
+				screwed = #{screwed,jdbcType=CLOB},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.kqds.entity.base.KqdsMedicalrecordRestoration">
+		update KQDS_MEDICALRECORD_RESTORATION
+		set organization = #{organization,jdbcType=VARCHAR},
+		meid =
+		#{meid,jdbcType=VARCHAR},
+		usercode = #{usercode,jdbcType=VARCHAR},
+		retention = #{retention,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		restoration_number =
+		#{restorationNumber,jdbcType=VARCHAR},
+		appointment_record = #{appointmentRecord,jdbcType=VARCHAR},
+		createuser = #{createuser,jdbcType=VARCHAR},
+		createtime =
+		#{createtime,jdbcType=VARCHAR},
+		restoration_type = #{restorationType,jdbcType=CLOB},
+		bridge = #{bridge,jdbcType=CLOB},
+		overdenture = #{overdenture,jdbcType=CLOB},
+		cemented =
+		#{cemented,jdbcType=CLOB},
+		screwed = #{screwed,jdbcType=CLOB}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsMedicalrecordRestoration">
+		update KQDS_MEDICALRECORD_RESTORATION
+		set organization = #{organization,jdbcType=VARCHAR},
+		meid = #{meid,jdbcType=VARCHAR},
+		usercode = #{usercode,jdbcType=VARCHAR},
+		retention = #{retention,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		restoration_number = #{restorationNumber,jdbcType=VARCHAR},
+		appointment_record = #{appointmentRecord,jdbcType=VARCHAR},
+		createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR}
+		where SEQ_ID =
+		#{seqId,jdbcType=VARCHAR}
+	</update>
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_MEDICALRECORD_RESTORATION
+	</sql>
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsMedicalrecordRestoration">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+</mapper>

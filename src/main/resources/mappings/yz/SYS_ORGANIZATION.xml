@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="SYS_ORGANIZATION">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.sys.YZOrganization">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="UNIT_NAME" jdbcType="VARCHAR" property="unitName" />
+		<result column="POSTCODE" jdbcType="VARCHAR" property="postcode" />
+		<result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+		<result column="WEBSITE" jdbcType="VARCHAR" property="website" />
+		<result column="EMAIL" jdbcType="VARCHAR" property="email" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.sys.YZOrganization">
+		<result column="TELEPHONE" jdbcType="CLOB" property="telephone" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, UNIT_NAME, POSTCODE, ADDRESS, WEBSITE, EMAIL
+	</sql>
+	<sql id="Blob_Column_List">
+		TELEPHONE
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from sys_organization
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from sys_organization
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.sys.YZOrganization">
+		insert into sys_organization (SEQ_ID, UNIT_NAME, POSTCODE,
+		ADDRESS, WEBSITE, EMAIL,
+		TELEPHONE)
+		values (#{seqId,jdbcType=VARCHAR},
+		#{unitName,jdbcType=VARCHAR}, #{postcode,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+		#{telephone,jdbcType=CLOB})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.sys.YZOrganization">
+		insert into sys_organization
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="unitName != null">
+				UNIT_NAME,
+			</if>
+			<if test="postcode != null">
+				POSTCODE,
+			</if>
+			<if test="address != null">
+				ADDRESS,
+			</if>
+			<if test="website != null">
+				WEBSITE,
+			</if>
+			<if test="email != null">
+				EMAIL,
+			</if>
+			<if test="telephone != null">
+				TELEPHONE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="unitName != null">
+				#{unitName,jdbcType=VARCHAR},
+			</if>
+			<if test="postcode != null">
+				#{postcode,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="website != null">
+				#{website,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				#{telephone,jdbcType=CLOB},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.sys.YZOrganization">
+		update sys_organization
+		<set>
+			<if test="unitName != null">
+				UNIT_NAME = #{unitName,jdbcType=VARCHAR},
+			</if>
+			<if test="postcode != null">
+				POSTCODE = #{postcode,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				ADDRESS = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="website != null">
+				WEBSITE = #{website,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				EMAIL = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				TELEPHONE = #{telephone,jdbcType=CLOB},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.kqds.entity.sys.YZOrganization">
+		update sys_organization
+		set UNIT_NAME = #{unitName,jdbcType=VARCHAR},
+		POSTCODE = #{postcode,jdbcType=VARCHAR},
+		ADDRESS =
+		#{address,jdbcType=VARCHAR},
+		WEBSITE = #{website,jdbcType=VARCHAR},
+		EMAIL = #{email,jdbcType=VARCHAR},
+		TELEPHONE = #{telephone,jdbcType=CLOB}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.sys.YZOrganization">
+		update sys_organization
+		set UNIT_NAME = #{unitName,jdbcType=VARCHAR},
+		POSTCODE = #{postcode,jdbcType=VARCHAR},
+		ADDRESS =
+		#{address,jdbcType=VARCHAR},
+		WEBSITE = #{website,jdbcType=VARCHAR},
+		EMAIL = #{email,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		sys_organization
+	</sql>
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="YZOrganization">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+
+
+	<select id="getUnitDetail" resultType="json">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		p
+	</select>
+
+	<select id="getOrganizationList" resultType="YZOrganization">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		p
+	</select>
+
+
+
+</mapper>

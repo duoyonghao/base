@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_VISIT_PLAN">
+	<resultMap id="KQDS_VISIT_PLAN" type="com.hudh.tjhf.entity.VisitTemplate">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="planName" jdbcType="VARCHAR" property="planName" />
+		<result column="explanation" jdbcType="VARCHAR" property="explanation" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="creartuser" jdbcType="VARCHAR" property="creartuser" />
+		<result column="crearttime" jdbcType="VARCHAR" property="createTime" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		SEQ_ID, planName, explanation,remark,organization,visit_people,status,creartuser,createtime,hfdept
+	</sql>
+	
+	<!--保存回访计划模板  -->
+	<insert id="saveTemplate" parameterType="com.hudh.tjhf.entity.VisitTemplate">
+		insert into kqds_visit_managar (SEQ_ID, planName, explanation,remark,organization,visit_people,status,creartuser,createtime)values 
+		(#{SEQ_ID,jdbcType=VARCHAR}, #{planName,jdbcType=VARCHAR}, #{explanation,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR}, 
+		#{organization,jdbcType=CLOB}, #{visit_people,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{creartuser,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR})
+	</insert>
+	<!--保存回访计划模板  -->
+	<insert id="saveTemplates" parameterType="java.util.List">
+		insert into kqds_visit_managar (SEQ_ID, planName, explanation,remark,organization,visit_people,status,creartuser,createtime)values
+		<foreach collection="VisitTemplatelist" item="record" index="index" separator=",">
+			<trim prefix=" (" suffix=")" suffixOverrides="," > 
+				(#{SEQ_ID,jdbcType=VARCHAR}, #{planName,jdbcType=VARCHAR}, #{explanation,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR}, 
+				#{organization,jdbcType=VARCHAR}, #{visit_people,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{creartuser,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR})
+			</trim>
+		</foreach>
+	</insert>
+	
+	<!-- 批量保存回访计划模板 -->
+	<insert id="saveplanTemplate" parameterType="java.util.List">
+		<!--  INSERT INTO kqds_visit_managar
+		 (SEQ_ID,hfdept, planName, explanation,remark,organization,status,creartuser,createtime)
+		 values
+		 (#{seqId,jdbcType=VARCHAR}, #{hfdept,jdbcType=VARCHAR}, 
+		 #{planName,jdbcType=VARCHAR}, #{explanation,jdbcType=VARCHAR},
+		 #{remark,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR},
+		 #{status,jdbcType=VARCHAR},#{creartuser,jdbcType=VARCHAR},
+		 #{creartTime,jdbcType=VARCHAR}) -->
+		if not exists(SELECT
+				1
+			FROM
+				kqds_visit_managar
+			WHERE
+				SEQ_ID=#{seqId,jdbcType=VARCHAR})
+		begin
+		INSERT INTO kqds_visit_managar (SEQ_ID,hfdept, planName, explanation,remark,organization,status,creartuser,createtime) VALUES 
+			(#{seqId,jdbcType=VARCHAR}, #{hfdept,jdbcType=VARCHAR}, 
+				 #{planName,jdbcType=VARCHAR}, #{explanation,jdbcType=VARCHAR},
+				 #{remark,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR},
+				 #{status,jdbcType=VARCHAR},#{creartuser,jdbcType=VARCHAR},
+				 #{creartTime,jdbcType=VARCHAR})
+		end
+		UPDATE kqds_visit_managar
+		SET planName=#{planName,jdbcType=VARCHAR},explanation=#{explanation,jdbcType=VARCHAR},hfdept=#{hfdept,jdbcType=VARCHAR}
+		WHERE SEQ_ID=#{seqId,jdbcType=VARCHAR}
+
+	<!-- MERGE INTO  kqds_visit_managar  a
+	USING (SELECT TOP 1 #{seqId,jdbcType=VARCHAR} as SEQ_ID,#{planName,jdbcType=VARCHAR} as planName,
+	#{explanation,jdbcType=VARCHAR} as explanation
+	FROM kqds_visit_managar) b on (a.SEQ_ID=b.SEQ_ID)
+	WHEN MATCHED THEN UPDATE SET a.planName=b.planName,a.explanation=b.explanation
+	WHEN NOT MATCHED THEN  INSERT (SEQ_ID,hfdept, planName, explanation,remark,organization,status,creartuser,createtime) VALUES 
+	(#{seqId,jdbcType=VARCHAR}, #{hfdept,jdbcType=VARCHAR}, 
+		 #{planName,jdbcType=VARCHAR}, #{explanation,jdbcType=VARCHAR},
+		 #{remark,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR},
+		 #{status,jdbcType=VARCHAR},#{creartuser,jdbcType=VARCHAR},
+		 #{creartTime,jdbcType=VARCHAR}); -->
+		  
+		  
+		  <!-- 
+		  , #{hfdept,jdbcType=VARCHAR} as hfdept, 
+	#{remark,jdbcType=VARCHAR} as remark, #{organization,jdbcType=VARCHAR} as organization, 
+	#{status,jdbcType=VARCHAR} as status,#{creartuser,jdbcType=VARCHAR} as creartuser,
+	#{creartTime,jdbcType=VARCHAR} as createtime 
+		  
+		  
+		  WHEN NOT MATCHED THEN  INSERT (a.SEQ_ID,a.hfdept, a.planName, a.explanation,a.remark,a.organization,a.status,a.creartuser,a.createtime) VALUES 
+	(b.SEQ_ID,b.hfdept, b.planName, b.explanation,b.remark,b.organization,b.status,b.creartuser,b.createtime);
+	 -->
+	</insert>
+	
+	<!-- 根据ID修改回访模板 -->
+	<update id="updateTemplate" parameterType="com.hudh.tjhf.entity.VisitTemplate">
+	update kqds_visit_managar set 
+	<if test="planName != null and planName !=''">
+	planName=#{planName},
+	</if>
+	<if test="explanation != null and explanation !=''">
+	explanation=#{explanation},
+	</if>
+	<if test="remark !=null and remark !=''">
+	remark=#{remark},
+	</if>
+	<if test="organization !=null and organization !=''">
+	organization=#{organization},
+	</if>
+	<if test="visit_people !=null and visit_people !=''">
+	visit_people=#{visit_people}
+	</if>
+	where 1=1
+	<if test="SEQ_ID != null and SEQ_ID">
+	SEQ_ID = #{SEQ_ID}
+	</if>
+	</update>
+	
+	<!-- 根据ID删除回访计划模板 -->
+	<delete id="deleteTemplate" parameterType="String">
+	delete from kqds_visit_managar where SEQ_ID = #{SEQ_ID}
+	</delete>
+	
+	<!-- 根据ID删除回访计划模板 -->
+	<delete id="deleteManagar" parameterType="java.util.Map">
+	delete from kqds_visit_managar where SEQ_ID in (${seqids})
+	</delete>
+	
+	<!-- 模板停复用 -->
+	<update id="updateTemplateStatus" parameterType="com.hudh.tjhf.entity.VisitTemplate">
+		update kqds_visit_managar set status = #{status} where SEQ_ID = #{seqId}
+	</update>
+	
+	<!-- 查询回访模板 -->
+	<select id="findVisitTemalate" resultType="json">
+	select 
+		v.*,
+		d.dept_name AS deptname
+	from kqds_visit_managar v
+	LEFT JOIN sys_dept d ON d.SEQ_ID = v.hfdept
+	where 1=1
+	AND status != '1'
+	<if test="hfdept != null and hfdept != ''">
+		AND	hfdept IN (${hfdept})
+	</if>
+	<if test="organization != null and organization != ''">
+	AND	organization = #{organization}
+	</if>
+	order by createtime asc
+	</select>
+	
+	<!-- 查询回访模板 -->
+	<select id="findTemalate" resultType="json">
+	select 
+		<include refid="Base_Column_List"/>
+	from kqds_visit_managar
+	where 1=1
+	<if test="hfdept != null and hfdept != ''">
+	AND	hfdept IN (${hfdept})
+	</if>
+	<if test="organization != null and organization != ''">
+	AND	organization = #{organization}
+	</if>
+	order by createtime asc
+	</select>
+</mapper>

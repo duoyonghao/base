@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="SYS_DEPT_PRIV">
+
+	<resultMap id="BaseResultMap" type="com.hudh.dept.entity.SysDeptPriv">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="button_name" jdbcType="VARCHAR" property="buttonName" />
+		<result column="dept_no_compilations" jdbcType="VARCHAR" property="deptNoCompilations" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="dept_type" jdbcType="VARCHAR" property="deptType" />
+		<result column="updateuser" jdbcType="VARCHAR" property="updateuser" />
+		<result column="updatetime" jdbcType="VARCHAR" property="updatetime" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID,button_name,dept_no_compilations,dept_type,createtime,createuser,updateuser,updatetime,organization,dept_name
+	</sql>
+	<insert id="insertSysDeptPriv" parameterType="com.hudh.dept.entity.SysDeptPriv">
+		insert into sys_dept_priv (SEQ_ID,button_name,dept_no_compilations,dept_type,createtime,
+		createuser,organization,dept_name)
+		values (#{seqId,jdbcType=VARCHAR},
+		#{buttonName,jdbcType=VARCHAR}, #{deptNoCompilations,jdbcType=VARCHAR},
+		#{deptType,jdbcType=VARCHAR},
+		#{createtime,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR},#{deptName,jdbcType=VARCHAR})
+	</insert>
+	<select id="findPersonSeqIdByButtonName" parameterType="java.lang.String" resultType="json">
+		SELECT
+			p.SEQ_ID as seqid,p.USER_NAME as username
+		FROM
+			sys_dept d
+		LEFT JOIN sys_person p ON d.SEQ_ID = p.DEPT_ID
+		WHERE
+			d.SEQ_ID IN (
+				SELECT
+					dept_no_compilations = SUBSTRING (
+						a.dept_no_compilations,
+						b.number,
+						charindex(
+							',',
+							a.dept_no_compilations + ',',
+							b.number
+						) - b.number
+					)
+				FROM
+					sys_dept_priv a
+				JOIN master..spt_values b ON b.type = 'P'
+				WHERE
+					button_name in (${buttonName})
+				AND organization = #{organization}
+				AND charindex(
+					',',
+					',' + a.dept_no_compilations,
+					b.number
+				) = b.number
+			)
+		AND p.SEQ_ID IS NOT NULL
+		ORDER BY p.SEQ_ID ASC
+	</select>
+	<select id="findDeptNameByButtonName" parameterType="java.util.Map" resultType="json">
+		SELECT
+			d.SEQ_ID as id,d.DEPT_NAME as deptName
+		FROM
+			sys_dept d
+		WHERE
+			SEQ_ID IN (
+				SELECT
+					dept_no_compilations = SUBSTRING (
+						a.dept_no_compilations,
+						b.number,
+						charindex(
+							',',
+							a.dept_no_compilations + ',',
+							b.number
+						) - b.number
+					)
+				FROM
+					[dbo].[sys_dept_priv] a
+				JOIN master..spt_values b ON b.type = 'P'
+				WHERE
+					button_name in (${buttonname})
+				AND	organization = #{organization}
+				AND charindex(
+					',',
+					',' + a.dept_no_compilations,
+					b.number
+				) = b.number
+			)
+	</select>
+	
+	<delete id="deleteSysDeptPriv" parameterType="java.lang.String">
+		delete from
+		SYS_DEPT_PRIV 
+		where SEQ_ID=#{seqId}
+	</delete>
+	<select id="findDeptPrivByDeptPrivId" parameterType="java.lang.String" resultType="json">
+		select dept_no_compilations as deptNoCompilations,dept_type as deptType from SYS_DEPT_PRIV 
+		where SEQ_ID=#{deptprivid}
+	</select>
+	<update id="updateSysDeptPriv" parameterType="com.hudh.dept.entity.SysDeptPriv">
+		update sys_dept_priv 
+		<set>
+			<if test="deptNoCompilations != null">
+				dept_no_compilations = #{deptNoCompilations,jdbcType=VARCHAR},
+			</if>
+			<if test="deptType != null">
+				dept_type = #{deptType,jdbcType=VARCHAR},
+			</if>
+			<if test="deptName != null">
+				dept_name = #{deptName,jdbcType=VARCHAR},
+			</if>
+			<if test="updateuser != null">
+				updateuser = #{updateuser,jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime != null">
+				updatetime = #{updatetime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+</mapper>

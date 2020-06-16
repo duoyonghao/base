@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_MACHININGRECORD">
+
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsMachiningRecord">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="worksheetId" jdbcType="VARCHAR" property="worksheetId" />
+		<result column="orderNumber" jdbcType="VARCHAR" property="orderNumber" />
+		<result column="systemNumber" jdbcType="VARCHAR" property="systemNumber" />
+		<result column="userCode" jdbcType="VARCHAR" property="userCode" />
+		<result column="userName" jdbcType="VARCHAR" property="userName" />
+		<result column="material" jdbcType="VARCHAR" property="material" />
+		<result column="operationalContext" jdbcType="VARCHAR" property="operationalContext" />
+		<result column="status" jdbcType="DECIMAL" property="status" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, worksheetId, orderNumber, systemNumber, userCode, userName,
+		material, operationalContext, status, remark, organization, createuser, 
+		createtime
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="map" resultType="json">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_MACHININGRECORD
+		where worksheetId = #{worksheetId,jdbcType=VARCHAR}
+		ORDER BY createtime DESC
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="map">
+		delete from KQDS_MACHININGRECORD
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsMachiningRecord">
+		insert into KQDS_MACHININGRECORD (SEQ_ID, worksheetId, orderNumber, systemNumber,
+		userCode, userName, material, operationalContext, status,
+		remark, organization, createuser, createtime)
+		values (#{seqId,jdbcType=VARCHAR}, #{worksheetId,jdbcType=VARCHAR}, #{orderNumber,jdbcType=VARCHAR}, #{systemNumber,jdbcType=VARCHAR},
+		#{userCode,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{material,jdbcType=VARCHAR}, #{operationalContext,jdbcType=VARCHAR},
+		#{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR})
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsMachiningRecord">
+		update KQDS_MACHININGRECORD
+		<set>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="operationalContext != null">
+				operationalContext = #{operationalContext,jdbcType=VARCHAR},
+			</if>
+			<if test="material != null">
+				material = #{material,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="userName != null">
+				userName = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="userCode != null">
+				userCode = #{userCode,jdbcType=VARCHAR},
+			</if>
+			<if test="systemNumber != null">
+				systemNumber = #{systemNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="orderNumber != null">
+				orderNumber = #{orderNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="worksheetId != null">
+				worksheetId = #{worksheetId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+</mapper>

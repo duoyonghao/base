@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_TOOTH_DOC">
+
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsToothDoc">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="diseasesort" jdbcType="VARCHAR" property="diseasesort" />
+		<result column="askperson" jdbcType="VARCHAR" property="askperson" />
+		<result column="doctor" jdbcType="VARCHAR" property="doctor" />
+		<result column="toothseat" jdbcType="VARCHAR" property="toothseat" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="detaildesc" jdbcType="VARCHAR" property="detaildesc" />
+		<result column="recvinfono" jdbcType="VARCHAR" property="recvinfono" />
+		<result column="treatplanno" jdbcType="VARCHAR" property="treatplanno" />
+		<result column="regno" jdbcType="VARCHAR" property="regno" />
+		<result column="toothtype" jdbcType="VARCHAR" property="toothtype" />
+		<result column="yw1" jdbcType="VARCHAR" property="yw1" />
+		<result column="yw2" jdbcType="VARCHAR" property="yw2" />
+		<result column="yw3" jdbcType="VARCHAR" property="yw3" />
+		<result column="yw4" jdbcType="VARCHAR" property="yw4" />
+		<result column="usertype" jdbcType="VARCHAR" property="usertype" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, createuser, createtime, usercode, diseasesort, askperson, doctor, toothseat,
+		remark, detaildesc, recvinfono, treatplanno, regno, toothtype, yw1, yw2, yw3, yw4,
+		usertype, organization
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_TOOTH_DOC
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_TOOTH_DOC
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsToothDoc">
+		insert into KQDS_TOOTH_DOC (SEQ_ID, createuser, createtime,
+		usercode, diseasesort, askperson,
+		doctor, toothseat, remark,
+		detaildesc,
+		recvinfono, treatplanno,
+		regno, toothtype, yw1,
+		yw2, yw3, yw4, usertype,
+		organization)
+		values (#{seqId,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR},
+		#{createtime,jdbcType=VARCHAR},
+		#{usercode,jdbcType=VARCHAR}, #{diseasesort,jdbcType=VARCHAR}, #{askperson,jdbcType=VARCHAR},
+		#{doctor,jdbcType=VARCHAR},
+		#{toothseat,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+		#{detaildesc,jdbcType=VARCHAR}, #{recvinfono,jdbcType=VARCHAR}, #{treatplanno,jdbcType=VARCHAR},
+		#{regno,jdbcType=VARCHAR}, #{toothtype,jdbcType=VARCHAR}, #{yw1,jdbcType=VARCHAR},
+		#{yw2,jdbcType=VARCHAR}, #{yw3,jdbcType=VARCHAR}, #{yw4,jdbcType=VARCHAR},
+		#{usertype,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsToothDoc">
+		insert into KQDS_TOOTH_DOC
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="usercode != null">
+				usercode,
+			</if>
+			<if test="diseasesort != null">
+				diseasesort,
+			</if>
+			<if test="askperson != null">
+				askperson,
+			</if>
+			<if test="doctor != null">
+				doctor,
+			</if>
+			<if test="toothseat != null">
+				toothseat,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="detaildesc != null">
+				detaildesc,
+			</if>
+			<if test="recvinfono != null">
+				recvinfono,
+			</if>
+			<if test="treatplanno != null">
+				treatplanno,
+			</if>
+			<if test="regno != null">
+				regno,
+			</if>
+			<if test="toothtype != null">
+				toothtype,
+			</if>
+			<if test="yw1 != null">
+				yw1,
+			</if>
+			<if test="yw2 != null">
+				yw2,
+			</if>
+			<if test="yw3 != null">
+				yw3,
+			</if>
+			<if test="yw4 != null">
+				yw4,
+			</if>
+			<if test="usertype != null">
+				usertype,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="diseasesort != null">
+				#{diseasesort,jdbcType=VARCHAR},
+			</if>
+			<if test="askperson != null">
+				#{askperson,jdbcType=VARCHAR},
+			</if>
+			<if test="doctor != null">
+				#{doctor,jdbcType=VARCHAR},
+			</if>
+			<if test="toothseat != null">
+				#{toothseat,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="detaildesc != null">
+				#{detaildesc,jdbcType=VARCHAR},
+			</if>
+			<if test="recvinfono != null">
+				#{recvinfono,jdbcType=VARCHAR},
+			</if>
+			<if test="treatplanno != null">
+				#{treatplanno,jdbcType=VARCHAR},
+			</if>
+			<if test="regno != null">
+				#{regno,jdbcType=VARCHAR},
+			</if>
+			<if test="toothtype != null">
+				#{toothtype,jdbcType=VARCHAR},
+			</if>
+			<if test="yw1 != null">
+				#{yw1,jdbcType=VARCHAR},
+			</if>
+			<if test="yw2 != null">
+				#{yw2,jdbcType=VARCHAR},
+			</if>
+			<if test="yw3 != null">
+				#{yw3,jdbcType=VARCHAR},
+			</if>
+			<if test="yw4 != null">
+				#{yw4,jdbcType=VARCHAR},
+			</if>
+			<if test="usertype != null">
+				#{usertype,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsToothDoc">
+		update KQDS_TOOTH_DOC
+		<set>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				usercode = #{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="diseasesort != null">
+				diseasesort = #{diseasesort,jdbcType=VARCHAR},
+			</if>
+			<if test="askperson != null">
+				askperson = #{askperson,jdbcType=VARCHAR},
+			</if>
+			<if test="doctor != null">
+				doctor = #{doctor,jdbcType=VARCHAR},
+			</if>
+			<if test="toothseat != null">
+				toothseat = #{toothseat,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="detaildesc != null">
+				detaildesc = #{detaildesc,jdbcType=VARCHAR},
+			</if>
+			<if test="recvinfono != null">
+				recvinfono = #{recvinfono,jdbcType=VARCHAR},
+			</if>
+			<if test="treatplanno != null">
+				treatplanno = #{treatplanno,jdbcType=VARCHAR},
+			</if>
+			<if test="regno != null">
+				regno = #{regno,jdbcType=VARCHAR},
+			</if>
+			<if test="toothtype != null">
+				toothtype = #{toothtype,jdbcType=VARCHAR},
+			</if>
+			<if test="yw1 != null">
+				yw1 = #{yw1,jdbcType=VARCHAR},
+			</if>
+			<if test="yw2 != null">
+				yw2 = #{yw2,jdbcType=VARCHAR},
+			</if>
+			<if test="yw3 != null">
+				yw3 = #{yw3,jdbcType=VARCHAR},
+			</if>
+			<if test="yw4 != null">
+				yw4 = #{yw4,jdbcType=VARCHAR},
+			</if>
+			<if test="usertype != null">
+				usertype = #{usertype,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsToothDoc">
+		update KQDS_TOOTH_DOC
+		set createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		usercode =
+		#{usercode,jdbcType=VARCHAR},
+		diseasesort = #{diseasesort,jdbcType=VARCHAR},
+		askperson = #{askperson,jdbcType=VARCHAR},
+		doctor = #{doctor,jdbcType=VARCHAR},
+		toothseat =
+		#{toothseat,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		detaildesc = #{detaildesc,jdbcType=VARCHAR},
+		recvinfono = #{recvinfono,jdbcType=VARCHAR},
+		treatplanno =
+		#{treatplanno,jdbcType=VARCHAR},
+		regno = #{regno,jdbcType=VARCHAR},
+		toothtype = #{toothtype,jdbcType=VARCHAR},
+		yw1 = #{yw1,jdbcType=VARCHAR},
+		yw2 = #{yw2,jdbcType=VARCHAR},
+		yw3 =
+		#{yw3,jdbcType=VARCHAR},
+		yw4 = #{yw4,jdbcType=VARCHAR},
+		usertype = #{usertype,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR}
+		where SEQ_ID =
+		#{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_TOOTH_DOC
+	</sql>
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsToothDoc">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectWithPageByRegno" parameterType="map" resultType="json">
+		select
+		t.seq_id,
+		t.toothseat,
+		t.toothtype,
+		kcit1.dict_name as toothtypename,
+		t.yw1,
+		t.yw2,
+		t.yw3,
+		t.yw4,
+		t.detaildesc,
+		t.usertype,
+		t.diseasesort,
+		t.createuser,
+		per1.user_name as
+		createusername,
+		t.createtime,
+		t.remark
+		from KQDS_TOOTH_DOC t
+		LEFT JOIN SYS_DICT kcit1 on t.toothtype = kcit1.seq_id
+		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = t.createuser
+		where 1=1
+		<if test="regno != null and regno !='' ">
+			and t.regno = #{regno}
+		</if>
+		<if test="usercode != null and usercode !='' ">
+			and t.usercode = #{usercode}
+		</if>
+		ORDER BY t.CreateTime desc
+	</select>
+	<select id="selectHzjl" parameterType="map" resultType="json">
+		select
+		hz.seq_id,
+		hz.createtime,
+		hz.createuser,
+		per1.USER_NAME as createusername,
+		hz.usercode,
+		hz.diseasesort,
+		hz.toothseat,
+		hz.remark,
+		hz.detaildesc,
+		hz.toothtype,
+		kcit1.dict_name as
+		toothtypename,
+		hz.yw1,
+		hz.yw2,
+		hz.yw3,
+		hz.yw4,
+		hz.usertype,
+		odept.dept_name as organizationname,
+		u.username,
+		kcit3.dict_name as devchannel,
+		hzly.dict_name as nexttype,
+		per10.USER_NAME as
+		faskperson,
+		per3.USER_NAME as jdr
+		from KQDS_TOOTH_DOC hz
+		LEFT JOIN KQDS_UserDocument u on hz.usercode = u.UserCode
+		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = hz.createuser
+		LEFT JOIN
+		SYS_PERSON per3 on per3.SEQ_ID = u.CreateUser
+		LEFT JOIN SYS_PERSON per10 on per10.SEQ_ID = u.askperson
+		LEFT JOIN SYS_DICT kcit1 on hz.toothtype = kcit1.seq_id
+		LEFT JOIN SYS_DICT
+		kcit3 on u.devchannel = kcit3.seq_id
+		LEFT JOIN SYS_DICT hzly on u.nexttype = hzly.seq_id
+		LEFT JOIN SYS_DEPT odept on odept.dept_code = hz.organization and odept.dept_parent =
+		'0'
+		where 1=1
+		<if test="organization != null and organization !='' ">
+			and hz.organization = #{organization}
+		</if>
+		<if test="starttime != null and starttime !='' ">
+			and hz.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and hz.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="txstarttime != null and txstarttime !='' ">
+			and hz.diseasesort <![CDATA[ >= ]]>
+			#{txstarttime}
+		</if>
+		<if test="txendtime != null and txendtime !='' ">
+			and hz.diseasesort <![CDATA[ <= ]]>
+			#{txendtime}
+		</if>
+		<if test="toothseat != null and toothseat !='' ">
+			and hz.toothseat = #{toothseat}
+		</if>
+		<if test="toothtype != null and toothtype !='' ">
+			and hz.toothtype = #{toothtype}
+		</if>
+		<if test="queryinput != null and queryinput !='' ">
+			and (u.usercode like '%' + #{queryinput} + '%'
+			or u.username like '%' + #{queryinput} + '%'
+			or u.pym like '%' + #{queryinput} + '%'
+			)
+		</if>
+		<if test="createuser != null and createuser !='' ">
+			and hz.createuser = #{createuser}
+		</if>
+		<if test="visualstaff != null and visualstaff !='' ">
+			and (
+			hz.createuser in (${visualstaff})
+			or u.doctor in (${visualstaff})
+			or u.askperson in (${visualstaff})
+			or u.createuser in (${visualstaff})
+			)
+		</if>
+		ORDER BY hz.createtime desc
+	</select>
+
+</mapper>

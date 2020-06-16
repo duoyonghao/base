@@ -1,0 +1,305 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0px;
+	padding: 0px;
+	font-size: 16px;
+	line-height: 30px;
+}
+#diagnosis_continer ul,ol{
+	margin: 0px;
+	padding: 0px;
+}
+label{
+	margin-top:0!important;
+	line-height: 30px;
+}
+#diagnosis_continer label{
+	margin-bottom: 0px;
+}
+#diagnosis_continer{
+	margin:0!important;
+	padding:0!important;
+}
+
+/* 字体设置 */
+#diagnosis_continer span{
+	font-weight: normal;
+}
+/*行*/
+#diagnosis_continer>.row{
+	width:100%;
+	margin: 0px;
+	padding: 0px;
+	margin-bottom: 8px;
+	overflow: hidden;
+}
+/* 栅格布局自定义样式 */
+#diagnosis_continer>.row>.colDefined{
+	float:left;
+	display:flex;
+	flex-direction: row;
+	margin: 0px;
+	padding: 0px;
+}
+
+#diagnosis_continer>.teethClean{
+	background-color: #ddd;
+	/* margin: 10px 0; */
+}
+#diagnosis_continer>.backGauge{
+	padding: 0 20px;
+}
+.zl_toothMapdiv>.toothExtraction{
+	margin: 5px 0;
+	font-weight: 600;
+	position: relative;
+}
+.zl_toothMapdiv>.toothExtraction>span{
+	position: absolute;
+	left: 184px;
+}
+
+.backGauge>.bone{
+	background:#ddd;
+	margin: 5px 0;
+	
+}
+
+.backGauge>.periost{
+	margin: 5px 0;
+	
+}
+/* 输入框 */
+#diagnosis_continer input[type="text"]{
+	height:30px;
+	background-color: transparent;
+	border: 1px solid #c3c3c3;
+	vertical-align: middle;
+	-webkit-appearance: none;
+	outline: none;
+	text-align: center;
+	font-weight: bold;
+}
+/* 多选框 */
+#diagnosis_continer input[type="checkbox"]{
+	background-color: transparent;
+	width:15px;
+	height:15px;
+	vertical-align: sub;
+	outline: none;
+	margin-left: 8px;
+}
+/* 单选框 */
+#diagnosis_continer input[type="radio"]{
+	background-color: transparent;
+	width:15px;
+	height:15px;
+	vertical-align: sub;
+	outline: none;
+	margin-left: 8px;
+}
+/* 信息输入组合框 */
+#diagnosis_continer .rpInfo_import{
+	width:100%;
+}
+
+#diagnosis_continer .rpInfo_import>input{
+	width:30%;
+	/* background-color: #ddd; */
+	border:0px;
+	font-weight: bold;
+	color: #00a6c0;
+}
+#diagnosis_continer .bigtitle{
+	width:100%;
+	font-size: 26px;
+	line-height: 26px;
+  	margin: 70px auto 0;
+  	letter-spacing: 1px;
+  	font-weight: bold;
+    border-bottom: 2px solid #776c6c; 
+    padding-bottom: 14px;
+}
+/* 选项框 */
+#diagnosis_continer .zl_optiondiv{
+	width: 100%;
+}
+#diagnosis_continer .zl_optiondiv>span{
+	display:inline-block;
+	margin-top: 18px;
+	margin-right: 5%;
+}
+
+#diagnosis_continer>.plantSystem{
+	background: #ddd;
+	padding: 5px 14px;
+	margin: 5px 0;
+}
+/* 牙位图 */
+#diagnosis_continer .zl_toothMapdiv>span{
+	padding: 22px 0;
+}
+#diagnosis_continer .zl_toothMapdiv .tooth_map{
+	float:left;
+	display: inline-block;
+	width: 35%;
+    height: 50px;
+}
+#diagnosis_continer .zl_toothMapdiv .tooth_map>li{
+	width:49%;
+	height:25px;
+	float:left;
+}
+#diagnosis_continer .zl_toothMapdiv .tooth_map>li>input{
+	border:0px;
+    width: 90%;
+    margin-left: 5%;
+    text-align: center;
+    height: 25px;
+}
+#diagnosis_continer .zl_toothMapdiv .tooth_map>li:FIRST-CHILD{
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+}
+#diagnosis_continer .zl_toothMapdiv .tooth_map>li:FIRST-CHILD+li{
+	border-bottom: 1px solid black;
+}
+#diagnosis_continer .zl_toothMapdiv .tooth_map>li:FIRST-CHILD+li+li{
+	border-right: 1px solid black;
+}
+/* 填写框 */
+#diagnosis_continer .zl_fillWritediv{
+}
+#diagnosis_continer .zl_fillWritediv>span{
+     line-height: 30px;
+}
+#diagnosis_continer .zl_fillWritediv>input{
+	/* width:35%; */
+	width:50px;
+	vertical-align: bottom;
+	border:0px;
+	border-bottom: 1px solid black;
+}
+/* 填写组合框 */
+#diagnosis_continer .writein_group{
+	overflow: hidden;
+	width:100%;
+}
+/* 组合名字 */
+#diagnosis_continer .writein_group>span{
+	display: block;
+    float: left;
+    height: 100%;
+    margin-right: 6%;
+    padding-top: 18px;
+}
+/* 填写选项 */
+#diagnosis_continer .writein_group>ul{
+	width:100%;
+	float: left;
+	overflow: hidden;
+}
+#diagnosis_continer .writein_group>ul>li{
+	float:left;
+}
+/* 骨膜 */
+#diagnosis_continer .periosteum>ul>li{
+}
+/* 多选组合框 */
+#diagnosis_continer .zl_multiple{
+	width:100%;
+	overflow: hidden;
+}
+#diagnosis_continer .zl_multiple>span{
+	display: block;
+	float:left;
+	margin-right: 5%;
+	margin-top: 18px;
+}
+#diagnosis_continer .zl_multiple>ul{
+	display:block;
+	width: 100%;
+	float:right;
+	overflow: hidden;
+}
+#diagnosis_continer .zl_multiple>ul>li{
+	float: left;
+}
+/* 手术签名 */
+#consent_signature{
+	width: 40%;
+	overflow: hidden;
+	height: 141px;
+	height: 135px;
+	argin:10px 20px;
+}
+#consent_signature>.signature_time{
+	width:100%;
+	margin-bottom: 24px;
+	float:left;
+	position: relative;
+}
+#consent_signature>.signature_time>.signature_box{
+	width:100%;
+}
+#consent_signature>.signature_time>.signature_box>span{
+	font-weight: normal;
+}
+/* 时间选择框 */
+#consent_signature>.signature_time>input{
+	width:35%;
+	position: absolute;
+	right:0px;
+	bottom: 0px;
+	text-align: center;
+}
+/* 种植辅助手术 */
+#diagnosis_continer .auxiliary_operation>ul{
+	width:100%;
+}
+#diagnosis_continer .auxiliary_operation>ul>li{
+	    width: 14%;
+}
+/* 备注 */
+#diagnosis_continer #consent_remark{
+	width:100%;
+	border:1px solid #c7c4c4;
+	margin: 10px 0px;
+}
+/* 备注 */
+#diagnosis_continer #consent_remark>span{
+	display: block;
+   	width: 7%;
+	float: left;
+   	margin: 10px 0px 0px 15px;
+}
+/* 备注输入框 */
+#diagnosis_continer #consent_remark>textarea{
+	width: 98%;
+   	height: 80px;
+   	float: left;
+   	background-color: transparent;
+   	border:0px;
+   	font-weight: normal;
+}
+/* 按钮 */
+.btns{
+	width:100%;
+	text-align:center;
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+.btns button{
+   	font-size: 16px;
+   	line-height: 34px;
+   	background-color: #00A6C0;
+   	font-weight: normal;
+   	color: white;
+   	border: 0px;
+   	border-radius: 5px;
+   	padding: 0px 20px;
+   	letter-spacing: 1px;
+}
+.btns #consent_saveBtn{
+	margin-right: 30px;
+}

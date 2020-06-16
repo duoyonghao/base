@@ -1,0 +1,787 @@
+#continer{
+	/*width: 100%;*/
+	border: 1px solid transparent; 
+	/* padding:0.5% 1%; */
+	background-color: #f5f5f5;
+}
+.panel{
+	border:0px;
+	background-color: transparent;
+	box-shadow: 0 0px 0px rgba(0,0,0,.05);
+	-webkit-box-shadow: 0 0px 0px rgba(0,0,0,.05);
+	margin: 0px 30px 0px;
+}
+.panel-heading {
+    background-color: #f5f5f5 !important;
+    border-bottom:0px;
+}
+.collapse.in{
+	border-radius: 9px;
+	box-shadow: 0px 0px 10px 2px #ddd;
+	background-color: white;
+	/* border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px; */
+}
+.panel-body {
+    padding: 10px 15px;
+}
+.panel-title {
+    font-size: 17px;
+}
+.panel-heading{
+	padding: 0px;
+}
+/* 小标题 */
+.smallTitle{
+	display:block;
+	/* border:1px solid red; */
+	font-size: 17px;
+	line-height:17px;
+	color: black;
+    font-weight: bolder;
+    padding: 10px 15px;
+    margin-top: 20px;
+}
+/*上部*/
+#continer>#top{
+	/* overflow: hidden; */
+	padding-bottom: 10px;
+	/* 	border-bottom: 1px solid black; */
+	padding: 0px 30px;
+	position: relative;
+}
+/* 底部内容 */
+.detailsBottom{
+	width:100%;
+	overflow:hidden;
+	padding-bottom: 20px;
+	padding-left: 30px;
+}
+.panel-group {
+    margin-bottom: 0px;
+}
+/* 挂号记录 */
+.detailsBottom .registrationPanel{
+	/* width:32%; */
+	float:left;
+	/* padding-left: 30px; */
+	/* margin-right: 1% !important; */
+	min-width: 365px;
+}
+             
+ /*关键设置 tbody出现滚动条*/
+      /* #register_table tbody {
+         display: block;
+         height: 200px; 
+         overflow-y: scroll;
+         border:2px solid red;
+      }  */ 
+                    
+/*      #register_table thead, */
+/*      tbody tr { */
+/*           display: table; */
+/*           width: 100%;  */
+/*           table-layout: fixed;  */
+/*      } */
+/*      关键设置：滚动条默认宽度是16px 将thead的宽度减16px */
+/*      #register_table thead { */
+/*          width: calc( 100% - 20px) */
+/*       } */
+/* 备注记录+变异情况 */
+.detailsBottom .remarkVariation{
+	/* width:67%; */
+	float:left;
+	padding-right: 30px;
+	/* margin-left: 1%; */
+	min-width: 610px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.detailsBottom .panel{
+	margin: 0px;
+	padding-left: 0;
+	padding-right: 30px;
+}
+.text-left {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.detailsBottom .panel-body{
+	padding: 0px;
+}
+.panel-group .panel-heading+.panel-collapse>.list-group, .panel-group .panel-heading+.panel-collapse>.panel-body {
+    border-top: 0px solid #ddd;
+}
+.variationPanel{
+	margin-top: 15px !important;
+}
+.variationPanel .panel-title>a{
+	display: block;
+	font-size: 16px;
+    color: white;
+    line-height: 36px;
+    background-color: #00A6C0;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    padding-left: 15px;
+}
+.variationPanel .collapse.in{
+	border-radius: 0px;
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+    overflow: hidden;
+}
+/*患者信息*/
+#continer>#top>#top_left{
+	/* width: 22%; */
+	/* min-width: 480px; */
+	float: left;
+	padding-bottom: 10px;
+	/* overflow: hidden; */
+	padding-left: 0px;
+}
+#continer>#top>#top_left>div{
+	float: left;
+}
+/*牙齿情况*/
+#continer>#top>#top_left>#p_details{
+	/* width: 70%; */
+	width: 100%;
+    background-color: #00a6c0;
+    color: white;
+    font-size: 14px;
+    border-radius: 10px;
+    line-height: 42px;
+    font-family: "微软雅黑";
+    padding-top: 16px;
+    box-shadow: 0px 0px 10px 2px #ddd;
+}
+#p_details span{
+	color: white;
+    font-size: 14px;
+    padding-left: 30px;
+}
+/*姓名电话*/
+#continer>#top>#top_left>#name_phone{
+	width: 40%;
+}
+#continer>#top span{
+	display: block;
+	/* color: black;
+	font-size: 16px; */
+	/* line-height: 22px; */
+}
+/* 上部 */
+#top{
+	overflow: hidden;
+}
+#top>div{
+	/* width:32%; */
+	float: left;
+	/* margin-right:2%; */
+	padding-bottom: 10px;
+	/* min-width: 355px; */
+}
+
+/*中间流程图*/
+#continer .center_bg{
+	border:1px solid white;
+/* 	width:97%; */
+	margin:0 30px;
+/* 	padding:140px auto 100px; */
+}
+#continer .center_bg>#center{
+	width: 90%;
+	max-width: 100%;
+	min-height: 60px;
+	height:auto;
+	margin: 160px auto 140px;
+	position: relative;
+}
+/*分割线*/
+#continer .center_bg>#center>span{
+	display: block;
+	height: 1px;
+	background-color: black;
+	margin-left: -20px;
+	margin-right:-30px;
+}
+/*流程图*/
+#continer .center_bg>#center>ul{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	position: absolute;
+	left: 0%;
+	top: -35px;
+	margin: 0 auto;
+}
+#continer .center_bg>#center>ul>li{
+/* 	width: 8%; */
+/* 	margin-left: 2%; */
+/* 	background-color: white; */
+    position: relative;
+}
+#continer .center_bg>#center>ul>li:nth-child(1){
+	margin-left: 0%;
+}
+#continer .center_bg>#center li {
+    list-style: none;
+    margin-top:20px;
+}
+/*椭圆*/
+#continer .center_bg>#center>#flow_path>li>span{
+	display: block;
+	height: 35px;
+	width:35px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 35px;
+	margin-left: 10px;
+	color :white;
+	font-size:20px;
+}
+#continer .center_bg>#center>#flow_path>li>.nodeBorder>span{
+	display: block;
+	height: 35px;
+	width:35px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 35px;
+	color :white;
+	font-size:20px;
+} 
+/* 节点border */
+#flow_path .nodeBorder{
+	display: inline-block;
+	width: auto;
+    padding: 7px;
+    margin-top: -9px;
+    border-radius: 50%;
+}
+.size{
+	font-size:19px;
+}
+/*文字*/
+#continer .center_bg>#center>ul>li>font{
+	display: block;
+	font-size: 14px;
+	line-height: 18px;
+	text-align: center;
+	margin-top: 25px;
+	width: 106px;
+	font-weight:bold;
+	margin-left: -25px;
+	position: absolute;
+}
+/*操作记录*/
+#continer>#total_tab>#div-context>#czjl>#record{
+/*	border: 1px solid blue;*/
+}
+#continer>#total_tab>#div-context>#czjl>#record>span{
+	display: block;
+	border-bottom: 1px solid black;
+	font-size: 16px;
+	line-height: 40px;
+	margin-bottom: 20px;
+}
+#continer .center_bg>#total_tab>#div-context>#czjl>#record>span>font{
+	display: inline-block;
+	width: 20px;
+	height: 15px;
+	border-radius: 50%;
+	border: 1px solid white;
+	background-color: #00A6C0;
+	box-shadow: 2px 2px 5px 0px #999999;
+	margin-right: 10px;
+}
+/*搜索*/
+#continer .center_bg>#total_tab>#div-context>#czjl>#record>div>input{
+	width: 160px;
+	height: 26px;
+	vertical-align: middle;
+	margin-right: 15px;
+}
+/*表格*/
+#continer .center_bg>#total_tab>#div-context>#czjl>#record>table{
+	width: 100%;
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+	font: 16px 'microsoft yahei','\5FAE\8F6F\96C5\9ED1','\5B8B\4F53',Arial;
+	line-height: 24px;
+	margin:10px auto;
+}
+#continer .center_bg>#total_tab>#div-context>#czjl>#record>table th,td{
+/* 	width: 16.6%; */
+	text-align: center;
+	border-right: 1px solid black;
+	/* border-bottom: 1px solid black; */
+	word-break: break-word;
+}
+#continer .center_bg>#total_tab>#div-context>#czjl>#record>table th{
+	font-weight: bold;
+}
+
+/*按钮*/
+#buttom_info{
+	text-align: right;
+	padding: 0px 30px 20px 0px;
+}
+#buttom_info>.blue_btn{
+	width: 80px;
+	font-size: 14px;
+	line-height: 26px;
+	color: white;
+	background-color: #00A6C0;
+	border-radius: 5px;
+	border: 0px;
+	cursor:pointer;
+}
+/* #buttom_info>.blue_btn:nth-child(2){
+	margin: 0 10px;
+} */
+/* #buttom_info>.blue_btn:nth-child(5){
+	margin-right: 2%;
+} */
+#remark{
+	width : 97%;
+	height : 75%;
+	
+}
+#remark textarea{
+	width : 100%;
+	height : 95%;
+	margin-left : 10px;
+	margin-top : 10px;
+	font-size: 14px;
+	font-family: "Microsoft YaHei ,SimHei,SimSun";
+	border-radius: 0.5em; 
+}
+/*颜色示例*/
+#continer .center_bg>#center>.example{
+	width:auto;
+	/*border: 1px solid blue;*/
+	position: absolute;
+	top: 125px;
+	/* left: 75%; */
+	right: 0%;
+	display: block;
+	/* 	flex-direction: row; */
+}
+#continer .center_bg>#center>.example>li{
+	width: auto;
+	display: block;
+	/*border: 1px solid red;*/
+	margin-left: 0%;
+	float:right;
+}
+#continer .center_bg>#center>.example>li>span{
+	font-size:14px;
+	display:inline-block;
+	width:70px;
+}
+#continer .center_bg>#center>.example>li>span>font{
+	vertical-align: middle;
+	display: inline-block;
+	width: 14px;height: 14px;
+	margin-right: 5px;
+}
+/* #remark .remark_btn{
+	width : 100%;
+	height : 10%x;
+	background: red;
+	padding-top : 10px;
+	margin-left : 10px;
+}
+ */
+ .circle{
+ 	width:50px;
+ 	height:50px;
+ 	border-radius:50px;
+ 	display:inline-block;
+ 	border:1px solid red;
+ }
+.arrow{
+	 border: px solid white;
+     box-shadow: 0 0 0 1px #FB0000
+}
+.arrow_box{animation: glow 1000ms ease-out infinite alternate; }
+@keyframes glow {
+    0% {
+/*         border-color: #FFFF00; */
+        box-shadow: 0 0 10px rgba(255,255,0,.2), inset 0 0 5px rgba(255,255,0,.1);
+    }
+    100% {
+        box-shadow: 0 0 30px rgba(100,149,237,.6), inset 0 0 10px rgba(100,149,237,.4);
+    }
+}
+
+
+#search_flowlink{
+	border: solid 1px #e5e5e5;
+    border-radius: 3px;
+    height: 28px;
+    width: 212px;
+}
+
+#total_tab{
+	width : 100%;
+	min-height : 500px;
+	height:auto;
+	margin-top:10px;
+	font-size: 16px;
+	font-family: "Microsoft YaHei";
+}
+#total_tab>ul{
+	height:50px;
+	/* background: #4286F5; */
+	background:#00A6C0;
+}
+#total_tab>ul>li{
+	float:left;
+	width:80px;
+	height : 50px;
+	text-align: center;
+	line-height: 50px;
+	color: #FFFFFF;
+	cursor:pointer;
+}
+#total_tab>ul>.current-li{
+	background: #20B2AA;
+}
+#hzxq{
+	height: 400px;
+}
+#hzxq>ul{
+	width:100%;
+}
+#hzxq>ul>li{
+	width:100%;
+	height: 30px;
+	line-height: 30px;
+}
+#hzxq>ul>li>div{
+	width:20%;
+	float: left;
+}
+#hzxq>ul>li>div>span{
+	width:50px;
+}
+#hzxq>ul>li>div>input{
+	width:50%;
+	border:0px;
+}
+#hzxq>ul>.check-box{
+	width:100%;
+}
+#hzxq>ul>.check-box>table{
+	width:33%;
+	float: left;
+}
+#hzxq>ul>.check-box>table>tbody>tr{
+	width:100%;
+}
+#hzxq>ul>.check-box>table>tbody>tr>td{
+	width:50%;
+	text-align: left !important;
+	border: 0px;
+}
+#hzxq>ul>.check-box>table>tbody>tr>.box-info{
+	width:15% !important;
+}
+
+/* 表格3样式 */
+/* 表格3 */
+/*操作记录*/
+@media screen and (max-width:1920px){
+	#operation{
+		overflow: hidden;
+	}
+}
+@media screen and (max-width:1660px){
+	.operate{
+		overflow-y: hidden;
+	}	
+}
+#continer>#total_tab>#div-context>#ghjl>#register{
+/*	border: 1px solid blue;*/
+}
+#continer>#total_tab>#div-context>#ghjl>#register>span{
+	display: block;
+	border-bottom: 1px solid black;
+	font-size: 16px;
+	line-height: 40px;
+	margin-bottom: 20px;
+}
+#continer>#total_tab>#div-context>#ghjl>#register>span>font{
+	display: inline-block;
+	width: 20px;
+	height: 15px;
+	border-radius: 50%;
+	border: 1px solid white;
+	background-color: #00A6C0;
+	box-shadow: 2px 2px 5px 0px #999999;
+	margin-right: 10px;
+}
+/* 操作记录table */
+#register_table table,thead,tbody{
+    display:block;
+}
+#register_table{
+	display:block;
+	width: 100%;
+	table-layout: fixed;
+	/* border-top: 1px solid black;
+	border-left: 1px solid black; */
+	font: 16px 'microsoft yahei','\5FAE\8F6F\96C5\9ED1','\5B8B\4F53',Arial;
+	line-height: 24px;
+	/* margin:10px auto; */
+}
+#register_table th{
+	font-weight: bold;
+}
+#register_table th,td{
+/* 	width: 16.6%; */
+	text-align: center;
+	border-right: 1px solid #cdcccc;
+	/* border-bottom: 1px solid black; */
+	word-break: break-word;
+	font-size: 14px;
+    color: #434343;
+    line-height: 30px;
+}
+/* 头部 */
+#register_table thead{
+	/* margin-bottom: 20px; */
+   /*  width: calc( 100% - 10px);  */
+} 
+#register_table thead>tr{
+	display: table;
+    width: 100%;
+}
+#register_table thead>tr>th{
+	border-right: 0px;
+    padding-bottom: 10px
+}
+#register_table thead>tr>th span{
+	display: block;
+	/* border:1px solid red; */
+	color: white;
+    background-color: #00A6C0;
+    font-size: 16px;
+    line-height: 36px;
+}
+@media screen and (max-width:1366px){
+	#register_table thead>tr>th span{
+		font-size: 15px;
+	}
+	
+}
+
+/* tbody */
+#register_table tbody {
+    display: block;
+    height: 300px; 
+    overflow-y: scroll;
+/*     border:2px solid red; */
+}
+#register_tbody tr{
+	height:30px;
+}
+#remark_tbody tr{
+	display: table;
+    width: 100%;
+}
+#remark_tbody tr>td:nth-child(5){
+	border-right: 0px;
+}
+
+.widget-main div{
+	/* font-size: 16px; */
+	font-size: 14px;
+    color: #434343;
+    line-height: 36px;
+}
+.widget-main div .patientInfoText{
+	font-weight: bold;
+}
+.panel-title>.small, .panel-title>.small>a, .panel-title>a, .panel-title>small, .panel-title>small>a {
+    color: black;
+    font-weight: bolder;
+}
+
+/* 牙位图 */
+#ToothBit{
+	/* width: 830px; */
+	width:78%;
+	/* min-width: 1000px; */
+	min-width: 745px;
+	/* height: 210px; */
+	overflow: hidden;
+	/* border:1px solid red; */
+}
+#ToothBit>div{
+	float: left;
+	width:50%;
+}
+/* .yaIcon{
+	display:block;
+	width: 20px;
+	height: 58px;
+	margin-bottom:5px;
+	background: url("../img/ya.png") no-repeat;
+	background-size: 350px;
+} */
+/* .le8{background-position: -1px 5px;}
+.le7{background-position: -22px 5px;}
+.le6{background-position: -44px 5px;}
+.le5{background-position: -67px 5px;}
+.le4{background-position: -89px 5px;}
+.le3{background-position: -110px 5px;}
+.le1{background-position: -154px 5px;;}
+.le2{background-position: -132px 5px;}
+.rg1{background-position: -176px 5px;}
+.rg2{background-position: -198px 5px;}
+.rg3{background-position: -220px 5px;}
+.rg4{background-position: -242px 5px;}
+.rg5{background-position: -264px 5px;}
+.rg6{background-position: -286px 5px;}
+.rg7{background-position: -308px 5px;}
+.rg8{background-position: -329px 5px;}
+
+.downYa .le8{background-position: -1px -53px;}
+.downYa .le7{background-position: -22px -53px;}
+.downYa .le6{background-position: -44px -53px;}
+.downYa .le5{background-position: -66px -53px;}
+.downYa .le4{background-position: -89px -53px;}
+.downYa .le3{background-position: -110px -53px;}
+.downYa .le2{background-position: -132px -53px;}
+.downYa .le1{background-position: -154px -53px;}
+.downYa .rg1{background-position: -176px -53px;}
+.downYa .rg2{background-position: -198px -53px;}
+.downYa .rg3{background-position: -220px -53px;}
+.downYa .rg4{background-position: -242px -53px;}
+.downYa .rg5{background-position: -263px -53px;}
+.downYa .rg6{background-position: -286px -53px;}
+.downYa .rg7{background-position: -308px -53px;}
+.downYa .rg8{background-position: -329px -53px;} */
+
+
+/* .upYa{position:absolute;left:50%;margin:0 0 0px -180px;} */
+/* .downYa{position:absolute;left:50%;bottom:0px;margin-left: -180px;margin-bottom: 0px;} */
+
+
+
+/*wl*/
+/* .children .upYa,.children .downYa{margin-left: -128px;} */
+.children .upYa,.children .downYa{margin-left: -200px;}
+/*wl*/
+
+.downYa span:first-child{display: inline-block;margin-bottom: 5px;}
+.toothBox{
+	/* width: 390px; */
+	position:relative;
+	/* height: 180px; */
+	/* padding-left: 0; */
+}
+/* .toothBox{
+	width: 390px;
+	position:relative;
+} */
+.toothBox .toothMap{
+	/* border:1px solid green; */ 
+	overflow: hidden;
+	height: 226px;
+	box-shadow: 0px 0px 10px 2px #ddd;
+	border-radius: 9px;
+	padding-top: 86px;
+	position: relative;
+	background-color: white;
+}
+.toothMap .verticalLine{
+	display: block;
+	width:1px;
+	height:80px;
+	background-color: black;
+	position: absolute;
+	top: 70px;
+    left: 49.7%;
+}
+/* 更改牙位 */
+.toothMap .showToothMap{
+	display: block;
+	font-size: 14px;
+	line-height:14px;
+	color: #434343;
+	text-align:center;
+	margin-top: 45px;
+	margin: 45px auto 0px;
+}
+.toothBox ul{overflow: hidden;height:24px;}
+.toothBox li{visibility: hidden;float: left; width: 20px;text-align: center;cursor: pointer;}
+.toothBox .line{
+	/* position:absolute;
+	top:49%;
+	left:0;
+	right:0; */
+	height: 1px;
+	color:#888;
+	background: black;
+	width: 340px;
+    margin: 0 auto;
+}
+.toothBox .line .left{
+	/* position: absolute;
+	left:61%; 
+	top: 50%;
+	margin: -10px 0 0 -170px; */
+	font-size: 13px !important;
+}
+.toothBox .line .right{
+	/* position: absolute;
+	right: 70%;
+	top: 50%;
+	margin: -10px -170px 0 0; */
+	font-size: 13px !important;
+}
+.upYa,.downYa{
+	width: 320px;
+    margin: 0 auto;
+}
+.upYa li{
+	margin-bottom: 5px;
+}
+.downYa li{
+	margin-top: 5px;
+}
+.yaIcon{
+	display: none;
+}
+/* .toothBox>span{
+	position: absolute;
+	top: 0px;
+	left: 8%;
+	font-size: 14px;
+} */
+
+/*wl*/
+/* .toothBox li.current span.num{display:inline-block;width: 20px;height:20px; border-radius:50%;color: #FFFFFF;background: #ff6100;} */
+.toothBox ul li span.num{
+	display:inline-block; 
+	/*width:20px; height:20px;*/
+	width:15px; height:15px;
+	border-radius:50%; color:#333; background:transparent;
+	/*line-height:20px;*/ 
+	line-height:15px !important; 
+	font-size:12px !important;
+	text-align: center;
+	margin-top: 3px;
+}
+/*.toothBox li span.numle1{
+	background-color: red;
+}*/
+.toothBox li.current{
+	visibility: visible; 	
+}
+

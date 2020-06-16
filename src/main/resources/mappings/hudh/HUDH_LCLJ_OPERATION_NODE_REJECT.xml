@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_LCLJ_OPERATION_NODE_REJECT">
+	<resultMap type="com.hudh.lclj.entity.LcljOperateRejectRecord" id="operationNodeRejectMap">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="SEQ_ID"/>
+		<result column="createuser" jdbcType="VARCHAR" property="createuser"/>
+		<result column="createtime" jdbcType="VARCHAR" property="createtime"/>
+		<result column="nodeName" jdbcType="VARCHAR" property="nodeName"/>
+		<result column="nodeId" jdbcType="VARCHAR" property="nodeId"/>
+		<result column="organization" jdbcType="VARCHAR" property="organization"/>
+		<result column="orderNumber" jdbcType="VARCHAR" property="orderNumber"/>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		SEQ_ID, createuser, createtime, nodeName, nodeId, organization, orderNumber
+	</sql>
+	
+	<insert id="insertOperationNodeReject" parameterType="com.hudh.lclj.entity.LcljOperateRejectRecord">
+		insert into HUDH_LCLJ_OPERATION_NODE_REJECT 
+		(SEQ_ID, createuser, createtime, nodeName, nodeId, organization, orderNumber) 
+		values 
+		(#{SEQ_ID,jdbcType=VARCHAR},#{createuser,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR},
+		 #{nodeName,jdbcType=VARCHAR},#{nodeId,jdbcType=VARCHAR},#{organization,jdbcType=VARCHAR},
+		 #{orderNumber,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<select id="findOperationNodeRejectByOrderNumber" parameterType="java.util.Map" resultType="json">
+		<!-- select 
+	  	a.seq_id,
+		a.createuser,
+		a.createtime,
+		a.nodeName,
+		a.nodeId,
+		a.orderNumber,
+		per.USER_NAME
+		from HUDH_LCLJ_OPERATION_NODE_REJECT a
+		LEFT JOIN sys_person per ON per.SEQ_ID = a.createuser -->
+		select 
+	  	a.seq_id,
+		a.createuser,
+		a.createtime,
+		a.nodeName,
+		a.nodeId,
+		a.orderNumber,
+		per.USER_NAME,
+		per1.USER_NAME as createName
+		from HUDH_LCLJ_OPERATION_NODE_REJECT a
+		LEFT JOIN sys_person per ON per.SEQ_ID = a.createuser
+		LEFT JOIN HUDH_LCLJ_ORDERTRACK b ON b.order_number = a.ordernumber
+		LEFT JOIN sys_person per1 ON per1.SEQ_ID = b.creatorid
+		where 1=1
+		<if test="orderNumber != null and orderNumber != ''">
+			and orderNumber = #{orderNumber}
+		</if>
+	</select>
+</mapper>

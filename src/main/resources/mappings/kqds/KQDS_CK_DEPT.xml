@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_CK_DEPT">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsCkDept">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="DEPTNAME" jdbcType="VARCHAR" property="deptname" />
+		<result column="housecode" jdbcType="VARCHAR" property="housecode" />
+		<result column="sortno" jdbcType="INTEGER" property="sortno" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, DEPTNAME, housecode, sortno, organization, createuser, createtime
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_CK_DEPT
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_CK_DEPT
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsCkDept">
+		insert into KQDS_CK_DEPT (SEQ_ID, DEPTNAME, housecode,
+		sortno, organization, createuser,
+		createtime)
+		values (#{seqId,jdbcType=VARCHAR},
+		#{deptname,jdbcType=VARCHAR}, #{housecode,jdbcType=VARCHAR},
+		#{sortno,jdbcType=INTEGER}, #{organization,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR},
+		#{createtime,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsCkDept">
+		insert into KQDS_CK_DEPT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="deptname != null">
+				DEPTNAME,
+			</if>
+			<if test="housecode != null">
+				housecode,
+			</if>
+			<if test="sortno != null">
+				sortno,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="deptname != null">
+				#{deptname,jdbcType=VARCHAR},
+			</if>
+			<if test="housecode != null">
+				#{housecode,jdbcType=VARCHAR},
+			</if>
+			<if test="sortno != null">
+				#{sortno,jdbcType=INTEGER},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsCkDept">
+		update KQDS_CK_DEPT
+		<set>
+			<if test="deptname != null">
+				DEPTNAME = #{deptname,jdbcType=VARCHAR},
+			</if>
+			<if test="housecode != null">
+				housecode = #{housecode,jdbcType=VARCHAR},
+			</if>
+			<if test="sortno != null">
+				sortno = #{sortno,jdbcType=INTEGER},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsCkDept">
+		update KQDS_CK_DEPT
+		set DEPTNAME = #{deptname,jdbcType=VARCHAR},
+		housecode = #{housecode,jdbcType=VARCHAR},
+		sortno =
+		#{sortno,jdbcType=INTEGER},
+		organization = #{organization,jdbcType=VARCHAR},
+		createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR}
+		where SEQ_ID =
+		#{seqId,jdbcType=VARCHAR}
+	</update>
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_CK_DEPT
+	</sql>
+
+	<select id="selectCountByMap" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsCkDept">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectList" parameterType="map" resultType="json">
+		select
+		h.seq_id,
+		h.deptname,
+		h.sortno,
+		h.organization,
+		p.user_name as createuser,
+		h.createtime
+		from KQDS_CK_DEPT h
+		LEFT JOIN SYS_PERSON p on p.seq_id = h.createuser
+		where 1=1
+		<if test="deptname != null and deptname !='' ">
+			and h.deptname = #{deptname}
+		</if>
+		<if test="organization != null and organization !='' ">
+			and h.organization = #{organization}
+		</if>
+		order by h.sortno
+	</select>
+
+
+</mapper>

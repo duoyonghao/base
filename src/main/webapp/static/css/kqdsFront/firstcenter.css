@@ -1,0 +1,61 @@
+html{overflow: hidden;}
+body{position:relative;font-size: 12px;line-height: 21px;}
+#container{padding: 5px;overflow:auto;overflow-y: hidden;}
+/* .bannerWrap{position:relative;height: 100px;margin-bottom: 10px; background:url("../img/banner.png") no-repeat;} */
+/* .bannerWrap a.close{display:inline-block;position: absolute;right: 0;top:0;width: 26px;height: 26px; background:url("../img/close.png") no-repeat;opacity: 1;filter: Alpha(opacity=100);}
+.bannerWrap a.close:hover{background: url("../img/close_hover.png") no-repeat;} */
+#main{overflow: hidden;}
+#main .centerWrap,#main .lookInfoWrap{float: left;}
+#main .centerWrap{margin-right:10px;}
+/*鎺ュ緟涓績*/
+.centerWrap .columnWrap,.columnWrap{border:solid 1px #c0c0c0;background: #f5f5f5;}
+.centerWrap .centerWrap .columnWrap{margin-bottom: 15px;}
+.columnWrap .columnHd{padding:0 15px;border-bottom:solid 1px #0e7ec6;font-size:16px;color: #373737;font-family: "Microsoft YaHei";line-height:36px;}
+.columnWrap .columnHd .home-icon{margin-right:10px;vertical-align: -3px; *vertical-align: 0;}
+.centerWrap .columnWrap .columnBd{padding:4px;}
+.centerWrap .columnWrap .columnBd ul{overflow: hidden;margin-bottom:4px;}
+.centerWrap .columnWrap .columnBd ul li{float: left;width:14%;margin-left:2.6666%;height:26px; border-radius: 17px;
+    text-align:center;line-height:26px;color: #0d7ccd;font-size:12px;  font-family: "Microsoft YaHei";
+    cursor: pointer;-webkit-transition: all .3s; ransition: all .3s;}
+.centerWrap .columnWrap .columnBd ul li:first-child{margin-left: 0;}
+.centerWrap .columnWrap .columnBd ul li.current{color:#FFFFFF;background: #ff6100;}
+
+/*琛ㄦ牸*/
+.tableBox{border: solid 1px #0d7dc5;}
+.fixed-table-header{margin-right:0!important;border-bottom: none; color: #FFF;font-weight:normal;background: #00A6C0;}
+.table-striped > tbody > tr:nth-child(odd){background: #eef9fe;}
+.table-striped > tbody > tr{background: #FFF;}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{border-top: none;}
+.table-condensed > thead > tr > th, .table-condensed > tbody > tr > th, .table-condensed > tfoot > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > td{}/* padding: 0px 0px; */ /*璋冩暣bootstrap琛ㄦ牸鍐呯殑琛岄珮*/
+
+#table td span.time{display:inline-block;width: 120px;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+#table td span.name{display:inline-block;width: 80px;white-space: nowrap;overflow: hidden;text-overflow:ellipsis; }
+
+/*鍙充晶淇℃伅鏍忕洰*/
+.tabIframe{display: block;}
+.lookInfoWrap .columnWrap{position: relative;background: #FFFFFF;}
+.lookInfoWrap .columnHd{padding:0 5px 0 80px;overflow: hidden;}
+.lookInfoWrap .columnWrap .iconBox{float: left; margin-left: -70px;}
+.lookInfoWrap .columnWrap .iconBox > span{margin-right: 5px;vertical-align: -4px;*vertical-align: -1px;}
+.lookInfoWrap .columnWrap .menu{overflow: hidden;margin: 2px 0 0 0;}
+.lookInfoWrap .columnWrap .menu li{float: left;width:11.5%;margin-left:2.78%;height:26px; border-radius: 20px;
+    text-align:center;line-height:26px;color: #0d7ccd;font-size: 12px;  font-family: "Microsoft YaHei";
+    cursor: pointer;-webkit-transition: all .3s; transition: all .3s;}
+.lookInfoWrap .columnWrap .menu li.current{color:#FFFFFF;background: #ff6100;}
+.lookInfoWrap .columnBd{padding-left:80px;background: #FFFFFF;overflow: hidden;}
+.lookInfoWrap .columnBd .subSideBar{position: absolute;top:37px;left:0;bottom:0;width:80px;background: #f5f5f5;}
+.lookInfoWrap .columnBd .subSideBar li{height: 65px;padding-top:15px;text-align: center;color: #353535;}
+.lookInfoWrap .columnBd .subSideBar li:nth-child(2n-1){background: #fff;}
+.lookInfoWrap .columnBd .subSideBar li.hc-current{color: #FFFFFF;background: #ff6000;}
+.lookInfoWrap .columnBd .subSideBar li .hc-icon{display: block; margin: 0 auto 5px;}
+
+
+/*宸ヤ綔閲忚〃鏍� 锛屽崟鐙啓*/
+#gongzuol{border:solid 1px #c0c0c0;background: #f5f5f5;}
+#gongzuol{margin-bottom: 15px;}
+#gongzuol .columnHd{padding:0 15px;border-bottom:solid 1px #0e7ec6;font-size:16px;color: #373737;font-family: "Microsoft YaHei";line-height:36px;}
+
+
+
+
+

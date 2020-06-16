@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_INVOICE_DETAIL">
+	<resultMap id="InvoiceDetailMap" type="com.hudh.invoice.entity.InvoiceDetail">
+		<id column="seq_id" jdbcType="VARCHAR" property="seqId" />
+		<result column="duty_parayraph" jdbcType="VARCHAR" property="dutyParayraph" />
+		<result column="invoice_time" jdbcType="VARCHAR" property="invoiceTime" />
+		<result column="invoice_value" jdbcType="DECIMAL" property="invoiceValue" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="drawer" jdbcType="VARCHAR" property="drawer" />
+		<result column="taxpayer_number" jdbcType="VARCHAR" property="taxpayerNumber" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="invoice_detail" jdbcType="VARCHAR" property="invoiceDetail" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="updatetime" jdbcType="VARCHAR" property="updatetime" />
+		<result column="updateuser" jdbcType="VARCHAR" property="updateuser" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="dishonour" jdbcType="INTEGER" property="dishonour"/>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		seq_id,duty_parayraph,invoice_time,invoice_value,createtime,drawer,taxpayer_number,createuser,usercode,invoice_detail,organization,updatetime,updateuser,status,dishonour
+	</sql>
+	
+	<insert id="insertInvoiceDetail" parameterType="com.hudh.invoice.entity.InvoiceDetail">
+		insert into 
+		HUDH_INVOICE_DETAIL 
+		(seq_id,duty_parayraph,invoice_time,
+		invoice_value,createtime,drawer,
+		taxpayer_number,createuser,usercode,
+		invoice_detail,organization,status,dishonour)
+		values 
+		(#{seqId,jdbcType=VARCHAR}, 
+		#{dutyParayraph,jdbcType=VARCHAR},
+		#{invoiceTime,jdbcType=VARCHAR},
+		#{invoiceValue,jdbcType=DECIMAL},
+		#{createtime,jdbcType=VARCHAR},
+		#{drawer,jdbcType=VARCHAR},
+		#{taxpayerNumber,jdbcType=VARCHAR},
+		#{createuser,jdbcType=VARCHAR},
+		#{usercode,jdbcType=VARCHAR},
+		#{invoiceDetail,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR},
+		#{status,jdbcType=INTEGER},
+		#{dishonour,jdbcType=INTEGER})
+	</insert>
+	
+	<update id="updateInvoiceDetail" parameterType="com.hudh.invoice.entity.InvoiceDetail">
+		update HUDH_INVOICE_DETAIL 
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="dutyParayraph!=null">
+				duty_parayraph=#{dutyParayraph,jdbcType=VARCHAR},
+			</if>
+			<if test="invoiceTime!=null">
+				invoice_time=#{invoiceTime,jdbcType=VARCHAR},
+			</if>
+			<if test="invoiceValue!=null">
+				invoice_value=#{invoiceValue,jdbcType=DECIMAL},
+			</if>
+			<if test="drawer!=null">
+				drawer=#{drawer,jdbcType=VARCHAR},
+			</if>
+			<if test="taxpayerNumber!=null">
+				taxpayer_number=#{taxpayerNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="invoiceDetail!=null">
+				invoice_detail=#{invoiceDetail,jdbcType=VARCHAR},
+			</if>
+			<if test="organization!=null">
+				organization=#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="status!=null">
+				status=#{status,jdbcType=INTEGER},
+			</if>
+			<if test="updateuser!=null">
+				updateuser=#{updateuser,jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime!=null">
+				updatetime=#{updatetime,jdbcType=VARCHAR}
+			</if>
+		</trim>
+		where 
+		seq_id=#{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateDishonourInvoiceDetail" parameterType="com.hudh.invoice.entity.InvoiceDetail">
+		update HUDH_INVOICE_DETAIL 
+		set
+		<if test="dishonour!=null">
+		dishonour=#{dishonour,jdbcType=INTEGER}
+		</if>
+		where 
+		seq_id=#{seqId,jdbcType=VARCHAR}
+	</update>
+	<select id="selectInvoiceDetailByUsercode" parameterType="java.lang.String" resultType="json">
+		select 
+		seq_id,
+		duty_parayraph,
+		invoice_time,
+		invoice_value,
+		createtime,
+		drawer,
+		taxpayer_number,
+		createuser,
+		usercode,
+		invoice_detail,
+		organization,
+		updatetime,
+		updateuser,
+		status,
+		dishonour
+		from HUDH_INVOICE_DETAIL 
+		where
+		1=1 
+		and usercode=#{usercode,jdbcType=VARCHAR}
+		and status=0
+	</select>
+	<select id="selectInvoiceDetailValueByUsercode" parameterType="java.lang.String" resultType="json">
+		select 
+		isnull(sum(invoice_value),0) as invoiceValue
+		from HUDH_INVOICE_DETAIL 
+		where
+		1=1 
+		and usercode=#{usercode,jdbcType=VARCHAR}
+		and status=0
+		and dishonour!=2
+	</select>
+	<select id="selectInvoiceDetailValueByUsercodeAndDishonour" parameterType="java.lang.String" resultType="json">
+		select 
+		isnull(sum(invoice_value),0) as dishonourInvoiceValue
+		from HUDH_INVOICE_DETAIL 
+		where
+		1=1 
+		and usercode=#{usercode,jdbcType=VARCHAR}
+		and status=0
+		and dishonour=1
+	</select>
+	<select id="findInvoiceDetailByuserCodeAndstatus" parameterType="map" resultType="json">
+		SELECT * FROM HUDH_INVOICE_DETAIL WHERE usercode=#{usercode,jdbcType=VARCHAR} AND dishonour = #{dishonour}
+	</select>
+	
+	<update id="updateDishonourInvoiceDetailAll" parameterType="com.hudh.invoice.entity.InvoiceDetail">
+	UPDATE HUDH_INVOICE_DETAIL SET dishonour = 1 , updatetime = #{updatetime}, updateuser = #{updateuser} WHERE usercode = #{usercode}
+	</update>
+	
+	<select id="selectInvoiceDetailByTime" parameterType="map" resultType="json">
+	SELECT 
+	invoice.seq_id,
+	invoice.duty_parayraph,
+	invoice.invoice_time,
+	invoice.invoice_value,
+	invoice.createtime,
+	invoice.drawer,
+	invoice.taxpayer_number,
+	invoice.usercode,
+	invoice.invoice_detail,
+	invoice.organization,
+	invoice.updatetime,
+	invoice.status,
+	invoice.dishonour,
+	person1.USER_NAME AS createuser,
+	person2.USER_NAME AS updateuser
+	FROM 
+	HUDH_INVOICE_DETAIL invoice
+	LEFT JOIN sys_person person1 on invoice.createuser=person1.SEQ_ID
+	LEFT JOIN sys_person person2 on invoice.updateuser=person2.SEQ_ID
+	WHERE 1=1
+	and status=0
+	<if test="invoicestarttime != null and invoicestarttime !='' ">
+	and invoice.invoice_time <![CDATA[ >= ]]> #{invoicestarttime}
+	</if>
+	<if test="invoiceendtime != null and invoiceendtime !='' ">
+	and invoice.invoice_time <![CDATA[ <= ]]> #{invoiceendtime}
+	</if>
+	<if test="invoicestartvalue != null and invoicestartvalue !='' ">
+	and invoice.invoice_value <![CDATA[ >= ]]> #{invoicestartvalue}
+	</if>
+	<if test="invoiceendvalue != null and invoiceendvalue !='' ">
+	and invoice.invoice_value <![CDATA[ <= ]]> #{invoiceendvalue}
+	</if>
+	<if test="organization != null and organization !='' ">
+	and invoice.organization = #{organization}
+	</if>
+	<if test="searchValue != null and searchValue !='' ">
+	and (invoice.drawer like '%' + #{searchValue} + '%'
+			or invoice.usercode like '%' + #{searchValue} + '%'
+			or invoice.taxpayer_number like '%' + #{searchValue} + '%'
+			or invoice.invoice_detail like '%' + #{searchValue} + '%'
+			or invoice.duty_parayraph like '%' + #{searchValue} + '%'
+		)
+	</if>
+	<if test="sortName != null and sortName != ''">
+	ORDER BY ${sortName} ${sortOrder}
+	</if>
+	<if test="sortName == null">
+	ORDER BY invoice.invoice_time desc
+	</if>
+	</select>
+	
+	<select id="selectInvoiceValueByTime" parameterType="map" resultType="json">
+	SELECT 
+	dishonour,
+	SUM(invoice_value) AS invoicevalue
+	FROM 
+	HUDH_INVOICE_DETAIL
+	WHERE 1=1
+	and status=0
+	<if test="invoicestarttime != null and invoicestarttime !='' ">
+	and invoice_time <![CDATA[ >= ]]> #{invoicestarttime}
+	</if>
+	<if test="invoiceendtime != null and invoiceendtime !='' ">
+	and invoice_time <![CDATA[ <= ]]> #{invoiceendtime}
+	</if>
+	<if test="invoicestartvalue != null and invoicestartvalue !='' ">
+	and invoice_value <![CDATA[ >= ]]> #{invoicestartvalue}
+	</if>
+	<if test="invoiceendvalue != null and invoiceendvalue !='' ">
+	and invoice_value <![CDATA[ <= ]]> #{invoiceendvalue}
+	</if>
+	<if test="organization != null and organization !='' ">
+	and organization = #{organization}
+	</if>
+	<if test="searchValue != null and searchValue !='' ">
+	and (drawer like '%' + #{searchValue} + '%'
+			or usercode like '%' + #{searchValue} + '%'
+			or taxpayer_number like '%' + #{searchValue} + '%'
+			or invoice_detail like '%' + #{searchValue} + '%'
+			or duty_parayraph like '%' + #{searchValue} + '%'
+		)
+	</if>
+	GROUP BY dishonour
+	</select>
+</mapper>

@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_CK_GOODS_OUT">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsCkGoodsOut">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="supplier" jdbcType="VARCHAR" property="supplier" />
+		<result column="outhouse" jdbcType="VARCHAR" property="outhouse" />
+		<result column="outcode" jdbcType="VARCHAR" property="outcode" />
+		<result column="outremark" jdbcType="VARCHAR" property="outremark" />
+		<result column="zhaiyao" jdbcType="VARCHAR" property="zhaiyao" />
+		<result column="auditor" jdbcType="VARCHAR" property="auditor" />
+		<result column="shtime" jdbcType="VARCHAR" property="shtime" />
+		<result column="ckr" jdbcType="VARCHAR" property="ckr" />
+		<result column="cktime" jdbcType="VARCHAR" property="cktime" />
+		<result column="outstatus" jdbcType="INTEGER" property="outstatus" />
+		<result column="outtype" jdbcType="INTEGER" property="outtype" />
+		<result column="llr" jdbcType="VARCHAR" property="llr" />
+		<result column="sqdeptid" jdbcType="VARCHAR" property="sqdeptid" />
+		<result column="sqdoctor" jdbcType="VARCHAR" property="sqdoctor" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="ksllCollorId" jdbcType="VARCHAR" property="ksllCollorId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, supplier, outhouse, outcode, outremark, zhaiyao, auditor, shtime, ckr, cktime,
+		outstatus, outtype, llr, sqdeptid, sqdoctor, organization, createuser, createtime, ksllCollorId
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_CK_GOODS_OUT
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_CK_GOODS_OUT
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsCkGoodsOut">
+		insert into KQDS_CK_GOODS_OUT (SEQ_ID, supplier, outhouse,
+		outcode, outremark, zhaiyao,
+		auditor, shtime, ckr,
+		cktime, outstatus, outtype,
+		llr, sqdeptid, sqdoctor,
+		organization, createuser, createtime, ksllCollorId
+		)
+		values (#{seqId,jdbcType=VARCHAR}, #{supplier,jdbcType=VARCHAR}, #{outhouse,jdbcType=VARCHAR},
+		#{outcode,jdbcType=VARCHAR}, #{outremark,jdbcType=VARCHAR}, #{zhaiyao,jdbcType=VARCHAR},
+		#{auditor,jdbcType=VARCHAR}, #{shtime,jdbcType=VARCHAR}, #{ckr,jdbcType=VARCHAR},
+		#{cktime,jdbcType=VARCHAR}, #{outstatus,jdbcType=INTEGER}, #{outtype,jdbcType=INTEGER},
+		#{llr,jdbcType=VARCHAR}, #{sqdeptid,jdbcType=VARCHAR}, #{sqdoctor,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, 
+		#{ksllCollorId,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsCkGoodsOut">
+		insert into KQDS_CK_GOODS_OUT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="supplier != null">
+				supplier,
+			</if>
+			<if test="outhouse != null">
+				outhouse,
+			</if>
+			<if test="outcode != null">
+				outcode,
+			</if>
+			<if test="outremark != null">
+				outremark,
+			</if>
+			<if test="zhaiyao != null">
+				zhaiyao,
+			</if>
+			<if test="auditor != null">
+				auditor,
+			</if>
+			<if test="shtime != null">
+				shtime,
+			</if>
+			<if test="ckr != null">
+				ckr,
+			</if>
+			<if test="cktime != null">
+				cktime,
+			</if>
+			<if test="outstatus != null">
+				outstatus,
+			</if>
+			<if test="outtype != null">
+				outtype,
+			</if>
+			<if test="llr != null">
+				llr,
+			</if>
+			<if test="sqdeptid != null">
+				sqdeptid,
+			</if>
+			<if test="sqdoctor != null">
+				sqdoctor,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="isksll != null">
+				isksll,
+			</if>
+			<if test="ksllCollorId != null">
+				ksllCollorId,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="supplier != null">
+				#{supplier,jdbcType=VARCHAR},
+			</if>
+			<if test="outhouse != null">
+				#{outhouse,jdbcType=VARCHAR},
+			</if>
+			<if test="outcode != null">
+				#{outcode,jdbcType=VARCHAR},
+			</if>
+			<if test="outremark != null">
+				#{outremark,jdbcType=VARCHAR},
+			</if>
+			<if test="zhaiyao != null">
+				#{zhaiyao,jdbcType=VARCHAR},
+			</if>
+			<if test="auditor != null">
+				#{auditor,jdbcType=VARCHAR},
+			</if>
+			<if test="shtime != null">
+				#{shtime,jdbcType=VARCHAR},
+			</if>
+			<if test="ckr != null">
+				#{ckr,jdbcType=VARCHAR},
+			</if>
+			<if test="cktime != null">
+				#{cktime,jdbcType=VARCHAR},
+			</if>
+			<if test="outstatus != null">
+				#{outstatus,jdbcType=INTEGER},
+			</if>
+			<if test="outtype != null">
+				#{outtype,jdbcType=INTEGER},
+			</if>
+			<if test="llr != null">
+				#{llr,jdbcType=VARCHAR},
+			</if>
+			<if test="sqdeptid != null">
+				#{sqdeptid,jdbcType=VARCHAR},
+			</if>
+			<if test="sqdoctor != null">
+				#{sqdoctor,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="isksll != null">
+				#{isksll,jdbcType=INTEGER},
+			</if>
+			<if test="ksllCollorId != null">
+				#{ksllCollorId,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsCkGoodsOut">
+		update KQDS_CK_GOODS_OUT
+		<set>
+			<if test="supplier != null">
+				supplier = #{supplier,jdbcType=VARCHAR},
+			</if>
+			<if test="outhouse != null">
+				outhouse = #{outhouse,jdbcType=VARCHAR},
+			</if>
+			<if test="outcode != null">
+				outcode = #{outcode,jdbcType=VARCHAR},
+			</if>
+			<if test="outremark != null">
+				outremark = #{outremark,jdbcType=VARCHAR},
+			</if>
+			<if test="zhaiyao != null">
+				zhaiyao = #{zhaiyao,jdbcType=VARCHAR},
+			</if>
+			<if test="auditor != null">
+				auditor = #{auditor,jdbcType=VARCHAR},
+			</if>
+			<if test="shtime != null">
+				shtime = #{shtime,jdbcType=VARCHAR},
+			</if>
+			<if test="ckr != null">
+				ckr = #{ckr,jdbcType=VARCHAR},
+			</if>
+			<if test="cktime != null">
+				cktime = #{cktime,jdbcType=VARCHAR},
+			</if>
+			<if test="outstatus != null">
+				outstatus = #{outstatus,jdbcType=INTEGER},
+			</if>
+			<if test="outtype != null">
+				outtype = #{outtype,jdbcType=INTEGER},
+			</if>
+			<if test="llr != null">
+				llr = #{llr,jdbcType=VARCHAR},
+			</if>
+			<if test="sqdeptid != null">
+				sqdeptid = #{sqdeptid,jdbcType=VARCHAR},
+			</if>
+			<if test="sqdoctor != null">
+				sqdoctor = #{sqdoctor,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsCkGoodsOut">
+		update KQDS_CK_GOODS_OUT
+		set supplier = #{supplier,jdbcType=VARCHAR},
+		outhouse = #{outhouse,jdbcType=VARCHAR},
+		outcode =
+		#{outcode,jdbcType=VARCHAR},
+		outremark = #{outremark,jdbcType=VARCHAR},
+		zhaiyao = #{zhaiyao,jdbcType=VARCHAR},
+		auditor = #{auditor,jdbcType=VARCHAR},
+		shtime =
+		#{shtime,jdbcType=VARCHAR},
+		ckr = #{ckr,jdbcType=VARCHAR},
+		cktime = #{cktime,jdbcType=VARCHAR},
+		outstatus = #{outstatus,jdbcType=INTEGER},
+		outtype = #{outtype,jdbcType=INTEGER},
+		llr =
+		#{llr,jdbcType=VARCHAR},
+		sqdeptid = #{sqdeptid,jdbcType=VARCHAR},
+		sqdoctor = #{sqdoctor,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR},
+		createuser =
+		#{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_CK_GOODS_OUT
+	</sql>
+
+	<select id="selectCountByMap" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsCkGoodsOut">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<!--期初出库数量 -->
+	<select id="ckNumsWithOneTime" parameterType="json" resultType="json">
+		select sum(goutd.outnum) rknums from KQDS_CK_GOODS_OUT_DETAIL goutd
+		left join KQDS_CK_GOODS_OUT gout on gout.outcode = goutd.outcode
+		where 1=1
+		and goutd.goodsuuid = #{goodsuuid}
+		<if test="sshouse != null and sshouse != ''">
+			and gout.outhouse = #{sshouse}
+		</if>
+		<if test="starttime != null and starttime != ''">
+			and goutd.createtime <![CDATA[ < ]]>
+			#{starttime}
+		</if>
+		and goutd.organization = #{organization}
+	</select>
+	<!--期初出库金额 -->
+	<select id="ckMoneyWithOneTime" parameterType="json" resultType="json">
+		select sum(goutd.ckmoney) ckmoney from KQDS_CK_GOODS_OUT_DETAIL goutd
+		left join KQDS_CK_GOODS_OUT gout on gout.outcode = goutd.outcode
+		where 1=1
+		and goutd.goodsuuid = #{goodsuuid}
+		<if test="sshouse != null and sshouse != ''">
+			and gout.outhouse = #{sshouse}
+		</if>
+		<if test="starttime != null and starttime != ''">
+			and goutd.createtime <![CDATA[ < ]]>
+			#{starttime}
+		</if>
+		and goutd.organization = #{organization}
+	</select>
+	<!--期内出库数量 -->
+	<select id="cknums" parameterType="json" resultType="json">
+		select sum(goutd.outnum) rknums from KQDS_CK_GOODS_OUT_DETAIL goutd
+		left join KQDS_CK_GOODS_OUT gout on gout.outcode = goutd.outcode
+		where 1=1
+		and goutd.goodsuuid = #{goodsuuid}
+		<if test="sshouse != null and sshouse != ''">
+			and gout.outhouse = #{sshouse}
+		</if>
+		<if test="starttime != null and starttime != ''">
+			and goutd.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime != ''">
+			and goutd.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		and goutd.organization = #{organization}
+	</select>
+	<!--期内出库金额 -->
+	<select id="ckmoney" parameterType="json" resultType="json">
+		select sum(goutd.ckmoney) ckmoney from KQDS_CK_GOODS_OUT_DETAIL goutd
+		left join KQDS_CK_GOODS_OUT gout on gout.outcode = goutd.outcode
+		where 1=1
+		and goutd.goodsuuid = #{goodsuuid}
+		<if test="sshouse != null and sshouse != ''">
+			and gout.outhouse = #{sshouse}
+		</if>
+		<if test="starttime != null and starttime != ''">
+			and goutd.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime != ''">
+			and goutd.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		and goutd.organization = #{organization}
+	</select>
+	<select id="getOneByDetailid" parameterType="map" resultType="json">
+		select goodsuuid,SUM(d.outnum) as nums,
+		<!-- sum(d.ckmoney) as rkmoney  -->
+		convert(varchar,convert(decimal(18,3),sum(d.ckmoney)) ) as rkmoney
+		from KQDS_CK_GOODS_OUT_DETAIL d
+		LEFT JOIN KQDS_CK_GOODS_OUT ckin on ckin.outcode = d.outcode
+		where 1=1 
+		<if test="sshouse != null and sshouse !='' ">
+			and ckin.outhouse= #{sshouse}
+		</if>
+		<if test="jztime != null and jztime != '' ">
+		and ckin.shtime <![CDATA[ <= ]]> #{jztime}
+		</if>
+		<if test="qstime != null and qstime != '' ">
+		and ckin.shtime <![CDATA[ >= ]]> #{qstime}
+		</if>
+		GROUP BY d.goodsuuid HAVING d.goodsuuid=#{goodsdetailid}
+	</select>
+	<!--入库查询 -->
+	<select id="inSearchList" parameterType="map" resultType="json">
+		select
+		gout.seq_id,
+		gout.outcode,
+		gout.outtype,
+		gout.outtype as outtypecode,
+		gout.sqdeptid as sqdept,
+		dp.deptname as sqdeptid,
+		p1.user_name as llr,
+		gout.llr as llrid,
+		p2.user_name as
+		sqdoctor,
+		gout.sqdoctor as sqdoctorid,
+		gys.suppliername as suppliername,
+		gout.supplier,
+		ghouse.housename as housename,
+		gout.outhouse,
+		gout.outremark,
+		gout.zhaiyao,
+		gout.cktime,
+		p3.user_name as
+		createuser,
+		gout.createtime,
+		gout.isksll
+		from KQDS_Ck_Goods_Out gout
+		LEFT JOIN KQDS_CK_HOUSE ghouse on ghouse.seq_id = gout.outhouse
+		LEFT JOIN KQDS_CK_SUPPLIER gys on gys.seq_id =
+		gout.supplier
+		LEFT JOIN KQDS_CK_DEPT dp on dp.seq_id = gout.sqdeptid
+		LEFT JOIN SYS_PERSON p1 on p1.seq_id = gout.llr
+		LEFT JOIN SYS_PERSON p2 on p2.seq_id = gout.sqdoctor
+		LEFT JOIN
+		SYS_PERSON p3 on p3.seq_id = gout.createuser
+		where 1=1
+		<if test="starttime != null and starttime !='' ">
+			and gout.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and gout.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="outtype != null and outtype !='' ">
+			and gout.outtype = #{outtype}
+		</if>
+		<if test="supplier != null and supplier !='' ">
+			and gout.supplier = #{supplier}
+		</if>
+		<if test="outhouse != null and outhouse !='' ">
+			and gout.outhouse = #{outhouse}
+		</if>
+		<if test="organization != null and organization !='' ">
+			and gout.organization = #{organization}
+		</if>
+		<if test="sqdeptid != null and sqdeptid !='' ">
+			and gout.sqdeptid = #{sqdeptid}
+		</if>
+		<if test="llr != null and llr !='' ">
+			and gout.llr = #{llr}
+		</if>
+		<if test="sqdoctor != null and sqdoctor !='' ">
+			and gout.sqdoctor = #{sqdoctor}
+		</if>
+		<if test="type != null and type !='' ">
+			and gout.type = #{type}
+		</if>
+		<if test="outcode != null and outcode !='' ">
+			and gout.outcode like '%' + #{outcode} + '%'
+		</if>
+		order by gout.createtime desc
+	</select>
+	<select id="countBySupplier" parameterType="json" resultType="int">
+		select count(1) from KQDS_CK_GOODS_OUT
+		where supplier =#{supplier}
+		and organization = #{organization}
+	</select>
+	
+	<!-- 添加科室领料出库禁止多人出库同一单据校验  syp 2019-8-31 start -->
+	<select id="findGoodsOutByOutcode" parameterType="String" resultType="json">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		and  ksllCollorId = #{ksllCollorId}
+	</select>
+</mapper>

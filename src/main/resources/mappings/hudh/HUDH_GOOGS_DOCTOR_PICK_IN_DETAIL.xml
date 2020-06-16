@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_GOOGS_DOCTOR_PICK_IN_DETAIL" >
+  <resultMap id="BaseResultMap" type="com.hudh.doctorpick.entity.GoodsDoctorPickInDetail" >
+    <id column="SEQ_ID" property="seqId" jdbcType="VARCHAR" />
+    <result column="goodsname" property="goodsname" jdbcType="VARCHAR" />
+    <result column="goodscode" property="goodscode" jdbcType="VARCHAR" />
+    <result column="housename" property="housename" jdbcType="VARCHAR" />
+    <result column="deptpartname" property="deptpartname" jdbcType="VARCHAR" />
+    <result column="goodsunit" property="goodsunit" jdbcType="VARCHAR" />
+    <result column="nums" property="nums" jdbcType="VARCHAR" />
+    <result column="validity" property="validity" jdbcType="VARCHAR" />
+    <result column="goodsnorms" property="goodsnorms" jdbcType="VARCHAR" />
+    <result column="organization" property="organization" jdbcType="VARCHAR" />
+    <result column="createuser" property="createuser" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="VARCHAR" />
+    <result column="company" property="company" jdbcType="VARCHAR" />
+    <result column="nuitPrice" property="nuitPrice" jdbcType="DECIMAL" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="createdate" property="createdate" jdbcType="VARCHAR" />
+    <result column="batchnum" property="batchnum" jdbcType="VARCHAR" />
+    <result column="regisnum" property="regisnum" jdbcType="VARCHAR" />
+    <result column="productionPlace" property="productionPlace" jdbcType="VARCHAR" />
+    <result column="quantity" property="quantity" jdbcType="VARCHAR" />
+    <result column="incode" property="incode" jdbcType="VARCHAR" />
+    <result column="userdocument" property="userdocument" jdbcType="VARCHAR" />
+    <result column="goodsuuid" property="goodsuuid" jdbcType="VARCHAR" />
+    <result column="phids" property="phids" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SEQ_ID, goodsname, goodscode, housename, deptpartname, goodsunit, nums, validity, goodsnorms, 
+    organization, createuser, createtime, company, nuitPrice, quantity, amount, remark, createdate, 
+    batchnum, regisnum, productionPlace, incode, userdocument, goodsuuid,phids
+  </sql>
+  <select id="findDoctorPickInDetailByIncode" resultType="json" parameterType="map" >
+    SELECT
+	a.amount,
+	a.batchnum,
+	a.company,
+	a.createdate,
+	a.createtime,
+	a.createuser,
+	a.goodscode,
+	a.goodsname,
+	a.goodsnorms,
+	a.goodsunit,
+	a.deptpartname,
+	a.housename,
+	a.incode,
+	a.nuitPrice,
+	a.nums,
+	a.organization,
+	a.productionPlace,
+	a.quantity,
+	a.regisnum,
+	a.remark,
+	a.SEQ_ID,
+	a.validity,
+	a.userdocument,
+	a.goodsuuid,
+	b.USER_NAME
+	FROM HUDH_GOOGS_DOCTOR_PICK_IN_DETAIL a
+	LEFT JOIN SYS_PERSON b ON a.createuser = b.seq_id
+    where 1=1 <!-- incode = #{incode,jdbcType=VARCHAR} -->
+    <if test="incode != null and incode !='' ">
+    	and a.incode = #{incode,jdbcType=VARCHAR}
+    </if>
+    <if test="querytype != null and querytype !='' ">
+		and a.createuser in (${querytype})
+	</if> 
+  </select>
+  <select id="findDoctorPickInDetailBySeqId" parameterType="String" resultType="com.hudh.doctorpick.entity.GoodsDoctorPickInDetail">
+  	select 
+    <include refid="Base_Column_List" />
+    from HUDH_GOOGS_DOCTOR_PICK_IN_DETAIL
+    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </select>
+  <select id="findDoctorPickInDetailById" parameterType="String" resultType="json">
+  	SELECT
+	a.amount,
+	a.batchnum,
+	a.company,
+	a.createdate,
+	a.createtime,
+	a.createuser,
+	a.goodscode,
+	a.goodsname,
+	a.goodsnorms,
+	a.goodsunit,
+	a.deptpartname,
+	a.incode,
+	a.nuitPrice,
+	a.nums,
+	a.organization,
+	a.productionPlace,
+	a.quantity,
+	a.regisnum,
+	a.remark,
+	a.SEQ_ID,
+	a.validity,
+	a.userdocument,
+	a.goodsuuid,
+	b.USER_NAME,
+  	c.house,
+	c.deptpart,
+	d.DEPTNAME,
+	e.housename,
+	a.phids
+	FROM HUDH_GOOGS_DOCTOR_PICK_IN_DETAIL a
+	LEFT JOIN SYS_PERSON b ON a.createuser = b.seq_id
+	LEFT JOIN HUDH_KSLL_GOODS c ON a.goodsuuid=c.id
+	LEFT JOIN KQDS_CK_DEPT d ON d.SEQ_ID=c.deptpart
+	LEFT JOIN KQDS_CK_HOUSE e ON e.SEQ_ID=c.house
+    where a.SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </select>
+  <select id="findDoctorPickInDetailByGoodsuuid" resultType="com.hudh.doctorpick.entity.GoodsDoctorPickInDetail">
+  	select 
+    <include refid="Base_Column_List" />
+    from HUDH_GOOGS_DOCTOR_PICK_IN_DETAIL
+    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteDoctorPickInDetailBySeqId" parameterType="java.lang.String" >
+    delete from HUDH_GOOGS_DOCTOR_PICK_IN_DETAIL
+    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="batchSaveInDetail" parameterType="java.util.List" >
+    insert into HUDH_GOOGS_DOCTOR_PICK_IN_DETAIL 
+    (SEQ_ID, goodsname, goodscode, 
+      housename, deptpartname, goodsunit, 
+      nums, validity, goodsnorms, 
+      organization, createuser, createtime, company, nuitPrice, quantity, amount, remark, createdate,
+       batchnum, regisnum, productionPlace, incode, userdocument, goodsuuid,phids
+     )
+    values 
+    (#{seqId,jdbcType=VARCHAR}, #{goodsname,jdbcType=VARCHAR}, #{goodscode,jdbcType=VARCHAR}, 
+      #{housename,jdbcType=VARCHAR}, #{deptpartname,jdbcType=VARCHAR}, #{goodsunit,jdbcType=VARCHAR}, 
+      #{nums,jdbcType=VARCHAR}, #{validity,jdbcType=VARCHAR}, #{goodsnorms,jdbcType=VARCHAR}, 
+      #{organization,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}
+      , #{company,jdbcType=VARCHAR}, #{nuitPrice,jdbcType=DECIMAL}, #{quantity,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}
+      , #{remark,jdbcType=VARCHAR}, #{createdate,jdbcType=VARCHAR}, #{batchnum,jdbcType=VARCHAR}, #{regisnum,jdbcType=VARCHAR}
+      , #{productionPlace,jdbcType=VARCHAR}, #{incode,jdbcType=VARCHAR}, #{userdocument,jdbcType=VARCHAR}
+      , #{goodsuuid,jdbcType=VARCHAR},#{phids,jdbcType=VARCHAR}
+     )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hudh.doctorpick.entity.GoodsDoctorPickInDetail" >
+    insert into HUDH_GOOGS_DOCTOR_PICK_IN_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="seqId != null" >
+        SEQ_ID,
+      </if>
+      <if test="goodsname != null" >
+        goodsname,
+      </if>
+      <if test="goodscode != null" >
+        goodscode,
+      </if>
+      <if test="housename != null" >
+        housename,
+      </if>
+      <if test="deptpartname != null" >
+        deptpartname,
+      </if>
+      <if test="goodsunit != null" >
+        goodsunit,
+      </if>
+      <if test="nums != null" >
+        nums,
+      </if>
+      <if test="validity != null" >
+        validity,
+      </if>
+      <if test="goodsnorms != null" >
+        goodsnorms,
+      </if>
+      <if test="organization != null" >
+        organization,
+      </if>
+      <if test="createuser != null" >
+        createuser,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="company != null" >
+        company,
+      </if>
+      <if test="nuitPrice != null" >
+        nuitPrice,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createdate != null" >
+        createdate,
+      </if>
+      <if test="batchnum != null" >
+        batchnum,
+      </if>
+      <if test="regisnum != null" >
+        regisnum,
+      </if>
+      <if test="productionPlace != null" >
+        productionPlace,
+      </if>
+      <if test="incode != null" >
+        incode,
+      </if>
+      <if test="userdocument != null" >
+        userdocument,
+      </if>
+      <if test="goodsuuid != null" >
+        goodsuuid,
+      </if>
+      <if test="phids != null" >
+        phids,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="seqId != null" >
+        #{seqId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsname != null" >
+        #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodscode != null" >
+        #{goodscode,jdbcType=VARCHAR},
+      </if>
+      <if test="housename != null" >
+        #{housename,jdbcType=VARCHAR},
+      </if>
+      <if test="deptpartname != null" >
+        #{deptpartname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsunit != null" >
+        #{goodsunit,jdbcType=VARCHAR},
+      </if>
+      <if test="nums != null" >
+        #{nums,jdbcType=VARCHAR},
+      </if>
+      <if test="validity != null" >
+        #{validity,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsnorms != null" >
+        #{goodsnorms,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null" >
+        #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="nuitPrice != null" >
+        #{nuitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=VARCHAR},
+      </if>
+      <if test="batchnum != null" >
+        #{batchnum,jdbcType=VARCHAR},
+      </if>
+      <if test="regisnum != null" >
+        #{regisnum,jdbcType=VARCHAR},
+      </if>
+      <if test="productionPlace != null" >
+        #{productionPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="incode != null" >
+        #{incode,jdbcType=VARCHAR},
+      </if>
+      <if test="userdocument != null" >
+        #{userdocument,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsuuid != null" >
+        #{goodsuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="phids != null" >
+        #{phids,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateDoctorPickInDetailByGoodsuuid" parameterType="com.hudh.doctorpick.entity.GoodsDoctorPickInDetail" >
+    update HUDH_GOOGS_DOCTOR_PICK_IN_DETAIL
+    <set >
+      <if test="goodsname != null" >
+        goodsname = #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodscode != null" >
+        goodscode = #{goodscode,jdbcType=VARCHAR},
+      </if>
+      <if test="housename != null" >
+        housename = #{housename,jdbcType=VARCHAR},
+      </if>
+      <if test="deptpartname != null" >
+        deptpartname = #{deptpartname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsunit != null" >
+        goodsunit = #{goodsunit,jdbcType=VARCHAR},
+      </if>
+      <if test="nums != null" >
+        nums = #{nums,jdbcType=VARCHAR},
+      </if>
+      <if test="validity != null" >
+        validity = #{validity,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsnorms != null" >
+        goodsnorms = #{goodsnorms,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null" >
+        organization = #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        createuser = #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="nuitPrice != null" >
+        nuitPrice = #{nuitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=VARCHAR},
+      </if>
+      <if test="batchnum != null" >
+        batchnum = #{batchnum,jdbcType=VARCHAR},
+      </if>
+      <if test="regisnum != null" >
+        regisnum = #{regisnum,jdbcType=VARCHAR},
+      </if>
+      <if test="productionPlace != null" >
+        productionPlace = #{productionPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=VARCHAR},
+      </if>
+      <if test="incode != null" >
+        incode = #{incode,jdbcType=VARCHAR},
+      </if>
+      <if test="userdocument != null" >
+        userdocument = #{userdocument,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsuuid != null" >
+        goodsuuid = #{goodsuuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateGoodsDoctorPickInDetail" parameterType="com.hudh.doctorpick.entity.GoodsDoctorPickInDetail" >
+    update HUDH_GOOGS_DOCTOR_PICK_IN_DETAIL
+    set goodsname = #{goodsname,jdbcType=VARCHAR},
+      goodscode = #{goodscode,jdbcType=VARCHAR},
+      housename = #{housename,jdbcType=VARCHAR},
+      deptpartname = #{deptpartname,jdbcType=VARCHAR},
+      goodsunit = #{goodsunit,jdbcType=VARCHAR},
+      nums = #{nums,jdbcType=VARCHAR},
+      validity = #{validity,jdbcType=VARCHAR},
+      goodsnorms = #{goodsnorms,jdbcType=VARCHAR},
+      organization = #{organization,jdbcType=VARCHAR},
+      createuser = #{createuser,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=VARCHAR}
+      , #{company,jdbcType=VARCHAR}, #{nuitPrice,jdbcType=DECIMAL}, #{quantity,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}
+      , #{remark,jdbcType=VARCHAR}, #{createdate,jdbcType=VARCHAR}, #{batchnum,jdbcType=VARCHAR}, #{regisnum,jdbcType=VARCHAR}
+      , #{productionPlace,jdbcType=VARCHAR}, #{incode,jdbcType=VARCHAR}, #{userdocument,jdbcType=VARCHAR}, #{goodsuuid,jdbcType=VARCHAR}
+    where goodsuuid = #{goodsuuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

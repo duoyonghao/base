@@ -1,0 +1,184 @@
+#loginB #loginB_title{
+	width: 970px;
+	height: 70px;
+	margin: 40px auto 22px;
+	background-color: #eeeeee;
+}
+#loginB #loginB_title>img{
+	display: block;
+	width: 153px;
+	margin: 14px 21px 0px 26px;
+	float: left;
+}
+#loginB #loginB_title>p{
+	display: block;
+	height: 44px;
+	float: left;
+	font-size: 18px;
+	line-height: 24px;
+	font-weight: bold;
+	color: #818181;
+	margin-top: 14px;
+	padding-left: 15px;
+	border-left: 2px solid #818181;
+	padding-top: 5px;
+	letter-spacing: 5px;
+}
+#loginB #loginB_title>p>span{
+	display: block;
+	font-size: 12px;
+	line-height: 12px;
+	font-weight: normal;
+	letter-spacing: 0px;
+}
+#loginB #loginB_title>.register_btn{
+	display: block;
+	float: right;
+	color: #818181;
+	font-size: 18px;
+	line-height: 70px;
+	margin-right: 30px;
+	text-decoration: none;
+}
+#loginB #loginB_banner{
+	width: 100%;
+	height: 600px;
+	background-color: #eeeeee;
+}
+#loginB #loginB_banner>.banner_continer{
+	width: 970px;
+	height: 100%;
+	margin: 0 auto;
+	background-size: 100% 100%;
+	transition: 0.6s;
+	overflow: hidden;
+}
+#loginB #loginB_banner>.banner_continer>#loginForm{
+	width: 310px;
+	height: 297px;
+	background-color: rgba(255,255,255,0.5);
+	margin: 111px 0px 0px 617px;
+	border-radius: 5px;
+}
+#loginB #loginB_banner>.banner_continer>#loginForm>#form_title{
+	height: 50px;
+	background-color: #2db1c6;
+	position: relative;
+	border-radius: 5px;
+	overflow: hidden;
+}
+#loginB #loginB_banner>.banner_continer>#loginForm>#form_title>hr{
+	width: 265px;
+	border: 1px solid #7d7c7c;
+	margin: 24px auto 0px;
+}
+#loginB #loginB_banner>.banner_continer>#loginForm>#form_title>span{
+	width: 106px;
+	text-align: center;
+	font-size: 20px;
+	color: white;
+	line-height: 50px;
+	position: absolute;
+	top: 0px;
+	left: 102px;
+	background-color: #2db1c6;
+	letter-spacing: 2px;
+}
+#loginB #loginB_banner>.banner_continer>#loginForm>.hospitalSelect>select{
+	width: 245px;
+	height: 24px;
+	background-color: rgba(255,255,255,0.7);
+	border: 0px;
+	border-radius: 3px;
+	outline: none;
+	font-size: 16px;
+	line-height: 24px;
+	appearance: none;
+	padding-left: 15px;
+	color: #333333;
+	box-sizing: border-box;
+}
+#loginB #loginB_banner>.banner_continer>#loginForm>input{
+	display: block;
+	width: 245px;
+	height: 38px;
+	margin: 30px auto 0px;
+	background-color: rgba(255,255,255,0.7);
+	border: 0px;
+	border-radius: 3px;
+	padding-left: 15px;
+	appearance: none;
+	outline: none;
+	font-size: 18px;
+	box-sizing: border-box;
+	-webkit-box-shadow:none; 
+   	-webkit-text-fill-color: none;
+}
+#loginB #loginB_banner>.banner_continer>#loginForm>input::-webkit-input-placeholder{
+	font-size: 18px;
+	line-height: 38px;
+	color: #B2B2B2;
+}
+#loginB #loginB_banner>.banner_continer>#loginForm>input::-moz-placeholder{
+	font-size: 18px;
+	line-height: 38px;
+	color: #B2B2B2;
+}
+#loginB #loginB_banner>.banner_continer>#loginForm>input::-ms-input-placeholder{
+	font-size: 18px;
+	line-height: 38px;
+	color: #B2B2B2;
+}
+#loginB #loginB_banner>.banner_continer>#loginForm>input::placeholder{
+	font-size: 18px;
+	line-height: 38px;
+	color: #B2B2B2;
+}
+#loginB #loginB_banner>.banner_continer>#loginForm>#login_button{
+	display: block;
+	background-color: rgba(45,176,197,0.9);
+	font-size: 20px;
+	line-height: 38px;
+	color: white;
+	padding-left: 0px;
+	letter-spacing: 5px;
+	box-sizing: border-box;
+}
+#loginB #loginB_banner>.banner_continer>span{
+	display: block;
+	width: 100%;
+	height: 3px;
+	background-color: rgba(45,176,197,0.9);
+	margin-top: 58px;
+}
+#loginB #loginB_banner>.banner_continer>p{
+	display: block;
+	width: 100%;
+	height: 84px;
+	background-color: rgba(45,176,197,0.9);
+	margin-top: 4px;
+	font-size: 38px;
+	color: white;
+	font-weight: bold;
+	padding-left: 24px;
+	line-height: 52px;
+	padding-top: 5px;
+	letter-spacing: 2px;
+}
+#loginB #loginB_banner>.banner_continer>p>span{
+	display: block;
+	font-size: 18px;
+	line-height: 18px;
+	font-weight: normal;
+	letter-spacing: 1px;
+}
+#bottom_login {
+	display:block;
+	text-align: center;
+	padding-top:20px;
+	margin:0;
+	color: #787D83;
+	font-family: "Microsoft YaHei";
+	font-size:14px;
+	padding-bottom:10px;
+}

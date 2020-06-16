@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_YKZZ_DRUGS_IN_DETAIL">
+	<resultMap id="DrugsInDetailMap" type="com.hudh.ykzz.entity.YkzzDrugsInDetail">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="orderno" jdbcType="VARCHAR" property="orderno" />
+		<result column="contry_code" jdbcType="VARCHAR" property="contryCode" />
+		<result column="chemistry_name" jdbcType="VARCHAR" property="chemistryName" />
+		<result column="drugs_typeone" jdbcType="VARCHAR" property="drugsTypeone" />
+		<result column="drugs_typetwo" jdbcType="VARCHAR" property="drugsTypetwo" />
+		<result column="company" jdbcType="VARCHAR" property="company" />
+		<result column="nuit_price" jdbcType="DECIMAL" property="nuitPrice" />
+		<result column="quantity" jdbcType="INTEGER" property="quantity" />
+		<result column="amount" jdbcType="DECIMAL" property="amount" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="valid" jdbcType="VARCHAR" property="valid" />
+		<result column="batchnum" jdbcType="VARCHAR" property="batchnum" />
+		<result column="regisnum" jdbcType="VARCHAR" property="regisnum" />
+		<result column="parentid" jdbcType="VARCHAR" property="parentid" />
+		<result column="drugs_id" jdbcType="VARCHAR" property="drugsId" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="createdate" jdbcType="INTEGER" property="createdate" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="batchnoNum" jdbcType="INTEGER" property="batchnoNum" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, orderno, contry_code, chemistry_name ,drugs_typeone, drugs_typetwo,company , nuit_price,quantity,amount,remark,
+		valid,batchnum,regisnum,parentid,drugs_id,status,createdate,createtime,batchnoNum,organization
+	</sql>
+	
+	<insert id="batchSaveInDetail" parameterType="java.util.List">
+		insert into HUDH_YKZZ_DRUGS_IN_DETAIL (id, orderno, contry_code, chemistry_name ,drugs_typeone, 
+			drugs_typetwo,company , nuit_price,quantity,amount,remark,valid,batchnum,regisnum,parentid,
+			drugs_id,status,createdate,createtime,batchnoNum,organization)
+		values (#{id,jdbcType=VARCHAR}, #{orderno,jdbcType=VARCHAR}, #{contryCode,jdbcType=VARCHAR},
+		#{chemistryName,jdbcType=VARCHAR},#{drugsTypeone,jdbcType=VARCHAR},#{drugsTypetwo,jdbcType=VARCHAR},
+		#{company,jdbcType=VARCHAR},#{nuitPrice,jdbcType=DECIMAL},#{quantity,jdbcType=INTEGER},
+		#{amount,jdbcType=DECIMAL},#{remark,jdbcType=VARCHAR},#{valid,jdbcType=VARCHAR},
+		#{batchnum,jdbcType=VARCHAR},#{regisnum,jdbcType=VARCHAR},#{parentid,jdbcType=VARCHAR},#{drugsId,jdbcType=VARCHAR},
+		#{status,jdbcType=INTEGER},#{createdate,jdbcType=INTEGER},#{createtime,jdbcType=VARCHAR},#{batchnoNum,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<select id="findDetailByParendId" resultType="json">
+		select
+		a.id, 
+		a.orderno,
+		a.contry_code,
+		a.chemistry_name ,
+		a.drugs_typeone,
+		a.drugs_typetwo,
+		a.status,
+		a.createdate,
+		b.type_name as drugs_typeone_name,
+		c.type_name as drugs_typetwo_name,
+		d.pharm_spec,
+		a.company ,
+		convert(varchar,a.nuit_price)  as nuitPrice,
+		<!-- a.nuit_price, -->
+		a.quantity,
+		convert(varchar,a.amount)  as amount,
+		<!-- a.amount, -->
+		a.remark,
+		a.valid,
+		a.batchnum,
+		a.regisnum,
+		a.parentid,
+		a.drugs_id,
+		convert(varchar,d.drug_retail_price)  as drug_retail_price,
+		<!-- d.drug_retail_price, -->
+		d.pharm_dos,
+		d.good_name,
+		e.manufacturers_name
+		from HUDH_YKZZ_DRUGS_IN_DETAIL a
+		left join HUDH_YKZZ_TYPE b on a.drugs_typeone = b.id
+		left join HUDH_YKZZ_TYPE c on a.drugs_typetwo = c.id
+		left join HUDH_YKZZ_DRUGS d on a.drugs_id = d.id
+		LEFT JOIN HUDH_YKZZ_MANUFACTURERS e ON d.manufac_id = e.id
+		where a.parentid = #{parentid,jdbcType=VARCHAR} and a.status = 0
+	</select>
+	
+	<update id="deleteDrugsInDetailByParendId" parameterType="String">
+		update HUDH_YKZZ_DRUGS_IN_DETAIL set status = 1
+		where parentid=#{id,jdbcType=VARCHAR}
+	</update>
+	
+	<select id="findDrugsInDetailByOrderno" parameterType="String" resultType="com.hudh.ykzz.entity.YkzzDrugsInDetail">
+		SELECT COUNT(*),orderno,batchnum,quantity,createtime FROM HUDH_YKZZ_DRUGS_IN_DETAIL WHERE orderno = #{order_no} GROUP BY orderno,batchnum,quantity,createtime ORDER BY createtime ASC;
+	</select>
+	
+	<select id="findBatchnumByOrderno" parameterType="String" resultType="com.hudh.ykzz.entity.YkzzDrugsInDetail">
+		SELECT 
+		id, orderno, contry_code, chemistry_name ,drugs_typeone, drugs_typetwo,company , 
+		convert(varchar,nuit_price)  as nuit_price,
+		<!-- nuit_price, -->
+		quantity,
+		convert(varchar,amount)  as amount,
+		<!-- amount, -->
+		remark,
+		valid,batchnum,regisnum,parentid,drugs_id,status,createdate,createtime,batchnoNum,organization
+		FROM HUDH_YKZZ_DRUGS_IN_DETAIL WHERE orderno = #{order_no} and batchnoNum <![CDATA[ > ]]> 0 ORDER BY createtime ASC
+	</select>
+	<select id="findBatchnumByOrderno1" parameterType="String" resultType="com.hudh.ykzz.entity.YkzzDrugsInDetail">
+		SELECT id, orderno, contry_code, chemistry_name ,drugs_typeone, drugs_typetwo,company , 
+		convert(varchar,nuit_price)  as nuit_price,
+		<!-- nuit_price, -->
+		quantity,
+		convert(varchar,amount)  as amount,
+		<!-- amount, -->
+		remark,
+		valid,batchnum,regisnum,parentid,drugs_id,status,createdate,createtime,batchnoNum,organization
+		 FROM HUDH_YKZZ_DRUGS_IN_DETAIL WHERE orderno = #{order_no} ORDER BY createtime DESC
+	</select>
+	<update id="updateDrugsInDetail" parameterType="com.hudh.ykzz.entity.YkzzDrugsInDetail" >
+	    update HUDH_YKZZ_DRUGS_IN_DETAIL
+	    <set>
+	      <if test="batchnoNum != null" >
+	        batchnoNum = #{batchnoNum,jdbcType=NUMERIC},
+	      </if>
+	    </set>
+	    where id = #{id,jdbcType=VARCHAR}
+  	</update>
+  	
+  	<select id="findYkzzDrugsInDatailById" parameterType="String" resultType="com.hudh.ykzz.entity.YkzzDrugsInDetail">
+  		select id, orderno, contry_code, chemistry_name ,drugs_typeone, drugs_typetwo,company , 
+		convert(varchar,nuit_price)  as nuit_price,
+		<!-- nuit_price, -->
+		quantity,
+		convert(varchar,amount)  as amount,
+		<!-- amount, -->
+		remark,
+		valid,batchnum,regisnum,parentid,drugs_id,status,createdate,createtime,batchnoNum,organization
+		 from HUDH_YKZZ_DRUGS_IN_DETAIL where id = #{id}
+  	</select>
+  	
+  	<select id="findYkzzDrugsInDatailByInDetail" parameterType="String" resultType="com.hudh.ykzz.entity.YkzzDrugsInDetail">
+  		select id, orderno, contry_code, chemistry_name ,drugs_typeone, drugs_typetwo,company , 
+		convert(varchar,nuit_price)  as nuit_price,
+		<!-- nuit_price, -->
+		quantity,
+		convert(varchar,amount)  as amount,
+		<!-- amount, -->
+		remark,
+		valid,batchnum,regisnum,parentid,drugs_id,status,createdate,createtime,batchnoNum,organization
+		 from HUDH_YKZZ_DRUGS_IN_DETAIL where id = #{inDetail}
+  	</select>
+  	<update id="updateBatchnumInDetail" parameterType="com.hudh.ykzz.entity.YkzzDrugsInDetail" >
+	    update HUDH_YKZZ_DRUGS_IN_DETAIL
+	    <set>
+	      <if test="batchnum != null" >
+	        batchnum = #{batchnum,jdbcType=VARCHAR},
+	      </if>
+	    </set>
+	    where parentid = #{parentid,jdbcType=VARCHAR}
+  	</update>
+  	<!-- 2019-08-14 lwg 根据orderno展示药品详情 -->
+  	<select id="findYkzzDrugsInDetailByOrderno" parameterType="String" resultType="json">
+  		select i.id, i.drugs_typeone, i.drugs_typetwo,i.company , i.nuit_price,i.quantity,i.amount,i.remark,
+		i.valid,i.batchnum,i.regisnum,i.parentid,i.drugs_id,i.status,i.createdate,y.createtime,i.batchnoNum,i.organization,
+		d.good_name,d.packing_unit,d.packing_num,d.order_no, d.contry_code, d.chemistry_name ,
+		d.content_unit,d.content_coe,d.company_min,d.pharm_dos,d.pharm_spec
+		from HUDH_YKZZ_DRUGS_IN_DETAIL i
+		LEFT JOIN HUDH_YKZZ_DRUGS d on i.orderno=d.order_no
+		LEFT JOIN HUDH_YKZZ_DRUGS_IN y on i.parentid=y.id
+		where i.orderno=#{orderno} and batchnoNum <![CDATA[ > ]]> 0 ORDER BY i.valid ASC
+  	</select>
+</mapper>

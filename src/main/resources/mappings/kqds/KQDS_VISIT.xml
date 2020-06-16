@@ -1,0 +1,983 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_VISIT">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsVisit">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="visittime" jdbcType="VARCHAR" property="visittime" />
+		<result column="visitor" jdbcType="VARCHAR" property="visitor" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="sex" jdbcType="VARCHAR" property="sex" />
+		<result column="telphone" jdbcType="VARCHAR" property="telphone" />
+		<result column="hffl" jdbcType="VARCHAR" property="hffl" />
+		<result column="finishtime" jdbcType="VARCHAR" property="finishtime" />
+		<result column="hfyd" jdbcType="VARCHAR" property="hfyd" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="myd" jdbcType="VARCHAR" property="myd" />
+		<result column="postperson" jdbcType="VARCHAR" property="postperson" />
+		<result column="hfresult" jdbcType="VARCHAR" property="hfresult" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="regno" jdbcType="VARCHAR" property="regno" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="purpose" jdbcType="VARCHAR" property="purpose" />
+		<result column="isauto" jdbcType="INTEGER" property="isauto" />
+		<result column="isfirstday" jdbcType="INTEGER" property="isfirstday" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, createuser, createtime, visittime, visitor, usercode, username, sex, telphone,
+		hffl, finishtime, hfyd, organization, myd, postperson, hfresult, status, regno,
+		remark,
+		purpose, isauto, isfirstday
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_Visit
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_Visit
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsVisit">
+		insert into KQDS_Visit (SEQ_ID, createuser, createtime,
+		visittime, visitor, usercode,
+		username, sex, telphone,
+		hffl, finishtime, hfyd,
+		organization, myd, postperson,
+		hfresult, status, regno,
+		remark, purpose, isauto,
+		isfirstday)
+		values (#{seqId,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR},
+		#{createtime,jdbcType=VARCHAR},
+		#{visittime,jdbcType=VARCHAR}, #{visitor,jdbcType=VARCHAR}, #{usercode,jdbcType=VARCHAR},
+		#{username,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR},
+		#{telphone,jdbcType=VARCHAR},
+		#{hffl,jdbcType=VARCHAR}, #{finishtime,jdbcType=VARCHAR}, #{hfyd,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR}, #{myd,jdbcType=VARCHAR},
+		#{postperson,jdbcType=VARCHAR},
+		#{hfresult,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{regno,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR}, #{purpose,jdbcType=VARCHAR},
+		#{isauto,jdbcType=INTEGER},
+		#{isfirstday,jdbcType=INTEGER})
+	</insert>
+	<insert id="saveList" parameterType="com.kqds.entity.base.KqdsVisit">
+		insert into KQDS_Visit
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="visittime != null">
+				visittime,
+			</if>
+			<if test="visitor != null">
+				visitor,
+			</if>
+			<if test="usercode != null">
+				usercode,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="telphone != null">
+				telphone,
+			</if>
+			<if test="hffl != null">
+				hffl,
+			</if>
+			<if test="finishtime != null">
+				finishtime,
+			</if>
+			<if test="hfyd != null">
+				hfyd,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="myd != null">
+				myd,
+			</if>
+			<if test="postperson != null">
+				postperson,
+			</if>
+			<if test="hfresult != null">
+				hfresult,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="regno != null">
+				regno,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="purpose != null">
+				purpose,
+			</if>
+			<if test="isauto != null">
+				isauto,
+			</if>
+			<if test="isfirstday != null">
+				isfirstday,
+			</if>
+			<if test="visittype != null">
+				visittype,
+			</if>
+			<if test="accepttype != null">
+				accepttype,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="visittime != null">
+				#{visittime,jdbcType=VARCHAR},
+			</if>
+			<if test="visitor != null">
+				#{visitor,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="telphone != null">
+				#{telphone,jdbcType=VARCHAR},
+			</if>
+			<if test="hffl != null">
+				#{hffl,jdbcType=VARCHAR},
+			</if>
+			<if test="finishtime != null">
+				#{finishtime,jdbcType=VARCHAR},
+			</if>
+			<if test="hfyd != null">
+				#{hfyd,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="myd != null">
+				#{myd,jdbcType=VARCHAR},
+			</if>
+			<if test="postperson != null">
+				#{postperson,jdbcType=VARCHAR},
+			</if>
+			<if test="hfresult != null">
+				#{hfresult,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="regno != null">
+				#{regno,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="purpose != null">
+				#{purpose,jdbcType=VARCHAR},
+			</if>
+			<if test="isauto != null">
+				#{isauto,jdbcType=INTEGER},
+			</if>
+			<if test="isfirstday != null">
+				#{isfirstday,jdbcType=INTEGER},
+			</if>
+			<if test="visittype != null">
+				#{visittype,jdbcType=VARCHAR},
+			</if>
+			<if test="accepttype != null">
+				#{accepttype,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsVisit">
+		insert into KQDS_Visit
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="visittime != null">
+				visittime,
+			</if>
+			<if test="visitor != null">
+				visitor,
+			</if>
+			<if test="usercode != null">
+				usercode,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="telphone != null">
+				telphone,
+			</if>
+			<if test="hffl != null">
+				hffl,
+			</if>
+			<if test="finishtime != null">
+				finishtime,
+			</if>
+			<if test="hfyd != null">
+				hfyd,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="myd != null">
+				myd,
+			</if>
+			<if test="postperson != null">
+				postperson,
+			</if>
+			<if test="hfresult != null">
+				hfresult,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="regno != null">
+				regno,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="purpose != null">
+				purpose,
+			</if>
+			<if test="isauto != null">
+				isauto,
+			</if>
+			<if test="isfirstday != null">
+				isfirstday,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="visittime != null">
+				#{visittime,jdbcType=VARCHAR},
+			</if>
+			<if test="visitor != null">
+				#{visitor,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="telphone != null">
+				#{telphone,jdbcType=VARCHAR},
+			</if>
+			<if test="hffl != null">
+				#{hffl,jdbcType=VARCHAR},
+			</if>
+			<if test="finishtime != null">
+				#{finishtime,jdbcType=VARCHAR},
+			</if>
+			<if test="hfyd != null">
+				#{hfyd,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="myd != null">
+				#{myd,jdbcType=VARCHAR},
+			</if>
+			<if test="postperson != null">
+				#{postperson,jdbcType=VARCHAR},
+			</if>
+			<if test="hfresult != null">
+				#{hfresult,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="regno != null">
+				#{regno,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="purpose != null">
+				#{purpose,jdbcType=VARCHAR},
+			</if>
+			<if test="isauto != null">
+				#{isauto,jdbcType=INTEGER},
+			</if>
+			<if test="isfirstday != null">
+				#{isfirstday,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsVisit">
+		update KQDS_Visit
+		<set>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="visittime != null">
+				visittime = #{visittime,jdbcType=VARCHAR},
+			</if>
+			<if test="visitor != null">
+				visitor = #{visitor,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				usercode = #{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="telphone != null">
+				telphone = #{telphone,jdbcType=VARCHAR},
+			</if>
+			<if test="hffl != null">
+				hffl = #{hffl,jdbcType=VARCHAR},
+			</if>
+			<if test="finishtime != null">
+				finishtime = #{finishtime,jdbcType=VARCHAR},
+			</if>
+			<if test="hfyd != null">
+				hfyd = #{hfyd,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="myd != null">
+				myd = #{myd,jdbcType=VARCHAR},
+			</if>
+			<if test="postperson != null">
+				postperson = #{postperson,jdbcType=VARCHAR},
+			</if>
+			<if test="hfresult != null">
+				hfresult = #{hfresult,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="regno != null">
+				regno = #{regno,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="purpose != null">
+				purpose = #{purpose,jdbcType=VARCHAR},
+			</if>
+			<if test="isauto != null">
+				isauto = #{isauto,jdbcType=INTEGER},
+			</if>
+			<if test="isfirstday != null">
+				isfirstday = #{isfirstday,jdbcType=INTEGER},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsVisit">
+		update KQDS_Visit
+		set createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		visittime =
+		#{visittime,jdbcType=VARCHAR},
+		visitor = #{visitor,jdbcType=VARCHAR},
+		usercode = #{usercode,jdbcType=VARCHAR},
+		username = #{username,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=VARCHAR},
+		telphone = #{telphone,jdbcType=VARCHAR},
+		hffl = #{hffl,jdbcType=VARCHAR},
+		finishtime = #{finishtime,jdbcType=VARCHAR},
+		hfyd = #{hfyd,jdbcType=VARCHAR},
+		organization =
+		#{organization,jdbcType=VARCHAR},
+		myd = #{myd,jdbcType=VARCHAR},
+		postperson = #{postperson,jdbcType=VARCHAR},
+		hfresult = #{hfresult,jdbcType=VARCHAR},
+		status =
+		#{status,jdbcType=VARCHAR},
+		regno = #{regno,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		purpose = #{purpose,jdbcType=VARCHAR},
+		isauto = #{isauto,jdbcType=INTEGER},
+		isfirstday = #{isfirstday,jdbcType=INTEGER}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_VISIT
+	</sql>
+
+	<select id="selectCountByMap" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsVisit">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectList" parameterType="map" resultType="json">
+		select
+		t.seq_id,
+		odept.dept_name as organizationname,
+		t.organization,
+		t.status,
+		t.visittime,
+		t.visitor,
+		per1.user_name as visitorname,
+		t.usercode,
+		t.telphone,
+		t.sex,
+		t.username,
+		t.hffl,
+		kcit1.dict_name as hfflname,
+		t.hfyd,
+		t.postperson,
+		per2.user_name as postpersonname,
+		t.hfresult,
+		t.finishtime,
+		t.myd,
+		t.accepttype,
+		t.visittype,
+		kcit4.dict_name as accepttypename,
+		kcit2.dict_name as mydname
+		from KQDS_VISIT t
+		LEFT JOIN SYS_DEPT odept on odept.dept_code = t.organization and odept.dept_parent = '0'
+		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = t.visitor
+		LEFT JOIN SYS_PERSON per2 on per2.SEQ_ID = t.postperson
+		LEFT JOIN SYS_DICT kcit1 on t.hffl = kcit1.seq_id
+		LEFT JOIN SYS_DICT kcit2 on t.myd = kcit2.seq_id
+		LEFT JOIN SYS_DICT kcit4 on t.accepttype = kcit4.seq_id
+		where 1=1
+		<if test="usercode != null and usercode !='' ">
+			and t.usercode=#{usercode}
+		</if>
+		<if test="organization != null and organization !='' ">
+			and t.organization=#{organization}
+		</if>
+		<if test="myd != null and myd !='' ">
+			and t.myd like '%' + #{myd} + '%'
+		</if>
+		<if test="visittime != null and visittime !='' ">
+			and t.visittime like '%' + #{visittime} + '%'
+		</if>
+		<if test="username != null and username !='' ">
+			and per1.user_name like '%' + #{username} + '%'
+		</if>
+		<!-- <if test="visitor != null and visitor !='' ">
+			and t.visitor = #{visitor}
+		</if> -->
+		<if test="hffl != null and hffl !='' ">
+			and t.hffl = #{hffl}
+		</if>
+		<if test="status != null and status !='' ">
+			and t.status = #{status}
+		</if>
+		<if test="sortName != null and sortName != '' ">
+			ORDER BY ${sortName} ${sortOrder}
+		</if>
+		<if test="sortName == null">
+			ORDER BY t.visittime desc
+		</if>
+		<!-- order by t.visittime desc -->
+	</select>
+	<select id="selectList1" parameterType="map" resultType="json">
+		select
+		t.seq_id,
+		odept.dept_name as organizationname,
+		t.organization,
+		t.status,
+		t.visittime,
+		t.visitor,
+		per1.user_name as visitorname,
+		t.usercode,
+		t.telphone,
+		t.sex,
+		t.username,
+		t.hffl,
+		kcit1.dict_name as hfflname,
+		t.hfyd,
+		t.postperson,
+		per2.user_name as postpersonname,
+		t.hfresult,
+		t.finishtime,
+		t.myd,
+		t.accepttype,
+		t.visittype,
+		kcit4.dict_name as accepttypename,
+		kcit2.dict_name as mydname
+		from KQDS_VISIT t
+		LEFT JOIN SYS_DEPT odept on odept.dept_code = t.organization and odept.dept_parent = '0'
+		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = t.visitor
+		LEFT JOIN SYS_PERSON per2 on per2.SEQ_ID = t.postperson
+		LEFT JOIN SYS_DICT kcit1 on t.hffl = kcit1.seq_id
+		LEFT JOIN SYS_DICT kcit2 on t.myd = kcit2.seq_id
+		LEFT JOIN SYS_DICT kcit4 on t.accepttype = kcit4.seq_id
+		where 1=1
+		<if test="usercode != null and usercode !='' ">
+			and t.usercode=#{usercode}
+		</if>
+		<if test="organization != null and organization !='' ">
+			and t.organization=#{organization}
+		</if>
+		<if test="myd != null and myd !='' ">
+			and t.myd like '%' + #{myd} + '%'
+		</if>
+		<if test="visittime != null and visittime !='' ">
+			and t.visittime like '%' + #{visittime} + '%'
+		</if>
+		<if test="username != null and username !='' ">
+			and t.username like '%' + #{username} + '%'
+		</if>
+		<if test="visitor != null and visitor !='' ">
+			and t.visitor = #{visitor}
+		</if>
+		<if test="hffl != null and hffl !='' ">
+			and t.hffl = #{hffl}
+		</if>
+		<if test="status != null and status !='' ">
+			and t.status = #{status}
+		</if>
+		<if test="sortName != null and sortName != '' ">
+			ORDER BY ${sortName} ${sortOrder}
+		</if>
+		<if test="sortName == null">
+			ORDER BY t.visittime desc
+		</if>
+		<!-- order by t.visittime desc -->
+	</select>
+	<select id="selectListMyToday" parameterType="map" resultType="json">
+		<bind name="temp_dbType" value="${system_dbType}" />
+		select
+		t.seq_id,
+		t.organization,
+		t.status,
+		t.visittime,
+		t.visitor,
+		per1.user_name as visitorname,
+		t.usercode,
+		t.telphone,
+		t.sex,
+		t.username,
+		t.hffl,
+		kcit1.dict_name as hfflname,
+		t.finishtime,
+		t.hfyd,
+		t.postperson,
+		per2.user_name as postpersonname,
+		t.hfresult,
+		t.myd,
+		kcit2.dict_name as mydname
+		from KQDS_VISIT t
+		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = t.visitor
+		LEFT JOIN SYS_PERSON per2 on per2.SEQ_ID = t.postperson
+		LEFT JOIN SYS_DICT kcit1 on t.hffl = kcit1.seq_id
+		LEFT JOIN SYS_DICT kcit2 on t.myd = kcit2.seq_id
+		where 1=1
+		and
+		t.organization = #{organization}
+		<if test="temp_dbType == 0">
+			and to_days(t.visittime) = to_days(now())
+		</if>
+		<if test="temp_dbType == 1">
+			and datediff(day, t.visittime,getdate())=0
+		</if>
+		<if test="visualstaff != null and visualstaff !='' ">
+			and t.visitor in (${visualstaff})
+		</if>
+		<if test="sortName != null and sortName !='' ">
+			ORDER BY ${sortName} ${sortOrder}
+		</if>
+		<if test="sortName == null">
+			order by t.visittime desc
+		</if>
+	</select>
+	<select id="selectList4returnVisit" parameterType="map" resultType="json">
+		select
+		dept.DEPT_NAME as organizationname,
+		v.hfresult,
+		v.visittime,
+		v.seq_id,
+		v.hffl,
+		v.finishtime,
+		v.hfyd,
+		v.status,
+		v.organization,
+		v.visitor,
+		v.usercode,
+		u.remark,
+		u.username,
+		u.sex,
+		u.BirthDay,
+		u.phonenumber1,
+		u.phonenumber2,
+		u.doorstatus,
+		ps2.user_name as jdr,
+		<if test="flag != null and flag != ''">
+			okdi1.dict_name as myd,
+			okdi2.dict_name as hffl1,
+			(select count(1) from KQDS_Member where
+			usercode =v.usercode ) as memberno,
+			dept2.DEPT_NAME as visitdeptname,
+			ps.user_name as visitor1,
+		</if>
+		v.visitor as visitorid
+		from KQDS_Visit v
+		LEFT JOIN KQDS_UserDocument u on u.UserCode =v.usercode
+		<if test="flag != null and flag != '' ">
+			LEFT JOIN SYS_DICT okdi1 on okdi1.seq_id = v.myd
+			LEFT JOIN SYS_DICT okdi2 on okdi2.seq_id = v.hffl
+		</if>
+		<if test="sortName =='okdi1.dict_name' ">
+			LEFT JOIN SYS_DICT okdi1 on okdi1.seq_id = v.myd
+		</if>
+		LEFT JOIN SYS_PERSON ps on ps.seq_id = v.visitor
+		LEFT JOIN SYS_DEPT dept2 on ps.dept_id = dept2.seq_id
+		LEFT JOIN SYS_PERSON ps2 on ps2.seq_id = u.createuser
+		LEFT JOIN SYS_DEPT dept on v.organization = dept.dept_code and dept.dept_parent = '0'
+		where 1=1
+		and v.organization = #{organization}
+		<if test="vtime1 != null and vtime1 !='' ">
+			and v.visittime <![CDATA[ >= ]]>
+			#{vtime1}
+		</if>
+		<if test="vtime2 != null and vtime2 !='' ">
+			and v.visittime <![CDATA[ <= ]]>
+			#{vtime2}
+		</if>
+		<if test="name != null and name !='' ">
+			and (v.username like '%' + #{name} + '%' or u.pym like '%' + #{name} + '%')
+		</if>
+		<if test="hffl != null and hffl !='' ">
+			and v.hffl=#{hffl}
+		</if>
+		<if test="myd != null and myd !='' ">
+			and v.myd=#{myd}
+		</if>
+		<if test="visitdept != null and visitdept !='' ">
+			and dept2.seq_id=#{visitdept}
+		</if>
+		<if test="status != null and status !='' ">
+			and v.status=#{status}
+		</if>
+		<if test="renwu != null and renwu !='' ">
+			and e.extension=#{renwu}
+		</if>
+		<if test="visitor != null and visitor !='' ">
+			and v.visitor=#{visitor}
+		</if>
+		<if test="ishuifang != null and ishuifang !='' ">
+			and v.status=#{ishuifang}
+		</if>
+		<if test="phonenumber1 != null and phonenumber1 !='' ">
+			and (u.usercode like '%' + #{phonenumber1} + '%'
+			or u.username like '%' + #{phonenumber1} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{phonenumber1} + '%'
+			)
+		</if>
+		<if test="visualstaff != null and visualstaff !='' ">
+			and (v.visitor in (${visualstaff}) or v.createuser in (${visualstaff}) or v.postperson in (${visualstaff}) )
+		</if>
+		<if test="sortName != null and sortName !='' ">
+			ORDER BY ${sortName} ${sortOrder}
+		</if>
+		<if test="sortName == null">
+			ORDER BY v.createtime desc
+		</if>
+	</select>
+	<select id="selectCountByQuery" parameterType="map" resultType="json">
+		select
+		count(v.hffl) as flcount,
+		v.hffl,
+		okdi2.dict_name
+		from KQDS_Visit v
+		LEFT JOIN KQDS_UserDocument u on u.UserCode = v.usercode
+		LEFT JOIN SYS_DICT okdi2 on okdi2.seq_id = v.hffl
+		LEFT JOIN SYS_PERSON ps on ps.seq_id = v.visitor
+		LEFT JOIN SYS_DEPT dept2 on ps.dept_id = dept2.seq_id
+		LEFT JOIN KQDS_Extension e on v.usercode = e.usercode
+		where 1=1
+		and
+		v.organization = #{organization}
+		<if test="vtime1 != null and vtime1 !='' ">
+			and v.visittime <![CDATA[ >= ]]>
+			#{vtime1}
+		</if>
+		<if test="vtime2 != null and vtime2 !='' ">
+			and v.visittime <![CDATA[ <= ]]>
+			#{vtime2}
+		</if>
+		<if test="name != null and name !='' ">
+			and (v.username like '%' + #{name} + '%' or u.pym like '%' + #{name} + '%')
+		</if>
+		<if test="hffl != null and hffl !='' ">
+			and v.hffl=#{hffl}
+		</if>
+		<if test="myd != null and myd !='' ">
+			and v.myd=#{myd}
+		</if>
+		<if test="visitdept != null and visitdept !='' ">
+			and dept2.seq_id=#{visitdept}
+		</if>
+		<if test="status != null and status !='' ">
+			and v.status=#{status}
+		</if>
+		<if test="renwu != null and renwu !='' ">
+			and e.extension=#{renwu}
+		</if>
+		<if test="visitor != null and visitor !='' ">
+			and v.visitor=#{visitor}
+		</if>
+		<if test="ishuifang != null and ishuifang !='' ">
+			and v.status=#{ishuifang}
+		</if>
+		<if test="phonenumber1 != null and phonenumber1 !='' ">
+			and (u.usercode like '%' + #{phonenumber1} + '%'
+			or u.username like '%' + #{phonenumber1} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{phonenumber1} + '%'
+			)
+		</if>
+		<if test="visualstaff != null and visualstaff !='' ">
+			and (v.visitor in (${visualstaff}) or v.createuser in (${visualstaff}) or v.postperson in (${visualstaff}) )
+		</if>
+		GROUP BY v.hffl ,okdi2.dict_name
+	</select>
+	<select id="getCountByQuery" parameterType="map" resultType="int">
+		select
+		COUNT(1)
+		from KQDS_Visit v
+		LEFT JOIN KQDS_UserDocument u on u.UserCode = v.usercode
+		LEFT JOIN SYS_PERSON ps on ps.seq_id = v.visitor
+		LEFT JOIN SYS_DEPT dept2 on
+		ps.dept_id =
+		dept2.seq_id
+		LEFT JOIN KQDS_Extension e on v.usercode = e.usercode
+		where 1=1
+		and v.organization = #{organization}
+		<if test="vtime1 != null and vtime1 !='' ">
+			and v.visittime <![CDATA[ >= ]]>
+			#{vtime1}
+		</if>
+		<if test="vtime2 != null and vtime2 !='' ">
+			and v.visittime <![CDATA[ <= ]]>
+			#{vtime2}
+		</if>
+		<if test="name != null and name !='' ">
+			and (v.username like '%' + #{name} + '%' or u.pym like '%' + #{name} + '%')
+		</if>
+		<if test="hffl != null and hffl !='' ">
+			and v.hffl=#{hffl}
+		</if>
+		<if test="myd != null and myd !='' ">
+			and v.myd=#{myd}
+		</if>
+		<if test="visitdept != null and visitdept !='' ">
+			and dept2.seq_id=#{visitdept}
+		</if>
+		<if test="status != null and status !='' ">
+			and v.status=#{status}
+		</if>
+		<if test="renwu != null and renwu !='' ">
+			and e.extension=#{renwu}
+		</if>
+		<if test="visitor != null and visitor !='' ">
+			and v.visitor=#{visitor}
+		</if>
+		<if test="ishuifang != null and ishuifang !='' ">
+			and v.status=#{ishuifang}
+		</if>
+		<if test="phonenumber1 != null and phonenumber1 !='' ">
+			and (u.usercode like '%' + #{phonenumber1} + '%'
+			or u.username like '%' + #{phonenumber1} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{phonenumber1} + '%'
+			)
+		</if>
+		<if test="visualstaff != null and visualstaff !='' ">
+			and (v.visitor in (${visualstaff}) or v.createuser in (${visualstaff}) or v.postperson in (${visualstaff}) )
+		</if>
+	</select>
+	<select id="getCountIndex" parameterType="map" resultType="int">
+		select
+		COUNT(1)
+		from KQDS_Visit v
+		left join KQDS_UserDocument u on u.usercode = v.usercode
+		where 1=1
+		and v.organization = #{organization}
+		<if test="visualstaff != null and visualstaff !='' ">
+			and (v.visitor in (${visualstaff}))
+		</if>
+		<if test="visittime != null and visittime !='' ">
+			and visittime like '${visittime}%'
+		</if>
+		<if test="searchValue != null and searchValue !='' ">
+			and (u.usercode like '%' + #{searchValue} + '%'
+			or u.username like '%' + #{searchValue} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{searchValue} + '%'
+			)
+		</if>
+	</select>
+	<select id="visitTimeOut" parameterType="java.lang.String" resultType="json">
+		select usercode,visitor,username,visittime from KQDS_Visit
+		where 1=1
+		and v.visittime <![CDATA[ <= ]]>
+		#{_parameter}
+		and status = 0
+		group by usercode
+		order by createtime desc
+	</select>
+	<select id="getCountV" parameterType="map" resultType="int">
+		select count(*) from KQDS_VISIT v
+		where 1=1
+		and v.visitor in (${visualstaff})
+		<if test="visittime != null and visittime !='' ">
+			${visittime}
+		</if>
+		<if test="organization != null and organization !='' ">
+			and v.organization=#{organization}
+		</if>
+	</select>
+	<select id="getHfListPage" parameterType="map" resultType="json">
+		<bind name="temp_dbType" value="${system_dbType}" />
+		<if test="temp_dbType == 0">
+			select
+		</if>
+		<if test="temp_dbType == 1">
+			select top ${num1} * from
+			(select row_number() over(order by v.createtime desc) as rownumber,
+		</if>
+		p.user_name as visitorname,kcit1.dict_name as hfflname,kcit2.dict_name as mydname,v.* from KQDS_VISIT v
+		LEFT JOIN SYS_DICT kcit1 on v.hffl = kcit1.seq_id
+		LEFT JOIN SYS_PERSON p on
+		p.SEQ_ID = v.visitor
+		LEFT JOIN SYS_DICT kcit2 on v.myd = kcit2.seq_id
+		where 1=1
+		and v.visitor in (${visualstaff})
+		and v.organization = #{organization}
+		<if test="starttime != null and starttime !='' ">
+			and v.visittime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and v.visittime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="temp_dbType == 0">
+			order by v.visittime desc limit ${num1},${num2}
+		</if>
+		<if test="temp_dbType == 1">
+			order by v.visittime desc ) as u1 where 1=1 and rownumber > ${num2}
+		</if>
+	</select>
+	<delete id="deletepush" parameterType="map">
+		<!-- WARNING - @mbg.generated This element is automatically generated by MyBatis Generator, do not modify. This element was generated on Thu Apr 12 10:54:48 CST 2018. -->
+		DELETE from kqds_push where reciveuser = #{visitor} and remindurl = '/kqdsFront/visit/visit_list.jsp?usercode='+ #{visitor} + ''
+	</delete>
+	<delete id="deletevisit" parameterType="java.lang.String">
+		<!-- WARNING - @mbg.generated This element is automatically generated by MyBatis Generator, do not modify. This element was generated on Thu Apr 12 10:54:48 CST 2018. -->
+		DELETE from KQDS_VISIT where seq_id like '' + #{_parameter} + '%' and status = 0
+	</delete>
+	<select id="findvisitByTime" parameterType="map" resultType="json">
+		select v.SEQ_ID,v.usercode,v.username,v.sex,v.telphone,v.hfyd,v.visitor,p.user_name as visitorname 
+		from KQDS_VISIT v
+		left join sys_person p on v.visitor=p.seq_id
+		where v.visittime=#{time} and v.visitor=#{seqid}
+	</select>
+	<select id="findvisitByTimeNum" parameterType="map" resultType="int">
+		select count(1)
+		from KQDS_VISIT 
+		where visittime=#{time} and visitor=#{seqid}
+	</select>
+	<select id="selectNameBySeqid" parameterType="map" resultType="json">
+	select 
+		v.seq_id as vseqid,
+		okdi1.dict_name as myd,
+		okdi2.dict_name as hffl1,
+		dept2.DEPT_NAME as visitdeptname,
+		ps.user_name as visitor1
+		from KQDS_Visit v
+		LEFT JOIN SYS_DICT okdi1 on okdi1.seq_id = v.myd
+		LEFT JOIN SYS_DICT okdi2 on okdi2.seq_id = v.hffl
+		LEFT JOIN SYS_PERSON ps on ps.seq_id = v.visitor
+		LEFT JOIN SYS_DEPT dept2 on ps.dept_id = dept2.seq_id
+		where v.seq_id in (${seqid})
+	</select>
+	<select id="selectMembernoByUsercode" parameterType="map" resultType="json">
+		select count(1) as num,usercode from KQDS_Member where usercode in (${usercode}) group by usercode
+	</select>
+	
+	<select id="selectYwhfNumByUsercode" parameterType="map" resultType="json">
+		select count(usercode) as ywhf,usercode from KQDS_Visit where usercode in (${usercodes}) group by usercode
+	</select>
+</mapper>

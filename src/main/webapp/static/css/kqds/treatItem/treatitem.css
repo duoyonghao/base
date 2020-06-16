@@ -1,0 +1,232 @@
+@CHARSET "UTF-8";
+#form1 .form-group{
+	margin:0;
+}
+.container{
+	padding:20px;
+}
+.tableLayout{/*table布局 */
+	margin:0 auto;
+	border-collapse:separate;
+	font-size:13px;
+	
+}
+.tableLayout tr{/*行高 用来调整行与行之间的距离 */
+	height:42px;
+}
+.tableLayout tr td:nth-child(3){
+	padding-left:50px;
+}
+input[type="text"]:focus,select:focus,textarea:focus{
+   box-shadow: 0 0 8px rgb(49, 165, 247);
+   border-color:transparent;
+}
+input[type="text"],select{
+	width:140px;
+	color:#333;
+	font-size:12px;
+}
+input[readonly],select:disabled{
+	cursor:not-allowed;
+}
+input[readonly]:focus,select[disabled]:focus,textarea[readonly]{
+	box-shadow:none;
+	border-color:#ddd;
+	cursor:not-allowed;
+}
+input[readonly]:focus,
+input[disabled]:focus,
+select[disabled]:focus,
+select[disabled]:focus{
+    box-shadow: none;
+    border-color:#ddd;
+}
+input[readonly],input[disabled],select[disabled],select[disabled]{/*只读的input*/
+	background:rgba(246, 246, 246, 0.42);
+	cursor:not-allowed;
+	color:#777;
+}
+select{
+	cursor:pointer;
+	color:#333;
+}
+textarea{
+	min-height:40px;
+	text-align:left;
+	padding:5px;
+	border-radius:3px;
+}
+textarea.longTextarea{	/* 占满父元素的textarea */
+	width:100%;
+}
+.tableLayout tr.textareaTr{/* textarea所在行的行高 */
+	height:50px;
+}
+.commonText{/*增加paddingleft 拉开每个数据项之间的间距*/
+	display:block;
+	text-align:right;
+	position:relative;
+	padding-right:5px;
+}
+
+.btnGroup{/* 按钮的父元素 */
+	text-align:center;
+	padding-top:20px;
+}
+.aBtn{/* 按钮样式 */
+	display:inline-block;
+	color:#0E7CC9;
+	background:#fff;
+	height:28px;
+	width:90px;
+	line-height:28px;
+	border-radius:16px;
+	text-align:center;
+	padding:0 5px;
+	border:1px solid #0E7CC9;
+	margin:0 10px;
+	font-size:13px;
+}
+.search{
+	color:#fff;
+	background:#0E7CC9;
+}
+.aBtn:hover{
+	cursor:pointer;
+	color:#fff;
+	background:#0E7CC9;
+}
+.form-group{	/*所有提示文本 的样式  */
+	margin:0;
+}
+.form-group i.form-control-feedback{	/*覆盖了框架提供form-control-feedback 本身的部分样式*/
+	top:0;
+	right:-31px;
+}
+.form-group small.help-block{/*所有提示文本 的样式  */
+    margin:0;
+    height: 12px;
+    position: absolute;
+    top: 29px;
+    left: 10px;
+    font-size:11px;
+    /* font-size:12px; */
+}
+input[type="text"].longInp{
+	width:100%;
+}
+#form1{
+	margin:0;
+}
+									/* 病程分类管理 add_kqds_bcfl.jsp样式  */
+.bcflContainer{
+	padding-top:20px;
+}
+.bcflContainer .tableLayout tr.textareaTr{
+	height:76px;
+}
+.bcflContainer textarea{
+	min-height:60px;
+	padding:10px;
+}
+.whiteInp{/*白底鼠标移入小手效果的input  */
+	cursor:pointer;
+}
+										
+									/*病程分类管理样式 下面验证提示信息的位置 */
+.bcflContainer .form-group{	
+	margin:0;
+}
+.bcflContainer .form-group i.form-control-feedback{	/*覆盖了框架提供form-control-feedback 本身的部分样式*/
+	top:-3px;
+	right:-28px;
+}
+.bcflContainer .form-group small.help-block{/*所有提示文本 的样式  */
+    margin:0;
+    height: 12px;
+    position: absolute;
+    top: 28px;
+    left: 5px;
+    font-size:11px;
+    /* font-size:12px; */
+}
+									/*病程  个别调整 验证提示信息的位置 */
+.bcflContainer .courseDisease .form-group i.form-control-feedback{
+	top:13px;
+}
+.bcflContainer .courseDisease .form-group small.help-block{
+	top:61px;
+}
+				/*排班管理 添加 编辑 详情 三个页面的样式  add_kqds_paiban_type.jsp */
+.paibanContainer{
+	padding:20px;
+}
+				/*打印设置 添加 编辑 详情 三个页面的样式   */
+.printContainer{
+	padding:20px;
+}
+
+				/*加工厂   添加 编辑 详情 三个页面的样式 和 加工项目管理 的三个页面*/
+.outprocessingContainer{
+	padding:20px;
+}
+.outprocessingContainer .tableLayout tr{/*行高 用来调整行与行之间的距离 */
+	height:40px;
+}
+.outprocessingContainer .form-group i.form-control-feedback{
+	top:-4px;
+}
+.outprocessingContainer .form-group small.help-block{
+	top:26px;
+}
+.outprocessingContainer .tableLayout tr.textareaTr{/* textarea所在行的行高 */
+	height:58px;
+}
+			/* 预约可见人员  添加 编辑 详情 三个页面的样式 */
+.visualstaffContainer{
+	padding-top:20px;
+}
+.visualstaffContainer textarea{
+	width:400px;
+	min-height:60px;
+	
+}
+.visualstaffContainer .tableLayout tr{/* textarea所在行的行高 */
+	height:37px;
+}
+.visualstaffContainer .tableLayout tr.textareaTr{/* textarea所在行的行高 */
+	height:73px;
+}
+			/*加工分类管理    添加 编辑 详情 三个页面的样式 */
+.addTypeContainer{
+	padding:20px;
+}
+			
+			/*可见人员    添加 编辑 详情 三个页面的样式 */
+.visualContainer{
+	padding-top:20px;
+}
+.visualContainer textarea{
+	width:400px;
+	min-height:60px;
+	
+}
+.visualContainer .tableLayout tr{/* textarea所在行的行高 */
+	height:37px;
+}
+.visualContainer .tableLayout tr.textareaTr{/* textarea所在行的行高 */
+	height:73px;
+}
+
+			/*患者来源   添加 编辑 详情 三个页面的样式*/
+.hzlyContainer{
+	padding-top:20px;
+}
+			/*就诊目的   添加 编辑 详情 三个页面的样式*/
+.jzmdContainer{
+	padding-top:20px;
+}
+			/*赠送项目  添加 编辑 详情 三个页面的样式*/
+.giveItemContainer{
+	padding-top:20px;
+}
