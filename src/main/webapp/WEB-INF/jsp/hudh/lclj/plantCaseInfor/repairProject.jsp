@@ -79,30 +79,30 @@
 		</div>
 		<!-- 患者详细信息 -->
 		<div class="row patient" style="border-bottom: 2px solid #776c6c;">
-			<div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="line-height: 60px;">
+			<div class="col-md-3 col-sm-3 col-xs-3 colDefined">
 				<!-- 信息输入组合框 -->
-				<div class="rpInfo_import">
+				<div class="rpInfo_import" style="line-height: 60px;">
 					<span>患者姓名：</span>
 					<input id="patient_name" type="text" disabled="disabled"/>
 				</div>
 			</div>
-			<div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="line-height: 60px;">
+			<div class="col-md-3 col-sm-3 col-xs-3 colDefined">
 				<!-- 信息输入组合框 -->
-				<div class="rpInfo_import">
+				<div class="rpInfo_import" style="line-height: 60px;">
 					<span>患者编号：</span>
 					<input id="patient_usercode" type="text" disabled="disabled"/>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined" style="line-height: 60px;">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<!-- 信息输入组合框 -->
-				<div class="rpInfo_import">
+				<div class="rpInfo_import" style="line-height: 60px;">
 					<span>性别：</span>
 					<input id="patient_sex" type="text" disabled="disabled"/>
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<!-- 信息输入组合框 -->
-				<div class="rpInfo_import">
+				<div class="rpInfo_import" style="line-height: 60px;">
 					<span>年龄：</span>
 					<input id="patient_age" type="text" disabled="disabled"/>
 				</div>	

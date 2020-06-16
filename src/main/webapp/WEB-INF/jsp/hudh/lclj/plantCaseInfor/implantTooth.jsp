@@ -337,15 +337,23 @@
 				<span>修复方式</span>
 				<span class="repairselectText"></span>
 				<select id="repairselect" class="selectTag repairselect selectpicker" title="请选择" multiple>
-					<option value="韩国Osstem种植体1">韩国Osstem种植体</option>
-					<option value="韩国Dentium种植体1">韩国Dentium种植体</option>
-					<option value="美国HIOSSEN种植体1">美国HIOSSEN种植体</option>
-					<option value="德国ICX种植体1">德国ICX种植体</option>
-					<option value="瑞典Nobel-Replace种植体1">瑞典Nobel-Replace种植体</option>
-					<option value="瑞典Nobel-Active种植体1">瑞典Nobel-Active种植体</option>
-					<option value="德国Camlog种植体1">德国Camlog种植体</option>
-					<option value="瑞典Nobel-PMC1">瑞典Nobel</option>
-					<option value="美国Zimmer1">美国Zimmer</option>
+					<option value="单冠">单冠</option>
+					<option value="联冠">联冠</option>
+					<option value="种植覆盖义齿">种植覆盖义齿</option>
+					<option value="Locator式">Locator式</option>
+					<option value="钴铬">钴铬</option>
+					<option value="纯钛">纯钛</option>
+					<option value="钛合金">钛合金</option>
+					<option value="杆卡式">杆卡式</option>
+					<option value="Peek">Peek</option>
+					<option value="套筒冠">套筒冠</option>
+					<option value="氧化锆（爱尔创/威兰德）">氧化锆（爱尔创/威兰德）</option>
+					<option value="磁性附着体">磁性附着体</option>
+					<option value="球帽">球帽</option>
+					<option value="种植固定义齿">种植固定义齿</option>
+					<option value="氧化锆一体桥冠">氧化锆一体桥冠</option>
+					<option value="马龙桥+氧化锆冠">马龙桥+氧化锆冠</option>
+					<option value="CAD/CAM纯钛桥架+树脂牙管">CAD/CAM纯钛桥架+树脂牙管</option>
 				</select>
 			</div>
 			</div>
