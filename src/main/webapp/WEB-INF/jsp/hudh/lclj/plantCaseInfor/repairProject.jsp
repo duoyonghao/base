@@ -628,7 +628,6 @@
 					elem.style.height = elem.scrollHeight + 'px';
 				}
 				this.each(function(){
-					console.log("文本域高度自适应**************");
 					autoHeight(this);
 					$(this).on('keyup', function(){
 						autoHeight(this);
@@ -731,7 +730,7 @@
 					 order_number : order_number
 				},
 				success:function(result){
-					console.log(JSON.stringify(result)+"--------------添加成功后查询数据");
+					//console.log(JSON.stringify(result)+"--------------添加成功后查询数据");
 					//caseId=result.seqId;  //病历id
 					var result;
 					if(seqidFather){
@@ -1391,7 +1390,7 @@
 		    eprnstr="<!--endprint-->";
 		    prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);
 		    prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
-		    var htmlStyle="<style>#repairDoctorSignature{display: inline-block;}#repairImg{width:80px !important;}#img{width:80px !important;}#operationdoctortime{display: inline-block;}button{display:none;}.distance{margin-top: 10px !important;}#repair_continer .rp_toothGroup>ul>li{margin-left: 3%;}*{font-size: 12px;line-height: 16px;}#repair_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.lodopPrintborder{border-right: 2px solid black !important;}.patient{padding:0!important;margin:0!important;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}#logoImg{text-align:left!important;width:27%!important;left:0%!important;top:17px!important;}#requirerestor{font-size: 12px!important;}</style>";
+		    var htmlStyle="<style>#repairDoctorSignature{display: inline-block;}#repairImg{width:80px !important;}#img{width:80px !important;}#operationdoctortime{display: inline-block;}button{display:none;}.distance{margin-top: 10px !important;}#repair_continer .rp_toothGroup>ul>li{margin-left: 3%;}*{font-size: 12px;line-height: 16px;}#repair_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.lodopPrintborder{border-right: 2px solid black !important;}.patient{padding:0!important;margin:0!important;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}#logoImg{text-align:left!important;width:27%!important;left:0%!important;top:17px!important;}#requirerestor{font-size: 12px!important;line-height: 18px!important;}</style>";
 		    window.document.body.innerHTML=prnhtml+htmlStyle;
 		    window.print();  //打印
 		    document.body.innerHTML=bdhtml; //恢复页面
