@@ -106,10 +106,11 @@
 								<td style="width:25%;">
 									<div style="z-index: 9999999 ;">
 										<ul>
-											<li><label style="position:absolute,z-index:9999"><i style="color: red;font-style: normal;">*</i>1、手术时间：
+											<li><label style="z-index:9999"><i style="color: red;font-style: normal;">*</i>1、手术时间：
 											<input class="time_select" name="operation_time" type="text" id="operation_time" placeholder="请选择时间" style="width: 105px;vertical-align: middle;" readonly="readonly"/></label></li>
 											<li><label><i style="color: red;font-style: normal;">*</i>2、<input name="preoperation_one_houres" type="checkbox" value="2、术前1小时，口服抗菌药物"  id="preoperation_one_houres"/>术前1小时口服抗菌药物</label></li>
 											<li><label><i style="color: red;font-style: normal;">*</i>3、<input name="preoperative_verification" type="checkbox" value="3、术前核查" id="preoperative_verification"/><font class="operation_examine">术前核查</font></label></li>
+											<li><label><i style="color: red;font-style: normal;">*</i><input name="preoperative_verification" type="checkbox" value="3、术前核查" id="preoperative_patientsAndDoc"/><font class="operation_examine_patients">术前核查单（新）</font></label></li>
 											<li>
 												<div class="preparation-ul">
 													<div><span style="font-weight: bold;" class=""><i style="color: red;font-style: normal;">*</i>4、麻醉方式：</span></div>
@@ -454,7 +455,20 @@ $(".operation_examine").click(function(){
 			/* console.log("点击了右上角关闭按钮！"); */     
 		}
 	}); 
-}); 
+});
+//术前核查（新）
+$(".operation_examine_patients").click(function(){
+	parent.layer.open({
+		title:"新种植牙术前安全核查单（医患）",
+		type:2,
+		closeBtn:1,
+		content:contextPath + "/ZzblViewAct/toPatientOperationExamineInfor.act",
+		area:userAgent.indexOf("iPad") > -1 ?['100%','95%'] : ['80%','80%'],
+		cancel: function(){
+			/* console.log("点击了右上角关闭按钮！"); */
+		}
+	});
+});
 
 //种植牙手术记录     
 $(".operation_record").click(function(){
@@ -507,6 +521,24 @@ function checkOptions(){
 			
 		}
   });
+
+	/* 术前核查（新）*/
+	var patientoperationExamineurl = contextPath + '/HUDH_MedicalRecordsAct/findVerification.act';
+	$.ajax({
+		url: patientoperationExamineurl,
+		type:"POST",
+		dataType:"json",
+		data : {
+			id :  selectId, //临床路径ID
+			order_number : order_number
+		},
+		success:function(result){
+			if(result.length>0){
+				$(".operation_examine_patients").prev().attr("checked","checked").attr("disabled","disabled");
+			}
+
+		}
+	});
 	
 }
 

@@ -17,6 +17,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="<%=contextPath%>/static/css/hudh/lclj/flowdetail/css/base.css" />
 <link rel="stylesheet" type="text/css" href="<%=contextPath%>/static/css/kqdsFront/plugin/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="<%=contextPath%>/static/css/admin/index/bower_components/select/bootstrap-select.css" />
 <link rel="stylesheet" type="text/css" href="<%=contextPath%>/static/css/kqdsFront/plugin/bootstrap-datetimepicker.css" />
 <link type="text/css" rel="stylesheet" href="<%=contextPath%>/static/css/kqdsFront/plantCase/anamnesis.css" />
 
@@ -26,6 +27,7 @@
 <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/bootstrap/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/bootstrap/bootstrap-datetimepicker.zh-CN.js" charset="utf-8" ></script>
 <script type="text/javascript" src="<%=contextPath%>/static/plugin/layer-v2.4/layer/layer.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/plugins/select/bootstrap-select.js"></script>
 </head>
 <style type="text/css">
 	input::-webkit-input-placeholder{
@@ -256,10 +258,55 @@
 	#anamnesis_continer .bgwhite{
 		background-color: white;
 	}
-	 @page{  
-	    size:205mm 290mm;  
-	    margin: 0 auto;  
-   } 
+    /*多选框样式*/
+    #anamnesis_continer>.row{
+        overflow: visible;
+    }
+    .selectgroup .groupSelect{
+        padding-right: 0px;
+        border: 0px solid #c3c3c3;
+        margin-bottom: 12px;
+    }
+    .bootstrap-select > .dropdown-toggle{
+        width: 100%;
+        padding: 0px;
+        height: 24px;
+        line-height: 24px;
+        padding-right: 25px;
+    }
+    .pull-left{
+        margin-top: 0px !important;
+        font-size: 14px;
+        padding: 0px 5px;
+    }
+    .bs-caret .caret{
+        margin-top: 0px !important;
+    }
+    .glyphicon{
+        margin-top: 5px !important;
+        font-size: 12px;
+    }
+    .dropdown-menu > li > a{
+        padding: 0px 15px;
+    }
+    .bootstrap-select.btn-group.show-tick .dropdown-menu li a span.text {
+        line-height: 24px;
+        font-size: 14px;
+        margin-top: 0px !important;
+    }
+    .bootstrap-select .dropdown-toggle:focus {
+        outline: 0px dotted #333333 !important;
+        outline: 0px auto -webkit-focus-ring-color !important;
+        outline-offset: -2px;
+    }
+    .selectgroup{
+        display: block !important;
+    }
+    .medicineText{
+        display: none;
+        margin: 9px 0px;
+        padding-left: 10px;
+    }
 </style>
 <body>
 <!--startprint-->
@@ -268,7 +315,7 @@
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
 				<!-- <div class="big_title"><span class="bigtitle">主诉及既往病史</span></div> -->
-				<%-- <img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png"> --%>
+				<%--<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">--%>
 				<span class="bigtitle">主诉及既往病史</span>
 			</div>
 		</div>	
@@ -344,7 +391,7 @@
 					<span>高血压:</span>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-3 col-xs-3 colDefined combgGray backColor">
+			<div class="col-md-1 col-sm-2 col-xs-2 colDefined combgGray backColor">
 				<div class="select_group common_style">
 					<!-- 选项div -->
 					<div class="option_div">
@@ -360,20 +407,7 @@
 					<span>年</span>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-5 col-xs-5 colDefined combgGray backColor">
-				<!-- 选择组合框 -->
-				<div class="select_group common_style">
-					<!-- 选项名称 -->
-					<span class="select_name">是否服药:</span>
-					<!-- 选项 -->
-					<!-- 选项div -->
-					<div class="option_div">
-						<input name="istakemedicie" id="isTakeMedicie_y" value="1" type="radio" disabled="disabled"/><label for="isTakeMedicie_y">是</label>
-						<input name="istakemedicie" id="isTakeMedicie_n" value="0" type="radio" disabled="disabled"/><label for="isTakeMedicie_n">否</label>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-2 col-sm-4 col-xs-4 colDefined combgGray">
+			<div class="col-md-2 col-sm-3 col-xs-3 colDefined combgGray backColor">
 				<!-- 选择组合框 -->
 				<div class="select_group common_style">
 					<!-- 选项名称 -->
@@ -385,7 +419,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-4 col-xs-4 colDefined combgGray">
+			<div class="col-md-2 col-sm-3 col-xs-3 colDefined combgGray backColor">
 				<!-- 填写组合框 -->
 				<div class="fillWrite_group common_style">
 					<!-- 填写名称 -->
@@ -394,12 +428,25 @@
 					<input id="pressure" style="width: 120px;text-align: center;padding: 0px;" class="fillWrite_input" placeholder="125/69" onblur="TextLengthCheck(this.id,10);" type="text"/>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-4 col-xs-4 colDefined combgGray">
+            <div class="col-md-2 col-sm-6 col-xs-6 colDefined combgGray">
+                <!-- 选择组合框 -->
+                <div class="select_group common_style">
+                    <!-- 选项名称 -->
+                    <span class="select_name">是否服药:</span>
+                    <!-- 选项 -->
+                    <!-- 选项div -->
+                    <div class="option_div">
+                        <input name="istakemedicie" id="isTakeMedicie_y" value="1" type="radio" disabled="disabled"/><label for="isTakeMedicie_y">是</label>
+                        <input name="istakemedicie" id="isTakeMedicie_n" value="0" type="radio" disabled="disabled"/><label for="isTakeMedicie_n">否</label>
+                    </div>
+                </div>
+            </div>
+			<div class="col-md-3 col-sm-6 col-xs-6 colDefined combgGray">
 				<!-- 填写组合框 -->
 				<div class="selectgroup common_style">
 					<span class="groupName" style="font-weight: normal;">常用药物：</span>
-					<select id="hypertensionmedicine" class="groupSelect" disabled="disabled" style="pointer-events: none;">
-						<option value="">请选择</option>
+					<select id="hypertensionmedicine" class="groupSelect" multiple title="请选择" style="pointer-events: none;">
+						<%--<option value="">请选择</option>--%>
 						<option value="倍他洛克">倍他洛克</option>
 						<option value="比索洛尔">比索洛尔</option>
 						<option value="硝苯地平">硝苯地平</option>
@@ -413,6 +460,8 @@
 						<option value="络活喜">络活喜</option>
 					</select>
 				</div>
+                <%--打印展示--%>
+                <div class="medicineText">常用药物：<span class="hypertensionmedicine"></span></div>
 			</div>
 		</div>
 		<!-- 心脏病 -->
@@ -455,8 +504,8 @@
 				<!-- 填写组合框 -->
 				<div class="selectgroup common_style">
 					<span class="groupName" style="font-weight: normal;">常用药物：</span>
-					<select id="heardieasemedicine" class="groupSelect" disabled="disabled" style="pointer-events: none;">
-						<option value="">请选择</option>
+					<select id="heardieasemedicine" class="groupSelect" multiple title="请选择" style="pointer-events: none;">
+						<%--<option value="">请选择</option>--%>
 						<option value="速效救心丸">速效救心丸</option>
 						<option value="复方丹参滴丸">复方丹参滴丸</option>
 						<option value="复方丹参片">复方丹参片</option>
@@ -465,6 +514,8 @@
 						<option value="心痛定片(硝苯地平片)">心痛定片(硝苯地平片)</option>
 					</select>
 				</div>
+                <%--打印展示--%>
+                <div class="medicineText">常用药物：<span class="heardieasemedicine"></span></div>
 			</div>
 		</div>
 		<!-- 糖尿病 -->
@@ -504,7 +555,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-4 col-xs-4 colDefined combgGray">
+			<%--<div class="col-md-2 col-sm-4 col-xs-4 colDefined combgGray">
 				<!-- 选择组合框 -->
 				<div class="select_group common_style">
 					<!-- 选项名称 -->
@@ -515,13 +566,13 @@
 						<input name="isdietcontrol" id="isDietControl_n" value="0" type="radio" disabled="disabled"/><label for="isDietControl_n">否</label>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-2 col-sm-4 col-xs-4 colDefined combgGray">
+			</div>--%>
+			<div class="col-md-3 col-sm-6 col-xs-6 colDefined combgGray">
 				<!-- 填写组合框 -->
 				<div class="selectgroup common_style">
 					<span class="groupName" style="font-weight: normal;">口服常用药：</span>
-					<select id="diabetesoralmedicine" class="groupSelect" disabled="disabled" style="pointer-events: none;">
-						<option value="">请选择</option>
+					<select id="diabetesoralmedicine" class="groupSelect" multiple title="请选择" style="pointer-events: none;">
+						<%--<option value="">请选择</option>--%>
 						<option value="二甲双胍">二甲双胍</option>
 						<option value="格列美脲">格列美脲</option>
 						<option value="格列本脲">格列本脲</option>
@@ -540,18 +591,22 @@
 						<option value="拜糖平">拜糖平</option>
 					</select>
 				</div>
+                <%--打印展示--%>
+                <div class="medicineText">口服常用药：<span class="diabetesoralmedicine"></span></div>
 			</div>
-			<div class="col-md-2 col-sm-4 col-xs-4 colDefined combgGray">
+			<div class="col-md-3 col-sm-6 col-xs-6 colDefined combgGray">
 				<!-- 填写组合框 -->
 				<div class="selectgroup common_style">
 					<span class="groupName" style="font-weight: normal;">注射常用药：</span>
-					<select id="diabetesinjectionmedicine" class="groupSelect" disabled="disabled" style="pointer-events: none;">
-						<option value="">请选择</option>
+					<select id="diabetesinjectionmedicine" class="groupSelect" multiple title="请选择" style="pointer-events: none;">
+						<%--<option value="">请选择</option>--%>
 						<option value="利拉鲁肽">利拉鲁肽</option>
 						<option value="艾塞那肽">艾塞那肽</option>
 						<option value="胰岛素">胰岛素</option>
 					</select>
 				</div>
+                <%--打印展示--%>
+                <div class="medicineText">注射常用药：<span class="diabetesinjectionmedicine"></span></div>
 			</div>
 		</div>
 		<!-- 六个月内做过心瓣膜手术 -->
@@ -602,7 +657,7 @@
 		</div>
 		<!-- 服用抗凝药物 -->
 		<div class="row bgWhite">
-			<div class="col-md-5 col-sm-8 col-xs-8 colDefined">
+			<div class="col-md-5 col-sm-5 col-xs-5 colDefined">
 				<!-- 名称div -->
 				<div class="name_div common_style fillWrite_group">
 					<span class="print_textStyle ipadText">服用抗凝药物或其他可以导致凝血功能障碍的药物(药名):</span>
@@ -610,19 +665,26 @@
 					<!-- <input id="antifreezing" placeholder="此框只能输9个字" onblur="TextLengthCheck(this.id,9);" style="margin-top: 8px;width: 25%;margin-left: 2%;border: 0px;" class="fillWrite_input" type="text"/> -->
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-4 col-xs-4 colDefined">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<!-- 选项div -->
 				<div class="option_div common_style">
 					<input name="isantifreezing" id="isAntiFreezing_n" value="0" type="radio" onclick="ishaveantifreezing(this.name)"/><label for="isAntiFreezing_n">无</label>
 					<input name="isantifreezing" id="isAntiFreezing_y" value="1" type="radio" onclick="ishaveantifreezing(this.name)"/><label for="isAntiFreezing_y">有</label>
 				</div>
 			</div>
-			<div class="col-md-3 col-sm-6 col-xs-6 colDefined backcolorGray">
+            <div class="col-md-2 col-sm-1 col-xs-1 colDefined">
+                <!-- 时间div -->
+                <div class="time_div common_style">
+                    <input id="antifreezingtime" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
+                    <span>年</span>
+                </div>
+            </div>
+			<div class="col-md-3 col-sm-4 col-xs-4 colDefined">
 				<!-- 填写组合框 -->
 				<div class="selectgroup common_style">
 					<span class="groupName" style="font-weight: normal;">常用药物：</span>
-					<select id="antifreezingmedicine" class="groupSelect" disabled="disabled" style="pointer-events: none;">
-						<option value="">请选择</option>
+					<select id="antifreezingmedicine" class="groupSelect" multiple title="请选择" style="pointer-events: none;">
+						<%--<option value="">请选择</option>--%>
 						<option value="阿司匹林">阿司匹林</option>
 						<option value="波立维">波立维</option>
 						<option value="华法林">华法林</option>
@@ -632,51 +694,46 @@
 						<option value="利伐沙班">利伐沙班</option>
 					</select>
 				</div>
-			</div>
-			<div class="col-md-2 col-sm-6 col-xs-6 colDefined backcolorGray">
-				<!-- 时间div -->
-				<div class="time_div common_style">
-					<input id="antifreezingtime" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
-					<span>年</span>
-				</div>
+                <%--打印展示--%>
+                <div class="medicineText">常用药物：<span class="antifreezingmedicine"></span></div>
 			</div>
 		</div>
 		<!-- 乙肝丙肝 -->
 		<div class="row">
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 名称div -->
 				<div class="name_div common_style">
 					<span>乙肝:</span>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 选项div -->
 				<div class="option_div common_style">
 					<input name="ishepatitisb" id="isHepatitisB_n" value="0" type="radio" onclick="ishaveillness(this.name)"/><label for="isHepatitisB_n">无</label>
 					<input name="ishepatitisb" id="isHepatitisB_y" value="1" type="radio" onclick="ishaveillness(this.name)"/><label for="isHepatitisB_y">有</label>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 时间div -->
 				<div class="time_div common_style">
 					<input id="hepatitisb" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
 					<span>年</span>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 名称div -->
 				<div class="name_div common_style">
 					<span>丙肝:</span>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 选项div -->
 				<div class="option_div common_style">
 					<input name="ishepatitisc" id="IsHepatitisC_n" value="0" type="radio" onclick="ishaveillness(this.name)"/><label for="IsHepatitisC_n">无</label>
 					<input name="ishepatitisc" id="IsHepatitisC_y" value="1" type="radio" onclick="ishaveillness(this.name)"/><label for="IsHepatitisC_y">有</label>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 时间div -->
 				<div class="time_div common_style">
 					<input id="hepatitisc" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
@@ -686,40 +743,40 @@
 		</div>
 		<!-- HIV 恶性肿瘤、 -->
 		<div class="row bgWhite">
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<!-- 名称div -->
 				<div class="name_div common_style">
 					<span>HIV:</span>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<!-- 选项div -->
 				<div class="option_div common_style">
 					<input name="ishiv" id="IsHIV_n" value="0" type="radio" onclick="ishaveillness(this.name)"/><label for="IsHIV_n">无</label>
 					<input name="ishiv" id="IsHIV_y" value="1" type="radio" onclick="ishaveillness(this.name)"/><label for="IsHIV_y">有</label>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<!-- 时间div -->
 				<div class="time_div common_style">
 					<input id="hiv" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
 					<span>年</span>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<!-- 名称div -->
 				<div class="name_div common_style">
 					<span class="ipadText">恶性肿瘤（癌症）:</span>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<!-- 选项div -->
 				<div class="option_div common_style">
 					<input name="iscancer" id="IsCancer_n" value="0" type="radio" onclick="ishaveillness(this.name)"/><label for="IsCancer_n">无</label>
 					<input name="iscancer" id="IsCancer_y" value="1" type="radio" onclick="ishaveillness(this.name)"/><label for="IsCancer_y">有</label>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<!-- 时间div -->
 				<div class="time_div common_style">
 					<input id="cancer" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
@@ -729,40 +786,40 @@
 		</div>		
 		<!-- 梅毒、颌面部放疗术后 -->
 		<div class="row">
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 名称div -->
 				<div class="name_div common_style">
 					<span>梅毒:</span>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 选项div -->
 				<div class="option_div common_style">
 					<input name="isyphilis" id="isYphilis_n" value="0" type="radio" onclick="ishaveisyphilis(this.name)"/><label for="isYphilis_n">无</label>
 					<input name="isyphilis" id="isYphilis_y" value="1" type="radio" onclick="ishaveisyphilis(this.name)"/><label for="isYphilis_y">有</label>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 时间div -->
 				<div class="time_div common_style">
 					<input id="syphilis" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
 					<span>年</span>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 名称div -->
 				<div class="name_div common_style">
 					<span>颌面部放疗术后:</span>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 选项div -->
 				<div class="option_div common_style">
 					<input name="ismaxillofacial" id="IsMaxillofacial_n" value="0" type="radio" onclick="ishaveillness(this.name)"/><label for="IsMaxillofacial_n">无</label>
 					<input name="ismaxillofacial" id="IsMaxillofacial_y" value="1" type="radio" onclick="ishaveillness(this.name)"/><label for="IsMaxillofacial_y">有</label>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 时间div -->
 				<div class="time_div common_style">
 					<input id="maxillofacial" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
@@ -772,40 +829,40 @@
 		</div>	
 		<!-- 任何感染的急性炎症期、吸毒 -->
 		<div class="row bgWhite">
-			<div class="col-md-2 col-sm-3 col-xs-3 colDefined backcolorGray">
+			<div class="col-md-2 col-sm-3 col-xs-3 colDefined">
 				<!-- 名称div -->
 				<div class="name_div common_style">
 					<span>任何感染的急性炎症期:</span>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<!-- 选项div -->
 				<div class="option_div common_style">
 					<input name="isinflammation" id="isInflammation_n" value="0" type="radio" onclick="ishaveillness(this.name)"/><label for="isInflammation_n">无</label>
 					<input name="isinflammation" id="isInflammation_y" value="1" type="radio" onclick="ishaveillness(this.name)"/><label for="isInflammation_y">有</label>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<!-- 时间div -->
 				<div class="time_div common_style">
 					<input id="inflammation" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
 					<span>年</span>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-1 col-xs-1 colDefined backcolorGray">
+			<div class="col-md-2 col-sm-1 col-xs-1 colDefined">
 				<!-- 名称div -->
 				<div class="name_div common_style">
 					<span>吸毒:</span>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<!-- 选项div -->
 				<div class="option_div common_style">
 					<input name="isdrugabuse" id="isDrugAbuse_n" value="0" type="radio" onclick="ishaveillness(this.name)"/><label for="isDrugAbuse_n">无</label>
 					<input name="isdrugabuse" id="isDrugAbuse_y" value="1" type="radio" onclick="ishaveillness(this.name)"/><label for="isDrugAbuse_y">有</label>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<!-- 时间div -->
 				<div class="time_div common_style">
 					<input id="drugabuse" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
@@ -815,40 +872,40 @@
 		</div>			
 		<!-- 心理、精神障碍.皮肤黏膜病变、 -->
 		<div class="row">
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 名称div -->
 				<div class="name_div common_style">
 					<span>心理、精神障碍:</span>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 选项div -->
 				<div class="option_div common_style">
 					<input name="ispsychosis" id="isPsychosis_n" value="0" type="radio" onclick="ishaveillness(this.name)"/><label for="isPsychosis_n">无</label>
 					<input name="ispsychosis" id="isPsychosis_y" value="1" type="radio" onclick="ishaveillness(this.name)"/><label for="isPsychosis_y">有</label>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 时间div -->
 				<div class="time_div common_style">
 					<input id="psychosis" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
 					<span>年</span>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 名称div -->
 				<div class="name_div common_style">
 					<span>皮肤黏膜病变:</span>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 选项div -->
 				<div class="option_div common_style">
 					<input name="ismucousmembrane" id="IsMucousMembrane_n" value="0" type="radio" onclick="ishaveillness(this.name)"/><label for="IsMucousMembrane_n">无</label>
 					<input name="ismucousmembrane" id="IsMucousMembrane_y" value="1" type="radio" onclick="ishaveillness(this.name)"/><label for="IsMucousMembrane_y">有</label>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 				<!-- 时间div -->
 				<div class="time_div common_style">
 					<input id="mucousmembrane" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
@@ -858,38 +915,38 @@
 		</div>	
 		<!-- 骨质疏松症用药情况： -->
 		<div class="row bgWhite">
-		 	<div class="col-md-2 col-sm-4 col-xs-4 colDefined backcolorGray">
+		 	<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<!-- 名称div -->
 				<div class="name_div common_style">
 					<span>骨质疏松症用药情况:</span>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-4 col-xs-4 colDefined backcolorGray">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<!-- 选项div -->
 				<div class="option_div common_style">
 					<input name="ispharmacy" id="IsPharmacy_n" value="0" type="radio" onclick="ishaveillness(this.name);ishavapharmacy(this.name);"/><label for="IsPharmacy_n">无</label>
 					<input name="ispharmacy" id="IsPharmacy_y" value="1" type="radio" onclick="ishaveillness(this.name);ishavapharmacy(this.name);"/><label for="IsPharmacy_y">有</label>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-4 col-xs-4 colDefined backcolorGray">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<!-- 时间div -->
 				<div class="time_div common_style">
 					<input id="pharmacy" oninput="if(value>100||value<=0||value!=value.replace(/[^\d]/g,'')){layer.alert('此框只能输入数字并且值大于等于0小于100！');value='';}if(value.length>3)value=value.slice(0,3);" type="text"/>
 					<span>年</span>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-6 col-xs-6 colDefined">
+			<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 				<div class="option_div common_style">
 					<input name="treatment" id="Treatment_vein" value="0" type="radio" disabled="disabled"/><label for="Treatment_vein">静脉</label>
 					<input name="treatment" id="Treatment_take" value="1" type="radio" disabled="disabled"/><label for="Treatment_take">口服</label>
 				</div>
 			</div>
-			 <div class="col-md-4 col-sm-6 col-xs-6 colDefined">
+			 <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
 				<!-- 填写组合框 -->
 				<div class="selectgroup common_style">
 					<span class="groupName" style="font-weight: normal;">常用药物：</span>
-					<select id="pharmacymedicine" class="groupSelect" disabled="disabled" style="pointer-events: none;">
-						<option value="">请选择</option>
+					<select id="pharmacymedicine" class="groupSelect" multiple title="请选择" style="pointer-events: none;">
+						<%--<option value="">请选择</option>--%>
 						<option value="钙剂">钙剂</option>
 						<option value="阿法骨化醇骨化三醇">阿法骨化醇骨化三醇</option>
 						<option value="活性维生素D">活性维生素D</option>
@@ -901,6 +958,8 @@
 						<option value="雌激素">雌激素</option>
 					</select>
 				</div>
+                <%--打印展示--%>
+                <div class="medicineText">常用药物：<span class="pharmacymedicine"></span></div>
 			</div>
 		</div>
 		<!-- 长期应用糖皮质激素 -->
@@ -929,8 +988,8 @@
 				<!-- 填写组合框 -->
 				<div class="selectgroup common_style">
 					<span class="groupName" style="font-weight: normal;">常用药物：</span>
-					<select id="glucocorticoidsmedicine" class="groupSelect" disabled="disabled" style="pointer-events: none;">
-						<option value="">请选择</option>
+					<select id="glucocorticoidsmedicine" class="groupSelect" multiple title="请选择" style="pointer-events: none;">
+						<%--<option value="">请选择</option>--%>
 						<option value="泼尼松">泼尼松</option>
 						<option value="甲泼尼松">甲泼尼松</option>
 						<option value="倍他米松">倍他米松</option>
@@ -938,6 +997,8 @@
 						<option value="泼尼松龙">泼尼松龙</option>
 					</select>
 				</div>
+                <%--打印展示--%>
+                <div class="medicineText">常用药物：<span class="glucocorticoidsmedicine"></span></div>
 			</div>
 		</div>	
 		<!-- 其他系统疾病 -->
@@ -1324,7 +1385,8 @@
 			         );
 			    }
 		    });
-			
+            //多选下拉框初始化
+            $(".groupSelect").selectpicker({});
 			
 		    //患者姓名、年龄、性别赋值
 			$("#patient_name").text(window.parent.consultSelectPatient.username);
@@ -1454,13 +1516,15 @@
 							$("#"+key+"[type='text']").attr("value",result[key]);// 填框赋值
 							//常用药物select赋值
 							if($("#"+key).find("option")){
-								$("#"+key).find("option").each(function(i,obj){
-									$(this).removeAttr("selected");
-									if($(this).val()==result[key]){
-										$(this).prop("selected", true);//针对ipad赋值
-										$(this).attr("selected", true);
-									}
-								});
+                                $("#"+key).selectpicker('val', result[key]);
+                                $("."+key).text(result[key]);
+								// $("#"+key).find("option").each(function(i,obj){
+								// 	$(this).removeAttr("selected");
+								// 	if($(this).val()==result[key]){
+								// 		$(this).prop("selected", true);//针对ipad赋值
+								// 		$(this).attr("selected", true);
+								// 	}
+								// });
 							}
 							//单选按钮赋值
 							$("input[name="+key+"][type='radio']").each(function(){
@@ -1620,13 +1684,13 @@
 			/* var doctorSignature = $("#doctorSignature").val();//医生签字 */
 			var doctorTime = $("#doctortime").val();//医生签字时间     72
 			//新增参数
-			var hypertensionmedicine = $("#hypertensionmedicine").val();  //高血压常用药物
-			var heardieasemedicine = $("#heardieasemedicine").val();  //心脏病常用药
-			var diabetesoralmedicine = $("#diabetesoralmedicine").val();  //糖尿病口服常用药
-			var diabetesinjectionmedicine = $("#diabetesinjectionmedicine").val(); //糖尿病注射常用药
-			var antifreezingmedicine = $("#antifreezingmedicine").val();  //服用抗凝药物常用药物
-			var pharmacymedicine = $("#pharmacymedicine").val(); //骨质疏松常用药物
-			var glucocorticoidsmedicine = $("#glucocorticoidsmedicine").val(); //长期应用糖皮质激素常用药
+			var hypertensionmedicine = JSON.stringify($("#hypertensionmedicine").val());  //高血压常用药物
+			var heardieasemedicine = JSON.stringify($("#heardieasemedicine").val());  //心脏病常用药
+			var diabetesoralmedicine = JSON.stringify($("#diabetesoralmedicine").val());  //糖尿病口服常用药
+			var diabetesinjectionmedicine = JSON.stringify($("#diabetesinjectionmedicine").val()); //糖尿病注射常用药
+			var antifreezingmedicine = JSON.stringify($("#antifreezingmedicine").val());  //服用抗凝药物常用药物
+			var pharmacymedicine = JSON.stringify($("#pharmacymedicine").val()); //骨质疏松常用药物
+			var glucocorticoidsmedicine = JSON.stringify($("#glucocorticoidsmedicine").val()); //长期应用糖皮质激素常用药
 			
 			var url = contextPath + '/HUDH_ZzblAskAct/updateCaseHistoryById.act';
 	        var param = {
@@ -1810,13 +1874,13 @@
 			/* var doctorSignature = $("#doctorSignature").val(); *///医生签字
 			var doctorTime = $("#doctortime").val();//医生签字时间     72
 			//新增参数
-			var hypertensionmedicine = $("#hypertensionmedicine").val();  //高血压常用药物
-			var heardieasemedicine = $("#heardieasemedicine").val();  //心脏病常用药
-			var diabetesoralmedicine = $("#diabetesoralmedicine").val();  //糖尿病口服常用药
-			var diabetesinjectionmedicine = $("#diabetesinjectionmedicine").val(); //糖尿病注射常用药
-			var antifreezingmedicine = $("#antifreezingmedicine").val();  //服用抗凝药物常用药物
-			var pharmacymedicine = $("#pharmacymedicine").val(); //骨质疏松常用药物
-			var glucocorticoidsmedicine = $("#glucocorticoidsmedicine").val(); //长期应用糖皮质激素常用药
+			var hypertensionmedicine = JSON.stringify($("#hypertensionmedicine").val());  //高血压常用药物
+			var heardieasemedicine = JSON.stringify($("#heardieasemedicine").val());  //心脏病常用药
+			var diabetesoralmedicine = JSON.stringify($("#diabetesoralmedicine").val());  //糖尿病口服常用药
+			var diabetesinjectionmedicine = JSON.stringify($("#diabetesinjectionmedicine").val()); //糖尿病注射常用药
+			var antifreezingmedicine = JSON.stringify($("#antifreezingmedicine").val());  //服用抗凝药物常用药物
+			var pharmacymedicine = JSON.stringify($("#pharmacymedicine").val()); //骨质疏松常用药物
+			var glucocorticoidsmedicine = JSON.stringify($("#glucocorticoidsmedicine").val()); //长期应用糖皮质激素常用药
 			
 			var url = contextPath + '/HUDH_ZzblAskAct/saveCaseHistory.act';
 	        var param = {
@@ -1938,11 +2002,11 @@
 			if($("input[name="+objName+"]:checked").val()==0){
 				//$("#"+inputTextid).val("").attr("disabled","disabled").css("background-color","#c3c3c3");  //原输入框
 				$("#"+inputTextid+"time").val("").attr("disabled","disabled").css("background-color","#c3c3c3"); //患病年限
-				$("#antifreezingmedicine").val("").attr("disabled","disabled").css("background-color","#c3c3c3").css("pointer-events","none"); //常用药物
+				//$("#antifreezingmedicine").val("").attr("disabled","disabled").css("background-color","#c3c3c3").css("pointer-events","none"); //常用药物
 			}else if($("input[name="+objName+"]:checked").val()==1){
 				//$("#"+inputTextid).removeAttr("disabled").css("background-color","transparent").css("cursor","auto"); //原输入框
 				$("#"+inputTextid+"time").removeAttr("disabled").css("background-color","transparent").css("cursor","auto"); //患病年限
-				$("#antifreezingmedicine").removeAttr("disabled").css("background-color","transparent").css("cursor","auto").css("pointer-events","auto"); //常用药物
+				//$("#antifreezingmedicine").removeAttr("disabled").css("background-color","transparent").css("cursor","auto").css("pointer-events","auto"); //常用药物
 			}
 		}
 		/* 梅毒单独验证   名字不对应 */
@@ -1958,27 +2022,26 @@
 		function ishavapharmacy(objName){
 			if($("input[name="+objName+"]:checked").val()==0){
 				$("input[name='treatment']").removeAttr("checked").attr("disabled","disabled"); //静脉或者口服
-				$("#pharmacymedicine").val("").attr("disabled","disabled").css("pointer-events","none"); //常用药物
+				//$("#pharmacymedicine").val("").attr("disabled","disabled").css("pointer-events","none"); //常用药物
 			}else if($("input[name="+objName+"]:checked").val()==1){
 				$("input[name='treatment']").removeAttr("disabled").css("cursor","auto"); //静脉或者口服
-				$("#pharmacymedicine").removeAttr("disabled").css("cursor","auto").css("pointer-events","auto"); //常用药物
+				//$("#pharmacymedicine").removeAttr("disabled").css("cursor","auto").css("pointer-events","auto"); //常用药物
 			}
 		}
 		/* 高血压单独验证，因为多了是否服药是否控制目前血压 */
 		function ishavahypertension(objName){
-			console.log("高血压验证**********************");
 			if($("input[name="+objName+"]:checked").val()==0){
 				$("#hypertension").removeAttr("checked").attr("disabled","disabled");  //患病年限
 				$("input[name='istakemedicie']").removeAttr("checked").attr("disabled","disabled");  //是否服药
 				$("input[name='iscontrol']").removeAttr("checked").attr("disabled","disabled");      //是否控制
 				$("#pressure").val("").attr("disabled","disabled").css("background-color","#c3c3c3");  //目前血压
-				$("#hypertensionmedicine").val("").attr("disabled","disabled").css("background-color","#c3c3c3").css("pointer-events","none");  //常用药物
+				//$("#hypertensionmedicine").val("").attr("disabled","disabled").css("background-color","#c3c3c3").css("pointer-events","none");  //常用药物
 			}else if($("input[name="+objName+"]:checked").val()==1){
 				$("#hypertension").removeAttr("disabled").css("cursor","auto");
 				$("input[name='istakemedicie']").removeAttr("disabled").css("cursor","auto");
 				$("input[name='iscontrol']").removeAttr("disabled").css("cursor","auto");
 				$("#pressure").removeAttr("disabled").css("background-color","transparent").css("cursor","auto");
-				$("#hypertensionmedicine").removeAttr("disabled").css("background-color","transparent").css("cursor","auto").css("pointer-events","auto");
+				//$("#hypertensionmedicine").removeAttr("disabled").css("background-color","transparent").css("cursor","auto").css("pointer-events","auto");
 			}
 		}
 		/* 心脏病 心绞痛、心衰，因为多了一个是否常备药 */
@@ -1986,11 +2049,11 @@
 			if($("input[name="+objName+"]:checked").val()==0){
 				$("#heardiease").removeAttr("checked").attr("disabled","disabled"); //患病年限
 				$("input[name='ispreparemedication']").removeAttr("checked").attr("disabled","disabled"); //是否有常备药
-				$("#heardieasemedicine").val("").attr("disabled","disabled").css("pointer-events","none"); //常用药物
+				//$("#heardieasemedicine").val("").attr("disabled","disabled").css("pointer-events","none"); //常用药物
 			}else if($("input[name="+objName+"]:checked").val()==1){
 				$("#heardiease").removeAttr("disabled").css("cursor","auto");
 				$("input[name='ispreparemedication']").removeAttr("disabled").css("cursor","auto");
-				$("#heardieasemedicine").removeAttr("disabled").css("cursor","auto").css("pointer-events","auto");
+				//$("#heardieasemedicine").removeAttr("disabled").css("cursor","auto").css("pointer-events","auto");
 			}
 		}
 		/* 糖尿病，因为多了一个是否控制怎么控制 */
@@ -1999,22 +2062,22 @@
 				$("#diabetes").removeAttr("checked").attr("disabled","disabled");   //患病年限
 				$("input[name='dietcontrol']").removeAttr("checked").attr("disabled","disabled");   //怎么控制
 				$("input[name='isdietcontrol']").removeAttr("checked").attr("disabled","disabled");  //是否控制
-				$("#diabetesoralmedicine").val("").attr("disabled","disabled").css("pointer-events","none");  //口服常用药
-				$("#diabetesinjectionmedicine").val("").attr("disabled","disabled").css("pointer-events","none");  //注射常用药
+				//$("#diabetesoralmedicine").val("").attr("disabled","disabled").css("pointer-events","none");  //口服常用药
+				//$("#diabetesinjectionmedicine").val("").attr("disabled","disabled").css("pointer-events","none");  //注射常用药
 			}else if($("input[name="+objName+"]:checked").val()==1){
 				$("#diabetes").removeAttr("disabled").css("cursor","auto");
 				$("input[name='dietcontrol']").removeAttr("disabled").css("cursor","auto");
 				$("input[name='isdietcontrol']").removeAttr("disabled").css("cursor","auto");
-				$("#diabetesoralmedicine").removeAttr("disabled").css("cursor","auto").css("pointer-events","auto");
-				$("#diabetesinjectionmedicine").removeAttr("disabled").css("cursor","auto").css("pointer-events","auto");
+				//$("#diabetesoralmedicine").removeAttr("disabled").css("cursor","auto").css("pointer-events","auto");
+				//$("#diabetesinjectionmedicine").removeAttr("disabled").css("cursor","auto").css("pointer-events","auto");
 			}
 		}
 		/* 长期应用糖皮质激素验证*/
 		function ishavaGlucocorticoids(objName){
 			if($("input[name="+objName+"]:checked").val()==0){
-				$("#glucocorticoidsmedicine").val("").attr("disabled","disabled").css("background-color","#c3c3c3").css("pointer-events","none"); //常用药物
+				//$("#glucocorticoidsmedicine").val("").attr("disabled","disabled").css("background-color","#c3c3c3").css("pointer-events","none"); //常用药物
 			}else if($("input[name="+objName+"]:checked").val()==1){
-				$("#glucocorticoidsmedicine").removeAttr("disabled").css("background-color","transparent").css("cursor","auto").css("pointer-events","auto"); //常用药物
+				//$("#glucocorticoidsmedicine").removeAttr("disabled").css("background-color","transparent").css("cursor","auto").css("pointer-events","auto"); //常用药物
 			}
 		}
 		/* 药物过敏单独验证，因为多了过敏时间 */
@@ -2091,7 +2154,7 @@
 		htmlStyle+=".mainSuitInfo{padding:0px!important;}.chiefComplaint{padding:0px 0px 0px 0px!important;margin:0px!important;}.common_style span, #anamnesis_continer .common_style label{margin-top:5px!important;}.smoking input{margin-top:2px!important;}.patientInfo{padding-left:0px!important;}.mainSuitInfo{padding-left:0px!important;height:40px!important;padding-bottom:0px!important;}.question_row{margin-top:10px!important;}.question_row .colDefined{height:18px!important;}.question_text{height:18px!important;font-size:12px!important;margin:0px!important;}.plantTooth_reason li{height:22px!important;margin-bottom:0px!important;}";
 		htmlStyle+=".plantTooth_reason input{vertical-align:middle!important;}.question_row .colDefined input{display:inline-block!important;height:20px!important;}.question_twoInfo{height:30px!important;}.question_twoInfo .select_item input{vertical-align:middle!important;margin-top:10px!important;}#question_three{margin-top:0px!important;}.loseTooth_option>li label{margin-top:5px!important;}.signature_box span{font-size:12px!important;}#denture{background-color:white!important;}.loseTooth_time>span,input{display:inline!important;}.loseTooth_time{width:auto!important;}.common_style{background-color: transparent!important;}";
 		htmlStyle+="input[type='text']{border:0px!important;padding:0px!important;text-align:center!important;font-weight:bold!important;}#agomphostime,#planttime{padding-left:10px!important;text-align:left!important;vertical-align:top;}#drugallergy{width:270px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important;}#onmedication{width:570px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important;}#habit{width:660px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important;}#others{width:660px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important;}";
-		htmlStyle+="#antifreezing{width:170px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important}#lasttoothextractiontime{border-bottom:1px solid #adaaaa!important;}#doctorSignature{border:1px solid red;}";
+		htmlStyle+="#antifreezing{width:170px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important}#lasttoothextractiontime{border-bottom:1px solid #adaaaa!important;}#doctorSignature{border:1px solid red;}.medicineText{display:block;margin-top: 6px!important;}.selectgroup{display:none !important;}";
 		htmlStyle+=".backColor{background-color:transparent!important;}.backcolorGray{background-color:#f5f5f5!important;}.selectgroup .groupSelect{margin-top:4px!important;font-size:10px;height:18px;appearance:none;-webkit-appearance:none;-moz-appearance:none;}select::-ms-expand{display:none;}#consent_updateBtn{display:none!important;}.question_two{margin-bottom:5px!important;}</style>";
 		var html="<!DOCTYPE html>"+document.getElementsByTagName("html")[0].innerHTML+htmlStyle;
 		LODOP.ADD_PRINT_HTM(0,0,"100%","100%",html);
@@ -2103,10 +2166,7 @@
 		    for (var i = 0; i < listbutton.length; i++) {
 		        if (listbutton[i].qxName == "zsbs_xgbd"&&doctorstatus&&patientstatus) {
 		           $("#consent_updateBtn").removeClass("hidden");
-		        }else if(listbutton[i].qxName =="lclj_ban_signature"){
-                    doctorstatus=false;
-                    patientstatus=false;
-                }
+		        }
 		    }
 		    $("#bottomBarDdiv").append(menubutton1);
 	}
