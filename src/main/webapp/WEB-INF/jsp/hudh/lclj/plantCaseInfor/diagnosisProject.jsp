@@ -1136,21 +1136,19 @@
 			return toothString;
 		};
 
+		//判断文本框是否换页打印
 		$("#remark").on("click",function(){
-			var realHeight = document.getElementById("remark").scrollHeight;
-			var clientHeight = document.getElementById("remark").clientHeight;
+			 realHeight = document.getElementById("remark").scrollHeight;
+			 clientHeight = document.getElementById("remark").clientHeight;
 			document.getElementById("remark").scrollTop=realHeight;
 			if(realHeight>clientHeight){
 				//console.log("TODO:超过行数")
 				$(".twopage").css("page-break-after","always");
 				$(".twoitem").css("margin-top","20px");
-
 			}else{
 				//console.log("TODO:没有超过行数")
-
 			}
 		});
-
 
 		function getButtonPower() {
 		    var menubutton1 = "";
@@ -1162,15 +1160,19 @@
 		    $("#bottomBarDdiv").append(menubutton1);
 		}
 		function doPrint() {
+			if(realHeight>clientHeight) {
+				$("#remark").css("height", "600px");
+			}
 		    bdhtml=window.document.body.innerHTML;   
 		    sprnstr="<!--startprint-->";   
 		    eprnstr="<!--endprint-->";   
 		    prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);   
 		    prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));   
-		    var htmlStyle="<style>button{display:none;}textarea{height: 600px!important;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}#diagnosis_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.one{margin-left: 42px!important;}.inputheight2{border: 1px solid transparent!important;}#consent_signature{width:100%!important;}	.consent_updateBtn{display:none!important;}.btns{display:none!important;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;top:17px!important;}</style>";
+		    var htmlStyle="<style>button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}#diagnosis_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.one{margin-left: 42px!important;}.inputheight2{border: 1px solid transparent!important;}#consent_signature{width:100%!important;}	.consent_updateBtn{display:none!important;}.btns{display:none!important;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;top:17px!important;}</style>";
 		    window.document.body.innerHTML=prnhtml+htmlStyle;  
 		    window.print();  //打印
 		    document.body.innerHTML=bdhtml; //恢复页面
+			window.location.reload()
 		} 
 		
 		function myPreviewAll(){
