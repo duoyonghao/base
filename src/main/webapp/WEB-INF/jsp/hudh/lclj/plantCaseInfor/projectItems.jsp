@@ -7,7 +7,7 @@
 	if (type == null) {
 		type = "";
 	}
-	
+
 	String id = request.getParameter("id"); //选项分类id
 	if (id == null) {
 		id = "";
@@ -16,11 +16,11 @@
 // 	if (projectName == null) {
 // 		projectName = "";
 // 	}
-	String toothNum = request.getParameter("toothNum"); 
+	String toothNum = request.getParameter("toothNum");
 	if (toothNum == null) {
 		toothNum = "";
 	}
-	String toothMore = request.getParameter("toothMore"); 
+	String toothMore = request.getParameter("toothMore");
 	if (toothMore == null) {
 		toothMore = "";
 	}
@@ -62,7 +62,7 @@
 	   	letter-spacing: 1px;
 	   	margin-left: 40%
 	}
-	
+
 </style>
 </head>
 <body>
@@ -71,11 +71,11 @@
 	<ul style="min-height:90px;"></ul>
 </div>
 <script type="text/javascript">
-	 var projectId = '<%=id%>'; 
+	 var projectId = '<%=id%>';
 // 当前牙位
-	 var toothNum = '<%=toothNum%>';  
+	 var toothNum = '<%=toothNum%>';
 //	多牙位数组处理
-	var toothMore = '<%=toothMore%>'; 	 
+	var toothMore = '<%=toothMore%>';
  	var toothMoreArr=[];//传入牙位数组
  	var getdata=[];
  	for(var i=0;i<toothMore.length;i+=2){
@@ -87,11 +87,11 @@
 		getData(getdata);
 		checkedItems(projectId,toothNum);
 	 })
-	
+
 	function gettionData(){
 		var url = contextPath + "/YZDictAct/getDiseaseByCode.act?id=bqfl67&code=zdqk594";
 	    $.axse(url, null,
-	    function(data) { 
+	    function(data) {
 	    	 if(projectId=="toothLoose"){
 	    		 getdata=[{dictCode:"ysd1",dictName:"Ⅰ°",},{dictCode:"ysd2",dictName:"Ⅱ°",},{dictCode:"ysd3",dictName: "Ⅲ°",}];
 	    	 }else if(projectId=="toothCondition"){
@@ -106,7 +106,7 @@
 	        layer.alert('查询出错！' );
 	    });
 	}
-	
+
 	function getData(data){
 		for(var i=0;i<data.length;i++){
 			var projecthtml="";
@@ -134,12 +134,12 @@ function checkedItems(projectId,toothNum){
 		 						for(var j=0;j<itmecheckedArr.length;j++){
 		 	 						$("#projectItems").find("ul label").each(function(j,el){
 		 	 							$("#projectItems").find("ul label").find("input[value="+itmecheckedArr[j]+"]").attr('checked',true);
-		 							})	
-		 						} 						
+		 							})
+		 						}
 		 					}
-		 				}		
-				})					
-			}		
+		 				}
+				})
+			}
 		})
 	}else{//牙松动布局相同
 		 $(window.parent.document).find("#"+projectId+"Box").find("tr td:even").each(function(j,el){
@@ -147,7 +147,7 @@ function checkedItems(projectId,toothNum){
 			if($(thi).find("div").find("span").length>0){
 					var checkedtoothArr=[];
 					$(thi).find("div").find("span").each(function(k,e){
-						checkedtoothArr.push($(this).attr("id"));						
+						checkedtoothArr.push($(this).attr("id"));
 			 				for(var i=0;i<checkedtoothArr.length;i++){
 			 					if(checkedtoothArr[i]==toothNum){
 			 						var itmecheckedArr=[];
@@ -156,23 +156,23 @@ function checkedItems(projectId,toothNum){
 			 						for(var j=0;j<itmecheckedArr.length;j++){
 			 	 						$("#projectItems").find("ul label").each(function(j,el){
 			 	 							$("#projectItems").find("ul label").find("input[value="+itmecheckedArr[j]+"]").attr('checked',true);
-			 							})	
-			 						} 						
+			 							})
+			 						}
 			 					}
-			 				}		
-					})					
-			}		
+			 				}
+					})
+			}
 		})
 	}
 }
-	
+
 // 点击牙位赋值给父级td
 	$('#projectItems').on('click', "input[type='checkbox']",function() {
 		var projectIdClick=$(this).attr("parentid"); //传入4大类别问题id
 		var itemIdClick=$(this).val();//当前点击的牙位
 		var that =this;
 		if(projectIdClick=="toothLoose"){//牙松动布局不同---赋值			
-			if($(that).is(':checked')){	
+			if($(that).is(':checked')){
 				var $findBox=$(window.parent.document).find(".toothLooseNextBox").nextAll().find("td:even");//ya'song'd
 				if($(that).attr('staus')=='unusual'){
 					$("#projectItems").find('input[staus="usual"]').prop("checked",false).attr("disabled","disabled").css("cursor","no-drop");
@@ -183,14 +183,14 @@ function checkedItems(projectId,toothNum){
 						if(toothLoose_span.length<32){
 						var toothLoose_div = $(this).next().find("div");
 						var already=toothLoose_div.text().split(',');
-							for(var i=0;i<toothMoreArr.length;i++){	
+							for(var i=0;i<toothMoreArr.length;i++){
 								for(var j=0;j<already.length;j++){
 									if(already[j]==toothMoreArr[i]){
 										toothLoose_div.find("span[id="+already[j]+"]").remove();//删除选择已存在的重复牙位
 									}
 								}
 								toothLoose_div.append('<span id='+toothMoreArr[i]+' itmid='+itemIdClick+'>'+toothMoreArr[i]+","+'</span>');
-							}								
+							}
 							parent.checkedTooth(projectIdClick);
 						}else{
 							layer.alert("牙位数量已超出！");
@@ -204,7 +204,7 @@ function checkedItems(projectId,toothNum){
 					var itemId=$(th).find("span").attr("id");
 					var $td_div=$(th).next().find("div");
 					var $td_span=$td_div.find("span");//父级选择框的值
-					if(itemId!=undefined&&itemId==itemIdClick){	
+					if(itemId!=undefined&&itemId==itemIdClick){
 						$td_div.each(function(y,e){
 							var checkedtoothArr=$td_div.text().split(',');
 							for(var i=0;i<checkedtoothArr.length;i++){
@@ -213,35 +213,35 @@ function checkedItems(projectId,toothNum){
 									parent.checkedTooth(projectIdClick,"10");
 								}
 							}
-						})					
+						})
 					}
-				})				
+				})
 			}
 		}else{//牙松动布局相同的	
-			if($(that).is(':checked')){	
+			if($(that).is(':checked')){
 				$(window.parent.document).find("#"+projectIdClick+"Box").find("tr td:odd").each(function(j,el){
-					if($(this).find("span").attr("id")==itemIdClick){	
+					if($(this).find("span").attr("id")==itemIdClick){
 						var td_span_length=$(this).prev().children("div").find("span").length;
 						if(td_span_length<32){
 							var toothLoose_div = $(this).prev().find("div");
 							var already=toothLoose_div.text().split(',');
-								for(var i=0;i<toothMoreArr.length;i++){	
+								for(var i=0;i<toothMoreArr.length;i++){
 									for(var j=0;j<already.length;j++){
 										if(already[j]==toothMoreArr[i]){
 											toothLoose_div.find("span[id="+already[j]+"]").remove();//删除选择已存在的重复牙位
 										}
 									}
 									toothLoose_div.append('<span id='+toothMoreArr[i]+' itmid='+itemIdClick+'>'+toothMoreArr[i]+","+'</span>');
-								}	
+								}
 							parent.checkedTooth(projectIdClick);
 						}else{
 							layer.alert("牙位数量已超出！");
 						}
 					}
 				})
-			}else{				
+			}else{
 				$(window.parent.document).find("#"+projectIdClick+"Box").find("tr td:even").each(function(j,el){
-					var th=this;	
+					var th=this;
 					var $td_div=$(th).find("div");
 					var $td_span=$td_div.find("span");//选择的牙位元素
 					var itemId=$td_span.attr("itmid");//选中牙位的itemid
@@ -256,13 +256,13 @@ function checkedItems(projectId,toothNum){
 							}
 						})
 					}
-					
+
 				})
 			}
 		}
 
 	})
-		
+
 </script>
 </body>
 </html>

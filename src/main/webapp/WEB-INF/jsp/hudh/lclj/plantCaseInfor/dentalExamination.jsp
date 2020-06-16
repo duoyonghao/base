@@ -1501,11 +1501,10 @@
                 lcljId:idlclj
             },
             success:function(result){
-                var res=result[0];
-					// console.log(JSON.stringify(res)+"-----rr");
-                toothMap(res["dentitiondefect"]);
                 if(result.length>0){
-                    updataid=res.seqId;
+                    var res=result[0];
+                    toothMap(res["dentitiondefect"]);//获取牙位图数据
+                    updataid=res.seqId;//获取更新修改id
                     $("#consent_saveBtn").css("display","none");//隐藏保存按钮
                     $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
                     for(var i in res){
