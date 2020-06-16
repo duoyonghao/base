@@ -81,7 +81,7 @@
 	.baseInfo .patient>.inputDiv{
 		display:block;
 		float:left;
-		width: 245px;
+		width: 250px;
 		height: 30px;
 	}
 	.patient .inputDiv:nth-child(12){
