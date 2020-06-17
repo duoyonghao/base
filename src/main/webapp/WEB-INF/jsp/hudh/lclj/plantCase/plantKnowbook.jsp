@@ -387,7 +387,7 @@
 			14、戴牙后在保质期内，如因严重骨吸收导致的种植体松动、脱落，医生可根据具体情况决定是否再种植，行再次种植时患者需要承担相应费用。
 		</div>
 		<!-- 备注 -->
-		<div id="consent_remark" style="margin-top:1%;">
+		<div id="consent_remark" style="margin-top:0%;">
 			<span>备注:</span><br/>
 			<textarea id="remarks" class="height" rows="" cols="" onblur="" style="border: 1px solid #7e7b7b;border-radius: 5px"></textarea>
 <%--			<textarea id="remarks" class="height" rows="3" cols="60" onblur="TextLengthCheck(this.id,200);" style="border: 1px solid #7e7b7b;"></textarea>--%>
@@ -400,7 +400,7 @@
 			<p style="margin-left: 60%;" class="font"><i class="colorRed">*</i>以上情况已知悉并确认签字。</p>
 		</div>
 		<!-- 手术签名 -->
-		<div id="consent_signature" style="border: 1px solid red">
+		<div id="consent_signature">
 			<!-- 患者签名 -->
 			<div class="signature_time" style="margin-top: 1%;">
 				<div class="signature_box">

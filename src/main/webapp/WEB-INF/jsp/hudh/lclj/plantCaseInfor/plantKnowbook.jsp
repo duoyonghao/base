@@ -395,11 +395,11 @@
 			<span style="vertical-align: top;">备注:</span>
 			<pre class="remarks" style="border: 1px solid #7e7b7b;width:94%;display: inline-block;"></pre>
 		</div>
-		<div class="consent_text" style="font-weight: bold;margin-top:2%;">
+		<div class="consent_text" style="font-weight: bold;margin-top:0%;">
 			<p style="margin-left: 60%;" class="font"><i class="colorRed">*</i>以上情况已知悉并确认签字。</p>
 		</div>
 		<!-- 手术签名 -->
-		<div id="consent_signature" style="border: 1px solid red">
+		<div id="consent_signature">
 			<!-- 患者签名 -->
 			<div class="signature_time" style="margin-top: 1%;">
 				<div class="signature_box">

@@ -53,6 +53,10 @@
     width: 50%;
 
 	}
+	@page{
+		size:205mm 290mm;
+		margin: 0 auto;
+	}
 </style>
 </head>
 <body>
@@ -721,7 +725,7 @@
 				<textarea id="others" onblur=""  style="border-radius:5px;border: 1px solid #7e7b7b;width:95%;display: inline-block;padding-left: 5px;height: 80px;"></textarea>
 			</div>
 		</div>
-		<div class="row" style="margin-top: 27px;">
+		<div class="row" style="margin-top: 10px;">
 			<div id="consent_remark_other" class="row" style="display: none">
 				<div style="margin-top:1%;margin-left: 20px;">
 					<span style="vertical-align: top;">其他</span>
