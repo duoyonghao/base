@@ -386,7 +386,7 @@
 	  		type:2,
 	  		closeBtn:1,
 	  		content:contextPath + "/ZzblViewAct/toAnamnesisThirdInfor.act",
-	  		area:['90%','80%'],
+			area:userAgent.indexOf("iPad") > -1 ? ['100%','95%'] : ['90%','80%'],
 	  		cancel: function(){
 	  		},
 	  		end:function(){
