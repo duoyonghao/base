@@ -539,8 +539,7 @@
 		costno = #{costno,jdbcType=VARCHAR},
 		itemno = #{itemno,jdbcType=VARCHAR},
 		itemname = #{itemname,jdbcType=VARCHAR},
-		unit =
-		#{unit,jdbcType=VARCHAR},
+		unit = #{unit,jdbcType=VARCHAR},
 		unitprice = #{unitprice,jdbcType=DECIMAL},
 		num = #{num,jdbcType=VARCHAR},
 		discount = #{discount,jdbcType=VARCHAR},
@@ -549,41 +548,34 @@
 		paymoney = #{paymoney,jdbcType=DECIMAL},
 		voidmoney = #{voidmoney,jdbcType=DECIMAL},
 		askperson = #{askperson,jdbcType=VARCHAR},
-		doctor =
-		#{doctor,jdbcType=VARCHAR},
+		doctor = #{doctor,jdbcType=VARCHAR},
 		status = #{status,jdbcType=VARCHAR},
 		remark = #{remark,jdbcType=VARCHAR},
 		regno = #{regno,jdbcType=VARCHAR},
 		qfbh = #{qfbh,jdbcType=VARCHAR},
-		kaifa =
-		#{kaifa,jdbcType=VARCHAR},
+		kaifa = #{kaifa,jdbcType=VARCHAR},
 		payxj = #{payxj,jdbcType=DECIMAL},
 		payyjj = #{payyjj,jdbcType=DECIMAL},
 		paybank = #{paybank,jdbcType=DECIMAL},
 		payyb = #{payyb,jdbcType=DECIMAL},
-		payother1
-		= #{payother1,jdbcType=DECIMAL},
+		payother1 = #{payother1,jdbcType=DECIMAL},
 		payother2 = #{payother2,jdbcType=DECIMAL},
 		payother3 = #{payother3,jdbcType=DECIMAL},
 		istsxm = #{istsxm,jdbcType=INTEGER},
-		y2 =
-		#{y2,jdbcType=DECIMAL},
+		y2 = #{y2,jdbcType=DECIMAL},
 		isqfreal = #{isqfreal,jdbcType=INTEGER},
 		istk = #{istk,jdbcType=INTEGER},
 		payzfb = #{payzfb,jdbcType=DECIMAL},
 		paywx = #{paywx,jdbcType=DECIMAL},
-		issplit =
-		#{issplit,jdbcType=INTEGER},
+		issplit = #{issplit,jdbcType=INTEGER},
 		organization = #{organization,jdbcType=VARCHAR},
 		paymmd = #{paymmd,jdbcType=DECIMAL},
 		paybdfq = #{paybdfq,jdbcType=DECIMAL},
-		paydjq =
-		#{paydjq,jdbcType=DECIMAL},
+		paydjq = #{paydjq,jdbcType=DECIMAL},
 		backid = #{backid,jdbcType=VARCHAR},
 		isyjjitem = #{isyjjitem,jdbcType=INTEGER},
 		payintegral = #{payintegral,jdbcType=DECIMAL},
-		zltime =
-		#{zltime,jdbcType=VARCHAR},
+		zltime = #{zltime,jdbcType=VARCHAR},
 		czperson = #{czperson,jdbcType=VARCHAR}
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
 	</update>
@@ -842,17 +834,16 @@
 			or c.sfuser in (${visualstaff})
 			or d.doctor in (${visualstaff})
 			or d.askperson in (${visualstaff})
-			or d.createuser in
-			(${visualstaff})
+			or d.createuser in (${visualstaff})
 			or u.createuser in (${visualstaff})
 			or reg.createuser in (${visualstaff})
 			)
 		</if>
 		<if test="sortName != null and sortName != ''">
-		ORDER BY ${sortName} ${sortOrder}
+			ORDER BY ${sortName} ${sortOrder}
 		</if>
 		<if test="sortName == null">
-		ORDER BY c.sftime desc
+			ORDER BY c.sftime desc
 		</if>
 	</select>
 	<select id="selectCountmxcx" parameterType="map" resultType="int">
@@ -860,8 +851,7 @@
 		from KQDS_COSTORDER_DETAIL d
 		LEFT JOIN KQDS_COSTORDER c on d.costno = c.costno
 		LEFT JOIN KQDS_UserDocument u on d.usercode = u.UserCode
-		LEFT JOIN KQDS_REG reg on
-		d.regno = reg.seq_id
+		LEFT JOIN KQDS_REG reg on d.regno = reg.seq_id
 		LEFT JOIN KQDS_TREATITEM item on d.itemno = item.treatitemno
 		where (c.cjstatus = '1' or c.status=2)
 		<if test="starttime != null and starttime !='' ">
@@ -966,8 +956,7 @@
 			or c.sfuser in (${visualstaff})
 			or d.doctor in (${visualstaff})
 			or d.askperson in (${visualstaff})
-			or d.createuser in
-			(${visualstaff})
+			or d.createuser in (${visualstaff})
 			or u.createuser in (${visualstaff})
 			or reg.createuser in (${visualstaff})
 			)
@@ -1092,8 +1081,7 @@
 			or c.sfuser in (${visualstaff})
 			or d.doctor in (${visualstaff})
 			or d.askperson in (${visualstaff})
-			or d.createuser in
-			(${visualstaff})
+			or d.createuser in (${visualstaff})
 			or u.createuser in (${visualstaff})
 			or reg.createuser in (${visualstaff})
 			)
@@ -1185,22 +1173,22 @@
 		LEFT JOIN SYS_DICT kcit3 on u.devchannel = kcit3.seq_id
 		LEFT JOIN SYS_DICT hzly on u.nexttype = hzly.seq_id
 		left join (	SELECT 	c.accepttype,c.accepttool,c.usercode FROM (
-	SELECT
-				a.accepttype,a.accepttool,a.usercode
-			FROM
-				KQDS_NET_ORDER a,
-				(
-					SELECT
-						usercode,
-						MAX (createtime) createtime
-					FROM
-						KQDS_NET_ORDER
-					GROUP BY
-						usercode
-				) b
-			WHERE
-				a.usercode = b.usercode
-			AND a.createtime = b.createtime) c GROUP BY c.accepttype,c.accepttool,c.usercode) n on n.usercode=d.usercode
+		SELECT
+		a.accepttype,a.accepttool,a.usercode
+		FROM
+		KQDS_NET_ORDER a,
+		(
+		SELECT
+		usercode,
+		MAX (createtime) createtime
+		FROM
+		KQDS_NET_ORDER
+		GROUP BY
+		usercode
+		) b
+		WHERE
+		a.usercode = b.usercode
+		AND a.createtime = b.createtime) c GROUP BY c.accepttype,c.accepttool,c.usercode) n on n.usercode=d.usercode
 		LEFT JOIN SYS_DICT kcit5 on n.accepttype = kcit5.seq_id
 		LEFT JOIN SYS_DICT kcit6 on n.accepttool = kcit6.seq_id
 		LEFT JOIN SYS_DEPT dept1 on reg.regdept = dept1.seq_id
@@ -1238,8 +1226,7 @@
 				or c.sfuser in (${visualstaff})
 				or d.doctor in (${visualstaff})
 				or d.askperson in (${visualstaff})
-				or d.createuser in
-				(${visualstaff})
+				or d.createuser in (${visualstaff})
 				or u.createuser in (${visualstaff})
 				or reg.createuser in (${visualstaff})
 				)
@@ -1324,10 +1311,10 @@
 			and d.organization = #{organization}
 		</if>
 		<if test="sortName != null and sortName != ''">
-		ORDER BY ${sortName} ${sortOrder}
+			ORDER BY ${sortName} ${sortOrder}
 		</if>
 		<if test="sortName == null or sortName == ''">
-		ORDER BY c.sftime desc
+			ORDER BY c.sftime desc
 		</if>
 	</select>
 	<select id="selectCountOrdermxcx" parameterType="map" resultType="int">
@@ -1335,26 +1322,25 @@
 		from KQDS_COSTORDER_DETAIL d
 		LEFT JOIN KQDS_COSTORDER c on d.costno = c.costno
 		LEFT JOIN KQDS_UserDocument u on d.usercode = u.UserCode
-		LEFT JOIN KQDS_REG reg on
-		d.regno = reg.seq_id
+		LEFT JOIN KQDS_REG reg on d.regno = reg.seq_id
 		LEFT JOIN KQDS_TREATITEM item on d.itemno = item.treatitemno and d.itemname = item.treatitemname
 		left join (SELECT 	c.accepttype,c.accepttool,c.usercode FROM (
-	SELECT
-				a.accepttype,a.accepttool,a.usercode
-			FROM
-				KQDS_NET_ORDER a,
-				(
-					SELECT
-						usercode,
-						MAX (createtime) createtime
-					FROM
-						KQDS_NET_ORDER
-					GROUP BY
-						usercode
-				) b
-			WHERE
-				a.usercode = b.usercode
-			AND a.createtime = b.createtime) c GROUP BY c.accepttype,c.accepttool,c.usercode) n on n.usercode=d.usercode
+		SELECT
+		a.accepttype,a.accepttool,a.usercode
+		FROM
+		KQDS_NET_ORDER a,
+		(
+		SELECT
+		usercode,
+		MAX (createtime) createtime
+		FROM
+		KQDS_NET_ORDER
+		GROUP BY
+		usercode
+		) b
+		WHERE
+		a.usercode = b.usercode
+		AND a.createtime = b.createtime) c GROUP BY c.accepttype,c.accepttool,c.usercode) n on n.usercode=d.usercode
 		where c.status = 2 and d.isyjjitem !=1
 		<if test="starttime != null and starttime !='' ">
 			and c.sftime<![CDATA[ >= ]]>
@@ -1387,8 +1373,7 @@
 				or c.sfuser in (${visualstaff})
 				or d.doctor in (${visualstaff})
 				or d.askperson in (${visualstaff})
-				or d.createuser in
-				(${visualstaff})
+				or d.createuser in (${visualstaff})
 				or u.createuser in (${visualstaff})
 				or reg.createuser in (${visualstaff})
 				)
@@ -1496,22 +1481,22 @@
 		LEFT JOIN KQDS_TREATITEM item on d.itemno = item.treatitemno and d.itemname = item.treatitemname
 		LEFT JOIN KQDS_USERDOCUMENT u2 on u2.usercode = u.introducer
 		left join (SELECT 	c.accepttype,c.accepttool,c.usercode FROM (
-	SELECT
-				a.accepttype,a.accepttool,a.usercode
-			FROM
-				KQDS_NET_ORDER a,
-				(
-					SELECT
-						usercode,
-						MAX (createtime) createtime
-					FROM
-						KQDS_NET_ORDER
-					GROUP BY
-						usercode
-				) b
-			WHERE
-				a.usercode = b.usercode
-			AND a.createtime = b.createtime) c GROUP BY c.accepttype,c.accepttool,c.usercode) n on
+		SELECT
+		a.accepttype,a.accepttool,a.usercode
+		FROM
+		KQDS_NET_ORDER a,
+		(
+		SELECT
+		usercode,
+		MAX (createtime) createtime
+		FROM
+		KQDS_NET_ORDER
+		GROUP BY
+		usercode
+		) b
+		WHERE
+		a.usercode = b.usercode
+		AND a.createtime = b.createtime) c GROUP BY c.accepttype,c.accepttool,c.usercode) n on
 		n.usercode=d.usercode
 		where c.status = 2 and d.isyjjitem !=1
 		<if test="starttime != null and starttime !='' ">
@@ -1545,8 +1530,7 @@
 				or c.sfuser in (${visualstaff})
 				or d.doctor in (${visualstaff})
 				or d.askperson in (${visualstaff})
-				or d.createuser in
-				(${visualstaff})
+				or d.createuser in (${visualstaff})
 				or u.createuser in (${visualstaff})
 				or reg.createuser in (${visualstaff})
 				)
@@ -1635,18 +1619,17 @@
 		select sum(detail.payxj) as xj,
 		sum(detail.paybank) as bank,
 		sum(detail.payyb) as yb,
-		sum(detail.paywx)as wx,
-		sum(detail.payzfb)as zfb,
-		sum(detail.paymmd)as mmd,
-		sum(detail.paybdfq)as
-		bdfq,
+		sum(detail.paywx) as wx,
+		sum(detail.payzfb) as zfb,
+		sum(detail.paymmd) as mmd,
+		sum(detail.paybdfq) as bdfq,
 		sum(detail.payother1) as other1,
-		sum(detail.y2)as y2,
+		sum(detail.y2) as y2,
 		sum(detail.payyjj) as yjj,
 		sum(detail.payother2) as zs,
 		sum(detail.paydjq) as djq,
 		sum(detail.payintegral) as integral,
-		sum(detail.paymoney)as skze
+		sum(detail.paymoney) as skze
 		from KQDS_COSTORDER_DETAIL detail
 		LEFT JOIN KQDS_COSTORDER cost on cost.costno = detail.costno
 		left join KQDS_UserDocument u on u.usercode =
@@ -1712,18 +1695,17 @@
 		select sum(detail.payxj) as xj,
 		sum(detail.paybank) as bank,
 		sum(detail.payyb) as yb,
-		sum(detail.paywx)as wx,
-		sum(detail.payzfb)as zfb,
-		sum(detail.paymmd)as mmd,
-		sum(detail.paybdfq)as
-		bdfq,
+		sum(detail.paywx) as wx,
+		sum(detail.payzfb) as zfb,
+		sum(detail.paymmd) as mmd,
+		sum(detail.paybdfq) as bdfq,
 		sum(detail.payother1) as other1,
-		sum(detail.y2)as y2,
+		sum(detail.y2) as y2,
 		sum(detail.payyjj) as yjj,
 		sum(detail.payother2) as zs,
 		sum(detail.paydjq) as djq,
 		sum(detail.payintegral) as integral,
-		sum(detail.paymoney)as skze
+		sum(detail.paymoney) as skze
 		from KQDS_COSTORDER_DETAIL detail
 		LEFT JOIN KQDS_COSTORDER cost on cost.costno = detail.costno
 		left join KQDS_UserDocument u on u.usercode =
@@ -1787,15 +1769,15 @@
 	</select>
 	<!-- 日收款统计预交金 -->
 	<select id="selectRsktjYjj" parameterType="map" resultType="json">
-		select sum(cmoney) as czze,
-		sum(cgivemoney) as zs,
-		sum(xjmoney) as xjcz,
-		sum(qtmoney)as qtcz,
-		sum(yhkmoney)as bankcz,
-		sum(zfbmoney)as zfbcz,
-		sum(wxmoney)as wxcz,
-		sum(mmdmoney) as mmdcz,
-		sum(bdfqmoney)as bdfqcz
+		select isnull(sum(cmoney),0) as czze,
+		isnull(sum(cgivemoney),0) as zs,
+		isnull(sum(xjmoney),0) as xjcz,
+		isnull(sum(qtmoney),0) as qtcz,
+		isnull(sum(yhkmoney),0) as bankcz,
+		isnull(sum(zfbmoney),0) as zfbcz,
+		isnull(sum(wxmoney),0) as wxcz,
+		isnull(sum(mmdmoney),0) as mmdcz,
+		isnull(sum(bdfqmoney),0) as bdfqcz
 		from KQDS_MEMBER_RECORD rec
 		left join KQDS_UserDocument u on u.usercode = rec.usercode
 		where 1=1 and (rec.type='充值' or rec.type='开卡')
@@ -1857,15 +1839,15 @@
 	</select>
 	<!-- 日收款统计预交金 退款 -->
 	<select id="selectRsktjYjjTk" parameterType="map" resultType="json">
-		select sum(cmoney) as czze,
-		sum(cgivemoney) as zs,
-		sum(xjmoney) as xjcz,
-		sum(qtmoney)as qtcz,
-		sum(yhkmoney)as bankcz,
-		sum(zfbmoney)as zfbcz,
-		sum(wxmoney)as wxcz,
-		sum(mmdmoney) as mmdcz,
-		sum(bdfqmoney)as bdfqcz
+		select isnull(sum(cmoney),0) as czze,
+		isnull(sum(cgivemoney),0) as zs,
+		isnull(sum(xjmoney),0) as xjcz,
+		isnull(sum(qtmoney),0) as qtcz,
+		isnull(sum(yhkmoney),0) as bankcz,
+		isnull(sum(zfbmoney),0) as zfbcz,
+		isnull(sum(wxmoney),0) as wxcz,
+		isnull(sum(mmdmoney),0) as mmdcz,
+		isnull(sum(bdfqmoney),0) as bdfqcz
 		from KQDS_MEMBER_RECORD rec
 		left join KQDS_UserDocument u on u.usercode = rec.usercode
 		where 1=1 and rec.type= '退费'
@@ -1925,12 +1907,12 @@
 			</if>
 		</if>
 	</select>
-	
+
 	<!-- 根据费用单号查询收费明细数据  2019-9-6 syp -->
 	<select id="selectCostorderDetail" parameterType="String" resultType="com.kqds.entity.base.KqdsCostorderDetail">
 		select * from KQDS_COSTORDER_DETAIL where costno = #{costno}
 	</select>
-	
+
 	<!-- 根据id更新收费明细数据  2019-9-6  syp -->
 	<update id="updateCostorderDetailBySeqId" parameterType="com.kqds.entity.base.KqdsCostorderDetail">
 		UPDATE KQDS_COSTORDER_DETAIL
@@ -2052,7 +2034,7 @@
 		</if>
 		order by d.createtime asc
 	</select>
-	
+
 	<select id="selectWithPageLzjl2" parameterType="map" resultType="json">
 		select shouldmoney,actualmoney,y2,sftime,createtime from KQDS_CostOrder cost where 1=1 and status=2 and Y2 != 0
 		<if test="usercode != null and usercode !='' ">
@@ -2101,7 +2083,7 @@
 		group by year(sftime),month(sftime),day(sftime)
 	</select>
 	<select id="getCountQylrNew" parameterType="map" resultType="json">
-		select year(sftime) y,month(sftime) m,day(sftime) d, sum(d.subtotal) as ss
+		select year(sftime) y,month(sftime) m,day(sftime) d, isnull(sum(d.subtotal),0) as ss
 		from KQDS_COSTORDER_DETAIL d
 		LEFT JOIN
 		KQDS_COSTORDER c on d.costno=c.costno
@@ -2118,7 +2100,7 @@
 		and c.organization = #{organization} and d.isyjjitem !=1
 	</select>
 	<select id="getCountQylrNew2" parameterType="map" resultType="json">
-		select sum(d.subtotal) as ss
+		select isnull(sum(d.subtotal),0) as ss
 		from KQDS_COSTORDER_DETAIL d
 		LEFT JOIN KQDS_COSTORDER c on d.costno=c.costno
 		where
@@ -2126,7 +2108,7 @@
 		and c.organization = #{organization} and d.isyjjitem !=1
 	</select>
 	<select id="checkTf" parameterType="map" resultType="json">
-		select sum(paymoney) as paymoney
+		select isnull(sum(paymoney),0) as paymoney
 		from KQDS_COSTORDER_DETAIL where 1=1
 		<if test="usercode != null and usercode !='' ">
 			and usercode=#{usercode}
@@ -2145,7 +2127,7 @@
 		</if>
 	</select>
 	<select id="checkTfRefund" parameterType="map" resultType="json">
-		select sum(tkmoney) as tkmoney
+		select isnull(sum(tkmoney),0) as tkmoney
 		from KQDS_REFUND_DETAIL d LEFT JOIN KQDS_REFUND r on r.SEQ_ID=d.refundid where 1=1 and (status=2 or status=4)
 		<if test="usercode != null and usercode !='' ">
 			and d.usercode=#{usercode}
@@ -2164,7 +2146,7 @@
 		</if>
 	</select>
 	<select id="searchOrderZs" parameterType="map" resultType="json">
-		select sum(payother2) as zs
+		select isnull(sum(payother2),0) as zs
 		from KQDS_COSTORDER_DETAIL where 1=1
 		<if test="costno != null and costno !='' ">
 			and costno=#{costno}
@@ -2172,19 +2154,18 @@
 	</select>
 	<select id="printSfxm" parameterType="map" resultType="json">
 		select
-		sum(detail.payxj) as xj,
-		sum(detail.paybank) as bank,
-		sum(detail.payyb) as yb,
-		sum(detail.paywx)as wx,
-		sum(detail.payzfb)as zfb,
-		sum(detail.paymmd)as mmd,
-		sum(detail.paybdfq)as
-		bdfq,
-		sum(detail.payother1) as other1,
-		sum(detail.payyjj) as yjj,
-		sum(detail.payother2) as zs,
-		sum(detail.paydjq) as djq,
-		sum(detail.payintegral) as integral
+		isnull(sum(detail.payxj),0) as xj,
+		isnull(sum(detail.paybank),0) as bank,
+		isnull(sum(detail.payyb),0) as yb,
+		isnull(sum(detail.paywx),0) as wx,
+		isnull(sum(detail.payzfb),0) as zfb,
+		isnull(sum(detail.paymmd),0) as mmd,
+		isnull(sum(detail.paybdfq),0) as bdfq,
+		isnull(sum(detail.payother1),0) as other1,
+		isnull(sum(detail.payyjj),0) as yjj,
+		isnull(sum(detail.payother2),0) as zs,
+		isnull(sum(detail.paydjq),0) as djq,
+		isnull(sum(detail.payintegral),0) as integral
 		from KQDS_COSTORDER_DETAIL
 		detail where 1=1
 		<if test="costno != null and costno !='' ">
@@ -2277,702 +2258,702 @@
 	<delete id="deleteDetailLj" parameterType="java.lang.String">
 		delete from KQDS_COSTORDER_DETAIL where costno = '' and paymoney=0 and status!=1 and isqfreal!=1
 	</delete>
-	
+
 	<select id="findCostOrderDetailByUsercodes" parameterType="String" resultType="json">
 		select SEQ_ID,createuser,createtime,usercode,costno,itemno,itemname,unit,unitprice,num,discount,
 		subtotal,arrearmoney,paymoney,voidmoney,doctor,status,remark,regno,qfbh,kaifa,payxj,paybank,payyb,
 		payother1,payother3,istsxm,y2,isqfreal,istk,payzfb,paywx,issplit,organization,paymmd,paybdfq,
 		backid,zltime,czperson,parentid
-		 from KQDS_COSTORDER_DETAIL where usercode in (${_parameter})
+		from KQDS_COSTORDER_DETAIL where usercode in (${_parameter})
 	</select>
 	<!-- 查询年基础数据的业绩 -->
 	<select id='findPaymoneyByYear' parameterType="java.util.Map" resultType="json">
-			SELECT detail.y as 年,SUM(detail.paymoney-detail.jcfmoney-detail.yjjmoney) as paymoney,SUM(detail.jcfmoney) jcfmoney,SUM(detail.yjjmoney) yjjmoney FROM (
-				SELECT 
-				year(cost.sftime) y,
-				(p.actualmoney -
-					(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
-					FROM KQDS_COSTORDER_DETAIL
-					WHERE 1=1
-					AND isyjjitem=1 
-					AND costno=p.costno)
-				) paymoney,
-				(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
-					FROM KQDS_COSTORDER_DETAIL
-					WHERE 1=1
-					and isyjjitem!=1
-					AND itemname IN (
-					SELECT treatitemname FROM
-					KQDS_TREATITEM
-					WHERE
-					basetype = 'jyk671'
-					AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e') 
-					AND costno=p.costno) jcfmoney,
-				ISNULL(SUM (costd.payyjj),0) AS yjjmoney,
-				p.costno c
-				FROM KQDS_REG r
-				LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno 
-				LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-				LEFT JOIN KQDS_COSTORDER_DETAIL costd ON p.costno = costd.costno
-				where 	1 = 1
-				AND r.recesort in (${recesort})
-				AND YEAR (cost.sftime) <![CDATA[ >= ]]> #{startyear}
-				AND YEAR (cost.sftime) <![CDATA[ <= ]]> #{endyear}
-				<if test="visualstaff!=null and visualstaff!=''">
-				AND p.askperson in (${visualstaff})
-				</if>
-				AND r.organization = #{organization}
-				AND cost.isdrugs = 0
-				group by 
-				year(cost.sftime),
-				p.actualmoney,
-				p.costno 
-				) as detail
-				group by detail.y
-				ORDER BY
-				detail.y ASC
+		SELECT detail.y as 年,SUM(detail.paymoney-detail.jcfmoney-detail.yjjmoney) as paymoney,SUM(detail.jcfmoney) jcfmoney,SUM(detail.yjjmoney) yjjmoney FROM (
+		SELECT
+		year(cost.sftime) y,
+		(p.actualmoney -
+		(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
+		FROM KQDS_COSTORDER_DETAIL
+		WHERE 1=1
+		AND isyjjitem=1
+		AND costno=p.costno)
+		) paymoney,
+		(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
+		FROM KQDS_COSTORDER_DETAIL
+		WHERE 1=1
+		and isyjjitem!=1
+		AND itemname IN (
+		SELECT treatitemname FROM
+		KQDS_TREATITEM
+		WHERE
+		basetype = 'jyk671'
+		AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e')
+		AND costno=p.costno) jcfmoney,
+		ISNULL(SUM (costd.payyjj),0) AS yjjmoney,
+		p.costno c
+		FROM KQDS_REG r
+		LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno
+		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+		LEFT JOIN KQDS_COSTORDER_DETAIL costd ON p.costno = costd.costno
+		where 	1 = 1
+		AND r.recesort in (${recesort})
+		AND YEAR (cost.sftime) <![CDATA[ >= ]]> #{startyear}
+		AND YEAR (cost.sftime) <![CDATA[ <= ]]> #{endyear}
+		<if test="visualstaff!=null and visualstaff!=''">
+			AND p.askperson in (${visualstaff})
+		</if>
+		AND r.organization = #{organization}
+		AND cost.isdrugs = 0
+		group by
+		year(cost.sftime),
+		p.actualmoney,
+		p.costno
+		) as detail
+		group by detail.y
+		ORDER BY
+		detail.y ASC
 	</select>
 	<!-- 查询月基础数据的业绩 -->
 	<select id='findPaymoneyByMonth' parameterType="java.util.Map" resultType="json">
-			SELECT detail.y as 年,detail.m as 月,SUM(detail.paymoney-detail.jcfmoney-detail.yjjmoney) as paymoney,SUM(detail.jcfmoney) jcfmoney,SUM(detail.yjjmoney) yjjmoney FROM (
-				SELECT 
-				year(cost.sftime) y,
-				month(cost.sftime) m,
-				(p.actualmoney -
-					(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
-					FROM KQDS_COSTORDER_DETAIL
-					WHERE 1=1
-					AND isyjjitem=1 
-					AND costno=p.costno)
-				) paymoney,
-				(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
-					FROM KQDS_COSTORDER_DETAIL
-					WHERE 1=1
-					and isyjjitem!=1
-					AND itemname IN (
-						SELECT treatitemname FROM
-						KQDS_TREATITEM
-						WHERE
-						basetype = 'jyk671'
-						AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e') 
-					AND costno=p.costno) jcfmoney,
-				ISNULL(SUM (costd.payyjj),0) AS yjjmoney,
-				p.costno c
-				FROM KQDS_REG r
-				LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno 
-				LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-				LEFT JOIN KQDS_COSTORDER_DETAIL costd ON p.costno = costd.costno
-				where 	1 = 1
-				AND r.recesort in (${recesort})
-				AND MONTH (cost.sftime) <![CDATA[ >= ]]> #{startmonth}
-				AND MONTH (cost.sftime) <![CDATA[ <= ]]> #{endmonth}
-				<if test="costyears!='' and costyears!=null">
-				and ${costyears}
-				</if>
-				<if test="visualstaff!=null and visualstaff!=''">
-				AND p.askperson in (${visualstaff})
-				</if>
-				AND r.organization = #{organization}
-				AND cost.isdrugs = 0
-				group by 
-				year(cost.sftime),
-				month(cost.sftime),
-				p.actualmoney,
-				p.costno 
-				) as detail
-				group by detail.y,
-				detail.m
-				ORDER BY
-				detail.m ASC
+		SELECT detail.y as 年,detail.m as 月,SUM(detail.paymoney-detail.jcfmoney-detail.yjjmoney) as paymoney,SUM(detail.jcfmoney) jcfmoney,SUM(detail.yjjmoney) yjjmoney FROM (
+		SELECT
+		year(cost.sftime) y,
+		month(cost.sftime) m,
+		(p.actualmoney -
+		(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
+		FROM KQDS_COSTORDER_DETAIL
+		WHERE 1=1
+		AND isyjjitem=1
+		AND costno=p.costno)
+		) paymoney,
+		(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
+		FROM KQDS_COSTORDER_DETAIL
+		WHERE 1=1
+		and isyjjitem!=1
+		AND itemname IN (
+		SELECT treatitemname FROM
+		KQDS_TREATITEM
+		WHERE
+		basetype = 'jyk671'
+		AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e')
+		AND costno=p.costno) jcfmoney,
+		ISNULL(SUM (costd.payyjj),0) AS yjjmoney,
+		p.costno c
+		FROM KQDS_REG r
+		LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno
+		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+		LEFT JOIN KQDS_COSTORDER_DETAIL costd ON p.costno = costd.costno
+		where 	1 = 1
+		AND r.recesort in (${recesort})
+		AND MONTH (cost.sftime) <![CDATA[ >= ]]> #{startmonth}
+		AND MONTH (cost.sftime) <![CDATA[ <= ]]> #{endmonth}
+		<if test="costyears!='' and costyears!=null">
+			and ${costyears}
+		</if>
+		<if test="visualstaff!=null and visualstaff!=''">
+			AND p.askperson in (${visualstaff})
+		</if>
+		AND r.organization = #{organization}
+		AND cost.isdrugs = 0
+		group by
+		year(cost.sftime),
+		month(cost.sftime),
+		p.actualmoney,
+		p.costno
+		) as detail
+		group by detail.y,
+		detail.m
+		ORDER BY
+		detail.m ASC
 	</select>
 	<!-- 查询天基础数据的业绩 -->
 	<select id='findPaymoneyByDay' parameterType="java.util.Map" resultType="json">
-			SELECT detail.m as 月,detail.d as 日,SUM(detail.paymoney-detail.jcfmoney-detail.yjjmoney) as paymoney,SUM(detail.jcfmoney) jcfmoney,SUM(detail.yjjmoney) yjjmoney FROM (
-				SELECT 
-				month(cost.sftime) m,
-				day(cost.sftime) d,
-				(p.actualmoney -
-					(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
-					FROM KQDS_COSTORDER_DETAIL
-					WHERE 1=1
-					AND isyjjitem=1 
-					AND costno=p.costno)
-				) paymoney,
-				(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
-					FROM KQDS_COSTORDER_DETAIL
-					WHERE 1=1
-					and isyjjitem!=1
-					AND itemname IN (
-					SELECT treatitemname FROM
-					KQDS_TREATITEM
-					WHERE
-					basetype = 'jyk671'
-					AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e') 
-					AND costno=p.costno) jcfmoney,
-				ISNULL(SUM (costd.payyjj),0) AS yjjmoney,
-				p.costno c
-				FROM KQDS_REG r
-				LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno 
-				LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-				LEFT JOIN KQDS_COSTORDER_DETAIL costd ON p.costno = costd.costno
-				where 	1 = 1
-				AND r.recesort in (${recesort})
-				AND day(cost.sftime) <![CDATA[ >= ]]> #{startday}
-				AND day(cost.sftime) <![CDATA[ <= ]]> #{endday}
-				<if test="costyears!='' and costyears!=null">
-				and ${costyears}
-				</if>
-				<if test="costmonths!='' and costmonths!=null">
-				and (${costmonths})
-				</if>
-				<if test="visualstaff!=null and visualstaff!=''">
-				AND p.askperson in (${visualstaff})
-				</if>
-				AND r.organization = #{organization}
-				AND cost.isdrugs = 0
-				group by 
-				month(cost.sftime),
-				day(cost.sftime),
-				p.actualmoney,
-				p.costno 
-				) as detail
-				group by detail.m,
-				detail.d
-				ORDER BY
-				detail.d ASC
+		SELECT detail.m as 月,detail.d as 日,SUM(detail.paymoney-detail.jcfmoney-detail.yjjmoney) as paymoney,SUM(detail.jcfmoney) jcfmoney,SUM(detail.yjjmoney) yjjmoney FROM (
+		SELECT
+		month(cost.sftime) m,
+		day(cost.sftime) d,
+		(p.actualmoney -
+		(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
+		FROM KQDS_COSTORDER_DETAIL
+		WHERE 1=1
+		AND isyjjitem=1
+		AND costno=p.costno)
+		) paymoney,
+		(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
+		FROM KQDS_COSTORDER_DETAIL
+		WHERE 1=1
+		and isyjjitem!=1
+		AND itemname IN (
+		SELECT treatitemname FROM
+		KQDS_TREATITEM
+		WHERE
+		basetype = 'jyk671'
+		AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e')
+		AND costno=p.costno) jcfmoney,
+		ISNULL(SUM (costd.payyjj),0) AS yjjmoney,
+		p.costno c
+		FROM KQDS_REG r
+		LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno
+		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+		LEFT JOIN KQDS_COSTORDER_DETAIL costd ON p.costno = costd.costno
+		where 	1 = 1
+		AND r.recesort in (${recesort})
+		AND day(cost.sftime) <![CDATA[ >= ]]> #{startday}
+		AND day(cost.sftime) <![CDATA[ <= ]]> #{endday}
+		<if test="costyears!='' and costyears!=null">
+			and ${costyears}
+		</if>
+		<if test="costmonths!='' and costmonths!=null">
+			and (${costmonths})
+		</if>
+		<if test="visualstaff!=null and visualstaff!=''">
+			AND p.askperson in (${visualstaff})
+		</if>
+		AND r.organization = #{organization}
+		AND cost.isdrugs = 0
+		group by
+		month(cost.sftime),
+		day(cost.sftime),
+		p.actualmoney,
+		p.costno
+		) as detail
+		group by detail.m,
+		detail.d
+		ORDER BY
+		detail.d ASC
 	</select>
 	<!-- 查询年基础数据的业绩 -->
 	<select id='findDrugsmoneyByYear' parameterType="java.util.Map" resultType="json">
-			SELECT detail.y as 年,SUM(detail.paymoney) as drugsmoney FROM (
-				SELECT 
-				year(cost.sftime) y,
-				(p.actualmoney -
-					(SELECT ISNULL(SUM (paymoney),0) AS paymoney
-					FROM KQDS_COSTORDER_DETAIL
-					WHERE 1=1
-					AND isyjjitem=1 
-					AND costno=p.costno)-(
-						SELECT ISNULL( SUM (costd.payyjj + costd.payother2 + costd.payintegral + costd.paydjq),0)
-						)
-				) paymoney,
-				p.costno c
-				FROM KQDS_REG r
-				LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno 
-				LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-				LEFT JOIN KQDS_COSTORDER_DETAIL costd ON p.costno = costd.costno
-				where 	1 = 1
-				AND YEAR (cost.sftime) <![CDATA[ >= ]]> #{startyear}
-				AND YEAR (cost.sftime) <![CDATA[ <= ]]> #{endyear}
-				<if test="visualstaff!=null and visualstaff!=''">
-				AND p.askperson in (${visualstaff})
-				</if>
-				AND r.organization = #{organization}
-				AND cost.isdrugs = 1
-				group by 
-				year(cost.sftime),
-				p.actualmoney,
-				p.costno 
-				) as detail
-				group by detail.y
-				ORDER BY
-				detail.y ASC
+		SELECT detail.y as 年,SUM(detail.paymoney) as drugsmoney FROM (
+		SELECT
+		year(cost.sftime) y,
+		(p.actualmoney -
+		(SELECT ISNULL(SUM (paymoney),0) AS paymoney
+		FROM KQDS_COSTORDER_DETAIL
+		WHERE 1=1
+		AND isyjjitem=1
+		AND costno=p.costno)-(
+		SELECT ISNULL( SUM (costd.payyjj + costd.payother2 + costd.payintegral + costd.paydjq),0)
+		)
+		) paymoney,
+		p.costno c
+		FROM KQDS_REG r
+		LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno
+		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+		LEFT JOIN KQDS_COSTORDER_DETAIL costd ON p.costno = costd.costno
+		where 	1 = 1
+		AND YEAR (cost.sftime) <![CDATA[ >= ]]> #{startyear}
+		AND YEAR (cost.sftime) <![CDATA[ <= ]]> #{endyear}
+		<if test="visualstaff!=null and visualstaff!=''">
+			AND p.askperson in (${visualstaff})
+		</if>
+		AND r.organization = #{organization}
+		AND cost.isdrugs = 1
+		group by
+		year(cost.sftime),
+		p.actualmoney,
+		p.costno
+		) as detail
+		group by detail.y
+		ORDER BY
+		detail.y ASC
 	</select>
 	<!-- 查询月基础数据的业绩 -->
 	<select id='findDrugsmoneyByMonth' parameterType="java.util.Map" resultType="json">
-			SELECT detail.y as 年,detail.m as 月,SUM(detail.paymoney) as drugsmoney FROM (
-				SELECT 
-				year(cost.sftime) y,
-				month(cost.sftime) m,
-				(p.actualmoney -
-					(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
-					FROM KQDS_COSTORDER_DETAIL
-					WHERE 1=1
-					AND isyjjitem=1 
-					AND costno=p.costno)-(
-						SELECT ISNULL( SUM (costd.payyjj + costd.payother2 + costd.payintegral + costd.paydjq),0)
-						)
-				) paymoney,
-				p.costno c
-				FROM KQDS_REG r
-				LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno 
-				LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-				LEFT JOIN KQDS_COSTORDER_DETAIL costd ON p.costno = costd.costno
-				where 	1 = 1
-				AND MONTH (cost.sftime) <![CDATA[ >= ]]> #{startmonth}
-				AND MONTH (cost.sftime) <![CDATA[ <= ]]> #{endmonth}
-				<if test="costyears!='' and costyears!=null">
-				and ${costyears}
-				</if>
-				<if test="visualstaff!=null and visualstaff!=''">
-				AND p.askperson in (${visualstaff})
-				</if>
-				AND r.organization = #{organization}
-				AND cost.isdrugs = 1
-				group by 
-				year(cost.sftime),
-				month(cost.sftime),
-				p.actualmoney,
-				p.costno 
-				) as detail
-				group by detail.y,
-				detail.m
-				ORDER BY
-				detail.m ASC
+		SELECT detail.y as 年,detail.m as 月,SUM(detail.paymoney) as drugsmoney FROM (
+		SELECT
+		year(cost.sftime) y,
+		month(cost.sftime) m,
+		(p.actualmoney -
+		(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
+		FROM KQDS_COSTORDER_DETAIL
+		WHERE 1=1
+		AND isyjjitem=1
+		AND costno=p.costno)-(
+		SELECT ISNULL( SUM (costd.payyjj + costd.payother2 + costd.payintegral + costd.paydjq),0)
+		)
+		) paymoney,
+		p.costno c
+		FROM KQDS_REG r
+		LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno
+		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+		LEFT JOIN KQDS_COSTORDER_DETAIL costd ON p.costno = costd.costno
+		where 	1 = 1
+		AND MONTH (cost.sftime) <![CDATA[ >= ]]> #{startmonth}
+		AND MONTH (cost.sftime) <![CDATA[ <= ]]> #{endmonth}
+		<if test="costyears!='' and costyears!=null">
+			and ${costyears}
+		</if>
+		<if test="visualstaff!=null and visualstaff!=''">
+			AND p.askperson in (${visualstaff})
+		</if>
+		AND r.organization = #{organization}
+		AND cost.isdrugs = 1
+		group by
+		year(cost.sftime),
+		month(cost.sftime),
+		p.actualmoney,
+		p.costno
+		) as detail
+		group by detail.y,
+		detail.m
+		ORDER BY
+		detail.m ASC
 	</select>
 	<!-- 查询天基础数据的业绩 -->
 	<select id='findDrugsmoneyByDay' parameterType="java.util.Map" resultType="json">
-			SELECT detail.m as 月,detail.d as 日,SUM(detail.paymoney) as drugsmoney FROM (
-				SELECT 
-				month(cost.sftime) m,
-				day(cost.sftime) d,
-				(p.actualmoney -
-					(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
-					FROM KQDS_COSTORDER_DETAIL
-					WHERE 1=1
-					AND isyjjitem=1 
-					AND costno=p.costno)-(
-						SELECT ISNULL( SUM (costd.payyjj + costd.payother2 + costd.payintegral + costd.paydjq),0)
-						)
-				) paymoney,
-				p.costno c
-				FROM KQDS_REG r
-				LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno 
-				LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-				LEFT JOIN KQDS_COSTORDER_DETAIL costd ON p.costno = costd.costno
-				where 	1 = 1
-				AND day(cost.sftime) <![CDATA[ >= ]]> #{startday}
-				AND day(cost.sftime) <![CDATA[ <= ]]> #{endday}
-				<if test="costyears!='' and costyears!=null">
-				and ${costyears}
-				</if>
-				<if test="costmonths!='' and costmonths!=null">
-				and (${costmonths})
-				</if>
-				<if test="visualstaff!=null and visualstaff!=''">
-				AND p.askperson in (${visualstaff})
-				</if>
-				AND r.organization = #{organization} 
-				AND cost.isdrugs = 1
-				group by 
-				month(cost.sftime),
-				day(cost.sftime),
-				p.actualmoney,
-				p.costno 
-				) as detail
-				group by detail.m,
-				detail.d
-				ORDER BY
-				detail.d ASC
+		SELECT detail.m as 月,detail.d as 日,SUM(detail.paymoney) as drugsmoney FROM (
+		SELECT
+		month(cost.sftime) m,
+		day(cost.sftime) d,
+		(p.actualmoney -
+		(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
+		FROM KQDS_COSTORDER_DETAIL
+		WHERE 1=1
+		AND isyjjitem=1
+		AND costno=p.costno)-(
+		SELECT ISNULL( SUM (costd.payyjj + costd.payother2 + costd.payintegral + costd.paydjq),0)
+		)
+		) paymoney,
+		p.costno c
+		FROM KQDS_REG r
+		LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno
+		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+		LEFT JOIN KQDS_COSTORDER_DETAIL costd ON p.costno = costd.costno
+		where 	1 = 1
+		AND day(cost.sftime) <![CDATA[ >= ]]> #{startday}
+		AND day(cost.sftime) <![CDATA[ <= ]]> #{endday}
+		<if test="costyears!='' and costyears!=null">
+			and ${costyears}
+		</if>
+		<if test="costmonths!='' and costmonths!=null">
+			and (${costmonths})
+		</if>
+		<if test="visualstaff!=null and visualstaff!=''">
+			AND p.askperson in (${visualstaff})
+		</if>
+		AND r.organization = #{organization}
+		AND cost.isdrugs = 1
+		group by
+		month(cost.sftime),
+		day(cost.sftime),
+		p.actualmoney,
+		p.costno
+		) as detail
+		group by detail.m,
+		detail.d
+		ORDER BY
+		detail.d ASC
 	</select>
 	<!-- 查询天员工数据的业绩 -->
-	<select id='findAllPaymoneyByDay' parameterType="java.util.Map" resultType="json">	
-			SELECT a askperson,SUM(paymoney-jcfmoney-yjjmoney) paymoney,SUM(jcfmoney) jcfmoney,SUM(yjjmoney) yjjmoney FROM (
-				SELECT  
-						p.askperson a,
-				(p.actualmoney -(
-									SELECT
-										ISNULL(
-											SUM (
-												paymoney - payyjj - payother2 - payintegral - paydjq
-											),
-											0
-										) AS paymoney
-									FROM
-										KQDS_COSTORDER_DETAIL
-									WHERE
-										1 = 1
-									AND isyjjitem = 1
-									AND costno = p.costno
-								)
-				) paymoney,
-				(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
-					FROM KQDS_COSTORDER_DETAIL
-				WHERE 1=1
-				AND itemname IN (
-						SELECT
-							treatitemname
-						FROM
-							KQDS_TREATITEM
-						WHERE
-							basetype = 'jyk671'
-						AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
-					)
-					AND costno=p.costno) jcfmoney,
-					ISNULL(SUM (costd.payyjj),0) AS yjjmoney,
-					p.costno c
-					FROM KQDS_REG r
-					LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno 
-					LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-					LEFT JOIN KQDS_COSTORDER_DETAIL costd ON p.costno = costd.costno
-					where 	1 = 1
-					AND r.recesort in (${recesort})
-					AND DAY (cost.sftime) <![CDATA[ >= ]]> #{startday}
-					AND DAY (cost.sftime) <![CDATA[ <= ]]> #{endday}
-					<if test="costyears!='' and costyears!=null">
-					and ${costyears}
-					</if>
-					<if test="costmonths !='' and costmonths !=null">
-					and ${costmonths}
-					</if>
-					AND r.organization = #{organization} 
-				AND cost.isdrugs = 0
-				<if test="askperson !=null and askperson !=''">
-				AND (${askperson})
-				</if>
-				group by
-					p.askperson,
-					p.actualmoney,
-					p.costno 
-				) as pay 
-				group by
-				a
-				ORDER BY
-				a ASC
+	<select id='findAllPaymoneyByDay' parameterType="java.util.Map" resultType="json">
+		SELECT a askperson,SUM(paymoney-jcfmoney-yjjmoney) paymoney,SUM(jcfmoney) jcfmoney,SUM(yjjmoney) yjjmoney FROM (
+		SELECT
+		p.askperson a,
+		(p.actualmoney -(
+		SELECT
+		ISNULL(
+		SUM (
+		paymoney - payyjj - payother2 - payintegral - paydjq
+		),
+		0
+		) AS paymoney
+		FROM
+		KQDS_COSTORDER_DETAIL
+		WHERE
+		1 = 1
+		AND isyjjitem = 1
+		AND costno = p.costno
+		)
+		) paymoney,
+		(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
+		FROM KQDS_COSTORDER_DETAIL
+		WHERE 1=1
+		AND itemname IN (
+		SELECT
+		treatitemname
+		FROM
+		KQDS_TREATITEM
+		WHERE
+		basetype = 'jyk671'
+		AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
+		)
+		AND costno=p.costno) jcfmoney,
+		ISNULL(SUM (costd.payyjj),0) AS yjjmoney,
+		p.costno c
+		FROM KQDS_REG r
+		LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno
+		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+		LEFT JOIN KQDS_COSTORDER_DETAIL costd ON p.costno = costd.costno
+		where 	1 = 1
+		AND r.recesort in (${recesort})
+		AND DAY (cost.sftime) <![CDATA[ >= ]]> #{startday}
+		AND DAY (cost.sftime) <![CDATA[ <= ]]> #{endday}
+		<if test="costyears!='' and costyears!=null">
+			and ${costyears}
+		</if>
+		<if test="costmonths !='' and costmonths !=null">
+			and ${costmonths}
+		</if>
+		AND r.organization = #{organization}
+		AND cost.isdrugs = 0
+		<if test="askperson !=null and askperson !=''">
+			AND (${askperson})
+		</if>
+		group by
+		p.askperson,
+		p.actualmoney,
+		p.costno
+		) as pay
+		group by
+		a
+		ORDER BY
+		a ASC
 	</select>
 	<!-- 查询月员工数据的业绩 -->
-	<select id='findAllPaymoneyByMonth' parameterType="java.util.Map" resultType="json">	
-			SELECT a askperson,SUM(paymoney-jcfmoney-yjjmoney) paymoney,SUM(jcfmoney) jcfmoney,SUM (yjjmoney) yjjmoney FROM (
-				SELECT  p.askperson a,
-				(p.actualmoney -(
-									SELECT
-										ISNULL(
-											SUM (
-												paymoney - payyjj - payother2 - payintegral - paydjq
-											),
-											0
-										) AS paymoney
-									FROM
-										KQDS_COSTORDER_DETAIL
-									WHERE
-										1 = 1
-									AND isyjjitem = 1
-									AND costno = p.costno
-								)
-				) paymoney,
-				(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
-							FROM KQDS_COSTORDER_DETAIL
-							WHERE 1=1
-							AND itemname IN (
-										SELECT
-											treatitemname
-										FROM
-											KQDS_TREATITEM
-										WHERE
-											basetype = 'jyk671'
-										AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
-									)
-							AND costno=p.costno) jcfmoney,
-							ISNULL(SUM (costd.payyjj),0) AS yjjmoney,
-					p.costno c
-					FROM KQDS_REG r
-					LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno 
-					LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-					LEFT JOIN KQDS_COSTORDER_DETAIL costd ON p.costno = costd.costno
-					where 	1 = 1
-					AND r.recesort in (${recesort})
-					AND MONTH (cost.sftime) <![CDATA[ >= ]]> #{startmonth}
-					AND MONTH (cost.sftime) <![CDATA[ <= ]]> #{endmonth}
-					<if test="costyears!='' and costyears!=null">
-					and ${costyears}
-					</if>
-					AND r.organization = #{organization}
-				AND cost.isdrugs = 0
-				<if test="askperson !=null and askperson !=''">
-				AND (${askperson})
-				</if>
-				group by 
-				p.askperson,
-				p.actualmoney,
-				p.costno 
-				) as pay 
-				group by 
-				a
-				ORDER BY
-				a ASC
+	<select id='findAllPaymoneyByMonth' parameterType="java.util.Map" resultType="json">
+		SELECT a askperson,SUM(paymoney-jcfmoney-yjjmoney) paymoney,SUM(jcfmoney) jcfmoney,SUM (yjjmoney) yjjmoney FROM (
+		SELECT  p.askperson a,
+		(p.actualmoney -(
+		SELECT
+		ISNULL(
+		SUM (
+		paymoney - payyjj - payother2 - payintegral - paydjq
+		),
+		0
+		) AS paymoney
+		FROM
+		KQDS_COSTORDER_DETAIL
+		WHERE
+		1 = 1
+		AND isyjjitem = 1
+		AND costno = p.costno
+		)
+		) paymoney,
+		(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
+		FROM KQDS_COSTORDER_DETAIL
+		WHERE 1=1
+		AND itemname IN (
+		SELECT
+		treatitemname
+		FROM
+		KQDS_TREATITEM
+		WHERE
+		basetype = 'jyk671'
+		AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
+		)
+		AND costno=p.costno) jcfmoney,
+		ISNULL(SUM (costd.payyjj),0) AS yjjmoney,
+		p.costno c
+		FROM KQDS_REG r
+		LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno
+		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+		LEFT JOIN KQDS_COSTORDER_DETAIL costd ON p.costno = costd.costno
+		where 	1 = 1
+		AND r.recesort in (${recesort})
+		AND MONTH (cost.sftime) <![CDATA[ >= ]]> #{startmonth}
+		AND MONTH (cost.sftime) <![CDATA[ <= ]]> #{endmonth}
+		<if test="costyears!='' and costyears!=null">
+			and ${costyears}
+		</if>
+		AND r.organization = #{organization}
+		AND cost.isdrugs = 0
+		<if test="askperson !=null and askperson !=''">
+			AND (${askperson})
+		</if>
+		group by
+		p.askperson,
+		p.actualmoney,
+		p.costno
+		) as pay
+		group by
+		a
+		ORDER BY
+		a ASC
 	</select>
 	<!-- 查询年员工数据的业绩 -->
-	<select id='findAllPaymoneyByYear' parameterType="java.util.Map" resultType="json">	
-			SELECT a askperson,SUM(paymoney-jcfmoney-yjjmoney) paymoney,SUM(jcfmoney) jcfmoney,SUM (yjjmoney) yjjmoney FROM (
-				SELECT  p.askperson a,
-				(p.actualmoney -(SELECT 
-					ISNULL(SUM (paymoney),0) AS paymoney 
-					FROM KQDS_COSTORDER_DETAIL
-					WHERE 1 = 1 
-					AND isyjjitem = 1 
-					AND costno = p.costno)) paymoney,
-				(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
-				FROM KQDS_COSTORDER_DETAIL WHERE 1=1
-				AND itemname IN (SELECT treatitemname FROM KQDS_TREATITEM
-				WHERE basetype = 'jyk671' AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e' )
-				AND costno=p.costno) jcfmoney,
-				ISNULL(SUM (costd.payyjj),0) AS yjjmoney,
-				p.costno c
-				FROM KQDS_REG r
-				LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno 
-				LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-				LEFT JOIN KQDS_COSTORDER_DETAIL costd ON p.costno = costd.costno
-				where 	1 = 1
-				AND r.recesort in (${recesort})
-				AND YEAR (cost.sftime) <![CDATA[ >= ]]> #{startyear}
-				AND YEAR (cost.sftime) <![CDATA[ <= ]]> #{endyear}
-				AND r.organization = #{organization}
-				AND cost.isdrugs = 0
-				<if test="askperson !=null and askperson !=''">
-				AND (${askperson})
-				</if>
-				group by 
-				p.askperson,
-				p.actualmoney,
-				p.costno 
-				) as pay 
-				group by
-				a
-				ORDER BY
-				a ASC
+	<select id='findAllPaymoneyByYear' parameterType="java.util.Map" resultType="json">
+		SELECT a askperson,SUM(paymoney-jcfmoney-yjjmoney) paymoney,SUM(jcfmoney) jcfmoney,SUM (yjjmoney) yjjmoney FROM (
+		SELECT  p.askperson a,
+		(p.actualmoney -(SELECT
+		ISNULL(SUM (paymoney),0) AS paymoney
+		FROM KQDS_COSTORDER_DETAIL
+		WHERE 1 = 1
+		AND isyjjitem = 1
+		AND costno = p.costno)) paymoney,
+		(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
+		FROM KQDS_COSTORDER_DETAIL WHERE 1=1
+		AND itemname IN (SELECT treatitemname FROM KQDS_TREATITEM
+		WHERE basetype = 'jyk671' AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e' )
+		AND costno=p.costno) jcfmoney,
+		ISNULL(SUM (costd.payyjj),0) AS yjjmoney,
+		p.costno c
+		FROM KQDS_REG r
+		LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno
+		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+		LEFT JOIN KQDS_COSTORDER_DETAIL costd ON p.costno = costd.costno
+		where 	1 = 1
+		AND r.recesort in (${recesort})
+		AND YEAR (cost.sftime) <![CDATA[ >= ]]> #{startyear}
+		AND YEAR (cost.sftime) <![CDATA[ <= ]]> #{endyear}
+		AND r.organization = #{organization}
+		AND cost.isdrugs = 0
+		<if test="askperson !=null and askperson !=''">
+			AND (${askperson})
+		</if>
+		group by
+		p.askperson,
+		p.actualmoney,
+		p.costno
+		) as pay
+		group by
+		a
+		ORDER BY
+		a ASC
 	</select>
-	
+
 	<!-- 查询天员工数据的业绩 -->
-	<select id='findAllDrugsmoneyByDay' parameterType="java.util.Map" resultType="json">	
-			SELECT a askperson,SUM(paymoney) drugsmoney FROM (
-				SELECT  
-				p.askperson a,
-				(p.actualmoney -(
-						SELECT ISNULL( SUM (paymoney),0) AS paymoney
-							FROM KQDS_COSTORDER_DETAIL
-							WHERE 1 = 1
-							AND isyjjitem = 1
-							AND costno = p.costno
-							)-(
-						SELECT ISNULL( SUM (payyjj + payother2 + payintegral + paydjq),0) AS paymoney
-							FROM KQDS_COSTORDER_DETAIL
-							WHERE 1 = 1
-							AND costno = p.costno
-							)
-				) paymoney,
-				p.costno c
-					FROM KQDS_REG r
-					LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno 
-					LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-					where 	1 = 1
-					AND DAY (cost.sftime) <![CDATA[ >= ]]> #{startday}
-					AND DAY (cost.sftime) <![CDATA[ <= ]]> #{endday}
-					<if test="costyears!='' and costyears!=null">
-					and ${costyears}
-					</if>
-					<if test="costmonths !='' and costmonths !=null">
-					and ${costmonths}
-					</if>
-					AND r.organization = #{organization}
-				AND cost.isdrugs = 1
-				<if test="askperson !=null and askperson !=''">
-				AND (${askperson})
-				</if>
-				group by
-					p.askperson,
-					p.actualmoney,
-					p.costno 
-				) as pay 
-				group by
-				a
-				ORDER BY
-				a ASC
+	<select id='findAllDrugsmoneyByDay' parameterType="java.util.Map" resultType="json">
+		SELECT a askperson,SUM(paymoney) drugsmoney FROM (
+		SELECT
+		p.askperson a,
+		(p.actualmoney -(
+		SELECT ISNULL( SUM (paymoney),0) AS paymoney
+		FROM KQDS_COSTORDER_DETAIL
+		WHERE 1 = 1
+		AND isyjjitem = 1
+		AND costno = p.costno
+		)-(
+		SELECT ISNULL( SUM (payyjj + payother2 + payintegral + paydjq),0) AS paymoney
+		FROM KQDS_COSTORDER_DETAIL
+		WHERE 1 = 1
+		AND costno = p.costno
+		)
+		) paymoney,
+		p.costno c
+		FROM KQDS_REG r
+		LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno
+		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+		where 	1 = 1
+		AND DAY (cost.sftime) <![CDATA[ >= ]]> #{startday}
+		AND DAY (cost.sftime) <![CDATA[ <= ]]> #{endday}
+		<if test="costyears!='' and costyears!=null">
+			and ${costyears}
+		</if>
+		<if test="costmonths !='' and costmonths !=null">
+			and ${costmonths}
+		</if>
+		AND r.organization = #{organization}
+		AND cost.isdrugs = 1
+		<if test="askperson !=null and askperson !=''">
+			AND (${askperson})
+		</if>
+		group by
+		p.askperson,
+		p.actualmoney,
+		p.costno
+		) as pay
+		group by
+		a
+		ORDER BY
+		a ASC
 	</select>
 	<!-- 查询月员工数据的业绩 -->
-	<select id='findAllDrugsmoneyByMonth' parameterType="java.util.Map" resultType="json">	
-			SELECT a askperson,SUM(paymoney) drugsmoney FROM (
-				SELECT  p.askperson a,
-				(p.actualmoney -(
-				SELECT ISNULL(SUM (paymoney),0) AS paymoney
-				FROM KQDS_COSTORDER_DETAIL
-				WHERE 1 = 1
-					AND isyjjitem = 1
-					AND costno = p.costno
-				)-(SELECT ISNULL( SUM (payyjj + payother2 + payintegral + paydjq),0) AS paymoney
-					FROM KQDS_COSTORDER_DETAIL
-					WHERE 1 = 1
-					AND costno = p.costno
-				) ) paymoney,
-				p.costno c
-					FROM KQDS_REG r
-					LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno 
-					LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-					where 	1 = 1
-					AND MONTH (cost.sftime) <![CDATA[ >= ]]> #{startmonth}
-					AND MONTH (cost.sftime) <![CDATA[ <= ]]> #{endmonth}
-					<if test="costyears!='' and costyears!=null">
-					and ${costyears}
-					</if>
-					AND r.organization = #{organization}
-				AND cost.isdrugs = 1
-				<if test="askperson !=null and askperson !=''">
-				AND (${askperson})
-				</if>
-				group by 
-				p.askperson,
-				p.actualmoney,
-				p.costno 
-				) as pay 
-				group by 
-				a
-				ORDER BY
-				a ASC
+	<select id='findAllDrugsmoneyByMonth' parameterType="java.util.Map" resultType="json">
+		SELECT a askperson,SUM(paymoney) drugsmoney FROM (
+		SELECT  p.askperson a,
+		(p.actualmoney -(
+		SELECT ISNULL(SUM (paymoney),0) AS paymoney
+		FROM KQDS_COSTORDER_DETAIL
+		WHERE 1 = 1
+		AND isyjjitem = 1
+		AND costno = p.costno
+		)-(SELECT ISNULL( SUM (payyjj + payother2 + payintegral + paydjq),0) AS paymoney
+		FROM KQDS_COSTORDER_DETAIL
+		WHERE 1 = 1
+		AND costno = p.costno
+		) ) paymoney,
+		p.costno c
+		FROM KQDS_REG r
+		LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno
+		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+		where 	1 = 1
+		AND MONTH (cost.sftime) <![CDATA[ >= ]]> #{startmonth}
+		AND MONTH (cost.sftime) <![CDATA[ <= ]]> #{endmonth}
+		<if test="costyears!='' and costyears!=null">
+			and ${costyears}
+		</if>
+		AND r.organization = #{organization}
+		AND cost.isdrugs = 1
+		<if test="askperson !=null and askperson !=''">
+			AND (${askperson})
+		</if>
+		group by
+		p.askperson,
+		p.actualmoney,
+		p.costno
+		) as pay
+		group by
+		a
+		ORDER BY
+		a ASC
 	</select>
 	<!-- 查询年员工数据的业绩 -->
-	<select id='findAllDrugsmoneyByYear' parameterType="java.util.Map" resultType="json">	
-			SELECT a askperson,SUM(paymoney) drugsmoney FROM (
-				SELECT  p.askperson a,
-				(p.actualmoney 
-					-(SELECT 
-					ISNULL(SUM (paymoney),0) AS paymoney
-					FROM KQDS_COSTORDER_DETAIL
-					WHERE 1 = 1
-					AND isyjjitem = 1
-					AND costno = p.costno
-					)-(
-						SELECT ISNULL( SUM (payyjj + payother2 + payintegral + paydjq),0) AS paymoney
-						FROM KQDS_COSTORDER_DETAIL
-						WHERE 1 = 1
-						AND costno = p.costno
-					)
-				) paymoney,
-				p.costno c
-					FROM KQDS_REG r
-					LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno 
-					LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-					where 	1 = 1
-					AND YEAR (cost.sftime) <![CDATA[ >= ]]> #{startyear}
-					AND YEAR (cost.sftime) <![CDATA[ <= ]]> #{endyear}
-					AND r.organization = #{organization}
-				AND cost.isdrugs = 1
-				<if test="askperson !=null and askperson !=''">
-				AND (${askperson})
-				</if>
-				group by 
-				p.askperson,
-				p.actualmoney,
-				p.costno 
-				) as pay 
-				group by
-				a
-				ORDER BY
-				a ASC
+	<select id='findAllDrugsmoneyByYear' parameterType="java.util.Map" resultType="json">
+		SELECT a askperson,SUM(paymoney) drugsmoney FROM (
+		SELECT  p.askperson a,
+		(p.actualmoney
+		-(SELECT
+		ISNULL(SUM (paymoney),0) AS paymoney
+		FROM KQDS_COSTORDER_DETAIL
+		WHERE 1 = 1
+		AND isyjjitem = 1
+		AND costno = p.costno
+		)-(
+		SELECT ISNULL( SUM (payyjj + payother2 + payintegral + paydjq),0) AS paymoney
+		FROM KQDS_COSTORDER_DETAIL
+		WHERE 1 = 1
+		AND costno = p.costno
+		)
+		) paymoney,
+		p.costno c
+		FROM KQDS_REG r
+		LEFT JOIN KQDS_PAYCOST p on r.seq_id=p.regno
+		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+		where 	1 = 1
+		AND YEAR (cost.sftime) <![CDATA[ >= ]]> #{startyear}
+		AND YEAR (cost.sftime) <![CDATA[ <= ]]> #{endyear}
+		AND r.organization = #{organization}
+		AND cost.isdrugs = 1
+		<if test="askperson !=null and askperson !=''">
+			AND (${askperson})
+		</if>
+		group by
+		p.askperson,
+		p.actualmoney,
+		p.costno
+		) as pay
+		group by
+		a
+		ORDER BY
+		a ASC
 	</select>
 	<!-- 按月查询业绩 syp 2019-9-24 -->
 	<select id="findTotalMoneyByMonth" parameterType="map" resultType="json">
 		SELECT cccc 年,rrr 月,SUM(totalMoney) totalMoney FROM (
-			SELECT
-				YEAR (detail.createtime) cccc,
-				MONTH (detail.createtime) rrr,
-				(cost.actualmoney -(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
-						FROM KQDS_COSTORDER_DETAIL
-						WHERE 1=1
-						AND itemname IN (
-							SELECT
-								treatitemname
-							FROM
-								KQDS_TREATITEM
-							WHERE basetype = 'jyk671' AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
-						)
-						AND costno = cost.costno)
-						-(
-							SELECT
-								ISNULL(
-									SUM (
-										paymoney - payyjj - payother2 - payintegral - paydjq
-									),
-									0
-								) AS paymoney
-							FROM
-								KQDS_COSTORDER_DETAIL
-							WHERE
-								1 = 1
-							AND isyjjitem=1
-							AND costno = cost.costno
-						)
-					) AS totalMoney
-			FROM KQDS_COSTORDER detail
-			LEFT JOIN KQDS_PAYCOST cost ON cost.costno = detail.costno
-			WHERE 1=1
-			AND detail.isdrugs != '1'
-			AND MONTH (detail.createtime) <![CDATA[ >= ]]> #{startmonth}
-			AND MONTH (detail.createtime) <![CDATA[ <= ]]> #{endmonth} 
-			<if test="years!='' and years!=null">
-				and (${years})
-			</if>
-			<if test="askperson !=null and askperson !=''">
-				AND cost.askperson in (${askperson})
-			</if>
-			AND detail.organization = #{organization}
-			GROUP BY
-				cost.actualmoney,
-				cost.costno,
-				cost.usercode,
-				YEAR (detail.createtime),
-				MONTH (detail.createtime)
-			)
-			 as pay 
-				group by cccc,rrr
-				ORDER BY rrr ASC
-				  
-   <!-- SELECT 
-			YEAR(detail.createtime) 年, 
-			MONTH(detail.createtime) 月, 
-			SUM(detail.paymoney) as totalMoney 
-		FROM KQDS_COSTORDER_DETAIL detail
-		LEFT JOIN KQDS_COSTORDER cost ON cost.costno = detail.costno
-		WHERE detail.itemno != '1' AND cost.cjstatus = '1'
-		and MONTH (detail.createtime) <![CDATA[ >= ]]> #{startmonth}
-		and MONTH (detail.createtime) <![CDATA[ <= ]]> #{endmonth} 
+		SELECT
+		YEAR (detail.createtime) cccc,
+		MONTH (detail.createtime) rrr,
+		(cost.actualmoney -(SELECT ISNULL(SUM (paymoney - payyjj - payother2 - payintegral - paydjq),0) AS paymoney
+		FROM KQDS_COSTORDER_DETAIL
+		WHERE 1=1
+		AND itemname IN (
+		SELECT
+		treatitemname
+		FROM
+		KQDS_TREATITEM
+		WHERE basetype = 'jyk671' AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
+		)
+		AND costno = cost.costno)
+		-(
+		SELECT
+		ISNULL(
+		SUM (
+		paymoney - payyjj - payother2 - payintegral - paydjq
+		),
+		0
+		) AS paymoney
+		FROM
+		KQDS_COSTORDER_DETAIL
+		WHERE
+		1 = 1
+		AND isyjjitem=1
+		AND costno = cost.costno
+		)
+		) AS totalMoney
+		FROM KQDS_COSTORDER detail
+		LEFT JOIN KQDS_PAYCOST cost ON cost.costno = detail.costno
+		WHERE 1=1
+		AND detail.isdrugs != '1'
+		AND MONTH (detail.createtime) <![CDATA[ >= ]]> #{startmonth}
+		AND MONTH (detail.createtime) <![CDATA[ <= ]]> #{endmonth}
 		<if test="years!='' and years!=null">
 			and (${years})
 		</if>
 		<if test="askperson !=null and askperson !=''">
-		AND detail.askperson in (${askperson})
+			AND cost.askperson in (${askperson})
 		</if>
-		AND itemno NOT IN (
-			SELECT
-				treatitemno
-			FROM
-				KQDS_TREATITEM
-			WHERE 1=1
-			AND	basetype = 'jyk671'
-			AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e' or basetype = 'yp610' or nexttype = 'yp70'
-		)
-		AND itemno NOT IN (
-			select itemno from KQDS_COSTORDER_DETAIL where itemno like 'DRUG%'
-		)
 		AND detail.organization = #{organization}
 		GROUP BY
-			YEAR (detail.createtime),
-			MONTH (detail.createtime)
-		ORDER BY
-			MONTH (detail.createtime) ASC -->
+		cost.actualmoney,
+		cost.costno,
+		cost.usercode,
+		YEAR (detail.createtime),
+		MONTH (detail.createtime)
+		)
+		as pay
+		group by cccc,rrr
+		ORDER BY rrr ASC
+
+		<!-- SELECT
+                 YEAR(detail.createtime) 年,
+                 MONTH(detail.createtime) 月,
+                 SUM(detail.paymoney) as totalMoney
+             FROM KQDS_COSTORDER_DETAIL detail
+             LEFT JOIN KQDS_COSTORDER cost ON cost.costno = detail.costno
+             WHERE detail.itemno != '1' AND cost.cjstatus = '1'
+             and MONTH (detail.createtime) <![CDATA[ >= ]]> #{startmonth}
+             and MONTH (detail.createtime) <![CDATA[ <= ]]> #{endmonth}
+             <if test="years!='' and years!=null">
+                 and (${years})
+             </if>
+             <if test="askperson !=null and askperson !=''">
+             AND detail.askperson in (${askperson})
+             </if>
+             AND itemno NOT IN (
+                 SELECT
+                     treatitemno
+                 FROM
+                     KQDS_TREATITEM
+                 WHERE 1=1
+                 AND	basetype = 'jyk671'
+                 AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e' or basetype = 'yp610' or nexttype = 'yp70'
+             )
+             AND itemno NOT IN (
+                 select itemno from KQDS_COSTORDER_DETAIL where itemno like 'DRUG%'
+             )
+             AND detail.organization = #{organization}
+             GROUP BY
+                 YEAR (detail.createtime),
+                 MONTH (detail.createtime)
+             ORDER BY
+                 MONTH (detail.createtime) ASC -->
 	</select>
-	
+
 	<select id="findTotalDrugsByMonth" parameterType="map" resultType="json">
-		SELECT 
-			YEAR(detail.createtime) 年, 
-			MONTH(detail.createtime) 月, 
-			SUM(detail.paymoney) as totalMoney 
+		SELECT
+		YEAR(detail.createtime) 年,
+		MONTH(detail.createtime) 月,
+		SUM(detail.paymoney) as totalMoney
 		FROM KQDS_COSTORDER_DETAIL detail
 		LEFT JOIN KQDS_COSTORDER cost ON cost.costno = detail.costno
 		WHERE detail.itemno != '1' AND cost.cjstatus = '1' and cost.isdrugs = '1' and cost.status = '2'
 		and MONTH (detail.createtime) <![CDATA[ >= ]]> #{startmonth}
-		and MONTH (detail.createtime) <![CDATA[ <= ]]> #{endmonth} 
+		and MONTH (detail.createtime) <![CDATA[ <= ]]> #{endmonth}
 		<if test="years!='' and years!=null">
 			and (${years})
 		</if>
 		<if test="askperson !=null and askperson !=''">
-		AND detail.askperson in (${askperson})
+			AND detail.askperson in (${askperson})
 		</if>
 		AND detail.organization = #{organization}
 		GROUP BY
-			YEAR (detail.createtime),
-			MONTH (detail.createtime)
+		YEAR (detail.createtime),
+		MONTH (detail.createtime)
 		ORDER BY
-			MONTH (detail.createtime) ASC
+		MONTH (detail.createtime) ASC
 	</select>
-	
+
 	<select id="findTotalCheckItemsByMonth" parameterType="map" resultType="json">
 		<!-- SELECT cccc 年,rrr 月,SUM(totalMoney) totalMoney FROM (
 			SELECT
@@ -2995,7 +2976,7 @@
 			WHERE 1=1
 			AND detail.isdrugs != '1'
 			AND MONTH (detail.createtime) <![CDATA[ >= ]]> #{startmonth}
-			AND MONTH (detail.createtime) <![CDATA[ <= ]]> #{endmonth} 
+			AND MONTH (detail.createtime) <![CDATA[ <= ]]> #{endmonth}
 			<if test="years!='' and years!=null">
 				and (${years})
 			</if>
@@ -3010,56 +2991,56 @@
 				YEAR (detail.createtime),
 				MONTH (detail.createtime)
 			)
-			 as pay 
+			 as pay
 				group by cccc,rrr
 				ORDER BY rrr ASC -->
-		SELECT 
-			YEAR(detail.createtime) 年, 
-			MONTH(detail.createtime) 月, 
-			SUM(detail.paymoney) as totalMoney 
+		SELECT
+		YEAR(detail.createtime) 年,
+		MONTH(detail.createtime) 月,
+		SUM(detail.paymoney) as totalMoney
 		FROM KQDS_COSTORDER_DETAIL detail
 		LEFT JOIN KQDS_COSTORDER cost ON cost.costno = detail.costno
 		WHERE detail.itemno != '1' AND cost.cjstatus = '1' and cost.status = '2'
 		and MONTH (detail.createtime) <![CDATA[ >= ]]> #{startmonth}
-		and MONTH (detail.createtime) <![CDATA[ <= ]]> #{endmonth} 
+		and MONTH (detail.createtime) <![CDATA[ <= ]]> #{endmonth}
 		<if test="years!='' and years!=null">
 			and (${years})
 		</if>
 		<if test="askperson !=null and askperson !=''">
-		AND detail.askperson in (${askperson})
+			AND detail.askperson in (${askperson})
 		</if>
 		AND itemno IN (
-			SELECT
-				treatitemno
-			FROM
-				KQDS_TREATITEM
-			WHERE 1=1
-			AND	basetype = 'jyk671'
-			AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
+		SELECT
+		treatitemno
+		FROM
+		KQDS_TREATITEM
+		WHERE 1=1
+		AND	basetype = 'jyk671'
+		AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
 		)
 		AND detail.organization = #{organization}
 		GROUP BY
-			YEAR (detail.createtime),
-			MONTH (detail.createtime)
+		YEAR (detail.createtime),
+		MONTH (detail.createtime)
 		ORDER BY
-			MONTH (detail.createtime) ASC
+		MONTH (detail.createtime) ASC
 	</select>
-	
+
 	<select id="findTotalPrepayByMonth" parameterType="map" resultType="json">
-		SELECT 
-			YEAR(detail.createtime) 年, 
-			MONTH(detail.createtime) 月, 
-			SUM(subtotal) as totalMoney 
+		SELECT
+		YEAR(detail.createtime) 年,
+		MONTH(detail.createtime) 月,
+		SUM(subtotal) as totalMoney
 		FROM KQDS_COSTORDER_DETAIL detail
 		LEFT JOIN KQDS_COSTORDER cost ON cost.costno = detail.costno
 		WHERE detail.isyjjitem = '1' and cost.status = '2'
 		and MONTH (detail.createtime) <![CDATA[ >= ]]> #{startmonth}
-		and MONTH (detail.createtime) <![CDATA[ <= ]]> #{endmonth} 
+		and MONTH (detail.createtime) <![CDATA[ <= ]]> #{endmonth}
 		<if test="years!='' and years!=null">
 			and (${years})
 		</if>
 		<if test="askperson !=null and askperson !=''">
-		AND detail.askperson in (${askperson})
+			AND detail.askperson in (${askperson})
 		</if>
 		AND detail.organization = #{organization}
 		GROUP BY
@@ -3068,22 +3049,22 @@
 		ORDER BY
 		MONTH (detail.createtime) ASC
 	</select>
-	
+
 	<select id="findTotalUsePrepayByMonth" parameterType="map" resultType="json">
-		SELECT 
-			YEAR(detail.createtime) 年, 
-			MONTH(detail.createtime) 月, 
-			SUM(subtotal) as totalMoney 
+		SELECT
+		YEAR(detail.createtime) 年,
+		MONTH(detail.createtime) 月,
+		SUM(subtotal) as totalMoney
 		FROM KQDS_COSTORDER_DETAIL detail
 		LEFT JOIN KQDS_COSTORDER cost ON cost.costno = detail.costno
 		WHERE detail.isyjjitem = '1' AND cost.cjstatus = '1' and cost.status = '2'
 		and MONTH (detail.createtime) <![CDATA[ >= ]]> #{startmonth}
-		and MONTH (detail.createtime) <![CDATA[ <= ]]> #{endmonth} 
+		and MONTH (detail.createtime) <![CDATA[ <= ]]> #{endmonth}
 		<if test="years!='' and years!=null">
 			and (${years})
 		</if>
 		<if test="askperson !=null and askperson !=''">
-		AND detail.askperson in (${askperson})
+			AND detail.askperson in (${askperson})
 		</if>
 		AND detail.organization = #{organization}
 		GROUP BY
@@ -3092,296 +3073,296 @@
 		ORDER BY
 		MONTH (detail.createtime) ASC
 	</select>
-	
+
 	<!-- 总 -->
 	<select id="findZperformance" parameterType="map" resultType="json">
 		SELECT
-			 year,
-			 month,
-			SUM (paymoney) AS performance
+		year,
+		month,
+		SUM (paymoney) AS performance
 		FROM
-			(
-				SELECT
-					YEAR(r.createtime) AS year, 
-					MONTH(r.createtime) AS month,
-					s.USER_NAME AS doctor,
-					(
-						p.actualmoney - (
-							SELECT
-								ISNULL(
-									SUM (
-										paymoney - payyjj - payother2 - payintegral - paydjq
-									),
-									0
-								) AS paymoney
-							FROM
-								KQDS_COSTORDER_DETAIL
-							WHERE
-								1 = 1
-							AND itemname IN (
-								SELECT
-									treatitemname
-								FROM
-									KQDS_TREATITEM
-								WHERE
-									basetype = 'jyk671'
-								AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
-							)
-							AND costno = p.costno
-						) - (
-							SELECT
-								ISNULL(
-									SUM (
-										paymoney - payyjj - payother2 - payintegral - paydjq
-									),
-									0
-								) AS paymoney
-							FROM
-								KQDS_COSTORDER_DETAIL
-							WHERE
-								1 = 1
-							AND isyjjitem = 1
-							AND costno = p.costno
-						)
-					) paymoney,
-					p.costno AS costno
-				FROM
-					KQDS_REG r
-				LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
-				LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-				LEFT JOIN sys_person s ON cost.doctor = s.SEQ_ID
-				WHERE
-					1 = 1
-				<if test="years!='' and years!=null">
-					and (${years})
-				</if>
-				AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
-				AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth} 
-				AND r.organization = #{organization}
-				AND r.cjstatus = 1
-				AND cost.isdrugs = 0
-				AND r.askperson IN (${askperson})
-				GROUP BY
-					r.createtime,
-					s.USER_NAME,
-					p.actualmoney,
-					p.costno
-			) AS detail
-			GROUP BY 
-				year,
-				month
+		(
+		SELECT
+		YEAR(r.createtime) AS year,
+		MONTH(r.createtime) AS month,
+		s.USER_NAME AS doctor,
+		(
+		p.actualmoney - (
+		SELECT
+		ISNULL(
+		SUM (
+		paymoney - payyjj - payother2 - payintegral - paydjq
+		),
+		0
+		) AS paymoney
+		FROM
+		KQDS_COSTORDER_DETAIL
+		WHERE
+		1 = 1
+		AND itemname IN (
+		SELECT
+		treatitemname
+		FROM
+		KQDS_TREATITEM
+		WHERE
+		basetype = 'jyk671'
+		AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
+		)
+		AND costno = p.costno
+		) - (
+		SELECT
+		ISNULL(
+		SUM (
+		paymoney - payyjj - payother2 - payintegral - paydjq
+		),
+		0
+		) AS paymoney
+		FROM
+		KQDS_COSTORDER_DETAIL
+		WHERE
+		1 = 1
+		AND isyjjitem = 1
+		AND costno = p.costno
+		)
+		) paymoney,
+		p.costno AS costno
+		FROM
+		KQDS_REG r
+		LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
+		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+		LEFT JOIN sys_person s ON cost.doctor = s.SEQ_ID
+		WHERE
+		1 = 1
+		<if test="years!='' and years!=null">
+			and (${years})
+		</if>
+		AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+		AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
+		AND r.organization = #{organization}
+		AND r.cjstatus = 1
+		AND cost.isdrugs = 0
+		AND r.askperson IN (${askperson})
+		GROUP BY
+		r.createtime,
+		s.USER_NAME,
+		p.actualmoney,
+		p.costno
+		) AS detail
+		GROUP BY
+		year,
+		month
 	</select>
 	<select id="selectRegnoByVisualstaff" parameterType="map" resultType="json">
 		SELECT DISTINCT
-				d.regno
-			FROM
-				KQDS_COSTORDER_DETAIL d
-			LEFT JOIN KQDS_RECEIVEINFO i ON i.regno = d.regno
-			LEFT JOIN KQDS_REG r ON r.SEQ_ID = d.regno
-			LEFT JOIN KQDS_USERDOCUMENT u ON u.usercode = r.usercode
-			WHERE 1 = 1
-			<if test="recesort != null and recesort !='' ">
-				and r.recesort = #{recesort}
-			</if>
-			<if test="askperson != null and askperson !='' ">
-				and r.askperson = #{askperson}
-			</if>
-			<if test="regdept != null and regdept !='' ">
-				and r.regdept = #{regdept}
-			</if>
-			<if test="doctor != null and doctor !='' ">
-				and r.doctor = #{doctor}
-			</if>
-			<if test="starttime != null and starttime !='' ">
-				and r.createtime <![CDATA[ >= ]]> #{starttime}
-			</if>
-			<if test="endtime != null and endtime !='' ">
-				and r.createtime <![CDATA[ <= ]]> #{endtime}
-			</if>
-			<if test="starttime != null and starttime !='' ">
-				and d.createtime <![CDATA[ >= ]]> #{starttime}
-			</if>
-			<if test="endtime != null and endtime !='' ">
-				and d.createtime <![CDATA[ <= ]]> #{endtime}
-			</if>
-			<if test="regsort != null and regsort !='' ">
-				and r.regsort = #{regsort}
-			</if>
-			<if test="cjstatus != null and cjstatus !='' ">
-				and r.cjstatus = #{cjstatus}
-			</if>
-			<if test="gongju != null and gongju !='' ">
-				and kcit7.SEQ_ID =#{gongju} <!-- 根据受理工具类型筛选机 -->
-			</if>
-			<if test="ifmedrecord != null and ifmedrecord !='' ">
-				and r.ifmedrecord =#{ifmedrecord}
-			</if>
-			<if test="searchValue != null and searchValue !='' ">
-				and (u.usercode like '%' + #{searchValue} + '%'
-				or u.username like '%' + #{searchValue} + '%'
-				or ${p1}
-				or ${p2}
-				or u.pym like '%' + #{searchValue} + '%'
-				)
-			</if>
-			<if test="firstaskperson != null and firstaskperson !='' ">
+		d.regno
+		FROM
+		KQDS_COSTORDER_DETAIL d
+		LEFT JOIN KQDS_RECEIVEINFO i ON i.regno = d.regno
+		LEFT JOIN KQDS_REG r ON r.SEQ_ID = d.regno
+		LEFT JOIN KQDS_USERDOCUMENT u ON u.usercode = r.usercode
+		WHERE 1 = 1
+		<if test="recesort != null and recesort !='' ">
+			and r.recesort = #{recesort}
+		</if>
+		<if test="askperson != null and askperson !='' ">
+			and r.askperson = #{askperson}
+		</if>
+		<if test="regdept != null and regdept !='' ">
+			and r.regdept = #{regdept}
+		</if>
+		<if test="doctor != null and doctor !='' ">
+			and r.doctor = #{doctor}
+		</if>
+		<if test="starttime != null and starttime !='' ">
+			and r.createtime <![CDATA[ >= ]]> #{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and r.createtime <![CDATA[ <= ]]> #{endtime}
+		</if>
+		<if test="starttime != null and starttime !='' ">
+			and d.createtime <![CDATA[ >= ]]> #{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and d.createtime <![CDATA[ <= ]]> #{endtime}
+		</if>
+		<if test="regsort != null and regsort !='' ">
+			and r.regsort = #{regsort}
+		</if>
+		<if test="cjstatus != null and cjstatus !='' ">
+			and r.cjstatus = #{cjstatus}
+		</if>
+		<if test="gongju != null and gongju !='' ">
+			and kcit7.SEQ_ID =#{gongju} <!-- 根据受理工具类型筛选机 -->
+		</if>
+		<if test="ifmedrecord != null and ifmedrecord !='' ">
+			and r.ifmedrecord =#{ifmedrecord}
+		</if>
+		<if test="searchValue != null and searchValue !='' ">
+			and (u.usercode like '%' + #{searchValue} + '%'
+			or u.username like '%' + #{searchValue} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{searchValue} + '%'
+			)
+		</if>
+		<if test="firstaskperson != null and firstaskperson !='' ">
 			and u.askperson =#{firstaskperson}
-			</if>
-			<if test="usercode != null and usercode !='' ">
+		</if>
+		<if test="usercode != null and usercode !='' ">
 			and u.usercode =#{usercode}
-			</if>
-			<if test="useqid != null and useqid !='' ">
+		</if>
+		<if test="useqid != null and useqid !='' ">
 			and u.seq_id =#{useqid}
+		</if>
+		<if test="important != null and important !='' ">
+			and u.important = #{important}
+		</if>
+		<if test="devchannel != null and devchannel !='' ">
+			and u.devchannel = #{devchannel}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and u.nexttype = #{nexttype}
+		</if>
+		<if test="ageSearch != null and ageSearch !='' ">
+			<if test='ageSearch =="10"'>
+				and u.age <![CDATA[ >= ]]>
+				'0' and u.age <![CDATA[ <= ]]>
+				'10'
 			</if>
-			<if test="important != null and important !='' ">
-				and u.important = #{important}
+			<if test='ageSearch =="20"'>
+				and u.age <![CDATA[ >= ]]>
+				'10' and u.age <![CDATA[ <= ]]>
+				'20'
 			</if>
-			<if test="devchannel != null and devchannel !='' ">
-				and u.devchannel = #{devchannel}
+			<if test='ageSearch =="30"'>
+				and u.age <![CDATA[ >= ]]>
+				'20' and u.age <![CDATA[ <= ]]>
+				'30'
 			</if>
-			<if test="nexttype != null and nexttype !='' ">
-				and u.nexttype = #{nexttype}
+			<if test='ageSearch =="40"'>
+				and u.age <![CDATA[ >= ]]>
+				'30' and u.age <![CDATA[ <= ]]>
+				'40'
 			</if>
-			<if test="ageSearch != null and ageSearch !='' ">
-				<if test='ageSearch =="10"'>
-					and u.age <![CDATA[ >= ]]>
-					'0' and u.age <![CDATA[ <= ]]>
-					'10'
-				</if>
-				<if test='ageSearch =="20"'>
-					and u.age <![CDATA[ >= ]]>
-					'10' and u.age <![CDATA[ <= ]]>
-					'20'
-				</if>
-				<if test='ageSearch =="30"'>
-					and u.age <![CDATA[ >= ]]>
-					'20' and u.age <![CDATA[ <= ]]>
-					'30'
-				</if>
-				<if test='ageSearch =="40"'>
-					and u.age <![CDATA[ >= ]]>
-					'30' and u.age <![CDATA[ <= ]]>
-					'40'
-				</if>
-				<if test='ageSearch =="50"'>
-					and u.age <![CDATA[ >= ]]>
-					'40' and u.age <![CDATA[ <= ]]>
-					'50'
-				</if>
-				<if test='ageSearch =="51"'>
-					and u.age <![CDATA[ >= ]]>
-					'50'
-				</if>
+			<if test='ageSearch =="50"'>
+				and u.age <![CDATA[ >= ]]>
+				'40' and u.age <![CDATA[ <= ]]>
+				'50'
 			</if>
-			<if test="organization != null and organization !='' ">
-				and r.organization = #{organization}
+			<if test='ageSearch =="51"'>
+				and u.age <![CDATA[ >= ]]>
+				'50'
 			</if>
-			<if test="visualstaff != null and visualstaff !='' ">
-				and d.askperson in (${visualstaff}) 
-				or d.doctor in (${visualstaff}) 
-				or d.createuser in (${visualstaff})
-			</if>
-			
+		</if>
+		<if test="organization != null and organization !='' ">
+			and r.organization = #{organization}
+		</if>
+		<if test="visualstaff != null and visualstaff !='' ">
+			and d.askperson in (${visualstaff})
+			or d.doctor in (${visualstaff})
+			or d.createuser in (${visualstaff})
+		</if>
+
 		EXCEPT
-			select r.seq_id 
-			FROM KQDS_REG r
-			LEFT JOIN KQDS_RECEIVEINFO i ON i.regno = r.seq_id
-			LEFT JOIN KQDS_USERDOCUMENT u ON u.usercode = r.usercode
-			where 1 = 1
-			<if test="recesort != null and recesort !='' ">
-				and r.recesort = #{recesort}
-			</if>
-			<if test="askperson != null and askperson !='' ">
-				and r.askperson = #{askperson}
-			</if>
-			<if test="regdept != null and regdept !='' ">
-				and r.regdept = #{regdept}
-			</if>
-			<if test="doctor != null and doctor !='' ">
-				and r.doctor = #{doctor}
-			</if>
-			<if test="starttime != null and starttime !='' ">
-				and r.createtime <![CDATA[ >= ]]> #{starttime}
-			</if>
-			<if test="endtime != null and endtime !='' ">
-				and r.createtime <![CDATA[ <= ]]> #{endtime}
-			</if>
-			<if test="regsort != null and regsort !='' ">
-				and r.regsort = #{regsort}
-			</if>
-			<if test="cjstatus != null and cjstatus !='' ">
-				and r.cjstatus = #{cjstatus}
-			</if>
-			<if test="gongju != null and gongju !='' ">
-				and kcit7.SEQ_ID =#{gongju} <!-- 根据受理工具类型筛选机 -->
-			</if>
-			<if test="ifmedrecord != null and ifmedrecord !='' ">
-				and r.ifmedrecord =#{ifmedrecord}
-			</if>
-			<if test="searchValue != null and searchValue !='' ">
-				and (u.usercode like '%' + #{searchValue} + '%'
-				or u.username like '%' + #{searchValue} + '%'
-				or ${p1}
-				or ${p2}
-				or u.pym like '%' + #{searchValue} + '%'
-				)
-			</if>
-			<if test="firstaskperson != null and firstaskperson !='' ">
+		select r.seq_id
+		FROM KQDS_REG r
+		LEFT JOIN KQDS_RECEIVEINFO i ON i.regno = r.seq_id
+		LEFT JOIN KQDS_USERDOCUMENT u ON u.usercode = r.usercode
+		where 1 = 1
+		<if test="recesort != null and recesort !='' ">
+			and r.recesort = #{recesort}
+		</if>
+		<if test="askperson != null and askperson !='' ">
+			and r.askperson = #{askperson}
+		</if>
+		<if test="regdept != null and regdept !='' ">
+			and r.regdept = #{regdept}
+		</if>
+		<if test="doctor != null and doctor !='' ">
+			and r.doctor = #{doctor}
+		</if>
+		<if test="starttime != null and starttime !='' ">
+			and r.createtime <![CDATA[ >= ]]> #{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and r.createtime <![CDATA[ <= ]]> #{endtime}
+		</if>
+		<if test="regsort != null and regsort !='' ">
+			and r.regsort = #{regsort}
+		</if>
+		<if test="cjstatus != null and cjstatus !='' ">
+			and r.cjstatus = #{cjstatus}
+		</if>
+		<if test="gongju != null and gongju !='' ">
+			and kcit7.SEQ_ID =#{gongju} <!-- 根据受理工具类型筛选机 -->
+		</if>
+		<if test="ifmedrecord != null and ifmedrecord !='' ">
+			and r.ifmedrecord =#{ifmedrecord}
+		</if>
+		<if test="searchValue != null and searchValue !='' ">
+			and (u.usercode like '%' + #{searchValue} + '%'
+			or u.username like '%' + #{searchValue} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{searchValue} + '%'
+			)
+		</if>
+		<if test="firstaskperson != null and firstaskperson !='' ">
 			and u.askperson =#{firstaskperson}
-			</if>
-			<if test="usercode != null and usercode !='' ">
+		</if>
+		<if test="usercode != null and usercode !='' ">
 			and u.usercode =#{usercode}
-			</if>
-			<if test="useqid != null and useqid !='' ">
+		</if>
+		<if test="useqid != null and useqid !='' ">
 			and u.seq_id =#{useqid}
+		</if>
+		<if test="important != null and important !='' ">
+			and u.important = #{important}
+		</if>
+		<if test="devchannel != null and devchannel !='' ">
+			and u.devchannel = #{devchannel}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and u.nexttype = #{nexttype}
+		</if>
+		<if test="ageSearch != null and ageSearch !='' ">
+			<if test='ageSearch =="10"'>
+				and u.age <![CDATA[ >= ]]>
+				'0' and u.age <![CDATA[ <= ]]>
+				'10'
 			</if>
-			<if test="important != null and important !='' ">
-				and u.important = #{important}
+			<if test='ageSearch =="20"'>
+				and u.age <![CDATA[ >= ]]>
+				'10' and u.age <![CDATA[ <= ]]>
+				'20'
 			</if>
-			<if test="devchannel != null and devchannel !='' ">
-				and u.devchannel = #{devchannel}
+			<if test='ageSearch =="30"'>
+				and u.age <![CDATA[ >= ]]>
+				'20' and u.age <![CDATA[ <= ]]>
+				'30'
 			</if>
-			<if test="nexttype != null and nexttype !='' ">
-				and u.nexttype = #{nexttype}
+			<if test='ageSearch =="40"'>
+				and u.age <![CDATA[ >= ]]>
+				'30' and u.age <![CDATA[ <= ]]>
+				'40'
 			</if>
-			<if test="ageSearch != null and ageSearch !='' ">
-				<if test='ageSearch =="10"'>
-					and u.age <![CDATA[ >= ]]>
-					'0' and u.age <![CDATA[ <= ]]>
-					'10'
-				</if>
-				<if test='ageSearch =="20"'>
-					and u.age <![CDATA[ >= ]]>
-					'10' and u.age <![CDATA[ <= ]]>
-					'20'
-				</if>
-				<if test='ageSearch =="30"'>
-					and u.age <![CDATA[ >= ]]>
-					'20' and u.age <![CDATA[ <= ]]>
-					'30'
-				</if>
-				<if test='ageSearch =="40"'>
-					and u.age <![CDATA[ >= ]]>
-					'30' and u.age <![CDATA[ <= ]]>
-					'40'
-				</if>
-				<if test='ageSearch =="50"'>
-					and u.age <![CDATA[ >= ]]>
-					'40' and u.age <![CDATA[ <= ]]>
-					'50'
-				</if>
-				<if test='ageSearch =="51"'>
-					and u.age <![CDATA[ >= ]]>
-					'50'
-				</if>
+			<if test='ageSearch =="50"'>
+				and u.age <![CDATA[ >= ]]>
+				'40' and u.age <![CDATA[ <= ]]>
+				'50'
 			</if>
-			<if test="organization != null and organization !='' ">
-				and r.organization = #{organization}
+			<if test='ageSearch =="51"'>
+				and u.age <![CDATA[ >= ]]>
+				'50'
 			</if>
-			<if test="visualstaff != null and visualstaff !='' ">
-				and r.askperson in (${visualstaff}) 
-				or r.doctor in (${visualstaff}) 
-				or r.createuser in (${visualstaff})
-			</if>
+		</if>
+		<if test="organization != null and organization !='' ">
+			and r.organization = #{organization}
+		</if>
+		<if test="visualstaff != null and visualstaff !='' ">
+			and r.askperson in (${visualstaff})
+			or r.doctor in (${visualstaff})
+			or r.createuser in (${visualstaff})
+		</if>
 	</select>
 </mapper>

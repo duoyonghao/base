@@ -19,168 +19,172 @@
 		<result column="remark" jdbcType="VARCHAR" property="remark" />
 		<result column="organization" jdbcType="VARCHAR" property="organization"/>
 	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID,labelOneName,labelTwoName,labelThreeName,userSeqId,userId,userName,createUser,createTime,
+		remark,opinion,labelOneId,labelTwoId,labelThreeId,status,organization
+	</sql>
 	<insert id="saveKpatient" parameterType="com.kqds.entity.base.kqdsHzLabellabeAndPatient">
-	INSERT INTO KQDS_Hz_LabellabeAndPatient (SEQ_ID,labelOneId,labelOneName,labelTwoId,labelTwoName,labelThreeId,labelThreeName,opinion,
-	userSeqId,userId,userName,createUser,createTime,remark,status,organization)
-	VALUES
+		INSERT INTO KQDS_Hz_LabellabeAndPatient (SEQ_ID,labelOneId,labelOneName,labelTwoId,labelTwoName,labelThreeId,labelThreeName,opinion,
+		userSeqId,userId,userName,createUser,createTime,remark,status,organization)
+		VALUES
 		(#{seqId},#{labelOneId},#{labelOneName},#{labelTwoId},#{labelTwoName},#{labelThreeId},#{labelThreeName},#{opinion},#{userSeqId},#{userId},
 		#{userName},#{createUser},#{createTime},#{remark},#{status},#{organization})
 	</insert>
 	<!-- 根据UserCode查询标签 -->
 	<select id="findLabelList" parameterType="java.lang.String" resultType="com.kqds.entity.base.kqdsHzLabellabeAndPatient">
 		SELECT
-			*
+		<include refid="Base_Column_List" />
 		FROM
-			KQDS_Hz_LabellabeAndPatient
+		KQDS_Hz_LabellabeAndPatient
 		WHERE
-			userId = #{userCode}
+		userId = #{userCode}
 	</select>
 	<!-- 修改患者标签 -->
 	<delete id="deleteLabel" parameterType="java.lang.String">
 		DELETE
-			FROM
-				KQDS_Hz_LabellabeAndPatient
-			WHERE
-				userId = #{userCode}
+		FROM
+		KQDS_Hz_LabellabeAndPatient
+		WHERE
+		userId = #{userCode}
 	</delete>
 	<!-- 删除患者标签-->
 	<delete id="deleteLabelByUsercode" parameterType="java.util.Map">
-	DELETE
-			FROM
-				KQDS_Hz_LabellabeAndPatient
-			WHERE
-				userId = #{userCode} and labelTwoId=#{labelTwoId}
+		DELETE
+		FROM
+		KQDS_Hz_LabellabeAndPatient
+		WHERE
+		userId = #{userCode} and labelTwoId=#{labelTwoId}
 	</delete>
 	<select id="selectLabelByUsercode" parameterType="java.util.Map" resultType="java.lang.String">
-			select labelThreeId
-			FROM
-				KQDS_Hz_LabellabeAndPatient
-			WHERE
-				userId = #{userCode} and labelTwoId=#{labelTwoId}
+		select labelThreeId
+		FROM
+		KQDS_Hz_LabellabeAndPatient
+		WHERE
+		userId = #{userCode} and labelTwoId=#{labelTwoId}
 	</select>
 	<select id="findLabellPatientByUserId" parameterType="map" resultType="com.kqds.entity.base.kqdsHzLabellabeAndPatient">
 		SELECT
-			*
+		<include refid="Base_Column_List" />
 		FROM
-			KQDS_Hz_LabellabeAndPatient
+		KQDS_Hz_LabellabeAndPatient
 		<!-- WHERE 1=1 -->
 		<where>
-			1=1  
+			1=1
 			<if test="userCode != null and userCode !='' ">
 				and userId = #{userCode}
 			</if>
-            <!-- 
-            <if test="employeeIdsArray!=null and employeeIdsArray.length!=0">  
-                AND e.EMPLOYEE_ID in  
-                <foreach collection="employeeIdsArray" item="employeeId" index="index" open="(" close=")" separator=",">  
-                    #{employeeId}  
-                </foreach>  
+			<!--
+            <if test="employeeIdsArray!=null and employeeIdsArray.length!=0">
+                AND e.EMPLOYEE_ID in
+                <foreach collection="employeeIdsArray" item="employeeId" index="index" open="(" close=")" separator=",">
+                    #{employeeId}
+                </foreach>
             </if> -->
 			<if test="needTwoArr != null and needTwoArr.length!=0 ">
-            	and labelTwoId in
+				and labelTwoId in
 				<foreach item="item" index="index" collection="needTwoArr" open="(" separator="," close=")">
 					#{item}
 				</foreach>
-			</if> 
+			</if>
 			<if test="societyTwoArr != null and societyTwoArr.length!=0 ">
 				and labelTwoId in
 				<foreach item="item" index="index" collection="societyTwoArr" open="(" separator="," close=")">
 					#{item}
 				</foreach>
-			</if> 
+			</if>
 			<if test="expenseTwoArr != null and expenseTwoArr.length!=0 ">
 				and labelTwoId in
 				<foreach item="item" index="index" collection="expenseTwoArr" open="(" separator="," close=")">
 					#{item}
 				</foreach>
-			</if> 
+			</if>
 			<if test="needThreeArr != null and needThreeArr.length!=0 ">
 				and labelThreeId in
 				<foreach item="item" index="index" collection="needThreeArr" open="(" separator="," close=")">
 					#{item}
 				</foreach>
-			</if> 
+			</if>
 			<if test="societyThreeArr != null and societyThreeArr.length!=0 ">
 				and labelThreeId in
 				<foreach item="item" index="index" collection="societyThreeArr" open="(" separator="," close=")">
 					#{item}
 				</foreach>
-			</if> 
-	        <if test="expenseThreeArr != null and expenseThreeArr.length!=0 ">
-	        	and labelThreeId in
+			</if>
+			<if test="expenseThreeArr != null and expenseThreeArr.length!=0 ">
+				and labelThreeId in
 				<foreach item="item" index="index" collection="expenseThreeArr" open="(" separator="," close=")">
 					#{item}
 				</foreach>
-	        </if>  
-        </where>
-          
-        <!-- and ( -->
+			</if>
+		</where>
+
+		<!-- and ( -->
 		<!-- labelTwoId in
 		<if test="societyTwoList != null and societyTwoList.size() > 0 ">
 			<foreach item="item" index="index" collection="societyTwoList" open="(" separator="," close=")">
 				#{item}
 			</foreach>
-		</if> 
+		</if>
 		or labelTwoId in
 		<if test="expenseTwoList != null and expenseTwoList.size() > 0 ">
 			<foreach item="item" index="index" collection="expenseTwoList" open="(" separator="," close=")">
 				#{item}
 			</foreach>
-		</if> 
+		</if>
 		or labelTwoId in
 		<if test="needTwolist != null and needTwolist.size() > 0 ">
 			<foreach item="item" index="index" collection="needTwolist" open="(" separator="," close=")">
 				#{item}
 			</foreach>
-		</if> 
+		</if>
 		or labelThreeId in
 		<if test="needThreeList != null and needThreeList.size() > 0 ">
 			<foreach item="item" index="index" collection="needThreeList" open="(" separator="," close=")">
 				#{item}
 			</foreach>
-		</if> 
+		</if>
 		or labelThreeId in
 		<if test="societyThreeList != null and societyThreeList.size() > 0 ">
 			<foreach item="item" index="index" collection="societyThreeList" open="(" separator="," close=")">
 				#{item}
 			</foreach>
-		</if> 
+		</if>
         or labelThreeId in
         <if test="expenseThreeList != null and expenseThreeList.size() > 0 ">
 			<foreach item="item" index="index" collection="expenseThreeList" open="(" separator="," close=")">
 				#{item}
 			</foreach>
         </if>  -->
-        <!-- labelTwoId in
-		<foreach item="item" index="index" collection="societyTwoList" open="(" separator="," close=")">
-			#{item}
-		</foreach>
-		or labelTwoId in
-		<foreach item="item" index="index" collection="expenseTwoList" open="(" separator="," close=")">
-			#{item}
-		</foreach>
-		or labelTwoId in
-		<foreach item="item" index="index" collection="needTwolist" open="(" separator="," close=")">
-			#{item}
-		</foreach>
-		or labelThreeId in
-		<foreach item="item" index="index" collection="needThreeList" open="(" separator="," close=")">
-			#{item}
-		</foreach>
-		or labelThreeId in
-		<foreach item="item" index="index" collection="societyThreeList" open="(" separator="," close=")">
-			#{item}
-		</foreach>
-		or labelThreeId in
-		<foreach item="item" index="index" collection="expenseThreeList" open="(" separator="," close=")">
-			#{item}
-		</foreach>  -->
+		<!-- labelTwoId in
+        <foreach item="item" index="index" collection="societyTwoList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        or labelTwoId in
+        <foreach item="item" index="index" collection="expenseTwoList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        or labelTwoId in
+        <foreach item="item" index="index" collection="needTwolist" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        or labelThreeId in
+        <foreach item="item" index="index" collection="needThreeList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        or labelThreeId in
+        <foreach item="item" index="index" collection="societyThreeList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        or labelThreeId in
+        <foreach item="item" index="index" collection="expenseThreeList" open="(" separator="," close=")">
+            #{item}
+        </foreach>  -->
 		<!-- ) order by createtime asc -->
 	</select>
-	
+
 	<!-- 查询 -->
 	<select id="findLabelContentBySocietyTwoList" parameterType="json" resultType="com.kqds.entity.base.kqdsHzLabellabeAndPatient">
-		select * from KQDS_Hz_LabellabeAndPatient where 1=1
+		select <include refid="Base_Column_List" /> from KQDS_Hz_LabellabeAndPatient where 1=1
 		<if test="userCode != null and userCode !='' ">
 			and userId = #{userCode}
 		</if>
@@ -192,7 +196,7 @@
 		) order by createtime asc
 	</select>
 	<select id="findLabelContentByExpenseTwoList" parameterType="json" resultType="com.kqds.entity.base.kqdsHzLabellabeAndPatient">
-		select * from KQDS_Hz_LabellabeAndPatient where 1=1
+		select <include refid="Base_Column_List" /> from KQDS_Hz_LabellabeAndPatient where 1=1
 		<if test="userCode != null and userCode !='' ">
 			and userId = #{userCode}
 		</if>
@@ -204,7 +208,7 @@
 		) order by createtime asc
 	</select>
 	<select id="findLabelContentByNeedTwolist" parameterType="json" resultType="com.kqds.entity.base.kqdsHzLabellabeAndPatient">
-		select * from KQDS_Hz_LabellabeAndPatient where 1=1
+		select <include refid="Base_Column_List" /> from KQDS_Hz_LabellabeAndPatient where 1=1
 		<if test="userCode != null and userCode !='' ">
 			and userId = #{userCode}
 		</if>
@@ -216,7 +220,7 @@
 		) order by createtime asc
 	</select>
 	<select id="findLabelContentByNeedThreeList" parameterType="json" resultType="com.kqds.entity.base.kqdsHzLabellabeAndPatient">
-		select * from KQDS_Hz_LabellabeAndPatient where 1=1
+		select <include refid="Base_Column_List" /> from KQDS_Hz_LabellabeAndPatient where 1=1
 		<if test="userCode != null and userCode !='' ">
 			and userId = #{userCode}
 		</if>
@@ -228,7 +232,7 @@
 		) order by createtime asc
 	</select>
 	<select id="findLabelContentBySocietyThreeList" parameterType="json" resultType="com.kqds.entity.base.kqdsHzLabellabeAndPatient">
-		select * from KQDS_Hz_LabellabeAndPatient where 1=1
+		select <include refid="Base_Column_List" /> from KQDS_Hz_LabellabeAndPatient where 1=1
 		<if test="userCode != null and userCode !='' ">
 			and userId = #{userCode}
 		</if>
@@ -240,7 +244,7 @@
 		) order by createtime asc
 	</select>
 	<select id="findLabelContentByeExpenseThreeList" parameterType="json" resultType="com.kqds.entity.base.kqdsHzLabellabeAndPatient">
-		select * from KQDS_Hz_LabellabeAndPatient where 1=1
+		select <include refid="Base_Column_List" /> from KQDS_Hz_LabellabeAndPatient where 1=1
 		<if test="userCode != null and userCode !='' ">
 			and userId = #{userCode}
 		</if>
@@ -251,19 +255,36 @@
 		</foreach>
 		) order by createtime asc
 	</select>
-	
+
 	<select id="findLabelByCreatetime" resultType="json" parameterType="java.util.Map">
-		select patient.*,u.createtime as time,u.askperson as askperson from KQDS_Hz_LabellabeAndPatient patient
+		select patient.SEQ_ID,
+		patient.labelOneName,
+		patient.labelTwoName,
+		patient.labelThreeName,
+		patient.userSeqId,
+		patient.userId,
+		patient.userName,
+		patient.createUser,
+		patient.createTime,
+		patient.remark,
+		patient.opinion,
+		patient.labelOneId,
+		patient.labelTwoId,
+		patient.labelThreeId,
+		patient.status,
+		patient.organization,
+		u.createtime as time,
+		u.askperson as askperson from KQDS_Hz_LabellabeAndPatient patient
 		left join kqds_userdocument u on u.usercode=patient.userId
 		where 1=1
 		<if test="starttime != null and starttime != '' ">
-		and u.createtime <![CDATA[ >= ]]> #{starttime}
+			and u.createtime <![CDATA[ >= ]]> #{starttime}
 		</if>
 		<if test="endtime != null and endtime != '' ">
-		and u.createtime <![CDATA[ <= ]]> #{endtime}
+			and u.createtime <![CDATA[ <= ]]> #{endtime}
 		</if>
 		<if test="usercode != null and usercode != '' ">
-		and u.usercode in (${usercode})
+			and u.usercode in (${usercode})
 		</if>
 	</select>
 	<select id="findLabelByCreatetime1" resultType="json" parameterType="java.util.Map">
@@ -275,11 +296,11 @@
 	</select>
 	<select id="findLabel" parameterType="map" resultType="json">
 		SELECT
-			*
+		<include refid="Base_Column_List" />
 		FROM
-			KQDS_Hz_LabellabeAndPatient
+		KQDS_Hz_LabellabeAndPatient
 		<where>
-			1=1  
+			1=1
 			<if test="userCode != null and userCode !='' ">
 				and userId = #{userCode}
 			</if>
