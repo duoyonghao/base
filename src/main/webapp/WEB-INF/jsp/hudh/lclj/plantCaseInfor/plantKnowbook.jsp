@@ -598,6 +598,12 @@
 		
 		//修改
 		function update(){
+			//新增参数
+			var plantingsystemselect = JSON.stringify($("#plantingsystemselect").val()); //种植体系
+			if(!plantingsystemselect || plantingsystemselect=="null"){
+				layer.alert("请选择种植系统！");
+				return;
+			}
 			var patient_name = formParentObj.username;//患者姓名
 			var patient_sex = formParentObj.sex;//患者性别
 			var patient_age = formParentObj.age;//患者年龄
@@ -626,9 +632,7 @@
 			if($("#removabledenture:checked").val()){
 				removableDenture = $("#removabledenture:checked").val();
 			}
-			//新增参数
-			var plantingsystemselect = JSON.stringify($("#plantingsystemselect").val()); //种植体系
-			
+
 			var url = contextPath + '/HUDH_ZzblAskAct/updateFamiliarBookById.act';
 			var param = {
 					 seqId : caseId,
@@ -682,6 +686,12 @@
 		
 		//保存
 		function save() {
+			//新增参数
+			var plantingsystemselect = JSON.stringify($("#plantingsystemselect").val()); //种植体系
+			if(!plantingsystemselect || plantingsystemselect=="null"){
+				layer.alert("请选择种植系统！");
+				return;
+			}
 			var patient_name = formParentObj.username;//患者姓名
 			var patient_sex = formParentObj.sex;//患者性别
 			var patient_age = formParentObj.age;//患者年龄
@@ -710,9 +720,7 @@
 			if($("#removabledenture:checked").val()){
 				removableDenture = $("#removabledenture:checked").val();
 			}
-			//新增参数
-			var plantingsystemselect = JSON.stringify($("#plantingsystemselect").val()); //种植体系
-			
+
 			var url = contextPath + '/HUDH_ZzblAskAct/saveFamiliarBook.act';
 	        var param = {
 					 LcljId :  id,
