@@ -59,9 +59,14 @@
 	img[src=""],img:not([src]){
       opacity:0;
  	}
+	@page{
+		size:205mm 285mm;
+		margin: 0 auto;
+	}
 </style>
 </head>
 <body>
+<!--startprint-->
    <div class="boxBig">
    	<div class="container-fluid examine_continer">
 		<!-- 标题 -->
@@ -665,7 +670,7 @@
 	
 			<!-- 粘膜情况 -->
 			<div class="container-fluid examine_continer" style="margin: 10px -5px;">
-		<div class="row" style="background: #ddd;height: 66px;margin: 0px;">
+		<div class="row" style="background: #ddd;height: 120px;margin: 0px;">
 			<div class="col-md-12 col-sm-12 col-xs-12 colDefined">
 				<!-- 多选框 -->
 				<div  class="zl_multiple">
@@ -718,13 +723,20 @@
 				</div>
 				
 			</div>
-			<div class="zl_optiondiv" style="margin-left: 20px;">
-				<span>其他</span><input id="others" placeholder="" onblur="TextLengthCheck(this.id,10);" style="width: 60%;" type="text"/>
+			<div id="others_container" class="zl_optiondiv" style="margin-left: 20px;">
+				<span style="vertical-align: top;">其他</span>
+<%--				<input id="others" placeholder="" onblur="TextLengthCheck(this.id,10);" style="width: 60%;" type="text"/>--%>
+				<textarea id="others" onblur=""  style="border-radius:5px;border: 1px solid #7e7b7b;width:95%;display: inline-block;padding-left: 5px;height: 80px;"></textarea>
 			</div>
 		</div>
-			<div class="row" style="margin-top: 27px;"> 
-			<div class="col-md-6 col-sm-6 col-xs-6 colDefined">
+		<div class="row" style="margin-top: 27px;margin: 0">
+			<div id="consent_remark_other" class="row" style="display: none">
+				<div style="margin-top:1%;margin-left: 20px;">
+					<span style="vertical-align: top;">其他</span>
+					<pre class="others" style="border: 1px solid #7e7b7b;width:95%;display: inline-block;"></pre>
+				</div>
 			</div>
+			<div class="col-md-6 col-sm-6 col-xs-6 colDefined"></div>
 			<div class="signature_time" style="width: 45%;margin-left: 55%;position: relative;">
 				<div class="zl_signature">
 					<span id="doctorSignature">医生签字：</span>
@@ -735,7 +747,8 @@
 			<div class="col-md-12 col-sm-12 col-xs-12 colDefined">
 			</div>
 		</div>
-    </div> 
+    </div>
+   <!--endprint-->
 	<!-- 按钮 -->
 	<div class="btns">
 		<button id="consent_saveBtn" onclick="save()">保存</button>
@@ -852,6 +865,10 @@
 						for(var key in result){
 							//console.log(key+"-------------"+result[key]);
 							$("#"+key).attr("value",result[key]);// 填框赋值
+							if(key=="others"){
+								$("#"+key).text(result[key]);//textarea赋值
+								$("."+key).text(result[key]);// pre赋值
+							}
 							if(result[key].indexOf(";")>0){
 								var checkboxVal= result[key];//拼接多选框的值
 								var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
@@ -1295,8 +1312,31 @@
 		    }
 		    $("#bottomBarDdiv").append(menubutton1);
 		}
-		
-		function myPreviewAll(){
+		// 备注信息
+		function wrappOtherPage(){
+			var height=$("#others")[0].scrollHeight;
+			// console.log(height+"---");
+			if(height>78){//滚动条高度判断展示区域
+				$("#consent_remark_other").css("display","block").css("margin-top","155px").css("padding-top","50px");
+				$("#others_container").css("display","none");
+			}
+		}
+		function myPreviewAll() {
+			if(doctorstatus&&signature==""){
+				$("#img").css("display","none");
+			}
+			bdhtml=window.document.body.innerHTML;
+			sprnstr="<!--startprint-->";
+			eprnstr="<!--endprint-->";
+			prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);
+			prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
+			var htmlStyle="<style>#others{.margintop{margin-top: -27px;}border-style: none;border-bottom: 1px solid #5b5b5b;}button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}.examine_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 10px !important;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}.btns{display:none!important;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;}::-webkit-input-placeholder{color:transparent;}</style>";
+			window.document.body.innerHTML=prnhtml+htmlStyle;
+			wrappOtherPage();//打印另一个备注
+			window.print();  //打印
+			document.body.innerHTML=bdhtml; //恢复页面
+		}
+		function myPreviewAll2(){
 			if(doctorstatus&&signature==""){
 				   $("#img").css("display","none");
 			   }
