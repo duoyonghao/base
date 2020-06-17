@@ -101,7 +101,7 @@
 				<div class="rpInfo_import">
 					<span>年龄：</span>
 					<input id="patient_age" type="text" disabled="disabled"/>
-				</div>	
+				</div>
 			</div>
 			<div class="col-md-1 col-sm-1 col-xs-1 colDefined"></div>
 		</div>
@@ -122,7 +122,7 @@
 				</div>
 			</div>
 			<div class="col-md-1 col-sm-1 col-xs-1 colDefined"></div>
-		</div>	
+		</div>
         <div class="backGauge">
       		<!-- 种植 -->
 		<div class="row">
@@ -152,7 +152,7 @@
 					<div class="toothExtraction">种植：
 					<span class="one">第一次</span>
 					</div>
-					
+
 					<ul class="tooth_map" style="width:80%;margin-left: 10%;">
 						<li>
 							<input id="implantfirsttimelu" onblur="TextLengthCheck(this.id,10);" class="tooth_input" type="text">
@@ -189,7 +189,7 @@
 					</ul>
 				</div>
 			</div>
-		</div>	
+		</div>
 		<!-- 骨粉 -->
 		<div class="row bone">
 			<div class="col-md-12 col-sm-12 col-xs-12 colDefined">
@@ -201,7 +201,7 @@
 							<!-- 填写框 -->
 							<div class="zl_fillWritediv">
 								<span style="font-weight:600;">骨粉：</span>
-								
+
 							</div>
 						</li>
 						<li style="margin-right: 18px;">
@@ -333,7 +333,7 @@
 							<input type="checkbox" value="自体骨移植" name="implantassistantsurgery" id="implantassistantsurgeryF" style="vertical-align: text-bottom;"/>
 								<label for="implantassistantsurgeryF">自体骨移植</label>
 							</div>
-						</li>	
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -375,11 +375,11 @@
 						</li>
 						<li style="width: 14%;">
 							<!-- 选项框 -->
-							<div class="zl_optiondiv"> 
+							<div class="zl_optiondiv">
 							<input type="checkbox" value="套筒" name="repairemethod" id="repairemethodD" style="vertical-align: text-bottom;"/>
 								<label for="repairemethodD">套筒</label>
 							</div>
-						</li>	
+						</li>
 						<li style="width: 14%;">
 							<!-- 选项框 -->
 							<div class="zl_optiondiv">
@@ -418,7 +418,7 @@
 				</div>
 			</div>
 		</div>
-				
+
 		<div  class="row bone">
 			<div class="col-md-12 col-sm-12 col-xs-12 colDefined">
 				<div class="zl_multiple">
@@ -440,7 +440,7 @@
 				 </div>
 		    </div>
 		</div>
-		
+
 		<!-- 过渡义齿情况 -->
 		<div class="row periost">
 			<div class="col-md-12 col-sm-12 col-xs-12 colDefined">
@@ -510,9 +510,9 @@
 				</div>
 			</div>
 			<div class="col-md-5 col-sm-5 col-xs-5 colDefined"></div>
-		</div>	
-	
-	
+		</div>
+
+
 	<div id="diagnosis_continer" class="container-fluid">
 		<!-- 种植系统 -->
 		<div class="row plantSystem">
@@ -527,7 +527,7 @@
 							<div class="zl_optiondiv">
 								<div style="font-weight:600;line-height: 30px;">种植系统：</div>
 							</div>
-						</li>					
+						</li>
 						<li style="width:16%;">
 							<!-- 选项框 -->
 							<div class="zl_optiondiv">
@@ -563,7 +563,7 @@
 								<label for="implantsystemE">Hiossem</label>
 							</div>
 						</li>
-						
+
 						<li style="width:16%;">
 							<!-- 选项框 -->
 							<div class="zl_optiondiv">
@@ -593,7 +593,7 @@
 		<div style="font-size: 15px;font-weight: bold;">备注:</div>
 		<div class="col-md-12 col-sm-12 col-xs-12 colDefined">
 			<div id="consent_remark">
-				<textarea id="remark" rows="" cols="" autoHeight="true"></textarea>
+				<textarea id="remark" rows="" cols="" autoHeight="true" style="border: 1px solid #ddd;margin:0 10px 0px 10px;overflow-y: hidden;"></textarea>
 				<%--onblur="TextLengthCheck(this.id,200);"--%>
 			</div>
 		</div>
@@ -647,10 +647,10 @@
 		$(function(){
 			//时间选择
 		    $(".consent_time").datetimepicker({
-		        language:  'zh-CN',  
+		        language:  'zh-CN',
 		   		minView: 2,
 		        format: 'yyyy-mm-dd',
-		   		autoclose : true,//选中之后自动隐藏日期选择框   
+		   		autoclose : true,//选中之后自动隐藏日期选择框
 		   		pickerPosition: "top-right",
 		   		todayBtn: true,
 			   	beforeShow: function () {
@@ -662,7 +662,7 @@
 			    }
 		    });
 
-			
+
 		    //患者姓名、年龄、性别赋值
 			$("#patient_name").attr("value",window.parent.consultSelectPatient.username);
 			$("#patient_sex").attr("value",window.parent.consultSelectPatient.sex);
@@ -673,9 +673,26 @@
 			document.ondragstart = function() {
 	            return false;
 	        };
+			//textarea高度自适应
+			$.fn.autoHeight = function(){
+				function autoHeight(elem){
+					elem.style.height = 'auto';
+					elem.scrollTop = 0; //防抖动
+					elem.style.height = elem.scrollHeight + 'px';
+					textareaHeight = elem.style.height.split("px")[0]
+				}
+
+				this.each(function(){
+					autoHeight(this);
+					$(this).on('keyup', function(){
+						autoHeight(this);
+					});
+				});
+			}
+			$('textarea[autoHeight]').autoHeight();
 		});
-		var doctorSignature = document.getElementById("doctorSignature");    
-		doctorSignature.onclick = function(){ 
+		var doctorSignature = document.getElementById("doctorSignature");
+		doctorSignature.onclick = function(){
 			if(doctorstatus){
 				layer.open({
 			        type: 2,
@@ -694,8 +711,8 @@
 			$("#img").css("display","");
 			$("#img").attr('src', signature);
 		}
-		var patientSignature = document.getElementById("patientSignature");    
-		patientSignature.onclick = function(){ 
+		var patientSignature = document.getElementById("patientSignature");
+		patientSignature.onclick = function(){
 			if(patientstatus){
 				layer.open({
 			        type: 2,
@@ -735,7 +752,7 @@
 	        },function(r){
 	        	layer.alert("修改失败！");
 		    });
-		}	
+		}
 		/* 2019/7/16 lutian input文字长度校验方法   obj：元素id  textNum：限制文字长度 */
 		function TextLengthCheck(obj,textNum){
 			var objTextVal=$("#"+obj).val();
@@ -755,7 +772,7 @@
 				return;
 			}
 		}
-		
+
 		function initZzblInfor(seqId){
 			//console.log(seqId+"-----------初始化病历seqId");
 			var url = contextPath + '/HUDH_ZzblAct/findZzblOprationById.act';
@@ -784,12 +801,13 @@
 					if(result.id){
 						$("#consent_saveBtn").css("display","none");//隐藏保存按钮
 						$("#consent_updateBtn").css("display","inline-block");//显示修改按钮
-						//赋值 
+						//赋值
 						for(var key in result){
 							//console.log(key+"-------------"+result[key]);
 							$("#"+key).attr("value",result[key]);// 填框赋值
 							$("#remark").text(result["remark"]);//textarea赋值
-							$("#remark").trigger("click");
+							$("#remark").trigger("keyup");
+							/*$("#remark").trigger("click");*/
 							if(result[key].indexOf(";")>0){
 								var checkboxVal= result[key];//拼接多选框的值
 								var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
@@ -806,7 +824,7 @@
 								var toothPlaceVal= result[key];//拼接多选框的值
 								var toothPlaceValArr=toothPlaceVal.split(",");//将字符串转为数组
 								var newtoothPlaceVal=toothPlaceValArr.join("");
-								//console.log(newtoothPlaceVal+"---------去掉牙位图逗号"); 
+								//console.log(newtoothPlaceVal+"---------去掉牙位图逗号");
 								$("#"+key).attr("value",newtoothPlaceVal);// 填框赋值
 							}
 						}
@@ -831,16 +849,16 @@
 				}
 		  });
 		}
-		
+
 		//获取url中的参数
 		function getUrlParam(name) {
 		    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
 		    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-		    if (r != null) return unescape(r[2]); 
+		    if (r != null) return unescape(r[2]);
 		    return null; //返回参数值
 		}
-		
-		//获取治疗方案 
+
+		//获取治疗方案
 		function showTreamentPlan() {
 		    var obj = document.getElementsByName("treamentplan");
 		    var treamentplan = "";
@@ -850,7 +868,7 @@
 		    }
 		    return treamentplan;
 		}
-		
+
 		//获取上颌窦提升
 		function showImplantAssistantSurgery() {
 		    var obj = document.getElementsByName("implantassistantsurgery");
@@ -861,7 +879,7 @@
 		    }
 		    return implantAssistantSurgery;
 		}
-		
+
 		//获取修复方式
 		function showRepaireMethod(){
 		    var obj = document.getElementsByName("repairemethod");
@@ -872,8 +890,8 @@
 		    }
 		    return repaireMethod;
 		}
-		
-		//获取过度义齿情况   
+
+		//获取过度义齿情况
 		function showTemporDentCondition(){
 		    var obj = document.getElementsByName("tempordentcondition");
 		    var temporDentCondition = "";
@@ -883,7 +901,7 @@
 		    }
 		    return temporDentCondition;
 		}
-		
+
 		//获取种植系统
 		function showImplantSystem(){
 		    var obj = document.getElementsByName("implantsystem");
@@ -894,7 +912,7 @@
 		    }
 		    return implantSystem;
 		}
-		
+
 		//获取术前取模，手术模板设计
 		function showmoduloDesign(){
 		    var obj = document.getElementsByName("modulodesign");
@@ -905,7 +923,7 @@
 		    }
 		    return moduloDesign;
 		}
-		
+
 		//修改
 		function update(){
 			var patient_name = $("#patient_name").val();//患者姓名
@@ -923,15 +941,15 @@
 			var implantFirstTimeLD = $("#implantfirsttimeld").val();
 			var implantFirstTimeRD = $("#implantfirsttimerd").val();
 			var implantSystem = showImplantSystem();
-			var implantSecondTimeLU = $("#implantsecondtimelu").val(); 
-			var implantSecondTimeRU = $("#implantsecondtimeru").val(); 
-			var implantSecondTimeLD = $("#implantsecondtimeld").val(); 
-			var implantSecondTimeRD = $("#implantsecondtimerd").val(); 
+			var implantSecondTimeLU = $("#implantsecondtimelu").val();
+			var implantSecondTimeRU = $("#implantsecondtimeru").val();
+			var implantSecondTimeLD = $("#implantsecondtimeld").val();
+			var implantSecondTimeRD = $("#implantsecondtimerd").val();
 			var implantAssistantSurgery = showImplantAssistantSurgery();
-			var treatmentOtherOralLU = $("#treatmentotherorallu").val(); 
-			var treatmentOtherOralRU = $("#treatmentotheroralru").val(); 
-			var treatmentOtherOralLD = $("#treatmentotheroralld").val(); 
-			var treatmentOtherOralRD = $("#treatmentotheroralrd").val(); 
+			var treatmentOtherOralLU = $("#treatmentotherorallu").val();
+			var treatmentOtherOralRU = $("#treatmentotheroralru").val();
+			var treatmentOtherOralLD = $("#treatmentotheroralld").val();
+			var treatmentOtherOralRD = $("#treatmentotheroralrd").val();
 			var largeParticle = $("#largeparticle").val();
 			var smallParticle = $("#smallparticle").val();
 			var boneCollagen = $("#bonecollagen").val();
@@ -939,14 +957,14 @@
 			var collagenMembBig = $("#collagenmembbig").val();
 			var collagenMembSmall = $("#collagenmembsmall").val();
 			var titaniumMesh = $("#titaniummesh").val();
-			
+
 			/* 新增参数 */
 			var moduloDesign = showmoduloDesign();//术前取模，手术模板设计
 			var remarks = $("#remark").val();//备注
 			/* var patientsignature = $("#patientsignature").val();//患者签名 */
 			var PatientTime = $("#patienttime").val();//患者签名时间
 			var doctorTime = $("#doctortime").val();//医生签名时间
-			
+
 			var url = contextPath + '/HUDH_ZzblAct/updateZzblOprationById.act';
 	        var param = {
 	        		id : caseId,
@@ -989,7 +1007,7 @@
 	        		doctorSignature:signature,//医生签名
 	        		PatientTime : PatientTime,//患者签名时间
 	        		doctorTime : doctorTime//医生签名时间
-	        		
+
 	        };
 	        //console.log(JSON.stringify(param)+"-------hahahahah");
 	        $.axseSubmit(url, param,function() {},function(r) {
@@ -1005,7 +1023,7 @@
 	        	layer.alert("修改失败！");
 		    });
 		}
-		
+
 		//保存
 		function save() {
 			var patient_name = $("#patient_name").val();//患者姓名
@@ -1023,15 +1041,15 @@
 			var implantFirstTimeLD = $("#implantfirsttimeld").val();
 			var implantFirstTimeRD = $("#implantfirsttimerd").val();
 			var implantSystem = showImplantSystem();
-			var implantSecondTimeLU = $("#implantsecondtimelu").val(); 
-			var implantSecondTimeRU = $("#implantsecondtimeru").val(); 
-			var implantSecondTimeLD = $("#implantsecondtimeld").val(); 
-			var implantSecondTimeRD = $("#implantsecondtimerd").val(); 
+			var implantSecondTimeLU = $("#implantsecondtimelu").val();
+			var implantSecondTimeRU = $("#implantsecondtimeru").val();
+			var implantSecondTimeLD = $("#implantsecondtimeld").val();
+			var implantSecondTimeRD = $("#implantsecondtimerd").val();
 			var implantAssistantSurgery = showImplantAssistantSurgery();
-			var treatmentOtherOralLU = $("#treatmentotherorallu").val(); 
-			var treatmentOtherOralRU = $("#treatmentotheroralru").val(); 
-			var treatmentOtherOralLD = $("#treatmentotheroralld").val(); 
-			var treatmentOtherOralRD = $("#treatmentotheroralrd").val(); 
+			var treatmentOtherOralLU = $("#treatmentotherorallu").val();
+			var treatmentOtherOralRU = $("#treatmentotheroralru").val();
+			var treatmentOtherOralLD = $("#treatmentotheroralld").val();
+			var treatmentOtherOralRD = $("#treatmentotheroralrd").val();
 			var largeParticle = $("#largeparticle").val();
 			var smallParticle = $("#smallparticle").val();
 			var boneCollagen = $("#bonecollagen").val();
@@ -1039,7 +1057,7 @@
 			var collagenMembBig = $("#collagenmembbig").val();
 			var collagenMembSmall = $("#collagenmembsmall").val();
 			var titaniumMesh = $("#titaniummesh").val();
-			
+
 			/* 新增参数 */
 			var moduloDesign = showmoduloDesign();//术前取模，手术模板设计
 			var remarks = $("#remark").val();//备注
@@ -1102,7 +1120,7 @@
 	        	layer.alert("保存失败！");
 		    });
 		}
-		
+
 		/* 获取拼接牙位并校验 */
 		function getValue(inputObj){
 			var inputBool=false;
@@ -1129,14 +1147,14 @@
 						 $("#"+inputObj).val("").focus();
 						 toothString="";
 					 }
-				});  
+				});
 			}
 			toothString=toothArr.join(",");
 			//console.log(toothString+"------拼接字符串");//拼接字符串
 			return toothString;
 		};
 
-		//判断文本框是否换页打印
+		/*//判断文本框是否换页打印
 		$("#remark").on("click",function(){
 			 realHeight = document.getElementById("remark").scrollHeight;
 			 clientHeight = document.getElementById("remark").clientHeight;
@@ -1148,7 +1166,7 @@
 			}else{
 				//console.log("TODO:没有超过行数")
 			}
-		});
+		});*/
 
 		function getButtonPower() {
 		    var menubutton1 = "";
@@ -1160,21 +1178,25 @@
 		    $("#bottomBarDdiv").append(menubutton1);
 		}
 		function doPrint() {
-			if(realHeight>clientHeight) {
+			/*if(realHeight>clientHeight) {
 				$("#remark").css("height", "600px");
+			}*/
+			if(textareaHeight>120){
+				$(".twopage").css("page-break-after","always");
 			}
-		    bdhtml=window.document.body.innerHTML;   
-		    sprnstr="<!--startprint-->";   
-		    eprnstr="<!--endprint-->";   
-		    prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);   
-		    prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));   
+
+		    bdhtml=window.document.body.innerHTML;
+		    sprnstr="<!--startprint-->";
+		    eprnstr="<!--endprint-->";
+		    prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);
+		    prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
 		    var htmlStyle="<style>button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}#diagnosis_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.one{margin-left: 42px!important;}.inputheight2{border: 1px solid transparent!important;}#consent_signature{width:100%!important;}	.consent_updateBtn{display:none!important;}.btns{display:none!important;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;top:17px!important;}</style>";
-		    window.document.body.innerHTML=prnhtml+htmlStyle;  
+		    window.document.body.innerHTML=prnhtml+htmlStyle;
 		    window.print();  //打印
 		    document.body.innerHTML=bdhtml; //恢复页面
 			window.location.reload()
-		} 
-		
+		}
+
 		function myPreviewAll(){
 			doPrint();
 			/* if(doctorstatus&&signature==""){
@@ -1183,12 +1205,12 @@
 			if(patientstatus&&patientsignature==""){
 				   $("#patientimg").css("display","none");
 			}
-			LODOP=getLodop();  
+			LODOP=getLodop();
 			LODOP.PRINT_INIT("诊疗方案");
 			var htmlStyle="<style>button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}#diagnosis_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.one{margin-left: 42px!important;}.inputheight2{border: 1px solid transparent!important;}#consent_signature{width:300px !important;}#consent_signature{width:40%;}.consent_updateBtn{display:none!important;}.btns{display:none;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;top:17px!important;}</style>";
 			var html="<!DOCTYPE html>"+document.getElementsByTagName("html")[0].innerHTML+htmlStyle;
 			LODOP.ADD_PRINT_HTM(0,0,"100%","100%",html);
-			LODOP.PREVIEW(); */	
+			LODOP.PREVIEW(); */
 		};
 
 </script>
