@@ -95,7 +95,14 @@ public class LcljVerification implements Serializable {
 
         private String organization;
 
-
+    //医生签字
+    private String doctorSignature;
+    //护士签字1
+    private String nurseSignature1;
+    //护士签字2
+    private String nurseSignature2;
+    //患者签字
+    private String patientSignature;
     /**
      * 获取 主键Id
      *
@@ -798,6 +805,38 @@ public class LcljVerification implements Serializable {
         this.organization = Organization;
     }
 
+    public String getDoctorSignature() {
+        return doctorSignature;
+    }
+
+    public void setDoctorSignature(String doctorSignature) {
+        this.doctorSignature = doctorSignature;
+    }
+
+    public String getNurseSignature1() {
+        return nurseSignature1;
+    }
+
+    public void setNurseSignature1(String nurseSignature1) {
+        this.nurseSignature1 = nurseSignature1;
+    }
+
+    public String getNurseSignature2() {
+        return nurseSignature2;
+    }
+
+    public void setNurseSignature2(String nurseSignature2) {
+        this.nurseSignature2 = nurseSignature2;
+    }
+
+    public String getPatientSignature() {
+        return patientSignature;
+    }
+
+    public void setPatientSignature(String patientSignature) {
+        this.patientSignature = patientSignature;
+    }
+
     @Override
     public String toString() {
         return "LcljVerification{" +
@@ -840,6 +879,10 @@ public class LcljVerification implements Serializable {
                 ", createuser='" + createuser + '\'' +
                 ", createtime='" + createtime + '\'' +
                 ", organization='" + organization + '\'' +
+                ", doctorSignature='" + doctorSignature + '\'' +
+                ", nurseSignature1='" + nurseSignature1 + '\'' +
+                ", nurseSignature2='" + nurseSignature2 + '\'' +
+                ", patientSignature='" + patientSignature + '\'' +
                 '}';
     }
 }
