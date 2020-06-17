@@ -41,16 +41,21 @@
         <result column="createuser" jdbcType="VARCHAR" property="createuser" />
         <result column="createtime" jdbcType="VARCHAR" property="createtime" />
         <result column="organization" jdbcType="VARCHAR" property="organization" />
+        <result column="doctorSignature" jdbcType="VARCHAR" property="doctorSignature" />
+        <result column="nurseSignature1" jdbcType="VARCHAR" property="nurseSignature1" />
+        <result column="nurseSignature2" jdbcType="VARCHAR" property="nurseSignature2" />
+        <result column="patientSignature" jdbcType="VARCHAR" property="patientSignature" />
     </resultMap>
     <sql id="Base_Column_List">
-    SEQ_ID, userId, lcljId, orderNumber, patientDoctor, antibacterialMedicine, iodineAllergy,
-    anestheticAllergy, uplefttoothbitone, uperrighttoothbitone, leftlowertoothbitone,
-    lowrighttoothbitone, uplefttoothbittwo, uperrighttoothbittwo, leftlowertoothbittwo,
-    lowrighttoothbittwo, assistOperation, plantSystem, patienttime, nursetimeone, operationtime,
-    bloodPressure, pulse, bloodGlucose, cruorFunction, whitebloodCell, neutrophileCell,
-    redbloodCell, oxyphorase, premedicate, takemedicineHour, takemedicineMinutes, takemedicineMeasure,
-    consultationOpinion,nursesignaturetime, doctorsignaturetime,createuser,createtime,organization
-  </sql>
+        SEQ_ID, userId, lcljId, orderNumber, patientDoctor, antibacterialMedicine, iodineAllergy,
+        anestheticAllergy, uplefttoothbitone, uperrighttoothbitone, leftlowertoothbitone,
+        lowrighttoothbitone, uplefttoothbittwo, uperrighttoothbittwo, leftlowertoothbittwo,
+        lowrighttoothbittwo, assistOperation, plantSystem, patienttime, nursetimeone, operationtime,
+        bloodPressure, pulse, bloodGlucose, cruorFunction, whitebloodCell, neutrophileCell,
+        redbloodCell, oxyphorase, premedicate, takemedicineHour, takemedicineMinutes, takemedicineMeasure,
+        consultationOpinion,nursesignaturetime, doctorsignaturetime,createuser,createtime,organization,doctorSignature,
+        nurseSignature1,nurseSignature2,patientSignature
+    </sql>
     <select id="selectVerificationByCode" parameterType="java.lang.String" resultType="json">
         select
         <include refid="Base_Column_List" />
@@ -58,44 +63,46 @@
         where lcljId = #{lcljId,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from HUDH_LCLJ_Verification
-    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
-  </delete>
+        delete from HUDH_LCLJ_Verification
+        where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+    </delete>
     <insert id="insert" parameterType="com.hudh.lclj.entity.LcljVerification">
-    insert into HUDH_LCLJ_Verification (SEQ_ID, userId, lcljId,
-      orderNumber, patientDoctor, antibacterialMedicine,
-      iodineAllergy, anestheticAllergy, uplefttoothbitone,
-      uperrighttoothbitone, leftlowertoothbitone,
-      lowrighttoothbitone, uplefttoothbittwo,
-      uperrighttoothbittwo, leftlowertoothbittwo,
-      lowrighttoothbittwo, assistOperation, plantSystem,
-      patienttime, nursetimeone, operationtime,
-      bloodPressure, pulse, bloodGlucose,
-      cruorFunction, whitebloodCell, neutrophileCell,
-      redbloodCell, oxyphorase, premedicate,
-      takemedicineHour, takemedicineMinutes,
-      takemedicineMeasure, nursesignaturetime,
-      doctorsignaturetime, consultationOpinion,
-      createuser,createtime,organization
-      )
-    values (#{seqId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{lcljId,jdbcType=VARCHAR},
-      #{orderNumber,jdbcType=VARCHAR}, #{patientDoctor,jdbcType=VARCHAR}, #{antibacterialMedicine,jdbcType=VARCHAR},
-      #{iodineAllergy,jdbcType=VARCHAR}, #{anestheticAllergy,jdbcType=VARCHAR}, #{uplefttoothbitone,jdbcType=VARCHAR},
-      #{uperrighttoothbitone,jdbcType=VARCHAR}, #{leftlowertoothbitone,jdbcType=VARCHAR},
-      #{lowrighttoothbitone,jdbcType=VARCHAR}, #{uplefttoothbittwo,jdbcType=VARCHAR},
-      #{uperrighttoothbittwo,jdbcType=VARCHAR}, #{leftlowertoothbittwo,jdbcType=VARCHAR},
-      #{lowrighttoothbittwo,jdbcType=VARCHAR}, #{assistOperation,jdbcType=VARCHAR}, #{plantSystem,jdbcType=VARCHAR},
-      #{patienttime,jdbcType=VARCHAR}, #{nursetimeone,jdbcType=VARCHAR}, #{operationtime,jdbcType=VARCHAR},
-      #{bloodPressure,jdbcType=VARCHAR}, #{pulse,jdbcType=VARCHAR}, #{bloodGlucose,jdbcType=VARCHAR},
-      #{cruorFunction,jdbcType=VARCHAR}, #{whitebloodCell,jdbcType=VARCHAR}, #{neutrophileCell,jdbcType=VARCHAR},
-      #{redbloodCell,jdbcType=VARCHAR}, #{oxyphorase,jdbcType=VARCHAR}, #{premedicate,jdbcType=VARCHAR},
-      #{takemedicineHour,jdbcType=VARCHAR}, #{takemedicineMinutes,jdbcType=VARCHAR},
-      #{takemedicineMeasure,jdbcType=VARCHAR}, #{nursesignaturetime,jdbcType=VARCHAR},
-      #{doctorsignaturetime,jdbcType=VARCHAR}, #{consultationOpinion,jdbcType=LONGVARCHAR},
-      #{createuser,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR},
-      #{organization,jdbcType=VARCHAR}
-      )
-  </insert>
+        insert into HUDH_LCLJ_Verification (SEQ_ID, userId, lcljId,
+        orderNumber, patientDoctor, antibacterialMedicine,
+        iodineAllergy, anestheticAllergy, uplefttoothbitone,
+        uperrighttoothbitone, leftlowertoothbitone,
+        lowrighttoothbitone, uplefttoothbittwo,
+        uperrighttoothbittwo, leftlowertoothbittwo,
+        lowrighttoothbittwo, assistOperation, plantSystem,
+        patienttime, nursetimeone, operationtime,
+        bloodPressure, pulse, bloodGlucose,
+        cruorFunction, whitebloodCell, neutrophileCell,
+        redbloodCell, oxyphorase, premedicate,
+        takemedicineHour, takemedicineMinutes,
+        takemedicineMeasure, nursesignaturetime,
+        doctorsignaturetime, consultationOpinion,
+        createuser,createtime,organization,doctorSignature,
+        nurseSignature1,nurseSignature2,patientSignature
+        )
+        values (#{seqId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{lcljId,jdbcType=VARCHAR},
+        #{orderNumber,jdbcType=VARCHAR}, #{patientDoctor,jdbcType=VARCHAR}, #{antibacterialMedicine,jdbcType=VARCHAR},
+        #{iodineAllergy,jdbcType=VARCHAR}, #{anestheticAllergy,jdbcType=VARCHAR}, #{uplefttoothbitone,jdbcType=VARCHAR},
+        #{uperrighttoothbitone,jdbcType=VARCHAR}, #{leftlowertoothbitone,jdbcType=VARCHAR},
+        #{lowrighttoothbitone,jdbcType=VARCHAR}, #{uplefttoothbittwo,jdbcType=VARCHAR},
+        #{uperrighttoothbittwo,jdbcType=VARCHAR}, #{leftlowertoothbittwo,jdbcType=VARCHAR},
+        #{lowrighttoothbittwo,jdbcType=VARCHAR}, #{assistOperation,jdbcType=VARCHAR}, #{plantSystem,jdbcType=VARCHAR},
+        #{patienttime,jdbcType=VARCHAR}, #{nursetimeone,jdbcType=VARCHAR}, #{operationtime,jdbcType=VARCHAR},
+        #{bloodPressure,jdbcType=VARCHAR}, #{pulse,jdbcType=VARCHAR}, #{bloodGlucose,jdbcType=VARCHAR},
+        #{cruorFunction,jdbcType=VARCHAR}, #{whitebloodCell,jdbcType=VARCHAR}, #{neutrophileCell,jdbcType=VARCHAR},
+        #{redbloodCell,jdbcType=VARCHAR}, #{oxyphorase,jdbcType=VARCHAR}, #{premedicate,jdbcType=VARCHAR},
+        #{takemedicineHour,jdbcType=VARCHAR}, #{takemedicineMinutes,jdbcType=VARCHAR},
+        #{takemedicineMeasure,jdbcType=VARCHAR}, #{nursesignaturetime,jdbcType=VARCHAR},
+        #{doctorsignaturetime,jdbcType=VARCHAR}, #{consultationOpinion,jdbcType=LONGVARCHAR},
+        #{createuser,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR},
+        #{organization,jdbcType=VARCHAR},#{doctorSignature,jdbcType=VARCHAR},#{nurseSignature1,jdbcType=VARCHAR},
+        #{nurseSignature2,jdbcType=VARCHAR},#{patientSignature,jdbcType=VARCHAR}
+        )
+    </insert>
     <insert id="insertSelective" parameterType="com.hudh.lclj.entity.LcljVerification">
         insert into HUDH_LCLJ_Verification
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -207,6 +214,27 @@
             <if test="consultationopinion != null">
                 consultationOpinion,
             </if>
+            <if test="createuser != null">
+                createuser,
+            </if>
+            <if test="createtime != null">
+                createtime,
+            </if>
+            <if test="organization != null">
+                organization,
+            </if>
+            <if test="doctorSignature != null">
+                doctorSignature,
+            </if>
+            <if test="nurseSignature1 != null">
+                nurseSignature1,
+            </if>
+            <if test="nurseSignature2 != null">
+                nurseSignature2,
+            </if>
+            <if test="patientSignature != null">
+                patientSignature,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="seqId != null">
@@ -317,11 +345,32 @@
             <if test="consultationopinion != null">
                 #{consultationopinion,jdbcType=LONGVARCHAR},
             </if>
+            <if test="createuser != null">
+                #{createuser,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=VARCHAR},
+            </if>
+            <if test="organization != null">
+                #{organization,jdbcType=VARCHAR},
+            </if>
+            <if test="doctorSignature != null">
+                #{doctorSignature,jdbcType=VARCHAR},
+            </if>
+            <if test="nurseSignature1 != null">
+                #{nurseSignature1,jdbcType=VARCHAR},
+            </if>
+            <if test="nurseSignature2 != null">
+                #{nurseSignature2,jdbcType=VARCHAR},
+            </if>
+            <if test="patientSignature != null">
+                #{patientSignature,jdbcType=VARCHAR},
+            </if>
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.hudh.lclj.entity.LcljVerification">
         update HUDH_LCLJ_Verification
-        <set>
+        <trim prefix="SET" suffixOverrides=",">
             <if test="userId != null">
                 userId = #{userId,jdbcType=VARCHAR},
             </if>
@@ -331,17 +380,17 @@
             <if test="orderNumber != null">
                 orderNumber = #{orderNumber,jdbcType=VARCHAR},
             </if>
-            <if test="patientdoctor != null">
-                patientDoctor = #{patientdoctor,jdbcType=VARCHAR},
+            <if test="patientDoctor != null">
+                patientDoctor = #{patientDoctor,jdbcType=VARCHAR},
             </if>
-            <if test="antibacterialmedicine != null">
-                antibacterialMedicine = #{antibacterialmedicine,jdbcType=VARCHAR},
+            <if test="antibacterialMedicine != null">
+                antibacterialMedicine = #{antibacterialMedicine,jdbcType=VARCHAR},
             </if>
-            <if test="iodineallergy != null">
-                iodineAllergy = #{iodineallergy,jdbcType=VARCHAR},
+            <if test="iodineAllergy != null">
+                iodineAllergy = #{iodineAllergy,jdbcType=VARCHAR},
             </if>
-            <if test="anestheticallergy != null">
-                anestheticAllergy = #{anestheticallergy,jdbcType=VARCHAR},
+            <if test="anestheticAllergy != null">
+                anestheticAllergy = #{anestheticAllergy,jdbcType=VARCHAR},
             </if>
             <if test="uplefttoothbitone != null">
                 uplefttoothbitone = #{uplefttoothbitone,jdbcType=VARCHAR},
@@ -367,11 +416,11 @@
             <if test="lowrighttoothbittwo != null">
                 lowrighttoothbittwo = #{lowrighttoothbittwo,jdbcType=VARCHAR},
             </if>
-            <if test="assistoperation != null">
-                assistOperation = #{assistoperation,jdbcType=VARCHAR},
+            <if test="assistOperation != null">
+                assistOperation = #{assistOperation,jdbcType=VARCHAR},
             </if>
-            <if test="plantsystem != null">
-                plantSystem = #{plantsystem,jdbcType=VARCHAR},
+            <if test="plantSystem != null">
+                plantSystem = #{plantSystem,jdbcType=VARCHAR},
             </if>
             <if test="patienttime != null">
                 patienttime = #{patienttime,jdbcType=VARCHAR},
@@ -388,20 +437,20 @@
             <if test="pulse != null">
                 pulse = #{pulse,jdbcType=VARCHAR},
             </if>
-            <if test="bloodglucose != null">
-                bloodGlucose = #{bloodglucose,jdbcType=VARCHAR},
+            <if test="bloodGlucose != null">
+                bloodGlucose = #{bloodGlucose,jdbcType=VARCHAR},
             </if>
-            <if test="cruorfunction != null">
-                cruorFunction = #{cruorfunction,jdbcType=VARCHAR},
+            <if test="cruorFunction != null">
+                cruorFunction = #{cruorFunction,jdbcType=VARCHAR},
             </if>
-            <if test="whitebloodcell != null">
-                whitebloodCell = #{whitebloodcell,jdbcType=VARCHAR},
+            <if test="whitebloodCell != null">
+                whitebloodCell = #{whitebloodCell,jdbcType=VARCHAR},
             </if>
-            <if test="neutrophilecell != null">
-                neutrophileCell = #{neutrophilecell,jdbcType=VARCHAR},
+            <if test="neutrophileCell != null">
+                neutrophileCell = #{neutrophileCell,jdbcType=VARCHAR},
             </if>
-            <if test="redbloodcell != null">
-                redbloodCell = #{redbloodcell,jdbcType=VARCHAR},
+            <if test="redbloodCell != null">
+                redbloodCell = #{redbloodCell,jdbcType=VARCHAR},
             </if>
             <if test="oxyphorase != null">
                 oxyphorase = #{oxyphorase,jdbcType=VARCHAR},
@@ -409,14 +458,14 @@
             <if test="premedicate != null">
                 premedicate = #{premedicate,jdbcType=VARCHAR},
             </if>
-            <if test="takemedicinehour != null">
-                takemedicineHour = #{takemedicinehour,jdbcType=VARCHAR},
+            <if test="takemedicineHour != null">
+                takemedicineHour = #{takemedicineHour,jdbcType=VARCHAR},
             </if>
-            <if test="takemedicineminutes != null">
-                takemedicineMinutes = #{takemedicineminutes,jdbcType=VARCHAR},
+            <if test="takemedicineMinutes != null">
+                takemedicineMinutes = #{takemedicineMinutes,jdbcType=VARCHAR},
             </if>
-            <if test="takemedicinemeasure != null">
-                takemedicineMeasure = #{takemedicinemeasure,jdbcType=VARCHAR},
+            <if test="takemedicineMeasure != null">
+                takemedicineMeasure = #{takemedicineMeasure,jdbcType=VARCHAR},
             </if>
             <if test="nursesignaturetime != null">
                 nursesignaturetime = #{nursesignaturetime,jdbcType=VARCHAR},
@@ -424,51 +473,67 @@
             <if test="doctorsignaturetime != null">
                 doctorsignaturetime = #{doctorsignaturetime,jdbcType=VARCHAR},
             </if>
-            <if test="consultationopinion != null">
-                consultationOpinion = #{consultationopinion,jdbcType=LONGVARCHAR},
+            <if test="consultationOpinion != null">
+                consultationOpinion = #{consultationOpinion,jdbcType=LONGVARCHAR},
             </if>
-        </set>
+            <if test="doctorSignature != null">
+                doctorSignature = #{doctorSignature,jdbcType=VARCHAR},
+            </if>
+            <if test="nurseSignature1 != null">
+                nurseSignature1 = #{nurseSignature1,jdbcType=VARCHAR},
+            </if>
+            <if test="nurseSignature2 != null">
+                nurseSignature2 = #{nurseSignature2,jdbcType=VARCHAR},
+            </if>
+            <if test="patientSignature != null">
+                patientSignature = #{patientSignature,jdbcType=VARCHAR},
+            </if>
+        </trim>
         where SEQ_ID = #{seqId,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.hudh.lclj.entity.LcljVerification">
-    update HUDH_LCLJ_Verification
-    set userId = #{userId,jdbcType=VARCHAR},
-      lcljId = #{lcljId,jdbcType=VARCHAR},
-      orderNumber = #{orderNumber,jdbcType=VARCHAR},
-      patientDoctor = #{patientDoctor,jdbcType=VARCHAR},
-      antibacterialMedicine = #{antibacterialMedicine,jdbcType=VARCHAR},
-      iodineAllergy = #{iodineAllergy,jdbcType=VARCHAR},
-      anestheticAllergy = #{anestheticAllergy,jdbcType=VARCHAR},
-      uplefttoothbitone = #{uplefttoothbitone,jdbcType=VARCHAR},
-      uperrighttoothbitone = #{uperrighttoothbitone,jdbcType=VARCHAR},
-      leftlowertoothbitone = #{leftlowertoothbitone,jdbcType=VARCHAR},
-      lowrighttoothbitone = #{lowrighttoothbitone,jdbcType=VARCHAR},
-      uplefttoothbittwo = #{uplefttoothbittwo,jdbcType=VARCHAR},
-      uperrighttoothbittwo = #{uperrighttoothbittwo,jdbcType=VARCHAR},
-      leftlowertoothbittwo = #{leftlowertoothbittwo,jdbcType=VARCHAR},
-      lowrighttoothbittwo = #{lowrighttoothbittwo,jdbcType=VARCHAR},
-      assistOperation = #{assistOperation,jdbcType=VARCHAR},
-      plantSystem = #{plantSystem,jdbcType=VARCHAR},
-      patienttime = #{patienttime,jdbcType=VARCHAR},
-      nursetimeone = #{nursetimeone,jdbcType=VARCHAR},
-      operationtime = #{operationtime,jdbcType=VARCHAR},
-      bloodPressure = #{bloodPressure,jdbcType=VARCHAR},
-      pulse = #{pulse,jdbcType=VARCHAR},
-      bloodGlucose = #{bloodGlucose,jdbcType=VARCHAR},
-      cruorFunction = #{cruorFunction,jdbcType=VARCHAR},
-      whitebloodCell = #{whitebloodCell,jdbcType=VARCHAR},
-      neutrophileCell = #{neutrophileCell,jdbcType=VARCHAR},
-      redbloodCell = #{redbloodCell,jdbcType=VARCHAR},
-      oxyphorase = #{oxyphorase,jdbcType=VARCHAR},
-      premedicate = #{premedicate,jdbcType=VARCHAR},
-      takemedicineHour = #{takemedicineHour,jdbcType=VARCHAR},
-      takemedicineMinutes = #{takemedicineMinutes,jdbcType=VARCHAR},
-      consultationOpinion = #{consultationOpinion,jdbcType=VARCHAR},
-      takemedicineMeasure = #{takemedicineMeasure,jdbcType=VARCHAR},
-      nursesignaturetime = #{nursesignaturetime,jdbcType=VARCHAR},
-      doctorsignaturetime = #{doctorsignaturetime,jdbcType=VARCHAR}
-    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
-  </update>
+        update HUDH_LCLJ_Verification
+        set userId = #{userId,jdbcType=VARCHAR},
+        lcljId = #{lcljId,jdbcType=VARCHAR},
+        orderNumber = #{orderNumber,jdbcType=VARCHAR},
+        patientDoctor = #{patientDoctor,jdbcType=VARCHAR},
+        antibacterialMedicine = #{antibacterialMedicine,jdbcType=VARCHAR},
+        iodineAllergy = #{iodineAllergy,jdbcType=VARCHAR},
+        anestheticAllergy = #{anestheticAllergy,jdbcType=VARCHAR},
+        uplefttoothbitone = #{uplefttoothbitone,jdbcType=VARCHAR},
+        uperrighttoothbitone = #{uperrighttoothbitone,jdbcType=VARCHAR},
+        leftlowertoothbitone = #{leftlowertoothbitone,jdbcType=VARCHAR},
+        lowrighttoothbitone = #{lowrighttoothbitone,jdbcType=VARCHAR},
+        uplefttoothbittwo = #{uplefttoothbittwo,jdbcType=VARCHAR},
+        uperrighttoothbittwo = #{uperrighttoothbittwo,jdbcType=VARCHAR},
+        leftlowertoothbittwo = #{leftlowertoothbittwo,jdbcType=VARCHAR},
+        lowrighttoothbittwo = #{lowrighttoothbittwo,jdbcType=VARCHAR},
+        assistOperation = #{assistOperation,jdbcType=VARCHAR},
+        plantSystem = #{plantSystem,jdbcType=VARCHAR},
+        patienttime = #{patienttime,jdbcType=VARCHAR},
+        nursetimeone = #{nursetimeone,jdbcType=VARCHAR},
+        operationtime = #{operationtime,jdbcType=VARCHAR},
+        bloodPressure = #{bloodPressure,jdbcType=VARCHAR},
+        pulse = #{pulse,jdbcType=VARCHAR},
+        bloodGlucose = #{bloodGlucose,jdbcType=VARCHAR},
+        cruorFunction = #{cruorFunction,jdbcType=VARCHAR},
+        whitebloodCell = #{whitebloodCell,jdbcType=VARCHAR},
+        neutrophileCell = #{neutrophileCell,jdbcType=VARCHAR},
+        redbloodCell = #{redbloodCell,jdbcType=VARCHAR},
+        oxyphorase = #{oxyphorase,jdbcType=VARCHAR},
+        premedicate = #{premedicate,jdbcType=VARCHAR},
+        takemedicineHour = #{takemedicineHour,jdbcType=VARCHAR},
+        takemedicineMinutes = #{takemedicineMinutes,jdbcType=VARCHAR},
+        consultationOpinion = #{consultationOpinion,jdbcType=VARCHAR},
+        takemedicineMeasure = #{takemedicineMeasure,jdbcType=VARCHAR},
+        nursesignaturetime = #{nursesignaturetime,jdbcType=VARCHAR},
+        doctorsignaturetime = #{doctorsignaturetime,jdbcType=VARCHAR},
+        doctorSignature = #{doctorSignature,jdbcType=VARCHAR},
+        nurseSignature1 = #{nurseSignature1,jdbcType=VARCHAR},
+        nurseSignature2 = #{nurseSignature2,jdbcType=VARCHAR},
+        patientSignature = #{patientSignature,jdbcType=VARCHAR}
+        where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+    </update>
 
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultType="json">
         select
