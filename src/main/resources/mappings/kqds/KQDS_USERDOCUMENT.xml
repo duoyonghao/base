@@ -2,73 +2,75 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="KQDS_USERDOCUMENT">
 	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsUserdocument">
-		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
-		<result column="UserCode" jdbcType="VARCHAR" property="usercode" />
-		<result column="UserName" jdbcType="VARCHAR" property="username" />
-		<result column="Sex" jdbcType="VARCHAR" property="sex" />
-		<result column="BirthDay" jdbcType="VARCHAR" property="birthday" />
-		<result column="Age" jdbcType="INTEGER" property="age" />
-		<result column="Profession" jdbcType="VARCHAR" property="profession" />
-		<result column="IDCardNo" jdbcType="VARCHAR" property="idcardno" />
-		<result column="PhoneNumber1" jdbcType="VARCHAR" property="phonenumber1" />
-		<result column="PhoneNumber2" jdbcType="VARCHAR" property="phonenumber2" />
-		<result column="guider" jdbcType="VARCHAR" property="guider" />
-		<result column="UserImpress" jdbcType="VARCHAR" property="userimpress" />
-		<result column="Introducer" jdbcType="VARCHAR" property="introducer" />
-		<result column="PlateNumber" jdbcType="VARCHAR" property="platenumber" />
-		<result column="CostLevel" jdbcType="VARCHAR" property="costlevel" />
-		<result column="Dress" jdbcType="VARCHAR" property="dress" />
-		<result column="FirstWord" jdbcType="VARCHAR" property="firstword" />
-		<result column="Province" jdbcType="VARCHAR" property="province" />
-		<result column="City" jdbcType="VARCHAR" property="city" />
-		<result column="Address" jdbcType="VARCHAR" property="address" />
-		<result column="DevChannel" jdbcType="VARCHAR" property="devchannel" />
-		<result column="CreateTime" jdbcType="VARCHAR" property="createtime" />
-		<result column="CreateUser" jdbcType="VARCHAR" property="createuser" />
-		<result column="AskPerson" jdbcType="VARCHAR" property="askperson" />
-		<result column="isdelete" jdbcType="INTEGER" property="isdelete" />
-		<result column="organization" jdbcType="VARCHAR" property="organization" />
-		<result column="medicalhistory" jdbcType="VARCHAR" property="medicalhistory" />
-		<result column="drugllergy" jdbcType="VARCHAR" property="drugllergy" />
-		<result column="remark" jdbcType="VARCHAR" property="remark" />
-		<result column="experience" jdbcType="VARCHAR" property="experience" />
-		<result column="habit" jdbcType="VARCHAR" property="habit" />
-		<result column="email" jdbcType="VARCHAR" property="email" />
-		<result column="type" jdbcType="INTEGER" property="type" />
-		<result column="xueli" jdbcType="VARCHAR" property="xueli" />
-		<result column="qq" jdbcType="VARCHAR" property="qq" />
-		<result column="doctor" jdbcType="VARCHAR" property="doctor" />
-		<result column="important" jdbcType="VARCHAR" property="important" />
-		<result column="nexttype" jdbcType="VARCHAR" property="nexttype" />
-		<result column="totalpay" jdbcType="DECIMAL" property="totalpay" />
-		<result column="developer" jdbcType="VARCHAR" property="developer" />
-		<result column="doorstatus" jdbcType="INTEGER" property="doorstatus" />
-		<result column="glr" jdbcType="VARCHAR" property="glr" />
-		<result column="glrremark" jdbcType="VARCHAR" property="glrremark" />
-		<result column="xgr" jdbcType="VARCHAR" property="xgr" />
-		<result column="xgtime" jdbcType="VARCHAR" property="xgtime" />
-		<result column="town" jdbcType="VARCHAR" property="town" />
-		<result column="kefu" jdbcType="VARCHAR" property="kefu" />
-		<result column="usersort" jdbcType="VARCHAR" property="usersort" />
-		<result column="openid" jdbcType="VARCHAR" property="openid" />
-		<result column="bindstatus" jdbcType="VARCHAR" property="bindstatus" />
-		<result column="pym" jdbcType="VARCHAR" property="pym" />
-		<result column="integral" jdbcType="DECIMAL" property="integral" />
-		<result column="blcode" jdbcType="VARCHAR" property="blcode" />
-		<result column="familyship" jdbcType="VARCHAR" property="familyship" />
-		<result column="area" jdbcType="VARCHAR" property="area" />
-		<result column="hobby" jdbcType="VARCHAR" property="hobby" />
-		<result column="activity" jdbcType="VARCHAR" property="activity" />
-		<result column="introduce" jdbcType="VARCHAR" property="introduce" />
-		<result column="iscreateLclj" jdbcType="VARCHAR" property="iscreateLclj" />
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId"/>
+		<result column="UserCode" jdbcType="VARCHAR" property="usercode"/>
+		<result column="UserName" jdbcType="VARCHAR" property="username"/>
+		<result column="Sex" jdbcType="VARCHAR" property="sex"/>
+		<result column="BirthDay" jdbcType="VARCHAR" property="birthday"/>
+		<result column="Age" jdbcType="INTEGER" property="age"/>
+		<result column="Profession" jdbcType="VARCHAR" property="profession"/>
+		<result column="IDCardNo" jdbcType="VARCHAR" property="idcardno"/>
+		<result column="PhoneNumber1" jdbcType="VARCHAR" property="phonenumber1"/>
+		<result column="PhoneNumber2" jdbcType="VARCHAR" property="phonenumber2"/>
+		<result column="guider" jdbcType="VARCHAR" property="guider"/>
+		<result column="UserImpress" jdbcType="VARCHAR" property="userimpress"/>
+		<result column="Introducer" jdbcType="VARCHAR" property="introducer"/>
+		<result column="PlateNumber" jdbcType="VARCHAR" property="platenumber"/>
+		<result column="CostLevel" jdbcType="VARCHAR" property="costlevel"/>
+		<result column="Dress" jdbcType="VARCHAR" property="dress"/>
+		<result column="FirstWord" jdbcType="VARCHAR" property="firstword"/>
+		<result column="Province" jdbcType="VARCHAR" property="province"/>
+		<result column="City" jdbcType="VARCHAR" property="city"/>
+		<result column="Address" jdbcType="VARCHAR" property="address"/>
+		<result column="DevChannel" jdbcType="VARCHAR" property="devchannel"/>
+		<result column="CreateTime" jdbcType="VARCHAR" property="createtime"/>
+		<result column="CreateUser" jdbcType="VARCHAR" property="createuser"/>
+		<result column="AskPerson" jdbcType="VARCHAR" property="askperson"/>
+		<result column="isdelete" jdbcType="INTEGER" property="isdelete"/>
+		<result column="organization" jdbcType="VARCHAR" property="organization"/>
+		<result column="medicalhistory" jdbcType="VARCHAR" property="medicalhistory"/>
+		<result column="drugllergy" jdbcType="VARCHAR" property="drugllergy"/>
+		<result column="remark" jdbcType="VARCHAR" property="remark"/>
+		<result column="experience" jdbcType="VARCHAR" property="experience"/>
+		<result column="habit" jdbcType="VARCHAR" property="habit"/>
+		<result column="email" jdbcType="VARCHAR" property="email"/>
+		<result column="type" jdbcType="INTEGER" property="type"/>
+		<result column="xueli" jdbcType="VARCHAR" property="xueli"/>
+		<result column="qq" jdbcType="VARCHAR" property="qq"/>
+		<result column="doctor" jdbcType="VARCHAR" property="doctor"/>
+		<result column="important" jdbcType="VARCHAR" property="important"/>
+		<result column="nexttype" jdbcType="VARCHAR" property="nexttype"/>
+		<result column="totalpay" jdbcType="DECIMAL" property="totalpay"/>
+		<result column="developer" jdbcType="VARCHAR" property="developer"/>
+		<result column="doorstatus" jdbcType="INTEGER" property="doorstatus"/>
+		<result column="glr" jdbcType="VARCHAR" property="glr"/>
+		<result column="glrremark" jdbcType="VARCHAR" property="glrremark"/>
+		<result column="xgr" jdbcType="VARCHAR" property="xgr"/>
+		<result column="xgtime" jdbcType="VARCHAR" property="xgtime"/>
+		<result column="town" jdbcType="VARCHAR" property="town"/>
+		<result column="kefu" jdbcType="VARCHAR" property="kefu"/>
+		<result column="usersort" jdbcType="VARCHAR" property="usersort"/>
+		<result column="openid" jdbcType="VARCHAR" property="openid"/>
+		<result column="bindstatus" jdbcType="VARCHAR" property="bindstatus"/>
+		<result column="pym" jdbcType="VARCHAR" property="pym"/>
+		<result column="integral" jdbcType="DECIMAL" property="integral"/>
+		<result column="blcode" jdbcType="VARCHAR" property="blcode"/>
+		<result column="familyship" jdbcType="VARCHAR" property="familyship"/>
+		<result column="area" jdbcType="VARCHAR" property="area"/>
+		<result column="hobby" jdbcType="VARCHAR" property="hobby"/>
+		<result column="activity" jdbcType="VARCHAR" property="activity"/>
+		<result column="introduce" jdbcType="VARCHAR" property="introduce"/>
+		<result column="iscreateLclj" jdbcType="VARCHAR" property="iscreateLclj"/>
 		<result column="invoice" jdbcType="INTEGER" property="invoice"/>
 		<result column="clipAddress" jdbcType="VARCHAR" property="clipAddress"/>
-		<result column="accepttool" jdbcType="VARCHAR" property="accepttool" />
+		<result column="accepttool" jdbcType="VARCHAR" property="accepttool"/>
 	</resultMap>
 	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.base.KqdsUserdocument">
-		<result column="barcode" jdbcType="CLOB" property="barcode" />
-		<result column="headPic" jdbcType="CLOB" property="headPic" />
-		<result column="photoDisplay" jdbcType="CLOB" property="photoDisplay" />
+		<result column="barcode" jdbcType="CLOB" property="barcode"/>
+		<result column="headPic" jdbcType="CLOB" property="headPic"/>
+		<result column="photoDisplay" jdbcType="CLOB" property="photoDisplay"/>
+		<result column="emergencyContact" jdbcType="VARCHAR" property="emergencyContact"/>
+		<result column="emergencyPhone" jdbcType="VARCHAR" property="emergencyPhone"/>
 	</resultMap>
 	<sql id="Base_Column_List">
 		SEQ_ID, UserCode, UserName, Sex, BirthDay, Age, Profession, IDCardNo, PhoneNumber1,
@@ -77,17 +79,17 @@
 		Province, City, Address, DevChannel, CreateTime, CreateUser, AskPerson, isdelete,
 		organization, medicalhistory, drugllergy, remark, experience, habit, email, type,
 		xueli, qq, doctor, important, nexttype, totalpay, developer, doorstatus, glr, glrremark,
-		xgr, xgtime, town, kefu, usersort, openid, bindstatus, pym, integral, blcode, familyship, area, hobby, activity, introduce,iscreateLclj,clipAddress
-		area, hobby, activity, introduce, iscreateLclj,accepttool,headPic, photoDisplay
+		xgr, xgtime, town, kefu, usersort, openid, bindstatus, pym, integral, blcode, familyship, area, hobby, activity, introduce,iscreateLclj,clipAddress,
+		area, hobby, activity, introduce, iscreateLclj,accepttool,headPic, photoDisplay,emergencyContact,emergencyPhone
 	</sql>
 	<sql id="Blob_Column_List">
 		barcode
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
 		select
-		<include refid="Base_Column_List" />
+		<include refid="Base_Column_List"/>
 		,
-		<include refid="Blob_Column_List" />
+		<include refid="Blob_Column_List"/>
 		from KQDS_UserDocument
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
 	</select>
@@ -769,7 +771,7 @@
 		integral = #{integral,jdbcType=DECIMAL},
 		blcode = #{blcode,jdbcType=VARCHAR},
 		barcode = #{barcode,jdbcType=CLOB},
-		clipAddress = #{clipAddress,jdbcType=CLOB}	
+		clipAddress = #{clipAddress,jdbcType=CLOB}
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsUserdocument">
@@ -856,12 +858,12 @@
 	</select>
 	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsUserdocument">
 		select
-	    <include refid="Base_Column_List" />
+		<include refid="Base_Column_List"/>
 		,
-		<include refid="Blob_Column_List" />
+		<include refid="Blob_Column_List"/>
 		from
-		<include refid="tableName"></include> 
-	    <!-- u.SEQ_ID,
+		<include refid="tableName"></include>
+		<!-- u.SEQ_ID,
 		u.UserCode,
 		u.UserName,
 		u.Sex,
@@ -929,7 +931,11 @@
 	</select>
 
 	<select id="getBindUserDocByOpenId" parameterType="java.lang.String" resultType="KqdsUserdocument">
-		select * from KQDS_USERDOCUMENT
+		select
+		<include refid="Base_Column_List"/>
+		,
+		<include refid="Blob_Column_List"/>
+		from KQDS_USERDOCUMENT
 		where openid = #{_parameter} and bindstatus = 0
 	</select>
 	<select id="phoneIsExist" parameterType="map" resultType="int">
@@ -940,7 +946,11 @@
 		and isdelete !=1
 	</select>
 	<select id="getUserDocByNameAndPhonenumber" parameterType="map" resultType="json">
-		select * from KQDS_USERDOCUMENT where 1=1
+		select
+		<include refid="Base_Column_List"/>
+		,
+		<include refid="Blob_Column_List"/>
+		from KQDS_USERDOCUMENT where 1=1
 		and ( phonenumber1 = #{phonenumber1} or phonenumber2 =
 		#{phonenumber1} )
 		and username = #{username}
@@ -955,7 +965,11 @@
 		select max(blcode) as maxblcode from KQDS_USERDOCUMENT
 	</select>
 	<select id="getSingUserByPhoneNumber" parameterType="java.lang.String" resultType="json">
-		select * from KQDS_USERDOCUMENT where 1=1 and (phonenumber1 = #{_parameter} or
+		select
+		<include refid="Base_Column_List"/>
+		,
+		<include refid="Blob_Column_List"/>
+		from KQDS_USERDOCUMENT where 1=1 and (phonenumber1 = #{_parameter} or
 		phonenumber2=#{_parameter})
 	</select>
 	<select id="getSingUserNameAndCodeByPhoneNumber" parameterType="java.lang.String" resultType="json">
@@ -964,56 +978,66 @@
 	</select>
 	<select id="selectNoPymList" parameterType="java.lang.String" resultType="json">
 		select
-		*
+		<include refid="Base_Column_List"/>
+		,
+		<include refid="Blob_Column_List"/>
 		from KQDS_UserDocument
 		where 1=1 and (pym is null or pym='')
 	</select>
 	<!--查询门诊挂号个人信息  修改日期:2019/04/11  修改人:多永浩 修改内容: 新增修复医生字段联查展示-->
 	<select id="getBaseUserInfoByUsercode" parameterType="java.lang.String" resultType="json">
 		SELECT
-	( SELECT COUNT ( v.usercode ) FROM KQDS_Visit v WHERE v.usercode= u.UserCode ) AS ywhf,
-	(
-	SELECT
-		sy.USER_NAME 
-	FROM
+		( SELECT COUNT ( v.usercode ) FROM KQDS_Visit v WHERE v.usercode= u.UserCode ) AS ywhf,
+		(
+		SELECT
+		sy.USER_NAME
+		FROM
 		( SELECT MAX ( repairdoctor ) AS repairdoctor FROM KQDS_REG WHERE usercode = u.usercode GROUP BY usercode ) kr
-		LEFT JOIN sys_person sy ON sy.SEQ_ID = kr.repairdoctor 
-	) AS repairdoctor,
-	u.*,
-	per1.user_name AS doctorname,
-	per2.user_name AS askpersonname,
-	per3.user_name AS developername,
-	per3.user_name AS developer_desc,
-	per4.user_name AS createusername,
-	per4.user_name AS createuser_desc,
-	per5.user_name AS guidername,
-	per5.user_name AS guider_desc,
-	per6.user_name AS kefuname,
-	u1.username AS introducername,
-	u1.username AS introducer_desc,
-	dev.dict_name AS devchannelname,
-	NEXT.dict_name AS nexttypename,
-	pro.dict_name AS professionname,
-	okdi1.dict_name AS devchannelname,
-	hztype.dict_name AS nexttypename,
-	u.familyship
-FROM
-	KQDS_USERDOCUMENT AS u
-	LEFT JOIN SYS_DICT okdi1 ON okdi1.seq_id = u.devchannel
-	LEFT JOIN SYS_DICT hztype ON hztype.seq_id = u.nexttype
-	LEFT JOIN SYS_PERSON per1 ON per1.seq_id = u.doctor
-	LEFT JOIN SYS_PERSON per2 ON per2.seq_id = u.askperson
-	LEFT JOIN SYS_PERSON per3 ON per3.seq_id = u.developer
-	LEFT JOIN SYS_PERSON per4 ON per4.seq_id = u.createuser
-	LEFT JOIN SYS_PERSON per5 ON per5.seq_id = u.guider
-	LEFT JOIN SYS_PERSON per6 ON per6.seq_id = u.kefu
-	LEFT JOIN KQDS_USERDOCUMENT u1 ON u1.usercode = u.introducer
-	LEFT JOIN SYS_DICT dev ON dev.seq_id = u.devchannel
-	LEFT JOIN SYS_DICT NEXT ON NEXT.seq_id = u.nexttype
-	LEFT JOIN SYS_DICT pro ON pro.seq_id = u.profession 
-WHERE
-	1 = 1 
-	AND u.usercode = #{_parameter}
+		LEFT JOIN sys_person sy ON sy.SEQ_ID = kr.repairdoctor
+		) AS repairdoctor,
+		u.SEQ_ID,u.UserCode,u.UserName, u.Sex, u.BirthDay, u.Age, u.Profession, u.IDCardNo, u.PhoneNumber1,
+		u.PhoneNumber2, u.guider, u.UserImpress, u.Introducer, u.PlateNumber, u.CostLevel, u.Dress,
+		u.FirstWord,u.Province, u.City, u.Address, u.DevChannel, u.CreateTime, u.CreateUser, u.AskPerson, u.isdelete,
+		u.organization, u.medicalhistory, u.drugllergy, u.remark, u.experience, u.habit, u.email, u.type,
+		u.xueli, u.qq, u.doctor, u.important, u.nexttype, u.totalpay, u.developer, u.doorstatus, u.glr, u.glrremark,
+		u.xgr, u.xgtime, u.town, u.kefu, u.usersort, u.openid, u.bindstatus, u.pym, u.integral, u.blcode, u.familyship,
+		u.area, u.hobby, u.activity, u.introduce,u.iscreateLclj,u.clipAddress,
+		u.area, u.hobby, u.activity, u.introduce, u.iscreateLclj,u.accepttool,
+		u.headPic, u.photoDisplay,u.emergencyContact,u.emergencyPhone,u.barcode,
+		per1.user_name AS doctorname,
+		per2.user_name AS askpersonname,
+		per3.user_name AS developername,
+		per3.user_name AS developer_desc,
+		per4.user_name AS createusername,
+		per4.user_name AS createuser_desc,
+		per5.user_name AS guidername,
+		per5.user_name AS guider_desc,
+		per6.user_name AS kefuname,
+		u1.username AS introducername,
+		u1.username AS introducer_desc,
+		dev.dict_name AS devchannelname,
+		NEXT.dict_name AS nexttypename,
+		pro.dict_name AS professionname,
+		okdi1.dict_name AS devchannelname,
+		hztype.dict_name AS nexttypename,
+		u.familyship
+		FROM
+		KQDS_USERDOCUMENT AS u
+		LEFT JOIN SYS_DICT okdi1 ON okdi1.seq_id = u.devchannel
+		LEFT JOIN SYS_DICT hztype ON hztype.seq_id = u.nexttype
+		LEFT JOIN SYS_PERSON per1 ON per1.seq_id = u.doctor
+		LEFT JOIN SYS_PERSON per2 ON per2.seq_id = u.askperson
+		LEFT JOIN SYS_PERSON per3 ON per3.seq_id = u.developer
+		LEFT JOIN SYS_PERSON per4 ON per4.seq_id = u.createuser
+		LEFT JOIN SYS_PERSON per5 ON per5.seq_id = u.guider
+		LEFT JOIN SYS_PERSON per6 ON per6.seq_id = u.kefu
+		LEFT JOIN KQDS_USERDOCUMENT u1 ON u1.usercode = u.introducer
+		LEFT JOIN SYS_DICT dev ON dev.seq_id = u.devchannel
+		LEFT JOIN SYS_DICT NEXT ON NEXT.seq_id = u.nexttype
+		LEFT JOIN SYS_DICT pro ON pro.seq_id = u.profession
+		WHERE
+		1 = 1
+		AND u.usercode = #{_parameter}
 	</select>
 	<select id="countByUserCode" parameterType="java.lang.String" resultType="int">
 		select count(1) from KQDS_USERDOCUMENT where usercode = #{_parameter}
@@ -1026,7 +1050,11 @@ WHERE
 		select usercode from KQDS_USERDOCUMENT where username=#{_parameter}
 	</select>
 	<select id="selectWithNopage" parameterType="map" resultType="json">
-		select * from KQDS_USERDOCUMENT where 1=1
+		select
+		<include refid="Base_Column_List"/>
+		,
+		<include refid="Blob_Column_List"/>
+		from KQDS_USERDOCUMENT where 1=1
 		<if test="username != null and username !=''">
 			and (username like '%' + #{username} + '%' or pym like '%' + #{username} + '%')
 		</if>
@@ -1051,7 +1079,11 @@ WHERE
 		ORDER BY CreateTime desc
 	</select>
 	<select id="selectWithNopageReg" parameterType="map" resultType="json">
-		select * from KQDS_USERDOCUMENT where 1=1
+		select
+		<include refid="Base_Column_List"/>
+		,
+		<include refid="Blob_Column_List"/>
+		from KQDS_USERDOCUMENT where 1=1
 		<!-- <if test="username != null and username !=''">
 			and (username like '%' + #{username} + '%' or pym like '%' + #{username} + '%')
 		</if> -->
@@ -1133,7 +1165,7 @@ WHERE
 			and u.organization = #{organization}
 		</if>
 		ORDER BY u.CreateTime desc
-	</select> 
+	</select>
 	<!-- 注释原有查询改为模糊查询 -->
 	<select id="selectWithNopageGhLike" parameterType="map" resultType="json">
 		select u.seq_id,
@@ -1196,7 +1228,11 @@ WHERE
 		per3.USER_NAME as firstaskpersonname,
 		odept.dept_name as organizationname
 		from KQDS_USERDOCUMENT u
-		LEFT JOIN (select a.* from KQDS_REG a,(select usercode,max(createtime) createtime from
+		LEFT JOIN (select a.SEQ_ID, a.createuser, a.createtime, a.usercode, a.regway, a.regsort, a.recesort, a.regmoney,
+		a.reggoal,
+		a.regdept, a.doctor, a.askperson, a.ifmedrecord, a.ifcost, a.editreason, a.receiveno, a.status,
+		a.username, a.del, a.cjstatus, a.remark, a.organization , a.repairdoctor, a.askpersondept, a.jh
+		from KQDS_REG a,(select usercode,max(createtime) createtime from
 		KQDS_REG group by usercode) b where a.usercode=b.usercode and
 		a.createtime = b.createtime) n on n.usercode = u.usercode
 		LEFT JOIN SYS_DEPT odept on odept.dept_code = u.organization and odept.dept_parent = '0'
@@ -1236,7 +1272,7 @@ WHERE
 		</if>
 		<if test="regsort != null and regsort !='' ">
 			and n.regsort = #{regsort}
-		</if> 
+		</if>
 		ORDER BY u.CreateTime desc
 	</select>
 	<select id="selectByUserCodes" parameterType="java.lang.String" resultType="json">
@@ -1263,7 +1299,7 @@ WHERE
 		ORDER BY t.CreateTime desc
 	</select>
 	<select id="selectWithNopage2" parameterType="map" resultType="json">
-		<bind name="temp_dbType" value="${system_dbType}" />
+		<bind name="temp_dbType" value="${system_dbType}"/>
 		select (select count(v.usercode) from KQDS_Visit v where v.usercode=u.UserCode) as ywhf,
 		u.createtime,
 		u.seq_id,
@@ -1372,8 +1408,10 @@ WHERE
 		<!-- 2019-3-10 修改信息查询页面可以查询到所有患者，去掉此处的权限校验 -->
 		<if test="visualstaff != null and visualstaff !='' ">
 			and (u.askperson in (${visualstaff}) or u.createuser in (${visualstaff}) or u.doctor in (${visualstaff})
-			or u.usercode in (select usercode from KQDS_COSTORDER_DETAIL where askperson in( ${visualstaff}) or doctor in (${visualstaff}) )
-			or u.usercode in (select usercode from KQDS_REG where askperson in( ${visualstaff}) or doctor in (${visualstaff}) )
+			or EXISTS (select usercode from KQDS_COSTORDER_DETAIL where u.usercode=usercode and askperson in(
+			${visualstaff}) or doctor in (${visualstaff}) )
+			or EXISTS (select usercode from KQDS_REG where u.usercode=usercode AND askperson in( ${visualstaff}) or
+			doctor in (${visualstaff}) )
 			)
 		</if>
 		<if test="sortName != null and sortName != '' ">
@@ -1464,12 +1502,11 @@ WHERE
 			and u.type = #{type}
 		</if>
 		<if test="visualstaff != null and visualstaff !='' ">
-			and (
-			u.askperson in (${visualstaff}) or u.createuser in (${visualstaff}) or u.doctor in (${visualstaff})
-			or u.usercode in (select usercode from KQDS_COSTORDER_DETAIL
-			where askperson in( ${visualstaff}) or doctor in (${visualstaff}) )
-			or u.usercode in (select usercode from KQDS_REG where askperson in( ${visualstaff}) or doctor in
-			(${visualstaff}) )
+			and (u.askperson in (${visualstaff}) or u.createuser in (${visualstaff}) or u.doctor in (${visualstaff})
+			or EXISTS (select usercode from KQDS_COSTORDER_DETAIL where u.usercode=usercode AND askperson in(
+			${visualstaff}) or doctor in (${visualstaff}) )
+			or EXISTS (select usercode from KQDS_REG where u.usercode=usercode AND askperson in( ${visualstaff}) or
+			doctor in (${visualstaff}) )
 			)
 		</if>
 	</select>
@@ -1600,9 +1637,9 @@ WHERE
 		where 1=1
 		and cost.status = 2 and cost.costno = #{_parameter} and detail.isyjjitem != 1
 	</select>
-	
+
 	<select id="userManger4WdzxNum" parameterType="map" resultType="json">
-		select 
+		select
 		sum(n.cjstatus) as cjstatus,
 		sum(n.doorstatus) as doorstatus
 		from kqds_userdocument u
@@ -1681,9 +1718,9 @@ WHERE
 			and u.organization = #{organization}
 		</if>
 	</select>
-	
+
 	<select id="userManger4Wdzx" parameterType="map" resultType="json">
-		select 
+		select
 		odept.dept_name as organizationname,
 		a1.area_name as provincename,
 		a2.area_name as cityname,
@@ -1810,7 +1847,7 @@ WHERE
 			ORDER BY u.createtime desc
 		</if>
 	</select>
-	
+
 	<!-- 正畸人员查找网电数据 -->
 	<select id="userManger4WdzxNetNum" parameterType="map" resultType="json">
 		select
@@ -1863,9 +1900,9 @@ WHERE
 		<if test="yewu4 != null and yewu4 !='' ">
 			and (u.createuser in (${yewu4}) or u.askperson in (${yewu4}) or u.glr in (${yewu4}))
 		</if>
-<!-- 		<if test="shouli != null and shouli !='' "> -->
-			and n.accepttype = 'zj634'
-	<!-- 	</if> -->
+		<!-- 		<if test="shouli != null and shouli !='' "> -->
+		and n.accepttype = 'zj634'
+		<!-- 	</if> -->
 		<if test="gongju != null and gongju !='' ">
 			and n.accepttool = #{gongju}
 		</if>
@@ -1896,7 +1933,7 @@ WHERE
 			and u.organization = #{organization}
 		</if>
 	</select>
-	
+
 	<!-- 正畸人员查找网电数据 -->
 	<select id="userManger4WdzxNet" parameterType="map" resultType="json">
 		select
@@ -1990,9 +2027,9 @@ WHERE
 		<if test="yewu4 != null and yewu4 !='' ">
 			and (u.createuser in (${yewu4}) or u.askperson in (${yewu4}) or u.glr in (${yewu4}))
 		</if>
-<!-- 		<if test="shouli != null and shouli !='' "> -->
-			and n.accepttype = 'zj634'
-	<!-- 	</if> -->
+		<!-- 		<if test="shouli != null and shouli !='' "> -->
+		and n.accepttype = 'zj634'
+		<!-- 	</if> -->
 		<if test="gongju != null and gongju !='' ">
 			and n.accepttool = #{gongju}
 		</if>
@@ -2029,13 +2066,17 @@ WHERE
 			ORDER BY u.createtime desc
 		</if>
 	</select>
-	
+
 	<select id="userManger4KfzxNum" parameterType="map" resultType="json">
 		select
 		sum(n.cjstatus) as cjstatus,
 		sum(n.doorstatus) as doorstatus
-		from kqds_userdocument u 
-		left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
+		from kqds_userdocument u
+		left join (select a.SEQ_ID, a.createuser, a.createtime, a.usercode, a.acceptdate, a.acceptphone, a.accepttype,
+		a.accepttool,
+		a.askitem, a.askperson, a.askno, a.organization, a.orderperson, a.ordertime, a.doorstatus,a.guidetime,
+		a.jzxx, a.regdept, a.remark, a.username, a.daoyi, a.cjstatus, a.zxremark, a.regno, a.source, a.isdelete,
+		a.askcontent from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
 		usercode) b where a.usercode=b.usercode and
 		a.createtime=b.createtime ) n on n.usercode = u.usercode
 		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = u.createuser
@@ -2131,8 +2172,12 @@ WHERE
 		select
 		sum(n.cjstatus) as cjstatus,
 		sum(n.doorstatus) as doorstatus
-		from kqds_userdocument u 
-		left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
+		from kqds_userdocument u
+		left join (select a.SEQ_ID, a.createuser, a.createtime, a.usercode, a.acceptdate, a.acceptphone, a.accepttype,
+		a.accepttool,
+		a.askitem, a.askperson, a.askno, a.organization, a.orderperson, a.ordertime, a.doorstatus,a.guidetime,
+		a.jzxx, a.regdept, a.remark, a.username, a.daoyi, a.cjstatus, a.zxremark, a.regno, a.source, a.isdelete,
+		a.askcontent from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
 		usercode) b where a.usercode=b.usercode and
 		a.createtime=b.createtime ) n on n.usercode = u.usercode
 		where 1=1 and u.isdelete != '1'
@@ -2250,8 +2295,12 @@ WHERE
 		accepttool,
 		n.doorstatus,
 		(select count(v.usercode) from KQDS_Visit v where v.usercode=u.UserCode) as ywhf
-		from kqds_userdocument u 
-		left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
+		from kqds_userdocument u
+		left join (select a.SEQ_ID, a.createuser, a.createtime, a.usercode, a.acceptdate, a.acceptphone, a.accepttype,
+		a.accepttool,
+		a.askitem, a.askperson, a.askno, a.organization, a.orderperson, a.ordertime, a.doorstatus,a.guidetime,
+		a.jzxx, a.regdept, a.remark, a.username, a.daoyi, a.cjstatus, a.zxremark, a.regno, a.source, a.isdelete,
+		a.askcontent from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
 		usercode) b where a.usercode=b.usercode and
 		a.createtime=b.createtime ) n on n.usercode = u.usercode
 		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = u.createuser
@@ -2273,7 +2322,7 @@ WHERE
 		LEFT JOIN SYS_AREA a3 on u.town = a3.seq_id
 		${netsql} on r.usercode = u.usercode
 		where 1=1 and u.isdelete != '1'
-		
+
 		<if test="jdtime1 != null and jdtime1 !='' ">
 			and u.createtime <![CDATA[ >= ]]>
 			#{jdtime1}
@@ -2356,11 +2405,15 @@ WHERE
 			ORDER BY u.createtime desc
 		</if>
 	</select>
-		<select id="userManger4KfzxNumsByUsercodes" parameterType="map" resultType="json">
+	<select id="userManger4KfzxNumsByUsercodes" parameterType="map" resultType="json">
 		select
 		count(*) as linage
-		from kqds_userdocument u 
-		left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
+		from kqds_userdocument u
+		left join (select a.SEQ_ID, a.createuser, a.createtime, a.usercode, a.acceptdate, a.acceptphone, a.accepttype,
+		a.accepttool,
+		a.askitem, a.askperson, a.askno, a.organization, a.orderperson, a.ordertime, a.doorstatus,a.guidetime,
+		a.jzxx, a.regdept, a.remark, a.username, a.daoyi, a.cjstatus, a.zxremark, a.regno, a.source, a.isdelete,
+		a.askcontent from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
 		usercode) b where a.usercode=b.usercode and
 		a.createtime=b.createtime ) n on n.usercode = u.usercode
 		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = u.createuser
@@ -2382,7 +2435,7 @@ WHERE
 		LEFT JOIN SYS_AREA a3 on u.town = a3.seq_id
 		${netsql} on r.usercode = u.usercode
 		where 1=1 and u.isdelete != '1'
-		
+
 		<if test="jdtime1 != null and jdtime1 !='' ">
 			and u.createtime <![CDATA[ >= ]]>
 			#{jdtime1}
@@ -2456,7 +2509,7 @@ WHERE
 			and u.usercode in (${usercodealls})
 		</if>
 	</select>
-	
+
 	<select id="userManger4Kfzx" parameterType="map" resultType="json">
 		select
 		odept.dept_name as organizationname,
@@ -2498,8 +2551,12 @@ WHERE
 		accepttool,
 		n.doorstatus,
 		(select count(v.usercode) from KQDS_Visit v where v.usercode=u.UserCode) as ywhf
-		from kqds_userdocument u 
-		left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
+		from kqds_userdocument u
+		left join (select a.SEQ_ID, a.createuser, a.createtime, a.usercode, a.acceptdate, a.acceptphone, a.accepttype,
+		a.accepttool,
+		a.askitem, a.askperson, a.askno, a.organization, a.orderperson, a.ordertime, a.doorstatus,a.guidetime,
+		a.jzxx, a.regdept, a.remark, a.username, a.daoyi, a.cjstatus, a.zxremark, a.regno, a.source, a.isdelete,
+		a.askcontent from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
 		usercode) b where a.usercode=b.usercode and
 		a.createtime=b.createtime ) n on n.usercode = u.usercode
 		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = u.createuser
@@ -2521,7 +2578,7 @@ WHERE
 		LEFT JOIN SYS_AREA a3 on u.town = a3.seq_id
 		${netsql} on r.usercode = u.usercode
 		where 1=1 and u.isdelete != '1'
-		
+
 		<if test="jdtime1 != null and jdtime1 !='' ">
 			and u.createtime <![CDATA[ >= ]]>
 			#{jdtime1}
@@ -2598,7 +2655,7 @@ WHERE
 			ORDER BY u.createtime desc
 		</if>
 	</select>
-	
+
 	<select id="userManger4YxzxNum" parameterType="map" resultType="json">
 		select
 		sum(n.cjstatus) as cjstatus,
@@ -2683,8 +2740,8 @@ WHERE
 			and u.organization = #{organization}
 		</if>
 	</select>
-	
-	
+
+
 	<select id="userManger4Yxzx" parameterType="map" resultType="json">
 		select
 		odept.dept_name as organizationname,
@@ -2855,7 +2912,11 @@ WHERE
 		kcit2.dict_name as accepttool,
 		n.doorstatus
 		from kqds_userdocument u
-		left join (select a.* from KQDS_NET_ORDER a,(select
+		left join (select a.SEQ_ID, a.createuser, a.createtime, a.usercode, a.acceptdate, a.acceptphone, a.accepttype,
+		a.accepttool,
+		a.askitem, a.askperson, a.askno, a.organization, a.orderperson, a.ordertime, a.doorstatus,a.guidetime,
+		a.jzxx, a.regdept, a.remark, a.username, a.daoyi, a.cjstatus, a.zxremark, a.regno, a.source, a.isdelete,
+		a.askcontent from KQDS_NET_ORDER a,(select
 		usercode,max(createtime) createtime from KQDS_NET_ORDER group by usercode) b where a.usercode=b.usercode and
 		a.createtime=b.createtime ) n
 		on n.usercode = u.usercode
@@ -2889,7 +2950,17 @@ WHERE
 		ORDER BY u.createtime desc
 	</select>
 	<select id="selectWithPage" parameterType="map" resultType="json">
-		select u.*,p.user_name as createusername from KQDS_USERDOCUMENT u
+		select u.SEQ_ID, u.UserCode, u.UserName, u.Sex, u.BirthDay, u.Age, u.Profession, u.IDCardNo, u.PhoneNumber1,
+		u.PhoneNumber2, u.guider, u.UserImpress, u.Introducer, u.PlateNumber, u.CostLevel, u.Dress,
+		u.FirstWord, u.Province, u.City, u.Address, u.DevChannel, u.CreateTime, u.CreateUser, u.AskPerson, u.isdelete,
+		u.organization, u.medicalhistory, u.drugllergy, u.remark, u.experience, u.habit, u.email, u.type,
+		u.xueli, u.qq, u.doctor, u.important, u.nexttype, u.totalpay, u.developer, u.doorstatus, u.glr, u.glrremark,
+		u.xgr, u.xgtime, u.town, u.kefu, u.usersort, u.openid, u.bindstatus, u.pym, u.integral, u.blcode, u.familyship,
+		u.area,
+		u.hobby, u.activity, u.introduce,u.iscreateLclj,u.clipAddress,u.area, u.hobby, u.activity, u.introduce,
+		u.iscreateLclj,
+		u.accepttool,u.headPic, u.photoDisplay,u.emergencyContact,u.emergencyPhone,u.barcode,p.user_name as
+		createusername from KQDS_USERDOCUMENT u
 		LEFT JOIN SYS_PERSON p on p.SEQ_ID = u.CreateUser
 		LEFT JOIN SYS_DEPT d1 on p.DEPT_ID = d1.SEQ_ID
 		LEFT JOIN
@@ -2925,7 +2996,11 @@ WHERE
 		ORDER BY u.CreateTime desc
 	</select>
 	<select id="selectListByBirth" parameterType="map" resultType="json">
-		select * from KQDS_USERDOCUMENT where 1=1
+		select
+		<include refid="Base_Column_List"/>
+		,
+		<include refid="Blob_Column_List"/>
+		from KQDS_USERDOCUMENT where 1=1
 		<if test="month != null and month !='' ">
 			and Month(Birthday) = #{month}
 		</if>
@@ -2960,42 +3035,42 @@ WHERE
 	</select>
 	<!-- 2019-08-15 lwg 咨询统计表 -->
 	<select id="getCountJdList" parameterType="map" resultType="json">
-		SELECT ISNULL(a.nums, 0) as num,c.user_name,c.seq_id 
-		from sys_person c 
-		LEFT JOIN 
-		(select COUNT(u.CreateUser) as nums,p.SEQ_ID as seq 
-		from sys_person p 
+		SELECT ISNULL(a.nums, 0) as num,c.user_name,c.seq_id
+		from sys_person c
+		LEFT JOIN
+		(select COUNT(u.CreateUser) as nums,p.SEQ_ID as seq
+		from sys_person p
 		LEFT JOIN KQDS_UserDocument u on u.CreateUser=p.SEQ_ID
 		<if test="askitem != null and askitem != '' or accepttool != null and accepttool != '' ">
-		LEFT JOIN KQDS_NET_ORDER o ON o.usercode = u.usercode
+			LEFT JOIN KQDS_NET_ORDER o ON o.usercode = u.usercode
 		</if>
 		where 1=1
 		<if test="askitem != null and askitem != '' or accepttool != null and accepttool != '' ">
-		and o.isdelete!=1
+			and o.isdelete!=1
 		</if>
 		and p.SEQ_ID IN (${visualstaff})
 		<if test="organization2 != null and organization2 !='' ">
-		and u.organization= #{organization2}
+			and u.organization= #{organization2}
 		</if>
 		<if test="devchannel !=null and devchannel !='' ">
-		and u.devchannel=#{devchannel}
+			and u.devchannel=#{devchannel}
 		</if>
 		<if test="nexttype !=null and nexttype !='' ">
-		and u.nexttype=#{nexttype}
+			and u.nexttype=#{nexttype}
 		</if>
 		<if test="jdtime2!=null and jdtime2 !=''">
-		and u.createtime <![CDATA[ <= ]]> #{jdtime2}
+			and u.createtime <![CDATA[ <= ]]> #{jdtime2}
 		</if>
 		<if test="jdtime1!=null and jdtime1 !=''">
-		and u.createtime <![CDATA[ >= ]]> #{jdtime1}
+			and u.createtime <![CDATA[ >= ]]> #{jdtime1}
 		</if>
 		<if test="askitem != null and askitem != '' ">
-		and o.askitem=#{askitem}
+			and o.askitem=#{askitem}
 		</if>
 		<if test="accepttool != null and accepttool != '' ">
-		and o.accepttool=#{accepttool}
+			and o.accepttool=#{accepttool}
 		</if>
-<!-- 		<if test="yytime2 !=null and yytime2!=''">
+		<!-- 		<if test="yytime2 !=null and yytime2!=''">
 		AND o.createtime <![CDATA[ <= ]]> #{yytime2}
 		</if>
 		<if test="yytime1 !=null and yytime1!=''">
@@ -3003,16 +3078,21 @@ WHERE
 		</if> -->
 		GROUP BY p.SEQ_ID
 		<if test="askitem != null and askitem != '' ">
-		,o.askitem
+			,o.askitem
 		</if>
 		) as a on a.seq=c.SEQ_ID
 		where 1=1
 		and c.SEQ_ID IN (${visualstaff})
 	</select>
-	
+
 	<select id="getCountJdItem" parameterType="map" resultType="int">
 		select count(1) nums from KQDS_UserDocument u
-		left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by usercode) b
+		left join (select a.SEQ_ID, a.createuser, a.createtime, a.usercode, a.acceptdate, a.acceptphone, a.accepttype,
+		a.accepttool,
+		a.askitem, a.askperson, a.askno, a.organization, a.orderperson, a.ordertime, a.doorstatus,a.guidetime,
+		a.jzxx, a.regdept, a.remark, a.username, a.daoyi, a.cjstatus, a.zxremark, a.regno, a.source, a.isdelete,
+		a.askcontent from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by
+		usercode) b
 		where a.usercode=b.usercode and a.createtime=b.createtime ) n
 		on n.usercode = u.usercode
 		where 1=1
@@ -3039,80 +3119,80 @@ WHERE
 	</select>
 	<!-- 2019-08-15 lwg 录单人数(咨询项目情况统计) -->
 	<select id="getCountJdItemList" parameterType="map" resultType="json">
-	SELECT
+		SELECT
 		COUNT(n.askitem) as ldnums,n.askitem,p.SEQ_ID,p.USER_NAME
-	FROM
+		FROM
 		sys_person p
-	LEFT JOIN KQDS_UserDocument u ON u.CreateUser = p.SEQ_ID
-	left join (select a.usercode,a.askitem,a.createtime,a.accepttool,a.isdelete from KQDS_NET_ORDER a,
+		LEFT JOIN KQDS_UserDocument u ON u.CreateUser = p.SEQ_ID
+		left join (select a.usercode,a.askitem,a.createtime,a.accepttool,a.isdelete from KQDS_NET_ORDER a,
 		(select usercode,min(createtime) createtime from KQDS_NET_ORDER group by usercode) b
 		where a.usercode=b.usercode and a.createtime=b.createtime and a.isdelete!=1) n
 		on n.usercode = u.usercode
-	WHERE
+		WHERE
 		1 = 1
 		and p.SEQ_ID IN (${visualstaff})
 		<if test="organization2 != null and organization2 !='' ">
-		and u.organization= #{organization2}
+			and u.organization= #{organization2}
 		</if>
 		<if test="devchannel !=null and devchannel !='' ">
-		and u.devchannel=#{devchannel}
+			and u.devchannel=#{devchannel}
 		</if>
 		<if test="nexttype !=null and nexttype !='' ">
-		and u.nexttype=#{nexttype}
+			and u.nexttype=#{nexttype}
 		</if>
 		<if test="jdtime2!=null and jdtime2 !=''">
-		and u.createtime <![CDATA[ <= ]]> #{jdtime2}
+			and u.createtime <![CDATA[ <= ]]> #{jdtime2}
 		</if>
 		<if test="jdtime1!=null and jdtime1 !=''">
-		and u.createtime <![CDATA[ >= ]]> #{jdtime1}
+			and u.createtime <![CDATA[ >= ]]> #{jdtime1}
 		</if>
 		<if test="askitem != null and askitem != '' ">
-		and n.askitem=#{askitem}
+			and n.askitem=#{askitem}
 		</if>
 		<if test="accepttool != null and accepttool != '' ">
-		and n.accepttool=#{accepttool}
+			and n.accepttool=#{accepttool}
 		</if>
 		GROUP BY p.SEQ_ID,n.askitem,p.USER_NAME
 	</select>
 	<!-- 2019-08-15 lwg 咨询项目统计表 -->
 	<select id="getCountJdItemStatisticsList" parameterType="map" resultType="json">
-	SELECT
+		SELECT
 		COUNT(n.askitem) as ldnums,n.askitem
-	FROM
+		FROM
 		sys_person p
-	LEFT JOIN KQDS_UserDocument u ON u.CreateUser = p.SEQ_ID
-	left join (select a.usercode,a.askitem,a.createtime,a.accepttool,a.isdelete from KQDS_NET_ORDER a,
+		LEFT JOIN KQDS_UserDocument u ON u.CreateUser = p.SEQ_ID
+		left join (select a.usercode,a.askitem,a.createtime,a.accepttool,a.isdelete from KQDS_NET_ORDER a,
 		(select usercode,min(createtime) createtime from KQDS_NET_ORDER group by usercode) b
 		where a.usercode=b.usercode and a.createtime=b.createtime ) n
 		on n.usercode = u.usercode
-	WHERE
+		WHERE
 		1 = 1
 		and n.isdelete!=1
 		and p.SEQ_ID IN (${visualstaff})
 		<if test="organization2 != null and organization2 !='' ">
-		and u.organization= #{organization2}
+			and u.organization= #{organization2}
 		</if>
 		<if test="devchannel !=null and devchannel !='' ">
-		and u.devchannel=#{devchannel}
+			and u.devchannel=#{devchannel}
 		</if>
 		<if test="nexttype !=null and nexttype !='' ">
-		and u.nexttype=#{nexttype}
+			and u.nexttype=#{nexttype}
 		</if>
 		<if test="jdtime2!=null and jdtime2 !=''">
-		and u.createtime <![CDATA[ <= ]]> #{jdtime2}
+			and u.createtime <![CDATA[ <= ]]> #{jdtime2}
 		</if>
 		<if test="jdtime1!=null and jdtime1 !=''">
-		and u.createtime <![CDATA[ >= ]]> #{jdtime1}
+			and u.createtime <![CDATA[ >= ]]> #{jdtime1}
 		</if>
 		<if test="askitem != null and askitem != '' ">
-		and n.askitem=#{askitem}
+			and n.askitem=#{askitem}
 		</if>
 		<if test="accepttool != null and accepttool != '' ">
-		and n.accepttool=#{accepttool}
+			and n.accepttool=#{accepttool}
 		</if>
 		GROUP BY n.askitem
 	</select>
-	
+
 	<select id="selectUserInfo" parameterType="java.lang.String" resultType="json">
 		select odept.dept_name as organizationname,u.usercode,p.user_name as askpersonname,p1.user_name as
 		doctorname,p2.user_name as jdrname,u.username,u.sex,u.age,u.totalpay,u.remark from KQDS_USERDOCUMENT u
@@ -3126,7 +3206,11 @@ WHERE
 		u.usercode = #{_parameter}
 	</select>
 	<select id="getHfList" parameterType="map" resultType="json">
-		select p.user_name as visitorname,kcit1.dict_name as hfflname,kcit2.dict_name as mydname,v.* from KQDS_VISIT v
+		select p.user_name as visitorname,kcit1.dict_name as hfflname,kcit2.dict_name as mydname,
+		v.SEQ_ID, v.createuser, v.createtime, v.visittime, v.visitor, v.usercode, v.username, v.sex, v.telphone,
+		v.hffl, v.finishtime, v.hfyd, v.organization, v.myd, v.postperson, v.hfresult, v.status, v.regno,
+		v.remark, v.purpose, v.isauto, v.isfirstday
+		from KQDS_VISIT v
 		LEFT JOIN SYS_DICT kcit1 on v.hffl = kcit1.seq_id
 		LEFT JOIN
 		SYS_PERSON p on p.SEQ_ID = v.visitor
@@ -3142,18 +3226,20 @@ WHERE
 		order by v.visittime desc
 	</select>
 	<select id="getHfListByUsercode" parameterType="map" resultType="json">
-		select p.user_name as visitorname,kcit1.dict_name as hfflname,kcit2.dict_name as mydname,v.* from KQDS_VISIT
-		v
+		select p.user_name as visitorname,kcit1.dict_name as hfflname,kcit2.dict_name as mydname,
+		v.SEQ_ID, v.createuser, v.createtime, v.visittime, v.visitor, v.usercode, v.username, v.sex, v.telphone,
+		v.hffl, v.finishtime, v.hfyd, v.organization, v.myd, v.postperson, v.hfresult, v.status, v.regno,
+		v.remark, v.purpose, v.isauto, v.isfirstday
+		from KQDS_VISIT v
 		LEFT JOIN SYS_DICT kcit1 on v.hffl = kcit1.seq_id
 		LEFT JOIN SYS_PERSON p on p.SEQ_ID = v.visitor
 		LEFT JOIN SYS_DICT kcit2 on v.myd = kcit2.seq_id
 		where 1=1
-		and v.usercode =
-		#{usercode}
+		and v.usercode =#{usercode}
 		and v.organization = #{organization}
 		order by v.visittime desc
 	</select>
-	
+
 	<!-- 添加判断该患者是否创建临床路径 -->
 	<update id="isCreateLclj" parameterType="java.util.Map">
 		update KQDS_USERDOCUMENT
@@ -3164,14 +3250,14 @@ WHERE
 		</set>
 		where SEQ_ID = #{seqId}
 	</update>
-	
+
 	<!-- 获取当前患者介绍他人的数量  2019-8-21   syp -->
 	<select id="findIntroducerNum" parameterType="String" resultType="int">
 		select count(Introducer) from KQDS_USERDOCUMENT where Introducer = #{usercode}
 	</select>
-	
+
 	<select id="findKqdsUserdocumentByUsercodes" parameterType="String" resultType="json">
-		select 
+		select
 		SEQ_ID,UserCode,UserName,Sex,BirthDay,Age,Profession,IDCardNo,PhoneNumber1,PhoneNumber2,guider,
 		UserImpress,Introducer,PlateNumber,CostLevel,Dress,FirstWord,Province,City,Address,
 		CreateTime,CreateUser,isdelete,organization,medicalhistory,drugllergy,remark,experience,habit,
@@ -3180,238 +3266,238 @@ WHERE
 		area,hobby,activity,introduce,invoice
 		from KQDS_USERDOCUMENT where UserCode in (${_parameter})
 	</select>
-	
+
 	<update id="updateUserdocumentInvoiceByUsercode" parameterType="java.lang.String">
-	update KQDS_USERDOCUMENT set invoice=1 where usercode=#{usercode}
+		update KQDS_USERDOCUMENT set invoice=1 where usercode=#{usercode}
 	</update>
-	
+
 	<!-- 渠道 -->
-	<select id="findDevchannel" parameterType="map" resultType="json">		
-	SELECT
+	<select id="findDevchannel" parameterType="map" resultType="json">
+		SELECT
 		devchannelname,
 		SUM (paymoney) AS paymoney
-	FROM
+		FROM
 		(
-			SELECT
-				d.dict_name AS devchannelname,
-				(
-					p.actualmoney - (
-						SELECT
-							ISNULL(
-								SUM (
-									paymoney - payyjj - payother2 - payintegral - paydjq
-								),
-								0
-							) AS paymoney
-						FROM
-							KQDS_COSTORDER_DETAIL
-						WHERE
-							1 = 1
-						AND itemname IN (
-							SELECT
-								treatitemname
-							FROM
-								KQDS_TREATITEM
-							WHERE
-								basetype = 'jyk671'
-							AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
-						)
-						AND costno = p.costno
-					) - (
-						SELECT
-							ISNULL(
-								SUM (
-									paymoney - payyjj - payother2 - payintegral - paydjq
-								),
-								0
-							) AS paymoney
-						FROM
-							KQDS_COSTORDER_DETAIL
-						WHERE
-							1 = 1
-						AND isyjjitem = 1
-						AND costno = p.costno
-					)
-				) paymoney,
-				p.costno AS costno
-			FROM
-				KQDS_REG r
-			LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
-			LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-			LEFT JOIN KQDS_UserDocument u ON u.UserCode = p.usercode
-			LEFT JOIN sys_dict d ON u.DevChannel = d.SEQ_ID
-			WHERE
-				1 = 1
-			<if test="years != null and years != ''">
+		SELECT
+		d.dict_name AS devchannelname,
+		(
+		p.actualmoney - (
+		SELECT
+		ISNULL(
+		SUM (
+		paymoney - payyjj - payother2 - payintegral - paydjq
+		),
+		0
+		) AS paymoney
+		FROM
+		KQDS_COSTORDER_DETAIL
+		WHERE
+		1 = 1
+		AND itemname IN (
+		SELECT
+		treatitemname
+		FROM
+		KQDS_TREATITEM
+		WHERE
+		basetype = 'jyk671'
+		AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
+		)
+		AND costno = p.costno
+		) - (
+		SELECT
+		ISNULL(
+		SUM (
+		paymoney - payyjj - payother2 - payintegral - paydjq
+		),
+		0
+		) AS paymoney
+		FROM
+		KQDS_COSTORDER_DETAIL
+		WHERE
+		1 = 1
+		AND isyjjitem = 1
+		AND costno = p.costno
+		)
+		) paymoney,
+		p.costno AS costno
+		FROM
+		KQDS_REG r
+		LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
+		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+		LEFT JOIN KQDS_UserDocument u ON u.UserCode = p.usercode
+		LEFT JOIN sys_dict d ON u.DevChannel = d.SEQ_ID
+		WHERE
+		1 = 1
+		<if test="years != null and years != ''">
 			AND (${years})
-			</if>
-			AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
-			AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
-			AND r.organization = #{organization}
-			AND r.cjstatus = 1
-			AND cost.isdrugs = 0
-			AND r.askperson IN (${askperson})
-			GROUP BY
-				d.dict_name,
-				p.actualmoney,
-				p.costno
+		</if>
+		AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+		AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
+		AND r.organization = #{organization}
+		AND r.cjstatus = 1
+		AND cost.isdrugs = 0
+		AND r.askperson IN (${askperson})
+		GROUP BY
+		d.dict_name,
+		p.actualmoney,
+		p.costno
 		) AS detail
-	GROUP BY
-		devchannelname 
-		</select>
-		
-		<!-- 总 -->
-		<select id="findDevchannelAll" parameterType="map" resultType="json">
-			SELECT
-				SUM (paymoney) AS paymoney
-			FROM
-			(
-				SELECT
-					d.dict_name AS devchannelname,
-					(
-						p.actualmoney - (
-							SELECT
-								ISNULL(
-									SUM (
-										paymoney - payyjj - payother2 - payintegral - paydjq
-									),
-									0
-								) AS paymoney
-							FROM
-								KQDS_COSTORDER_DETAIL
-							WHERE
-								1 = 1
-							AND itemname IN (
-								SELECT
-									treatitemname
-								FROM
-									KQDS_TREATITEM
-								WHERE
-									basetype = 'jyk671'
-								AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
-							)
-							AND costno = p.costno
-						) - (
-							SELECT
-								ISNULL(
-									SUM (
-										paymoney - payyjj - payother2 - payintegral - paydjq
-									),
-									0
-								) AS paymoney
-							FROM
-								KQDS_COSTORDER_DETAIL
-							WHERE
-								1 = 1
-							AND isyjjitem = 1
-							AND costno = p.costno
-						)
-					) paymoney,
-					p.costno AS costno
-				FROM
-					KQDS_REG r
-				LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
-				LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-				LEFT JOIN KQDS_UserDocument u ON u.UserCode = p.usercode
-				LEFT JOIN sys_dict d ON u.DevChannel = d.SEQ_ID
-				WHERE
-					1 = 1
-				<if test="years != null and years != ''">
-				AND (${years})
-				</if>
-				AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
-				AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
-				AND r.organization = #{organization}
-				AND r.cjstatus = 1
-				AND cost.isdrugs = 0
-				AND r.askperson IN (${askperson})
-				GROUP BY
-					d.dict_name,
-					p.actualmoney,
-					p.costno
-			) AS detail
+		GROUP BY
+		devchannelname
 	</select>
-	
+
+	<!-- 总 -->
+	<select id="findDevchannelAll" parameterType="map" resultType="json">
+		SELECT
+		SUM (paymoney) AS paymoney
+		FROM
+		(
+		SELECT
+		d.dict_name AS devchannelname,
+		(
+		p.actualmoney - (
+		SELECT
+		ISNULL(
+		SUM (
+		paymoney - payyjj - payother2 - payintegral - paydjq
+		),
+		0
+		) AS paymoney
+		FROM
+		KQDS_COSTORDER_DETAIL
+		WHERE
+		1 = 1
+		AND itemname IN (
+		SELECT
+		treatitemname
+		FROM
+		KQDS_TREATITEM
+		WHERE
+		basetype = 'jyk671'
+		AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
+		)
+		AND costno = p.costno
+		) - (
+		SELECT
+		ISNULL(
+		SUM (
+		paymoney - payyjj - payother2 - payintegral - paydjq
+		),
+		0
+		) AS paymoney
+		FROM
+		KQDS_COSTORDER_DETAIL
+		WHERE
+		1 = 1
+		AND isyjjitem = 1
+		AND costno = p.costno
+		)
+		) paymoney,
+		p.costno AS costno
+		FROM
+		KQDS_REG r
+		LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
+		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+		LEFT JOIN KQDS_UserDocument u ON u.UserCode = p.usercode
+		LEFT JOIN sys_dict d ON u.DevChannel = d.SEQ_ID
+		WHERE
+		1 = 1
+		<if test="years != null and years != ''">
+			AND (${years})
+		</if>
+		AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+		AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
+		AND r.organization = #{organization}
+		AND r.cjstatus = 1
+		AND cost.isdrugs = 0
+		AND r.askperson IN (${askperson})
+		GROUP BY
+		d.dict_name,
+		p.actualmoney,
+		p.costno
+		) AS detail
+	</select>
+
 	<select id="findConsumptionInterval" parameterType="map" resultType="json">
 		SELECT
-			COUNT (*) AS num
+		COUNT (*) AS num
 		FROM
-			(
-				SELECT
-					usercode,
-					SUM (paymoney) paymoney
-				FROM
-					(
-						SELECT
-							r.usercode AS usercode,
-							(
-								p.actualmoney - (
-									SELECT
-										ISNULL(
-											SUM (
-												paymoney - payyjj - payother2 - payintegral - paydjq
-											),
-											0
-										) AS paymoney
-									FROM
-										KQDS_COSTORDER_DETAIL
-									WHERE
-										1 = 1
-									AND itemname IN (
-										SELECT
-											treatitemname
-										FROM
-											KQDS_TREATITEM
-										WHERE
-											basetype = 'jyk671'
-										AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
-									)
-									AND costno = p.costno
-								) - (
-									SELECT
-										ISNULL(
-											SUM (
-												paymoney - payyjj - payother2 - payintegral - paydjq
-											),
-											0
-										) AS paymoney
-									FROM
-										KQDS_COSTORDER_DETAIL
-									WHERE
-										1 = 1
-									AND isyjjitem = 1
-									AND costno = p.costno
-								)
-							) paymoney,
-							p.costno AS costno
-						FROM
-							KQDS_REG r
-						LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
-						LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-						WHERE
-							1 = 1
-						AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
-						AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
-						<if test="years != null and years != ''">
-							AND (${years})
-						</if>
-						AND r.organization = 'HUDH'
-						AND r.cjstatus = 1
-						AND cost.isdrugs = 0
-						AND r.askperson IN (${askperson})	
-						GROUP BY
-							r.usercode,
-							p.actualmoney,
-							p.costno
-					) AS detail
-				GROUP BY
-					usercode
-			) AS cost
+		(
+		SELECT
+		usercode,
+		SUM (paymoney) paymoney
+		FROM
+		(
+		SELECT
+		r.usercode AS usercode,
+		(
+		p.actualmoney - (
+		SELECT
+		ISNULL(
+		SUM (
+		paymoney - payyjj - payother2 - payintegral - paydjq
+		),
+		0
+		) AS paymoney
+		FROM
+		KQDS_COSTORDER_DETAIL
 		WHERE
-			paymoney <![CDATA[ >= ]]> #{start}
+		1 = 1
+		AND itemname IN (
+		SELECT
+		treatitemname
+		FROM
+		KQDS_TREATITEM
+		WHERE
+		basetype = 'jyk671'
+		AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
+		)
+		AND costno = p.costno
+		) - (
+		SELECT
+		ISNULL(
+		SUM (
+		paymoney - payyjj - payother2 - payintegral - paydjq
+		),
+		0
+		) AS paymoney
+		FROM
+		KQDS_COSTORDER_DETAIL
+		WHERE
+		1 = 1
+		AND isyjjitem = 1
+		AND costno = p.costno
+		)
+		) paymoney,
+		p.costno AS costno
+		FROM
+		KQDS_REG r
+		LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
+		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+		WHERE
+		1 = 1
+		AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+		AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
+		<if test="years != null and years != ''">
+			AND (${years})
+		</if>
+		AND r.organization = 'HUDH'
+		AND r.cjstatus = 1
+		AND cost.isdrugs = 0
+		AND r.askperson IN (${askperson})
+		GROUP BY
+		r.usercode,
+		p.actualmoney,
+		p.costno
+		) AS detail
+		GROUP BY
+		usercode
+		) AS cost
+		WHERE
+		paymoney <![CDATA[ >= ]]> #{start}
 		AND paymoney <![CDATA[ <= ]]> #{end}
 	</select>
-	
+
 	<select id="findOrganizationBySeqid" parameterType="java.lang.String" resultType="java.lang.String">
 		select
 		organization
@@ -3456,7 +3542,7 @@ WHERE
 		LEFT JOIN SYS_PERSON per7 on per7.SEQ_ID = u.askperson
 		LEFT JOIN SYS_PERSON per8 on per8.SEQ_ID = u.developer
 		LEFT JOIN SYS_DICT kcit3 on kcit3.seq_id = u.devchannel
-		LEFT JOIN SYS_DICT hzly on hzly.seq_id = u.nexttype 
+		LEFT JOIN SYS_DICT hzly on hzly.seq_id = u.nexttype
 		LEFT JOIN sys_dict kcit7 ON kcit7.SEQ_ID=u.accepttool
 		where u.usercode in (${usercode})
 	</select>
@@ -3827,7 +3913,7 @@ WHERE
 	</update>
 	<!-- 信息查询，根据患者编号查询名字 -->
 	<select id="findXxcxNameByUsercode" parameterType="java.util.Map" resultType="json">
-		select 
+		select
 		u.usercode,
 		per4.user_name as CreateUser,
 		per2.user_name as askperson,
@@ -3843,7 +3929,7 @@ WHERE
 		where u.usercode in (${usercode})
 	</select>
 	<select id="selectWithNopage3" parameterType="map" resultType="json">
-		<bind name="temp_dbType" value="${system_dbType}" />
+		<bind name="temp_dbType" value="${system_dbType}"/>
 		select (select count(v.usercode) from KQDS_Visit v where v.usercode=u.UserCode) as ywhf,
 		u.createtime,
 		a1.area_name as provincename,
@@ -3886,7 +3972,7 @@ WHERE
 		left join (
 		<!-- select a.* from KQDS_REG a,(select usercode,max(createtime) createtime from
 		KQDS_REG group by usercode) b where a.usercode=b.usercode and
-		a.createtime=b.createtime --> 
+		a.createtime=b.createtime -->
 		select createtime,usercode from KQDS_REG where recesort = '20') reg on reg.usercode=u.usercode
 		left join SYS_DICT okdi1 on okdi1.seq_id = u.devchannel
 		left join SYS_DICT hztype on hztype.seq_id = u.nexttype
@@ -3990,10 +4076,10 @@ WHERE
 		<if test="visualstaff != null and visualstaff !='' ">
 			and (
 			u.askperson in (${visualstaff}) or u.createuser in (${visualstaff}) or u.doctor in (${visualstaff})
-			or u.usercode in (select usercode from KQDS_COSTORDER_DETAIL
-			where askperson in( ${visualstaff}) or doctor in (${visualstaff}) )
-			or u.usercode in (select usercode from KQDS_REG where askperson in( ${visualstaff}) or doctor in
-			(${visualstaff}) )
+			or EXISTS (select usercode from KQDS_COSTORDER_DETAIL where u.usercode=usercode AND askperson in(
+			${visualstaff}) or doctor in (${visualstaff}) )
+			or EXISTS (select usercode from KQDS_REG where u.usercode=usercode AND askperson in( ${visualstaff}) or
+			doctor in (${visualstaff}) )
 			)
 		</if>
 		<if test="sortName != null and sortName != '' ">
@@ -4013,9 +4099,9 @@ WHERE
 		LEFT JOIN KQDS_COSTORDER cost on cost.costno = detail.costno
 		where 1=1
 		and cost.status = 2 and cost.regno in
-		 <foreach item="item" index="index" collection="list" open="(" separator="," close=")">  
-  			#{item}  
- 		</foreach>
+		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+			#{item}
+		</foreach>
 		and detail.isyjjitem != 1
 		GROUP BY cost.regno
 	</select>
