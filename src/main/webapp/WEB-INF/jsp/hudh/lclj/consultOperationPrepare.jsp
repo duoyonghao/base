@@ -941,11 +941,20 @@
 				//console.log(JSON.stringify(r)+"--------------返回数据一");
 				layer.alert(r.retMsrg, {
 		            end: function() {
-		          	  window.parent.location.reload(); //刷新父页面
-		                var frameindex = parent.layer.getFrameIndex(window.name);
-		                parent.layer.close(frameindex); //再执行关闭
+		          	  //window.parent.location.reload(); //刷新父页面
+		                //var frameindex = parent.layer.getFrameIndex(window.name);
+		                //parent.layer.close(frameindex); //再执行关闭
 		            }
 		        });
+				if(r.retMsrg=="操作成功"){
+					layer.alert(r.retMsrg, {
+						end: function() {
+							window.parent.location.reload(); //刷新父页面
+							var frameindex = parent.layer.getFrameIndex(window.name);
+							parent.layer.close(frameindex); //再执行关闭
+						}
+					});
+				}
 			}, function(r) {
 				//console.log(JSON.stringify(r)+"--------------返回数据二");
 				layer.alert(r.retMsrg, {
