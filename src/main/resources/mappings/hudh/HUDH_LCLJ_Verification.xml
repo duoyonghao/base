@@ -431,8 +431,8 @@
             <if test="operationtime != null">
                 operationtime = #{operationtime,jdbcType=VARCHAR},
             </if>
-            <if test="bloodpressure != null">
-                bloodPressure = #{bloodpressure,jdbcType=VARCHAR},
+            <if test="bloodPressure != null">
+                bloodPressure = #{bloodPressure,jdbcType=VARCHAR},
             </if>
             <if test="pulse != null">
                 pulse = #{pulse,jdbcType=VARCHAR},
