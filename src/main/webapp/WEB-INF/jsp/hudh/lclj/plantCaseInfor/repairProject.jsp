@@ -1394,7 +1394,11 @@
 		    for (var i = 0; i < listbutton.length; i++) {
 		        if (listbutton[i].qxName == "zsbs_xgbd"&&repairdoctorstatus&&doctorstatus&&patientstatus) {
 		        	$("#consent_updateBtn").removeClass("hidden");
-		        }
+		        }else if(listbutton[i].qxName =="lclj_ban_signature"){
+                    doctorstatus=false;
+                    patientstatus=false;
+                    repairdoctorstatus=false;
+                }
 		    }
 		    $("#bottomBarDdiv").append(menubutton1);
 		}
