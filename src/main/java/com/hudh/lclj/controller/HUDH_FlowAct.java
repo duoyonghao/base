@@ -1,11 +1,18 @@
 package com.hudh.lclj.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.hudh.lclj.StaticVar;
-import com.hudh.lclj.entity.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.hudh.lclj.service.IFlowOperateService;
 import com.hudh.lclj.service.IFlowService;
 import com.hudh.util.HUDHUtil;
+import com.hudh.zzbl.entity.LocatorFamiliar;
 import com.hudh.zzbl.service.DzblService;
 import com.hudh.zzbl.service.IRepairSchemeConfirmService;
 import com.hudh.zzbl.service.IZzblCheckService;
@@ -28,19 +35,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.alibaba.fastjson.JSON;
+import com.hudh.lclj.StaticVar;
+import com.hudh.lclj.entity.LcljNodeConfig;
+import com.hudh.lclj.entity.LcljOptRecode;
+import com.hudh.lclj.entity.LcljOrderTrack;
+import com.hudh.lclj.entity.LcljWorklist;
+import com.hudh.lclj.entity.OperatingRecord;
 /**
  * 临床路径操作Controller
- *
  * @author XKY
+ *
  */
 @Controller
 @RequestMapping("/HUDH_FlowAct")
@@ -932,22 +937,22 @@ public class HUDH_FlowAct {
 		for (int i = 0; i < crown_material.length; i++) {
 			sbcrownMaterial.append(crown_material[i] + ";");
 		}*/
-        String flowCode = request.getParameter("flowcode");
-        String type = request.getParameter("type");
-        String dentalJaw = request.getParameter("dentalJaw");
-        String articleType = request.getParameter("articleType");
-        String flowType = request.getParameter("flowType");
-        String id = request.getParameter("id");    //临床路径信息表id	
-        LcljOrderTrack lcljOrderTrack = flowService.findLcljOrderTrsackByseqId(id);
-        lcljOrderTrack.setPlantSystem(sbplantSystem.toString());
-        /*lcljOrderTrack.setCrownMaterial(sbcrownMaterial.toString());*/
-        lcljOrderTrack.setFlowcode(flowCode);
-        lcljOrderTrack.setDentalJaw(dentalJaw);
-        lcljOrderTrack.setArticleType(articleType);
-        lcljOrderTrack.setType(flowType);
-        Map<String, String> dataMap = new HashMap<String, String>();
-        try {
-            //保存临床跟踪数据
+		String flowCode = request.getParameter("flowcode");
+		String type = request.getParameter("type");
+		String dentalJaw = request.getParameter("dentalJaw");		
+		String articleType = request.getParameter("articleType");		
+		String flowType = request.getParameter("flowType");		
+		String id = request.getParameter("id");	//临床路径信息表id	
+		LcljOrderTrack lcljOrderTrack = flowService.findLcljOrderTrsackByseqId(id);
+		lcljOrderTrack.setPlantSystem(sbplantSystem.toString());
+		/*lcljOrderTrack.setCrownMaterial(sbcrownMaterial.toString());*/
+		lcljOrderTrack.setFlowcode(flowCode);
+		lcljOrderTrack.setDentalJaw(dentalJaw);
+		lcljOrderTrack.setArticleType(articleType);
+		lcljOrderTrack.setType(flowType);
+		Map<String,String> dataMap = new HashMap<String,String>();
+		try {
+			//保存临床跟踪数据
 //			if(isShouShu.equals("SHOUSHU")) { //如果是手术治疗节点则更新牙位信息
 //				dataMap.put("orderNumber",orderNumber);
 			/*if (dzblService.findCaseHistoryById(id) == null) {
@@ -962,95 +967,93 @@ public class HUDH_FlowAct {
 				throw new Exception("修复方案确认单还没有填写，请填写完再进行提交！");
 			} else {
 			}*/
-            if (dzblService.findCaseHistoryById(id) != null) {
-                if (zzblCheckService.findZzblOprationById(id) != null) {
-                    if (zzblService.findZzblOprationById(id) != null) {
-                        if (rscService.findRepairInforById(id) != null) {
-                            if (dzblService.findFamiliarBook(id) != null || dzblService.findLocatorFamiliares(id).size() > 0) {
-                                flowService.updateOrderTrackNodes(dataMap, flowCode, type, dentalJaw, lcljOrderTrack, request);
-                                YZUtility.DEAL_SUCCESS(null, null, response, logger);
-                            } else {
-                                throw new Exception("知情同意书还没有填写，请填写完再进行提交！");
-                            }
-                        } else {
-                            throw new Exception("修复方案确认单还没有填写，请填写完再进行提交！");
-                        }
-                    } else {
-                        throw new Exception("诊疗方案还没有填写，请填写完再进行提交！");
-                    }
-                } else {
-                    throw new Exception("检查及诊断还没有填写，请填写完再进行提交！");
-                }
-            } else {
-                throw new Exception("主诉及既往病史还没有填写，请填写完再进行提交！");
-            }
+			if(dzblService.findCaseHistoryById(id) != null){
+				if(zzblCheckService.findZzblOprationById(id) != null){
+					if(zzblService.findZzblOprationById(id) != null){
+						if(rscService.findRepairInforById(id) != null){
+						if(dzblService.findFamiliarBook(id) != null || dzblService.findLocatorFamiliares(id).size()>0){
+							flowService.updateOrderTrackNodes(dataMap,flowCode,type,dentalJaw,lcljOrderTrack,request);
+							YZUtility.DEAL_SUCCESS(null,null, response, logger);
+						}else{
+							throw new Exception("知情同意书还没有填写，请填写完再进行提交！");
+						}
+						}else{
+							throw new Exception("修复方案确认单还没有填写，请填写完再进行提交！");
+						}
+					}else{
+						throw new Exception("诊疗方案还没有填写，请填写完再进行提交！");
+					}
+				}else{
+					throw new Exception("检查及诊断还没有填写，请填写完再进行提交！");
+				}
+			}else{
+				throw new Exception("主诉及既往病史还没有填写，请填写完再进行提交！");
+			}
 //				flowService.updateOrderTrackNodes(dataMap,flowCode,type,dentalJaw,lcljOrderTrack,request);
 //			}
-        } catch (Exception ex) {
-            YZUtility.DEAL_ERROR(ex.getMessage(), true, ex, response, logger);
-        }
-        return null;
-    }
-
-    /**
-     * 更改临床路径isobsolete状态，判断是否作废该条数据
-     *
-     * @param request
-     * @param response
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping(value = "/updateLcljOrderTrackIsobsolete.act")
-    public String updateLcljOrderTrackIsobsolete(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String id = request.getParameter("id");
-        if (YZUtility.isNullorEmpty(id)) {
-            throw new Exception("获取临床路径数据失败");
-        }
-        try {
-            flowService.updateLcljOrderTrackIsobsolete(id, request);
-            YZUtility.DEAL_SUCCESS(null, null, response, logger);
-        } catch (Exception e) {
-            YZUtility.DEAL_ERROR(null, false, e, response, logger);
-        }
-        return null;
-    }
-
-    /**
-     * 根据id更新临床路径信息
-     *
-     * @param request
-     * @param response
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping(value = "/updateLcljOrderTrackById.act")
-    public String updateLcljOrderTrackById(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String id = request.getParameter("id");
-        String counsellor = request.getParameter("counsellor");
-        String plant_physician = request.getParameter("plant_physician");
-        String repair_physician = request.getParameter("repair_physician");
-        String clinic_nurse = request.getParameter("clinic_nurse");
-        String customer_service = request.getParameter("customer_service");
-        String imageological_examination = request.getParameter("imageological_examination");
-        String consultation = request.getParameter("consultation");
-        String tooth_texture = request.getParameter("tooth_texture");
-        String abutment_station = request.getParameter("abutment_station");
-        String remark = request.getParameter("remark");
-        String advisory = request.getParameter("advisory");
-        LcljOrderTrack lcljOrderTrack = new LcljOrderTrack();
-        lcljOrderTrack.setId(id);
-        lcljOrderTrack.setCounsellor(counsellor);
-        lcljOrderTrack.setPlantPhysician(plant_physician);
-        lcljOrderTrack.setRepairPphysician(repair_physician);
-        lcljOrderTrack.setClinicNurse(clinic_nurse);
-        lcljOrderTrack.setCustomerService(customer_service);
-        lcljOrderTrack.setImageologicalExamination(imageological_examination);
-        lcljOrderTrack.setConsultation(consultation);
-        lcljOrderTrack.setRemark(remark);
-        lcljOrderTrack.setAbutment_station(abutment_station);
-        lcljOrderTrack.setTooth_texture(tooth_texture);
-        lcljOrderTrack.setAdvisory(advisory);
-        try {
+		} catch (Exception ex) {
+			YZUtility.DEAL_ERROR(ex.getMessage(), true, ex, response, logger);
+		}
+		return null;
+	}
+	
+	/**
+	 * 更改临床路径isobsolete状态，判断是否作废该条数据
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value= "/updateLcljOrderTrackIsobsolete.act")
+	public String updateLcljOrderTrackIsobsolete(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String id = request.getParameter("id");
+		if(YZUtility.isNullorEmpty(id)) {
+			throw new Exception("获取临床路径数据失败");
+		}
+ 		try {
+			flowService.updateLcljOrderTrackIsobsolete(id, request);
+			YZUtility.DEAL_SUCCESS(null, null, response, logger);
+		} catch (Exception e) {
+			YZUtility.DEAL_ERROR(null, false, e, response, logger);
+		}
+		return null;
+	}
+	
+	/**
+	 * 根据id更新临床路径信息
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/updateLcljOrderTrackById.act")
+	public String updateLcljOrderTrackById(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String id = request.getParameter("id");
+		String counsellor = request.getParameter("counsellor");
+		String plant_physician = request.getParameter("plant_physician");
+		String repair_physician = request.getParameter("repair_physician");
+		String clinic_nurse = request.getParameter("clinic_nurse");
+		String customer_service = request.getParameter("customer_service");
+		String imageological_examination = request.getParameter("imageological_examination");
+		String consultation = request.getParameter("consultation");
+		String tooth_texture = request.getParameter("tooth_texture");
+		String abutment_station = request.getParameter("abutment_station");
+		String remark = request.getParameter("remark");
+		String advisory = request.getParameter("advisory");
+		LcljOrderTrack lcljOrderTrack = new LcljOrderTrack();
+		lcljOrderTrack.setId(id);
+		lcljOrderTrack.setCounsellor(counsellor);
+		lcljOrderTrack.setPlantPhysician(plant_physician);
+		lcljOrderTrack.setRepairPphysician(repair_physician);
+		lcljOrderTrack.setClinicNurse(clinic_nurse);
+		lcljOrderTrack.setCustomerService(customer_service);
+		lcljOrderTrack.setImageologicalExamination(imageological_examination);
+		lcljOrderTrack.setConsultation(consultation);
+		lcljOrderTrack.setRemark(remark);
+		lcljOrderTrack.setAbutment_station(abutment_station);
+		lcljOrderTrack.setTooth_texture(tooth_texture);
+		lcljOrderTrack.setAdvisory(advisory);
+		try {
 			/*if (dzblService.findCaseHistoryById(id) == null) {
 				throw new Exception("主诉及既往病史还没有填写，请填写完再进行提交！");
 			} else if (zzblCheckService.findZzblOprationById(id) == null) {
@@ -1064,175 +1067,171 @@ public class HUDH_FlowAct {
 			} else {
 				flowService.updateLcljOrderTrackById(lcljOrderTrack);
 			}*/
-            if (dzblService.findCaseHistoryById(id) != null) {
-                if (zzblCheckService.findZzblOprationById(id) != null) {
-                    if (zzblService.findZzblOprationById(id).size() > 0) {
-                        if (rscService.findRepairInforById(id) != null) {
-                            if (dzblService.findFamiliarBook(id) != null || dzblService.findLocatorFamiliares(id).size() > 0) {
-                                flowService.updateLcljOrderTrackById(lcljOrderTrack);
-                                YZUtility.DEAL_SUCCESS(null, null, response, logger);
-                            } else {
-                                throw new Exception("知情同意书还没有填写，请填写完再进行提交！");
-                            }
-                        } else {
-                            throw new Exception("修复方案确认单还没有填写，请填写完再进行提交！");
-                        }
-                    } else {
-                        throw new Exception("诊疗方案还没有填写，请填写完再进行提交！");
-                    }
-                } else {
-                    throw new Exception("检查及诊断还没有填写，请填写完再进行提交！");
-                }
-            } else {
-                throw new Exception("主诉及既往病史还没有填写，请填写完再进行提交！");
-            }
+			if(dzblService.findCaseHistoryById(id) != null){
+				if(zzblCheckService.findZzblOprationById(id) != null){
+					if(zzblService.findZzblOprationById(id).size()>0){
+						if(rscService.findRepairInforById(id) != null){
+							if(dzblService.findFamiliarBook(id) != null || dzblService.findLocatorFamiliares(id).size()>0){
+								flowService.updateLcljOrderTrackById(lcljOrderTrack);
+								YZUtility.DEAL_SUCCESS(null, null, response, logger);
+							}else{
+								throw new Exception("知情同意书还没有填写，请填写完再进行提交！");
+							}
+						}else{
+							throw new Exception("修复方案确认单还没有填写，请填写完再进行提交！");
+						}
+					}else{
+						throw new Exception("诊疗方案还没有填写，请填写完再进行提交！");
+					}
+				}else{
+					throw new Exception("检查及诊断还没有填写，请填写完再进行提交！");
+				}
+			}else{
+				throw new Exception("主诉及既往病史还没有填写，请填写完再进行提交！");
+			}
 //			flowService.updateLcljOrderTrackById(lcljOrderTrack);
-        } catch (Exception e) {
-            YZUtility.DEAL_ERROR(e.getMessage(), true, e, response, logger);
-        }
-        return null;
-    }
-
-    @RequestMapping(value = "/updateLcljOrderTrackCounsellorById.act")
-    public String updateLcljOrderTrackCounsellorById(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String id = request.getParameter("id");
-        String counsellor = request.getParameter("counsellor");
-        String plant_physician = request.getParameter("plant_physician");
-        String repair_physician = request.getParameter("repair_physician");
-        String clinic_nurse = request.getParameter("clinic_nurse");
-        String customer_service = request.getParameter("customer_service");
-        String imageological_examination = request.getParameter("imageological_examination");
-        String tooth_texture = request.getParameter("tooth_texture");
+		} catch (Exception e) {
+			YZUtility.DEAL_ERROR(e.getMessage(), true, e, response, logger);
+		}
+		return null;
+	}
+	@RequestMapping(value = "/updateLcljOrderTrackCounsellorById.act")
+	public String updateLcljOrderTrackCounsellorById(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String id = request.getParameter("id");
+		String counsellor = request.getParameter("counsellor");
+		String plant_physician = request.getParameter("plant_physician");
+		String repair_physician = request.getParameter("repair_physician");
+		String clinic_nurse = request.getParameter("clinic_nurse");
+		String customer_service = request.getParameter("customer_service");
+		String imageological_examination = request.getParameter("imageological_examination");
+		String tooth_texture = request.getParameter("tooth_texture");
 		/*String consultation = request.getParameter("consultation");
 		
 		String abutment_station = request.getParameter("abutment_station");*/
-        String remark = request.getParameter("remark");
-        //String advisory = request.getParameter("advisory");
-        LcljOrderTrack lcljOrderTrack = new LcljOrderTrack();
-        lcljOrderTrack.setId(id);
-        lcljOrderTrack.setCounsellor(counsellor);
-        lcljOrderTrack.setPlantPhysician(plant_physician);
-        lcljOrderTrack.setRepairPphysician(repair_physician);
-        lcljOrderTrack.setClinicNurse(clinic_nurse);
-        lcljOrderTrack.setCustomerService(customer_service);
-        lcljOrderTrack.setRemark(remark);
-        if (imageological_examination != null && !imageological_examination.equals("")) {
-            lcljOrderTrack.setImageologicalExamination(imageological_examination);
-        }
-        if (tooth_texture != null && !tooth_texture.equals("")) {
-            lcljOrderTrack.setTooth_texture(tooth_texture);
-        }
-        try {
-            flowService.updateLcljOrderTrackById(lcljOrderTrack);
-            YZUtility.DEAL_SUCCESS(null, null, response, logger);
-        } catch (Exception e) {
-            YZUtility.DEAL_ERROR(e.getMessage(), true, e, response, logger);
-        }
-        return null;
-    }
+		String remark = request.getParameter("remark");
+		//String advisory = request.getParameter("advisory");
+		LcljOrderTrack lcljOrderTrack = new LcljOrderTrack();
+		lcljOrderTrack.setId(id);
+		lcljOrderTrack.setCounsellor(counsellor);
+		lcljOrderTrack.setPlantPhysician(plant_physician);
+		lcljOrderTrack.setRepairPphysician(repair_physician);
+		lcljOrderTrack.setClinicNurse(clinic_nurse);
+		lcljOrderTrack.setCustomerService(customer_service);
+		lcljOrderTrack.setRemark(remark);
+		if(imageological_examination!=null && !imageological_examination.equals("")){
+			lcljOrderTrack.setImageologicalExamination(imageological_examination);
+		}
+		if(tooth_texture!=null && !tooth_texture.equals("")){
+			lcljOrderTrack.setTooth_texture(tooth_texture);
+		}
+		try {
+			flowService.updateLcljOrderTrackById(lcljOrderTrack);
+			YZUtility.DEAL_SUCCESS(null, null, response, logger);
+		} catch (Exception e) {
+			YZUtility.DEAL_ERROR(e.getMessage(), true, e, response, logger);
+		}
+		return null;
+	}
 
-    /**
-     * @throws Exception
-     * @Title: editToothBit
-     * @Description: TODO(临床路径编辑牙位图)
-     * @param: @param request
-     * @param: @param response
-     * @param: @return
-     * @return: String
-     * @dateTime:2019年7月25日 下午2:44:05
-     */
-    @RequestMapping("/editToothBit.act")
-    public String editToothBit(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String lcljId = request.getParameter("lcljId");
-        String left_up = request.getParameter("left_up");
-        String left_down = request.getParameter("left_down");
-        String right_up = request.getParameter("right_up");
-        String right_down = request.getParameter("right_down");
-        String repair_left_up = request.getParameter("repair_left_up");
-        String repair_left_down = request.getParameter("repair_left_down");
-        String repair_right_up = request.getParameter("repair_right_up");
-        String repair_right_down = request.getParameter("repair_right_down");
-
-        LcljOrderTrack lTrack = new LcljOrderTrack();
-        if (lcljId != null && !lcljId.equals("")) {
-            lTrack.setId(lcljId);
-        }
-        if (left_up != null && !left_up.equals("")) {
-            lTrack.setLeftUp(left_up);
-        }
-        if (left_down != null && !left_down.equals("")) {
-            lTrack.setLeftDown(left_down);
-        }
-        if (right_up != null && !right_up.equals("")) {
-            lTrack.setRightUp(right_up);
-        }
-        if (right_down != null && !right_down.equals("")) {
-            lTrack.setRightDown(right_down);
-        }
-        if (repair_left_up != null && !repair_left_up.equals("")) {
-            lTrack.setRepairLeftUp(repair_left_up);
-        }
-        if (repair_left_down != null && !repair_left_down.equals("")) {
-            lTrack.setRepairLeftDown(repair_left_down);
-        }
-        if (repair_right_up != null && !repair_right_up.equals("")) {
-            lTrack.setRepairRightUp(repair_right_up);
-        }
-        if (repair_right_down != null && !repair_right_down.equals("")) {
-            lTrack.setRepairRightDown(repair_right_down);
-        }
-        try {
-            Integer data = flowService.editToothBit(lTrack);
-            if (data > 0) {
-                String id = YZUtility.getUUID();
-                Date date = new Date();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
-                OperatingRecord oRecord = new OperatingRecord();
-                oRecord.setId(id);
-                oRecord.setLcljId(lcljId);
-                oRecord.setName(request.getParameter("person"));
-                oRecord.setCreateTime(dateFormat.format(date));
-                flowService.saveOperatingRecord(oRecord);
-                YZUtility.DEAL_SUCCESS(null, "临床路径牙位图修改成功!", response, logger);
-            } else {
-                YZUtility.DEAL_SUCCESS(null, "临床路径牙位图修改失败!", response, logger);
-            }
-        } catch (Exception e) {
-            // TODO: handle exception
-            YZUtility.DEAL_ERROR(e.getMessage(), true, e, response, logger);
-        }
-        return null;
-    }
-
-    @RequestMapping("/findPatientInformation.act")
-    public String findPatientInformation(HttpServletRequest request,
-                                         HttpServletResponse response) throws Exception {
-        try {
-            String usercode = request.getParameter("usercode");
-            String status = request.getParameter("status");
-            String id = request.getParameter("id");
-            String order_number = request.getParameter("order_number");
-            JSONObject jo = flowService.findPatientInformation(usercode, status, id, order_number);
-            YZUtility.DEAL_SUCCESS(jo, null, response, logger);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            YZUtility.DEAL_ERROR(null, false, e, response, logger);
-        }
-        return null;
-    }
-
-    @RequestMapping("/findNodeName.act")
-    public String findNodeName(HttpServletRequest request,
-                               HttpServletResponse response) throws Exception {
-        try {
-            List<LcljNodeConfig> list = flowService.findNodeName();
-            YZUtility.RETURN_LIST(list, response, logger);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            YZUtility.DEAL_ERROR(null, false, e, response, logger);
-        }
-        return null;
-    }
-
-
+	/**
+	  * @Title: editToothBit   
+	  * @Description: TODO(临床路径编辑牙位图)   
+	  * @param: @param request
+	  * @param: @param response
+	  * @param: @return      
+	  * @return: String
+	 * @throws Exception 
+	  * @dateTime:2019年7月25日 下午2:44:05
+	 */
+	@RequestMapping("/editToothBit.act")
+	public String editToothBit(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		String lcljId = request.getParameter("lcljId");
+		String left_up = request.getParameter("left_up");
+		String left_down = request.getParameter("left_down");
+		String right_up = request.getParameter("right_up");
+		String right_down = request.getParameter("right_down");
+		String repair_left_up = request.getParameter("repair_left_up");
+		String repair_left_down = request.getParameter("repair_left_down");
+		String repair_right_up = request.getParameter("repair_right_up");
+		String repair_right_down = request.getParameter("repair_right_down");
+		
+		LcljOrderTrack lTrack = new LcljOrderTrack();
+		if(lcljId !=null && !lcljId.equals("")){
+			lTrack.setId(lcljId);
+		}
+		if(left_up != null && !left_up.equals("")){
+				lTrack.setLeftUp(left_up);
+		}
+		if(left_down!=null && !left_down.equals("")){
+			lTrack.setLeftDown(left_down);
+		}
+		if(right_up != null && !right_up.equals("")){
+			lTrack.setRightUp(right_up);
+		}
+		if(right_down != null && !right_down.equals("")){
+			lTrack.setRightDown(right_down);
+		}
+		if(repair_left_up != null && !repair_left_up.equals("")){
+			lTrack.setRepairLeftUp(repair_left_up);
+		}
+		if(repair_left_down!=null && !repair_left_down.equals("")){
+			lTrack.setRepairLeftDown(repair_left_down);
+		}
+		if(repair_right_up != null && !repair_right_up.equals("")){
+			lTrack.setRepairRightUp(repair_right_up);
+		}
+		if(repair_right_down != null && !repair_right_down.equals("")){
+			lTrack.setRepairRightDown(repair_right_down);
+		}
+		try {
+			Integer data = flowService.editToothBit(lTrack);
+			if(data>0){	
+				String id = YZUtility.getUUID();
+				Date date = new Date();
+				SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
+				OperatingRecord oRecord = new OperatingRecord();
+				oRecord.setId(id);
+				oRecord.setLcljId(lcljId);
+				oRecord.setName(request.getParameter("person"));
+				oRecord.setCreateTime(dateFormat.format(date));
+				flowService.saveOperatingRecord(oRecord);
+				YZUtility.DEAL_SUCCESS(null, "临床路径牙位图修改成功!", response, logger);
+			}else{
+				YZUtility.DEAL_SUCCESS(null, "临床路径牙位图修改失败!", response, logger);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			YZUtility.DEAL_ERROR(e.getMessage(), true, e, response, logger);
+		}
+		return null;
+	}
+	
+	@RequestMapping("/findPatientInformation.act")
+	public String findPatientInformation(HttpServletRequest request, 
+			HttpServletResponse response) throws Exception {
+		try {
+			String usercode=request.getParameter("usercode");
+			String status=request.getParameter("status");
+			String id=request.getParameter("id");
+			String order_number=request.getParameter("order_number");
+		    JSONObject jo = flowService.findPatientInformation(usercode,status,id,order_number);
+			YZUtility.DEAL_SUCCESS(jo,null, response, logger);
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			YZUtility.DEAL_ERROR(null, false, e, response, logger);
+		}
+		return null;
+	}
+	@RequestMapping("/findNodeName.act")
+	public String findNodeName(HttpServletRequest request, 
+			HttpServletResponse response) throws Exception {
+		try {
+		    List<LcljNodeConfig> list = flowService.findNodeName();
+			YZUtility.RETURN_LIST(list, response, logger);
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			YZUtility.DEAL_ERROR(null, false, e, response, logger);
+		}
+		return null;
+	}
 }

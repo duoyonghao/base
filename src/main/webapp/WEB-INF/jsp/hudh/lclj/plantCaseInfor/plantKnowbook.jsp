@@ -151,12 +151,12 @@
 		float: left;
 		margin-left: 2%;
 /*     	margin: 10px 0px 0px 30px; */
-     	margin-top:1%; 
+/*     	margin-top:1%; */
 	}
 	/* 备注输入框 */
 	#content #consent_remark>textarea{
 		width: 95%;
-    	height: 40%;
+    	height: 90px;
     	float: left;
     	background-color: transparent;
 /*     	border:0px; */
@@ -287,8 +287,13 @@
 	    vertical-align: middle;
 	    padding: 0px 8px;
 	}
+	@page{
+		size:205mm 285mm;
+		margin: 0 auto;
+	}
 </style>
 <body style="padding: 0px 2%;">
+<!--startprint-->
 	<div id="content">
 		<h2 class="bigtitle">人工种植牙知情同意书</h2>
 		<i class="line"></i>
@@ -381,11 +386,16 @@
 			14、戴牙后在保质期内，如因严重骨吸收导致的种植体松动、脱落，医生可根据具体情况决定是否再种植，行再次种植时患者需要承担相应费用。
 		</div>
 		<!-- 备注 -->
-		<div id="consent_remark" style="margin-top:1%;">
+		<div id="consent_remark" style="margin-top:0%;">
 			<span>备注:</span><br/>
-			<textarea id="remarks" class="height" rows="3" cols="60" onblur="TextLengthCheck(this.id,200);" style="border: 1px solid #7e7b7b;"></textarea>
+			<textarea id="remarks" class="height" rows="" cols="" onblur="" style="border: 1px solid #7e7b7b;border-radius: 5px"></textarea>
+<%--			<textarea id="remarks" class="height" rows="3" cols="60" onblur="TextLengthCheck(this.id,200);" style="border: 1px solid #7e7b7b;"></textarea>--%>
 		</div>
-		<div class="consent_text" style="font-weight: bold;margin-top:2%;">
+		<div  id="consent_remark_other" style="margin-top:0%;display: none">
+			<span style="vertical-align: top;">备注:</span>
+			<pre class="remarks" style="border: 1px solid #7e7b7b;width:94%;display: inline-block;"></pre>
+		</div>
+		<div class="consent_text" style="font-weight: bold;margin-top:0%;">
 			<p style="margin-left: 60%;" class="font"><i class="colorRed">*</i>以上情况已知悉并确认签字。</p>
 		</div>
 		<!-- 手术签名 -->
@@ -407,6 +417,7 @@
 				<input id="doctortime" type="text" class="consent_time inputheight inputheight2" readonly="readonly" placeholder="请选择日期"/>
 			</div>
 		</div>
+		<!--endprint-->
 		<!-- 按钮 -->
 		<div class="btns">
 			<button id="consent_saveBtn" onclick="save()">保存</button>
@@ -466,7 +477,6 @@
 		    
 	 	   $('.selectpicker').selectpicker({});//初始化种植体系下拉框
 		});
-		
 		/* 2019/7/22 lutian span输入文字长度校验方法   obj：元素id  textLength：限制文字长度 */
 		function importTextLengthCheck(obj,textLength){
 			var objTextVal=$("#"+obj).text();
@@ -537,6 +547,7 @@
 								$("#"+key).text(result[key]);// 可编辑span填框赋值
 							}
 							$("#remarks").text(result["remarks"]);//textarea赋值
+							$(".remarks").text(result["remarks"]);//pre赋值
 							//常用药物select赋值
 							if($("#"+key).find("option")){
 								$("#"+key).selectpicker('val', result[key]);
@@ -573,9 +584,33 @@
 				}
 		  });
 		}
-		
+		// 备注信息
+		function wrappOtherPage(){
+			var height=$("#remarks")[0].scrollHeight;
+			// console.log(height+'-----height');
+			if(height>112){//滚动条高度判断展示区域
+				$("#consent_remark").css("display","none");
+				$("#consent_remark_other").css("display","block").css("margin-top","155px").css("padding-top","50px");
+			}
+		}
 		/* 打印本页面方法 */
-		function myPreviewAll(){
+		function myPreviewAll() {
+			bdhtml=window.document.body.innerHTML;
+			sprnstr="<!--startprint-->";
+			eprnstr="<!--endprint-->";
+			prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);
+			prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
+			var htmlStyle="<style>button{display:none;}*{font-size: 12px;line-height: 18.5px;}.span{vertical-align:bottom;margin-bottom: 10px;}.margin{margin-top:-10px}#logoImg{text-align:left!important;width:27%!important;left:0%!important;top:17px!important;}.height{height:70%!important;}textarea{overflow-x:hidden;overflow-y:hidden;padding-left:50px!important;}.font{font-size: 16px!important;font-weight: bolder;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}";
+			htmlStyle+="#plantingsystemselect{font-size:12px;height:24px;vertical-align:bottom;}.selectTag{border:none;vertical-align:middle;font-size:12px!important;line-height:12px;appearance:none;-webkit-appearance:none;-moz-appearance:none;}select::-ms-expand{display:none;}";
+			htmlStyle+=".plantingsystemselectText{font-size:12px;height:24px;line-height:24px;vertical-align:bottom;margin-bottom:5px;}.selectTag{display:none!important;}.plantingsystemselectText{display:inline-block;}.repairselectText{font-size:12px;height:24px;line-height:24px;vertical-align:bottom;margin-bottom:5px;}.repairselectText{display:inline-block!important;}::-webkit-input-placeholder{color:transparent;}</style>";
+			window.document.body.innerHTML=prnhtml+htmlStyle;
+			wrappOtherPage();//打印另一个备注
+			window.print();  //打印
+			document.body.innerHTML=bdhtml; //恢复页面
+			window.location.reload();
+		};
+
+		function myPreviewAll2(){
 			LODOP=getLodop();  
 			LODOP.PRINT_INIT("人工种植牙知情同意书");
 			//LODOP.SET_PRINT_PAGESIZE(1,0,0,"A4");
@@ -598,6 +633,12 @@
 		
 		//修改
 		function update(){
+			//新增参数
+			var plantingsystemselect = JSON.stringify($("#plantingsystemselect").val()); //种植体系
+			if(!plantingsystemselect || plantingsystemselect=="null"){
+				layer.alert("请选择种植系统！");
+				return;
+			}
 			var patient_name = formParentObj.username;//患者姓名
 			var patient_sex = formParentObj.sex;//患者性别
 			var patient_age = formParentObj.age;//患者年龄
@@ -626,9 +667,7 @@
 			if($("#removabledenture:checked").val()){
 				removableDenture = $("#removabledenture:checked").val();
 			}
-			//新增参数
-			var plantingsystemselect = JSON.stringify($("#plantingsystemselect").val()); //种植体系
-			
+
 			var url = contextPath + '/HUDH_ZzblAskAct/updateFamiliarBookById.act';
 			var param = {
 					 seqId : caseId,
@@ -682,6 +721,12 @@
 		
 		//保存
 		function save() {
+			//新增参数
+			var plantingsystemselect = JSON.stringify($("#plantingsystemselect").val()); //种植体系
+			if(!plantingsystemselect || plantingsystemselect=="null"){
+				layer.alert("请选择种植系统！");
+				return;
+			}
 			var patient_name = formParentObj.username;//患者姓名
 			var patient_sex = formParentObj.sex;//患者性别
 			var patient_age = formParentObj.age;//患者年龄
@@ -710,9 +755,7 @@
 			if($("#removabledenture:checked").val()){
 				removableDenture = $("#removabledenture:checked").val();
 			}
-			//新增参数
-			var plantingsystemselect = JSON.stringify($("#plantingsystemselect").val()); //种植体系
-			
+
 			var url = contextPath + '/HUDH_ZzblAskAct/saveFamiliarBook.act';
 	        var param = {
 					 LcljId :  id,
