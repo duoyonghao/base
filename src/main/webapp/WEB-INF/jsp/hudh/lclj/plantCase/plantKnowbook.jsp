@@ -383,7 +383,7 @@
 		<div class="consent_text">
 			13、缺牙区骨缺损严重时，需先行植骨治疗，必要时需取本人自体少量骨（事先征得本人的同意），植骨后有少数人存在失败的风险。在植骨后6个月进行种植时，大多数人仍需要再次少量植骨，我知悉并同意医生采取植骨治疗且愿意承担相应的骨粉骨膜费用。
 		</div>
-		<div class="consent_text">
+		<div class="consent_text page-break">
 			14、戴牙后在保质期内，如因严重骨吸收导致的种植体松动、脱落，医生可根据具体情况决定是否再种植，行再次种植时患者需要承担相应费用。
 		</div>
 		<!-- 备注 -->
@@ -393,8 +393,8 @@
 <%--			<textarea id="remarks" class="height" rows="3" cols="60" onblur="TextLengthCheck(this.id,200);" style="border: 1px solid #7e7b7b;"></textarea>--%>
 		</div>
 		<div  id="consent_remark_other" style="margin-top:0%;display: none">
-			<span style="vertical-align: top;">备注:</span>
-			<pre class="remarks" style="border: 1px solid #7e7b7b;width:94%;display: inline-block;"></pre>
+			<span style="vertical-align: top;display: block;">备注:</span>
+			<pre class="remarks" style="border: 1px solid #7e7b7b;width:95%;display: inline-block;margin-left: 30px;"></pre>
 		</div>
 		<div class="consent_text" style="font-weight: bold;margin-top:0%;">
 			<p style="margin-left: 60%;" class="font"><i class="colorRed">*</i>以上情况已知悉并确认签字。</p>
@@ -591,10 +591,11 @@
 		// 备注信息
 		function wrappOtherPage(){
 			var height=$("#remarks")[0].scrollHeight;
-			// console.log(height+'-----height');
+			// console.log(height+'-----height');.css("margin-top","155px").css("padding-top","50px")
 			if(height>112){//滚动条高度判断展示区域
+				$(".page-break").css("page-break-after","always");
 				$("#consent_remark").css("display","none");
-				$("#consent_remark_other").css("display","block").css("margin-top","155px").css("padding-top","50px");
+				$("#consent_remark_other").css("display","block").css("padding-top","25px");
 			}
 		}
 		/* 打印本页面方法 */

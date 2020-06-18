@@ -670,7 +670,7 @@
 	
 			<!-- 粘膜情况 -->
 			<div class="container-fluid examine_continer" style="margin: 10px -5px;">
-		<div class="row" style="background: #ddd;height: 120px;margin: 0px;">
+		<div id="remarkbox" class="row page-break" style="background: #ddd;height: 120px;margin: 0px;">
 			<div class="col-md-12 col-sm-12 col-xs-12 colDefined">
 				<!-- 多选框 -->
 				<div  class="zl_multiple">
@@ -724,16 +724,16 @@
 				
 			</div>
 			<div id="others_container" class="zl_optiondiv" style="margin-left: 20px;">
-				<span style="vertical-align: top;">其他</span>
+				<span style="vertical-align: top;">其他:</span>
 <%--				<input id="others" placeholder="" onblur="TextLengthCheck(this.id,10);" style="width: 60%;" type="text"/>--%>
 				<textarea id="others" onblur=""  style="border-radius:5px;border: 1px solid #7e7b7b;width:95%;display: inline-block;padding-left: 5px;height: 80px;"></textarea>
 			</div>
 		</div>
-		<div class="row" style="margin-top: 27px;margin: 0">
+		<div class="row" style="margin-top: 27px;margin: 0;">
 			<div id="consent_remark_other" class="row" style="display: none">
 				<div style="margin-top:1%;margin-left: 20px;">
-					<span style="vertical-align: top;">其他</span>
-					<pre class="others" style="border: 1px solid #7e7b7b;width:95%;display: inline-block;"></pre>
+					<span style="vertical-align: top;display: block;">其他:</span>
+					<pre class="others" style="border: 1px solid #7e7b7b;width:95%;display: inline-block;margin-left: 30px;"></pre>
 				</div>
 			</div>
 			<div class="col-md-6 col-sm-6 col-xs-6 colDefined"></div>
@@ -1316,9 +1316,11 @@
 		function wrappOtherPage(){
 			var height=$("#others")[0].scrollHeight;
 			// console.log(height+"---");
-			if(height>78){//滚动条高度判断展示区域
-				$("#consent_remark_other").css("display","block").css("margin-top","155px").css("padding-top","50px");
+			if(height>78){//滚动条高度判断展示区域.css("margin-top","155px").css("padding-top","50px")
+				$(".page-break").css("page-break-after","always");
+				$("#consent_remark_other").css("display","block").css("padding-top","25px");
 				$("#others_container").css("display","none");
+				$("#remarkbox").css("height","40px");
 			}
 		}
 		function myPreviewAll() {
