@@ -486,7 +486,7 @@
 		<if test="querytype != null and querytype !='' ">
 			and (
 			reg.doctor in (${querytype}) or reg.repairdoctor in (${querytype}) or reg.askperson in (${querytype}) or reg.createuser in (${querytype})
-			or EXISTS (select regno from KQDS_COSTORDER_DETAIL where reg.seq_id=regno and (askperson in ( ${querytype}) or doctor in (${querytype}) or createuser in(${querytype}))
+			or EXISTS (select regno from KQDS_COSTORDER_DETAIL where reg.seq_id=regno and (askperson in ( ${querytype}) or doctor in (${querytype}) or createuser in(${querytype})))
 			or EXISTS (select regno from KQDS_TOOTH_DOC where reg.seq_id=regno and createuser in ( ${querytype}))
 			or EXISTS (select regno from KQDS_MEDICALRECORD where reg.seq_id=regno and  createuser in ( ${querytype}))
 			or EXISTS (select usercode from KQDS_MEMBER_RECORD where us.usercode=usercode and  askperson in (${querytype}))
