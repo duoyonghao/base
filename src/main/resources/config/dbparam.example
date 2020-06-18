@@ -14,7 +14,7 @@ db.jdbc.conurl = jdbc:jtds:sqlserver://localhost:1433;DatabaseName=kqds;SelectMe
 ############### 正式环境
 #db.jdbc.conurl = jdbc:jtds:sqlserver://192.168.1.138:1433;DatabaseName=kqds;SelectMethod=Cursor
 db.jdbc.userName = sa
-db.jdbc.passward = 1
+db.jdbc.passward = HUDH_1234
 #db.jdbc.passward = 1
 #db.jdbc.passward = 1
 db.jdbc.initialSize=20
