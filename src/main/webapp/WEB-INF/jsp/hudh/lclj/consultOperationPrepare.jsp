@@ -111,7 +111,7 @@
 						<div style="margin-left: 30px;vertical-align: top;">
 							<ul>
 								<li class="positionLi jwsLi">
-									<label><input name="Consultation" type="checkbox" value="询问既往史" /><font class="ask_Previous" onclick="showHiddenClick(this,'jwsLi');">1、询问既往史及体格检查</font></label>
+									<label><input name="Consultation" type="checkbox" disabled="disabled" value="询问既往史" /><font class="ask_Previous" onclick="showHiddenClick(this,'jwsLi');">1、询问既往史及体格检查</font></label>
 									<div class="caseContiner" style="display:none;">
 										<div class="zlCases"></div>
 										<div class="selectCases">
@@ -123,7 +123,7 @@
 									<label><input name="plantRecords" type="checkbox" value="种植病历"><font class="plantRecords">新种植病历</font></label>
 								</li>
 								<li class="positionLi jczdLi">
-									<label><input name="Consultation" type="checkbox" value="口内检查" /><font class="examine_diagnose" onclick="showHiddenClick(this,'jczdLi');">2、口腔专科检查</font></label>
+									<label><input name="Consultation" type="checkbox" disabled="disabled" value="口内检查" /><font class="examine_diagnose" onclick="showHiddenClick(this,'jczdLi');">2、口腔专科检查</font></label>
 									<div class="caseContiner" style="display:none;">
 										<div class="zlCases"></div>
 										<div class="selectCases">
@@ -134,7 +134,7 @@
 								</li>
 								<li><label><input name="Consultation" type="checkbox" value="术前讨论" />3、术前讨论</label></li>
 								<li class="positionLi zlCasesLi">
-									<label class="zlCasesLiText"><input name="Consultation" type="checkbox" value="制定手术方案和治疗计划" /><font class="diagnosis_case" onclick="showHiddenClick(this,'zlCasesLi');">4、制定手术方案和治疗计划</font></label>
+									<label class="zlCasesLiText"><input name="Consultation" type="checkbox" disabled="disabled" value="制定手术方案和治疗计划" /><font class="diagnosis_case" onclick="showHiddenClick(this,'zlCasesLi');">4、制定手术方案和治疗计划</font></label>
 									<div class="caseContiner" style="display:none;">
 										<div class="zlCases"></div>
 										<div class="selectCases">
@@ -207,7 +207,7 @@
 									</div>
 								</li>
 								<li class="positionLi xffaLi">
-									<label>18、<input name="Consultation" id="" type="checkbox" value="修复方案"/><font class="xiufu_test" onclick="showHiddenClick(this,'xffaLi');">修复方案</font></label>
+									<label>18、<input name="Consultation" id="" type="checkbox" disabled="disabled" value="修复方案"/><font class="xiufu_test" onclick="showHiddenClick(this,'xffaLi');">修复方案</font></label>
 									<div class="caseContiner" style="display:none;">
 										<div class="zlCases"></div>
 										<div class="selectCases">
@@ -386,7 +386,7 @@
 	  		type:2,
 	  		closeBtn:1,
 	  		content:contextPath + "/ZzblViewAct/toAnamnesisThirdInfor.act",
-	  		area:['90%','80%'],
+			area:userAgent.indexOf("iPad") > -1 ? ['100%','95%'] : ['90%','80%'],
 	  		cancel: function(){
 	  		},
 	  		end:function(){
@@ -941,11 +941,20 @@
 				//console.log(JSON.stringify(r)+"--------------返回数据一");
 				layer.alert(r.retMsrg, {
 		            end: function() {
-		          	  window.parent.location.reload(); //刷新父页面
-		                var frameindex = parent.layer.getFrameIndex(window.name);
-		                parent.layer.close(frameindex); //再执行关闭
+		          	  //window.parent.location.reload(); //刷新父页面
+		                //var frameindex = parent.layer.getFrameIndex(window.name);
+		                //parent.layer.close(frameindex); //再执行关闭
 		            }
 		        });
+				if(r.retMsrg=="操作成功"){
+					layer.alert(r.retMsrg, {
+						end: function() {
+							window.parent.location.reload(); //刷新父页面
+							var frameindex = parent.layer.getFrameIndex(window.name);
+							parent.layer.close(frameindex); //再执行关闭
+						}
+					});
+				}
 			}, function(r) {
 				//console.log(JSON.stringify(r)+"--------------返回数据二");
 				layer.alert(r.retMsrg, {
