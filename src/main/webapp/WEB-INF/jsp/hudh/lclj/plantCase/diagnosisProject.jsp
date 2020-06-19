@@ -52,6 +52,25 @@
 			size: auto;
 			margin: 0mm auto;
 		}
+		#replaceBox{
+			display: none;
+			height: auto;
+			border:1px solid rgb(221, 221, 221);
+			margin:10px;
+			overflow-x: hidden;
+			white-space: pre-wrap;
+		}
+		@media print {
+			.consent_remark{
+				margin-top: 40px !important;
+			}
+			.zl_signature>span{
+				margin-top: 5px;
+			}
+			#replaceBox{
+				font-size: 12px;
+			}
+		}
 	</style>
 </head>
 <body>
@@ -588,10 +607,11 @@
 		<!-- 备注 -->
 		<div style="font-size: 15px;font-weight: bold;">备注:</div>
 		<div class="col-md-12 col-sm-12 col-xs-12 colDefined">
-			<div id="consent_remark">
-				<textarea id="remark" rows="" cols="" autoHeight="true" style="border: 1px solid #ddd;margin:0 10px 0px 10px;overflow-y: hidden;"></textarea>
-				<%--onblur="TextLengthCheck(this.id,200);"--%>
+			<div class="consent_remark">
+				<div id="consent_remark" class="overstriking" style="margin: 0 10px;"></div>
+				<textarea id="remark" rows="" cols="" autoHeight="true" style="border: 1px solid #ddd;margin:15px 10px 5px 10px;overflow-y: hidden;width:100%;"></textarea>
 			</div>
+			<pre id="replaceBox"></pre>
 		</div>
 
 		<!-- 手术签名 -->
@@ -754,6 +774,7 @@
 						$("#"+key).attr("value",result[key]);// 填框赋值
 						$("#remark").text(result["remark"]);//textarea赋值
 						$("#remark").trigger("keyup");
+						$("#replaceBox").text(result["remark"]);//textarea替换框赋值
 						if(result[key].indexOf(";")>0){
 							var checkboxVal= result[key];//拼接多选框的值
 							var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
@@ -1121,14 +1142,16 @@
 	function doPrint() {
 		if(textareaHeight>120){
 			$(".twopage").css("page-break-after","always");
-		}
+		};
+		$("#remark").css("display","none");
+		$("#replaceBox").css("display","block");
 		$(".twoitem").css('margin-top','27px%');
 		bdhtml=window.document.body.innerHTML;
 		sprnstr="<!--startprint-->";
 		eprnstr="<!--endprint-->";
 		prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);
 		prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
-		var htmlStyle="<style>button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}#diagnosis_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.one{margin-left: 42px!important;}.inputheight2{border: 1px solid transparent!important;}#consent_signature{width:100%!important;}	.consent_updateBtn{display:none!important;}.btns{display:none!important;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;top:17px!important;}</style>";
+		var htmlStyle="<style>button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}#diagnosis_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.one{margin-left: 42px!important;}.inputheight2{border: 1px solid transparent!important;}#consent_signature{width:100%!important;}	.consent_updateBtn{display:none!important;}.btns{display:none!important;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;top:17px!important;}#remark{font-size: 14px!important;line-height: 18px!important;}</style>";
 		window.document.body.innerHTML=prnhtml+htmlStyle;
 		window.print();  //打印
 		document.body.innerHTML=bdhtml; //恢复页面
