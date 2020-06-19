@@ -733,7 +733,7 @@
 			<div id="consent_remark_other" class="row" style="display: none">
 				<div style="margin-top:1%;margin-left: 20px;">
 					<span style="vertical-align: top;display: block;">其他:</span>
-					<pre class="others" style="border: 1px solid #7e7b7b;width:95%;display: inline-block;margin-left: 30px;"></pre>
+					<pre class="others" style="border: 1px solid #7e7b7b;width:95%;display: inline-block;margin-left: 30px;white-space: pre-wrap"></pre>
 				</div>
 			</div>
 			<div class="col-md-6 col-sm-6 col-xs-6 colDefined"></div>

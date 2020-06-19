@@ -394,7 +394,7 @@
 		</div>
 		<div  id="consent_remark_other" style="margin-top:0%;display: none">
 			<span style="vertical-align: top;display: block;">备注:</span>
-			<pre class="remarks" style="border: 1px solid #7e7b7b;width:95%;display: inline-block;margin-left: 30px;"></pre>
+			<pre class="remarks" style="border: 1px solid #7e7b7b;width:95%;display: inline-block;margin-left: 30px;white-space: pre-wrap"></pre>
 		</div>
 		<div class="consent_text" style="font-weight: bold;margin-top:0%;">
 			<p style="margin-left: 60%;" class="font"><i class="colorRed">*</i>以上情况已知悉并确认签字。</p>
