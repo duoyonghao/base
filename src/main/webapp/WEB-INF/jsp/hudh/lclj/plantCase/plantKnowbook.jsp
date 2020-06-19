@@ -389,7 +389,7 @@
 		<!-- 备注 -->
 		<div id="consent_remark" style="margin-top:0%;">
 			<span>备注:</span><br/>
-			<textarea id="remarks" class="height" rows="" cols="" onblur="" style="border: 1px solid #7e7b7b;border-radius: 5px"></textarea>
+			<textarea id="remarks" class="height" rows="" cols="" autoHeight="true" style="border: 1px solid #7e7b7b;border-radius: 5px;overflow-y: hidden;"></textarea>
 <%--			<textarea id="remarks" class="height" rows="3" cols="60" onblur="TextLengthCheck(this.id,200);" style="border: 1px solid #7e7b7b;"></textarea>--%>
 		</div>
 		<div  id="consent_remark_other" style="margin-top:0%;display: none">
@@ -477,6 +477,27 @@
  			getButtonAllCurPage(menuid);
 			
  			$('.selectpicker').selectpicker({});//初始化种植体系下拉框
+
+			//textarea高度自适应
+			$.fn.autoHeight = function(){
+				function autoHeight(elem){
+					elem.style.height = 'auto';
+					elem.scrollTop = 0; //防抖动
+					elem.style.height = elem.scrollHeight + 'px';
+					height = elem.style.height.split("px")[0];
+					consent_remark_height=Number(height);
+					// console.log(height+'-----height');
+				}
+
+				this.each(function(){
+					autoHeight(this);
+					$(this).on('keyup', function(){
+						autoHeight(this);
+						$("#consent_remark").css("height",consent_remark_height+60+"px");
+					});
+				});
+			}
+			$('textarea[autoHeight]').autoHeight();
 		});
 		
 		/* 2019/7/16 lutian input文字长度校验方法   obj：元素id  textNum：限制文字长度 */
@@ -548,6 +569,7 @@
 							if($("#"+key).attr("contenteditable")=='true'){
 								$("#"+key).text(result[key]);// 可编辑span填框赋值
 							}
+							$("#remarks").trigger("keyup");
 							$("#remarks").text(result["remarks"]);//textarea赋值
 							$(".remarks").text(result["remarks"]);//pre赋值
 							//常用药物select赋值
@@ -586,16 +608,14 @@
 				}
 		  });
 		}
-		
-		/* 打印本页面方法 */
 		// 备注信息
 		function wrappOtherPage(){
-			var height=$("#remarks")[0].scrollHeight;
-			// console.log(height+'-----height');.css("margin-top","155px").css("padding-top","50px")
-			if(height>112){//滚动条高度判断展示区域
+			var textarea_height=height;
+			$("#consent_remark").css("display","none");
+			$("#consent_remark_other").css("display","block");
+			if(textarea_height>80){//滚动条高度判断展示区域
 				$(".page-break").css("page-break-after","always");
-				$("#consent_remark").css("display","none");
-				$("#consent_remark_other").css("display","block").css("padding-top","25px");
+				$("#consent_remark_other").css("padding-top","25px");
 			}
 		}
 		/* 打印本页面方法 */

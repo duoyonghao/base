@@ -265,6 +265,9 @@
 	    -webkit-appearance: none;
 	    outline: none;
 	}
+	textarea{
+		min-height: auto!important;
+	}
 	/* 种植体系select */
 	.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
 		width: 180px; 
@@ -388,18 +391,18 @@
 		<!-- 备注 -->
 		<div id="consent_remark" style="margin-top:0%;">
 			<span>备注:</span><br/>
-			<textarea id="remarks" class="height" rows="" cols="" onblur="" style="border: 1px solid #7e7b7b;border-radius: 5px"></textarea>
+			<textarea id="remarks" class="height" rows="" cols="" autoHeight="true" style="border: 1px solid #7e7b7b;border-radius: 5px;overflow-y: hidden;"></textarea>
 <%--			<textarea id="remarks" class="height" rows="3" cols="60" onblur="TextLengthCheck(this.id,200);" style="border: 1px solid #7e7b7b;"></textarea>--%>
 		</div>
 		<div  id="consent_remark_other" style="margin-top:0%;display: none">
 			<span style="vertical-align: top;display: block;">备注:</span>
 			<pre class="remarks" style="border: 1px solid #7e7b7b;width:95%;display: inline-block;margin-left: 30px;white-space: pre-wrap"></pre>
 		</div>
-		<div class="consent_text" style="font-weight: bold;margin-top:0%;">
-			<p style="margin-left: 60%;" class="font"><i class="colorRed">*</i>以上情况已知悉并确认签字。</p>
-		</div>
 		<!-- 手术签名 -->
-		<div id="consent_signature">
+		<div id="consent_signature" style="width:100%">
+			<div class="consent_text" style="font-weight: bold;margin-top:0%;">
+				<p style="margin-left: 60%;" class="font"><i class="colorRed">*</i>以上情况已知悉并确认签字。</p>
+			</div>
 			<!-- 患者签名 -->
 			<div class="signature_time" style="margin-top: 1%;">
 				<div class="signature_box">
@@ -476,6 +479,26 @@
 	        };
 		    
 	 	   $('.selectpicker').selectpicker({});//初始化种植体系下拉框
+			//textarea高度自适应
+			$.fn.autoHeight = function(){
+				function autoHeight(elem){
+					elem.style.height = 'auto';
+					elem.scrollTop = 0; //防抖动
+					elem.style.height = elem.scrollHeight + 'px';
+					height = elem.style.height.split("px")[0];
+					consent_remark_height=Number(height);
+					// console.log(height+'-----height');
+				}
+
+				this.each(function(){
+					autoHeight(this);
+					$(this).on('keyup', function(){
+						autoHeight(this);
+						$("#consent_remark").css("height",consent_remark_height+60+"px");
+					});
+				});
+			}
+			$('textarea[autoHeight]').autoHeight();
 		});
 		/* 2019/7/22 lutian span输入文字长度校验方法   obj：元素id  textLength：限制文字长度 */
 		function importTextLengthCheck(obj,textLength){
@@ -547,6 +570,7 @@
 								$("#"+key).text(result[key]);// 可编辑span填框赋值
 							}
 							$("#remarks").text(result["remarks"]);//textarea赋值
+							$("#remarks").trigger("keyup");
 							$(".remarks").text(result["remarks"]);//pre赋值
 							//常用药物select赋值
 							if($("#"+key).find("option")){
@@ -586,13 +610,12 @@
 		}
 		// 备注信息
 		function wrappOtherPage(){
-			var height=$("#remarks")[0].scrollHeight;
-			// console.log(height+'-----height');
-			if(height>112){//滚动条高度判断展示区域.css("margin-top","155px").css("padding-top","50px")
+			var textarea_height=height;
+			$("#consent_remark").css("display","none");
+			$("#consent_remark_other").css("display","block");
+			if(textarea_height>80){//滚动条高度判断展示区域
 				$(".page-break").css("page-break-after","always");
-				$("#consent_remark_other").css("display","block").css("padding-top","25px");
-				$("#consent_remark").css("display","none");
-
+				$("#consent_remark_other").css("padding-top","25px");
 			}
 		}
 		/* 打印本页面方法 */
@@ -602,7 +625,7 @@
 			eprnstr="<!--endprint-->";
 			prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);
 			prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
-			var htmlStyle="<style>button{display:none;}*{font-size: 12px;line-height: 18.5px;}.span{vertical-align:bottom;margin-bottom: 10px;}.margin{margin-top:-10px}#logoImg{text-align:left!important;width:27%!important;left:0%!important;top:17px!important;}.height{height:70%!important;}textarea{overflow-x:hidden;overflow-y:hidden;padding-left:50px!important;}.font{font-size: 16px!important;font-weight: bolder;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}";
+			var htmlStyle="<style>button{display:none;}*{font-size: 12px;line-height: 18.5px;}.span{vertical-align:bottom;margin-bottom: 10px;}.margin{margin-top:-10px}#logoImg{text-align:left!important;width:27%!important;left:0%!important;top:17px!important;}textarea{overflow-x:hidden;overflow-y:hidden;padding-left:5px!important;}.font{font-size: 16px!important;font-weight: bolder;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}";
 			htmlStyle+="#plantingsystemselect{font-size:12px;height:24px;vertical-align:bottom;}.selectTag{border:none;vertical-align:middle;font-size:12px!important;line-height:12px;appearance:none;-webkit-appearance:none;-moz-appearance:none;}select::-ms-expand{display:none;}";
 			htmlStyle+=".plantingsystemselectText{font-size:12px;height:24px;line-height:24px;vertical-align:bottom;margin-bottom:5px;}.selectTag{display:none!important;}.plantingsystemselectText{display:inline-block;}.repairselectText{font-size:12px;height:24px;line-height:24px;vertical-align:bottom;margin-bottom:5px;}.repairselectText{display:inline-block!important;}::-webkit-input-placeholder{color:transparent;}</style>";
 			window.document.body.innerHTML=prnhtml+htmlStyle;

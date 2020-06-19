@@ -726,7 +726,7 @@
 			<div id="others_container" class="zl_optiondiv" style="margin-left: 20px;">
 				<span style="vertical-align: top;">其他:</span>
 <%--				<input id="others" placeholder="" onblur="TextLengthCheck(this.id,10);" style="width: 60%;" type="text"/>--%>
-				<textarea id="others" onblur=""  style="border-radius:5px;border: 1px solid #7e7b7b;width:95%;display: inline-block;padding-left: 5px;height: 80px;"></textarea>
+				<textarea id="others" autoHeight="true"  style="border-radius:5px;border: 1px solid #7e7b7b;width:95%;display: inline-block;padding-left: 5px;overflow-y: hidden;"></textarea>
 			</div>
 		</div>
 		<div class="row" style="margin-top: 27px;margin: 0;">
@@ -740,7 +740,7 @@
 			<div class="signature_time" style="width: 45%;margin-left: 55%;position: relative;">
 				<div class="zl_signature">
 					<span id="doctorSignature">医生签字：</span>
-					<img id="img" style="width:156px;height: 43px;"/>
+					<img id="img" style="width:156px;height: 30px;"/>
 				</div>
 				<input style="width: 35%;position: absolute;right: 0px;bottom: 0px;text-align: center;" id="doctortime" type="text" class="consent_time inputheight2" readonly="readonly" placeholder="请选择日期"/>
 			</div>
@@ -797,6 +797,27 @@
 			document.ondragstart = function() {
 	            return false;
 	        };
+
+		//textarea高度自适应
+			$.fn.autoHeight = function(){
+				function autoHeight(elem){
+					elem.style.height = 'auto';
+					elem.scrollTop = 0; //防抖动
+					elem.style.height = elem.scrollHeight + 'px';
+					height = elem.style.height.split("px")[0];
+					consent_remark_height=Number(height);
+					// console.log(height+'-----height');
+				}
+
+				this.each(function(){
+					autoHeight(this);
+					$(this).on('keyup', function(){
+						autoHeight(this);
+						$("#remarkbox").css("height",consent_remark_height+60+"px");
+					});
+				});
+			}
+			$('textarea[autoHeight]').autoHeight();
 		});
 		var doctorSignature = document.getElementById("doctorSignature");    
 		doctorSignature.onclick = function(){ 
@@ -865,6 +886,7 @@
 						for(var key in result){
 							//console.log(key+"-------------"+result[key]);
 							$("#"+key).attr("value",result[key]);// 填框赋值
+							$("#others").trigger("keyup");
 							if(key=="others"){
 								$("#"+key).text(result[key]);//textarea赋值
 								$("."+key).text(result[key]);// pre赋值
@@ -1312,15 +1334,15 @@
 		    }
 		    $("#bottomBarDdiv").append(menubutton1);
 		}
-		// 备注信息
+		// 其他
 		function wrappOtherPage(){
-			var height=$("#others")[0].scrollHeight;
-			// console.log(height+"---");
-			if(height>78){//滚动条高度判断展示区域.css("margin-top","155px").css("padding-top","50px")
+			var textarea_height=height;
+			$("#consent_remark_other").css("display","block");
+			$("#others_container").css("display","none");
+			$("#remarkbox").css("height","30px");
+			if(textarea_height>80){//滚动条高度判断展示区域
 				$(".page-break").css("page-break-after","always");
-				$("#consent_remark_other").css("display","block").css("padding-top","25px");
-				$("#others_container").css("display","none");
-				$("#remarkbox").css("height","45px");
+				$("#consent_remark_other").css("padding-top","25px");
 			}
 		}
 		function myPreviewAll() {
