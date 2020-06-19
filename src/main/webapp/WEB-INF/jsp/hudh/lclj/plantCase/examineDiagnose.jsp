@@ -1446,7 +1446,7 @@
 				$(".page-break").css("page-break-after","always");
 				$("#consent_remark_other").css("display","block").css("padding-top","25px");
 				$("#others_container").css("display","none");
-				$("#remarkbox").css("height","30px");
+				$("#remarkbox").css("height","45px");
 			}
 		}
 		function myPreviewAll() {
