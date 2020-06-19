@@ -1186,12 +1186,22 @@
 		$("#bottomBarDdiv").append(menubutton1);
 	}
 	function doPrint() {
-
 		if(textareaHeight>120) {
 			$(".twopage").css("page-break-after", "always");
 		};
 		$("#remark").css("display","none");
 		$("#replaceBox").css("display","block");
+
+		var sicktime = $("#patienttime").val();
+		if(!sicktime){
+			$("#patienttime").css('display','none')
+		}
+
+		var doctorTime = $("#doctortime").val();
+		if(!doctorTime){
+			$("#doctortime").css('display','none')
+		}
+
 
 		bdhtml=window.document.body.innerHTML;
 		sprnstr="<!--startprint-->";
