@@ -266,6 +266,10 @@ footer a.btnCommon{/* 底部按钮在基础按钮样式btn.Common的基础上 �
 	outline: 0px auto -webkit-focus-ring-color !important;
 	outline-offset: -2px;
 }
+.bootstrap-select.btn-group .dropdown-menu li a:focus {
+    border:0px solid blue;
+    outline: none;
+}
 </style>
 </head>
 <body>
