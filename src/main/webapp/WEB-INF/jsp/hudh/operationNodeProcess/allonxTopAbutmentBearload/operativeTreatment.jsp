@@ -111,7 +111,7 @@
 											<input class="time_select" name="operation_time" type="text" id="operation_time" placeholder="请选择时间" style="width: 105px;vertical-align: middle;" readonly="readonly"/></label></li>
 											<li><label><i style="color: red;font-style: normal;">*</i>2、<input name="preoperation_one_houres" type="checkbox" value="2、术前1小时，口服抗菌药物"  id="preoperation_one_houres"/>术前1小时口服抗菌药物</label></li>
 											<li><label><i style="color: red;font-style: normal;">*</i>3、<input name="preoperative_verification" type="checkbox" value="3、术前核查" id="preoperative_verification"/><font class="operation_examine">术前核查</font></label></li>
-											<li><label><i style="color: red;font-style: normal;">*</i><input name="preoperative_verification" type="checkbox" value="3、术前核查" id="preoperative_patientsAndDoc"/><font class="operation_examine_patients">术前核查单（新）</font></label></li>
+<%--											<li><label><i style="color: red;font-style: normal;">*</i><input name="preoperative_verification" type="checkbox" value="3、术前核查" id="preoperative_patientsAndDoc"/><font class="operation_examine_patients">术前核查单（新）</font></label></li>--%>
 											<li>
 												<div class="preparation-ul">
 													<div><span style="font-weight: bold;" class=""><i style="color: red;font-style: normal;">*</i>4、麻醉方式：</span></div>

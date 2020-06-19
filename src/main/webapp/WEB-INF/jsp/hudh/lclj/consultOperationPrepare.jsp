@@ -95,13 +95,13 @@
 <body>
 	<div>
 		<!-- 测试按钮 lutian 2020/05/29  -->
-		<div class="btnTest">
-			<button class="principleBtnGB">主诉改版</button>
-			<button class="principleBtn">主诉测试</button>
-			<button class="operationRecord">种植牙手术记录</button>
-			<button class="repairRecord">修复治疗记录</button>
-			<button class="postoperationItem">种植牙术后注意事项</button>
-		</div>
+<%--		<div class="btnTest">--%>
+<%--			<button class="principleBtnGB">主诉改版</button>--%>
+<%--			<button class="principleBtn">主诉测试</button>--%>
+<%--			<button class="operationRecord">种植牙手术记录</button>--%>
+<%--			<button class="repairRecord">修复治疗记录</button>--%>
+<%--			<button class="postoperationItem">种植牙术后注意事项</button>--%>
+<%--		</div>--%>
 		<!-- -------------------------- -->
 		<table align="center"  id="operationBefore_form" style="width:100%;margin:70px auto 15px;">
 			<tbody>
@@ -120,7 +120,7 @@
 										</div>
 									</div>
 									<br/>
-									<label><input name="plantRecords" type="checkbox" value="种植病历"><font class="plantRecords">新种植病历</font></label>
+<%--									<label><input name="plantRecords" type="checkbox" value="种植病历"><font class="plantRecords">新种植病历</font></label>--%>
 								</li>
 								<li class="positionLi jczdLi">
 									<label><input name="Consultation" type="checkbox" disabled="disabled" value="口内检查" /><font class="examine_diagnose" onclick="showHiddenClick(this,'jczdLi');">2、口腔专科检查</font></label>

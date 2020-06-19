@@ -75,12 +75,23 @@
 		border:0px solid red;
 		outline: none;
 	}
+	#replaceBox{
+		display: none;
+		height: auto;
+		border:1px solid rgb(221, 221, 221);
+		margin:10px;
+		overflow-x: hidden;
+		white-space: pre-wrap;
+	}
 	@media print {
 		.consent_remark{
 			margin-top: 40px !important;
 		}
 		.zl_signature>span{
 			margin-top: 5px;
+		}
+		#replaceBox{
+			font-size: 12px;
 		}
 		.zl_signature>input{
 			margin-right: 0px;
@@ -550,6 +561,7 @@
 				<div class="overstriking" style="margin: 0 10px;">修复相关需求:</div>
 				<textarea id="requirerestor" rows="" cols="" autoHeight="true" style="border: 1px solid #ddd;margin:15px 10px 5px 10px;overflow-y: hidden;"></textarea>
 			</div>
+			<pre id="replaceBox"></pre>
 		</div>
 		<!-- 签名 -->
 		<!-- 签名 -->
@@ -723,6 +735,7 @@
 							$("#"+key).attr("value",result[key]);// 填框赋值
 							$("#requirerestor").text(result["requirerestor"]);//textarea赋值
 							$("#requirerestor").trigger("keyup");
+							$("#replaceBox").text(result["requirerestor"]);//textarea替换框赋值
 							if(result[key].indexOf(";")>0){
 								var checkboxVal= result[key];//拼接多选框的值
 								var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
@@ -1256,6 +1269,8 @@
 
 		function doPrint() {
 			$("input").removeAttr("placeholder");
+			$("#requirerestor").css("display","none");
+			$("#replaceBox").css("display","block");
 			bdhtml=window.document.body.innerHTML;
 			sprnstr="<!--startprint-->";
 			eprnstr="<!--endprint-->";
