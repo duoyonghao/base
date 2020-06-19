@@ -32,7 +32,7 @@ public class ZzblViewAct {
 	@RequestMapping("/tolocatorKnowbookInfor.act")
 	public ModelAndView tolocatorKnowbookInfor(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/hudh/lclj/plantCaseInfor/newlocatorKnowbook.jsp");
+		mv.setViewName("/hudh/lclj/plantCaseInfor/locatorKnowbook.jsp");
 		return mv;
 	}
 	
@@ -225,7 +225,7 @@ public class ZzblViewAct {
 		String id = request.getParameter("id");
 		mView.addObject("order_number", order_number);
 		mView.addObject("id", id);
-		mView.setViewName("/hudh/lclj/plantCase/newlocatorKnowbook.jsp");
+		mView.setViewName("/hudh/lclj/plantCase/locatorKnowbook.jsp");
 		return mView;
 	}
 	
