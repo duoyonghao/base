@@ -1154,20 +1154,6 @@
 			return toothString;
 		};
 
-		/*//判断文本框是否换页打印
-		$("#remark").on("click",function(){
-			 realHeight = document.getElementById("remark").scrollHeight;
-			 clientHeight = document.getElementById("remark").clientHeight;
-			document.getElementById("remark").scrollTop=realHeight;
-			if(realHeight>clientHeight){
-				//console.log("TODO:超过行数")
-				$(".twopage").css("page-break-after","always");
-				$(".twoitem").css("margin-top","20px");
-			}else{
-				//console.log("TODO:没有超过行数")
-			}
-		});*/
-
 		function getButtonPower() {
 		    var menubutton1 = "";
 		    for (var i = 0; i < listbutton.length; i++) {
@@ -1178,9 +1164,6 @@
 		    $("#bottomBarDdiv").append(menubutton1);
 		}
 		function doPrint() {
-			/*if(realHeight>clientHeight) {
-				$("#remark").css("height", "600px");
-			}*/
 			if(textareaHeight>120){
 				$(".twopage").css("page-break-after","always");
 			}
