@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
 <%
 	String contextPath = request.getContextPath();
 	if (contextPath.equals("")) {
@@ -146,7 +146,7 @@
 								<li><label><input name="Consultation" type="checkbox" value="向患者交代诊疗过程" />5、向患者交代诊疗过程</label></li>
 								<li><label><input name="Consultation" type="checkbox" value="拍照" />6、拍照</label></li>
 							</ul>
-						</div>	
+						</div>
 					</td>
 					<td style="vertical-align: top;width:200px;">
 						<div style="margin-left: 30px;vertical-align: top;">
@@ -165,10 +165,10 @@
 									<div>
 										<label><input name="plantKnowbook" type="checkbox" value="LOCATOR覆盖义齿即刻负重(即刻用)知情同意书"><font class="locatorKnowbook">LOCATOR覆盖义齿即刻负重(即刻用)知情同意书</font></label><br/>
 									</div>
-									
+
 								</li>
 							</ul>
-						</div>	
+						</div>
 					</td>
 					<td style="vertical-align: top;width:270px;">
 						<div style="margin-left: 30px;">
@@ -185,9 +185,9 @@
 								<li><label>13、<input name="Consultation" type="checkbox" value="牙周治疗" />牙周治疗</label></li>
 								<li><label>14、<input name="Consultation" type="checkbox" value="检验：血常规、血糖、感染性疾病、凝血4项" />检验：血常规、血糖、感染性疾病、凝血4项</label></li>
 								<!-- <li><label><input name="before_Modulo_bite" id="before_Modulo_bite" type="checkbox" value="15、术前取模、定咬合关系"/>15、术前取模、定咬合关系</label></li> -->
-								<li><label>222、<input name="Consultation" type="checkbox" value="人工种植牙知情同意书" /><font class="dentalImplant">人工种植牙知情同意书</font></label></li>
+								<%--<li><label>222、<input name="Consultation" type="checkbox" value="人工种植牙知情同意书" /><font class="dentalImplant">人工种植牙知情同意书</font></label></li>--%>
 							</ul>
-						</div>	
+						</div>
 					</td>
 					<td style="vertical-align: top;width:400px;">
 						<div style="margin-left: 30px;">
@@ -216,8 +216,8 @@
 										</div>
 									</div>
 								</li>
-							   <li><label><input name="Consultation" type="checkbox" value="告知通知书" /><font class="inform">19、告知通知书</font></label></li>
-							    <li><label><input name="Consultation" type="checkbox" value="诊疗方案" /><font class="case">20、诊疗方案</font></label></li> 
+							 <%--  <li><label><input name="Consultation" type="checkbox" value="告知通知书" /><font class="inform">19、告知通知书</font></label></li>
+							    <li><label><input name="Consultation" type="checkbox" value="诊疗方案" /><font class="case">20、诊疗方案</font></label></li>--%>
 							</ul>
 						</div>
 					</td>
@@ -240,7 +240,7 @@
 										<label><input name="tooth_texture" type="checkbox" value="半口-固定版氧化锆牙桥" >(11)、半口-固定版氧化锆牙桥</label>
 									</div>
 								</li>
-							</ul> 
+							</ul>
 						</div> -->
 						<div class='tooth_texture' style="margin-bottom: 135px;">
 					    	<span>19、牙冠材质:</span>
@@ -280,7 +280,7 @@
 					                <input id="texture_half" type="checkbox" class='options_titleText'><label for="texture_half">半口</label>
 					            </div>
 					            <ul class='options_list'>
-					            	<li> 
+					            	<li>
 					                	<input id="half_gego" name="tooth_texture" type="checkbox" value="半口-可摘型德国GEGO牙桥"><label for="half_gego">(1)、半口-可摘型德国GEGO牙桥</label>
 					                </li>
 					                <li>
@@ -307,7 +307,7 @@
 					<td></td>
 					<td>
 		            	 <!--.commonText“就诊分类”文本的样式 提供布局  -->	<!--.colorRed 星号为红色及位置调整 -->
-						 <span class="commonText"></i>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</span>	
+						 <span class="commonText"></i>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</span>
 					</td>
 					<td colspan="3">	<!--.dict 本身无样式 与载入数据功能有关 -->
 						<!-- <input class="whiteInp" type="text" id="counsellor" name="counsellor" placeholder="咨询师" readonly onClick="javascript:single_select_user(['receiveno', 'counsellor'],'single');" />-->
@@ -316,19 +316,19 @@
 				</tr>
 			</tbody>
 		</table>
-		
+
 		<!-- 2019/7/10 lutian 电子病历提示滚动文字 -->
 		<marquee direction="left" behavior="scroll" scrolldelay="1000" loop="-1" scrollamount="70">请优先录入5个表单（1、既往史；2、口腔检查；4、手术方案；9、知情书；18、修复方案）。</marquee>
-		
-		<footer style="padding-bottom: 10px"> 
+
+		<footer style="padding-bottom: 10px">
 			<!-- .clear2 本身无样式 -->
 			<div class="clear2"></div>
 			<!--.btnCommon自定义的按钮常规样式   -->
 			<a class="kqdsSearchBtn bigBtn" style="margin-top: 119px;margin-left: 49%;" onclick="createSSInfo()">提交</a>
 		</footer>
 	</div>
-	
-	
+
+
 	<script type="text/javascript" src="<%=contextPath%>/static/js/app/plugin/jquery.js"></script>
 	<script type="text/javascript" src="<%=contextPath%>/static/plugin/layer-v2.4/layer/layer.js"></script>
 	<script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/util.js"></script>
@@ -350,19 +350,19 @@
 		titleclick();//牙冠材质移入移除显示隐藏
         checkFather();//根据父元素判断子元素选中状态
         checkOne();//根据子元素判断父元素选中状态
-        
+
      	// 2019/7/24 lutian 禁止页面拖拽
         document.ondragstart = function() {
             return false;
         };
-        
+
 
         initCaseHistory();  //初始化主诉及既往病史
         initZzblOpration(); //初始化检查及诊断
         initDiagnosisProject(); //初始化诊疗方案
         initRepairProject(); //初始化修复方案
        	//dProjectclick(); //诊疗方案移入移除显示隐藏
-       	
+
        	//全局监听
         document.addEventListener("click",function(event){
         	event=event||window.event;
@@ -376,9 +376,9 @@
         });//所有组件添加点击事件
 
 	});
-	
+
 	/* 测试按钮js lutian 2020/05/29 */
-	
+
 	//主诉改版
 	$(".principleBtnGB").click(function(){
 	  	parent.layer.open({
@@ -392,9 +392,9 @@
 	  		end:function(){
 	  			window.location.reload();//刷新本页面
 	  		}
-	  	}); 
+	  	});
 	  });
-	
+
 	//主诉
 	$(".principleBtn").click(function(){
 	  	parent.layer.open({
@@ -408,9 +408,9 @@
 	  		end:function(){
 	  			window.location.reload();//刷新本页面
 	  		}
-	  	}); 
+	  	});
 	  });
-	
+
 	//种植牙手术记录
 	$(".operationRecord").click(function(){
 		var plant_physician,clinic_nurse; //种植医生，配台护士  lutian 2020/05/29
@@ -428,11 +428,11 @@
 				plant_physician=data.plant_physician; //种植医生
 				clinic_nurse=data.clinic_nurse; //配台护士
 			}
-		}); 
+		});
 		if(plant_physician=="" || clinic_nurse==""){
 			editLclj("该患者种植医师、修复医师、诊室护士未填写，是否进行编辑?");
 			return false;
-		} 
+		}
 	  	parent.layer.open({
 	  		title:"种植牙手术记录",
 	  		type:2,
@@ -444,9 +444,9 @@
 	  		end:function(){
 	  			window.location.reload();//刷新本页面
 	  		}
-	  	}); 
+	  	});
 	  });
-	
+
 	//修复治疗记录
 	$(".repairRecord").click(function(){
 	  	parent.layer.open({
@@ -460,9 +460,9 @@
 	  		end:function(){
 	  			window.location.reload();//刷新本页面
 	  		}
-	  	}); 
+	  	});
 	  });
-	
+
 	//种植术后注意事项
 	$(".postoperationItem").click(function(){
 	  	parent.layer.open({
@@ -476,11 +476,11 @@
 	  		end:function(){
 	  			window.location.reload();//刷新本页面
 	  		}
-	  	}); 
+	  	});
 	  });
-	
+
 	/* ------------------------------------- */
-	
+
 	function editLclj(hint){
 		layer.confirm(hint,{
 			   btn: ['确认', '取消'],
@@ -499,7 +499,7 @@
 			layer.close(index);
 		});
 	}
-	
+
 	var count=0;//选中的input个数
     //牙冠材质移入移除显示隐藏
     function  titleclick(){
@@ -531,7 +531,7 @@
         			count=0;
     			}
     		});
-    		
+
     	});
     }
     //根据子元素判断父元素选中状态
@@ -550,12 +550,12 @@
         			$(this).parents(".options").find(".options_titleText").removeAttr("checked");
         		}
     		});
-    		
+
     	});
     }
-	
+
 	//判断要填写的选项是否已填写并选中
-	function checkOptions(){ 
+	function checkOptions(){
 		//console.log(id+"---------------"+order_number);
 		/* 判断主诉及既往病史 */
 //		var askPreviousurl = contextPath + '/HUDH_ZzblAskAct/findCaseH	istoryById.act';
@@ -575,7 +575,7 @@
 					}   */
 //					$('input').attr("disabled",true)
 					$("#remark").val(result.remark);
-					
+
 					//基台放置信息赋值
 					var select_abutment_station = result.abutment_station;
 					if(select_abutment_station){
@@ -588,7 +588,7 @@
 							})
 						}
 					}
-					
+
 					//牙冠材质信息赋值
 					var select_tooth_texture = result.tooth_texture;
 					if(select_tooth_texture){
@@ -607,7 +607,7 @@
 							})
 						}
 					}
-					 
+
 					//基台放置信息赋值
 				    var select_imagelogic = result.imageological_examination;
 					if(select_imagelogic){
@@ -620,7 +620,7 @@
 							})
 						}
 					}
-					
+
 					//其他信息赋值
 					var select_consultation = result.consultation;
 					if(select_consultation){
@@ -631,9 +631,9 @@
 								   $(this).attr("checked","checked").attr("disabled","disabled");
 								}
 							})
-						} 
+						}
 					}
-				
+
 			}
 	  });
 		/* 判断新种植病历情况记录*/
@@ -667,7 +667,7 @@
 				/* 判断是否已经填写过内容 */
 				if(result.seqId){
 					$(".plantKnowbook").prev().attr("checked","checked").attr("disabled","disabled");
-				} 
+				}
 			}
 	  });
 		/* 判断拔牙手术知情同意书*/
@@ -686,7 +686,7 @@
 				/* 判断是否已经填写过内容 */
 				if(result.seqId){
 					$(".pulloutKnowbook").prev().attr("checked","checked").attr("disabled","disabled");
-				} 
+				}
 			}
 	  });
 		/* 判断LOCATOR覆盖义齿即刻负重(即刻用)知情同意书*/
@@ -705,10 +705,10 @@
 				/* 判断是否已经填写过内容 */
 				if(result.seqId){
 					$(".locatorKnowbook").prev().attr("checked","checked").attr("disabled","disabled");
-				} 
+				}
 			}
 	  });
-		
+
 		//告知通知书
 		var gztzsurl = contextPath + '/HUDH_NotificationAct/findNotificationByLcljId.act';
 		$.ajax({
@@ -716,7 +716,7 @@
 			type:"POST",
 			dataType:"json",
 			data : {
-				LcljId :  id, 
+				LcljId :  id,
 				LcljNum : order_number
 			},
 			success:function(result){
@@ -737,7 +737,7 @@
 			type:"POST",
 			dataType:"json",
 			data : {
-				id : id 
+				id : id
 			},
 			success:function(result){
 				if(result!=null){
@@ -777,9 +777,9 @@
 	  		end:function(){
 	  			window.location.reload();//刷新本页面
 	  		}
-	  	}); 
+	  	});
 	  });
-	
+
 	//诊疗方案
 	  $(".case").click(function(){
 	  	parent.layer.open({
@@ -793,10 +793,10 @@
 	  		end:function(){
 	  			window.location.reload();//刷新本页面
 	  		}
-	  	}); 
+	  	});
 	  });
-	  
-	  
+
+
 	//人工种植牙知情同意书
 	  $(".dentalImplant").click(function(){
 	  	parent.layer.open({
@@ -810,20 +810,20 @@
 	  		end:function(){
 	  			window.location.reload();//刷新本页面
 	  		}
-	  	}); 
+	  	});
 	  });
 
 	//点击弹出层
-	var userAgent = navigator.userAgent; 
+	var userAgent = navigator.userAgent;
 	//签署种植牙知情同意书     ZzblViewAct.java
-	  $(".plantKnowbook").click(function(){	
+	  $(".plantKnowbook").click(function(){
 			parent.layer.open({
 		  		title:"种植牙知情同意书",
 		  		type:2,
 		  		closeBtn:1,
 		  		content:contextPath + "/ZzblViewAct/toPlantKnowbookInfor.act",
 		  		area:userAgent.indexOf("iPad") > -1 ? ['100%','95%'] : ['80%','80%'],
-		  		cancel: function(){ 
+		  		cancel: function(){
 		  		},
 		  		end:function(){
 		  			window.location.reload();//刷新本页面
@@ -838,7 +838,7 @@
 		  		closeBtn:1,
 		  		content:contextPath + "/ZzblViewAct/topulloutKnowbook.act",
 		  		area:userAgent.indexOf("iPad") > -1 ? ['100%','95%'] : ['80%','80%'],
-		  		cancel: function(){ 
+		  		cancel: function(){
 		  		},
 		  		end:function(){
 		  			window.location.reload();//刷新本页面
@@ -853,7 +853,7 @@
 		  		closeBtn:1,
 		  		content:contextPath + "/ZzblViewAct/tolocatorKnowbook.act",
 		  		area:userAgent.indexOf("iPad") > -1 ? ['100%','95%'] : ['80%','80%'],
-		  		cancel: function(){ 
+		  		cancel: function(){
 		  		},
 		  		end:function(){
 			  		window.location.reload();//刷新本页面
@@ -866,15 +866,15 @@
 		  		title:"种植病历",
 		  		type:2,
 		  		closeBtn:1,
-		  		content:contextPath+'/ZzblViewAct/toDentalExamination.act',	  		
+		  		content:contextPath+'/ZzblViewAct/toDentalExamination.act',
 		  		area:userAgent.indexOf("iPad") > -1 ? ['100%','95%'] : ['80%','80%'],
-		  		cancel: function(){ 
+		  		cancel: function(){
 		  		},
 		  		end:function(){
 		  			window.location.reload();//刷新本页面
 		  		}
 		  	});
-		  	
+
 		  });
 	//修复方案
 	 /*  $(".xiufu_test").click(function(){
@@ -882,7 +882,7 @@
 				editLclj("该患者种植医师和修复医师未填写，是否进行编辑?");
 			}else if(plantPhysician==''&&repairPhysician!=''){
 				editLclj("该患者种植医师未填写，是否进行编辑?");
-				
+
 			}else if(plantPhysician!=''&&repairPhysician==''){
 				editLclj("该患者修复医师未填写，是否进行编辑?");
 			}else{
@@ -892,15 +892,15 @@
 			  		closeBtn:1,
 			  		content:contextPath + "/ZzblViewAct/toRepairProjectInfor.act",
 			  		area:['100%','90%'],
-			  		cancel: function(){ 
+			  		cancel: function(){
 			  		},
 			  		end:function(){
 			  			window.location.reload();//刷新本页面
 			  		}
-			  	}); 
+			  	});
 			}
 	  }); */
-	
+
 	  function createSSInfo() {
 		  if(plantPhysician==''&&repairPhysician==''){
 				editLclj("该患者种植医师和修复医师未填写，是否进行编辑?");
@@ -935,7 +935,7 @@
 					remark : remark,
 					advisory : advisory
 			};
-			
+
 			var url = '<%=contextPath%>/HUDH_FlowAct/updateLcljOrderTrackById.act';
 			$.axseSubmit(url, param, function() {}, function(r) {
 				//console.log(JSON.stringify(r)+"--------------返回数据一");
@@ -976,7 +976,7 @@
 	          imageological_examination = imageological_examination + obj[k].value + ';';//拼接字符串
 	      }
 	      return imageological_examination;
-	  } 
+	  }
 	  //获取专家会诊
 	  function showConsultation(){
 	      var obj = document.getElementsByName("Consultation");
@@ -999,7 +999,7 @@
 	      }
 	      return advisory;
 	  } */
-		
+
 	//获取会诊
 	  function showAdvisory(){
 	      var obj = document.getElementsByName("Advisory");
@@ -1011,7 +1011,7 @@
 	      }
 	      return advisory;
 	  }
-	
+
 	  //获取基台放置信息
 	  function abutmentStation(){
 	      var obj = document.getElementsByName("abutment_station");
