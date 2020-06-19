@@ -98,6 +98,10 @@
 		margin: 9px 0px;
 		padding-left: 10px;
 	}
+	.btns>button:focus{
+		border:0px solid red;
+		outline: none;
+	}
 </style>
 <body>
 <!--startprint-->
@@ -1241,6 +1245,7 @@
 						}
 					}
 					caseId=seqidFather;  //病历id
+					//console.log(JSON.stringify(result)+"---------------result");
 					/* 判断是否已经填写过内容 */
 					if(result.seqId){
 						$("#consent_saveBtn").css("display","none");//隐藏保存按钮
@@ -1250,7 +1255,7 @@
 							//console.log(key+"-------------"+result[key]);
 							$("#"+key+"[type='text']").attr("value",result[key]);// 填框赋值
 							//常用药物select赋值
-							if($("#"+key).find("option")){
+							if($("#"+key).find("option").length>0 && result[key]!=null){
 								$("#"+key).selectpicker('val', result[key]);
 								$("."+key).text(result[key]);
 								/*$("#"+key).find("option").each(function(i,obj){
@@ -1267,17 +1272,19 @@
 								   $(this).attr("checked","checked");
 								}
 							})
-							if(result[key].indexOf(";")>0){
-								var checkboxVal= result[key];//拼接多选框的值
-								var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
-								for(var i=0;i<checkboxValArr.length;i++){
-									$("input[name="+key+"]").each(function(){
-										if($(this).val()==checkboxValArr[i]){
-										   $(this).attr("checked","checked");
-										}
-									})
+							if(result[key]){
+								if(result[key].indexOf(";")>0){
+									var checkboxVal= result[key];//拼接多选框的值
+									var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
+									for(var i=0;i<checkboxValArr.length;i++){
+										$("input[name="+key+"]").each(function(){
+											if($(this).val()==checkboxValArr[i]){
+												$(this).attr("checked","checked");
+											}
+										})
+									}
 								}
-							} 
+							}
 							if(key.indexOf("is")>=0 && result[key]==1){
 								$("input[name="+key+"]").each(function(i,obj){
 									if($(this).val()==1){
@@ -1877,7 +1884,7 @@
 			htmlStyle+=".mainSuitInfo{padding:0px!important;}.chiefComplaint{padding:0px 0px 0px 0px!important;margin:0px!important;}.common_style span, #anamnesis_continer .common_style label{margin-top:5px!important;}.smoking input{margin-top:2px!important;}.patientInfo{padding-left:0px!important;}.mainSuitInfo{padding-left:0px!important;height:40px!important;padding-bottom:0px!important;}.question_row{margin-top:10px!important;}.question_row .colDefined{height:18px!important;}.question_text{height:18px!important;font-size:12px!important;margin:0px!important;}.plantTooth_reason li{height:22px!important;margin-bottom:0px!important;}";
 			htmlStyle+=".plantTooth_reason input{vertical-align:middle!important;}.question_row .colDefined input{display:inline-block!important;height:20px!important;}.question_twoInfo{height:30px!important;}.question_twoInfo .select_item input{vertical-align:middle!important;margin-top:10px!important;}#question_three{margin-top:0px!important;}.loseTooth_option>li label{margin-top:5px!important;}.signature_box span{font-size:12px!important;}#denture{background-color:white!important;}.loseTooth_time>span,input{display:inline!important;}.loseTooth_time{width:auto!important;}.common_style{background-color: transparent!important;}";
 			htmlStyle+="input[type='text']{border:0px!important;padding:0px!important;text-align:center!important;font-weight:bold!important;}#agomphostime,#planttime{padding-left:10px!important;text-align:left!important;vertical-align:top;}#drugallergy{width:270px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important;}#onmedication{width:570px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important;}#habit{width:660px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important;}#others{width:660px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important;}";
-			htmlStyle+="#antifreezing{width:170px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important}#lasttoothextractiontime{border-bottom:1px solid #adaaaa!important;}#doctorSignature{border:1px solid red;}.medicineText{display:block;margin-top: 6px!important;}.selectgroup{display:none !important;}";
+			htmlStyle+="#antifreezing{width:170px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important}#lasttoothextractiontime{border-bottom:1px solid #adaaaa!important;}.medicineText{display:block;margin-top: 6px!important;}.selectgroup{display:none !important;}";
 			htmlStyle+=".backColor{background-color:transparent!important;}.backcolorGray{background-color:#f5f5f5!important;}.selectgroup .groupSelect{margin-top:4px!important;font-size:10px;height:18px;appearance:none;-webkit-appearance:none;-moz-appearance:none;}select::-ms-expand{display:none;}#consent_updateBtn{display:none!important;}.question_two{margin-bottom:5px!important;}</style>";
 			var html="<!DOCTYPE html>"+document.getElementsByTagName("html")[0].innerHTML+htmlStyle;
 			LODOP.ADD_PRINT_HTM(0,0,"100%","100%",html);
