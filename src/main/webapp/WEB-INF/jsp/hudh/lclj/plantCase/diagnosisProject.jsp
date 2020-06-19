@@ -589,7 +589,7 @@
 		<div style="font-size: 15px;font-weight: bold;">备注:</div>
 		<div class="col-md-12 col-sm-12 col-xs-12 colDefined">
 			<div id="consent_remark">
-				<textarea id="remark" rows="" cols="" autoHeight="true" style="border: 1px solid #ddd;margin:0 10px 0px 10px;overflow-y: hidden;"></textarea>
+				<textarea id="remark" rows="" cols="" autoHeight="true" style="border: 1px solid #ddd;margin:0 10px 0px 10px;overflow-y: hidden;width:100%;"></textarea>
 				<%--onblur="TextLengthCheck(this.id,200);"--%>
 			</div>
 		</div>
