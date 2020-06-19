@@ -1146,6 +1146,17 @@
 		$("#remark").css("display","none");
 		$("#replaceBox").css("display","block");
 		$(".twoitem").css('margin-top','27px%');
+
+		var sicktime = $("#patienttime").val();
+		if(!sicktime){
+			$("#patienttime").css('display','none')
+		}
+
+		var doctorTime = $("#doctortime").val();
+		if(!doctorTime){
+			$("#doctortime").css('display','none')
+		}
+
 		bdhtml=window.document.body.innerHTML;
 		sprnstr="<!--startprint-->";
 		eprnstr="<!--endprint-->";
