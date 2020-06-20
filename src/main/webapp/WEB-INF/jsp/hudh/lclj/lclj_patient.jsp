@@ -267,6 +267,11 @@
 		margin-left: 25px
 	}	
 	.formBox{overflow: visible;}
+    .bootstrap-select .dropdown-toggle:focus {
+        outline: 0px dotted #333333 !important;
+        outline: 0px auto -webkit-focus-ring-color !important;
+        outline-offset: -2px;
+    }
 </style>
 </head>
 <body>

@@ -46,7 +46,7 @@
 		font-weight: normal;
 	}
 	img[src=""],img:not([src]){
-      opacity:0;
+        opacity:0;
  	}
  	#logoImg{
 	    width: 10%;
@@ -65,14 +65,40 @@
 		size:206mm 280mm;
 		margin: 0px auto;
 	}
+    .zl_signature>input{
+        margin-right: 20px;
+    }
+    .btns>button:focus{
+        border:0px solid red;
+        outline: none;
+    }
+	#replaceBox{
+		display: none;
+		height: auto;
+		border:1px solid rgb(221, 221, 221);
+		margin:10px;
+		overflow-x: hidden;
+        white-space: pre-wrap;
+	}
+    @media print {
+        .consent_remark{
+            margin-top: 40px !important;
+        }
+        .zl_signature>span{
+            margin-top: 5px;
+        }
+		#replaceBox{
+			font-size: 12px;
+		}
+    }
 </style>
 <body>
 <!--startprint-->
 	<div id="repair_continer" class="container-fluid">
 		<!-- 标题 -->
 		<div class="row restore" style="border-bottom: 2px solid #776c6c;margin-top:20px;">
-			<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
-			<i class="line"></i>
+			<%--<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
+			<i class="line"></i>--%>
 			<div style="padding-bottom: 10px;">
 				<span class="bigtitle">修复方案确认单</span>
 			</div>
@@ -525,44 +551,45 @@
 			<!-- 修复相关需求 -->
 			<div class="consent_remark">
 				<div class="overstriking" style="margin: 0 10px;">修复相关需求:</div>
-				<textarea id="requirerestor" rows="" cols="" autoHeight="true" style="border: 1px solid #ddd;margin:0 10px 5px 10px;overflow-y: hidden;"></textarea>
+				<textarea id="requirerestor" rows="" cols="" autoHeight="true" style="border: 1px solid #ddd;margin:15px 10px 5px 10px;overflow-y: hidden;"></textarea>
 			</div>
+			<pre id="replaceBox"></pre>
 		</div>
 		<!-- 签名 -->
 		<!-- 签名 -->
 		
 	</div>
-	
-	<div class="row">
-			<!-- <div class="col-md-3 col-sm-3 col-xs-3 colDefined">
-				<div class="zl_signature">
-					<span>客服：</span>
-					<div id="servicesignature"></div>
-					<input id="servicetime" type="text" class="consent_time signature_time"/>
-				</div>
-			</div> -->
-			<div class="col-md-12 col-sm-12 col-xs-12 colDefined" style="margin-top: 13px;">
-				<div class="zl_signature">
-					<span id="doctorSignature" style="display: inline;">手术医生：</span>
-					<img id="img" style="display: inline-block;width: 12%;height: 30px;"/>
-					<input id="operationdoctortime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期" style="width:12%;"/>
-				</div>
-			</div>
-			 <div class="col-md-12 col-sm-12 col-xs-12 colDefined">
-				<div class="zl_signature">
-					<span id="repairDoctorSignature" style="display: inline;">修复医生：</span>
-					<img id="repairImg" style="display: inline-block;width: 12%;height: 30px;"/>
-					<input id="doctortime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期" style="width:12%;"/>
-				</div>
-			</div> 
-			<div class="col-md-12 col-sm-12 col-xs-12 colDefined">
-				<div class="zl_signature">
-					<span id="patientSignature" style="display: inline;">患者签名：</span>
-					<img id="patientimg" style="display: inline-block;width: 12%;height: 30px;"/>
-					<input id="patienttime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期" style="width:12%;"/>
-				</div>
-			</div>
-		</div>
+
+        <div class="row">
+            <!-- <div class="col-md-3 col-sm-3 col-xs-3 colDefined">
+                <div class="zl_signature">
+                    <span>客服：</span>
+                    <div id="servicesignature"></div>
+                    <input id="servicetime" type="text" class="consent_time signature_time"/>
+                </div>
+            </div> -->
+            <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
+                <div class="zl_signature" style="display: flex;justify-content: space-between;">
+                    <span id="doctorSignature" style="display: inline;">手术医生：</span>
+                    <img id="img" style="display: inline-block;height: 30px;"/>
+                    <input id="operationdoctortime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期" style="width:20%;min-width: 70px;"/>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
+                <div class="zl_signature" style="display: flex;justify-content: space-between;">
+                    <span id="repairDoctorSignature" style="display: inline;">修复医生：</span>
+                    <img id="repairImg" style="display: inline-block;height: 30px;"/>
+                    <input id="doctortime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期" style="width:20%;min-width: 70px;"/>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
+                <div class="zl_signature" style="display: flex;justify-content: space-between;">
+                    <span id="patientSignature" style="display: inline;">患者签名：</span>
+                    <img id="patientimg" style="display: inline-block;height: 30px;"/>
+                    <input id="patienttime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期" style="width:20%;min-width: 70px;"/>
+                </div>
+            </div>
+        </div>
 	</div>
 	<!--endprint-->
 	<!-- 按钮 -->
@@ -751,6 +778,7 @@
 							$("#"+key).attr("value",result[key]);// 填框赋值
 							$("#requirerestor").text(result["requirerestor"]);//textarea赋值
 							$("#requirerestor").trigger("keyup");
+							$("#replaceBox").text(result["requirerestor"]);//textarea替换框赋值
 							if(result[key].indexOf(";")>0){
 								var checkboxVal= result[key];//拼接多选框的值
 								var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
@@ -1390,6 +1418,8 @@
 		
 		function doPrint() {
 			$("input").removeAttr("placeholder");
+			$("#requirerestor").css("display","none");
+			$("#replaceBox").css("display","block");
 		    bdhtml=window.document.body.innerHTML;
 		    sprnstr="<!--startprint-->";
 		    eprnstr="<!--endprint-->";

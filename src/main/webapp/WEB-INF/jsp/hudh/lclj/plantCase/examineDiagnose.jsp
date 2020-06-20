@@ -29,7 +29,7 @@
 <style type="text/css">
 	label{
 		font-weight: normal;
-		margin-top: 18px;
+		margin-top: 0px;
 	}
 	input::-webkit-input-placeholder{
 		font-size: 14px;
@@ -103,7 +103,7 @@
 	<div class="container-fluid examine_continer">
 		<!-- 身体状况评估 -->
 		<div class="row">
-			<div>
+<%--			<div>--%>
 				<!-- 多选框 -->
 				<div  class="zl_multiple">
 					<!-- 选项 -->
@@ -144,13 +144,13 @@
 						</li>	
 					</ul>
 				</div>
-			</div>
-			<div >
+<%--			</div>--%>
+<%--			<div >--%>
 				<!-- 多选框 -->
-				<div  class="zl_multiple" >
+				<div  class="zl_multiple">
 				
 					<!-- 选项 -->
-					<ul style=" border-bottom: 2px solid #776c6c;padding-bottom: 11px;">
+					<ul style="border-bottom: 2px solid #776c6c;padding-bottom: 30px;">
 					
 					<li>
 							<!-- 选项框 -->
@@ -188,7 +188,7 @@
 						</li>
 					</ul>
 				</div>
-			</div>
+<%--			</div>--%>
 		</div>
 	</div>
 	
@@ -458,7 +458,7 @@
 					<li style="width:14%" class="yuanyin1">
 							<!-- 选项框 -->
 							<div class="zl_optiondiv">
-								<div style="margin-top: 20px;font-weight: 600;">牙齿缺失原因：</div>
+								<div style="margin-top:5px;font-weight: 600;">牙齿缺失原因：</div>
 							</div>
 						</li>
 						<li style="width:16%" class="yuanyin">
@@ -520,7 +520,7 @@
 					<li style="width:14%" class="yuanyin1">
 							<!-- 选项框 -->
 							<div class="zl_optiondiv">
-								<div style="margin-top: 20px;font-weight: 600;">粘膜情况：</div>
+								<div style="margin-top:5px;font-weight: 600;">粘膜情况：</div>
 							</div>
 						</li>
 						<li style="width:16%" class="yuanyin">
@@ -560,7 +560,7 @@
 			<div class="col-md-12 col-sm-12 col-xs-12 colDefined" style="margin-top:10px;">
 				<div style="font-weight:600;">X线所示：</div>
 				<ul class="tooth_xrayfillWrite" style="height:40px;">
-					<li>
+					<li  style="width:30%;">
 						<!-- 填写框 -->
 						<div class="zl_fillWritediv">
 							<span>牙槽嵴顶矩上颌窦底:</span>
@@ -568,7 +568,7 @@
 							<span>mm</span>
 						</div>
 					</li>
-					<li>
+					<li  style="width:22%;">
 						<!-- 填写框 -->
 						<div class="zl_fillWritediv">
 							<span>距鼻底:</span>
@@ -576,7 +576,7 @@
 							<span>mm</span>
 						</div>
 					</li>
-					<li>
+					<li  style="width:25%;">
 						<!-- 填写框 -->
 						<div class="zl_fillWritediv">
 							<span>距下牙槽神经管:</span>
@@ -584,7 +584,7 @@
 							<span>mm</span>
 						</div>
 					</li>
-					<li>
+					<li  style="width:22%;">
 						<!-- 填写框 -->
 						<div class="zl_fillWritediv">
 							<span>牙槽嵴宽度:</span>
@@ -664,7 +664,7 @@
 	
 			<!-- 粘膜情况 -->
 			<div class="container-fluid examine_continer" style="margin: 10px -5px;">
-		<div class="row" style="background: #ddd;">
+		<div id="remarkbox" class="row page-break" style="background: #ddd;">
 			<div class="col-md-12 col-sm-12 col-xs-12 colDefined">
 				<!-- 多选框 -->
 				<div  class="zl_multiple">
@@ -721,15 +721,15 @@
 <%--				<span>其他</span><input id="others" placeholder="" onblur="TextLengthCheck(this.id,10);" style="width: 60%;" type="text"/>--%>
 <%--			</div>--%>
 			<div id="others_container" class="zl_optiondiv" style="margin-left: 20px;">
-				<span style="vertical-align: top;">其他</span>
-				<textarea id="others" onblur=""  style="border-radius:5px;border: 1px solid #7e7b7b;width:95%;display: inline-block;padding-left: 5px;height: 80px;"></textarea>
+				<span style="vertical-align: top;">其他:</span>
+				<textarea id="others" autoHeight="true" style="border-radius:5px;border: 1px solid #7e7b7b;width:95%;display: inline-block;padding-left: 5px;height: 80px;overflow-y: hidden;"></textarea>
 			</div>
 		</div>
 		<div class="row" style="margin-top: 10px;">
 			<div id="consent_remark_other" class="row" style="display: none">
 				<div style="margin-top:1%;margin-left: 20px;">
-					<span style="vertical-align: top;">其他</span>
-					<pre class="others" style="border: 1px solid #7e7b7b;width:95%;display: inline-block;"></pre>
+					<span style="vertical-align: top;display: block;">其他:</span>
+					<pre class="others" style="border: 1px solid #7e7b7b;width:95%;display: inline-block;margin-left: 30px;white-space: pre-wrap"></pre>
 				</div>
 			</div>
 			<div class="col-md-6 col-sm-6 col-xs-6 colDefined">
@@ -737,7 +737,7 @@
 			<div class="signature_time" style="width: 40%;margin-left: 60%;position: relative;">
 				<div class="zl_signature">
 					<span id="doctorSignature">医生签字：</span>
-					<img id="img" style="width:156px;height:35px;"/>
+					<img id="img" style="width:156px;height:30px;"/>
 				</div>
 				<input style="width: 35%;position: absolute;right: 0px;bottom: 0px;text-align: center;" id="doctortime" type="text" class="consent_time inputheight2" readonly="readonly" placeholder="请选择日期"/>
 			</div>
@@ -796,6 +796,26 @@
 			document.ondragstart = function() {
 	            return false;
 	        };
+			//textarea高度自适应
+			$.fn.autoHeight = function(){
+				function autoHeight(elem){
+					elem.style.height = 'auto';
+					elem.scrollTop = 0; //防抖动
+					elem.style.height = elem.scrollHeight + 'px';
+					height = elem.style.height.split("px")[0];
+					consent_remark_height=Number(height);
+					// console.log(height+'-----height');
+				}
+
+				this.each(function(){
+					autoHeight(this);
+					$(this).on('keyup', function(){
+						autoHeight(this);
+						$("#remarkbox").css("height",consent_remark_height+60+"px");
+					});
+				});
+			}
+			$('textarea[autoHeight]').autoHeight();
 			
 		});
 		
@@ -863,6 +883,7 @@
 						for(var key in result){
 							//console.log(key+"-------------"+result[key]);
 							$("#"+key).attr("value",result[key]);// 填框赋值
+							$("#others").trigger("keyup");
 							if(key=="others"){
 								$("#"+key).text(result[key]);//textarea赋值
 								$("."+key).text(result[key]);// pre赋值
@@ -1438,13 +1459,15 @@
 		    }
 		    $("#bottomBarDdiv").append(menubutton1);
 		}
-		// 备注信息
+		// 其他
 		function wrappOtherPage(){
-			var height=$("#others")[0].scrollHeight;
-			// console.log(height+"---");
-			if(height>78){//滚动条高度判断展示区域
-				$("#consent_remark_other").css("display","block").css("margin-top","155px").css("padding-top","50px");
-				$("#others_container").css("display","none");
+			var textarea_height=height;
+			$("#consent_remark_other").css("display","block");
+			$("#others_container").css("display","none");
+			$("#remarkbox").css("height","30px");
+			if(textarea_height>80){//滚动条高度判断展示区域
+				$(".page-break").css("page-break-after","always");
+				$("#consent_remark_other").css("padding-top","25px");
 			}
 		}
 		function myPreviewAll() {
