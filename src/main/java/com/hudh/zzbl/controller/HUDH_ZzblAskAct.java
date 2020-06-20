@@ -700,9 +700,7 @@ public class HUDH_ZzblAskAct{
 	    if(YZUtility.isNotNullOrEmpty(assistOperation)){
 	    	 familiarBook.setAssistOperation(assistOperation);
 	    }
-	    if(YZUtility.isNotNullOrEmpty(remarks)){
-	    	 familiarBook.setRemarks(remarks);
-	    }
+	    familiarBook.setRemarks(remarks);
 	    if(YZUtility.isNotNullOrEmpty(PatientSignature)){
 	    	 familiarBook.setPatientSignature(PatientSignature);
 	    } 
