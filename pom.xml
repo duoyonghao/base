@@ -376,10 +376,9 @@
 				<groupId>org.liquibase</groupId>
 				<artifactId>liquibase-maven-plugin</artifactId>
 				<configuration>
-					<propertyFile>src/main/resources/liquibase/liquibase.properties</propertyFile>
 					<changeLogFile>src/main/resources/liquibase/master.xml</changeLogFile>
 					<driver>net.sourceforge.jtds.jdbc.Driver</driver>
-					<url>jdbc:jtds:sqlserver://localhost:1043;DatabaseName=kqds;SelectMethod=Cursor</url>
+					<url>jdbc:jtds:sqlserver://localhost:1433;DatabaseName=kqds;SelectMethod=Cursor</url>
 					<username>sa</username>
 					<password>HUDH_1234</password>
 					<outputChangeLogFile>myGenChangeLog.xml</outputChangeLogFile>
