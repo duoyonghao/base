@@ -569,24 +569,32 @@
                 </div>
             </div> -->
             <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
-                <div class="zl_signature" style="display: flex;justify-content: space-between;">
-                    <span id="doctorSignature" style="display: inline;">手术医生：</span>
-                    <img id="img" style="display: inline-block;height: 30px;"/>
-                    <input id="operationdoctortime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期" style="width:20%;min-width: 70px;"/>
+                <div class="zl_signature">
+                    <span id="doctorSignature">手术医生：</span>
+                    <img id="img"/>
+                    <input id="operationdoctortime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期"/>
+                </div>
+            </div>
+			<%--修改前样式--%>
+		<%--<div class="col-md-4 col-sm-4 col-xs-4 colDefined">
+				<div class="zl_signature" style="display: flex;justify-content: space-between;">
+					<span id="repairDoctorSignature" style="display: inline;">修复医生：</span>
+					<img id="repairImg" style="display: inline-block;height: 30px;"/>
+					<input id="doctortime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期" style="width:20%;min-width: 70px;"/>
+				</div>
+			</div>--%>
+            <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
+                <div class="zl_signature">
+                    <span id="repairDoctorSignature">修复医生：</span>
+                    <img id="repairImg"/>
+                    <input id="doctortime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期"/>
                 </div>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
-                <div class="zl_signature" style="display: flex;justify-content: space-between;">
-                    <span id="repairDoctorSignature" style="display: inline;">修复医生：</span>
-                    <img id="repairImg" style="display: inline-block;height: 30px;"/>
-                    <input id="doctortime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期" style="width:20%;min-width: 70px;"/>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
-                <div class="zl_signature" style="display: flex;justify-content: space-between;">
-                    <span id="patientSignature" style="display: inline;">患者签名：</span>
-                    <img id="patientimg" style="display: inline-block;height: 30px;"/>
-                    <input id="patienttime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期" style="width:20%;min-width: 70px;"/>
+                <div class="zl_signature">
+                    <span id="patientSignature">患者签名：</span>
+                    <img id="patientimg"/>
+                    <input id="patienttime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期"/>
                 </div>
             </div>
         </div>
