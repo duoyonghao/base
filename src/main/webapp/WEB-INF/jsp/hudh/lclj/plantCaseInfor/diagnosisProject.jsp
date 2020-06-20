@@ -725,13 +725,35 @@
 			});
 		}
 	}
-
-
-
 	function addSignature(){
 		$("#img").css("display","");
 		$("#img").attr('src', signature);
+        if(doctorstatus&&!patientstatus){
+            updateDoctorSignature();
+        }
 	}
+    //更新
+    function updateDoctorSignature(){
+        var url = contextPath + '/HUDH_ZzblAct/updateZzblOprationById.act';
+        var doctorTime = $("#doctortime").val();//医生签名时间
+        var param = {
+            id:  caseId, //临床路径ID
+            doctorSignature:signature,//医生签名
+            doctorTime : doctorTime//医生签名时间
+        };
+        $.axseSubmit(url, param,function() {},function(r) {
+            layer.alert("修改成功！", {
+                end: function() {
+                    //window.parent.location.reload(); //刷新父页面
+                    var frameindex = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(frameindex); //再执行关闭
+                }
+            });
+        },function(r){
+            layer.alert("修改失败！");
+        });
+    }
+
 	var patientSignature = document.getElementById("patientSignature");
 	patientSignature.onclick = function(){
 		if(patientstatus){
@@ -806,7 +828,7 @@
 				order_number : order_number
 			},
 			success:function(result){
-				console.log(result)
+				//console.log(result)
 				//console.log(JSON.stringify(result)+"--------------添加成功后查询数据");
 				var result;
 				if(seqidFather){

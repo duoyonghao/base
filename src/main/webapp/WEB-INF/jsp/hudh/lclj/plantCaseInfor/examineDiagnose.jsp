@@ -1361,7 +1361,7 @@
 			document.body.innerHTML=bdhtml; //恢复页面
 		}
 		function myPreviewAll2(){
-			if(doctorstatus&&signature==""){
+			if(signature==""){
 				   $("#img").css("display","none");
 			   }
 			LODOP=getLodop();  

@@ -637,21 +637,21 @@
 			}
 	  });
 		/* 判断新种植病历情况记录*/
-		var plantRecordsurl =  contextPath + '/HUDH_MedicalRecordsAct/selectdata.act';
-		$.ajax({
-			url: plantRecordsurl,
-			type:"POST",
-			dataType:"json",
-			data : {
-				lcljId:id
-			},
-			success:function(result) {
-				// console.log(JSON.stringify(result)+'----result');
-				if(result.length>0){
-					$(".plantRecords").prev().attr("checked","checked").attr("disabled","disabled");
-				}
-			}
-		});
+		// var plantRecordsurl =  contextPath + '/HUDH_MedicalRecordsAct/selectdata.act';
+		// $.ajax({
+		// 	url: plantRecordsurl,
+		// 	type:"POST",
+		// 	dataType:"json",
+		// 	data : {
+		// 		lcljId:id
+		// 	},
+		// 	success:function(result) {
+		// 		// console.log(JSON.stringify(result)+'----result');
+		// 		if(result.length>0){
+		// 			$(".plantRecords").prev().attr("checked","checked").attr("disabled","disabled");
+		// 		}
+		// 	}
+		// });
 		/* 判断人工种植牙知情同意书*/
 		var plantKnowbookurl = contextPath + '/HUDH_ZzblAskAct/findFamiliarBookById.act';
 		$.ajax({
@@ -731,20 +731,20 @@
 
 
 		//诊疗方案
-		var zlfaurl = contextPath + '/HUDH_LcljCaseAct/select.act';
-		$.ajax({
-			url: zlfaurl,
-			type:"POST",
-			dataType:"json",
-			data : {
-				id : id
-			},
-			success:function(result){
-				if(result!=null){
-					$(".case").prev().attr("checked","checked").attr("disabled","disabled");
-				}
-			}
-	  });
+		// var zlfaurl = contextPath + '/HUDH_LcljCaseAct/select.act';
+		// $.ajax({
+		// 	url: zlfaurl,
+		// 	type:"POST",
+		// 	dataType:"json",
+		// 	data : {
+		// 		id : id
+		// 	},
+		// 	success:function(result){
+		// 		if(result!=null){
+		// 			$(".case").prev().attr("checked","checked").attr("disabled","disabled");
+		// 		}
+		// 	}
+	  // });
 
 		//新 人工种植牙知情同意书
 		var consentBookUrl = contextPath + '/HUDH_ZzblAskAct/findFamiliarBookById.act';

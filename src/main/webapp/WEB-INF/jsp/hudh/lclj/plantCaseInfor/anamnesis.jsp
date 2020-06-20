@@ -1422,7 +1422,31 @@
 		function addSignature(){
 			$("#img").css("display","");
 			$("#img").attr('src', signature);
+            if(doctorstatus&&!patientstatus){
+                updateDoctorSignature();
+            }
 		}
+        //更新
+        function updateDoctorSignature(){
+            var url = contextPath + '/HUDH_ZzblAskAct/updateCaseHistoryById.act';
+            var doctorTime = $("#doctortime").val();//医生签字时间
+            var param = {
+                id:  caseId, //临床路径ID
+                doctorSignature :  signature,
+                doctorTime :  doctorTime
+            };
+            $.axseSubmit(url, param,function() {},function(r) {
+                layer.alert("修改成功！", {
+                    end: function() {
+                        //window.parent.location.reload(); //刷新父页面
+                        var frameindex = parent.layer.getFrameIndex(window.name);
+                        parent.layer.close(frameindex); //再执行关闭
+                    }
+                });
+            },function(r){
+                layer.alert("修改失败！");
+            });
+        }
 		var patientSignature = document.getElementById("patientSignature");    
 		patientSignature.onclick = function(){ 
 			if(patientstatus){
@@ -2146,10 +2170,10 @@
 		} 			 
 	//打印样式
 	function myPreviewAll(){
-		if(doctorstatus&&signature==""){
+		if(signature==""){
 		   $("#img").css("display","none");
 	   	}
-	   	if(patientstatus&&patientsignature==""){
+	   	if(patientsignature==""){
 		   $("#patientimg").css("display","none");
 	   	}
 		LODOP=getLodop();  

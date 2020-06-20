@@ -537,10 +537,10 @@
 		
 		/* 打印本页面方法 */
 		function myPreviewAll(){
-			if(doctorstatus&&signature==""){
+			if(signature==""){
 				   $("#img").css("display","none");
 			}
-			if(patientstatus&&patientsignature==""){
+			if(patientsignature==""){
 				   $("#patientimg").css("display","none");
 			}
 			LODOP=getLodop();  
