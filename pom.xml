@@ -355,6 +355,11 @@
 		    <version>2.0.0-RC3</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<version>3.10.0</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>base</finalName>
@@ -375,13 +380,15 @@
 			<plugin>
 				<groupId>org.liquibase</groupId>
 				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>3.10.0</version>
 				<configuration>
+                    <verbose>true</verbose>
 					<changeLogFile>src/main/resources/liquibase/master.xml</changeLogFile>
 					<driver>net.sourceforge.jtds.jdbc.Driver</driver>
 					<url>jdbc:jtds:sqlserver://localhost:1433;DatabaseName=kqds;SelectMethod=Cursor</url>
 					<username>sa</username>
 					<password>HUDH_1234</password>
-					<outputChangeLogFile>myGenChangeLog.xml</outputChangeLogFile>
+                    <outputChangeLogFile>changelog.xml</outputChangeLogFile>
 				</configuration>
 				<executions>
 					<execution>
