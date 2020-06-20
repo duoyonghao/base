@@ -1346,7 +1346,7 @@
 			}
 		}
 		function myPreviewAll() {
-			if(doctorstatus&&signature==""){
+			if(signature==""){
 				$("#img").css("display","none");
 			}
 			bdhtml=window.document.body.innerHTML;
