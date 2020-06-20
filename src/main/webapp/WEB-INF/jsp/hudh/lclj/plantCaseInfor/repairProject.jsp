@@ -1431,13 +1431,13 @@
 	}
 
 	function myPreviewAll(){
-		if(doctorstatus&&signature==""){
+		if(signature==""){
 			$("#img").css("display","none");
 		}
-		if(repairdoctorstatus&&repairSignature==""){
+		if(repairSignature==""){
 			$("#repairImg").css("display","none");
 		}
-		if(patientstatus&&patientsignature==""){
+		if(patientsignature==""){
 			$("#patientimg").css("display","none");
 		}
 		doPrint();
