@@ -58,9 +58,9 @@
 		border-top:2px dotted #776c6c;
 		padding:10px 0;
 	}
-	.gap{
+	/* .gap{
 		margin:10px 0;
-	}
+	} */
 	@page{
 		size:206mm 280mm;
 		margin: 0px auto;
@@ -76,7 +76,7 @@
 		display: none;
 		height: auto;
 		border:1px solid rgb(221, 221, 221);
-		margin:10px;
+		margin: 0 0 0 10px;
 		overflow-x: hidden;
 		white-space: pre-wrap;
 	}
@@ -91,12 +91,17 @@
 			font-size: 12px;
 		}
 	}
+	.row {
+		margin-right: 0 !important;
+		margin-left: 0!important;
+	}
+
 </style>
 <body>
 <!--startprint-->
-<div id="repair_continer" class="container-fluid">
+<div id="repair_continer" class="container-fluid twopage">
 	<!-- 标题 -->
-	<div class="row restore" style="border-bottom: 2px solid #776c6c;margin-top:20px;">
+	<div class="row restore" style="border-bottom: 2px solid #776c6c;">
 		<%--<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
         <i class="line"></i>--%>
 		<div style="padding-bottom: 10px;">
@@ -107,40 +112,40 @@
 	<div class="row patient" style="border-bottom: 2px solid #776c6c;">
 		<div class="col-md-3 col-sm-3 col-xs-3 colDefined">
 			<!-- 信息输入组合框 -->
-			<div class="rpInfo_import" style="line-height: 60px;">
+			<div class="rpInfo_import">
 				<span>患者姓名：</span>
 				<input id="patient_name" type="text" disabled="disabled"/>
 			</div>
 		</div>
-		<div class="col-md-3 col-sm-3 col-xs-3 colDefined">
+		<div class="col-md-4 col-sm-4 col-xs-4 colDefined">
 			<!-- 信息输入组合框 -->
-			<div class="rpInfo_import" style="line-height: 60px;">
+			<div class="rpInfo_impor">
 				<span>患者编号：</span>
-				<input id="patient_usercode" type="text" disabled="disabled"/>
+				<input id="patient_usercode" type="text" style="width: 67%;" disabled="disabled"/>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 			<!-- 信息输入组合框 -->
-			<div class="rpInfo_import" style="line-height: 60px;">
+			<div class="rpInfo_import">
 				<span>性别：</span>
 				<input id="patient_sex" type="text" disabled="disabled"/>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 			<!-- 信息输入组合框 -->
-			<div class="rpInfo_import" style="line-height: 60px;">
+			<div class="rpInfo_import">
 				<span>年龄：</span>
 				<input id="patient_age" type="text" disabled="disabled"/>
 			</div>
 		</div>
-		<div class="col-md-1 col-sm-1 col-xs-1 colDefined"></div>
+
 	</div>
 	<!-- 整体计划恢复牙位 -->
 	<div class="entiretybg gap">1.整体计划恢复牙位：</div>
 	<div class="row map">
 		<div class="col-md-6 col-sm-6 col-xs-6 colDefined">
 			<!-- 牙位图 -->
-			<div class="zl_toothMapdiv" style="margin:5px 10px;">
+			<div class="zl_toothMapdiv">
 
 				<ul class="tooth_map" style="margin-left: 4%;">
 					<li>
@@ -431,13 +436,9 @@
 	</div>
 	<div class="overstriking gap">最终修复：</div>
 	<div class="row" style="background: #f5f5f5;padding:0 16px;">
-		<!-- 			<div class="col-md-12 col-sm-12 col-xs-12 colDefined">
-
-                    </div> -->
-
 		<!-- 牙位图加多选框 -->
 		<div class="row">
-			<div class="col-md-12 col-sm-12 col-xs-12 colDefined" style="margin: 14px 7px;">
+			<div class="col-md-12 col-sm-12 col-xs-12 colDefined">
 				<!-- 牙位图 -->
 				<div class="zl_toothMapdiv">
 					<div class="col-md-12 col-sm-12 col-xs-12 colDefined" style="width:100%;padding:0px;">
@@ -546,59 +547,42 @@
 				</div>
 			</div>
 		</div>
-		<!-- 修复相关需求 -->
-		<div class="row">
-			<!-- 修复相关需求 -->
-			<div class="consent_remark">
-				<div class="overstriking" style="margin: 0 10px;">修复相关需求:</div>
-				<textarea id="requirerestor" rows="" cols="" autoHeight="true" style="border: 1px solid #ddd;margin:15px 10px 5px 10px;overflow-y: hidden;"></textarea>
-			</div>
-			<pre id="replaceBox"></pre>
-		</div>
-		<!-- 签名 -->
-		<!-- 签名 -->
-
 	</div>
-
+</div>
+<div class="bottom">
 	<div class="row">
-		<!-- <div class="col-md-3 col-sm-3 col-xs-3 colDefined">
-            <div class="zl_signature">
-                <span>客服：</span>
-                <div id="servicesignature"></div>
-                <input id="servicetime" type="text" class="consent_time signature_time"/>
-            </div>
-        </div> -->
+		<!-- 修复相关需求 -->
+		<div class="consent_remark" style="margin: 1px 23px;">
+			<div class="overstriking" style="margin: 0 10px;">修复相关需求:</div>
+			<textarea id="requirerestor" rows="" cols="" autoHeight="true" style="border: 1px solid #ddd;margin: 0 0 0 10px;overflow-y: hidden;width:100%;"></textarea>
+		</div>
+		<pre id="replaceBox"></pre>
+	</div>
+	<div class="row">
 		<div class="col-md-4 col-sm-4 col-xs-4 colDefined">
 			<div class="zl_signature">
 				<span id="doctorSignature">手术医生：</span>
-				<img id="img"/>
+				<img id="img" style="width: 137px"/>
 				<input id="operationdoctortime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期"/>
 			</div>
 		</div>
-		<%--修改前样式--%>
-		<%--<div class="col-md-4 col-sm-4 col-xs-4 colDefined">
-				<div class="zl_signature" style="display: flex;justify-content: space-between;">
-					<span id="repairDoctorSignature" style="display: inline;">修复医生：</span>
-					<img id="repairImg" style="display: inline-block;height: 30px;"/>
-					<input id="doctortime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期" style="width:20%;min-width: 70px;"/>
-				</div>
-			</div>--%>
 		<div class="col-md-4 col-sm-4 col-xs-4 colDefined">
 			<div class="zl_signature">
 				<span id="repairDoctorSignature">修复医生：</span>
-				<img id="repairImg"/>
+				<img id="repairImg" style="width: 137px"/>
 				<input id="doctortime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期"/>
 			</div>
 		</div>
 		<div class="col-md-4 col-sm-4 col-xs-4 colDefined">
 			<div class="zl_signature">
 				<span id="patientSignature">患者签名：</span>
-				<img id="patientimg"/>
+				<img id="patientimg" style="width: 137px"/>
 				<input id="patienttime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期"/>
 			</div>
 		</div>
 	</div>
 </div>
+
 <!--endprint-->
 <!-- 按钮 -->
 <div class="btns">
@@ -661,6 +645,8 @@
 				elem.style.height = 'auto';
 				elem.scrollTop = 0; //防抖动
 				elem.style.height = elem.scrollHeight + 'px';
+				textareaHeight = elem.style.height.split("px")[0]
+				console.log(textareaHeight,"textareaHeight")
 			}
 			this.each(function(){
 				autoHeight(this);
@@ -1426,6 +1412,10 @@
 
 	function doPrint() {
 		$("input").removeAttr("placeholder");
+		if(textareaHeight>60) {
+			$(".twopage").css("page-break-after", "always");
+		};
+
 		$("#requirerestor").css("display","none");
 		$("#replaceBox").css("display","block");
 		bdhtml=window.document.body.innerHTML;
@@ -1437,6 +1427,7 @@
 		window.document.body.innerHTML=prnhtml+htmlStyle;
 		window.print();  //打印
 		document.body.innerHTML=bdhtml; //恢复页面
+		window.location.reload()
 	}
 
 	function myPreviewAll(){

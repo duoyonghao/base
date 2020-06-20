@@ -7,7 +7,7 @@
 }
 /* 内容 */
 #repair_continer{
-	margin: 14px;
+	margin: 10px;
 }
 
 #repair_continer ul,ol{
@@ -48,10 +48,10 @@
 }
 /* 栅格布局自定义样式 */
 #repair_continer>.row>.colDefined{
-	/* height:50px; */
+	/*     height:65px; */
 	float:left;
-	display:flex;
-	flex-direction: row;
+	/* display:flex;
+	flex-direction: row; */
 	margin: 0px;
 	padding: 0px;
 }
@@ -62,7 +62,7 @@
 #repair_continer input[type="text"]{
 	height:30px;
 	background-color: transparent;
-	border: 1px solid #c3c3c3;
+	border: 0px solid #c3c3c3;
 	vertical-align: middle;
 	-webkit-appearance: none;
 	outline: none;
@@ -117,7 +117,7 @@
 	float:left;
 	display: inline-block;
 	width: 55%;
-	height: 50px;
+	height: 51px;
 }
 #repair_continer .zl_toothMapdiv .tooth_map>li{
 	width:49%;
@@ -150,6 +150,7 @@
 	display: block;
 	height:100%;
 	float:left;
+
 }
 #repair_continer .rp_toothGroup>ul{
 	display: block;
@@ -224,7 +225,7 @@
 /* 备注输入框 */
 #repair_continer .consent_remark>textarea{
 	width: 98%;
-	height: 60px;
+	height: 80px;
 	float: left;
 	font-size: 16px;
 	line-height:28px;
@@ -267,16 +268,4 @@
 }
 .btns #consent_saveBtn{
 	margin-right: 30px;
-}
-#operationdoctortime>input{
-	width:20%;
-	min-width: 70px;
-	display: block;
-	/*margin-left: 79px ;*/
-}
-.zl_signature > img{
-	height: 30px;
-}
-.zl_signature>span{
-	display: inline;
 }
