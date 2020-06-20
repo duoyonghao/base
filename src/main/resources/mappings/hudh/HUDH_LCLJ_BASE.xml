@@ -1,0 +1,1599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HUDH_LCLJ_BASE">
+  <resultMap id="BaseResultMap" type="com.kqds.entity.base.HudhLcljBase">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="usercode" jdbcType="VARCHAR" property="usercode" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="LcljId" jdbcType="VARCHAR" property="lcljid" />
+    <result column="LcljNum" jdbcType="VARCHAR" property="lcljnum" />
+    <result column="createtime" jdbcType="VARCHAR" property="createtime" />
+    <result column="createuser" jdbcType="VARCHAR" property="createuser" />
+    <result column="organization" jdbcType="VARCHAR" property="organization" />
+    <result column="consultation_opinion" jdbcType="VARCHAR" property="consultationOpinion" />
+    <result column="promise" jdbcType="VARCHAR" property="promise" />
+    <result column="patienttime" jdbcType="VARCHAR" property="patienttime" />
+    <result column="operationdoctortime" jdbcType="VARCHAR" property="operationdoctortime" />
+    <result column="doctortime" jdbcType="VARCHAR" property="doctortime" />
+    <result column="patienttime1" jdbcType="VARCHAR" property="patienttime1" />
+    <result column="extractionleftup" jdbcType="VARCHAR" property="extractionleftup" />
+    <result column="extractionrightup" jdbcType="VARCHAR" property="extractionrightup" />
+    <result column="extractionleftdown" jdbcType="VARCHAR" property="extractionleftdown" />
+    <result column="extractionrightdown" jdbcType="VARCHAR" property="extractionrightdown" />
+    <result column="dentiumleftup" jdbcType="VARCHAR" property="dentiumleftup" />
+    <result column="dentiumrightup" jdbcType="VARCHAR" property="dentiumrightup" />
+    <result column="dentiumleftdown" jdbcType="VARCHAR" property="dentiumleftdown" />
+    <result column="dentiumrightdown" jdbcType="VARCHAR" property="dentiumrightdown" />
+    <result column="hiossenleftup" jdbcType="VARCHAR" property="hiossenleftup" />
+    <result column="hiossenrightup" jdbcType="VARCHAR" property="hiossenrightup" />
+    <result column="hiossenleftdown" jdbcType="VARCHAR" property="hiossenleftdown" />
+    <result column="hiossenrightdown" jdbcType="VARCHAR" property="hiossenrightdown" />
+    <result column="icxleftup" jdbcType="VARCHAR" property="icxleftup" />
+    <result column="icxrightup" jdbcType="VARCHAR" property="icxrightup" />
+    <result column="icxleftdown" jdbcType="VARCHAR" property="icxleftdown" />
+    <result column="icxrightdown" jdbcType="VARCHAR" property="icxrightdown" />
+    <result column="camlogleftup" jdbcType="VARCHAR" property="camlogleftup" />
+    <result column="camlogrightup" jdbcType="VARCHAR" property="camlogrightup" />
+    <result column="camlogleftdown" jdbcType="VARCHAR" property="camlogleftdown" />
+    <result column="camlogrightdown" jdbcType="VARCHAR" property="camlogrightdown" />
+    <result column="zimmerleftup" jdbcType="VARCHAR" property="zimmerleftup" />
+    <result column="zimmerrightup" jdbcType="VARCHAR" property="zimmerrightup" />
+    <result column="zimmerleftdown" jdbcType="VARCHAR" property="zimmerleftdown" />
+    <result column="zimmerrightdown" jdbcType="VARCHAR" property="zimmerrightdown" />
+    <result column="nobelccleftup" jdbcType="VARCHAR" property="nobelccleftup" />
+    <result column="nobelccrightup" jdbcType="VARCHAR" property="nobelccrightup" />
+    <result column="nobelccleftdown" jdbcType="VARCHAR" property="nobelccleftdown" />
+    <result column="nobelccrightdown" jdbcType="VARCHAR" property="nobelccrightdown" />
+    <result column="nobelactiveleftup" jdbcType="VARCHAR" property="nobelactiveleftup" />
+    <result column="nobelactiverightup" jdbcType="VARCHAR" property="nobelactiverightup" />
+    <result column="nobelactiveleftdown" jdbcType="VARCHAR" property="nobelactiveleftdown" />
+    <result column="nobelactiverightdown" jdbcType="VARCHAR" property="nobelactiverightdown" />
+    <result column="pmcleftup" jdbcType="VARCHAR" property="pmcleftup" />
+    <result column="pmcrightup" jdbcType="VARCHAR" property="pmcrightup" />
+    <result column="pmcleftdown" jdbcType="VARCHAR" property="pmcleftdown" />
+    <result column="pmcrightdown" jdbcType="VARCHAR" property="pmcrightdown" />
+    <result column="temporarytleftup" jdbcType="VARCHAR" property="temporarytleftup" />
+    <result column="temporarytrightup" jdbcType="VARCHAR" property="temporarytrightup" />
+    <result column="temporarytleftdown" jdbcType="VARCHAR" property="temporarytleftdown" />
+    <result column="temporarytrightdown" jdbcType="VARCHAR" property="temporarytrightdown" />
+    <result column="commonleftup" jdbcType="VARCHAR" property="commonleftup" />
+    <result column="commonrightup" jdbcType="VARCHAR" property="commonrightup" />
+    <result column="commonleftdown" jdbcType="VARCHAR" property="commonleftdown" />
+    <result column="commonrightdown" jdbcType="VARCHAR" property="commonrightdown" />
+    <result column="instantlyleftup" jdbcType="VARCHAR" property="instantlyleftup" />
+    <result column="instantlyrightup" jdbcType="VARCHAR" property="instantlyrightup" />
+    <result column="instantlyleftdown" jdbcType="VARCHAR" property="instantlyleftdown" />
+    <result column="instantlyrightdown" jdbcType="VARCHAR" property="instantlyrightdown" />
+    <result column="atonceleftup" jdbcType="VARCHAR" property="atonceleftup" />
+    <result column="atoncerightup" jdbcType="VARCHAR" property="atoncerightup" />
+    <result column="atonceleftdown" jdbcType="VARCHAR" property="atonceleftdown" />
+    <result column="atoncerightdown" jdbcType="VARCHAR" property="atoncerightdown" />
+    <result column="imagingleftup" jdbcType="VARCHAR" property="imagingleftup" />
+    <result column="imagingrightup" jdbcType="VARCHAR" property="imagingrightup" />
+    <result column="imagingleftdown" jdbcType="VARCHAR" property="imagingleftdown" />
+    <result column="imagingrightdown" jdbcType="VARCHAR" property="imagingrightdown" />
+    <result column="lianguanleftup" jdbcType="VARCHAR" property="lianguanleftup" />
+    <result column="lianguanrightup" jdbcType="VARCHAR" property="lianguanrightup" />
+    <result column="lianguanleftdown" jdbcType="VARCHAR" property="lianguanleftdown" />
+    <result column="lianguanrightdown" jdbcType="VARCHAR" property="lianguanrightdown" />
+    <result column="preoperatives" jdbcType="VARCHAR" property="preoperatives" />
+    <result column="bicon" jdbcType="VARCHAR" property="bicon" />
+    <result column="abutment" jdbcType="VARCHAR" property="abutment" />
+    <result column="paraoperative" jdbcType="VARCHAR" property="paraoperative" />
+    <result column="modus" jdbcType="VARCHAR" property="modus" />
+    <result column="repair" jdbcType="VARCHAR" property="repair" />
+    <result column="alternative" jdbcType="VARCHAR" property="alternative" />
+    <result column="clinical" jdbcType="VARCHAR" property="clinical" />
+    <result column="bonemeal" jdbcType="VARCHAR" property="bonemeal" />
+    <result column="ossein" jdbcType="VARCHAR" property="ossein" />
+    <result column="periost" jdbcType="VARCHAR" property="periost" />
+    <result column="one" jdbcType="VARCHAR" property="one" />
+    <result column="pathtype" jdbcType="VARCHAR" property="pathtype" />
+    <result column="deep" jdbcType="VARCHAR" property="deep" />
+    <result column="appointmenttime" jdbcType="VARCHAR" property="appointmenttime" />
+    <result column="wzy" jdbcType="VARCHAR" property="wzy" />
+    <result column="accord" jdbcType="VARCHAR" property="accord" />
+    <result column="operationDoctorsignature" jdbcType="VARCHAR" property="operationDoctorsignature" />
+    <result column="repairDoctorsignature" jdbcType="VARCHAR" property="repairDoctorsignature" />
+    <result column="patientsignature" jdbcType="VARCHAR" property="patientsignature" />
+    <result column="patientsignature1" jdbcType="VARCHAR" property="patientsignature1" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.base.HudhLcljBase">
+    <result column="treatmentparts1" jdbcType="LONGVARCHAR" property="treatmentparts1" />
+    <result column="treatmentparts2" jdbcType="LONGVARCHAR" property="treatmentparts2" />
+    <result column="treatmentparts3" jdbcType="LONGVARCHAR" property="treatmentparts3" />
+    <result column="requirerestor" jdbcType="LONGVARCHAR" property="requirerestor" />
+  </resultMap>
+ <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, usercode, username, LcljId, LcljNum, createtime, createuser, organization, consultation_opinion, 
+    promise, patienttime, operationdoctortime, doctortime, patienttime1, extractionleftup, 
+    extractionrightup, extractionleftdown, extractionrightdown, dentiumleftup, dentiumrightup, 
+    dentiumleftdown, dentiumrightdown, hiossenleftup, hiossenrightup, hiossenleftdown, 
+    hiossenrightdown, icxleftup, icxrightup, icxleftdown, icxrightdown, camlogleftup, 
+    camlogrightup, camlogleftdown, camlogrightdown, zimmerleftup, zimmerrightup, zimmerleftdown, 
+    zimmerrightdown, nobelccleftup, nobelccrightup, nobelccleftdown, nobelccrightdown, 
+    nobelactiveleftup, nobelactiverightup, nobelactiveleftdown, nobelactiverightdown, 
+    pmcleftup, pmcrightup, pmcleftdown, pmcrightdown, temporarytleftup, temporarytrightup, 
+    temporarytleftdown, temporarytrightdown, commonleftup, commonrightup, commonleftdown, 
+    commonrightdown, instantlyleftup, instantlyrightup, instantlyleftdown, instantlyrightdown, 
+    atonceleftup, atoncerightup, atonceleftdown, atoncerightdown, imagingleftup, imagingrightup, 
+    imagingleftdown, imagingrightdown, lianguanleftup, lianguanrightup, lianguanleftdown, 
+    lianguanrightdown, preoperatives, bicon, abutment, paraoperative, modus, repair, 
+    alternative, clinical,bonemeal,ossein,periost,one,pathtype,deep,appointmenttime,wzy,accord,operationDoctorsignature,
+    repairDoctorsignature,patientsignature,patientsignature1
+  </sql>
+  <sql id="Blob_Column_List">
+    treatmentparts1, treatmentparts2, treatmentparts3, requirerestor
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.kqds.entity.base.HudhLcljBase" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from HUDH_LCLJ_BASE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.kqds.entity.base.HudhLcljBase" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from HUDH_LCLJ_BASE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.kqds.entity.base.HudhLcljBase">
+    delete from HUDH_LCLJ_BASE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from HUDH_LCLJ_BASE
+		where LcljId = #{lcljid,jdbcType=VARCHAR}
+	</select>
+	
+  <insert id="insert" parameterType="com.kqds.entity.base.HudhLcljBase">
+    insert into HUDH_LCLJ_BASE (id, usercode, username, 
+      LcljId, LcljNum, createtime, 
+      createuser, organization, consultation_opinion, 
+      promise, patienttime, operationdoctortime, 
+      doctortime, patienttime1, extractionleftup, 
+      extractionrightup, extractionleftdown, 
+      extractionrightdown, dentiumleftup, dentiumrightup, 
+      dentiumleftdown, dentiumrightdown, hiossenleftup, 
+      hiossenrightup, hiossenleftdown, hiossenrightdown, 
+      icxleftup, icxrightup, icxleftdown, 
+      icxrightdown, camlogleftup, camlogrightup, 
+      camlogleftdown, camlogrightdown, zimmerleftup, 
+      zimmerrightup, zimmerleftdown, zimmerrightdown, 
+      nobelccleftup, nobelccrightup, nobelccleftdown, 
+      nobelccrightdown, nobelactiveleftup, nobelactiverightup, 
+      nobelactiveleftdown, nobelactiverightdown, 
+      pmcleftup, pmcrightup, pmcleftdown, 
+      pmcrightdown, temporarytleftup, temporarytrightup, 
+      temporarytleftdown, temporarytrightdown, 
+      commonleftup, commonrightup, commonleftdown, 
+      commonrightdown, instantlyleftup, instantlyrightup, 
+      instantlyleftdown, instantlyrightdown, 
+      atonceleftup, atoncerightup, atonceleftdown, 
+      atoncerightdown, imagingleftup, imagingrightup, 
+      imagingleftdown, imagingrightdown, lianguanleftup, 
+      lianguanrightup, lianguanleftdown, lianguanrightdown, 
+      preoperatives, bicon, abutment, 
+      paraoperative, modus, repair, 
+      alternative, clinical, treatmentparts1, 
+      treatmentparts2, treatmentparts3, 
+      requirerestor,bonemeal,ossein,periost,one,pathtype,deep,appointmenttime,wzy,accord,operationDoctorsignature,
+    repairDoctorsignature,patientsignature,patientsignature1)
+    values (#{id,jdbcType=VARCHAR}, #{usercode,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{lcljid,jdbcType=VARCHAR}, #{lcljnum,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, 
+      #{createuser,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, #{consultationOpinion,jdbcType=VARCHAR}, 
+      #{promise,jdbcType=VARCHAR}, #{patienttime,jdbcType=VARCHAR}, #{operationdoctortime,jdbcType=VARCHAR}, 
+      #{doctortime,jdbcType=VARCHAR}, #{patienttime1,jdbcType=VARCHAR}, #{extractionleftup,jdbcType=VARCHAR}, 
+      #{extractionrightup,jdbcType=VARCHAR}, #{extractionleftdown,jdbcType=VARCHAR}, 
+      #{extractionrightdown,jdbcType=VARCHAR}, #{dentiumleftup,jdbcType=VARCHAR}, #{dentiumrightup,jdbcType=VARCHAR}, 
+      #{dentiumleftdown,jdbcType=VARCHAR}, #{dentiumrightdown,jdbcType=VARCHAR}, #{hiossenleftup,jdbcType=VARCHAR}, 
+      #{hiossenrightup,jdbcType=VARCHAR}, #{hiossenleftdown,jdbcType=VARCHAR}, #{hiossenrightdown,jdbcType=VARCHAR}, 
+      #{icxleftup,jdbcType=VARCHAR}, #{icxrightup,jdbcType=VARCHAR}, #{icxleftdown,jdbcType=VARCHAR}, 
+      #{icxrightdown,jdbcType=VARCHAR}, #{camlogleftup,jdbcType=VARCHAR}, #{camlogrightup,jdbcType=VARCHAR}, 
+      #{camlogleftdown,jdbcType=VARCHAR}, #{camlogrightdown,jdbcType=VARCHAR}, #{zimmerleftup,jdbcType=VARCHAR}, 
+      #{zimmerrightup,jdbcType=VARCHAR}, #{zimmerleftdown,jdbcType=VARCHAR}, #{zimmerrightdown,jdbcType=VARCHAR}, 
+      #{nobelccleftup,jdbcType=VARCHAR}, #{nobelccrightup,jdbcType=VARCHAR}, #{nobelccleftdown,jdbcType=VARCHAR}, 
+      #{nobelccrightdown,jdbcType=VARCHAR}, #{nobelactiveleftup,jdbcType=VARCHAR}, #{nobelactiverightup,jdbcType=VARCHAR}, 
+      #{nobelactiveleftdown,jdbcType=VARCHAR}, #{nobelactiverightdown,jdbcType=VARCHAR}, 
+      #{pmcleftup,jdbcType=VARCHAR}, #{pmcrightup,jdbcType=VARCHAR}, #{pmcleftdown,jdbcType=VARCHAR}, 
+      #{pmcrightdown,jdbcType=VARCHAR}, #{temporarytleftup,jdbcType=VARCHAR}, #{temporarytrightup,jdbcType=VARCHAR}, 
+      #{temporarytleftdown,jdbcType=VARCHAR}, #{temporarytrightdown,jdbcType=VARCHAR}, 
+      #{commonleftup,jdbcType=VARCHAR}, #{commonrightup,jdbcType=VARCHAR}, #{commonleftdown,jdbcType=VARCHAR}, 
+      #{commonrightdown,jdbcType=VARCHAR}, #{instantlyleftup,jdbcType=VARCHAR}, #{instantlyrightup,jdbcType=VARCHAR}, 
+      #{instantlyleftdown,jdbcType=VARCHAR}, #{instantlyrightdown,jdbcType=VARCHAR}, 
+      #{atonceleftup,jdbcType=VARCHAR}, #{atoncerightup,jdbcType=VARCHAR}, #{atonceleftdown,jdbcType=VARCHAR}, 
+      #{atoncerightdown,jdbcType=VARCHAR}, #{imagingleftup,jdbcType=VARCHAR}, #{imagingrightup,jdbcType=VARCHAR}, 
+      #{imagingleftdown,jdbcType=VARCHAR}, #{imagingrightdown,jdbcType=VARCHAR}, #{lianguanleftup,jdbcType=VARCHAR}, 
+      #{lianguanrightup,jdbcType=VARCHAR}, #{lianguanleftdown,jdbcType=VARCHAR}, #{lianguanrightdown,jdbcType=VARCHAR}, 
+      #{preoperatives,jdbcType=VARCHAR}, #{bicon,jdbcType=VARCHAR}, #{abutment,jdbcType=VARCHAR}, 
+      #{paraoperative,jdbcType=VARCHAR}, #{modus,jdbcType=VARCHAR}, #{repair,jdbcType=VARCHAR}, 
+      #{alternative,jdbcType=VARCHAR}, #{clinical,jdbcType=VARCHAR}, #{treatmentparts1,jdbcType=LONGVARCHAR}, 
+      #{treatmentparts2,jdbcType=LONGVARCHAR}, #{treatmentparts3,jdbcType=LONGVARCHAR}, 
+      #{requirerestor,jdbcType=LONGVARCHAR},#{bonemeal,jdbcType=VARCHAR},#{ossein,jdbcType=VARCHAR},
+      #{periost,jdbcType=VARCHAR},#{one,jdbcType=VARCHAR},#{pathtype,jdbcType=VARCHAR},#{deep,jdbcType=VARCHAR},
+      #{appointmenttime,jdbcType=VARCHAR},#{wzy,jdbcType=VARCHAR},#{accord,jdbcType=VARCHAR},
+      #{operationDoctorsignature,jdbcType=VARCHAR},#{repairDoctorsignature,jdbcType=VARCHAR},
+      #{patientsignature,jdbcType=VARCHAR},#{patientsignature1,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kqds.entity.base.HudhLcljBase">
+        insert into HUDH_LCLJ_BASE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="usercode != null">
+        usercode,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="lcljid != null">
+        LcljId,
+      </if>
+      <if test="lcljnum != null">
+        LcljNum,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="createuser != null">
+        createuser,
+      </if>
+      <if test="organization != null">
+        organization,
+      </if>
+      <if test="consultationOpinion != null">
+        consultation_opinion,
+      </if>
+      <if test="promise != null">
+        promise,
+      </if>
+      <if test="patienttime != null">
+        patienttime,
+      </if>
+      <if test="operationdoctortime != null">
+        operationdoctortime,
+      </if>
+      <if test="doctortime != null">
+        doctortime,
+      </if>
+      <if test="patienttime1 != null">
+        patienttime1,
+      </if>
+      <if test="extractionleftup != null">
+        extractionleftup,
+      </if>
+      <if test="extractionrightup != null">
+        extractionrightup,
+      </if>
+      <if test="extractionleftdown != null">
+        extractionleftdown,
+      </if>
+      <if test="extractionrightdown != null">
+        extractionrightdown,
+      </if>
+      <if test="dentiumleftup != null">
+        dentiumleftup,
+      </if>
+      <if test="dentiumrightup != null">
+        dentiumrightup,
+      </if>
+      <if test="dentiumleftdown != null">
+        dentiumleftdown,
+      </if>
+      <if test="dentiumrightdown != null">
+        dentiumrightdown,
+      </if>
+      <if test="hiossenleftup != null">
+        hiossenleftup,
+      </if>
+      <if test="hiossenrightup != null">
+        hiossenrightup,
+      </if>
+      <if test="hiossenleftdown != null">
+        hiossenleftdown,
+      </if>
+      <if test="hiossenrightdown != null">
+        hiossenrightdown,
+      </if>
+      <if test="icxleftup != null">
+        icxleftup,
+      </if>
+      <if test="icxrightup != null">
+        icxrightup,
+      </if>
+      <if test="icxleftdown != null">
+        icxleftdown,
+      </if>
+      <if test="icxrightdown != null">
+        icxrightdown,
+      </if>
+      <if test="camlogleftup != null">
+        camlogleftup,
+      </if>
+      <if test="camlogrightup != null">
+        camlogrightup,
+      </if>
+      <if test="camlogleftdown != null">
+        camlogleftdown,
+      </if>
+      <if test="camlogrightdown != null">
+        camlogrightdown,
+      </if>
+      <if test="zimmerleftup != null">
+        zimmerleftup,
+      </if>
+      <if test="zimmerrightup != null">
+        zimmerrightup,
+      </if>
+      <if test="zimmerleftdown != null">
+        zimmerleftdown,
+      </if>
+      <if test="zimmerrightdown != null">
+        zimmerrightdown,
+      </if>
+      <if test="nobelccleftup != null">
+        nobelccleftup,
+      </if>
+      <if test="nobelccrightup != null">
+        nobelccrightup,
+      </if>
+      <if test="nobelccleftdown != null">
+        nobelccleftdown,
+      </if>
+      <if test="nobelccrightdown != null">
+        nobelccrightdown,
+      </if>
+      <if test="nobelactiveleftup != null">
+        nobelactiveleftup,
+      </if>
+      <if test="nobelactiverightup != null">
+        nobelactiverightup,
+      </if>
+      <if test="nobelactiveleftdown != null">
+        nobelactiveleftdown,
+      </if>
+      <if test="nobelactiverightdown != null">
+        nobelactiverightdown,
+      </if>
+      <if test="pmcleftup != null">
+        pmcleftup,
+      </if>
+      <if test="pmcrightup != null">
+        pmcrightup,
+      </if>
+      <if test="pmcleftdown != null">
+        pmcleftdown,
+      </if>
+      <if test="pmcrightdown != null">
+        pmcrightdown,
+      </if>
+      <if test="temporarytleftup != null">
+        temporarytleftup,
+      </if>
+      <if test="temporarytrightup != null">
+        temporarytrightup,
+      </if>
+      <if test="temporarytleftdown != null">
+        temporarytleftdown,
+      </if>
+      <if test="temporarytrightdown != null">
+        temporarytrightdown,
+      </if>
+      <if test="commonleftup != null">
+        commonleftup,
+      </if>
+      <if test="commonrightup != null">
+        commonrightup,
+      </if>
+      <if test="commonleftdown != null">
+        commonleftdown,
+      </if>
+      <if test="commonrightdown != null">
+        commonrightdown,
+      </if>
+      <if test="instantlyleftup != null">
+        instantlyleftup,
+      </if>
+      <if test="instantlyrightup != null">
+        instantlyrightup,
+      </if>
+      <if test="instantlyleftdown != null">
+        instantlyleftdown,
+      </if>
+      <if test="instantlyrightdown != null">
+        instantlyrightdown,
+      </if>
+      <if test="atonceleftup != null">
+        atonceleftup,
+      </if>
+      <if test="atoncerightup != null">
+        atoncerightup,
+      </if>
+      <if test="atonceleftdown != null">
+        atonceleftdown,
+      </if>
+      <if test="atoncerightdown != null">
+        atoncerightdown,
+      </if>
+      <if test="imagingleftup != null">
+        imagingleftup,
+      </if>
+      <if test="imagingrightup != null">
+        imagingrightup,
+      </if>
+      <if test="imagingleftdown != null">
+        imagingleftdown,
+      </if>
+      <if test="imagingrightdown != null">
+        imagingrightdown,
+      </if>
+      <if test="lianguanleftup != null">
+        lianguanleftup,
+      </if>
+      <if test="lianguanrightup != null">
+        lianguanrightup,
+      </if>
+      <if test="lianguanleftdown != null">
+        lianguanleftdown,
+      </if>
+      <if test="lianguanrightdown != null">
+        lianguanrightdown,
+      </if>
+      <if test="preoperatives != null">
+        preoperatives,
+      </if>
+      <if test="bicon != null">
+        bicon,
+      </if>
+      <if test="abutment != null">
+        abutment,
+      </if>
+      <if test="paraoperative != null">
+        paraoperative,
+      </if>
+      <if test="modus != null">
+        modus,
+      </if>
+      <if test="repair != null">
+        repair,
+      </if>
+      <if test="alternative != null">
+        alternative,
+      </if>
+      <if test="clinical != null">
+        clinical,
+      </if>
+      <if test="treatmentparts1 != null">
+        treatmentparts1,
+      </if>
+      <if test="treatmentparts2 != null">
+        treatmentparts2,
+      </if>
+      <if test="treatmentparts3 != null">
+        treatmentparts3,
+      </if>
+      <if test="requirerestor != null">
+        requirerestor,
+      </if>
+      <if test="bonemeal != null">
+        bonemeal,
+      </if>
+      <if test="ossein != null">
+        ossein,
+      </if>
+      <if test="periost != null">
+        periost,
+      </if>
+      <if test="one != null">
+        one,
+      </if>
+      <if test="pathtype != null">
+        pathtype,
+      </if>
+      <if test="deep != null">
+        deep,
+      </if>
+      <if test="appointmenttime != null">
+        appointmenttime,
+      </if>
+      <if test="wzy != null">
+        wzy,
+      </if>
+      <if test="accord != null">
+        accord,
+      </if>
+      <if test="operationDoctorsignature != null">
+        operationDoctorsignature,
+      </if>
+      <if test="repairDoctorsignature != null">
+        repairDoctorsignature,
+      </if>
+      <if test="patientsignature != null">
+        patientsignature,
+      </if>
+      <if test="patientsignature1 != null">
+        patientsignature1,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="usercode != null">
+        #{usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="lcljid != null">
+        #{lcljid,jdbcType=VARCHAR},
+      </if>
+      <if test="lcljnum != null">
+        #{lcljnum,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null">
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null">
+        #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="consultationOpinion != null">
+        #{consultationOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="promise != null">
+        #{promise,jdbcType=VARCHAR},
+      </if>
+      <if test="patienttime != null">
+        #{patienttime,jdbcType=VARCHAR},
+      </if>
+      <if test="operationdoctortime != null">
+        #{operationdoctortime,jdbcType=VARCHAR},
+      </if>
+      <if test="doctortime != null">
+        #{doctortime,jdbcType=VARCHAR},
+      </if>
+      <if test="patienttime1 != null">
+        #{patienttime1,jdbcType=VARCHAR},
+      </if>
+      <if test="extractionleftup != null">
+        #{extractionleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="extractionrightup != null">
+        #{extractionrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="extractionleftdown != null">
+        #{extractionleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="extractionrightdown != null">
+        #{extractionrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="dentiumleftup != null">
+        #{dentiumleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="dentiumrightup != null">
+        #{dentiumrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="dentiumleftdown != null">
+        #{dentiumleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="dentiumrightdown != null">
+        #{dentiumrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="hiossenleftup != null">
+        #{hiossenleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="hiossenrightup != null">
+        #{hiossenrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="hiossenleftdown != null">
+        #{hiossenleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="hiossenrightdown != null">
+        #{hiossenrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="icxleftup != null">
+        #{icxleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="icxrightup != null">
+        #{icxrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="icxleftdown != null">
+        #{icxleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="icxrightdown != null">
+        #{icxrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="camlogleftup != null">
+        #{camlogleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="camlogrightup != null">
+        #{camlogrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="camlogleftdown != null">
+        #{camlogleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="camlogrightdown != null">
+        #{camlogrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="zimmerleftup != null">
+        #{zimmerleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="zimmerrightup != null">
+        #{zimmerrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="zimmerleftdown != null">
+        #{zimmerleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="zimmerrightdown != null">
+        #{zimmerrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelccleftup != null">
+        #{nobelccleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelccrightup != null">
+        #{nobelccrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelccleftdown != null">
+        #{nobelccleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelccrightdown != null">
+        #{nobelccrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelactiveleftup != null">
+        #{nobelactiveleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelactiverightup != null">
+        #{nobelactiverightup,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelactiveleftdown != null">
+        #{nobelactiveleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelactiverightdown != null">
+        #{nobelactiverightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="pmcleftup != null">
+        #{pmcleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="pmcrightup != null">
+        #{pmcrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="pmcleftdown != null">
+        #{pmcleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="pmcrightdown != null">
+        #{pmcrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="temporarytleftup != null">
+        #{temporarytleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="temporarytrightup != null">
+        #{temporarytrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="temporarytleftdown != null">
+        #{temporarytleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="temporarytrightdown != null">
+        #{temporarytrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="commonleftup != null">
+        #{commonleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="commonrightup != null">
+        #{commonrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="commonleftdown != null">
+        #{commonleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="commonrightdown != null">
+        #{commonrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="instantlyleftup != null">
+        #{instantlyleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="instantlyrightup != null">
+        #{instantlyrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="instantlyleftdown != null">
+        #{instantlyleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="instantlyrightdown != null">
+        #{instantlyrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="atonceleftup != null">
+        #{atonceleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="atoncerightup != null">
+        #{atoncerightup,jdbcType=VARCHAR},
+      </if>
+      <if test="atonceleftdown != null">
+        #{atonceleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="atoncerightdown != null">
+        #{atoncerightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="imagingleftup != null">
+        #{imagingleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="imagingrightup != null">
+        #{imagingrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="imagingleftdown != null">
+        #{imagingleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="imagingrightdown != null">
+        #{imagingrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="lianguanleftup != null">
+        #{lianguanleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="lianguanrightup != null">
+        #{lianguanrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="lianguanleftdown != null">
+        #{lianguanleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="lianguanrightdown != null">
+        #{lianguanrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="preoperatives != null">
+        #{preoperatives,jdbcType=VARCHAR},
+      </if>
+      <if test="bicon != null">
+        #{bicon,jdbcType=VARCHAR},
+      </if>
+      <if test="abutment != null">
+        #{abutment,jdbcType=VARCHAR},
+      </if>
+      <if test="paraoperative != null">
+        #{paraoperative,jdbcType=VARCHAR},
+      </if>
+      <if test="modus != null">
+        #{modus,jdbcType=VARCHAR},
+      </if>
+      <if test="repair != null">
+        #{repair,jdbcType=VARCHAR},
+      </if>
+      <if test="alternative != null">
+        #{alternative,jdbcType=VARCHAR},
+      </if>
+      <if test="clinical != null">
+        #{clinical,jdbcType=VARCHAR},
+      </if>
+      <if test="treatmentparts1 != null">
+        #{treatmentparts1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="treatmentparts2 != null">
+        #{treatmentparts2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="treatmentparts3 != null">
+        #{treatmentparts3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="requirerestor != null">
+        #{requirerestor,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bonemeal != null">
+        #{bonemeal,jdbcType=VARCHAR},
+      </if>
+      <if test="ossein != null">
+        #{ossein,jdbcType=VARCHAR},
+      </if>
+      <if test="periost != null">
+        #{periost,jdbcType=VARCHAR},
+      </if>
+      <if test="one != null">
+        #{one,jdbcType=VARCHAR},
+      </if>
+      <if test="pathtype != null">
+        #{pathtype,jdbcType=VARCHAR},
+      </if>
+      <if test="deep != null">
+        #{deep,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmenttime != null">
+        #{appointmenttime,jdbcType=VARCHAR},
+      </if>
+      <if test="wzy != null">
+        #{wzy,jdbcType=VARCHAR},
+      </if>
+      <if test="accord != null">
+        #{accord,jdbcType=VARCHAR},
+      </if>
+      <if test="operationDoctorsignature != null">
+        #{operationDoctorsignature,jdbcType=VARCHAR},
+      </if>
+      <if test="repairDoctorsignature != null">
+        #{repairDoctorsignature,jdbcType=VARCHAR},
+      </if>
+      <if test="patientsignature != null">
+        #{patientsignature,jdbcType=VARCHAR},
+      </if>
+      <if test="patientsignature1 != null">
+        #{patientsignature1,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kqds.entity.base.HudhLcljBase" resultType="java.lang.Long">
+    select count(*) from HUDH_LCLJ_BASE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+   <update id="updateByExampleSelective" parameterType="map">
+    update HUDH_LCLJ_BASE
+    <set>
+      <if test="id != null">
+        id = #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="usercode != null">
+        usercode = #{usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="lcljid != null">
+        LcljId = #{lcljid,jdbcType=VARCHAR},
+      </if>
+      <if test="lcljnum != null">
+        LcljNum = #{lcljnum,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null">
+        createuser = #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null">
+        organization = #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="consultationOpinion != null">
+        consultation_opinion = #{consultationOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="promise != null">
+        promise = #{promise,jdbcType=VARCHAR},
+      </if>
+      <if test="patienttime != null">
+        patienttime = #{patienttime,jdbcType=VARCHAR},
+      </if>
+      <if test="operationdoctortime != null">
+        operationdoctortime = #{operationdoctortime,jdbcType=VARCHAR},
+      </if>
+      <if test="doctortime != null">
+        doctortime = #{doctortime,jdbcType=VARCHAR},
+      </if>
+      <if test="patienttime1 != null">
+        patienttime1 = #{patienttime1,jdbcType=VARCHAR},
+      </if>
+      <if test="extractionleftup != null">
+        extractionleftup = #{extractionleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="extractionrightup != null">
+        extractionrightup = #{extractionrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="extractionleftdown != null">
+        extractionleftdown = #{extractionleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="extractionrightdown != null">
+        extractionrightdown = #{extractionrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="dentiumleftup != null">
+        dentiumleftup = #{dentiumleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="dentiumrightup != null">
+        dentiumrightup = #{dentiumrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="dentiumleftdown != null">
+        dentiumleftdown = #{dentiumleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="dentiumrightdown != null">
+        dentiumrightdown = #{dentiumrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="hiossenleftup != null">
+        hiossenleftup = #{hiossenleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="hiossenrightup != null">
+        hiossenrightup = #{hiossenrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="hiossenleftdown != null">
+        hiossenleftdown = #{hiossenleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="hiossenrightdown != null">
+        hiossenrightdown = #{hiossenrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="icxleftup != null">
+        icxleftup = #{icxleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="icxrightup != null">
+        icxrightup = #{icxrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="icxleftdown != null">
+        icxleftdown = #{icxleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="icxrightdown != null">
+        icxrightdown = #{icxrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="camlogleftup != null">
+        camlogleftup = #{camlogleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="camlogrightup != null">
+        camlogrightup = #{camlogrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="camlogleftdown != null">
+        camlogleftdown = #{camlogleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="camlogrightdown != null">
+        camlogrightdown = #{camlogrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="zimmerleftup != null">
+        zimmerleftup = #{zimmerleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="zimmerrightup != null">
+        zimmerrightup = #{zimmerrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="zimmerleftdown != null">
+        zimmerleftdown = #{zimmerleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="zimmerrightdown != null">
+        zimmerrightdown = #{zimmerrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelccleftup != null">
+        nobelccleftup = #{nobelccleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelccrightup != null">
+        nobelccrightup = #{nobelccrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelccleftdown != null">
+        nobelccleftdown = #{nobelccleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelccrightdown != null">
+        nobelccrightdown = #{nobelccrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelactiveleftup != null">
+        nobelactiveleftup = #{nobelactiveleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelactiverightup != null">
+        nobelactiverightup = #{nobelactiverightup,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelactiveleftdown != null">
+        nobelactiveleftdown = #{nobelactiveleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelactiverightdown != null">
+        nobelactiverightdown = #{nobelactiverightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="pmcleftup != null">
+        pmcleftup = #{pmcleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="pmcrightup != null">
+        pmcrightup = #{pmcrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="pmcleftdown != null">
+        pmcleftdown = #{pmcleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="pmcrightdown != null">
+        pmcrightdown = #{pmcrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="temporarytleftup != null">
+        temporarytleftup = #{temporarytleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="temporarytrightup != null">
+        temporarytrightup = #{temporarytrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="temporarytleftdown != null">
+        temporarytleftdown = #{temporarytleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="temporarytrightdown != null">
+        temporarytrightdown = #{temporarytrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="commonleftup != null">
+        commonleftup = #{commonleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="commonrightup != null">
+        commonrightup = #{commonrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="commonleftdown != null">
+        commonleftdown = #{commonleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="commonrightdown != null">
+        commonrightdown = #{commonrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="instantlyleftup != null">
+        instantlyleftup = #{instantlyleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="instantlyrightup != null">
+        instantlyrightup = #{instantlyrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="instantlyleftdown != null">
+        instantlyleftdown = #{instantlyleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="instantlyrightdown != null">
+        instantlyrightdown = #{instantlyrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="atonceleftup != null">
+        atonceleftup = #{atonceleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="atoncerightup != null">
+        atoncerightup = #{atoncerightup,jdbcType=VARCHAR},
+      </if>
+      <if test="atonceleftdown != null">
+        atonceleftdown = #{atonceleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="atoncerightdown != null">
+        atoncerightdown = #{atoncerightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="imagingleftup != null">
+        imagingleftup = #{imagingleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="imagingrightup != null">
+        imagingrightup = #{imagingrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="imagingleftdown != null">
+        imagingleftdown = #{imagingleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="imagingrightdown != null">
+        imagingrightdown = #{imagingrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="lianguanleftup != null">
+        lianguanleftup = #{lianguanleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="lianguanrightup != null">
+        lianguanrightup = #{lianguanrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="lianguanleftdown != null">
+        lianguanleftdown = #{lianguanleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="lianguanrightdown != null">
+        lianguanrightdown = #{lianguanrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="preoperatives != null">
+        preoperatives = #{preoperatives,jdbcType=VARCHAR},
+      </if>
+      <if test="bicon != null">
+        bicon = #{bicon,jdbcType=VARCHAR},
+      </if>
+      <if test="abutment != null">
+        abutment = #{abutment,jdbcType=VARCHAR},
+      </if>
+      <if test="paraoperative != null">
+        paraoperative = #{paraoperative,jdbcType=VARCHAR},
+      </if>
+      <if test="modus != null">
+        modus = #{modus,jdbcType=VARCHAR},
+      </if>
+      <if test="repair != null">
+        repair = #{repair,jdbcType=VARCHAR},
+      </if>
+      <if test="alternative != null">
+        alternative = #{alternative,jdbcType=VARCHAR},
+      </if>
+      <if test="clinical != null">
+        clinical = #{clinical,jdbcType=VARCHAR},
+      </if>
+      <if test="treatmentparts1 != null">
+        treatmentparts1 = #{treatmentparts1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="treatmentparts2 != null">
+        treatmentparts2 = #{treatmentparts2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="treatmentparts3 != null">
+        treatmentparts3 = #{treatmentparts3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="requirerestor != null">
+        requirerestor = #{requirerestor,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bonemeal != null">
+        bonemeal = #{bonemeal,jdbcType=VARCHAR},
+      </if>
+      <if test="ossein != null">
+        ossein = #{ossein,jdbcType=VARCHAR},
+      </if>
+      <if test="periost != null">
+        periost = #{periost,jdbcType=VARCHAR},
+      </if>
+      <if test="one != null">
+        one = #{one,jdbcType=VARCHAR},
+      </if>
+      <if test="pathtype != null">
+        pathtype = #{pathtype,jdbcType=VARCHAR},
+      </if>
+      <if test="deep != null">
+        deep = #{deep,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmenttime != null">
+        appointmenttime = #{appointmenttime,jdbcType=VARCHAR},
+      </if>
+      <if test="wzy != null">
+        wzy = #{wzy,jdbcType=VARCHAR},
+      </if>
+      <if test="accord != null">
+        accord = #{accord,jdbcType=VARCHAR},
+      </if>
+      <if test="operationDoctorsignature != null">
+        operationDoctorsignature = #{operationDoctorsignature,jdbcType=VARCHAR},
+      </if>
+      <if test="repairDoctorsignature != null">
+        repairDoctorsignature = #{repairDoctorsignature,jdbcType=VARCHAR},
+      </if>
+      <if test="patientsignature != null">
+        patientsignature = #{patientsignature,jdbcType=VARCHAR},
+      </if>
+      <if test="patientsignature1 != null">
+        patientsignature1 = #{patientsignature1,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update HUDH_LCLJ_BASE
+    set id = #{id,jdbcType=VARCHAR},
+      usercode = #{usercode,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      LcljId = #{lcljid,jdbcType=VARCHAR},
+      LcljNum = #{lcljnum,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=VARCHAR},
+      createuser = #{createuser,jdbcType=VARCHAR},
+      organization = #{organization,jdbcType=VARCHAR},
+      consultation_opinion = #{consultationOpinion,jdbcType=VARCHAR},
+      promise = #{promise,jdbcType=VARCHAR},
+      patienttime = #{patienttime,jdbcType=VARCHAR},
+      operationdoctortime = #{operationdoctortime,jdbcType=VARCHAR},
+      doctortime = #{doctortime,jdbcType=VARCHAR},
+      patienttime1 = #{patienttime1,jdbcType=VARCHAR},
+      extractionleftup = #{extractionleftup,jdbcType=VARCHAR},
+      extractionrightup = #{extractionrightup,jdbcType=VARCHAR},
+      extractionleftdown = #{extractionleftdown,jdbcType=VARCHAR},
+      extractionrightdown = #{extractionrightdown,jdbcType=VARCHAR},
+      dentiumleftup = #{dentiumleftup,jdbcType=VARCHAR},
+      dentiumrightup = #{dentiumrightup,jdbcType=VARCHAR},
+      dentiumleftdown = #{dentiumleftdown,jdbcType=VARCHAR},
+      dentiumrightdown = #{dentiumrightdown,jdbcType=VARCHAR},
+      hiossenleftup = #{hiossenleftup,jdbcType=VARCHAR},
+      hiossenrightup = #{hiossenrightup,jdbcType=VARCHAR},
+      hiossenleftdown = #{hiossenleftdown,jdbcType=VARCHAR},
+      hiossenrightdown = #{hiossenrightdown,jdbcType=VARCHAR},
+      icxleftup = #{icxleftup,jdbcType=VARCHAR},
+      icxrightup = #{icxrightup,jdbcType=VARCHAR},
+      icxleftdown = #{icxleftdown,jdbcType=VARCHAR},
+      icxrightdown = #{icxrightdown,jdbcType=VARCHAR},
+      camlogleftup = #{camlogleftup,jdbcType=VARCHAR},
+      camlogrightup = #{camlogrightup,jdbcType=VARCHAR},
+      camlogleftdown = #{camlogleftdown,jdbcType=VARCHAR},
+      camlogrightdown = #{camlogrightdown,jdbcType=VARCHAR},
+      zimmerleftup = #{zimmerleftup,jdbcType=VARCHAR},
+      zimmerrightup = #{zimmerrightup,jdbcType=VARCHAR},
+      zimmerleftdown = #{zimmerleftdown,jdbcType=VARCHAR},
+      zimmerrightdown = #{zimmerrightdown,jdbcType=VARCHAR},
+      nobelccleftup = #{nobelccleftup,jdbcType=VARCHAR},
+      nobelccrightup = #{nobelccrightup,jdbcType=VARCHAR},
+      nobelccleftdown = #{nobelccleftdown,jdbcType=VARCHAR},
+      nobelccrightdown = #{nobelccrightdown,jdbcType=VARCHAR},
+      nobelactiveleftup = #{nobelactiveleftup,jdbcType=VARCHAR},
+      nobelactiverightup = #{nobelactiverightup,jdbcType=VARCHAR},
+      nobelactiveleftdown = #{nobelactiveleftdown,jdbcType=VARCHAR},
+      nobelactiverightdown = #{nobelactiverightdown,jdbcType=VARCHAR},
+      pmcleftup = #{pmcleftup,jdbcType=VARCHAR},
+      pmcrightup = #{pmcrightup,jdbcType=VARCHAR},
+      pmcleftdown = #{pmcleftdown,jdbcType=VARCHAR},
+      pmcrightdown = #{pmcrightdown,jdbcType=VARCHAR},
+      temporarytleftup = #{temporarytleftup,jdbcType=VARCHAR},
+      temporarytrightup = #{temporarytrightup,jdbcType=VARCHAR},
+      temporarytleftdown = #{temporarytleftdown,jdbcType=VARCHAR},
+      temporarytrightdown = #{temporarytrightdown,jdbcType=VARCHAR},
+      commonleftup = #{commonleftup,jdbcType=VARCHAR},
+      commonrightup = #{commonrightup,jdbcType=VARCHAR},
+      commonleftdown = #{commonleftdown,jdbcType=VARCHAR},
+      commonrightdown = #{commonrightdown,jdbcType=VARCHAR},
+      instantlyleftup = #{instantlyleftup,jdbcType=VARCHAR},
+      instantlyrightup = #{instantlyrightup,jdbcType=VARCHAR},
+      instantlyleftdown = #{instantlyleftdown,jdbcType=VARCHAR},
+      instantlyrightdown = #{instantlyrightdown,jdbcType=VARCHAR},
+      atonceleftup = #{atonceleftup,jdbcType=VARCHAR},
+      atoncerightup = #{atoncerightup,jdbcType=VARCHAR},
+      atonceleftdown = #{atonceleftdown,jdbcType=VARCHAR},
+      atoncerightdown = #{atoncerightdown,jdbcType=VARCHAR},
+      imagingleftup = #{imagingleftup,jdbcType=VARCHAR},
+      imagingrightup = #{imagingrightup,jdbcType=VARCHAR},
+      imagingleftdown = #{imagingleftdown,jdbcType=VARCHAR},
+      imagingrightdown = #{imagingrightdown,jdbcType=VARCHAR},
+      lianguanleftup = #{lianguanleftup,jdbcType=VARCHAR},
+      lianguanrightup = #{lianguanrightup,jdbcType=VARCHAR},
+      lianguanleftdown = #{lianguanleftdown,jdbcType=VARCHAR},
+      lianguanrightdown = #{lianguanrightdown,jdbcType=VARCHAR},
+      preoperatives = #{preoperatives,jdbcType=VARCHAR},
+      bicon = #{bicon,jdbcType=VARCHAR},
+      abutment = #{abutment,jdbcType=VARCHAR},
+      paraoperative = #{paraoperative,jdbcType=VARCHAR},
+      modus = #{modus,jdbcType=VARCHAR},
+      repair = #{repair,jdbcType=VARCHAR},
+      alternative = #{alternative,jdbcType=VARCHAR},
+      clinical = #{clinical,jdbcType=VARCHAR},
+      treatmentparts1 = #{treatmentparts1,jdbcType=LONGVARCHAR},
+      treatmentparts2 = #{treatmentparts2,jdbcType=LONGVARCHAR},
+      treatmentparts3 = #{treatmentparts3,jdbcType=LONGVARCHAR},
+      requirerestor = #{requirerestor,jdbcType=LONGVARCHAR},
+      bonemeal = #{bonemeal,jdbcType=VARCHAR},
+      ossein = #{ossein,jdbcType=VARCHAR},
+      periost = #{periost,jdbcType=VARCHAR},
+      one = #{one,jdbcType=VARCHAR},
+      pathtype = #{pathtype,jdbcType=VARCHAR},
+      deep = #{deep,jdbcType=VARCHAR},
+      appointmenttime = #{appointmenttime,jdbcType=VARCHAR},
+      wzy = #{wzy,jdbcType=VARCHAR},
+      accord = #{accord,jdbcType=VARCHAR},
+      operationDoctorsignature = #{operationDoctorsignature,jdbcType=VARCHAR},
+      repairDoctorsignature = #{repairDoctorsignature,jdbcType=VARCHAR},
+      patientsignature = #{patientsignature,jdbcType=VARCHAR},
+      patientsignature1 = #{patientsignature1,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="update" parameterType="com.kqds.entity.base.HudhLcljBase">
+    update HUDH_LCLJ_BASE
+    <set>
+      <if test="consultationOpinion != null">
+        consultation_opinion = #{consultationOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="promise != null">
+        promise = #{promise,jdbcType=VARCHAR},
+      </if>
+      <if test="patienttime != null">
+        patienttime = #{patienttime,jdbcType=VARCHAR},
+      </if>
+      <if test="operationdoctortime != null">
+        operationdoctortime = #{operationdoctortime,jdbcType=VARCHAR},
+      </if>
+      <if test="doctortime != null">
+        doctortime = #{doctortime,jdbcType=VARCHAR},
+      </if>
+      <if test="patienttime1 != null">
+        patienttime1 = #{patienttime1,jdbcType=VARCHAR},
+      </if>
+      <if test="extractionleftup != null">
+        extractionleftup = #{extractionleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="extractionrightup != null">
+        extractionrightup = #{extractionrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="extractionleftdown != null">
+        extractionleftdown = #{extractionleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="extractionrightdown != null">
+        extractionrightdown = #{extractionrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="dentiumleftup != null">
+        dentiumleftup = #{dentiumleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="dentiumrightup != null">
+        dentiumrightup = #{dentiumrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="dentiumleftdown != null">
+        dentiumleftdown = #{dentiumleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="dentiumrightdown != null">
+        dentiumrightdown = #{dentiumrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="hiossenleftup != null">
+        hiossenleftup = #{hiossenleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="hiossenrightup != null">
+        hiossenrightup = #{hiossenrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="hiossenleftdown != null">
+        hiossenleftdown = #{hiossenleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="hiossenrightdown != null">
+        hiossenrightdown = #{hiossenrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="icxleftup != null">
+        icxleftup = #{icxleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="icxrightup != null">
+        icxrightup = #{icxrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="icxleftdown != null">
+        icxleftdown = #{icxleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="icxrightdown != null">
+        icxrightdown = #{icxrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="camlogleftup != null">
+        camlogleftup = #{camlogleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="camlogrightup != null">
+        camlogrightup = #{camlogrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="camlogleftdown != null">
+        camlogleftdown = #{camlogleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="camlogrightdown != null">
+        camlogrightdown = #{camlogrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="zimmerleftup != null">
+        zimmerleftup = #{zimmerleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="zimmerrightup != null">
+        zimmerrightup = #{zimmerrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="zimmerleftdown != null">
+        zimmerleftdown = #{zimmerleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="zimmerrightdown != null">
+        zimmerrightdown = #{zimmerrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelccleftup != null">
+        nobelccleftup = #{nobelccleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelccrightup != null">
+        nobelccrightup = #{nobelccrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelccleftdown != null">
+        nobelccleftdown = #{nobelccleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelccrightdown != null">
+        nobelccrightdown = #{nobelccrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelactiveleftup != null">
+        nobelactiveleftup = #{nobelactiveleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelactiverightup != null">
+        nobelactiverightup = #{nobelactiverightup,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelactiveleftdown != null">
+        nobelactiveleftdown = #{nobelactiveleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="nobelactiverightdown != null">
+        nobelactiverightdown = #{nobelactiverightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="pmcleftup != null">
+        pmcleftup = #{pmcleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="pmcrightup != null">
+        pmcrightup = #{pmcrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="pmcleftdown != null">
+        pmcleftdown = #{pmcleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="pmcrightdown != null">
+        pmcrightdown = #{pmcrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="temporarytleftup != null">
+        temporarytleftup = #{temporarytleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="temporarytrightup != null">
+        temporarytrightup = #{temporarytrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="temporarytleftdown != null">
+        temporarytleftdown = #{temporarytleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="temporarytrightdown != null">
+        temporarytrightdown = #{temporarytrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="commonleftup != null">
+        commonleftup = #{commonleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="commonrightup != null">
+        commonrightup = #{commonrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="commonleftdown != null">
+        commonleftdown = #{commonleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="commonrightdown != null">
+        commonrightdown = #{commonrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="instantlyleftup != null">
+        instantlyleftup = #{instantlyleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="instantlyrightup != null">
+        instantlyrightup = #{instantlyrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="instantlyleftdown != null">
+        instantlyleftdown = #{instantlyleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="instantlyrightdown != null">
+        instantlyrightdown = #{instantlyrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="atonceleftup != null">
+        atonceleftup = #{atonceleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="atoncerightup != null">
+        atoncerightup = #{atoncerightup,jdbcType=VARCHAR},
+      </if>
+      <if test="atonceleftdown != null">
+        atonceleftdown = #{atonceleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="atoncerightdown != null">
+        atoncerightdown = #{atoncerightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="imagingleftup != null">
+        imagingleftup = #{imagingleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="imagingrightup != null">
+        imagingrightup = #{imagingrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="imagingleftdown != null">
+        imagingleftdown = #{imagingleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="imagingrightdown != null">
+        imagingrightdown = #{imagingrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="lianguanleftup != null">
+        lianguanleftup = #{lianguanleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="lianguanrightup != null">
+        lianguanrightup = #{lianguanrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="lianguanleftdown != null">
+        lianguanleftdown = #{lianguanleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="lianguanrightdown != null">
+        lianguanrightdown = #{lianguanrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="preoperatives != null">
+        preoperatives = #{preoperatives,jdbcType=VARCHAR},
+      </if>
+      <if test="bicon != null">
+        bicon = #{bicon,jdbcType=VARCHAR},
+      </if>
+      <if test="abutment != null">
+        abutment = #{abutment,jdbcType=VARCHAR},
+      </if>
+      <if test="paraoperative != null">
+        paraoperative = #{paraoperative,jdbcType=VARCHAR},
+      </if>
+      <if test="modus != null">
+        modus = #{modus,jdbcType=VARCHAR},
+      </if>
+      <if test="repair != null">
+        repair = #{repair,jdbcType=VARCHAR},
+      </if>
+      <if test="alternative != null">
+        alternative = #{alternative,jdbcType=VARCHAR},
+      </if>
+      <if test="clinical != null">
+        clinical = #{clinical,jdbcType=VARCHAR},
+      </if>
+      <if test="treatmentparts1 != null">
+        treatmentparts1 = #{treatmentparts1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="treatmentparts2 != null">
+        treatmentparts2 = #{treatmentparts2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="treatmentparts3 != null">
+        treatmentparts3 = #{treatmentparts3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="requirerestor != null">
+        requirerestor = #{requirerestor,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bonemeal != null">
+        bonemeal = #{bonemeal,jdbcType=VARCHAR},
+      </if>
+      <if test="ossein != null">
+        ossein = #{ossein,jdbcType=VARCHAR},
+      </if>
+      <if test="periost != null">
+        periost = #{periost,jdbcType=VARCHAR},
+      </if>
+      <if test="one != null">
+        one = #{one,jdbcType=VARCHAR},
+      </if>
+      <if test="pathtype != null">
+        pathtype = #{pathtype,jdbcType=VARCHAR},
+      </if>
+      <if test="deep != null">
+        deep = #{deep,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmenttime != null">
+        appointmenttime = #{appointmenttime,jdbcType=VARCHAR},
+      </if>
+      <if test="wzy != null">
+        wzy = #{wzy,jdbcType=VARCHAR},
+      </if>
+      <if test="accord != null">
+        accord = #{accord,jdbcType=VARCHAR},
+      </if>
+      <if test="operationDoctorsignature != null">
+        operationDoctorsignature = #{operationDoctorsignature,jdbcType=VARCHAR},
+      </if>
+      <if test="repairDoctorsignature != null">
+        repairDoctorsignature = #{repairDoctorsignature,jdbcType=VARCHAR},
+      </if>
+      <if test="patientsignature != null">
+        patientsignature = #{patientsignature,jdbcType=VARCHAR},
+      </if>
+      <if test="patientsignature1 != null">
+        patientsignature1 = #{patientsignature1,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="lcljid != null">
+     where LcljId = #{lcljid,jdbcType=VARCHAR}
+    </if>
+  </update>
+</mapper>

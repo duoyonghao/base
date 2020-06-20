@@ -141,7 +141,8 @@
 
     <!-- 根据Id更新主诉及既往病史 -->
     <update id="updateCaseHistoryById" parameterType="com.hudh.zzbl.entity.AdviceNote">
-        update HUDH_AdviceNote set
+        update HUDH_AdviceNote
+        <trim prefix="SET" suffixOverrides=",">
         <if test="LcljNum != null">
             LcljNum = #{LcljNum,jdbcType=VARCHAR},
         </if>
@@ -385,6 +386,7 @@
         <if test="glucocorticoidsmedicine != null">
             glucocorticoidsmedicine = #{glucocorticoidsmedicine,jdbcType=VARCHAR}
         </if>
+        </trim>
         where SEQ_ID = #{SEQ_ID,jdbcType=VARCHAR}
     </update>
 
