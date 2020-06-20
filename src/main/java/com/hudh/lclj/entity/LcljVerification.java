@@ -6,94 +6,91 @@ package com.hudh.lclj.entity;
 import java.io.Serializable;
 
 /**
- *
- * @Title: Verification
- * @Package com.hudh.lclj.entity
- * @Description: (描述该文件做什么)
- * @author: dyh
- * @date: 2020-06-12 14:25   
  * @version V1.0
+ * @Title: Verification
+ * @author: dyh
+ * @date: 2020-06-12 14:25
  */
 public class LcljVerification implements Serializable {
 
-        //主键Id
-        private String seqId;
-        //患者Id
-        private String userId;
-        //临床Id
-        private String lcljId;
-        //临床编号
-        private String orderNumber;
-        //手术医生
-        private String patientDoctor;
-        //是否已服用抗菌药
-        private String antibacterialMedicine;
-        //是否碘伏过敏
-        private String iodineAllergy;
-        //是否麻醉药物过敏
-        private String anestheticAllergy;
-        //拔牙位左上
-        private String uplefttoothbitone;
-        //拔牙位右上
-        private String uperrighttoothbitone;
-        //拔牙位左下
-        private String leftlowertoothbitone;
-        //拔牙位右下
-        private String lowrighttoothbitone;
-        //种植牙位左上
-        private String uplefttoothbittwo;
-        //种植牙位右上
-        private String uperrighttoothbittwo;
-        //种植牙位左下
-        private String leftlowertoothbittwo;
-        //种植牙位右下
-        private String lowrighttoothbittwo;
-        //辅助手术
-        private String assistOperation;
-        //种植系统
-        private String plantSystem;
-        //患者签字时间
-        private String patienttime;
-        //护士签字时间
-        private String nursetimeone;
-        //手术时间
-        private String operationtime;
-        //血压
-        private String bloodPressure;
-        //脉搏
-        private String pulse;
-        //血糖
-        private String bloodGlucose;
-        //凝血功能
-        private String cruorFunction;
-        //白细胞数
-        private String whitebloodCell;
-        //中性粒细胞
-        private String neutrophileCell;
-        //红细胞数
-        private String redbloodCell;
-        //血红蛋白
-        private String oxyphorase;
-        //术前用药
-        private String premedicate;
-        //用药小时
-        private String takemedicineHour;
-        //用药分钟
-        private String takemedicineMinutes;
-        //用药剂量
-        private String takemedicineMeasure;
-        //会诊意见
-        private String consultationOpinion;
-        //护士签字时间
-        private String nursesignaturetime;
-        //医生签字时间
-        private String doctorsignaturetime;
+    //主键Id
+    private String seqId;
+    //患者Id
+    private String userId;
+    //临床Id
+    private String lcljId;
+    //临床编号
+    private String orderNumber;
+    //手术医生
+    private String patientDoctor;
+    //是否已服用抗菌药
+    private String antibacterialMedicine;
+    //是否碘伏过敏
+    private String iodineAllergy;
+    //是否麻醉药物过敏
+    private String anestheticAllergy;
+    //拔牙位左上
+    private String uplefttoothbitone;
+    //拔牙位右上
+    private String uperrighttoothbitone;
+    //拔牙位左下
+    private String leftlowertoothbitone;
+    //拔牙位右下
+    private String lowrighttoothbitone;
+    //种植牙位左上
+    private String uplefttoothbittwo;
+    //种植牙位右上
+    private String uperrighttoothbittwo;
+    //种植牙位左下
+    private String leftlowertoothbittwo;
+    //种植牙位右下
+    private String lowrighttoothbittwo;
+    //辅助手术
+    private String assistOperation;
+    //种植系统
+    private String plantSystem;
+    //患者签字时间
+    private String patienttime;
+    //护士签字时间
+    private String nursetimeone;
+    //手术时间
+    private String operationtime;
+    //血压
+    private String bloodPressure;
+    //脉搏
+    private String pulse;
+    //血糖
+    private String bloodGlucose;
+    //凝血功能
+    private String cruorFunction;
+    //白细胞数
+    private String whitebloodCell;
+    //中性粒细胞
+    private String neutrophileCell;
+    //红细胞数
+    private String redbloodCell;
+    //血红蛋白
+    private String oxyphorase;
+    //术前用药
+    private String premedicate;
+    //用药小时
+    private String takemedicineHour;
+    //用药分钟
+    private String takemedicineMinutes;
+    //用药剂量
+    private String takemedicineMeasure;
+    //会诊意见
+    private String consultationOpinion;
+    //护士签字时间
+    private String nursesignaturetime;
+    //医生签字时间
+    private String doctorsignaturetime;
 
-        private String createuser;
+    private String createuser;
 
-        private String createtime;
+    private String createtime;
 
-        private String organization;
+    private String organization;
 
     //医生签字
     private String doctorSignature;

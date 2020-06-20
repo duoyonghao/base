@@ -733,7 +733,7 @@
             var doctortime = $("#doctortime").val();
             param = {
                 seqId:updataid,
-                doctorSignature :  doctorsignature,//医生签名
+                doctorSignature :  signature,//医生签名
                 doctorsignaturetime : doctortime//医生签名时间
             };
         }else if(status=="nurse2"){

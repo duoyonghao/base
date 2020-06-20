@@ -486,7 +486,7 @@
 		<if test="querytype != null and querytype !='' ">
 			and (
 			reg.doctor in (${querytype}) or reg.repairdoctor in (${querytype}) or reg.askperson in (${querytype}) or reg.createuser in (${querytype})
-			or EXISTS (select regno from KQDS_COSTORDER_DETAIL where reg.seq_id=regno and  (askperson in ( ${querytype}) or doctor in (${querytype}) or createuser in(${querytype})))
+			or EXISTS (select regno from KQDS_COSTORDER_DETAIL where reg.seq_id=regno and (askperson in ( ${querytype}) or doctor in (${querytype}) or createuser in(${querytype})))
 			or EXISTS (select regno from KQDS_TOOTH_DOC where reg.seq_id=regno and createuser in ( ${querytype}))
 			or EXISTS (select regno from KQDS_MEDICALRECORD where reg.seq_id=regno and  createuser in ( ${querytype}))
 			or EXISTS (select usercode from KQDS_MEMBER_RECORD where us.usercode=usercode and  askperson in (${querytype}))
@@ -547,7 +547,7 @@
 		where 1=1
 		<if test="querytype != null and querytype !='' ">
 			and (reg.doctor in (${querytype}) or reg.repairdoctor in (${querytype}) or reg.askperson in (${querytype}) or reg.createuser in (${querytype})
-			or EXISTS (select regno from KQDS_COSTORDER_DETAIL where reg.seq_id=regno and  (askperson in( ${querytype}) or doctor in (${querytype}) or createuser in(${querytype})))
+			or EXISTS (select regno from KQDS_COSTORDER_DETAIL where reg.seq_id=regno and (askperson in( ${querytype}) or doctor in (${querytype}) or createuser in(${querytype})))
 			or EXISTS (select regno from KQDS_TOOTH_DOC where reg.seq_id =regno and createuser in( ${querytype}))
 			or EXISTS (select regno from KQDS_MEDICALRECORD where reg.seq_id =regno and createuser in( ${querytype}))
 			or EXISTS (select usercode from KQDS_MEMBER_RECORD where us.usercode=usercode and askperson in(${querytype}))
@@ -665,7 +665,7 @@
 			and kcit5.SEQ_ID=#{shouli}
 		</if>
 	</select>
-
+	
 	<!-- 查询到诊患者 -->
 	<select id="selectDzQuery" parameterType="map" resultType="json">
 		select
@@ -777,10 +777,10 @@
 			and kcit5.SEQ_ID=#{shouli}
 		</if>
 		<if test="sortName != null and sortName != ''">
-			ORDER BY ${sortName} ${sortOrder}
+		ORDER BY ${sortName} ${sortOrder}
 		</if>
 		<if test="sortName == null">
-			ORDER BY reg.CreateTime desc
+		ORDER BY reg.CreateTime desc
 		</if>
 	</select>
 	<select id="selectJzqk" parameterType="map" resultType="json">
@@ -928,7 +928,7 @@
 		u.sex,
 		u.iscreatelclj,
 		u.blcode,
-		u.seq_id as useqid,
+		u.seq_id as useqid, 
 		u.askperson as firstaskperson,
 		i.detaildesc,
 		(select sum(c.actualmoney) from KQDS_COSTORDER c where c.regno = r.SEQ_ID and c.status=2 ) as jf
@@ -978,13 +978,13 @@
 			)
 		</if>
 		<if test="firstaskperson != null and firstaskperson !='' ">
-			and u.askperson =#{firstaskperson}
+		and u.askperson =#{firstaskperson}
 		</if>
 		<if test="usercode != null and usercode !='' ">
-			and u.usercode =#{usercode}
+		and u.usercode =#{usercode}
 		</if>
 		<if test="useqid != null and useqid !='' ">
-			and u.seq_id =#{useqid}
+		and u.seq_id =#{useqid}
 		</if>
 		<if test="important != null and important !='' ">
 			and u.important = #{important}
@@ -1029,7 +1029,7 @@
 		<if test="organization != null and organization !='' ">
 			and r.organization = #{organization}
 		</if>
-		<if test="seqid != null and seqid != '' ">
+		<if test="seqid != null and seqid != '' "> 
 			and r.seq_id= #{seqid}
 		</if>
 		<if test="gongju != null and gongju !='' ">
@@ -1050,10 +1050,10 @@
 			</if> -->
 		</if>
 		<if test="sortName != null and sortName != '' ">
-			ORDER BY ${sortName} ${sortOrder}
+		ORDER BY ${sortName} ${sortOrder}
 		</if>
 		<if test="sortName == null">
-			ORDER BY r.CreateTime desc
+		ORDER BY r.CreateTime desc
 		</if>
 	</select>
 	<select id="selectJzcxtotal" parameterType="map" resultType="int">
@@ -1275,7 +1275,7 @@
 		from KQDS_REG r
 		LEFT JOIN SYS_DEPT odept on odept.dept_code = r.organization and odept.dept_parent = '0'
 		LEFT JOIN kqds_userdocument u on r.usercode = u.usercode
-		left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by usercode) b
+		left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by usercode) b 
 		where a.usercode = b.usercode and a.createtime = b.createtime ) n on n.usercode = r.usercode
 		LEFT JOIN sys_person per7 ON per7.SEQ_ID = u.kefu  <!-- 添加客服检索条件 -->
 		where 1=1
@@ -1356,7 +1356,7 @@
 			and (u.askperson in(${visualstaffwd}) or u.createuser in(${visualstaffwd}) or u.glr in(${visualstaffwd}))
 		</if>
 	</select>
-
+	
 	<select id="selectToday" parameterType="map" resultType="json">
 		select
 		r.seq_id,
@@ -1380,19 +1380,19 @@
 		kcit5.dict_name as accepttype,
 		kcit6.dict_name as accepttool,
 		<if test="flag !=null and flag != ''">
-			(select count(v.usercode) from KQDS_Visit v where v.usercode=u.UserCode) as ywhf,
-			per6.USER_NAME as dy,
-			per5.USER_NAME as createuser,
-			kcit2.dict_name as regsort,
-			kcit1.dict_name as recesort,
-			dept.DEPT_NAME as regdept,
-			per2.USER_NAME as doctor,
-			per1.USER_NAME as askperson,
-			kcit3.dict_name as devchannel,
-			hzly.dict_name as nexttype,
-			per3.USER_NAME as jdr,
-			per4.USER_NAME as jddy,
-			kcit4.dict_name as failreason1,
+		(select count(v.usercode) from KQDS_Visit v where v.usercode=u.UserCode) as ywhf,
+		per6.USER_NAME as dy,
+		per5.USER_NAME as createuser,
+		kcit2.dict_name as regsort,
+		kcit1.dict_name as recesort,
+		dept.DEPT_NAME as regdept,
+		per2.USER_NAME as doctor,
+		per1.USER_NAME as askperson,
+		kcit3.dict_name as devchannel,
+		hzly.dict_name as nexttype,
+		per3.USER_NAME as jdr,
+		per4.USER_NAME as jddy,
+		kcit4.dict_name as failreason1,
 		</if>
 		<!-- (select sum(c.actualmoney) from KQDS_COSTORDER c where c.regno = r.SEQ_ID and c.status = 2 ) as jf, -->
 		per7.user_name as kefuname  <!-- 添加客服检索条件 -->
@@ -1400,21 +1400,21 @@
 		LEFT JOIN SYS_DEPT odept on odept.dept_code = r.organization and odept.dept_parent = '0'
 		LEFT JOIN kqds_userdocument u on r.usercode = u.usercode
 		<if test="flag !=null and flag != ''">
-			LEFT JOIN KQDS_RECEIVEINFO i on i.regno = r.SEQ_ID
-			LEFT JOIN SYS_DICT kcit1 on r.recesort = kcit1.seq_id
-			LEFT JOIN SYS_DICT kcit2 on r.regsort = kcit2.seq_id
-			LEFT JOIN SYS_DICT kcit4 on i.failreason1 = kcit4.seq_id
-			LEFT JOIN SYS_DEPT dept on r.regdept = dept.seq_id
-			LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = r.askperson
-			LEFT JOIN SYS_PERSON per2 on per2.SEQ_ID = r.doctor
-			LEFT JOIN SYS_PERSON per3 on per3.SEQ_ID = u.createuser
-			LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID = u.guider
-			LEFT JOIN SYS_PERSON per5 on per5.SEQ_ID = r.createuser
-			LEFT JOIN SYS_PERSON per6 on per6.SEQ_ID = r.receiveno
-			LEFT JOIN SYS_DICT kcit3 on u.devchannel = kcit3.seq_id
-			LEFT JOIN SYS_DICT hzly on u.nexttype = hzly.seq_id
+		LEFT JOIN KQDS_RECEIVEINFO i on i.regno = r.SEQ_ID
+		LEFT JOIN SYS_DICT kcit1 on r.recesort = kcit1.seq_id
+		LEFT JOIN SYS_DICT kcit2 on r.regsort = kcit2.seq_id
+		LEFT JOIN SYS_DICT kcit4 on i.failreason1 = kcit4.seq_id
+		LEFT JOIN SYS_DEPT dept on r.regdept = dept.seq_id
+		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = r.askperson
+		LEFT JOIN SYS_PERSON per2 on per2.SEQ_ID = r.doctor
+		LEFT JOIN SYS_PERSON per3 on per3.SEQ_ID = u.createuser
+		LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID = u.guider
+		LEFT JOIN SYS_PERSON per5 on per5.SEQ_ID = r.createuser
+		LEFT JOIN SYS_PERSON per6 on per6.SEQ_ID = r.receiveno
+		LEFT JOIN SYS_DICT kcit3 on u.devchannel = kcit3.seq_id
+		LEFT JOIN SYS_DICT hzly on u.nexttype = hzly.seq_id
 		</if>
-		left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by usercode) b
+		left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by usercode) b 
 		where a.usercode = b.usercode and a.createtime = b.createtime ) n on n.usercode = r.usercode
 		LEFT JOIN SYS_DICT kcit5 on n.accepttype = kcit5.seq_id
 		LEFT JOIN SYS_DICT kcit6 on n.accepttool = kcit6.seq_id
@@ -1497,10 +1497,10 @@
 			and (u.askperson in(${visualstaffwd}) or u.createuser in(${visualstaffwd}) or u.glr in(${visualstaffwd}))
 		</if>
 		<if test="sortName != null and sortName !=''">
-			order by ${sortName} ${sortOrder}
+		order by ${sortName} ${sortOrder}
 		</if>
 		<if test="sortName == null">
-			ORDER BY r.CreateTime desc
+		ORDER BY r.CreateTime desc
 		</if>
 	</select>
 	<select id="getCountIndex" parameterType="map" resultType="int">
@@ -1516,11 +1516,11 @@
 			or EXISTS (select usercode from KQDS_MEMBER_RECORD where u.usercode=usercode and askperson in (${querytype}))
 			)
 		</if>
-		<!-- <if test="status2 != null and status2 !='' "> and r.status <![CDATA[ >= ]]> 2 </if> <if test="status5 != null and status5 !='' "> <if test="temp_dbType == 0"> and to_days(r.createtime)
-			= to_days(now()) </if> <if test="temp_dbType == 1"> and datediff(day, r.createtime,getdate())=0 </if> </if> <if test="status2no != null and status2no !='' "> <if test="temp_dbType ==
-			0"> and to_days(r.createtime) = to_days(now()) </if> <if test="temp_dbType == 1"> and datediff(day, r.createtime,getdate())=0 </if> </if> <if test="status2novalue != null and status2novalue
+		<!-- <if test="status2 != null and status2 !='' "> and r.status <![CDATA[ >= ]]> 2 </if> <if test="status5 != null and status5 !='' "> <if test="temp_dbType == 0"> and to_days(r.createtime) 
+			= to_days(now()) </if> <if test="temp_dbType == 1"> and datediff(day, r.createtime,getdate())=0 </if> </if> <if test="status2no != null and status2no !='' "> <if test="temp_dbType == 
+			0"> and to_days(r.createtime) = to_days(now()) </if> <if test="temp_dbType == 1"> and datediff(day, r.createtime,getdate())=0 </if> </if> <if test="status2novalue != null and status2novalue 
 			!='' "> and r.status= #{status2novalue} </if> -->
-
+			
 		${statusSql} <!-- 状态查询条件，上面的写法是错的 -->
 		<if test="searchValue != null and searchValue !='' ">
 			and (u.usercode like '%' + #{searchValue} + '%'
@@ -1941,7 +1941,7 @@
 		left join KQDS_UserDocument u on u.usercode = r.usercode
 		where 1=1 and r.del !='1'
 		and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff})
-		or EXISTS (select regno from KQDS_COSTORDER_DETAIL where r.seq_id =regno AND (askperson in ( ${visualstaff}) or doctor in (${visualstaff}) or createuser in( ${visualstaff})))
+		or EXISTS (select regno from KQDS_COSTORDER_DETAIL where r.seq_id =regno AND (askperson in( ${visualstaff}) or doctor in (${visualstaff}) or createuser in( ${visualstaff})))
 		or EXISTS (select regno from KQDS_TOOTH_DOC where r.seq_id=regno AND createuser in( ${visualstaff}))
 		or EXISTS (select regno from KQDS_MEDICALRECORD where r.seq_id=regno AND createuser in( ${visualstaff}))
 		or EXISTS (select usercode from KQDS_MEMBER_RECORD where u.usercode=usercode AND askperson in (${visualstaff}))
@@ -1978,34 +1978,34 @@
 			)
 		</if>
 	</select>
-
+	
 	<select id="findKqdsRegByUserCode" parameterType="String" resultType="json">
 		<!-- SELECT
 			reg.*,per.USER_NAME
 		FROM KQDS_REG reg
 		LEFT JOIN sys_person per ON per.SEQ_ID = reg.doctor
 		where usercode = #{usercode} -->
-		select a.* from KQDS_REG a,(select usercode,max(createtime) as createtime from KQDS_REG group by usercode) b
-		where a.usercode = b.usercode and a.createtime = b.createtime and a.usercode = #{usercode};
+		select a.* from KQDS_REG a,(select usercode,max(createtime) as createtime from KQDS_REG group by usercode) b  
+		where a.usercode = b.usercode and a.createtime = b.createtime and a.usercode = #{usercode}; 
 	</select>
-
+	
 	<!-- 查询成交状态 与就诊类别 -->
 	<select id="findRegByregNo" parameterType="java.lang.String" resultType="json">
-		select * from kqds_reg where SEQ_ID = #{regno}
+	select * from kqds_reg where SEQ_ID = #{regno}
 	</select>
-
+	
 	<!-- 修改就诊分类 -->
 	<update id="updateRecesort" parameterType="java.lang.String">
-		update kqds_reg set recesort = '23' where SEQ_ID = #{regno}
+	update kqds_reg set recesort = '23' where SEQ_ID = #{regno}
 	</update>
-	<select id="getUserList" parameterType="map" resultType="json">
-		SELECT
-		usercode
+		<select id="getUserList" parameterType="map" resultType="json">
+			  SELECT
+			usercode
 		FROM
-		KQDS_REG r
+			KQDS_REG r
 		WHERE
-		r.doctor = #{doctor}
-		AND r.regsort = #{regsort}
+			r.doctor = #{doctor}
+		AND r.regsort = #{regsort}   
 		<if test="starttime != null and starttime !='' ">
 			and r.createtime <![CDATA[ >= ]]>
 			#{starttime}
@@ -2016,9 +2016,9 @@
 		</if>
 	</select>
 	<select id="selectExistByUsercode" parameterType="java.util.Map" resultType="java.lang.String">
-		select Top 1 createtime from KQDS_REG
-		where
-		usercode=#{usercode}
+		select Top 1 createtime from KQDS_REG 
+		where 
+		usercode=#{usercode} 
 		order by createtime desc
 		<!-- and createtime <![CDATA[ >= ]]> #{starttime} -->
 		<!-- and createtime <![CDATA[ <= ]]> #{endtime} -->
@@ -2026,7 +2026,7 @@
 	<!-- 根据用户Code查询当天挂号 -->
 	<select id="findRecord" parameterType="map" resultType="json">
 		SELECT
-		*
+			*
 		FROM KQDS_REG
 		WHERE 1=1
 		AND usercode = #{usercode}
@@ -2035,18 +2035,18 @@
 		AND createtime <![CDATA[ <= ]]> #{endTime}
 		ORDER BY createtime DESC
 	</select>
-
+	
 	<select id="findKqdsRegByUsercodes" parameterType="String" resultType="json">
-		select
-		SEQ_ID,createuser,createtime,usercode,regway,regsort,recesort,regmoney,reggoal,regdept,
-		doctor,ifmedrecord,ifcost,editreason,receiveno,status,username,del,cjstatus,beforeeditreason,remark,
-		organization
-		from KQDS_REG where usercode in (${_parameter})
+	select 
+	SEQ_ID,createuser,createtime,usercode,regway,regsort,recesort,regmoney,reggoal,regdept,
+	doctor,ifmedrecord,ifcost,editreason,receiveno,status,username,del,cjstatus,beforeeditreason,remark,
+	organization
+	 from KQDS_REG where usercode in (${_parameter})
 	</select>
 	<!-- 查询年的基础数据 -->
 	<select id="findQuantityByAskpersonAndYear" parameterType="java.util.Map" resultType="json">
 		SELECT ${code}
-		FROM KQDS_REG where
+	    FROM KQDS_REG where 
 		1=1
 		AND recesort in (${recesort})
 		AND organization=#{organization}
@@ -2055,8 +2055,8 @@
 	<!-- 查询年的基础数据 -->
 	<select id="findCJQuantityByAskpersonAndYear" parameterType="java.util.Map" resultType="json">
 		SELECT ${code}
-		FROM KQDS_REG where
-		1=1
+	    FROM KQDS_REG where 
+	    1=1
 		AND cjstatus=1
 		AND recesort in (${recesort})
 		AND organization=#{organization}
@@ -2067,50 +2067,50 @@
 		SELECT
 		COUNT(r.askperson) as nums,r.askperson as seqid,p.USER_NAME as name
 		FROM
-		KQDS_REG r
+			KQDS_REG r
 		LEFT JOIN sys_person p on p.SEQ_ID = r.askperson
 		WHERE
-		1 = 1
+			1 = 1
 		AND r.recesort in (${recesort})
 		AND YEAR (r.createtime) <![CDATA[ >= ]]> #{startyear}
 		AND YEAR (r.createtime) <![CDATA[ <= ]]> #{endyear}
 		AND r.organization = #{organization}
 		AND r.cjstatus = 1
 		<if test="askperson!=null and askperson!=''">
-			AND (${askperson})
+		AND (${askperson})
 		</if>
 		GROUP BY
-		r.askperson,
-		p.USER_NAME
+			r.askperson,
+			p.USER_NAME
 		ORDER BY
-		r.askperson ASC
+			r.askperson ASC
 	</select>
 	<!-- 查询年的员工基础数据 -->
 	<select id="findAllQuantityByAskpersonAndYear" parameterType="java.util.Map" resultType="json">
 		SELECT
 		COUNT(r.askperson) as nums,r.askperson as seqid,p.USER_NAME as name
 		FROM
-		KQDS_REG r
+			KQDS_REG r
 		LEFT JOIN sys_person p on p.SEQ_ID = r.askperson
 		WHERE
-		1 = 1
+			1 = 1
 		AND r.recesort in (${recesort})
 		AND YEAR (r.createtime) <![CDATA[ >= ]]> #{startyear}
 		AND YEAR (r.createtime) <![CDATA[ <= ]]> #{endyear}
 		AND r.organization = #{organization}
 		<if test="askperson!=null and askperson!=''">
-			AND (${askperson})
+		AND (${askperson})
 		</if>
 		GROUP BY
-		r.askperson,
-		p.USER_NAME
+			r.askperson,
+			p.USER_NAME
 		ORDER BY
-		r.askperson ASC
+			r.askperson ASC
 	</select>
 	<!-- 查询月的基础数据 -->
 	<select id="findQuantityByAskpersonAndMonth" parameterType="java.util.Map" resultType="json">
 		SELECT ${code}
-		FROM KQDS_REG where
+	    FROM KQDS_REG where 
 		1=1
 		AND datepart(year,createtime)=#{year}
 		AND recesort in (${recesort})
@@ -2120,8 +2120,8 @@
 	<!-- 查询月的基础数据 -->
 	<select id="findCJQuantityByAskpersonAndMonth" parameterType="java.util.Map" resultType="json">
 		SELECT ${code}
-		FROM KQDS_REG where
-		1=1
+	    FROM KQDS_REG where 
+	    1=1
 		AND cjstatus=1
 		AND datepart(year,createtime)=#{year}
 		AND recesort in (${recesort})
@@ -2131,7 +2131,7 @@
 	<!-- 查询天的基础数据 -->
 	<select id="findQuantityByAskpersonAndDay" parameterType="java.util.Map" resultType="json">
 		SELECT ${code}
-		FROM KQDS_REG where
+	    FROM KQDS_REG where 
 		1=1
 		AND datepart(year,createtime)=#{year}
 		AND datepart(month,createtime)=#{month}
@@ -2142,7 +2142,7 @@
 	<!-- 查询天的基础数据 -->
 	<select id="findCJQuantityByAskpersonAndDay" parameterType="java.util.Map" resultType="json">
 		SELECT  ${code}
-		FROM KQDS_REG where
+        FROM KQDS_REG where 
 		1=1
 		AND datepart(year,createtime)=#{year}
 		AND datepart(month,createtime)=#{month}
@@ -2154,7 +2154,7 @@
 	<!-- 查询年中月的基础数据 -->
 	<select id="findQuantityByAskpersonAndMonthInYear" parameterType="java.util.Map" resultType="json">
 		SELECT ${code}
-		FROM KQDS_REG where
+	    FROM KQDS_REG where 
 		1=1
 		AND datepart(year,createtime)=#{year}
 		AND recesort in (${recesort})
@@ -2164,7 +2164,7 @@
 	<!-- 查询年中月的基础数据 -->
 	<select id="findCJQuantityByAskpersonAndMonthInYear" parameterType="java.util.Map" resultType="json">
 		SELECT  ${code}
-		FROM KQDS_REG where
+        FROM KQDS_REG where 
 		1=1
 		AND datepart(year,createtime)=#{year}
 		AND recesort in (${recesort})
@@ -2174,504 +2174,504 @@
 	</select>
 	<!-- 查询月的员工数据 -->
 	<select id="findAllQuantityByAskpersonAndMonth" parameterType="java.util.Map" resultType="json">
-		SELECT
+	SELECT
 		COUNT(r.askperson) as nums,r.askperson as seqid,p.USER_NAME as name
 		FROM
-		KQDS_REG r
+			KQDS_REG r
 		LEFT JOIN sys_person p on p.SEQ_ID = r.askperson
 		WHERE
-		1 = 1
+			1 = 1
 		AND r.recesort in (${recesort})
 		AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
 		AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
 		<if test="years!='' and years!=null">
-			AND ${years}
+		AND ${years}
 		</if>
 		AND r.organization = #{organization}
 		<if test="askperson!=null and askperson!=''">
-			AND (${askperson})
+		AND (${askperson})
 		</if>
 		GROUP BY
-		r.askperson,
-		p.USER_NAME
+			r.askperson,
+			p.USER_NAME
 		ORDER BY
-		r.askperson ASC
+			r.askperson ASC
 	</select>
 	<!-- 查询月的员工数据 -->
 	<select id="findAllCjQuantityByAskpersonAndMonth" parameterType="java.util.Map" resultType="json">
 		SELECT
 		COUNT(r.askperson) as nums,r.askperson as seqid,p.USER_NAME as name
 		FROM
-		KQDS_REG r
+			KQDS_REG r
 		LEFT JOIN sys_person p on p.SEQ_ID = r.askperson
 		WHERE
-		1 = 1
+			1 = 1
 		AND r.recesort in (${recesort})
 		AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
 		AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
 		<if test="years!='' and years!=null">
-			AND ${years}
+		AND ${years}
 		</if>
 		AND r.organization = #{organization}
 		AND r.cjstatus = 1
 		<if test="askperson!=null and askperson!=''">
-			AND (${askperson})
+		AND (${askperson})
 		</if>
 		GROUP BY
-		r.askperson,
-		p.USER_NAME
+			r.askperson,
+			p.USER_NAME
 		ORDER BY
-		r.askperson ASC
+			r.askperson ASC
 	</select>
 	<!-- 查询天的员工数据 -->
 	<select id="findAllQuantityByAskpersonAndDay" parameterType="java.util.Map" resultType="json">
-		SELECT
+	SELECT
 		COUNT(r.askperson) as nums,r.askperson as seqid,p.USER_NAME as name
 		FROM
-		KQDS_REG r
+			KQDS_REG r
 		LEFT JOIN sys_person p on p.SEQ_ID = r.askperson
 		WHERE
-		1 = 1
+			1 = 1
 		AND r.recesort in (${recesort})
 		AND DAY (r.createtime) <![CDATA[ >= ]]> #{startday}
 		AND DAY (r.createtime) <![CDATA[ <= ]]> #{endday}
 		<if test="years !='' and years !=null">
-			AND ${years}
+		AND ${years}
 		</if>
 		<if test="months !='' and months !=null">
-			AND ${months}
+		AND ${months}
 		</if>
 		AND r.organization = #{organization}
 		<if test="askperson!=null and askperson!=''">
-			AND (${askperson})
+		AND (${askperson})
 		</if>
 		GROUP BY
-		r.askperson,
-		p.USER_NAME
+			r.askperson,
+			p.USER_NAME
 		ORDER BY
-		r.askperson ASC
+			r.askperson ASC
 	</select>
 	<!-- 查询天的员工数据 -->
 	<select id="findAllCjQuantityByAskpersonAndDay" parameterType="java.util.Map" resultType="json">
 		SELECT
 		COUNT(r.askperson) as nums,r.askperson as seqid,p.USER_NAME as name
 		FROM
-		KQDS_REG r
+			KQDS_REG r
 		LEFT JOIN sys_person p on p.SEQ_ID = r.askperson
 		WHERE
-		1 = 1
+			1 = 1
 		AND r.recesort in (${recesort})
 		AND DAY (r.createtime) <![CDATA[ >= ]]> #{startday}
 		AND DAY (r.createtime) <![CDATA[ <= ]]> #{endday}
 		<if test="years !='' and years !=null">
-			AND ${years}
+		AND ${years}
 		</if>
 		<if test="months !='' and months !=null">
-			AND ${months}
+		AND ${months}
 		</if>
 		AND r.organization = #{organization}
 		AND r.cjstatus = 1
 		<if test="askperson!=null and askperson!=''">
-			AND (${askperson})
+		AND (${askperson})
 		</if>
 		GROUP BY
-		r.askperson,
-		p.USER_NAME
+			r.askperson,
+			p.USER_NAME
 		ORDER BY
-		r.askperson ASC
+			r.askperson ASC
 	</select>
-	<select id="findDepartment" parameterType="map" resultType="json">
+	<select id="findDepartment" parameterType="map" resultType="json">	
 		SELECT
 		deptname,
 		SUM (paymoney) AS performance
-		FROM
+	FROM
 		(
-		SELECT
-		d.dept_name AS deptname,
-		(
-		p.actualmoney - (
-		SELECT
-		ISNULL(
-		SUM (
-		paymoney - payyjj - payother2 - payintegral - paydjq
-		),
-		0
-		) AS paymoney
-		FROM
-		KQDS_COSTORDER_DETAIL
-		WHERE
-		1 = 1
-		AND itemname IN (
-		SELECT
-		treatitemname
-		FROM
-		KQDS_TREATITEM
-		WHERE
-		basetype = 'jyk671'
-		AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
-		)
-		AND costno = p.costno
-		) - (
-		SELECT
-		ISNULL(
-		SUM (
-		paymoney - payyjj - payother2 - payintegral - paydjq
-		),
-		0
-		) AS paymoney
-		FROM
-		KQDS_COSTORDER_DETAIL
-		WHERE
-		1 = 1
-		AND isyjjitem = 1
-		AND costno = p.costno
-		)
-		) paymoney,
-		p.costno AS costno
-		FROM
-		KQDS_REG r
-		LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
-		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-		LEFT JOIN sys_dept d ON r.regdept = d.SEQ_ID
-		WHERE
-		1 = 1
-		<if test="years != null and years != ''">
+			SELECT
+				d.dept_name AS deptname,
+				(
+					p.actualmoney - (
+						SELECT
+							ISNULL(
+								SUM (
+									paymoney - payyjj - payother2 - payintegral - paydjq
+								),
+								0
+							) AS paymoney
+						FROM
+							KQDS_COSTORDER_DETAIL
+						WHERE
+							1 = 1
+						AND itemname IN (
+							SELECT
+								treatitemname
+							FROM
+								KQDS_TREATITEM
+							WHERE
+								basetype = 'jyk671'
+							AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
+						)
+						AND costno = p.costno
+					) - (
+						SELECT
+							ISNULL(
+								SUM (
+									paymoney - payyjj - payother2 - payintegral - paydjq
+								),
+								0
+							) AS paymoney
+						FROM
+							KQDS_COSTORDER_DETAIL
+						WHERE
+							1 = 1
+						AND isyjjitem = 1
+						AND costno = p.costno
+					)
+				) paymoney,
+				p.costno AS costno
+			FROM
+				KQDS_REG r
+			LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
+			LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+			LEFT JOIN sys_dept d ON r.regdept = d.SEQ_ID
+			WHERE
+				1 = 1
+			<if test="years != null and years != ''">
 			AND (${years})
-		</if>
-		AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
-		AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
-		AND r.organization = #{organization}
-		AND r.cjstatus = 1
-		AND cost.isdrugs = 0
-		AND r.askperson IN (${askperson})
-		GROUP BY
-		d.dept_name,
-		p.actualmoney,
-		p.costno
+			</if>
+			AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+			AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
+			AND r.organization = #{organization}
+			AND r.cjstatus = 1
+			AND cost.isdrugs = 0
+			AND r.askperson IN (${askperson})
+			GROUP BY
+				d.dept_name,
+				p.actualmoney,
+				p.costno
 		) AS detail
-		GROUP BY
+	GROUP BY
 		deptname
 	</select>
-
+	
 	<select id="findZperformance" parameterType="map" resultType="json">
 		SELECT
 		SUM (paymoney) AS zperformance
-		FROM
+	FROM
 		(
-		SELECT
-		d.dept_name AS deptname,
-		(
-		p.actualmoney - (
-		SELECT
-		ISNULL(
-		SUM (
-		paymoney - payyjj - payother2 - payintegral - paydjq
-		),
-		0
-		) AS paymoney
-		FROM
-		KQDS_COSTORDER_DETAIL
-		WHERE
-		1 = 1
-		AND itemname IN (
-		SELECT
-		treatitemname
-		FROM
-		KQDS_TREATITEM
-		WHERE
-		basetype = 'jyk671'
-		AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
-		)
-		AND costno = p.costno
-		) - (
-		SELECT
-		ISNULL(
-		SUM (
-		paymoney - payyjj - payother2 - payintegral - paydjq
-		),
-		0
-		) AS paymoney
-		FROM
-		KQDS_COSTORDER_DETAIL
-		WHERE
-		1 = 1
-		AND isyjjitem = 1
-		AND costno = p.costno
-		)
-		) paymoney,
-		p.costno AS costno
-		FROM
-		KQDS_REG r
-		LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
-		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-		LEFT JOIN sys_dept d ON r.regdept = d.SEQ_ID
-		WHERE
-		1 = 1
-		<if test="years != null and years != ''">
+			SELECT
+				d.dept_name AS deptname,
+				(
+					p.actualmoney - (
+						SELECT
+							ISNULL(
+								SUM (
+									paymoney - payyjj - payother2 - payintegral - paydjq
+								),
+								0
+							) AS paymoney
+						FROM
+							KQDS_COSTORDER_DETAIL
+						WHERE
+							1 = 1
+						AND itemname IN (
+							SELECT
+								treatitemname
+							FROM
+								KQDS_TREATITEM
+							WHERE
+								basetype = 'jyk671'
+							AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
+						)
+						AND costno = p.costno
+					) - (
+						SELECT
+							ISNULL(
+								SUM (
+									paymoney - payyjj - payother2 - payintegral - paydjq
+								),
+								0
+							) AS paymoney
+						FROM
+							KQDS_COSTORDER_DETAIL
+						WHERE
+							1 = 1
+						AND isyjjitem = 1
+						AND costno = p.costno
+					)
+				) paymoney,
+				p.costno AS costno
+			FROM
+				KQDS_REG r
+			LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
+			LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+			LEFT JOIN sys_dept d ON r.regdept = d.SEQ_ID
+			WHERE
+				1 = 1
+			<if test="years != null and years != ''">
 			AND (${years})
-		</if>
-		AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
-		AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
-		AND r.organization = #{organization}
-		AND r.cjstatus = 1
-		AND cost.isdrugs = 0
-		AND r.askperson IN (${askperson})
-		GROUP BY
-		d.dept_name,
-		p.actualmoney,
-		p.costno
-		) AS detail
+			</if>
+			AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+			AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
+			AND r.organization = #{organization}
+			AND r.cjstatus = 1
+			AND cost.isdrugs = 0
+			AND r.askperson IN (${askperson})
+			GROUP BY
+				d.dept_name,
+				p.actualmoney,
+				p.costno
+		) AS detail		
 	</select>
 	<!-- 对应医生业绩 -->
 	<select id="findDoctor" parameterType="map" resultType="json">
 		SELECT
-		doctor,
-		SUM (paymoney) AS paymoney
+			doctor,
+			SUM (paymoney) AS paymoney
 		FROM
-		(
-		SELECT
-		s.USER_NAME AS doctor,
-		(
-		p.actualmoney - (
-		SELECT
-		ISNULL(
-		SUM (
-		paymoney - payyjj - payother2 - payintegral - paydjq
-		),
-		0
-		) AS paymoney
-		FROM
-		KQDS_COSTORDER_DETAIL
-		WHERE
-		1 = 1
-		AND itemname IN (
-		SELECT
-		treatitemname
-		FROM
-		KQDS_TREATITEM
-		WHERE
-		basetype = 'jyk671'
-		AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
-		)
-		AND costno = p.costno
-		) - (
-		SELECT
-		ISNULL(
-		SUM (
-		paymoney - payyjj - payother2 - payintegral - paydjq
-		),
-		0
-		) AS paymoney
-		FROM
-		KQDS_COSTORDER_DETAIL
-		WHERE
-		1 = 1
-		AND isyjjitem = 1
-		AND costno = p.costno
-		)
-		) paymoney,
-		p.costno AS costno
-		FROM
-		KQDS_REG r
-		LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
-		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-		LEFT JOIN sys_person s ON cost.doctor = s.SEQ_ID
-		WHERE
-		1 = 1
-		<if test="years != null and years != ''">
-			AND (${years})
-		</if>
-		AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
-		AND MONTH (r.createtime)<![CDATA[ <= ]]> #{endmonth}
-		AND r.organization = #{organization}
-		AND r.cjstatus = 1
-		AND cost.isdrugs = 0
-		AND r.askperson IN (${askperson})
+			(
+				SELECT
+					s.USER_NAME AS doctor,
+					(
+						p.actualmoney - (
+							SELECT
+								ISNULL(
+									SUM (
+										paymoney - payyjj - payother2 - payintegral - paydjq
+									),
+									0
+								) AS paymoney
+							FROM
+								KQDS_COSTORDER_DETAIL
+							WHERE
+								1 = 1
+							AND itemname IN (
+								SELECT
+									treatitemname
+								FROM
+									KQDS_TREATITEM
+								WHERE
+									basetype = 'jyk671'
+								AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
+							)
+							AND costno = p.costno
+						) - (
+							SELECT
+								ISNULL(
+									SUM (
+										paymoney - payyjj - payother2 - payintegral - paydjq
+									),
+									0
+								) AS paymoney
+							FROM
+								KQDS_COSTORDER_DETAIL
+							WHERE
+								1 = 1
+							AND isyjjitem = 1
+							AND costno = p.costno
+						)
+					) paymoney,
+					p.costno AS costno
+				FROM
+					KQDS_REG r
+				LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
+				LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+				LEFT JOIN sys_person s ON cost.doctor = s.SEQ_ID
+				WHERE
+					1 = 1
+				<if test="years != null and years != ''">
+					AND (${years})
+				</if>
+				AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+				AND MONTH (r.createtime)<![CDATA[ <= ]]> #{endmonth}
+				AND r.organization = #{organization}
+				AND r.cjstatus = 1
+				AND cost.isdrugs = 0
+				AND r.askperson IN (${askperson})
+				GROUP BY
+					s.USER_NAME,
+					p.actualmoney,
+					p.costno
+			) AS detail
 		GROUP BY
-		s.USER_NAME,
-		p.actualmoney,
-		p.costno
-		) AS detail
-		GROUP BY
-		doctor
+			doctor
 	</select>
-
+	
 	<!-- 对应医生总业绩 -->
 	<select id="findZdoctor" parameterType="map" resultType="json">
 		SELECT
-		SUM (paymoney) AS paymoney
+			SUM (paymoney) AS paymoney
 		FROM
-		(
-		SELECT
-		s.USER_NAME AS doctor,
-		(
-		p.actualmoney - (
-		SELECT
-		ISNULL(
-		SUM (
-		paymoney - payyjj - payother2 - payintegral - paydjq
-		),
-		0
-		) AS paymoney
-		FROM
-		KQDS_COSTORDER_DETAIL
-		WHERE
-		1 = 1
-		AND itemname IN (
-		SELECT
-		treatitemname
-		FROM
-		KQDS_TREATITEM
-		WHERE
-		basetype = 'jyk671'
-		AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
-		)
-		AND costno = p.costno
-		) - (
-		SELECT
-		ISNULL(
-		SUM (
-		paymoney - payyjj - payother2 - payintegral - paydjq
-		),
-		0
-		) AS paymoney
-		FROM
-		KQDS_COSTORDER_DETAIL
-		WHERE
-		1 = 1
-		AND isyjjitem = 1
-		AND costno = p.costno
-		)
-		) paymoney,
-		p.costno AS costno
-		FROM
-		KQDS_REG r
-		LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
-		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-		LEFT JOIN sys_person s ON cost.doctor = s.SEQ_ID
-		WHERE
-		1 = 1
-		<if test="years != null and years != ''">
-			AND (${years})
-		</if>
-		AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
-		AND MONTH (r.createtime)<![CDATA[ <= ]]> #{endmonth}
-		AND r.organization = #{organization}
-		AND r.cjstatus = 1
-		AND cost.isdrugs = 0
-		AND r.askperson IN (${askperson})
-		GROUP BY
-		s.USER_NAME,
-		p.actualmoney,
-		p.costno
-		) AS detail
+			(
+				SELECT
+					s.USER_NAME AS doctor,
+					(
+						p.actualmoney - (
+							SELECT
+								ISNULL(
+									SUM (
+										paymoney - payyjj - payother2 - payintegral - paydjq
+									),
+									0
+								) AS paymoney
+							FROM
+								KQDS_COSTORDER_DETAIL
+							WHERE
+								1 = 1
+							AND itemname IN (
+								SELECT
+									treatitemname
+								FROM
+									KQDS_TREATITEM
+								WHERE
+									basetype = 'jyk671'
+								AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
+							)
+							AND costno = p.costno
+						) - (
+							SELECT
+								ISNULL(
+									SUM (
+										paymoney - payyjj - payother2 - payintegral - paydjq
+									),
+									0
+								) AS paymoney
+							FROM
+								KQDS_COSTORDER_DETAIL
+							WHERE
+								1 = 1
+							AND isyjjitem = 1
+							AND costno = p.costno
+						)
+					) paymoney,
+					p.costno AS costno
+				FROM
+					KQDS_REG r
+				LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
+				LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+				LEFT JOIN sys_person s ON cost.doctor = s.SEQ_ID
+				WHERE
+					1 = 1
+				<if test="years != null and years != ''">
+					AND (${years})
+				</if>
+				AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+				AND MONTH (r.createtime)<![CDATA[ <= ]]> #{endmonth}
+				AND r.organization = #{organization}
+				AND r.cjstatus = 1
+				AND cost.isdrugs = 0
+				AND r.askperson IN (${askperson})
+				GROUP BY
+					s.USER_NAME,
+					p.actualmoney,
+					p.costno
+			) AS detail
 	</select>
-
+	
 	<!-- 种植体数量 -->
 	<select id="findImplantNum" parameterType="map" resultType="json">
-		SELECT
-		detail.itemname AS implantname,
-		SUM (cast(detail.num as numeric(12,0))) AS nums
-		FROM
-		KQDS_REG r
-		LEFT JOIN KQDS_COSTORDER c ON c.regno = r.SEQ_ID
-		LEFT JOIN KQDS_COSTORDER_DETAIL detail ON detail.costno = c.costno
-		LEFT JOIN sys_dept d ON r.regdept = d.SEQ_ID
-		WHERE
-		1 = 1
-		<if test="years != null and years != ''">
-			AND (${years})
-		</if>
-		AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
-		AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
-		AND r.organization = #{organization}
-		AND c.cjstatus = 1
-		AND c.isdrugs != 1
-		AND EXISTS (
-		SELECT treatitemno FROM KQDS_TREATITEM WHERE detail.itemno=treatitemno AND implant = '1'
-		)
-		AND r.askperson IN (${askperson})
-		GROUP BY
-		detail.itemname
+				SELECT
+					 detail.itemname AS implantname,
+					 SUM (cast(detail.num as numeric(12,0))) AS nums
+				FROM
+					KQDS_REG r
+				LEFT JOIN KQDS_COSTORDER c ON c.regno = r.SEQ_ID
+				LEFT JOIN KQDS_COSTORDER_DETAIL detail ON detail.costno = c.costno
+				LEFT JOIN sys_dept d ON r.regdept = d.SEQ_ID
+				WHERE
+					1 = 1
+				<if test="years != null and years != ''">
+					AND (${years})
+				</if>
+				AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+				AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
+				AND r.organization = #{organization}
+				AND c.cjstatus = 1
+				AND c.isdrugs != 1
+				AND EXISTS (
+					SELECT treatitemno FROM KQDS_TREATITEM WHERE detail.itemno=treatitemno AND implant = '1'
+				)
+				AND r.askperson IN (${askperson})
+				GROUP BY
+					detail.itemname
 	</select>
-
+	
 	<!-- 种植体总数量 -->
 	<select id="findImplantNumAll" parameterType="map" resultType="json">
-		SELECT
-		SUM (cast(detail.num as numeric(12,0))) AS nums
-		FROM
-		KQDS_REG r
-		LEFT JOIN KQDS_COSTORDER c ON c.regno = r.SEQ_ID
-		LEFT JOIN KQDS_COSTORDER_DETAIL detail ON detail.costno = c.costno
-		LEFT JOIN sys_dept d ON r.regdept = d.SEQ_ID
-		WHERE
-		1 = 1
-		<if test="years != null and years != ''">
-			AND (${years})
-		</if>
-		AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
-		AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
-		AND r.organization = #{organization}
-		AND c.cjstatus = 1
-		AND c.isdrugs != 1
-		AND detail.itemno IN (
-		SELECT treatitemno FROM KQDS_TREATITEM WHERE implant = '1'
-		)
-		AND r.askperson IN (${askperson})
+				SELECT
+					 SUM (cast(detail.num as numeric(12,0))) AS nums
+				FROM
+					KQDS_REG r
+				LEFT JOIN KQDS_COSTORDER c ON c.regno = r.SEQ_ID
+				LEFT JOIN KQDS_COSTORDER_DETAIL detail ON detail.costno = c.costno
+				LEFT JOIN sys_dept d ON r.regdept = d.SEQ_ID
+				WHERE
+					1 = 1
+				<if test="years != null and years != ''">
+					AND (${years})
+				</if>
+				AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+				AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
+				AND r.organization = #{organization}
+				AND c.cjstatus = 1
+				AND c.isdrugs != 1
+				AND detail.itemno IN (
+					SELECT treatitemno FROM KQDS_TREATITEM WHERE implant = '1'
+				)
+				AND r.askperson IN (${askperson})
 	</select>
-
+	
 	<!-- 折扣后也改变成交状态为已成交 syp 2019-10-07 -->
 	<update id="updateRegCjstatus" parameterType="String">
 		update KQDS_REG set cjstatus = '1' where SEQ_ID = #{seqId}
 	</update>
 	<!-- 数据报表 医生总数量 -->
 	<select id="selectDoctorSituationNums" parameterType="map" resultType="json">
-		SELECT
-		COUNT (r.doctor) AS nums,
-		r.doctor AS seqid,
-		p.USER_NAME AS name,
-		r.recesort,
-		r.regsort,
-		kcit2.dict_name as regsortname,
-		kcit.dict_name as recesortname
-		FROM
+	SELECT
+	COUNT (r.doctor) AS nums,
+	r.doctor AS seqid,
+	p.USER_NAME AS name,
+	r.recesort,
+	r.regsort,
+	kcit2.dict_name as regsortname,
+	kcit.dict_name as recesortname
+	FROM
 		KQDS_REG r
-		LEFT JOIN sys_person p ON p.SEQ_ID = r.doctor
-		LEFT JOIN SYS_DICT kcit2 on r.regsort = kcit2.seq_id
-		LEFT JOIN SYS_DICT kcit on r.recesort = kcit.seq_id
-		WHERE
+	LEFT JOIN sys_person p ON p.SEQ_ID = r.doctor
+	LEFT JOIN SYS_DICT kcit2 on r.regsort = kcit2.seq_id
+	LEFT JOIN SYS_DICT kcit on r.recesort = kcit.seq_id
+	WHERE
 		1 = 1
 		and r.del = '0'
 		AND r.createtime <![CDATA[ >= ]]>	#{starttime}
 		AND r.createtime <![CDATA[ <= ]]>	#{endtime}
 		AND r.organization = #{organization}
 		AND r.doctor IN (${doctor})
-		GROUP BY
+	GROUP BY
 		r.doctor,
 		p.USER_NAME,
 		r.recesort,
 		r.regsort,
 		kcit2.dict_name,
 		kcit.dict_name
-		ORDER BY
+	ORDER BY
 		r.doctor ASC
 	</select>
 	<!-- 数据报表 医生成交数量 -->
 	<select id="selectDoctorSituationCJNums" parameterType="map" resultType="json">
-		SELECT
-		COUNT (r.doctor) AS nums,
-		r.doctor AS seqid,
-		p.USER_NAME AS name,
-		r.recesort,
-		r.regsort,
-		kcit2.dict_name as regsortname,
-		kcit.dict_name as recesortname
-		FROM
+	SELECT
+	COUNT (r.doctor) AS nums,
+	r.doctor AS seqid,
+	p.USER_NAME AS name,
+	r.recesort,
+	r.regsort,
+	kcit2.dict_name as regsortname,
+	kcit.dict_name as recesortname
+	FROM
 		KQDS_REG r
-		LEFT JOIN sys_person p ON p.SEQ_ID = r.doctor
-		LEFT JOIN SYS_DICT kcit2 on r.regsort = kcit2.seq_id
-		LEFT JOIN SYS_DICT kcit on r.recesort = kcit.seq_id
-		WHERE
+	LEFT JOIN sys_person p ON p.SEQ_ID = r.doctor
+	LEFT JOIN SYS_DICT kcit2 on r.regsort = kcit2.seq_id
+	LEFT JOIN SYS_DICT kcit on r.recesort = kcit.seq_id
+	WHERE
 		1 = 1
 		and r.del = '0'
 		and r.cjstatus='1'
@@ -2679,35 +2679,35 @@
 		AND r.createtime <![CDATA[ <= ]]>	#{endtime}
 		AND r.organization = #{organization}
 		AND r.doctor IN (${doctor})
-		GROUP BY
+	GROUP BY
 		r.doctor,
 		p.USER_NAME,
 		r.recesort,
 		r.regsort,
 		kcit2.dict_name,
 		kcit.dict_name
-		ORDER BY
+	ORDER BY
 		r.doctor ASC
 	</select>
-
+	
 	<select id="selectRegByusercode" parameterType="map" resultType="json">
 		SELECT
-		r.createtime,
-		d.dict_name AS recesort,
-		dict.dict_name AS regsort,
-		p.USER_NAME AS doctor
-		FROM
+	r.createtime,
+	d.dict_name AS recesort,
+	dict.dict_name AS regsort,
+	p.USER_NAME AS doctor
+	FROM
 		KQDS_REG r
-		LEFT JOIN sys_dict d ON d.SEQ_ID = r.recesort
-		LEFT JOIN sys_dict dict ON dict.SEQ_ID = r.regsort
-		LEFT JOIN sys_person p ON p.SEQ_ID = r.doctor
-		WHERE 1=1
-		AND usercode = #{usercode}
-		ORDER BY
+	LEFT JOIN sys_dict d ON d.SEQ_ID = r.recesort
+	LEFT JOIN sys_dict dict ON dict.SEQ_ID = r.regsort
+	LEFT JOIN sys_person p ON p.SEQ_ID = r.doctor
+	WHERE 1=1
+	AND usercode = #{usercode} 
+	ORDER BY 
 		createtime DESC
 	</select>
 	<select id="selectNameBySeqid" parameterType="java.util.Map" resultType="json">
-		select
+		select 
 		r.seq_id as seqid,
 		per1.USER_NAME as askperson,
 		per2.USER_NAME as doctor,
@@ -2725,28 +2725,28 @@
 		where r.seq_id in (${seqid})
 	</select>
 	<select id="selectSlgjBySeqid" parameterType="java.util.Map" resultType="json">
-		select
+		select 
 		r.SEQ_ID as seqid,
 		kcit7.dict_name as slgj,
 		n.accepttool as slgjvalue
 		from KQDS_REG r
 		LEFT JOIN (
 		SELECT
-		a.usercode,a.accepttool
+			a.usercode,a.accepttool
 		FROM
-		KQDS_NET_ORDER a,
-		(
-		SELECT
-		usercode,
-		MAX (createtime) createtime
-		FROM
-		KQDS_NET_ORDER
-		GROUP BY
-		usercode
-		) b
+			KQDS_NET_ORDER a,
+			(
+				SELECT
+					usercode,
+					MAX (createtime) createtime
+				FROM
+					KQDS_NET_ORDER
+				GROUP BY
+					usercode
+			) b
 		WHERE 1=1
-		AND	a.usercode = b.usercode
-		AND a.createtime = b.createtime
+			AND	a.usercode = b.usercode
+			AND a.createtime = b.createtime
 		) n ON n.usercode = r.usercode
 		LEFT JOIN sys_dict kcit7 ON n.accepttool = kcit7.SEQ_ID
 		where 1=1
@@ -2773,10 +2773,10 @@
 		#{del,jdbcType=INTEGER}, #{cjstatus,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR},
 		#{organization,jdbcType=VARCHAR},#{beforeeditreason,jdbcType=CLOB})
 	</insert>
-
-
+	
+	
 	<select id="selectTodayNameBySeqid" parameterType="java.util.Map" resultType="json">
-		select
+		select 
 		r.seq_id as seqid,
 		per1.USER_NAME as askperson,
 		per2.USER_NAME as doctor,
@@ -2798,8 +2798,8 @@
 		LEFT JOIN SYS_DICT kcit4 on i.failreason1 = kcit4.seq_id
 		where r.seq_id in (${seqid})
 	</select>
-	<select id="selectTodayNameByUsercode" parameterType="java.util.Map" resultType="json">
-		select
+		<select id="selectTodayNameByUsercode" parameterType="java.util.Map" resultType="json">
+		select 
 		u.usercode as usercode,
 		per3.USER_NAME as jdr,
 		per4.USER_NAME as jddy,
@@ -2812,7 +2812,7 @@
 		LEFT JOIN SYS_DICT hzly on u.nexttype = hzly.seq_id
 		where u.usercode in (${usercodes})
 	</select>
-
+	
 	<update id="updateRegJhStatus" parameterType="java.util.Map">
 		update KQDS_REG set jh=#{jh} where seq_id=#{seqid}
 	</update>
