@@ -336,11 +336,11 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/net.sf.jmimemagic/jmimemagic -->
-		<dependency>
-			<groupId>net.sf.jmimemagic</groupId>
-			<artifactId>jmimemagic</artifactId>
-			<version>0.1.4</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>net.sf.jmimemagic</groupId>-->
+<!--			<artifactId>jmimemagic</artifactId>-->
+<!--			<version>0.1.4</version>-->
+<!--		</dependency>-->
 		
 		<!-- barcode4j开源Java条形码生成库 -->
 		<dependency>
