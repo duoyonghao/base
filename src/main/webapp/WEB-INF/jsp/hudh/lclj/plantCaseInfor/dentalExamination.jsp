@@ -506,17 +506,9 @@
                 <tr>
                     <td  colspan="" class="problemitem table_width"><span class="" id="ysd3">Ⅲ°</span></td>
                     <td  colspan="4" class="table_width"><div class="div_with placeholder" id="ysd3"></div></td>
-                    <!-- 						<td  colspan="" class="table_width problemitem"><span class=" " id="4">牙列缺失</span></td> -->
-                    <!-- 						<td  colspan="4" class="table_width"><div class="div_with placeholder" id="4"></div></td> -->
                     <td  colspan="" class="table_width"></td>
                     <td  colspan="4" class="table_width"></td>
                 </tr>
-                <!-- 					<tr> -->
-                <!-- 						<td  colspan="" class="table_width problemitem"><span class=" " id="5">牙列缺损</span></td> -->
-                <!-- 						<td  colspan="4" class="table_width"><div class="div_with placeholder" id="5"></div></td> -->
-                <!-- 						<td  colspan="" class="table_width"></td> -->
-                <!-- 						<td  colspan="4" class="table_width"></td> -->
-                <!-- 					</tr>															 -->
             </table>
         </div>
     </div>
@@ -531,334 +523,53 @@
         <!-- 牙位图 -->
         <div class="row toothBox toothProBox"  id="toothLooseMap" style="min-width:600px;float:left;overflow:hidden;">
             <ul class="upYa" >
-                <li><input type="checkbox" class="lefttop" style="margin-top:65px;" /></li>
-                <li><span class="yaIcon le8"></span><span class="num" name="adultupYa1" toothname="18">18</span></li>
-                <li><span class="yaIcon le7"></span><span class="num" name="adultupYa1" toothname="17">17</span></li>
-                <li><span class="yaIcon le6"></span><span class="num" name="adultupYa1" toothname="16">16</span></li>
-                <li><span class="yaIcon le5"></span><span class="num" name="adultupYa1" toothname="15">15</span></li>
-                <li><span class="yaIcon le4"></span><span class="num" name="adultupYa1" toothname="14">14</span></li>
-                <li><span class="yaIcon le3"></span><span class="num" name="adultupYa1" toothname="13">13</span></li>
-                <li><span class="yaIcon le2"></span><span class="num" name="adultupYa1" toothname="12">12</span></li>
-                <li><span class="yaIcon le1"></span><span class="num" name="adultupYa1" toothname="11">11</span></li>
-
-                <li><span class="yaIcon rg1"></span><span class="num" name="adultupYa2" toothname="21">21</span></li>
-                <li><span class="yaIcon rg2"></span><span class="num" name="adultupYa2" toothname="22">22</span></li>
-                <li><span class="yaIcon rg3"></span><span class="num" name="adultupYa2" toothname="23">23</span></li>
-                <li><span class="yaIcon rg4"></span><span class="num" name="adultupYa2" toothname="24">24</span></li>
-                <li><span class="yaIcon rg5"></span><span class="num" name="adultupYa2" toothname="25">25</span></li>
-                <li><span class="yaIcon rg6"></span><span class="num" name="adultupYa2" toothname="26">26</span></li>
-                <li><span class="yaIcon rg7"></span><span class="num" name="adultupYa2" toothname="27">27</span></li>
-                <li><span class="yaIcon rg8"></span><span class="num" name="adultupYa2" toothname="28">28</span></li>
-                <li><input type="checkbox" class="righttop" style="margin-top:65px;"/></li>
             </ul>
             <div class="line">
                 <span class="left">右</span>
                 <span class="right">左</span>
             </div>
             <ul class="downYa">
-                <li><input type="checkbox" class="leftdown" style="margin-bottom:20px;"/></li>
-                <li><span class="num" name="adultdownYa1" toothname="48">48</span><span class="yaIcon le8"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="47">47</span><span class="yaIcon le7"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="46">46</span><span class="yaIcon le6"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="45">45</span><span class="yaIcon le5"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="44">44</span><span class="yaIcon le4"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="43">43</span><span class="yaIcon le3"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="42">42</span><span class="yaIcon le2"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="41">41</span><span class="yaIcon le1"></span></li>
-
-                <li><span class="num" name="adultdownYa2" toothname="31">31</span><span class="yaIcon rg1"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="32">32</span><span class="yaIcon rg2"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="33">33</span><span class="yaIcon rg3"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="34">34</span><span class="yaIcon rg4"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="35">35</span><span class="yaIcon rg5"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="36">36</span><span class="yaIcon rg6"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="37">37</span><span class="yaIcon rg7"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="38">38</span><span class="yaIcon rg8"></span></li>
-                <li><input type="checkbox" class="rightdown" style="margin-bottom:20px;"/></li>
             </ul>
         </div>
         <div class="row toothBox toothProBox" id="toothConditionMap" style="min-width:600px;float:left; display: none;">
             <ul class="upYa" >
-                <li><input type="checkbox" class="lefttop" style="margin-top:65px;" /></li>
-                <li><span class="yaIcon le8"></span><span class="num" name="adultupYa1" toothname="18">18</span></li>
-                <li><span class="yaIcon le7"></span><span class="num" name="adultupYa1" toothname="17">17</span></li>
-                <li><span class="yaIcon le6"></span><span class="num" name="adultupYa1" toothname="16">16</span></li>
-                <li><span class="yaIcon le5"></span><span class="num" name="adultupYa1" toothname="15">15</span></li>
-                <li><span class="yaIcon le4"></span><span class="num" name="adultupYa1" toothname="14">14</span></li>
-                <li><span class="yaIcon le3"></span><span class="num" name="adultupYa1" toothname="13">13</span></li>
-                <li><span class="yaIcon le2"></span><span class="num" name="adultupYa1" toothname="12">12</span></li>
-                <li><span class="yaIcon le1"></span><span class="num" name="adultupYa1" toothname="11">11</span></li>
-
-                <li><span class="yaIcon rg1"></span><span class="num" name="adultupYa2" toothname="21">21</span></li>
-                <li><span class="yaIcon rg2"></span><span class="num" name="adultupYa2" toothname="22">22</span></li>
-                <li><span class="yaIcon rg3"></span><span class="num" name="adultupYa2" toothname="23">23</span></li>
-                <li><span class="yaIcon rg4"></span><span class="num" name="adultupYa2" toothname="24">24</span></li>
-                <li><span class="yaIcon rg5"></span><span class="num" name="adultupYa2" toothname="25">25</span></li>
-                <li><span class="yaIcon rg6"></span><span class="num" name="adultupYa2" toothname="26">26</span></li>
-                <li><span class="yaIcon rg7"></span><span class="num" name="adultupYa2" toothname="27">27</span></li>
-                <li><span class="yaIcon rg8"></span><span class="num" name="adultupYa2" toothname="28">28</span></li>
-                <li><input type="checkbox" class="righttop" style="margin-top:65px;"/></li>
             </ul>
             <div class="line">
                 <span class="left">右</span>
                 <span class="right">左</span>
             </div>
             <ul class="downYa">
-                <li><input type="checkbox" class="leftdown" style="margin-bottom:20px;"/></li>
-                <li><span class="num" name="adultdownYa1" toothname="48">48</span><span class="yaIcon le8"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="47">47</span><span class="yaIcon le7"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="46">46</span><span class="yaIcon le6"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="45">45</span><span class="yaIcon le5"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="44">44</span><span class="yaIcon le4"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="43">43</span><span class="yaIcon le3"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="42">42</span><span class="yaIcon le2"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="41">41</span><span class="yaIcon le1"></span></li>
-
-                <li><span class="num" name="adultdownYa2" toothname="31">31</span><span class="yaIcon rg1"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="32">32</span><span class="yaIcon rg2"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="33">33</span><span class="yaIcon rg3"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="34">34</span><span class="yaIcon rg4"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="35">35</span><span class="yaIcon rg5"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="36">36</span><span class="yaIcon rg6"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="37">37</span><span class="yaIcon rg7"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="38">38</span><span class="yaIcon rg8"></span></li>
-                <li><input type="checkbox" class="rightdown" style="margin-bottom:20px;"/></li>
             </ul>
         </div>
         <div class="row toothBox toothProBox" id="imageExaminationMap" style="min-width:600px;float:left; display: none;">
             <ul class="upYa" >
-                <li><input type="checkbox" class="lefttop" style="margin-top:65px;" /></li>
-                <li><span class="yaIcon le8"></span><span class="num" name="adultupYa1" toothname="18">18</span></li>
-                <li><span class="yaIcon le7"></span><span class="num" name="adultupYa1" toothname="17">17</span></li>
-                <li><span class="yaIcon le6"></span><span class="num" name="adultupYa1" toothname="16">16</span></li>
-                <li><span class="yaIcon le5"></span><span class="num" name="adultupYa1" toothname="15">15</span></li>
-                <li><span class="yaIcon le4"></span><span class="num" name="adultupYa1" toothname="14">14</span></li>
-                <li><span class="yaIcon le3"></span><span class="num" name="adultupYa1" toothname="13">13</span></li>
-                <li><span class="yaIcon le2"></span><span class="num" name="adultupYa1" toothname="12">12</span></li>
-                <li><span class="yaIcon le1"></span><span class="num" name="adultupYa1" toothname="11">11</span></li>
-
-                <li><span class="yaIcon rg1"></span><span class="num" name="adultupYa2" toothname="21">21</span></li>
-                <li><span class="yaIcon rg2"></span><span class="num" name="adultupYa2" toothname="22">22</span></li>
-                <li><span class="yaIcon rg3"></span><span class="num" name="adultupYa2" toothname="23">23</span></li>
-                <li><span class="yaIcon rg4"></span><span class="num" name="adultupYa2" toothname="24">24</span></li>
-                <li><span class="yaIcon rg5"></span><span class="num" name="adultupYa2" toothname="25">25</span></li>
-                <li><span class="yaIcon rg6"></span><span class="num" name="adultupYa2" toothname="26">26</span></li>
-                <li><span class="yaIcon rg7"></span><span class="num" name="adultupYa2" toothname="27">27</span></li>
-                <li><span class="yaIcon rg8"></span><span class="num" name="adultupYa2" toothname="28">28</span></li>
-                <li><input type="checkbox" class="righttop" style="margin-top:65px;"/></li>
             </ul>
             <div class="line">
                 <span class="left">右</span>
                 <span class="right">左</span>
             </div>
             <ul class="downYa">
-                <li><input type="checkbox" class="leftdown" style="margin-bottom:20px;"/></li>
-                <li><span class="num" name="adultdownYa1" toothname="48">48</span><span class="yaIcon le8"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="47">47</span><span class="yaIcon le7"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="46">46</span><span class="yaIcon le6"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="45">45</span><span class="yaIcon le5"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="44">44</span><span class="yaIcon le4"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="43">43</span><span class="yaIcon le3"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="42">42</span><span class="yaIcon le2"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="41">41</span><span class="yaIcon le1"></span></li>
-
-                <li><span class="num" name="adultdownYa2" toothname="31">31</span><span class="yaIcon rg1"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="32">32</span><span class="yaIcon rg2"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="33">33</span><span class="yaIcon rg3"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="34">34</span><span class="yaIcon rg4"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="35">35</span><span class="yaIcon rg5"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="36">36</span><span class="yaIcon rg6"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="37">37</span><span class="yaIcon rg7"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="38">38</span><span class="yaIcon rg8"></span></li>
-                <li><input type="checkbox" class="rightdown" style="margin-bottom:20px;"/></li>
             </ul>
         </div>
         <div class="row toothBox toothProBox" id="medicalCertificateMap" style="min-width:600px;float:left; display: none;">
             <ul class="upYa" >
-                <li><input type="checkbox" class="lefttop" style="margin-top:65px;" /></li>
-                <li><span class="yaIcon le8"></span><span class="num" name="adultupYa1" toothname="18">18</span></li>
-                <li><span class="yaIcon le7"></span><span class="num" name="adultupYa1" toothname="17">17</span></li>
-                <li><span class="yaIcon le6"></span><span class="num" name="adultupYa1" toothname="16">16</span></li>
-                <li><span class="yaIcon le5"></span><span class="num" name="adultupYa1" toothname="15">15</span></li>
-                <li><span class="yaIcon le4"></span><span class="num" name="adultupYa1" toothname="14">14</span></li>
-                <li><span class="yaIcon le3"></span><span class="num" name="adultupYa1" toothname="13">13</span></li>
-                <li><span class="yaIcon le2"></span><span class="num" name="adultupYa1" toothname="12">12</span></li>
-                <li><span class="yaIcon le1"></span><span class="num" name="adultupYa1" toothname="11">11</span></li>
-
-                <li><span class="yaIcon rg1"></span><span class="num" name="adultupYa2" toothname="21">21</span></li>
-                <li><span class="yaIcon rg2"></span><span class="num" name="adultupYa2" toothname="22">22</span></li>
-                <li><span class="yaIcon rg3"></span><span class="num" name="adultupYa2" toothname="23">23</span></li>
-                <li><span class="yaIcon rg4"></span><span class="num" name="adultupYa2" toothname="24">24</span></li>
-                <li><span class="yaIcon rg5"></span><span class="num" name="adultupYa2" toothname="25">25</span></li>
-                <li><span class="yaIcon rg6"></span><span class="num" name="adultupYa2" toothname="26">26</span></li>
-                <li><span class="yaIcon rg7"></span><span class="num" name="adultupYa2" toothname="27">27</span></li>
-                <li><span class="yaIcon rg8"></span><span class="num" name="adultupYa2" toothname="28">28</span></li>
-                <li><input type="checkbox" class="righttop" style="margin-top:65px;"/></li>
             </ul>
             <div class="line">
                 <span class="left">右</span>
                 <span class="right">左</span>
             </div>
             <ul class="downYa">
-                <li><input type="checkbox" class="leftdown" style="margin-bottom:20px;"/></li>
-                <li><span class="num" name="adultdownYa1" toothname="48">48</span><span class="yaIcon le8"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="47">47</span><span class="yaIcon le7"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="46">46</span><span class="yaIcon le6"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="45">45</span><span class="yaIcon le5"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="44">44</span><span class="yaIcon le4"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="43">43</span><span class="yaIcon le3"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="42">42</span><span class="yaIcon le2"></span></li>
-                <li><span class="num" name="adultdownYa1" toothname="41">41</span><span class="yaIcon le1"></span></li>
-
-                <li><span class="num" name="adultdownYa2" toothname="31">31</span><span class="yaIcon rg1"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="32">32</span><span class="yaIcon rg2"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="33">33</span><span class="yaIcon rg3"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="34">34</span><span class="yaIcon rg4"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="35">35</span><span class="yaIcon rg5"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="36">36</span><span class="yaIcon rg6"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="37">37</span><span class="yaIcon rg7"></span></li>
-                <li><span class="num" name="adultdownYa2" toothname="38">38</span><span class="yaIcon rg8"></span></li>
-                <li><input type="checkbox" class="rightdown" style="margin-bottom:20px;"/></li>
             </ul>
         </div>
     </div>
     <div class="row toothBox blockToothBox" id="conditionToothBox" style="display:none;min-width:700px;width: 100%;overflow: hidden;margin-left: 10%;margin-top: 1px">
         <ul class="upYa" >
-            <li>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/leup/leup8.png"  alt=""/>
-                <span class="num" name="adultupYa1" toothname="18">18</span>
-            </li>
-            <li>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/leup/leup7.png"  alt=""/>
-                <span class="num" name="adultupYa1" toothname="17">17</span>
-            </li>
-            <li>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/leup/leup6.png"  alt=""/>
-                </span><span class="num" name="adultupYa1" toothname="16">16</span>
-            </li>
-            <li>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/leup/leup5.png"  alt=""/>
-                </span><span class="num" name="adultupYa1" toothname="15">15</span>
-            </li>
-            <li>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/leup/leup4.png"  alt=""/>
-                <span class="num" name="adultupYa1" toothname="14">14</span>
-            </li>
-            <li>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/leup/leup3.png"  alt=""/>
-                </span><span class="num" name="adultupYa1" toothname="13">13</span>
-            </li>
-            <li>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/leup/leup2.png"  alt=""/>
-                </span><span class="num" name="adultupYa1" toothname="12">12</span>
-            </li>
-            <li>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/leup/leup1.png"  alt=""/>
-                <span class="num" name="adultupYa1" toothname="11">11</span>
-            </li>
-
-            <li>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgup/rgup1.png"  alt=""/>
-                <span class="num" name="adultupYa2" toothname="21">21</span>
-            </li>
-            <li>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgup/rgup2.png"  alt=""/>
-                <span class="num" name="adultupYa2" toothname="22">22</span>
-            </li>
-            <li>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgup/rgup3.png"  alt=""/>
-                <span class="num" name="adultupYa2" toothname="23">23</span>
-            </li>
-            <li>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgup/rgup4.png"  alt=""/>
-                <span class="num" name="adultupYa2" toothname="24">24</span>
-            </li>
-            <li>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgup/rgup5.png"  alt=""/>
-                <span class="num" name="adultupYa2" toothname="25">25</span>
-            </li>
-            <li>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgup/rgup6.png"  alt=""/>
-                <span class="num" name="adultupYa2" toothname="26">26</span>
-            </li>
-            <li>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgup/rgup7.png"  alt=""/>
-                <span class="num" name="adultupYa2" toothname="27">27</span>
-            </li>
-            <li>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgup/rgup8.png"  alt=""/>
-                <span class="num" name="adultupYa2" toothname="28">28</span>
-            </li>
         </ul>
         <div class="line" style="left: -20%;width: 40%;">
             <span class="left">右</span>
             <span class="right">左</span>
         </div>
         <ul class="downYa">
-            <li>
-                <span class="num" name="adultdownYa1" toothname="48">48</span>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/ledown/ledown8.png"  alt=""/>
-            </li>
-            <li>
-                <span class="num" name="adultdownYa1" toothname="47">47</span>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/ledown/ledown7.png"  alt=""/>
-            </li>
-            <li><span class="num" name="adultdownYa1" toothname="46">46</span>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/ledown/ledown6.png"  alt=""/>
-            </li>
-            <li>
-                <span class="num" name="adultdownYa1" toothname="45">45</span>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/ledown/ledown5.png"  alt=""/>
-            </li>
-            <li>
-                <span class="num" name="adultdownYa1" toothname="44">44</span>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/ledown/ledown4.png"  alt=""/>
-            </li>
-            <li>
-                <span class="num" name="adultdownYa1" toothname="43">43</span>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/ledown/ledown3.png"  alt=""/>
-            </li>
-            <li>
-                <span class="num" name="adultdownYa1" toothname="42">42</span>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/ledown/ledown2.png"  alt=""/>
-            </li>
-            <li>
-                <span class="num" name="adultdownYa1" toothname="41">41</span>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/ledown/ledown1.png"  alt=""/>
-            </li>
-
-            <li>
-                <span class="num" name="adultdownYa2" toothname="31">31</span>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgdown/rgdown1.png"  alt=""/>
-            </li>
-            <li>
-                <span class="num" name="adultdownYa2" toothname="32">32</span>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgdown/rgdown2.png"  alt=""/>
-            </li>
-            <li>
-                <span class="num" name="adultdownYa2" toothname="33">33</span>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgdown/rgdown3.png"  alt=""/>
-            </li>
-            <li>
-                <span class="num" name="adultdownYa2" toothname="34">34</span>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgdown/rgdown4.png"  alt=""/>
-            </li>
-            <li>
-                <span class="num" name="adultdownYa2" toothname="35">35</span>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgdown/rgdown5.png"  alt=""/>
-            </li>
-            <li>
-                <span class="num" name="adultdownYa2" toothname="36">36</span>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgdown/rgdown6.png"  alt=""/>
-            </li>
-            <li>
-                <span class="num" name="adultdownYa2" toothname="37">37</span>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgdown/rgdown7.png"  alt=""/>
-            </li>
-            <li>
-                <span class="num" name="adultdownYa2" toothname="38">38</span>
-                <img src="<%=contextPath%>/static/image/kqdsFront/img/tooths/rgdown/rgdown8.png"  alt=""/>
-            </li>
         </ul>
     </div>
     <!-- 整体口腔情况明细-->
@@ -986,9 +697,14 @@
         $(function(){
             getUser(usercode);//获取患者信息并赋值
             gettionData();//获取各板块问题详情
+            initToothMap("toothLooseMap");
+            initToothMap("toothConditionMap");
+            initToothMap("imageExaminationMap");
+            initToothMap("medicalCertificateMap");
+            initBlockToothMap("conditionToothBox");
             pro("toothConditionBox",conditionData);
             pro("medicalCertificateBox",certificateData);
-            initData();
+            initData();//数据初始化
             //时间选择
             $(".consent_time").datetimepicker({
                 language:  'zh-CN',
@@ -1134,6 +850,46 @@
                     $(this).html("<div class='div_with placeholder' id="+data[i].dictCode+"></div>");
                 })
             }
+        }
+        // 初始化牙位图
+        function initToothMap(obj){
+            var upelhtml="<li><input type='checkbox' class='lefttop' style='margin-top:65px;'></li>";
+            for (var i=18;i>10;i--){
+                upelhtml+="<li><span class='yaIcon le"+(i-10)+"'></span><span class='num' name='adultupYa1' toothname="+i+">"+i+"</span></li>";
+            }
+            for (var j=21;j<29;j++){
+                upelhtml+="<li><span class='yaIcon rg"+(j-20)+"'></span><span class='num' name='adultupYa2' toothname="+j+">"+j+"</span></li>";
+            }
+            upelhtml+="<li><input type='checkbox' class='righttop' style='margin-top:65px;'></li>";
+            $("#"+obj).find(".upYa").html(upelhtml);
+            var downelhtml="<li><input type='checkbox' class='leftdown' style='margin-bottom:20px;'></li>";
+            for (var z=48;z>40;z--){
+                downelhtml+="<li><span class='num' name='adultdownYa1' toothname="+z+">"+z+"</span><span class='yaIcon le"+(z-40)+"'></span></li>";
+            }
+            for (var y=31;y<39;y++){
+                downelhtml+="<li><span class='num' name='adultdownYa2' toothname="+y+">"+y+"</span><span class='yaIcon rg"+(y-30)+"'></span></li>";
+            }
+            downelhtml+="<li><input type='checkbox' class='rightdown' style='margin-top:20px;'></li>";
+            $("#"+obj).find(".downYa").html(downelhtml);
+        }
+        // 初始化牙位图
+        function initBlockToothMap(obj){
+            var uphtml="";
+            for (var i=18;i>10;i--){
+                uphtml+="<li><img src='<%=contextPath%>/static/image/kqdsFront/img/tooths/leup/leup"+(i-10)+".png' alt=''><span class='num' name='adultupYa1' toothname="+i+">"+i+"</span></li>";
+            }
+            for (var j=21;j<29;j++){
+                uphtml+="<li><img src='<%=contextPath%>/static/image/kqdsFront/img/tooths/rgup/rgup"+(j-20)+".png' alt=''></span><span class='num' name='adultupYa2' toothname="+j+">"+j+"</span></li>";
+            }
+            $("#"+obj).find(".upYa").html(uphtml);
+            var downhtml="";
+            for (var z=48;z>40;z--){
+                downhtml+="<li><span class='num' name='adultdownYa1' toothname="+z+">"+z+"</span><img src='<%=contextPath%>/static/image/kqdsFront/img/tooths/ledown/ledown"+(z-40)+".png' alt=''></li>";
+            }
+            for (var y=31;y<39;y++){
+                downhtml+="<li><span class='num' name='adultdownYa2' toothname="+y+">"+y+"</span><img src='<%=contextPath%>/static/image/kqdsFront/img/tooths/rgdown/rgdown"+(y-30)+".png' alt=''></li>";
+            }
+            $("#"+obj).find(".downYa").html(downhtml);
         }
         // 添加问题牙齿时（图）赋值---选中状态（红圈）
         function checkedTooth(projectId,one){
@@ -1328,9 +1084,9 @@
             var nub = $("#imageExaminationBox").find("input[name='nub']:checked").val();//种植区域骨量是否正常
 // 诊断
             var medicalCertificate=saveTooth("medicalCertificateBox"); //牙位
-            //签字时间
-            var patienttime = $("#patienttime").val();//患者签字时间
-            var doctortime = $("#doctortime").val();//医生签字时间
+            // //签字时间
+            // var patienttime = $("#patienttime").val();//患者签字时间
+            // var doctortime = $("#doctortime").val();//医生签字时间
             toothLoose = JSON.stringify(toothLoose);
             toothCondition = JSON.stringify(toothCondition);
             imageExamination = JSON.stringify(imageExamination);
@@ -1366,8 +1122,8 @@
                 nub : nub,
 // 诊断
                 defectiverepair : medicalCertificate,
-                patienttime:patienttime,
-                doctortime:doctortime
+                // patienttime:patienttime,
+                // doctortime:doctortime
             };
 // 	    console.log(JSON.stringify(param)+"---------param");
 // 	    return;
@@ -1423,9 +1179,9 @@
             var nub = $("#imageExaminationBox").find("input[name='nub']:checked").val();//种植区域骨量是否正常
 // 诊断
             var medicalCertificate=saveTooth("medicalCertificateBox"); //牙位
-            //签字时间
-            var patienttime = $("#patienttime").val();//患者签字时间
-            var doctortime = $("#doctortime").val();//医生签字时间
+            // //签字时间
+            // var patienttime = $("#patienttime").val();//患者签字时间
+            // var doctortime = $("#doctortime").val();//医生签字时间
             toothLoose = JSON.stringify(toothLoose);
             toothCondition = JSON.stringify(toothCondition);
             imageExamination = JSON.stringify(imageExamination);
@@ -1462,8 +1218,8 @@
                 nub : nub,
 // 诊断
                 defectiverepair : medicalCertificate,
-                patienttime:patienttime,
-                doctortime:doctortime
+                // patienttime:patienttime,
+                // doctortime:doctortime
             };
 // 	    console.log(JSON.stringify(param)+"---------param");
 // 	    return;
@@ -1498,9 +1254,9 @@
                     lcljId:idlclj
                 },
                 success:function(result){
+                    // console.log(JSON.stringify(result)+'-----result');
                     if(result.length>0){
                         var res=result[0];
-                        toothMap(res["dentitiondefect"]);//获取牙位图数据
                         updataid=res.seqId;//获取更新修改id
                         $("#consent_saveBtn").css("display","none");//隐藏保存按钮
                         $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
@@ -1603,6 +1359,7 @@
                                 }
                             })
                         }
+                        toothMap(res["dentitiondefect"]);//获取牙位图数据
 // 	 					牙位赋值end
                     }
 
