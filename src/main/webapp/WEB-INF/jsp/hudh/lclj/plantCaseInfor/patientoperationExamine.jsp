@@ -230,31 +230,37 @@
 	<div id="content" class="content">
 		<!-- 标题 -->
 		<img class="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
-		<h2 class="bigtitle">种植牙术前安全核查单(护患)</h2>
+		<h2 class="bigtitle" style="margin-top: 0">种植牙术前安全核查单(护患)</h2>
 		<div class="row consent_text" style="">
 			<div class="col-md-12 col-sm-12 colDefined">
 				<table class="contentItem" border="1" width="100%">
 					<tbody>
 					<tr>
+						<td><span>患者编号</span></td>
+						<td><font type="text" class="patient_usercode"></font></td></td>
 						<td><span>患者姓名</span></td>
 						<td><font type="text" class="patient_name"></font></td>
 						<td><span>性别</span></td>
 						<td><font type="text" class="patient_sex"></font></td>
 						<td><span>年龄</span></td>
 						<td><font type="text" class="patient_age"></font></td>
-						<td><span>手术医生</span></td>
-						<td><font type="text" id="patient_doctor" class="patient_doctor"></font></td>
+
 					</tr>
 					<tr>
-						<td colspan="3"><span>是否已服抗菌药</span>
+						<td colspan="1"><span>手术医生</span>
+						</td>
+						<td colspan="1">
+							<font type="text" id="patient_doctor" class="patient_doctor"></font>
+						</td>
+						<td colspan="2"><span>已服抗菌药</span>
 							<label><input class="" type="radio" name="antibacterialmedicine" value="0"/><span class=" ">是</span></label>
 							<label><input class="" type="radio" name="antibacterialmedicine" value="1"/><span class=" ">否</span></label>
 						</td>
-						<td colspan="3"><span>碘伏过敏史</span>
+						<td colspan="2"><span>碘伏过敏史</span>
 							<label><input class="" type="radio" name="iodineallergy" value="0"/><span class=" ">是</span></label>
 							<label><input class="" type="radio" name="iodineallergy" value="1"/><span class=" ">否</span></label>
 						</td>
-						<td colspan="3"><span>麻药过敏史</span>
+						<td colspan="2"><span>麻药过敏史</span>
 							<label><input class="" type="radio" name="anestheticallergy" value="0"/><span class=" ">是</span></label>
 							<label><input class="" type="radio" name="anestheticallergy" value="1"/><span class=" ">否</span></label>
 						</td>
