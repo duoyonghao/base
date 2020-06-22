@@ -967,10 +967,10 @@ public class HUDH_FlowAct {
 				throw new Exception("修复方案确认单还没有填写，请填写完再进行提交！");
 			} else {
 			}*/
-			if(dzblService.findCaseHistoryById(id) != null){
-				if(zzblCheckService.findZzblOprationById(id) != null){
-					if(zzblService.findZzblOprationById(id) != null){
-						if(rscService.findRepairInforById(id) != null){
+			if(dzblService.findCaseHistoryById(id) != null||dzblService.findCaseHistoryById(id).size()>0){
+				if(zzblCheckService.findZzblOprationById(id) != null||zzblCheckService.findZzblOprationById(id).size()>0){
+					if(zzblService.findZzblOprationById(id) != null||zzblService.findZzblOprationById(id).size()>0){
+						if(rscService.findRepairInforById(id) != null || rscService.findRepairInforById(id).size()>0){
 						if(dzblService.findFamiliarBook(id) != null || dzblService.findLocatorFamiliares(id).size()>0){
 							flowService.updateOrderTrackNodes(dataMap,flowCode,type,dentalJaw,lcljOrderTrack,request);
 							YZUtility.DEAL_SUCCESS(null,null, response, logger);
@@ -1067,10 +1067,10 @@ public class HUDH_FlowAct {
 			} else {
 				flowService.updateLcljOrderTrackById(lcljOrderTrack);
 			}*/
-			if(dzblService.findCaseHistoryById(id) != null){
-				if(zzblCheckService.findZzblOprationById(id) != null){
-					if(zzblService.findZzblOprationById(id).size()>0){
-						if(rscService.findRepairInforById(id) != null){
+            if(dzblService.findCaseHistoryById(id) != null||dzblService.findCaseHistoryById(id).size()>0){
+                if(zzblCheckService.findZzblOprationById(id) != null||zzblCheckService.findZzblOprationById(id).size()>0){
+                    if(zzblService.findZzblOprationById(id) != null||zzblService.findZzblOprationById(id).size()>0){
+                        if(rscService.findRepairInforById(id) != null || rscService.findRepairInforById(id).size()>0){
 							if(dzblService.findFamiliarBook(id) != null || dzblService.findLocatorFamiliares(id).size()>0){
 								flowService.updateLcljOrderTrackById(lcljOrderTrack);
 								YZUtility.DEAL_SUCCESS(null, null, response, logger);
