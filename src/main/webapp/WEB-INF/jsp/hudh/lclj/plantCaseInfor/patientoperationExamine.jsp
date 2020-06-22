@@ -70,21 +70,21 @@
 			color:#00a6c0;
 			font-weight: bold;
 		}
-		/* 标题 */
-		#content .bigtitle{
-			width:65%;
-			display: inline-block;
+		.logoImg{
+			position: absolute;
+			top: 18px;
+			width: 200px;
+		}
+		.bigtitle{
+			display: block;
 			text-align: center;
+			margin: 7px auto 18px;
 			font-size: 26px;
 			line-height: 26px;
-			margin: 45px auto 35px;
 			letter-spacing: 1px;
 			font-weight: bold;
-		}
-		/* 	logo */
-		.logoImg {
-			width: 150px;
-			height: 45px;
+			color: #434343;
+			padding-top: 30px;
 		}
 		/* 详细文字介绍 */
 		#content .consent_text{
@@ -222,6 +222,24 @@
 			size:205mm 280mm;
 			margin: 0 auto;
 		}
+		@media print{
+			.logoImg{
+				position: absolute;
+				top: 20px!important;
+				width: 150px!important;
+			}
+			.bigtitle{
+				font-size: 22px;
+				margin: 0px auto 10px !important;
+			}
+			.line{
+				border: 1px dashed #333;
+				width: 100%;
+				display: block;
+				margin-top: 10%;
+				margin-bottom: 5%;
+			}
+		}
 	</style>
 </head>
 <body style="padding: 0% 3%;">
@@ -229,8 +247,12 @@
 <div>
 	<div id="content" class="content">
 		<!-- 标题 -->
-		<img class="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
-		<h2 class="bigtitle" style="margin-top: 0">种植牙术前安全核查单(护患)</h2>
+		<div class="row">
+			<div class="col-md-12 col-sm-12" style="position: relative;padding: 0;">
+				<img class="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
+				<span class="bigtitle">种植牙术前安全核查单(护患)</span>
+			</div>
+		</div>
 		<div class="row consent_text" style="">
 			<div class="col-md-12 col-sm-12 colDefined">
 				<table class="contentItem" border="1" width="100%">
@@ -328,10 +350,13 @@
 				<input id="nursetime1" type="text" class="nursetimeone consent_time inputhidden" readonly="readonly" placeholder="请选择日期"/>
 			</div>
 		</div>
-		<i style="border: 1px dashed #333;width: 100%;display: block;margin-top: 10%"></i>
-		<!-- 标题 -->
-		<img class="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
-		<h2 class="bigtitle top">种植牙术前安全核查单(医护)</h2>
+		<i class="line"></i>
+		<div class="row">
+			<div class="col-md-12 col-sm-12" style="position: relative;padding: 0;">
+				<img class="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
+				<span class="bigtitle">种植牙术前安全核查单(护患)</span>
+			</div>
+		</div>
 		<div class="row consent_text" style="">
 			<div class="col-md-12 col-sm-12 colDefined">
 				<table class="contentItem" border="1" width="100%">
