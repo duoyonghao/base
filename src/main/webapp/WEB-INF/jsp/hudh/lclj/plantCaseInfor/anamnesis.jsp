@@ -1639,9 +1639,9 @@
 
 		//修改
 		function update(){
-			var patient_name = $("#patient_name").val();//患者姓名
-			var patient_sex = $("#patient_sex").val();//患者性别
-			var patient_age = $("#patient_age").val();//患者年龄
+			var patient_name = $("#patient_name").html();//患者姓名
+			var patient_sex = $("#patient_sex").html();//患者性别
+			var patient_age = $("#patient_age").html();//患者年龄
 			var agomphosTime = $("#agomphostime").val();//缺牙时间
 			var symptom=showSymptom();//牙齿症状选中
 			var plantTime = $("#planttime").val();//要求种植修复时间
@@ -1828,10 +1828,10 @@
 		
 		//保存		
 		function save() {
-			var patient_name = $("#patient_name").val();//患者姓名
-			var patient_sex = $("#patient_sex").val();//患者性别
-			var patient_age = $("#patient_age").val();//患者年龄
-			var agomphosTime = $("#agomphostime").val();//缺牙时间
+			var patient_name = $("#patient_name").html();//患者姓名
+			var patient_sex = $("#patient_sex").html();//患者性别
+            var patient_age = $("#patient_age").html();//患者年龄
+            var agomphosTime = $("#agomphostime").val();//缺牙时间
 			var symptom=showSymptom();//牙齿症状选中
 			var plantTime = $("#planttime").val();//要求种植修复时间
 			var isHypertension = $('input[name="ishypertension"]:checked').val();//是否有高血压
