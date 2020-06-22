@@ -396,26 +396,29 @@
 			<span style="vertical-align: top;display: block;">备注:</span>
 			<pre class="remarks" style="border: 1px solid #7e7b7b;width:95%;display: inline-block;margin-left: 30px;white-space: pre-wrap"></pre>
 		</div>
-		<div class="consent_text" style="font-weight: bold;margin-top:0%;">
-			<p style="margin-left: 60%;" class="font"><i class="colorRed">*</i>以上情况已知悉并确认签字。</p>
+		<!-- 手术签名 -->
+		<div class="consent_text" style="font-weight: bold;">
+			<p  class="font"><i class="colorRed">*</i>以上情况已知悉并确认签字。</p>
+			<!-- style="margin-left: 60%;" -->
 		</div>
 		<!-- 手术签名 -->
-		<div id="consent_signature">
+		<div id="consent_signature" style="width:100%;">
 			<!-- 患者签名 -->
-			<div class="signature_time" style="margin-top: 1%;">
-				<div class="signature_box">
-					<span>患者签名:</span>
-					<div id="PatientSignature"></div>
+			<div class="signature_time" style="margin-top: 1%;float: left;width:50%;">
+				<div class="signature_box" style="width: 100%;">
+					<span id="patientSignature">患者签名:</span>
+					<img id="patientimg" style=" width: 31%;height:auto;"/>
+					<input id="patienttime" type="text" class="consent_time inputheight inputheight2" readonly="readonly" style="width: 41%;text-align: center;" placeholder="请选择日期"/>
 				</div>
-				<input id="patienttime" type="text" class="consent_time inputheight inputheight2" readonly="readonly" placeholder="请选择日期"/>
-			</div>	
+
+			</div>
 			<!-- 医生签名 -->
-			<div class="signature_time" style="margin-top: 2%;float:right;">
-				<div class="signature_box">
-					<span>医生签名:</span>
-					<div id="doctorSignature"></div>
+			<div class="signature_time" style="margin-top: 1%;float:right;width:50%;">
+				<div class="signature_box" style="width: 100%;">
+					<span id="doctorSignature">医生签名:</span>
+					<img id="img" style="width: 31%;height:auto;"/>
+					<input id="doctortime" type="text" class="consent_time inputheight inputheight2" readonly="readonly" style="width: 41%;text-align: center;" placeholder="请选择日期"/>
 				</div>
-				<input id="doctortime" type="text" class="consent_time inputheight inputheight2" readonly="readonly" placeholder="请选择日期"/>
 			</div>
 		</div>
 		<!--endprint-->
@@ -429,6 +432,10 @@
 </body>
 	<script language="javascript"  src="<%=contextPath%>/static/js/kqdsFront/LodopFuncs.js"></script>
 	<script type="text/javascript">
+        var signature="";
+        var patientsignature="";
+        var doctorstatus=true;
+        var patientstatus=true;
 		var contextPath = "<%=contextPath%>";	
 		var id= window.parent.patientObj.id;	//选中患者id
 		var order_number= window.parent.patientObj.orderNumber;//选中患者order_number
@@ -473,8 +480,6 @@
 			document.ondragstart = function() {
 	            return false;
 	        };
-			//获取当前页面所有按钮
- 			getButtonAllCurPage(menuid);
 			
  			$('.selectpicker').selectpicker({});//初始化种植体系下拉框
 
@@ -555,6 +560,20 @@
 					if(result.seqId){
 						$("#consent_saveBtn").css("display","none");//隐藏保存按钮
 						$("#consent_updateBtn").css("display","inline-block");//显示修改按钮
+                        signature=result.doctorsignature;
+                        if(signature!=""){
+                            $("#img").attr('src', signature);
+                            doctorstatus=false;
+                        }else{
+                            $("#img").attr('display', 'none');
+                        }
+                        patientsignature=result.patientsignature;
+                        if(patientsignature!=""){
+                            $("#patientimg").attr('src', patientsignature);
+                            patientstatus=false;
+                        }else{
+                            $("#patientimg").attr('display', 'none');
+                        }
 						//赋值 
 						for(var key in result){
 							//console.log(key+"-------------"+result[key]);
@@ -583,28 +602,32 @@
 									}
 								}); */
 							}
-							if(result[key].indexOf(";")>0){
-								var checkboxVal= result[key];//拼接多选框的值
-								var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
-								for(var i=0;i<checkboxValArr.length;i++){
-									$("input[name="+key+"]").each(function(){
-										if($(this).val()==checkboxValArr[i]){
-										   $(this).attr("checked","checked");
-										}
-									})
-								}
-							} 
-							//牙位图赋值
-							if(result[key].indexOf(",")>0){
-								var toothPlaceVal= result[key];//拼接多选框的值
-								var toothPlaceValArr=toothPlaceVal.split(",");//将字符串转为数组
-								var newtoothPlaceVal=toothPlaceValArr.join("");
-								//console.log(newtoothPlaceVal+"---------去掉牙位图逗号"); 
-								$("#"+key).attr("value",newtoothPlaceVal);// 填框赋值
-							}
+                            if(result[key]!=null) {
+                                if (result[key].indexOf(";") > 0) {
+                                    var checkboxVal = result[key];//拼接多选框的值
+                                    var checkboxValArr = checkboxVal.split(";");//将字符串转为数组
+                                    for (var i = 0; i < checkboxValArr.length; i++) {
+                                        $("input[name=" + key + "]").each(function () {
+                                            if ($(this).val() == checkboxValArr[i]) {
+                                                $(this).attr("checked", "checked");
+                                            }
+                                        })
+                                    }
+                                }
+                                //牙位图赋值
+                                if (result[key].indexOf(",") > 0) {
+                                    var toothPlaceVal = result[key];//拼接多选框的值
+                                    var toothPlaceValArr = toothPlaceVal.split(",");//将字符串转为数组
+                                    var newtoothPlaceVal = toothPlaceValArr.join("");
+                                    //console.log(newtoothPlaceVal+"---------去掉牙位图逗号");
+                                    $("#" + key).attr("value", newtoothPlaceVal);// 填框赋值
+                                }
+                            }
 						}
 						//$("input").attr("disabled","disabled").css("background","transparent");//查看信息的时候禁止在填写
-					} 
+					}
+                    //获取当前页面所有按钮
+                    getButtonAllCurPage(menuid);
 				}
 		  });
 		}
@@ -680,9 +703,9 @@
 			var lowRightToothBitTwo = $("#lowrighttoothbittwo").val();
 			var assistOperation = $("#assistoperation").text();//种植辅助手术
 			var remarks = $("#remarks").val();//备注
-			var PatientSignature = $("#PatientSignature").val();//患者签字
+			//var PatientSignature = $("#PatientSignature").val();//患者签字
 			var PatientTime = $("#patienttime").val();//患者签字时间
-			var doctorSignature = $("#doctorSignature").val();//医生签字
+			//var doctorSignature = $("#doctorSignature").val();//医生签字
 			var doctorTime = $("#doctortime").val();//医生签字时间
 			var createtime= new Date().Format("yyyy-MM-dd HH:mm:ss");
 			var fixedDenture = "";
@@ -714,9 +737,9 @@
 	        		 lowRightToothBitTwo :  lowRightToothBitTwo,
 	        		 assistOperation :  assistOperation,
 	        		 remarks :  remarks,
-	        		 PatientSignature :  PatientSignature,
+	        		 PatientSignature :  patientsignature,
 	        		 patientTime :  PatientTime,
-	        		 doctorSignature :  doctorSignature,
+	        		 doctorSignature :  signature,
 	        		 doctorTime :  doctorTime,
 	        		 createtime :  createtime,
 	        		 fixedDenture : fixedDenture,
@@ -768,9 +791,9 @@
 			var lowRightToothBitTwo = $("#lowrighttoothbittwo").val();
 			var assistOperation = $("#assistoperation").text();//种植辅助手术
 			var remarks = $("#remarks").val();//备注
-			var PatientSignature = $("#PatientSignature").val();//患者签字
+			//var PatientSignature = $("#PatientSignature").val();//患者签字
 			var PatientTime = $("#patienttime").val();//患者签字时间
-			var doctorSignature = $("#doctorSignature").val();//医生签字
+			//var doctorSignature = $("#doctorSignature").val();//医生签字
 			var doctorTime = $("#doctortime").val();//医生签字时间
 			var createtime= new Date().Format("yyyy-MM-dd HH:mm:ss");
 			var fixedDenture = "";
@@ -801,9 +824,9 @@
 	        		 lowRightToothBitTwo :  lowRightToothBitTwo,
 	        		 assistOperation :  assistOperation,
 	        		 remarks :  remarks,
-	        		 PatientSignature :  PatientSignature,
+	        		 PatientSignature :  patientsignature,
 	        		 patientTime :  PatientTime,
-	        		 doctorSignature :  doctorSignature,
+	        		 doctorSignature :  signature,
 	        		 doctorTime :  doctorTime,
 	        		 createtime :  createtime,
 	        		 fixedDenture : fixedDenture,
@@ -866,7 +889,7 @@
 		function getButtonPower() {
 		    var menubutton1 = "";
 		    for (var i = 0; i < listbutton.length; i++) {
-		        if (listbutton[i].qxName == "zsbs_xgbd") {
+		        if (listbutton[i].qxName == "zsbs_xgbd"&&doctorstatus&&patientstatus) {
 		           $("#consent_updateBtn").removeClass("hidden");
 		        }
 		    }
