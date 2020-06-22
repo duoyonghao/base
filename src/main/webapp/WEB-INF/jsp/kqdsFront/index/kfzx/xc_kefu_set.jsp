@@ -102,7 +102,7 @@ function saveform() {
             kefuremark: $("#kefuremark").val()
         };
         list.push(param);
-        console.log(""+JSON.stringify(list));
+        //console.log(""+JSON.stringify(list));
     }
     var data = JSON.stringify(list);
     var a = {

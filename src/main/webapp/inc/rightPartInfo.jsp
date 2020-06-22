@@ -317,28 +317,68 @@ function openAddCost(){
 			    btn: ['是','否'] //按钮
 			}, function(){
 				layer.closeAll('dialog');
-				layer.open({
-					type: 2,
-					title: '费用添加',
-					// shadeClose: true,
-					shade: 0.6,
-					shadeClose:false,
-					area: ['95%', '98%'],
-					content: '<%=baseheader%>/KQDS_CostOrderAct/toDetail_AddCost.act?usercode='+onclickrowOobj.usercode+'&regno='+onclickrowOobj.seqId
-		           }); 
+                var valid=true;
+                if((isStrInArrayString(personrole,"<%=static_askpriv%>")|| !isStrInArrayStringEach("<%=static_askpriv%>",personroleother))){
+                    //查询患者的指定客服是否是当前登录人
+                    $.ajax({
+                        url:'<%=baseheader%>/KQDS_UserDocumentAct/comparisonKefuByUsercode.act',
+                        type:"POST",
+                        dataType:"json",
+                        data : {"usercode":onclickrowOobj.usercode},
+                        async: false,
+                        success:function(result){
+                            if(!result.valid){
+                                valid=false;
+                                layer.alert('该患者已指定客服，无权限开单！' );
+                                return false;
+                            }
+                        }
+                    });
+                }
+                if(valid) {
+                    layer.open({
+                        type: 2,
+                        title: '费用添加',
+                        // shadeClose: true,
+                        shade: 0.6,
+                        shadeClose: false,
+                        area: ['95%', '98%'],
+                        content: '<%=baseheader%>/KQDS_CostOrderAct/toDetail_AddCost.act?usercode=' + onclickrowOobj.usercode + '&regno=' + onclickrowOobj.seqId
+                    });
+                }
 			},function(){
 				layer.closeAll('dialog');
 			});
 		}else{
-			layer.open({
-				type: 2,
-				title: '费用添加',
-				// shadeClose: true,
-				shade: 0.6,
-				shadeClose:false,
-				area: ['95%', '98%'],
-				content: '<%=baseheader%>/KQDS_CostOrderAct/toDetail_AddCost.act?usercode='+onclickrowOobj.usercode+'&regno='+onclickrowOobj.seqId
-	           }); 
+		    var valid=true;
+            if((isStrInArrayString(personrole,"<%=static_askpriv%>")|| !isStrInArrayStringEach("<%=static_askpriv%>",personroleother))){
+                //查询患者的指定客服是否是当前登录人
+                $.ajax({
+                url:'<%=baseheader%>/KQDS_UserDocumentAct/comparisonKefuByUsercode.act',
+                type:"POST",
+                dataType:"json",
+                data : {"usercode":onclickrowOobj.usercode},
+                async: false,
+                success:function(result){
+					if(!result.valid){
+                        valid=false;
+                        layer.alert('该患者已指定客服，无权限开单！' );
+                        return false;
+					}
+                }
+                });
+            }
+            if(valid){
+                layer.open({
+                    type: 2,
+                    title: '费用添加',
+                    // shadeClose: true,
+                    shade: 0.6,
+                    shadeClose:false,
+                    area: ['95%', '98%'],
+                    content: '<%=baseheader%>/KQDS_CostOrderAct/toDetail_AddCost.act?usercode='+onclickrowOobj.usercode+'&regno='+onclickrowOobj.seqId
+                });
+			}
 		}
 	}else{
 		layer.alert('无权限，请联系管理员开通权限！' );
