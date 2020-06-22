@@ -44,7 +44,7 @@ function decodeTextAreaString(strValue){
 var hudhSysDeptIdStatic = {
 	doctor : "892488fc-fc8c-44aa-8f36-b7225bc771f8,256af1df-0a6e-41d4-b5c9-31a4344ca991,7806b36a-43c0-421d-9036-923e84e68c36,65823c9e-6aaf-4f9d-8952-093db230e491,420c9cba-818c-4fb4-b8f7-d24b84d37578,025d8a65-7ce8-4a21-bd95-84a9b309e57f,dcf23b37-db5f-41bc-92b6-9375585448e1,e440f58a-f48d-49d2-a7cd-6b67cb9cda99",//医生
 	plantDoctor : "256af1df-0a6e-41d4-b5c9-31a4344ca991,3e77910a-0a22-44e1-8cc0-a976aeb8f20b,dcf23b37-db5f-41bc-92b6-9375585448e1,e440f58a-f48d-49d2-a7cd-6b67cb9cda99", //口腔修复科 院办
-	consultation :"4b88b74c-9373-4b5f-9d53-3c115de7a7e4,015d89d6-7b32-47ec-9557-233407c7fc71,72d1324f-22a2-41a7-9739-8b64c50e7b97,3b47a915-977b-4799-acf6-540d525722f4,b4f9dc9e-d2e0-44e1-ba37-eecaddcbf93d,d915e83c-862e-40eb-a4a0-792e34db701e,65823c9e-6aaf-4f9d-8952-093db230e491,90cc3cf5-cb94-49a0-8128-6857ee76155e,03386bd7-7286-4b33-a50c-9446c3614e60,c116c6b6-f143-4c42-ba31-f2dfd3f0945f",//咨询 （现场咨询部，正畸咨询部，洁牙组，患者转移部）
+	consultation : "4b88b74c-9373-4b5f-9d53-3c115de7a7e4,015d89d6-7b32-47ec-9557-233407c7fc71,72d1324f-22a2-41a7-9739-8b64c50e7b97,3b47a915-977b-4799-acf6-540d525722f4,b4f9dc9e-d2e0-44e1-ba37-eecaddcbf93d,d915e83c-862e-40eb-a4a0-792e34db701e,65823c9e-6aaf-4f9d-8952-093db230e491,90cc3cf5-cb94-49a0-8128-6857ee76155e,03386bd7-7286-4b33-a50c-9446c3614e60,c116c6b6-f143-4c42-ba31-f2dfd3f0945f",//咨询 （现场咨询部，正畸咨询部，洁牙组，患者转移部）
 	netele : "58a87944-8527-4636-98fb-ba8fb9a1d24e", //网电
 	nurse : "2203a606-ed82-4dd0-8841-49a30282a45f,c72025b9-f2b3-43b0-ad32-eb327dda5257", //护士 护理部
 	repairdoctor : "892488fc-fc8c-44aa-8f36-b7225bc771f8,56ffc127-823d-4500-95cd-3f6fc8c31287,7806b36a-43c0-421d-9036-923e84e68c36,025d8a65-7ce8-4a21-bd95-84a9b309e57f,e440f58a-f48d-49d2-a7cd-6b67cb9cda99", //修复医生、全科医生
@@ -58,7 +58,6 @@ function initSysUserByDeptId($obj,deptType,valueType){
 			deptId = hudhSysDeptIdStatic.doctor;
 		}else if(deptType == "consultation"){
 			deptId = hudhSysDeptIdStatic.consultation;
-//			console.log("部门Id="+deptId);
 		}else if(deptType == "netele"){
 			deptId = hudhSysDeptIdStatic.netele;
 		}else if(deptType == "nurse"){
@@ -79,7 +78,6 @@ function initSysUserByDeptId($obj,deptType,valueType){
 			data : {"deptId":deptId},
 			async : false,
 			success:function(result){
-//				console.log("咨询="+JSON.stringify(result));
 				$($obj).append('<option value="">请选择</option>');
 				if(result) {
 					if(valueType == "loginName") {

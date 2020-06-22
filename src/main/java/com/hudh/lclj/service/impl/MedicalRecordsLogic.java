@@ -184,7 +184,7 @@ public class MedicalRecordsLogic {
      * @dateTime: 2020/6/12 17:24
      */
     public void updateVerification(LcljVerification dp) throws Exception {
-        dao.update(TableNameUtil.HUDH_LCLJ_Verification + ".updateByPrimaryKey", dp);
+        dao.update(TableNameUtil.HUDH_LCLJ_Verification + ".updateByPrimaryKeySelective", dp);
     }
 
     /**

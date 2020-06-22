@@ -336,11 +336,11 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/net.sf.jmimemagic/jmimemagic -->
-		<dependency>
-			<groupId>net.sf.jmimemagic</groupId>
-			<artifactId>jmimemagic</artifactId>
-			<version>0.1.4</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>net.sf.jmimemagic</groupId>-->
+<!--			<artifactId>jmimemagic</artifactId>-->
+<!--			<version>0.1.4</version>-->
+<!--		</dependency>-->
 		
 		<!-- barcode4j开源Java条形码生成库 -->
 		<dependency>
@@ -355,6 +355,11 @@
 		    <version>2.0.0-RC3</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<version>3.10.0</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>base</finalName>
@@ -366,7 +371,33 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+                    <compilerArguments>
+						<extdirs>./src/main/webapp/WEB-INF/lib</extdirs>
+					</compilerArguments>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>3.10.0</version>
+				<configuration>
+                    <verbose>true</verbose>
+					<changeLogFile>src/main/resources/liquibase/master.xml</changeLogFile>
+					<driver>net.sourceforge.jtds.jdbc.Driver</driver>
+					<url>jdbc:jtds:sqlserver://192.168.4.25:1433;DatabaseName=kqds;SelectMethod=Cursor</url>
+					<username>sa</username>
+					<password>HUDH_1234</password>
+                    <outputChangeLogFile>src/main/resources/liquibase/changelogs/root.xml</outputChangeLogFile>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>update</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

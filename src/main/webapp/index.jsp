@@ -15,9 +15,3 @@ if (!YZUtility.isNullorEmpty(usekey) && !("0").equals(usekey)) {
 	request.getRequestDispatcher("login.jsp").forward(request, response);
 }
 %>
-
-
-
-
-
-

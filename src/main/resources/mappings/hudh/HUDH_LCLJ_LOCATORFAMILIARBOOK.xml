@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="HUDH_LCLJ_LOCATORFAMILIARBOOK">
 	<resultMap id="LocatorFamiliar" type="com.hudh.zzbl.entity.LocatorFamiliar">
-		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
-		<result column="LcljId" jdbcType="VARCHAR" property="lcljId" />
-		<result column="LcljNum" jdbcType="VARCHAR" property="lcljNum" />
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="SEQ_ID" />
+		<result column="LcljId" jdbcType="VARCHAR" property="LcljId" />
+		<result column="LcljNum" jdbcType="VARCHAR" property="LcljNum" />
 		<result column="name" jdbcType="VARCHAR" property="name" />
 		<result column="age" jdbcType="VARCHAR" property="age" />
 		<result column="sex" jdbcType="VARCHAR" property="sex" />
@@ -20,10 +20,10 @@
 		<result column="doctorTime" jdbcType="VARCHAR" property="doctorTime" />
 		<result column="patientSignature" jdbcType="VARCHAR" property="patientSignature" />
 		<result column="patientTime" jdbcType="VARCHAR" property="patientTime" />
-		<result column="creatTime" jdbcType="VARCHAR" property="createtime" />
-		<result column="remarks" jdbcType="VARCHAR" property="remark" />
-		<result column="PatientSignature" jdbcType="VARCHAR" property="patientSignature" />
-		<result column="PatientTime" jdbcType="VARCHAR" property="patientTime" />
+		<result column="creatTime" jdbcType="VARCHAR" property="creatTime" />
+		<result column="remarks" jdbcType="VARCHAR" property="remarks" />
+		<result column="PatientSignature" jdbcType="VARCHAR" property="PatientSignature" />
+		<result column="PatientTime" jdbcType="VARCHAR" property="PatientTime" />
 		<result column="doctorSignature" jdbcType="VARCHAR" property="doctorSignature" />
 		<result column="doctorTime" jdbcType="VARCHAR" property="doctorTime" />
 		<result column="createtime" jdbcType="VARCHAR" property="createtime" />

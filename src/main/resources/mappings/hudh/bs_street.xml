@@ -10,7 +10,7 @@
 		<result column="LNG" jdbcType="VARCHAR" property="lng"/>
 		<result column="LAT" jdbcType="VARCHAR" property="lat"/>
 		<result column="SORT" jdbcType="INTEGER" property="sort"/>
-		<result column="GMT_CREATE" jdbcType="VARCHAR" property="gmyCreate"/>
+		<result column="GMT_CREATE" jdbcType="VARCHAR" property="gmtCreate"/>
 		<result column="GMT_MODIFIED" jdbcType="VARCHAR" property="gmtModified"/>
 		<result column="MEMO" jdbcType="VARCHAR" property="memo"/>
 		<result column="DATA_STATE" jdbcType="INTEGER" property="dataState"/>

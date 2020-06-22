@@ -31,7 +31,7 @@
 		margin: 0px;
 		padding: 0px;
 		font-size: 16px;
-		line-height: 28px; 
+		line-height: 30px; 
 	}
 	#content{
 		font-weight: bold;
@@ -51,9 +51,9 @@
 		line-height: 26px;
 		letter-spacing: 1px;
 		font-weight: bold;
-	   	padding-top: 10px;  
-	    margin-bottom:10px;
-	    border-top: 2px dotted #776c6c;
+	   	padding-top: 5%;  
+/* 		height:136px; */
+	    margin-bottom: 2%; 
 	}
 	/* 详细文字介绍 */
 	#content .consent_text{
@@ -71,25 +71,32 @@
 		font-weight: normal;
 	}
 	.examine_continer .rpInfo_import>input{
-		width:59%;
+		width:70%;
 		background-color: transparent; 
 		border:0px;
 		font-weight: bold;
+/* 		border-bottom: 1px solid black; */
 		border-radius:0px;
+/* 		text-align: center; */
 		padding: 0px;
 	}
 	/* 签名 */
 	#content #consent_signature{
 	 	overflow: hidden;
-
+/* 	 	height: 120px; */
+	 	margin-top: 10px;
+	 	margin-bottom: 20px;
 	}
 	#content #consent_signature>.signature_time{
-		width:50%;
-		margin-left:50%;
+		width:40%;
+		margin-left:60%;
+/* 		height:100%; */
+/* 		float:left; */
 		position: relative;
 	}
 	#content #consent_signature>.signature_time>.signature_box{
 		width:100%;
+/* 		height:80px; */
 	}
 	#content #consent_signature>.signature_time>.signature_box>span{
 		font-weight: normal;
@@ -198,132 +205,37 @@
  	    opacity: 1; 
 	    -webkit-text-fill-color: #00A6C0;     	
     }
-	#logoImg{
-	    width: 12%;
-	    margin-bottom: 10px;
-	}
+
 </style>
 <body style="padding: 0px 3% 0px;">
-<!--startprint-->
 	<div id="content">
-	<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
 		<h2 class="bigtitle">拔牙手术知情同意书</h2>
 		<i class="line"></i>
 		<div class="container-fluid examine_continer">
 			<!-- 患者信息 -->
 			<div class="row" style="position: relative;">
-			<div class="col-md-6 col-sm-6 col-xs-6 colDefined">
-				<div class="rpInfo_import">
-                        <span class="item">首诊时间：</span>
-                        <input id="patient_time" type="text" disabled="disabled" class="input" />
-                    </div>
-				</div>
-				<div class="col-md-6 col-sm-6 col-xs-6 colDefined">
-					 <div class="rpInfo_import">
-                        <span class="item">编号：</span>
-                        <font class="alreadyInfo input" id="patient_num"  class="input" style="color: #00A6C0;"></font>
-                    </div>
-				</div>
-			</div>
-			
-			
-			<div class="row">
-			<div class="col-md-4 col-sm-4 col-xs-4 colDefined">
+				<div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="padding:0px;">
+					<!-- 信息输入组合框 -->
 					<div class="rpInfo_import">
-						<span>姓名：</span>
+						<span>患者：</span>
 						<input id="patient_name" type="text" disabled="disabled"/>
 					</div>
 				</div>
-				
-				<div class="col-md-4 col-sm-4 col-xs-4 colDefined">
-					<div class="rpInfo_import">
-						<span>性别：</span>
-						<input id="patient_sex" type="text" disabled="disabled"/>
-					</div>
-				</div>
-				
-				<div class="col-md-4 col-sm-4 col-xs-4 colDefined">
+				<div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="padding:0px;margin-left:-3%;">
+					<!-- 信息输入组合框 -->
 					<div class="rpInfo_import">
 						<span>年龄：</span>
 						<input id="patient_age" type="text" disabled="disabled"/>
 					</div>
 				</div>
-				
-				</div>
-
-			<div class="row">
-			 <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
-                    <!-- 信息输入组合框 -->
-                   <div class="rpInfo_import">
-						<span>联系电话：</span>
-						<input id="patient_phone" style="" type="text" disabled="disabled"/>
-					</div>
-					
-			</div>
-					<div class="col-md-4 col-sm-4 col-xs-4 colDefined" style="height:30px;">
-                    <div class="rpInfo_import">
-                        <span class="item">紧急联系人：</span>
-                        <input id="patient_instancyName" type="text" disabled="disabled" class="input" />
-                    </div>
-                  </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4 colDefined" style="height:30px;">
-                    <div class="rpInfo_import">
-                        <span class="item">紧急联系人电话：</span>
-                        <input id="patient_instancyPhone" type="text" disabled="disabled" class="input" />
-                    </div>
-                    </div> 
-                    
-               </div>
-               	<div class="row">
-				<div class="col-md-6 col-sm-6 col-xs-6 colDefined">
-					<div class="rpInfo_import">
-                        <span class="item">证件号码：</span>
-                        <input id="patient_idNumber" type="text" disabled="disabled" class="input" />
-                    </div>
-				</div>
-				
-				<div class="col-md-6 col-sm-6 col-xs-6 colDefined">
-					<div class="rpInfo_import">
-                        <span class="item">出生年月：</span>
-                        <input id="patient_date" type="text" disabled="disabled" style="width: 100px;color: #00a6c0;" />
-                    </div>
-				 </div>
-				</div>
-               <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12 colDefined">
+				<div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="padding:0px;margin-left: -4%;">
 					<!-- 信息输入组合框 -->
-					<!-- <div class="rpInfo_import" style="width: 100%;overflow: hidden;">
-						<span style="float:left;">现居住地址：</font></span>
-						<div style="float:left;width:82.5%;position: relative;">
-							<span id="address" class="textAuto_element address" placeholder='请输入地址' onblur="importTextLengthCheck(this.id,60);" onkeyup="diagnoseTextBorder(this.id);" style="font-size: 16px;font-weight: bold;" contenteditable="true"></span>
-						</div>
-					</div> -->
 					<div class="rpInfo_import">
-                        <span class="item">现居地址：</span>
-                        <input id="patient_site" type="text" disabled="disabled" class="input" />
-                    </div>
-				</div>
-				</div>
-			
-				<!-- <div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="padding:0px;margin-left: -3%;">
-					<div class="rpInfo_import">
-						<span>职业：</font></span>
-						<input placeholder="此输入框最多展示12个字" onblur="TextLengthCheck(this.id,30);" style="width:60.5%;" id="profession" type="text"/>
-					</div>
-				</div> -->
-		
-			
-			<div class="row">
-				<div class="col-md-6 col-sm-6 col-xs-6 colDefined">
-					<!-- 信息输入组合框 -->
-					<div class="rpInfo_import margintop1" style="width: 100%;overflow: hidden;">
-						<span style="float:left;">药物过敏：</span>
-						<div style="float:left;width:73%;position: relative;">
-							<span id="allergy" class="textAuto_element allergy" placeholder='请输入过敏药物' onkeyup="diagnoseTextBorder(this.id);" style="font-size: 16px;font-weight: bold;" contenteditable="true"></span>
-						</div>
+						<span>性别：</span>
+						<input id="patient_sex" type="text" disabled="disabled"/>
 					</div>
 				</div>
-				<div class="col-md-6 col-sm-6 col-xs-6 colDefined">
+				<div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="padding:0px;margin-left: -4%;">
 					<!-- 信息输入组合框 -->
 					<div class="rpInfo_import">
 						<span>治疗日期：</span>
@@ -331,34 +243,71 @@
 					</div>
 				</div>
 			</div>
+			<div class="row" style="">
+				<div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="padding:0px;">
+					<!-- 信息输入组合框 -->
+					<div class="rpInfo_import">
+						<span>电话：</span>
+						<input id="patient_phone" style="" type="text" disabled="disabled"/>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="padding:0px;margin-left: -3%;">
+					<!-- 信息输入组合框 -->
+					<div class="rpInfo_import">
+						<span>职业：</font></span>
+						<input placeholder="此输入框最多展示12个字" onblur="TextLengthCheck(this.id,30);" style="width:60.5%;" id="profession" type="text"/>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6 colDefined" style="padding:0px;margin-left: -4%;">
+					<!-- 信息输入组合框 -->
+					<div class="rpInfo_import" style="width: 100%;overflow: hidden;">
+						<span style="float:left;">地址：</font></span>
+						<div style="float:left;width:82.5%;position: relative;">
+							<span id="address" class="textAuto_element address" placeholder='请输入地址' onblur="importTextLengthCheck(this.id,60);" onkeyup="diagnoseTextBorder(this.id);" style="font-size: 16px;font-weight: bold;" contenteditable="true"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="">
+				<div class="col-md-12 col-sm-12 col-xs-12 colDefined" style="padding:0px;">
+					<!-- 信息输入组合框 -->
+					<div class="rpInfo_import margintop1" style="width: 100%;overflow: hidden;">
+						<span style="float:left;">药物过敏：</span>
+						<div style="float:left;width:82.5%;position: relative;">
+							<span id="allergy" class="textAuto_element allergy" placeholder='请输入过敏药物' onkeyup="diagnoseTextBorder(this.id);" style="font-size: 16px;font-weight: bold;" contenteditable="true"></span>
+						</div>
+					</div>
+				</div>
+			</div>
 			
-			
-			<div class="row">
-				<div class="col-md-6 col-sm-6 col-xs-6 colDefined">
+			<div class="row" style="">
+				<div class="col-md-12 col-sm-12 col-xs-12 colDefined" style="padding:0px;">
+					<!-- 信息输入组合框 -->
+					<div class="rpInfo_import" style="width: 100%;overflow: hidden;">
+						<span style="float:left;">治疗部位：</font></span>
+						<div style="float:left;width:82.5%;position: relative;">
+							<span id="treatmentparts" class="textAuto_element treatmentparts" placeholder='请输入治疗部位' onblur="importTextLengthCheck(this.id,120);" onkeyup="diagnoseTextBorder(this.id);" style="font-size: 16px;font-weight: bold;" contenteditable="true"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-bottom: 1%;">
+				<div class="col-md-12 col-sm-12 col-xs-12 colDefined" style="padding:0px;">
 					<!-- 信息输入组合框 -->
 					<div class="rpInfo_import" style="width: 100%;overflow: hidden;">
 						<span style="float:left;">诊<font style="display:inline-block;margin-left: 2em;">断：</font></span>
-						<div style="float:left;width:73%;position: relative;">
+						<div style="float:left;width:82.5%;position: relative;">
 							<span id="diagnose" class="textAuto_element diagnose" placeholder='请输入诊断明细' onkeyup="diagnoseTextBorder(this.id);" style="font-size: 16px;font-weight: bold;" contenteditable="true"></span>
 						</div>
 					</div>
 				</div>
-				
-			<div class="col-md-6 col-sm-6 col-xs-6 colDefined">
-					<div class="rpInfo_import" style="width: 100%;overflow: hidden;">
-						<span style="float:left;">治疗部位：</font></span>
-						<div style="float:left;width:73%;position: relative;">
-							<span id="treatmentparts" class="textAuto_element treatmentparts" placeholder='请输入治疗部位' onblur="importTextLengthCheck(this.id,120);" onkeyup="diagnoseTextBorder(this.id);" style="font-size: 16px;font-weight: bold;" contenteditable="true"></span>
-						</div>
-					</div>
-		</div>
 			</div>
 		</div>
 		<i class="line"></i>
 		<div class="consent_text" style="text-indent: 2rem;">
 			牙齿拔除是口腔科常见的手术。阻生齿、劈裂牙、死髓牙等牙齿的拔除是潜在风险较大、创伤较大、需时较长、术后局部反应及并发症较重的口腔科手术。一方面，医护人员力争做到避免这些并发症的出现；另一方面，患者应在术前充分了解术中、术后可能出现的问题，与医护人员密切配合，共避风险。
 		</div>
-		<div class="consent_text" style="font-weight: 600;">
+		<div class="consent_text">
 			下面是拔牙术中、术后可能出现的风险和并发症：
 		</div>
 		<div class="consent_text">
@@ -395,13 +344,13 @@
 			11、其他不常见的风险、手术意外或并发症，按具体情况对症处理。
 		</div>
 		<i class="line"></i>
-		<div class="consent_text" style="font-weight: bold;text-indent: 0em;">
-			<p style="margin-left: 60%;font-weight:600;" class="font"><i class="colorRed">*</i>以上情况已知悉并确认签字。</p>			
+		<div class="consent_text" style="font-weight: bold;text-indent: 0em;margin-top:7%;">
+			<p style="margin-left: 60%;" class="font"><i class="colorRed">*</i>以上情况已知悉并确认签字。</p>			
 		</div>
 		<!-- 手术签名 -->
 		<div id="consent_signature">
 			<!-- 患者签名 -->
-			<div class="signature_time" style="margin-top:5px;">
+			<div class="signature_time" style="margin-top:2%;">
 				<div class="signature_box">
 					<span id="patientSignature">患者签名:</span>
 					<img id="patientimg" style="width:156px;height:auto;"/>
@@ -409,7 +358,7 @@
 				<input id="patienttime" type="text" class="consent_time inputheight inputheight2" readonly="readonly" placeholder="请选择日期"/>
 			</div>	
 			<!-- 医生签名 -->
-			<div class="signature_time" style="float:right;margin-top:5px;">
+			<div class="signature_time" style="float:right;margin-top:2%;">
 				<div class="signature_box">
 					<span id="doctorSignature">医生签名:</span>
 					<img id="img" style="width:156px;height:auto;"/>
@@ -417,7 +366,6 @@
 				<input id="doctortime"  type="text" class="consent_time inputheight inputheight2" readonly="readonly" placeholder="请选择日期"/>
 			</div>
 		</div>
-		<!--endprint-->
 		<!-- 按钮 -->
 		<div class="btns">
 			<button id="consent_saveBtn" onclick="save()">保存</button>
@@ -435,7 +383,6 @@
 		var doctorstatus=true;
 		var patientstatus=true;
 		var contextPath = "<%=contextPath%>";	
-		var pageurl = '<%=contextPath%>/HUDH_FlowAct/findPatientInformation.act';
 		var id;	//选中患者id
 		var order_number;//选中患者order_number
 		var formParentObj;// 父页面的患者信息对象
@@ -474,33 +421,6 @@
 			         );
 			    }
 		    });
-
-		    $.ajax({
-		        type: "POST",
-		        url: pageurl,
-		        data: { 
-		        	usercode: window.parent.consultSelectPatient.usercode, 
-		        	status: status,
-		        	id: id,
-		        	order_number: order_number 
-		        	},
-		        dataType: "json",
-		        success: function (r) {
-		            $("#patient_time").attr("value", r.cztime);
-		            $("#patient_num").text(r.usercode);
-		            $("#patient_name").attr("value", r.username);
-		            $("#patient_sex").attr("value", r.sex);
-		            $("#patient_age").attr("value", r.age);
-		            $("#patient_idNumber").attr("value", r.idcardno);
-		            $("#patient_date").attr("value", r.birthday);
-		            $("#patient_phone").attr("value", r.phonenumber1);
-		            $("#patient_instancyName").attr("value", r.emergencyContact);
-		            $("#patient_instancyPhone").attr("value", r.emergencyPhone);
-		            $("#patient_site").attr("value", r.provincename + r.cityname + r.townname + r.streetName);
-		        }
-		    });
-			
-			
 		    //治疗日期
 		    $(".treat_time").datetimepicker({
 		        language:  'zh-CN',  
@@ -517,7 +437,11 @@
 			         );
 			    }
 		    });
-		  
+		  	//患者基本信息赋值
+			$("#patient_name").attr("value",formParentObj.username);
+			$("#patient_sex").attr("value",formParentObj.sex);
+			$("#patient_age").attr("value",formParentObj.age);
+			$("#patient_phone").attr("value",formParentObj.phonenumber1); 
 		    initZzblInfor();
 			 // 2019/7/24 lutian 禁止页面拖拽
 			document.ondragstart = function() {
@@ -541,7 +465,32 @@
 		function addSignature(){
 			$("#img").css("display","");
 			$("#img").attr('src', signature);
-		}
+            if(doctorstatus&&!patientstatus){
+                updateDoctorSignature();
+            }
+        }
+        //更新
+        function updateDoctorSignature(){
+            var url = contextPath + '/HUDH_ZzblAskAct/updateLocatorFamiliar.act';
+            var doctorTime = $("#doctortime").val();//医生签字时间
+            var param = {
+                id : caseId,
+                doctorSignature :  signature,
+                doctorTime :  doctorTime
+
+            };
+            $.axseSubmit(url, param,function() {},function(r) {
+                layer.alert("修改成功！", {
+                    end: function() {
+                        //window.parent.location.reload(); //刷新父页面
+                        var frameindex = parent.layer.getFrameIndex(window.name);
+                        parent.layer.close(frameindex); //再执行关闭
+                    }
+                });
+            },function(r){
+                layer.alert("修改失败！");
+            });
+        }
 		var patientSignature = document.getElementById("patientSignature");    
 		patientSignature.onclick = function(){
 			if(patientstatus){
@@ -688,28 +637,15 @@
 		  });
 		}
 		
-		function doPrint() {   
-		    bdhtml=window.document.body.innerHTML;   
-		    sprnstr="<!--startprint-->";   
-		    eprnstr="<!--endprint-->";   
-		    prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);   
-		    prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
-		    var htmlStyle="<style>button{display:none;}*{font-size: 14px!important;line-height: 27px;}.margin{width: 95%;position: absolute;margin-top: -29px;}.margintop1{margin-top:-2px;}.margintop{margin-top: 5px;}.font{font-size: 16px!important;font-weight: bolder;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}</style>";
-		    window.document.body.innerHTML=prnhtml+htmlStyle;  
-		    window.print();  //打印
-		    document.body.innerHTML=bdhtml; //恢复页面
-		}
-		
 		/* 打印本页面方法 */
 		function myPreviewAll(){
-			doPrint()
-			if(doctorstatus&&signature==""){
+			if(signature==""){
 				$("#img").css("display","none");
 			}
-			if(patientstatus&&patientsignature==""){
+			if(patientsignature==""){
 				$("#patientimg").css("display","none");
 			}
-			/* LODOP=getLodop();  
+			LODOP=getLodop();  
 			LODOP.PRINT_INIT("拔牙手术知情同意书");
 			//LODOP.SET_PRINT_PAGESIZE(1,0,0,"A4");
 			//LODOP.SET_PRINT_MODE("FULL_WIDTH_FOR_OVERFLOW",true);//宽度溢出缩放
@@ -717,7 +653,7 @@
 			var html="<!DOCTYPE html>"+document.getElementsByTagName("html")[0].innerHTML+htmlStyle;
 // 			LODOP.ADD_PRINT_HTM(10,10,"100%","100%",html);
 			LODOP.ADD_PRINT_HTM(0,0,"100%","100%",html);
-			LODOP.PREVIEW();	 */
+			LODOP.PREVIEW();	
 		};
 		
 		//获取url中的参数
@@ -887,7 +823,10 @@
 		    for (var i = 0; i < listbutton.length; i++) {
 		        if (listbutton[i].qxName == "zsbs_xgbd"&&doctorstatus&&patientstatus) {
 		           $("#consent_updateBtn").removeClass("hidden");
-		        }
+		        }else if(listbutton[i].qxName =="lclj_ban_signature"){
+                    doctorstatus=false;
+                    patientstatus=false;
+                }
 		    }
 		    $("#bottomBarDdiv").append(menubutton1);
 		}

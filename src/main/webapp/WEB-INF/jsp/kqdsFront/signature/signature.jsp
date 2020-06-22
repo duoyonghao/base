@@ -172,7 +172,15 @@ $(document).ready(function() {
 			parent.patientsignature1=data;
 			parent.addPatientSignature1();
 			parent.layer.close(frameindex); //再执行关闭
-		}
+		}else if("<%=category%>"=="护士1"){
+            parent.nursesignature1=data;
+            parent.addNurseSignature1();
+            parent.layer.close(frameindex); //再执行关闭
+        }else if("<%=category%>"=="护士2"){
+            parent.nursesignature2=data;
+            parent.addNurseSignature2();
+            parent.layer.close(frameindex); //再执行关闭
+        }
 	}).appendTo($tools)
 	$('<input type="button" value="清空">').bind('click', function(e){
 		$sigdiv.jSignature('reset')

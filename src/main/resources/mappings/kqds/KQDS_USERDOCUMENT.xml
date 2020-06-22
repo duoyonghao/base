@@ -1408,10 +1408,8 @@ WHERE
         <!-- 2019-3-10 修改信息查询页面可以查询到所有患者，去掉此处的权限校验 -->
         <if test="visualstaff != null and visualstaff !='' ">
             and (u.askperson in (${visualstaff}) or u.createuser in (${visualstaff}) or u.doctor in (${visualstaff})
-            or EXISTS (select usercode from KQDS_COSTORDER_DETAIL where u.usercode=usercode and askperson in(
-            ${visualstaff}) or doctor in (${visualstaff}) )
-            or EXISTS (select usercode from KQDS_REG where u.usercode=usercode AND askperson in( ${visualstaff}) or
-            doctor in (${visualstaff}) )
+            or EXISTS (select usercode from KQDS_COSTORDER_DETAIL where u.usercode=usercode and (askperson in( ${visualstaff}) or doctor in (${visualstaff})))
+            or EXISTS (select usercode from KQDS_REG where u.usercode=usercode AND (askperson in( ${visualstaff}) or doctor in (${visualstaff}) ))
             )
         </if>
         <if test="sortName != null and sortName != '' ">
@@ -1503,10 +1501,8 @@ WHERE
         </if>
         <if test="visualstaff != null and visualstaff !='' ">
             and (u.askperson in (${visualstaff}) or u.createuser in (${visualstaff}) or u.doctor in (${visualstaff})
-            or EXISTS (select usercode from KQDS_COSTORDER_DETAIL where u.usercode=usercode AND askperson in(
-            ${visualstaff}) or doctor in (${visualstaff}) )
-            or EXISTS (select usercode from KQDS_REG where u.usercode=usercode AND askperson in( ${visualstaff}) or
-            doctor in (${visualstaff}) )
+            or EXISTS (select usercode from KQDS_COSTORDER_DETAIL where u.usercode=usercode AND (askperson in ( ${visualstaff}) or doctor in (${visualstaff})))
+            or EXISTS (select usercode from KQDS_REG where u.usercode=usercode AND (askperson in( ${visualstaff}) or doctor in (${visualstaff})))
             )
         </if>
     </select>
@@ -4076,10 +4072,8 @@ WHERE
         <if test="visualstaff != null and visualstaff !='' ">
             and (
             u.askperson in (${visualstaff}) or u.createuser in (${visualstaff}) or u.doctor in (${visualstaff})
-            or EXISTS (select usercode from KQDS_COSTORDER_DETAIL where u.usercode=usercode AND askperson in(
-            ${visualstaff}) or doctor in (${visualstaff}) )
-            or EXISTS (select usercode from KQDS_REG where u.usercode=usercode AND askperson in( ${visualstaff}) or
-            doctor in (${visualstaff}) )
+            or EXISTS (select usercode from KQDS_COSTORDER_DETAIL where u.usercode=usercode AND (askperson in( ${visualstaff}) or doctor in (${visualstaff})))
+            or EXISTS (select usercode from KQDS_REG where u.usercode=usercode AND (askperson in( ${visualstaff}) or doctor in (${visualstaff})))
             )
         </if>
         <if test="sortName != null and sortName != '' ">

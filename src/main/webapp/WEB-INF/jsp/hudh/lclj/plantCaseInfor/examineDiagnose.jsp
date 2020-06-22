@@ -59,19 +59,9 @@
 	img[src=""],img:not([src]){
       opacity:0;
  	}
- 	#logoImg{
-	    width: 10%;
-	    padding: 10px 0;
-	}
-	 /*分隔线 */
-    .line {
-        display: block;
-        border-top:2px dotted #776c6c;
-        padding:10px 0;
-    }
 	@page{
-		size:auto;
-		margin: 0mm auto;
+		size:205mm 285mm;
+		margin: 0 auto;
 	}
 </style>
 </head>
@@ -82,9 +72,8 @@
 		<!-- 标题 -->
 		<div class="row">
 			<div>
-				<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
-				<i class="line"></i>
-				<h2 class="bigtitle" style="margin-top: 0!important;">检查及诊断</h2>
+				<!-- <div class="big_title"><span class="bigtitle">检查及诊断</span></div> -->
+				<h2 class="bigtitle" style="border-bottom: 2px solid #776c6c;padding-bottom: 15px;">检查及诊断</h2>
 			</div>
 			
 		</div>	
@@ -96,13 +85,6 @@
 					<span style="font-weight: 600;">患者姓名：</span>
 					<input id="patient_name" type="text" disabled="disabled" style=" width:27%;color: #00a6c0;"/>
 				</div>
-			</div>
-			<div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="width:20%;">
-				<!-- 信息输入组合框 -->
-				<div class="rpInfo_import">
-					<span style="font-weight: 600;">编号：</span>
-					<input id="patient_usercode" type="text" disabled="disabled" style="    width: 100px;color: #00a6c0;"/>
-				</div>	
 			</div>
 			<div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="width:20%">
 				<!-- 信息输入组合框 -->
@@ -688,7 +670,7 @@
 	
 			<!-- 粘膜情况 -->
 			<div class="container-fluid examine_continer" style="margin: 10px -5px;">
-		<div class="row" style="background: #ddd;height: 66px;margin: 0px;">
+		<div id="remarkbox" class="row page-break" style="background: #ddd;height: 120px;margin: 0px;">
 			<div class="col-md-12 col-sm-12 col-xs-12 colDefined">
 				<!-- 多选框 -->
 				<div  class="zl_multiple">
@@ -741,25 +723,32 @@
 				</div>
 				
 			</div>
-			<div class="zl_optiondiv" style="margin-left: 20px;">
-				<span>其他</span><input id="others" placeholder="" onblur="TextLengthCheck(this.id,30);" style="width: 60%;" type="text"/>
+			<div id="others_container" class="zl_optiondiv" style="margin-left: 20px;">
+				<span style="vertical-align: top;">其他:</span>
+<%--				<input id="others" placeholder="" onblur="TextLengthCheck(this.id,10);" style="width: 60%;" type="text"/>--%>
+				<textarea id="others" autoHeight="true"  style="border-radius:5px;border: 1px solid #7e7b7b;width:95%;display: inline-block;padding-left: 5px;overflow-y: hidden;"></textarea>
 			</div>
 		</div>
-			<div class="row" style="margin-top: 27px;"> 
-			<div class="col-md-6 col-sm-6 col-xs-6 colDefined">
+		<div class="row" style="margin-top: 27px;margin: 0;">
+			<div id="consent_remark_other" class="row" style="display: none">
+				<div style="margin-top:1%;margin-left: 20px;">
+					<span style="vertical-align: top;display: block;">其他:</span>
+					<pre class="others" style="border: 1px solid #7e7b7b;width:95%;display: inline-block;margin-left: 30px;white-space: pre-wrap"></pre>
+				</div>
 			</div>
+			<div class="col-md-6 col-sm-6 col-xs-6 colDefined"></div>
 			<div class="signature_time" style="width: 45%;margin-left: 55%;position: relative;">
 				<div class="zl_signature">
 					<span id="doctorSignature">医生签字：</span>
-					<img id="img" style="width:156px;height: 43px;"/>
+					<img id="img" style="width:156px;height: 30px;"/>
 				</div>
 				<input style="width: 35%;position: absolute;right: 0px;bottom: 0px;text-align: center;" id="doctortime" type="text" class="consent_time inputheight2" readonly="readonly" placeholder="请选择日期"/>
 			</div>
 			<div class="col-md-12 col-sm-12 col-xs-12 colDefined">
 			</div>
 		</div>
-    </div> 
-    <!--endprint-->
+    </div>
+   <!--endprint-->
 	<!-- 按钮 -->
 	<div class="btns">
 		<button id="consent_saveBtn" onclick="save()">保存</button>
@@ -803,12 +792,32 @@
 			$("#patient_name").attr("value",window.parent.consultSelectPatient.username);
 			$("#patient_sex").attr("value",window.parent.consultSelectPatient.sex);
 			$("#patient_age").attr("value",window.parent.consultSelectPatient.age);
-			$("#patient_usercode").attr("value",window.parent.consultSelectPatient.usercode);
 			initZzblInfor();
 			// 2019/7/24 lutian 禁止页面拖拽
 			document.ondragstart = function() {
 	            return false;
 	        };
+
+		//textarea高度自适应
+			$.fn.autoHeight = function(){
+				function autoHeight(elem){
+					elem.style.height = 'auto';
+					elem.scrollTop = 0; //防抖动
+					elem.style.height = elem.scrollHeight + 'px';
+					height = elem.style.height.split("px")[0];
+					consent_remark_height=Number(height);
+					// console.log(height+'-----height');
+				}
+
+				this.each(function(){
+					autoHeight(this);
+					$(this).on('keyup', function(){
+						autoHeight(this);
+						$("#remarkbox").css("height",consent_remark_height+60+"px");
+					});
+				});
+			}
+			$('textarea[autoHeight]').autoHeight();
 		});
 		var doctorSignature = document.getElementById("doctorSignature");    
 		doctorSignature.onclick = function(){ 
@@ -818,7 +827,7 @@
 			        title: '签字',
 			        shadeClose: true,
 			        shade: 0.6,
-			        area: ['70%', '65%'],
+			        area: ['70%', '60%'],
 			        content: contextPath + '/SignatureAct/toSignature.act?category=种植'
 			    });
 			}
@@ -877,6 +886,11 @@
 						for(var key in result){
 							//console.log(key+"-------------"+result[key]);
 							$("#"+key).attr("value",result[key]);// 填框赋值
+							$("#others").trigger("keyup");
+							if(key=="others"){
+								$("#"+key).text(result[key]);//textarea赋值
+								$("."+key).text(result[key]);// pre赋值
+							}
 							if(result[key].indexOf(";")>0){
 								var checkboxVal= result[key];//拼接多选框的值
 								var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
@@ -1314,28 +1328,48 @@
 		    for (var i = 0; i < listbutton.length; i++) {
 		        if (listbutton[i].qxName == "zsbs_xgbd"&&doctorstatus) {
 		           $("#consent_updateBtn").removeClass("hidden");
-		        }
+		        }else if(listbutton[i].qxName =="lclj_ban_signature"){
+                    doctorstatus=false;
+                }
 		    }
 		    $("#bottomBarDdiv").append(menubutton1);
 		}
-		
-		function doPrint() {   
-		    bdhtml=window.document.body.innerHTML;   
-		    sprnstr="<!--startprint-->";   
-		    eprnstr="<!--endprint-->";   
-		    prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);   
-		    prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));   
-		    var htmlStyle="<style>#others{border-style: none;border-bottom: 1px solid #5b5b5b;}button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}.examine_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 10px !important;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}.btns{display:none!important;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;}</style>";
-		    window.document.body.innerHTML=prnhtml+htmlStyle;  
-		    window.print();  //打印
-		    document.body.innerHTML=bdhtml; //恢复页面
-		} 
-		
-		function myPreviewAll(){
-			if(doctorstatus&&signature==""){
+		// 其他
+		function wrappOtherPage(){
+			var textarea_height=height;
+			$("#consent_remark_other").css("display","block");
+			$("#others_container").css("display","none");
+			$("#remarkbox").css("height","30px");
+			if(textarea_height>80){//滚动条高度判断展示区域
+				$(".page-break").css("page-break-after","always");
+				$("#consent_remark_other").css("padding-top","25px");
+			}
+		}
+		function myPreviewAll() {
+			if(signature==""){
+				$("#img").css("display","none");
+			}
+			bdhtml=window.document.body.innerHTML;
+			sprnstr="<!--startprint-->";
+			eprnstr="<!--endprint-->";
+			prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);
+			prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
+			var htmlStyle="<style>#others{.margintop{margin-top: -27px;}border-style: none;border-bottom: 1px solid #5b5b5b;}button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}.examine_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 10px !important;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}.btns{display:none!important;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;}::-webkit-input-placeholder{color:transparent;}</style>";
+			window.document.body.innerHTML=prnhtml+htmlStyle;
+			wrappOtherPage();//打印另一个备注
+			window.print();  //打印
+			document.body.innerHTML=bdhtml; //恢复页面
+		}
+		function myPreviewAll2(){
+			if(signature==""){
 				   $("#img").css("display","none");
 			   }
-			doPrint();
+			LODOP=getLodop();  
+			LODOP.PRINT_INIT("检查及诊断");
+			var htmlStyle="<style>#others{border-style: none;border-bottom: 1px solid #5b5b5b;}button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}.examine_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 10px !important;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}.btns{display:none!important;}</style>";
+			var html="<!DOCTYPE html>"+document.getElementsByTagName("html")[0].innerHTML+htmlStyle;
+			LODOP.ADD_PRINT_HTM(0,0,"100%","100%",html);
+			LODOP.PREVIEW();	
 		};
 
 </script>

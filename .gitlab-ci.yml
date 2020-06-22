@@ -1,0 +1,43 @@
+image: openjdk:8-jdk
+
+stages:
+  - build
+  - test
+
+before_script:
+  - chmod u+x ./mvnw
+
+build:
+  stage: build
+  script:
+    - ./mvnw compile
+    - ./mvnw war:exploded
+  artifacts:
+    paths:
+      - target/base
+  tags:
+    - package
+  only:
+    refs:
+      - master
+
+deploy-test:
+  stage: test
+  variables:
+    tomcat_dir: D:\tomcat\apache-tomcat-8.0.36
+  script:
+    - echo -n "stop tomcat server..."
+    - Stop-Service Tomcat8
+    - echo -n "remove old artifacts..."
+    - if (Test-Path D:\tomcat\apache-tomcat-8.0.36\webapps\base) {rm -r D:\tomcat\apache-tomcat-8.0.36\webapps\base}
+    - echo -n "copy new artifacts..."
+    - cp -r target\base D:\tomcat\apache-tomcat-8.0.36\webapps
+    - echo -n "start tomcat server..."
+    - Start-Service Tomcat8
+  dependencies:
+    - build
+  tags:
+    - test
+  only:
+    refs:
+      - master

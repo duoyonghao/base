@@ -304,9 +304,9 @@ function getButtonPower() {
 }
 function show() {
 	if('<%=ChainUtil.getCurrentOrganization(request)%>'=='HUDH'){
-	    window.open("http://192.168.3.24:8081/base/Kqds_JhAct/toExhibition.act?floor="+floor);
+	    window.open("http://192.168.1.138:10001/base/Kqds_JhAct/toExhibition.act?floor="+floor);
 	}else if('<%=ChainUtil.getCurrentOrganization(request)%>'=='HUDX'){
-		window.open("http://192.168.3.24:8080/base/Kqds_JhAct/toExhibition.act?floor="+floor);
+		window.open("http://192.168.1.138:11111/base/Kqds_JhAct/toExhibition.act?floor="+floor);
 	}
 }
 //患者转移楼层
@@ -1172,9 +1172,9 @@ var websocket = null;
 //判断当前浏览器是否支持WebSocket
 if ('WebSocket' in window) {
 	 if('<%=ChainUtil.getCurrentOrganization(request)%>'=='HUDH'){
-        websocket = new WebSocket("ws://127.0.0.1:8080/base/WSwebsocket");
+        websocket = new WebSocket("ws://192.168.1.138:10001/base/WSwebsocket");
 	 }else{
-		 websocket = new WebSocket("ws://192.168.3.24:8080/base/WSwebsocket");
+		websocket = new WebSocket("ws://192.168.1.138:11111/base/WSwebsocket");
 	 }
 }
 else {

@@ -2,26 +2,26 @@ body{min-width: 525px;}
 .infoHd{padding: 0 0 0 15px;line-height:30px;font-family:"Microsoft YaHei";font-size:14px;color: #333;background: #fff ;border-bottom:1px solid #ddd;}
 /*wl*/
 .infoHd>.text{
-	font-size:18px;
+    font-size:18px;
 }
 /*wl*/
 .infoHd .tab{float: right;margin: 1px 1px 0 0;}
 .infoHd .tab li{
-	float: left;
-	height:30px;
-	width: 75px;
-	text-align: center;
-	line-height: 30px;
-	cursor: pointer; 
+    float: left;
+    height:30px;
+    width: 75px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
 }
 .infoHd .tab li:hover{
-	background:#EFEFEF;
+    background:#EFEFEF;
 }
 /*wl*/
 /* .infoHd .tab li.current{background: #ff6100;} */
 .infoHd .tab li.current{
-	color: #00A6C0;
-	border-bottom:3px solid #00A6C0;
+    color: #00A6C0;
+    border-bottom:3px solid #00A6C0;
 }
 /*wl*/
 .foot-buttonBar{margin: 10px 0;padding: 10px 0; text-align: center;border-top: solid 1px #00A6C0 ;}
@@ -32,15 +32,15 @@ body{min-width: 525px;}
 a:hover{text-decoration:none;}
 /**/
 #ToothBit{
-	width: 80%;
-	min-width: 1000px;
-	height: 210px;
-	overflow: hidden;
-	/* border:1px solid red; */
-	margin: 0 auto;
+    width: 80%;
+    min-width: 1000px;
+    height: 210px;
+    overflow: hidden;
+    /* border:1px solid red; */
+    margin: 0 auto;
 }
 #ToothBit>div{
-	float: left;
+    float: left;
 }
 .yaIcon{display:block;width: 20px;height: 58px;margin-bottom:5px;background: url("../../image/kqdsFront/img/ya.png") no-repeat;background-size: 350px;}
 .le8{background-position: -1px 5px;}
@@ -106,24 +106,24 @@ a:hover{text-decoration:none;}
 .toothBox .line .left{position: absolute;left:60%; top: 50%;margin: -10px 0 0 -170px;font-size: 13px !important;}
 .toothBox .line .right{position: absolute;right: 70%;top: 50%;margin: -10px -200px 0 0;font-size: 13px !important;}
 .toothBox>span{
-	display:block;
-	/* border:1px solid yellow; */
-	position: absolute;
-	top: 0px;
-	left: 10%;
-	font-size: 14px;
+    display:block;
+    /* border:1px solid yellow; */
+    position: absolute;
+    top: 0px;
+    left: 10%;
+    font-size: 14px;
 }
 .toothBox ul li span.num{
-	display:inline-block; 
-	/*width:20px; height:20px;*/
-	width:15px; height:15px;
-	border-radius:50%; color:#333; background:transparent;
-	/*line-height:20px;*/ 
-	line-height:15px !important; 
-	font-size:12px !important;
-	text-align: center;
-	margin-top: 3px;
-	margin-right: 3px;
+    display:inline-block;
+    /*width:20px; height:20px;*/
+    width:15px; height:15px;
+    border-radius:50%; color:#333; background:transparent;
+    /*line-height:20px;*/
+    line-height:15px !important;
+    font-size:12px !important;
+    text-align: center;
+    margin-top: 3px;
+    margin-right: 3px;
 }
 .toothBox li.current span.num{color:#fff;background:#FF6100;}
 /*wl*/
@@ -131,29 +131,29 @@ a:hover{text-decoration:none;}
 
 .menuList{margin: 10px 0; text-align:right;;overflow:hidden;}
 .menuList span.menuListClassify{
-	border-top-left-radius:5px;
-	border-bottom-left-radius:5px;
-	float:left;height:34px;line-height:34px;color:#fff;background:#00A6C0 ;
-	padding:0 4px; font-size:13px; font-weight:bold;
+    border-top-left-radius:5px;
+    border-bottom-left-radius:5px;
+    float:left;height:34px;line-height:34px;color:#fff;background:#00A6C0 ;
+    padding:0 4px; font-size:13px; font-weight:bold;
 }
 .menuList ul{
-	float:left;
-	padding:5px 10px;
-	margin:0px;
-	border: solid 1px #00A6C0;
-	border-top-right-radius:5px;
-	border-bottom-right-radius:5px;
+    float:left;
+    padding:5px 10px;
+    margin:0px;
+    border: solid 1px #00A6C0;
+    border-top-right-radius:5px;
+    border-bottom-right-radius:5px;
 }
 .menuList ul li{
-	float: left;padding:0 5px; line-height: 19px;
-	color: #333; height:22px; cursor:pointer;
-	transition:background linear 200ms;
-	border:1px solid transparent;
-	border-radius:4px;
+    float: left;padding:0 5px; line-height: 19px;
+    color: #333; height:22px; cursor:pointer;
+    transition:background linear 200ms;
+    border:1px solid transparent;
+    border-radius:4px;
 }
 .menuList ul li.current{
-	background: #00A6C0;
-	color: #FFFFFF;
+    background: #00A6C0;
+    color: #FFFFFF;
 }
 /*wl*/
 
@@ -162,7 +162,7 @@ a:hover{text-decoration:none;}
 /* .tableBar{margin: 10px;} */
 .tableBar{margin-top:3px; float:left;}
 .tableBar .aBtn{
-	border-radius:16px;
+    border-radius:16px;
 }
 /*wl   */
 .tableBar label{font-weight: normal;margin-right: 25px;}
@@ -179,8 +179,8 @@ a:hover{text-decoration:none;}
 .normalBar{width: 360px;}
 
 .button{
-	display: inline-block;margin-right:10px;padding: 0 30px;height: 28px;
-	line-height: 28px;border-radius:16px;
+    display: inline-block;margin-right:10px;padding: 0 30px;height: 28px;
+    line-height: 28px;border-radius:16px;
 }
 .blueBtn{border-color:#00A6C0 ;color: #fff;background:#1B9AF7;}
 .blueBtn:hover{color: #fff;background:#21a1ff;}
@@ -192,7 +192,7 @@ a:hover{text-decoration:none;}
 
 .fixed-table-container{border-radius: 0;font-size: 12px;}
 .fixed-table-body{margin-top: -1px;}
-.fixed-table-header{margin-right:0!important;border-bottom: none; color: #333;font-weight:normal;background: #00A6C0;} 
+.fixed-table-header{margin-right:0!important;border-bottom: none; color: #333;font-weight:normal;background: #00A6C0;}
 .table-striped > tbody > tr:nth-child(odd){background: #eef9fe;}
 .table-striped > tbody > tr{background: #FFF;}
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{border-top: none;}

@@ -406,35 +406,35 @@
 		and doctor = #{doctor}
 		and (reggoal is null or reggoal = '')
 	</delete>
-	
+
 	<!-- 查询是否有欠费 -->
 	<select id="isArrearage" parameterType="java.lang.String" resultType="json">
-	SELECT
-	*
-	FROM
+		SELECT
+		*
+		FROM
 		KQDS_COSTORDER_DETAIL
-	WHERE
+		WHERE
 		1 = 1
-	AND usercode = #{usercode}
-	AND isqfreal = 1 
+		AND usercode = #{usercode}
+		AND isqfreal = 1
 	</select>
-	
+
 	<select id="findPayCostByUsercodes" parameterType="String" resultType="json">
-	select 
-	SEQ_ID,createuser,createtime,usercode,username,sex,doctor,nurse,techperson,
-	costno,totalcost,voidmoney,shouldmoney,actualmoney,arrearmoney,discountmoney,
-	paytype1,money1,paytype2,money2,regno,organization
-	 from KQDS_PAYCOST where usercode in (${_parameter})
+		select
+		SEQ_ID,createuser,createtime,usercode,username,sex,doctor,nurse,techperson,
+		costno,totalcost,voidmoney,shouldmoney,actualmoney,arrearmoney,discountmoney,
+		paytype1,money1,paytype2,money2,regno,organization
+		from KQDS_PAYCOST where usercode in (${_parameter})
 	</select>
 	<!-- 按月查询业绩 syp 2019-9-24 -->
 	<select id="findTotalMoneyByMonth" parameterType="map" resultType="json">
-		SELECT 
+		SELECT
 		YEAR (createtime) 年,
 		MONTH (createtime) 月,
-		SUM(totalcost) as totalMoney 
+		SUM(totalcost) as totalMoney
 		FROM KQDS_PAYCOST where 1=1
 		and MONTH (createtime) <![CDATA[ >= ]]> #{startmonth}
-		and MONTH (createtime) <![CDATA[ <= ]]> #{endmonth} 
+		and MONTH (createtime) <![CDATA[ <= ]]> #{endmonth}
 		<if test="years!='' and years!=null">
 			and (${years})
 		</if>
@@ -445,15 +445,15 @@
 		ORDER BY
 		MONTH (createtime) ASC
 	</select>
-	
+
 	<select id="findTotalDiscountByMonth" parameterType="map" resultType="json">
-		SELECT 
+		SELECT
 		YEAR (createtime) 年,
 		MONTH (createtime) 月,
-		SUM(voidmoney + discountmoney) as totalMoney 
+		SUM(voidmoney + discountmoney) as totalMoney
 		FROM KQDS_PAYCOST where 1=1
 		and MONTH (createtime) <![CDATA[ >= ]]> #{startmonth}
-		and MONTH (createtime) <![CDATA[ <= ]]> #{endmonth} 
+		and MONTH (createtime) <![CDATA[ <= ]]> #{endmonth}
 		<if test="years!='' and years!=null">
 			and (${years})
 		</if>

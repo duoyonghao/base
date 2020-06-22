@@ -25,14 +25,13 @@
 		<result column="removableDenture" jdbcType="VARCHAR" property="removableDenture" />
 		<result column="fixedDenture" jdbcType="VARCHAR" property="fixedDenture" />
 		<result column="plantingsystemselect" jdbcType="VARCHAR" property="plantingsystemselect"/>
-		<result column="repairselect" jdbcType="VARCHAR" property="repairselect"/>
 	</resultMap>
 	
 	<sql id="Base_Column_List">
 		SEQ_ID, LcljId, LcljNum,plantingSystem, modelNumber,upleftToothBitOne,
 		uperRightToothBitOne,leftLowerToothBitOne,lowRightToothBitOne,upleftToothBitTwo,uperRightToothBitTwo,
 		leftLowerToothBitTwo,lowRightToothBitTwo,assistOperation,remarks,PatientSignature,PatientTime,doctorSignature,
-		doctorTime,createtime,removableDenture,fixedDenture,plantingsystemselect,repairselect
+		doctorTime,createtime,removableDenture,fixedDenture,plantingsystemselect
 	</sql>
 	
 	<!--保存人工种植牙知情同意书  -->
@@ -40,67 +39,62 @@
 		insert into HUDH_FamiliarBook (SEQ_ID, LcljId, LcljNum,plantingSystem, modelNumber,upleftToothBitOne,
 		uperRightToothBitOne,leftLowerToothBitOne,lowRightToothBitOne,upleftToothBitTwo,uperRightToothBitTwo,
 		leftLowerToothBitTwo,lowRightToothBitTwo,assistOperation,remarks,PatientSignature,PatientTime,doctorSignature,
-		doctorTime,createtime,removableDenture,fixedDenture,plantingsystemselect,repairselect)values (#{SEQ_ID,jdbcType=VARCHAR}, #{LcljId,jdbcType=VARCHAR}, #{LcljNum,jdbcType=VARCHAR},
+		doctorTime,createtime,removableDenture,fixedDenture,plantingsystemselect)values (#{SEQ_ID,jdbcType=VARCHAR}, #{LcljId,jdbcType=VARCHAR}, #{LcljNum,jdbcType=VARCHAR},
 		#{plantingSystem,jdbcType=VARCHAR}, #{modelNumber,jdbcType=CLOB}, #{upleftToothBitOne,jdbcType=VARCHAR},
 		#{uperRightToothBitOne,jdbcType=VARCHAR},#{leftLowerToothBitOne,jdbcType=VARCHAR},#{lowRightToothBitOne,jdbcType=VARCHAR},
 		#{upleftToothBitTwo,jdbcType=VARCHAR},#{uperRightToothBitTwo,jdbcType=VARCHAR},#{leftLowerToothBitTwo,jdbcType=VARCHAR},
 		#{lowRightToothBitTwo,jdbcType=VARCHAR},#{assistOperation,jdbcType=VARCHAR},#{remarks,jdbcType=VARCHAR},#{PatientSignature,jdbcType=VARCHAR},
 		#{PatientTime,jdbcType=VARCHAR},#{doctorSignature,jdbcType=VARCHAR},#{doctorTime,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR},
-		#{removableDenture,jdbcType=VARCHAR},#{fixedDenture,jdbcType=VARCHAR},#{plantingsystemselect,jdbcType=VARCHAR},#{repairselect,jdbcType=VARCHAR})
+		#{removableDenture,jdbcType=VARCHAR},#{fixedDenture,jdbcType=VARCHAR},#{plantingsystemselect,jdbcType=VARCHAR})
 	</insert>
 	
 	<!-- 根据ID更新人工种植牙知情同意书 -->
 	<update id="updateFamiliarBook" parameterType="com.hudh.zzbl.entity.FamiliarBook">
 	update HUDH_FamiliarBook
-		<trim prefix="SET" suffixOverrides=",">
-			fixedDenture=#{fixedDenture},
-			removableDenture=#{removableDenture},
-			<if test="plantingSystem !=null and plantingSystem !=''">
-				plantingSystem=#{plantingSystem},
-			</if>
-			<if test="modelNumber !=null and modelNumber !=''">
-				modelNumber=#{modelNumber},
-			</if>
-			upleftToothBitOne=#{upleftToothBitOne},
-			uperRightToothBitOne=#{uperRightToothBitOne},
-			leftLowerToothBitOne=#{leftLowerToothBitOne},
-			lowRightToothBitOne=#{lowRightToothBitOne},
-			upleftToothBitTwo=#{upleftToothBitTwo},
-			uperRightToothBitTwo=#{uperRightToothBitTwo},
-			leftLowerToothBitTwo=#{leftLowerToothBitTwo},
-			lowRightToothBitTwo=#{lowRightToothBitTwo},
-			<if test="assistOperation != null and assistOperation !=''">
-				assistOperation=#{assistOperation},
-			</if>
-			<if test="remarks != null and remarks !=''">
-				remarks=#{remarks},
-			</if>
-			<if test="PatientSignature != null and PatientSignature !=''">
-				PatientSignature=#{PatientSignature},
-			</if>
-			<if test="PatientTime != null and PatientTime !=''">
-				PatientTime=#{PatientTime},
-			</if>
-			<if test="doctorSignature != null and doctorSignature !=''">
-				doctorSignature=#{doctorSignature},
-			</if>
-			<if test="doctorTime != null and doctorTime !=''">
-				doctorTime=#{doctorTime},
-			</if>
-			<if test="createtime !=null and createtime !=''">
-				createtime=#{createtime},
-			</if>
-			<if test="plantingsystemselect !=null and plantingsystemselect !=''">
-				plantingsystemselect=#{plantingsystemselect},
-			</if>
-			<if test="repairselect !=null and repairselect !=''">
-				repairselect=#{repairselect}
-			</if>
-		</trim>
-		where 1=1
-		<if test="SEQ_ID != null and SEQ_ID != ''">
-			AND SEQ_ID = #{SEQ_ID}
-		</if>
+	<set>
+	fixedDenture=#{fixedDenture},
+	removableDenture=#{removableDenture},
+	<if test="plantingSystem !=null and plantingSystem !=''">
+	plantingSystem=#{plantingSystem},
+	</if>
+	<if test="modelNumber !=null and modelNumber !=''">
+	modelNumber=#{modelNumber},
+	</if>
+	upleftToothBitOne=#{upleftToothBitOne},
+	uperRightToothBitOne=#{uperRightToothBitOne},
+	leftLowerToothBitOne=#{leftLowerToothBitOne},
+	lowRightToothBitOne=#{lowRightToothBitOne},
+	upleftToothBitTwo=#{upleftToothBitTwo},
+	uperRightToothBitTwo=#{uperRightToothBitTwo},
+	leftLowerToothBitTwo=#{leftLowerToothBitTwo},
+	lowRightToothBitTwo=#{lowRightToothBitTwo},
+	<if test="assistOperation != null and assistOperation !=''">
+	assistOperation=#{assistOperation},
+	</if>
+	remarks=#{remarks},
+	<if test="PatientSignature != null and PatientSignature !=''">
+	PatientSignature=#{PatientSignature},
+	</if>
+	<if test="PatientTime != null and PatientTime !=''">
+	PatientTime=#{PatientTime},
+	</if>
+	<if test="doctorSignature != null and doctorSignature !=''">
+	doctorSignature=#{doctorSignature},
+	</if>
+	<if test="doctorTime != null and doctorTime !=''">
+	doctorTime=#{doctorTime},
+	</if>
+	<if test="createtime !=null and createtime !=''">
+	createtime=#{createtime},
+	</if>
+	<if test="plantingsystemselect !=null and plantingsystemselect !=''">
+	plantingsystemselect=#{plantingsystemselect}
+	</if>
+	</set>
+	where 1=1
+	<if test="SEQ_ID != null and SEQ_ID != ''">
+		AND SEQ_ID = #{SEQ_ID}
+	</if>
 	</update>
 	
 	<!-- 根据ID删除人工种植牙知情同意书 -->

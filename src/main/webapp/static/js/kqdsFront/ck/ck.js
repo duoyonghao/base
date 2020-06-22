@@ -196,7 +196,7 @@ function addgoodstype() {
         shadeClose: true,
         //点击遮罩关闭层
         area: ['550px', '250px'],
-        content: contextPath + '/KQDS_Ck_GoodstypeAct/toSave.act?perid=' + perid + '&pername=' + pername+ '&menuidxg=' + menuid
+        content: contextPath + '/KQDS_Ck_GoodstypeAct/toSave.act?perid=' + perid + '&pername=' + pername
     });
 }
 //修改分类
@@ -663,13 +663,13 @@ function saveGoodsGjTx(){
 	$.axseY(detailurl, null,function(data) {},function() {});
 }
 //商品导入，附件上传初始化
-/*function yxzl() {
-    *//******************************************上传文件start******************************************************//*
+function yxzl() {
+    /******************************************上传文件start******************************************************/
     //初始化方法，填入页面隐藏的 附件id的id值 
     initParam("", "");
     uploadfile(contextPath + "/FileUploadAct/uploadFile.act?module=evidence");
-    *//******************************************上传文件end******************************************************//*
-}*/
+    /******************************************上传文件end******************************************************/
+}
 
 //模板下载
 function mbxz() {
@@ -696,17 +696,16 @@ function getButtonPower() {
 	  var menubutton1 = "",
 	  menubuttonexp = "",
 	  menubutton2 = "",
-	  menubutton3 = ""
-		  
+	  menubutton3 = "",
+	  menubutton_cklb="";
 	  for (var i = 0; i < listbutton.length; i++) {
-		  console.log(""+listbutton[i].qxName);
-		  if (listbutton[i].qxName == "addgoodstype") {
+	      if (listbutton[i].qxName == "addgoodstype") {
 	    	  menubutton_cklb += '<label id="addgoodstype" onclick="addgoodstype()" style="cursor:pointer">添加类别</label>';
 	      } else if (listbutton[i].qxName == "editgoodstype") {
 	    	  menubutton_cklb += '<label id="editgoodstype" onclick="editgoodstype()" style="cursor:pointer">修改类别</label>';
 	      } else if (listbutton[i].qxName == "delgoodstype") {
 	    	  menubutton_cklb += '<label id="delgoodstype" onclick="delgoodstype()" style="cursor:pointer">删除类别</label>';
-	      }else if (listbutton[i].qxName == "add") {
+	      } else if (listbutton[i].qxName == "add") {
 	          menubutton1 += '<label id="add" onclick="add()" style="cursor:pointer">添加商品</label>';
 	      } else if (listbutton[i].qxName == "ck_baseinfo_sppltj") {
 	          menubutton1 += '<label id="addBatch" onclick="addBatch()" style="cursor:pointer">批量添加商品</label>';  //2020/03/28	 批量添加商品    lutian
@@ -726,9 +725,7 @@ function getButtonPower() {
 	          menubutton1 += '<label id="ckdept" onclick="ckdept()" style="cursor:pointer">出库部门</label>';
 	      } else if (listbutton[i].qxName == "ckempty") {
 	    	  menubutton_cklb += '<label id="ckempty" onclick="ckempty()" style="cursor:pointer">清空仓库</label>';
-	      } else if (listbutton[i].qxName == "ck_dbck") {
-	    	  menubuttonexp += '<label id="del" onclick="allocatingOutbound()" style="cursor:pointer">调拨出库</label>';
-	      }  else if (listbutton[i].qxName == "mbxz") {
+	      } else if (listbutton[i].qxName == "mbxz") {
 	    	  menubuttonexp += '<label><a id="mbxz" onclick="mbxz();" class="webuploader-pick" style="cursor:pointer">模板下载</a></label>';
 	      } else if (listbutton[i].qxName == "sqdr") {
 	    	  menubuttonexp += '<label>' + '<input type="hidden" placeholder="" id="imgtype" name="imgtype" value="goods">' + '<div id="uploader-demo">	' + '<div id="fileList" class="uploader-list"></div>' + '<div id="filePicker">商品导入</div>' + '</div></label>';
@@ -760,11 +757,12 @@ function getButtonPower() {
 	    	  menubutton3 += '<li name="ck_ksth"><img src="'+ contextPath +'/static/image/kqdsFront/img/icon/book2.png">科室退货</li>';
 	      }
 	  }
+	  $("#cklb").append(menubutton_cklb);
 	  $("#jcxx").append(menubutton1);
 	  $("#jcxx").append(menubuttonexp);
 	  $("#ul1").append(menubutton2);
 	  $("#ul1").append(menubutton3);
-	  //yxzl(); // 商品导入功能，涉及附件上传
+	  yxzl(); // 商品导入功能，涉及附件上传
 	  //计算主体的宽度，需要在页面加载完成后，再执行计算操作，否则页面会出问题
 	  setWidth();
 	  setHeight();

@@ -307,6 +307,10 @@
         margin: 9px 0px;
         padding-left: 10px;
     }
+	.btns>button:focus{
+		border:0px solid red;
+		outline: none;
+	}
 </style>
 <body>
 <!--startprint-->
@@ -1418,7 +1422,31 @@
 		function addSignature(){
 			$("#img").css("display","");
 			$("#img").attr('src', signature);
-		}
+            if(doctorstatus&&!patientstatus){
+                updateDoctorSignature();
+            }
+        }
+        //更新
+        function updateDoctorSignature(){
+            var url = contextPath + '/HUDH_ZzblAskAct/updateCaseHistoryById.act';
+            var doctorTime = $("#doctortime").val();//医生签字时间
+            var param = {
+                id:  caseId, //临床路径ID
+                doctorSignature :  signature,
+                doctorTime :  doctorTime
+            };
+            $.axseSubmit(url, param,function() {},function(r) {
+                layer.alert("修改成功！", {
+                    end: function() {
+                        //window.parent.location.reload(); //刷新父页面
+                        var frameindex = parent.layer.getFrameIndex(window.name);
+                        parent.layer.close(frameindex); //再执行关闭
+                    }
+                });
+            },function(r){
+                layer.alert("修改失败！");
+            });
+        }
 		var patientSignature = document.getElementById("patientSignature");    
 		patientSignature.onclick = function(){ 
 			if(patientstatus){
@@ -1515,7 +1543,7 @@
 							//console.log(key+"-------------"+result[key]);
 							$("#"+key+"[type='text']").attr("value",result[key]);// 填框赋值
 							//常用药物select赋值
-							if($("#"+key).find("option")){
+							if($("#"+key).find("option").length>0 && result[key]!=null){
                                 $("#"+key).selectpicker('val', result[key]);
                                 $("."+key).text(result[key]);
 								// $("#"+key).find("option").each(function(i,obj){
@@ -1532,17 +1560,19 @@
 								   $(this).attr("checked","checked");
 								}
 							})
-							if(result[key].indexOf(";")>0){
-								var checkboxVal= result[key];//拼接多选框的值
-								var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
-								for(var i=0;i<checkboxValArr.length;i++){
-									$("input[name="+key+"]").each(function(){
-										if($(this).val()==checkboxValArr[i]){
-										   $(this).attr("checked","checked");
-										}
-									})
+							if(result[key]){
+								if(result[key].indexOf(";")>0){
+									var checkboxVal= result[key];//拼接多选框的值
+									var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
+									for(var i=0;i<checkboxValArr.length;i++){
+										$("input[name="+key+"]").each(function(){
+											if($(this).val()==checkboxValArr[i]){
+												$(this).attr("checked","checked");
+											}
+										})
+									}
 								}
-							} 
+							}
 							if(key.indexOf("is")>=0 && result[key]==1){
 								$("input[name="+key+"]").each(function(i,obj){
 									if($(this).val()==1){
@@ -1609,9 +1639,9 @@
 
 		//修改
 		function update(){
-			var patient_name = $("#patient_name").val();//患者姓名
-			var patient_sex = $("#patient_sex").val();//患者性别
-			var patient_age = $("#patient_age").val();//患者年龄
+			var patient_name = $("#patient_name").html();//患者姓名
+			var patient_sex = $("#patient_sex").html();//患者性别
+			var patient_age = $("#patient_age").html();//患者年龄
 			var agomphosTime = $("#agomphostime").val();//缺牙时间
 			var symptom=showSymptom();//牙齿症状选中
 			var plantTime = $("#planttime").val();//要求种植修复时间
@@ -1798,10 +1828,10 @@
 		
 		//保存		
 		function save() {
-			var patient_name = $("#patient_name").val();//患者姓名
-			var patient_sex = $("#patient_sex").val();//患者性别
-			var patient_age = $("#patient_age").val();//患者年龄
-			var agomphosTime = $("#agomphostime").val();//缺牙时间
+			var patient_name = $("#patient_name").html();//患者姓名
+			var patient_sex = $("#patient_sex").html();//患者性别
+            var patient_age = $("#patient_age").html();//患者年龄
+            var agomphosTime = $("#agomphostime").val();//缺牙时间
 			var symptom=showSymptom();//牙齿症状选中
 			var plantTime = $("#planttime").val();//要求种植修复时间
 			var isHypertension = $('input[name="ishypertension"]:checked').val();//是否有高血压
@@ -2140,10 +2170,10 @@
 		} 			 
 	//打印样式
 	function myPreviewAll(){
-		if(doctorstatus&&signature==""){
+		if(signature==""){
 		   $("#img").css("display","none");
 	   	}
-	   	if(patientstatus&&patientsignature==""){
+	   	if(patientsignature==""){
 		   $("#patientimg").css("display","none");
 	   	}
 		LODOP=getLodop();  
@@ -2152,9 +2182,9 @@
 		var htmlStyle="<style>*{font-size: 10px;}button{display:none;}.time_div>input{display:block;margin-top:3px!important;width:40px!important;height:18px!important;}.fillWrite_group>input{display:block;width:40px!important;height:18px!important;margin-top:3px!important;}#pressure{display:block;width:50px!important;height:18px!important;margin-top:3px!important;}.alreadyInfo{font-size:12px !important;}.rpInfo_import{margin-right:80px;width:auto;}input[type='radio'],input[type='checkbox']{width:10px!important;}.option_div>input{margin-top:5px!important;}.option_div>label{margin-top:15px!important;}";
 		htmlStyle+="p{margin:0px!important;padding:0px!important;line-height:14px!important;}.consent_time{width:110px!important;height:18px!important;margin-top:3px!important;}.row>.colDefined{height:24px!important;}.bigtitle{font-size:22px;line-height:22px;margin:45px auto 20px!important;padding-top:0px!important;}.toothInfo{margin-bottom:5px!important;}.patientInfo{padding:10px 0px 0px 15px!important;}.loseTooth_time{width:170px!important;}.loseTooth_option>li{margin-right:5px!important;}.loseTooth_time>span{font-size:12px!important;}";
 		htmlStyle+=".mainSuitInfo{padding:0px!important;}.chiefComplaint{padding:0px 0px 0px 0px!important;margin:0px!important;}.common_style span, #anamnesis_continer .common_style label{margin-top:5px!important;}.smoking input{margin-top:2px!important;}.patientInfo{padding-left:0px!important;}.mainSuitInfo{padding-left:0px!important;height:40px!important;padding-bottom:0px!important;}.question_row{margin-top:10px!important;}.question_row .colDefined{height:18px!important;}.question_text{height:18px!important;font-size:12px!important;margin:0px!important;}.plantTooth_reason li{height:22px!important;margin-bottom:0px!important;}";
-		htmlStyle+=".plantTooth_reason input{vertical-align:middle!important;}.question_row .colDefined input{display:inline-block!important;height:20px!important;}.question_twoInfo{height:30px!important;}.question_twoInfo .select_item input{vertical-align:middle!important;margin-top:10px!important;}#question_three{margin-top:0px!important;}.loseTooth_option>li label{margin-top:5px!important;}.signature_box span{font-size:12px!important;}#denture{background-color:white!important;}.loseTooth_time>span,input{display:inline!important;}.loseTooth_time{width:auto!important;}.common_style{background-color: transparent!important;}";
+		htmlStyle+=".plantTooth_reason input{vertical-align:middle!important;}.question_row .colDefined input{display:inline-block!important;height:20px!important;}.question_twoInfo{height:30px!important;}.question_twoInfo .select_item input{vertical-align:middle!important;margin-top:10px!important;}#question_three{margin-top:0px!important;}.loseTooth_option>li label{margin-top:5px!important;}#denture{background-color:white!important;}.loseTooth_time>span,input{display:inline!important;}.loseTooth_time{width:auto!important;}.common_style{background-color: transparent!important;}";
 		htmlStyle+="input[type='text']{border:0px!important;padding:0px!important;text-align:center!important;font-weight:bold!important;}#agomphostime,#planttime{padding-left:10px!important;text-align:left!important;vertical-align:top;}#drugallergy{width:270px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important;}#onmedication{width:570px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important;}#habit{width:660px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important;}#others{width:660px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important;}";
-		htmlStyle+="#antifreezing{width:170px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important}#lasttoothextractiontime{border-bottom:1px solid #adaaaa!important;}#doctorSignature{border:1px solid red;}.medicineText{display:block;margin-top: 6px!important;}.selectgroup{display:none !important;}";
+		htmlStyle+="#antifreezing{width:170px!important;border-bottom:1px solid #adaaaa!important;text-align:left!important;padding-left:10px!important}#lasttoothextractiontime{border-bottom:1px solid #adaaaa!important;}.medicineText{display:block;margin-top: 6px!important;}.selectgroup{display:none !important;}";
 		htmlStyle+=".backColor{background-color:transparent!important;}.backcolorGray{background-color:#f5f5f5!important;}.selectgroup .groupSelect{margin-top:4px!important;font-size:10px;height:18px;appearance:none;-webkit-appearance:none;-moz-appearance:none;}select::-ms-expand{display:none;}#consent_updateBtn{display:none!important;}.question_two{margin-bottom:5px!important;}</style>";
 		var html="<!DOCTYPE html>"+document.getElementsByTagName("html")[0].innerHTML+htmlStyle;
 		LODOP.ADD_PRINT_HTM(0,0,"100%","100%",html);
@@ -2166,7 +2196,10 @@
 		    for (var i = 0; i < listbutton.length; i++) {
 		        if (listbutton[i].qxName == "zsbs_xgbd"&&doctorstatus&&patientstatus) {
 		           $("#consent_updateBtn").removeClass("hidden");
-		        }
+		        }else if(listbutton[i].qxName =="lclj_ban_signature"){
+                    doctorstatus=false;
+                    patientstatus=false;
+                }
 		    }
 		    $("#bottomBarDdiv").append(menubutton1);
 	}

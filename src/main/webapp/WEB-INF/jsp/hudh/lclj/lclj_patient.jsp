@@ -267,6 +267,11 @@
 		margin-left: 25px
 	}	
 	.formBox{overflow: visible;}
+    .bootstrap-select .dropdown-toggle:focus {
+        outline: 0px dotted #333333 !important;
+        outline: 0px auto -webkit-focus-ring-color !important;
+        outline-offset: -2px;
+    }
 </style>
 </head>
 <body>
@@ -467,7 +472,7 @@ $(function() {
         //smartDisplay: true,
         //toolbar: '#toolbar',//工具按钮用哪个容器
         onLoadSuccess: function(data) { //加载成功时执行\
-         	//console.log(JSON.stringify(data)+"--------------data");
+//         	console.log(JSON.stringify(data)+"--------------data");
         	 tableDataforSon=data;
         	 var tableList = $('#table').bootstrapTable('getData');
              $("#size").html(tableList.length);
@@ -599,15 +604,6 @@ $(function() {
         {
             title: '修复医师',
             field: 'repair_physician',
-            align: 'center',
-            sortable: true,
-            formatter: function(value, row, index) {
-            	return value;
-            }
-        },
-        {
-            title: '诊室护士',
-            field: 'clinic_nurse',
             align: 'center',
             sortable: true,
             formatter: function(value, row, index) {

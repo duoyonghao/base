@@ -2913,9 +2913,6 @@ var buttonFun = {
 			$("#lclj_ywbd").addClass("hide");
 			$("#lclj_ywtj").removeClass("hide");
 			$(".ToothBit_checkbox").attr("disabled",false);
-			$(".toothMap").each(function(i,obj){
-				$(this).attr("onclick","showToothMap("+i+")");
-			});
 			/*****************种植牙位图操作*******************/
 			  //点击牙齿
 			/*  $('.toothBox').on('click', 'li',

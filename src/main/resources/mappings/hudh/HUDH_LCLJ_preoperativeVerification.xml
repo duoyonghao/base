@@ -3,21 +3,21 @@
 <mapper namespace="HUDH_LCLJ_preoperativeVerification">
 	<resultMap id="preoperativeVerification" type="com.hudh.lclj.entity.PreoperativeVerification">
 		<id column="SEQ_ID" jdbcType="VARCHAR" property="SEQ_ID" />
-		<result column="lclj_Id" jdbcType="VARCHAR" property="lclj_Id" />
-		<result column="order_number" jdbcType="VARCHAR" property="order_number" />
-		<result column="patient_name" jdbcType="VARCHAR" property="patient_name"/>
-		<result column="patient_sex" jdbcType="VARCHAR" property="patient_sex"/>
-		<result column="patient_age" jdbcType="VARCHAR" property="patient_age"/>
-		<result column="blood_pressure" jdbcType="VARCHAR" property="blood_pressure"/>
+		<result column="lclj_Id" jdbcType="VARCHAR" property="LcljId" />
+		<result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+		<result column="patient_name" jdbcType="VARCHAR" property="patientName"/>
+		<result column="patient_sex" jdbcType="VARCHAR" property="patientSex"/>
+		<result column="patient_age" jdbcType="VARCHAR" property="patientAge"/>
+		<result column="blood_pressure" jdbcType="VARCHAR" property="bloodPressure"/>
 		<result column="pulse" jdbcType="VARCHAR" property="pulse"/>
-		<result column="blood_glucose" jdbcType="VARCHAR" property="blood_glucose"/>
-		<result column="cruor_function" jdbcType="VARCHAR" property="cruor_function"/>
-		<result column="infectious_diseases" jdbcType="VARCHAR" property="infectious_diseases"/>
-		<result column="consultation_opinion" jdbcType="VARCHAR" property="consultation_opinion"/>
-		<result column="pullout_tooth" jdbcType="VARCHAR" property="pullout_tooth"/>
-		<result column="plant_tooth" jdbcType="VARCHAR" property="plant_tooth"/>
-		<result column="assist_operation" jdbcType="VARCHAR" property="assist_operation"/>
-		<result column="plant_system" jdbcType="VARCHAR" property="plant_system"/>
+		<result column="blood_glucose" jdbcType="VARCHAR" property="bloodGlucose"/>
+		<result column="cruor_function" jdbcType="VARCHAR" property="cruorFunction"/>
+		<result column="infectious_diseases" jdbcType="VARCHAR" property="infectiousDiseases"/>
+		<result column="consultation_opinion" jdbcType="VARCHAR" property="consultationOpinion"/>
+		<result column="pullout_tooth" jdbcType="VARCHAR" property="pulloutTooth"/>
+		<result column="plant_tooth" jdbcType="VARCHAR" property="plantTooth"/>
+		<result column="assist_operation" jdbcType="VARCHAR" property="assistOperation"/>
+		<result column="plant_system" jdbcType="VARCHAR" property="plantSystem"/>
 		<result column="nurseSignature" jdbcType="VARCHAR" property="nurseSignature"/>
 		<result column="doctorSignature" jdbcType="VARCHAR" property="doctorSignature"/>
 		<result column="signaturetime" jdbcType="VARCHAR" property="signaturetime"/>

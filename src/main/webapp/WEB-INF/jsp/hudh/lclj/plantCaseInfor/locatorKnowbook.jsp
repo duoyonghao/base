@@ -537,10 +537,10 @@
 		
 		/* 打印本页面方法 */
 		function myPreviewAll(){
-			if(doctorstatus&&signature==""){
+			if(signature==""){
 				   $("#img").css("display","none");
 			}
-			if(patientstatus&&patientsignature==""){
+			if(patientsignature==""){
 				   $("#patientimg").css("display","none");
 			}
 			LODOP=getLodop();  
@@ -710,7 +710,10 @@
 		    for (var i = 0; i < listbutton.length; i++) {
 		        if (listbutton[i].qxName == "zsbs_xgbd"&&doctorstatus&&patientstatus) {
 		           $("#consent_updateBtn").removeClass("hidden");
-		        }
+		        }else if(listbutton[i].qxName =="lclj_ban_signature"){
+                    doctorstatus=false;
+                    patientstatus=false;
+                }
 		    }
 		    $("#bottomBarDdiv").append(menubutton1);
 		}
