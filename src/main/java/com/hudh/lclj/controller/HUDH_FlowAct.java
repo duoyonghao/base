@@ -971,7 +971,7 @@ public class HUDH_FlowAct {
 				if(zzblCheckService.findZzblOprationById(id) != null && zzblCheckService.findZzblOprationById(id).size()>0){
 					if(zzblService.findZzblOprationById(id) != null && zzblService.findZzblOprationById(id).size()>0){
 						if(rscService.findRepairInforById(id) != null && rscService.findRepairInforById(id).size()>0){
-						if(dzblService.findFamiliarBook(id) != null && dzblService.findLocatorFamiliares(id).size()>0){
+						if(dzblService.findFamiliarBook(id) != null || dzblService.findLocatorFamiliares(id).size()>0){
 							flowService.updateOrderTrackNodes(dataMap,flowCode,type,dentalJaw,lcljOrderTrack,request);
 							YZUtility.DEAL_SUCCESS(null,null, response, logger);
 						}else{
@@ -1071,7 +1071,7 @@ public class HUDH_FlowAct {
                 if(zzblCheckService.findZzblOprationById(id) != null && zzblCheckService.findZzblOprationById(id).size()>0){
                     if(zzblService.findZzblOprationById(id) != null && zzblService.findZzblOprationById(id).size()>0){
                         if(rscService.findRepairInforById(id) != null && rscService.findRepairInforById(id).size()>0){
-							if(dzblService.findFamiliarBook(id) != null && dzblService.findLocatorFamiliares(id).size()>0){
+							if(dzblService.findFamiliarBook(id) != null || dzblService.findLocatorFamiliares(id).size()>0){
 								flowService.updateLcljOrderTrackById(lcljOrderTrack);
 								YZUtility.DEAL_SUCCESS(null, null, response, logger);
 							}else{
