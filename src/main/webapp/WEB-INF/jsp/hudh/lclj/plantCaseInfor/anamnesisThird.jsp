@@ -46,15 +46,25 @@
 		font-size: 14px;
 		font-weight: normal;
 	}
-	#logoImg{
-		width: 16.5%;
-	}
 	@media print{
 		*{
 			font-size: 12px;
 		}
+		#logoImg{
+			position: absolute;
+			top: 20px!important;
+			width: 150px!important;
+		}
+		#anamnesis_continer .bigtitle{
+			font-size: 22px;
+			margin: 0px auto 10px !important;
+		}
 		.smallTitle{
-			font-size: 16px !important;
+			font-size: 13px !important;
+			padding-top: 3px;
+		}
+		#pressure{
+			width: 80px !important;
 		}
 		.rpInfo_import{
 			margin-bottom: 0px !important;
@@ -142,7 +152,7 @@
 			margin-left: 20px !important;
 		}
 		#onmedication{
-			width: 81% !important;
+			width: 78% !important;
 		}
 		#secondLogoImg{
 			display: block!important;
@@ -164,10 +174,10 @@
 	}
 	/* 小标题 */
 	.smallTitle{
-		font-size: 19px;
+		font-size: 17px;
 		color: #333333;
 		font-weight: bold;
-		border-top: 2px solid #776c6c;
+		border-top: 1px solid black;
 	}
 	.smallTitle .circle{
 		display: inline-block;
@@ -285,7 +295,7 @@
 	#anamnesis_continer .bigtitle{
 		display: block;
 		text-align: center;
-		margin: 0 auto 25px;
+		margin: 7px auto 18px;
 	}
 	#logoImg{
 		position: absolute;
@@ -354,45 +364,20 @@
 		size:206mm 280mm;
 		margin: 0 auto;
 	}
-/*	@page:first{
-		@top-center { content: "This page is intentionally left blank" }
-		@bottom-center{
-			margin: 10pt;
-			!*margin: 10pt 0 30pt 0;
-			border-top: .25pt solid #666;*!
-			content: "Our Cats";
-			border: 1px solid red;
-			!*font-size: 9pt;
-			color: #333;*!
-		}
-        @bottom-left {
-            margin: 10pt 0 30pt 0;
-            border-top: .25pt solid #666;
-            content: "Our Cats";
-            font-size: 9pt;
-            color: #333;
-        }
-        !*@bottom-right {
-            margin: 10pt 0 30pt 0;
-            border-top: .25pt solid #666;
-            content: counter(page);
-            font-size: 9pt;
-        }
-
-        @top-right {
-            content: string(doctitle);
-            margin: 30pt 0 10pt 0;
-            font-size: 9pt;
-            color: #333;
-        }*!
-	}*/
+	#anamnesis_continer span {
+		font-weight: normal;
+	}
+	.btns button:focus{
+		border:0px solid red;
+		outline: none;
+	}
 </style>
 <body>
 <!--startprint-->
 <div id="anamnesis_continer" class="container-fluid" style="height:100%;">
 	<!-- 标题 -->
 	<div class="row">
-		<div class="col-md-12 col-sm-12" style="position: relative;">
+		<div class="col-md-12 col-sm-12" style="position: relative;padding: 0;">
 			<!-- <div class="big_title"><span class="bigtitle">主诉及既往病史</span></div> -->
 			<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
 			<span class="bigtitle">主诉及既往病史</span>
@@ -400,8 +385,8 @@
 	</div>
 	<!-- 患者信息 -->
 	<div class="row patientInfo">
-		<div class="col-md-12 col-sm-12 col-xs-12 smallTitle"><span class="circle"></span>基本信息</div>
-		<div class="col-md-12 col-sm-12 col-xs-12 smallTitle" style="padding:0px;display:flex;flex-direction:row;">
+		<div class="col-md-12 col-sm-12 col-xs-12 smallTitle" style="padding-left:0px;"><span class="circle"></span>基本信息</div>
+		<div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;display:flex;flex-direction:row;">
 			<div class="patient_info">
 				<!-- 首诊时间 -->
 				<div class="rpInfo_import">
@@ -691,13 +676,13 @@
 	<!-- 高血压 -->
 	<div class="row">
 		<div class="col-md-12 col-sm-12 col-xs-12 smallTitle" style="padding-left:0px;"><span class="circle"></span>既往史</div>
-		<div class="col-md-1 col-sm-1 col-xs-1 colDefined combgGray backColor">
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 名称div -->
 			<div class="name_div common_style">
 				<span>高血压:</span>
 			</div>
 		</div>
-		<div class="col-md-1 col-sm-2 col-xs-2 colDefined combgGray backColor">
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<div class="select_group common_style">
 				<!-- 选项div -->
 				<div class="option_div">
@@ -706,13 +691,13 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-1 col-sm-2 col-xs-2 colDefined combgGray backColor">
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
 				<input id="hypertension" type="text" placeholder="时间"/>
 			</div>
 		</div>
-		<div class="col-md-2 col-sm-4 col-xs-4 colDefined combgGray">
+		<div class="col-md-3 col-sm-3 col-xs-3 colDefined combgGray">
 			<!-- 填写组合框 -->
 			<div class="fillWrite_group common_style">
 				<!-- 填写名称 -->
@@ -721,7 +706,7 @@
 				<input id="pressure" style="width: 120px;text-align: center;padding: 0px;" class="fillWrite_input" placeholder="125/69" onblur="TextLengthCheck(this.id,10);" type="text"/>
 			</div>
 		</div>
-		<div class="col-md-2 col-sm-3 col-xs-3 colDefined combgGray backColor">
+		<div class="col-md-3 col-sm-3 col-xs-3 colDefined combgGray backColor">
 			<!-- 选择组合框 -->
 			<div class="select_group common_style">
 				<!-- 选项名称 -->
@@ -734,12 +719,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-5 col-sm-6 col-xs-6 colDefined combgGray">
+		<%--<div class="col-md-5 col-sm-6 col-xs-6 colDefined combgGray">
 			<!-- 填写组合框 -->
 			<div class="selectgroup common_style hypertensionmedicineDiv">
 				<span class="groupName" style="font-weight: normal;">常用药物：</span>
 				<select id="hypertensionmedicine" class="groupSelect selectpicker" multiple title="请选择" style="pointer-events: none;">
-					<%--<option value="">请选择</option>--%>
+					&lt;%&ndash;<option value="">请选择</option>&ndash;%&gt;
 					<option value="倍他洛克">倍他洛克</option>
 					<option value="比索洛尔">比索洛尔</option>
 					<option value="硝苯地平">硝苯地平</option>
@@ -753,9 +738,9 @@
 					<option value="络活喜">络活喜</option>
 				</select>
 			</div>
-			<%--打印展示--%>
+			&lt;%&ndash;打印展示&ndash;%&gt;
 			<div class="medicineText">常用药物：<span class="hypertensionmedicine"></span></div>
-		</div>
+		</div>--%>
 	</div>
 	<!-- 心脏病 -->
 	<div class="row">
@@ -774,7 +759,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-1 col-sm-2 col-xs-2 colDefined">
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 			<!-- 时间div -->
 			<div class="time_div common_style bgwhite">
 				<input id="heardiease" type="text" placeholder="时间"/>
@@ -792,12 +777,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4 col-sm-6 col-xs-6 colDefined backcolorGray">
+		<%--<div class="col-md-4 col-sm-6 col-xs-6 colDefined backcolorGray">
 			<!-- 填写组合框 -->
 			<div class="selectgroup common_style">
 				<span class="groupName" style="font-weight: normal;">常用药物：</span>
 				<select id="heardieasemedicine" class="groupSelect selectpicker" multiple title="请选择" style="pointer-events: none;">
-					<%--<option value="">请选择</option>--%>
+					&lt;%&ndash;<option value="">请选择</option>&ndash;%&gt;
 					<option value="速效救心丸">速效救心丸</option>
 					<option value="复方丹参滴丸">复方丹参滴丸</option>
 					<option value="复方丹参片">复方丹参片</option>
@@ -806,9 +791,9 @@
 					<option value="心痛定片(硝苯地平片)">心痛定片(硝苯地平片)</option>
 				</select>
 			</div>
-			<%--打印展示--%>
+			&lt;%&ndash;打印展示&ndash;%&gt;
 			<div class="medicineText">常用药物：<span class="heardieasemedicine"></span></div>
-		</div>
+		</div>--%>
 	</div>
 	<!-- 糖尿病 -->
 	<div class="row">
@@ -846,12 +831,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-3 col-sm-6 col-xs-6 colDefined combgGray">
+		<%--<div class="col-md-3 col-sm-6 col-xs-6 colDefined combgGray">
 			<!-- 填写组合框 -->
 			<div class="selectgroup common_style">
 				<span class="groupName" style="font-weight: normal;">口服常用药：</span>
 				<select id="diabetesoralmedicine" class="groupSelect selectpicker" multiple title="请选择" style="pointer-events: none;">
-					<%--<option value="">请选择</option>--%>
+					&lt;%&ndash;<option value="">请选择</option>&ndash;%&gt;
 					<option value="二甲双胍">二甲双胍</option>
 					<option value="格列美脲">格列美脲</option>
 					<option value="格列本脲">格列本脲</option>
@@ -870,7 +855,7 @@
 					<option value="拜糖平">拜糖平</option>
 				</select>
 			</div>
-			<%--打印展示--%>
+			&lt;%&ndash;打印展示&ndash;%&gt;
 			<div class="medicineText">口服常用药：<span class="diabetesoralmedicine"></span></div>
 		</div>
 		<div class="col-md-3 col-sm-6 col-xs-6 colDefined combgGray">
@@ -878,15 +863,15 @@
 			<div class="selectgroup common_style">
 				<span class="groupName" style="font-weight: normal;">注射常用药：</span>
 				<select id="diabetesinjectionmedicine" class="groupSelect selectpicker" multiple title="请选择" style="pointer-events: none;">
-					<%--<option value="">请选择</option>--%>
+					&lt;%&ndash;<option value="">请选择</option>&ndash;%&gt;
 					<option value="利拉鲁肽">利拉鲁肽</option>
 					<option value="艾塞那肽">艾塞那肽</option>
 					<option value="胰岛素">胰岛素</option>
 				</select>
 			</div>
-			<%--打印展示--%>
+			&lt;%&ndash;打印展示&ndash;%&gt;
 			<div class="medicineText">注射常用药：<span class="diabetesinjectionmedicine"></span></div>
-		</div>
+		</div>--%>
 	</div>
 	<!-- 六个月内做过心瓣膜手术 -->
 	<div class="row bgWhite">
@@ -941,7 +926,7 @@
 	</div>
 	<!-- 服用抗凝药物 -->
 	<div class="row bgWhite">
-		<div class="col-md-5 col-sm-5 col-xs-5 colDefined">
+		<div class="col-md-8 col-sm-8 col-xs-8 colDefined">
 			<!-- 名称div -->
 			<div class="name_div common_style fillWrite_group">
 				<span class="print_textStyle ipadText">服用抗凝药物或其他可以导致凝血功能障碍的药物:</span>
@@ -954,18 +939,18 @@
 				<input name="isantifreezing" id="isAntiFreezing_y" value="1" type="radio" onclick="ishaveantifreezing(this.name)"/><label for="isAntiFreezing_y">有</label>
 			</div>
 		</div>
-		<div class="col-md-2 col-sm-1 col-xs-1 colDefined backcolorGray">
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
 				<input id="antifreezingtime" type="text" placeholder="时间"/>
 			</div>
 		</div>
-		<div class="col-md-3 col-sm-4 col-xs-4 colDefined backcolorGray" style="padding-left: 10px;">
+		<%--<div class="col-md-3 col-sm-4 col-xs-4 colDefined backcolorGray" style="padding-left: 10px;">
 			<!-- 填写组合框 -->
 			<div class="selectgroup common_style">
 				<span class="groupName ipadText" style="font-weight: normal;">常用药物：</span>
 				<select id="antifreezingmedicine" class="groupSelect selectpicker" multiple title="请选择" style="pointer-events: none;">
-					<%--<option value="">请选择</option>--%>
+					&lt;%&ndash;<option value="">请选择</option>&ndash;%&gt;
 					<option value="阿司匹林">阿司匹林</option>
 					<option value="波立维">波立维</option>
 					<option value="华法林">华法林</option>
@@ -975,9 +960,9 @@
 					<option value="利伐沙班">利伐沙班</option>
 				</select>
 			</div>
-			<%--打印展示--%>
+			&lt;%&ndash;打印展示&ndash;%&gt;
 			<div class="medicineText">常用药物：<span class="antifreezingmedicine"></span></div>
-		</div>
+		</div>--%>
 	</div>
 	<!-- 乙肝丙肝 -->
 	<div class="row">
@@ -1184,6 +1169,66 @@
 			</div>
 		</div>
 	</div>
+	<!-- 长期应用糖皮质激素 -->
+	<div class="row">
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
+			<!-- 名称div -->
+			<div class="name_div common_style">
+				<span>长期应用糖皮质激素:</span>
+			</div>
+		</div>
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
+			<!-- 选项div -->
+			<div class="option_div common_style">
+				<input name="isglucocorticoids" id="IsGlucocorticoids_n" value="0" type="radio" onclick="ishaveillness(this.name);ishavaGlucocorticoids(this.name);"/><label for="IsGlucocorticoids_n">无</label>
+				<input name="isglucocorticoids" id="IsGlucocorticoids_y" value="1" type="radio" onclick="ishaveillness(this.name);ishavaGlucocorticoids(this.name);"/><label for="IsGlucocorticoids_y">有</label>
+			</div>
+		</div>
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
+			<!-- 时间div -->
+			<div class="time_div common_style">
+				<input id="glucocorticoids" type="text" placeholder="时间"/>
+			</div>
+		</div>
+		<%--怀孕--%>
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
+			<!-- 名称div -->
+			<div class="name_div common_style">
+				<span>怀孕:</span>
+			</div>
+		</div>
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
+			<div class="select_group common_style">
+				<!-- 选项div -->
+				<div class="option_div">
+					<input name="ispregnancy" id="isPregnancy_n" value="0" type="radio" onclick="ishaveillness(this.name)"/><label for="isPregnancy_n">无</label>
+					<input name="ispregnancy" id="isPregnancy_y" value="1" type="radio" onclick="ishaveillness(this.name)"/><label for="isPregnancy_y">有</label>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
+			<!-- 时间div -->
+			<div class="time_div common_style">
+				<input id="pregnancy" type="text" placeholder="时间"/>
+			</div>
+		</div>
+		<%--<div class="col-md-6 col-sm-5 col-xs-5 colDefined combgGray">
+			<!-- 填写组合框 -->
+			<div class="selectgroup common_style">
+				<span class="groupName" style="font-weight: normal;">常用药物：</span>
+				<select id="glucocorticoidsmedicine" class="groupSelect selectpicker" multiple title="请选择" style="pointer-events: none;">
+					&lt;%&ndash;<option value="">请选择</option>&ndash;%&gt;
+					<option value="泼尼松">泼尼松</option>
+					<option value="甲泼尼松">甲泼尼松</option>
+					<option value="倍他米松">倍他米松</option>
+					<option value="得宝松">得宝松</option>
+					<option value="泼尼松龙">泼尼松龙</option>
+				</select>
+			</div>
+			&lt;%&ndash;打印展示&ndash;%&gt;
+			<div class="medicineText">常用药物：<span class="glucocorticoidsmedicine"></span></div>
+		</div>--%>
+	</div>
 	<!-- 骨质疏松症用药情况： -->
 	<div class="row bgWhite">
 		<div class="col-md-3 col-sm-4 col-xs-4 colDefined backcolorGray">
@@ -1217,12 +1262,12 @@
 				<input id="takeorallytime" class="fillWrite_input" type="text" placeholder="时间"/>
 			</div>
 		</div>
-		<div class="col-md-3 col-sm-12 col-xs-12 colDefined">
+		<%--<div class="col-md-3 col-sm-12 col-xs-12 colDefined">
 			<!-- 填写组合框 -->
 			<div class="selectgroup common_style">
 				<span class="groupName" style="font-weight: normal;">常用药物：</span>
 				<select id="pharmacymedicine" class="groupSelect selectpicker" multiple title="请选择" style="pointer-events: none;">
-					<%--<option value="">请选择</option>--%>
+					&lt;%&ndash;<option value="">请选择</option>&ndash;%&gt;
 					<option value="钙剂">钙剂</option>
 					<option value="阿法骨化醇骨化三醇">阿法骨化醇骨化三醇</option>
 					<option value="活性维生素D">活性维生素D</option>
@@ -1234,47 +1279,9 @@
 					<option value="雌激素">雌激素</option>
 				</select>
 			</div>
-			<%--打印展示--%>
+			&lt;%&ndash;打印展示&ndash;%&gt;
 			<div class="medicineText">常用药物：<span class="pharmacymedicine"></span></div>
-		</div>
-	</div>
-	<!-- 长期应用糖皮质激素 -->
-	<div class="row">
-		<div class="col-md-2 col-sm-3 col-xs-3 colDefined combgGray">
-			<!-- 名称div -->
-			<div class="name_div common_style">
-				<span>长期应用糖皮质激素:</span>
-			</div>
-		</div>
-		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
-			<!-- 选项div -->
-			<div class="option_div common_style">
-				<input name="isglucocorticoids" id="IsGlucocorticoids_n" value="0" type="radio" onclick="ishaveillness(this.name);ishavaGlucocorticoids(this.name);"/><label for="IsGlucocorticoids_n">无</label>
-				<input name="isglucocorticoids" id="IsGlucocorticoids_y" value="1" type="radio" onclick="ishaveillness(this.name);ishavaGlucocorticoids(this.name);"/><label for="IsGlucocorticoids_y">有</label>
-			</div>
-		</div>
-		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
-			<!-- 时间div -->
-			<div class="time_div common_style">
-				<input id="glucocorticoids" type="text" placeholder="时间"/>
-			</div>
-		</div>
-		<div class="col-md-6 col-sm-5 col-xs-5 colDefined combgGray">
-			<!-- 填写组合框 -->
-			<div class="selectgroup common_style">
-				<span class="groupName" style="font-weight: normal;">常用药物：</span>
-				<select id="glucocorticoidsmedicine" class="groupSelect selectpicker" multiple title="请选择" style="pointer-events: none;">
-					<%--<option value="">请选择</option>--%>
-					<option value="泼尼松">泼尼松</option>
-					<option value="甲泼尼松">甲泼尼松</option>
-					<option value="倍他米松">倍他米松</option>
-					<option value="得宝松">得宝松</option>
-					<option value="泼尼松龙">泼尼松龙</option>
-				</select>
-			</div>
-			<%--打印展示--%>
-			<div class="medicineText">常用药物：<span class="glucocorticoidsmedicine"></span></div>
-		</div>
+		</div>--%>
 	</div>
 	<!-- 其他系统疾病 -->
 	<div class="row bgWhite">
@@ -1337,39 +1344,15 @@
 			</div>
 		</div>
 	</div>
-	<!-- 怀孕 -->
-	<div class="row bgWhite">
-		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
-			<!-- 名称div -->
-			<div class="name_div common_style">
-				<span>怀孕:</span>
-			</div>
-		</div>
-		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
-			<div class="select_group common_style">
-				<!-- 选项div -->
-				<div class="option_div">
-					<input name="ispregnancy" id="isPregnancy_n" value="0" type="radio" onclick="ishaveillness(this.name)"/><label for="isPregnancy_n">无</label>
-					<input name="ispregnancy" id="isPregnancy_y" value="1" type="radio" onclick="ishaveillness(this.name)"/><label for="isPregnancy_y">有</label>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-8 col-sm-8 col-xs-8 colDefined">
-			<!-- 时间div -->
-			<div class="time_div common_style">
-				<input id="pregnancy" type="text" placeholder="时间"/>
-			</div>
-		</div>
-	</div>
 	<!-- 正在服用的药物 -->
 	<div class="row">
 		<div class="col-md-10 col-sm-11 col-xs-11 colDefined combgGray">
 			<!-- 填写组合框 -->
 			<div class="fillWrite_group common_style">
 				<!-- 填写名称 -->
-				<span class="fillWrite_name">正在服用的药物:</span>
+				<span class="fillWrite_name">正在服用的主要药物:</span>
 				<!-- 填写框-->
-				<input id="onmedication" placeholder="华法林，降压药，降糖药..." onblur="TextLengthCheck(this.id,40);" style="width: 88%;border:0px;border-bottom: 1px solid #c3c3c3;" class="fillWrite_input" type="text"/>
+				<input id="onmedication" placeholder="华法林，降压药，降糖药..." onblur="TextLengthCheck(this.id,40);" style="width: 87%;border:0px;border-bottom: 1px solid #c3c3c3;" class="fillWrite_input" type="text"/>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-1 col-xs-1 colDefined">
