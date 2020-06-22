@@ -1397,7 +1397,9 @@
             var toothConditionCheck=Object.keys(obj);
             // 牙位图赋框
             for(var i=0;i<toothConditionCheck.length;i++){
-                $("#conditionToothBox").find("ul li span[toothname="+toothConditionCheck[i]+"]").addClass("checked_current");
+                if(toothConditionCheck[i]){
+                    $("#conditionToothBox ul").find("li span[toothname="+toothConditionCheck[i]+"]").addClass("checked_current");
+                }
             }
         }
         //修改按钮权限
