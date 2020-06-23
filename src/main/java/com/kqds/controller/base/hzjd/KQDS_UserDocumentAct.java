@@ -3510,7 +3510,8 @@ public class KQDS_UserDocumentAct {
 				if(list.size()>0){
 					if(!"".equals(list.get(0).getString("kefu"))){
 						consequence=false;
-					}else if (person.getSeqId().equals(list.get(0).getString("kefu"))){
+					}
+					if (person.getSeqId().equals(list.get(0).getString("kefu"))){
 						consequence=true;
 					}
 				}
