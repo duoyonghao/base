@@ -423,6 +423,9 @@
 		color:#00a6c0;
 		font-weight: bold;
 	}
+	.signature_row .signature_time>.signature_box>span {
+		font-weight: normal !important;
+	}
 </style>
 <body>
 <!--startprint-->
@@ -2644,7 +2647,8 @@
 				$(this).css("border","0px solid red");
 			}
 		});
-		//删掉禁用属性，因为禁用打印为黑色
+		//删掉禁用属性，因为禁用打印为黑
+		// 色
 		$("input[type='radio']").each(function(i,obj){
 			$(this).removeAttr("disabled");
 		});
