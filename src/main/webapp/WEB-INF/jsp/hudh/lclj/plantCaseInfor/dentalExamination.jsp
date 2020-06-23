@@ -695,7 +695,7 @@
     <script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/util.js"></script>
     <script language="javascript"  src="<%=contextPath%>/static/js/kqdsFront/LodopFuncs.js"></script>
     <script type="text/javascript">
-        var doctorsignature="";
+        var signature="";
         var patientsignature="";
         var doctorstatus=true;
         var patientstatus=true;
@@ -1081,7 +1081,7 @@
         }
         function addSignature(){
             $("#doctorimg").css("display","");
-            $("#doctorimg").attr('src', doctorsignature);
+            $("#doctorimg").attr('src', signature);
             if(doctorstatus&&!patientstatus){
                 updateDoctorSignature();
             }
@@ -1092,7 +1092,7 @@
             var doctorTime = $("#doctortime").val();//医生签字时间
             var param = {
                 seqId:updataid,
-                doctorSignature :  doctorsignature,
+                doctorSignature :  signature,
                 doctorTime :  doctorTime
             };
             $.axseSubmit(url, param,function() {},function(r) {
@@ -1217,13 +1217,13 @@
                 teethtilted : teethtilted,
                 nub : nub,
                 patientSignature :  patientsignature,
-                doctorSignature :  doctorsignature,
+                doctorSignature :  signature,
                 defectiverepair : medicalCertificate,
                 patientTime:patienttime,
                 doctorTime:doctortime
             };
-// 	    console.log(JSON.stringify(param)+"---------param");
-// 	    return;
+ 	    // console.log(JSON.stringify(param)+"---------param");
+ 	    // return;
             var url = contextPath + '/HUDH_MedicalRecordsAct/installData.act';
             $.axseSubmit(url, param,
                 function() {},
@@ -1315,7 +1315,7 @@
                 nub : nub,
 // 诊断
                 patientSignature :  patientsignature,
-                doctorSignature :  doctorsignature,
+                doctorSignature :  signature,
                 defectiverepair : medicalCertificate,
                 patientTime:patienttime,
                 doctorTime:doctortime
@@ -1359,14 +1359,14 @@
                         updataid=res.seqId;//获取更新修改id
                         $("#consent_saveBtn").css("display","none");//隐藏保存按钮
                         $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
-                        doctorsignature=res.doctorsignature;
-                        if(doctorsignature!=""){
-                            $("#doctorimg").attr('src', doctorsignature);
+                        signature=res.doctorSignature;
+                        if(signature!=""){
+                            $("#doctorimg").attr('src', signature);
                             doctorstatus=false;
                         }else{
                             $("#doctorimg").attr('display', 'none');
                         }
-                        patientsignature=res.patientsignature;
+                        patientsignature=res.patientSignature;
                         if(patientsignature!=""){
                             $("#patientimg").attr('src', patientsignature);
                             patientstatus=false;
