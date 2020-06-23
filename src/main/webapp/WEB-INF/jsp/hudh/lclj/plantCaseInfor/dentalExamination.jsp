@@ -342,7 +342,7 @@
         }
         #logoImg{
             position: absolute;
-            top: 10px!important;
+            top: 15px!important;
             width: 150px!important;
         }
         .bigtitle{
@@ -363,7 +363,7 @@
         </div>
     </div>
     <!-- 基本信息 -->
-    <div class="row"  style="border-top: 1px solid #000;margin-top: 5px">
+    <div class="row"  style="border-top: 1px solid #000;">
         <div class="col-md-12 col-sm-12 colDefined">
             <span class="smalltitle"><font>●</font>基本信息</span>
         </div>
@@ -1424,12 +1424,15 @@
         }
         //打印方法
         function myPreviewAll() {
+            $("input[type='radio']").each(function(i,obj){
+                $(this).removeAttr("disabled");
+            });
             bdhtml=window.document.body.innerHTML;
             sprnstr="<!--startprint-->";
             eprnstr="<!--endprint-->";
             prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);
             prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
-            var htmlStyle="<style>button{display:none;}input{border:none;}.toothBitmap{display:none}#tooth{display:none}.content .colDefined .contentItem tr td input:not([type='text']){width:10px}";
+            var htmlStyle="<style>.level{disabled:false!important}button{display:none;}input{border:none;}.toothBitmap{display:none}#tooth{display:none}.content .colDefined .contentItem tr td input:not([type='text']){width:10px}";
             htmlStyle+=".content .colDefined .contentItem tr{height:20px}.problemitem{font-size:10px;font-weight:normal;}#toothConditionBoxMap2{font-size:10px!important}.placeholder:empty:before{content:' ';}.inputhidden{border: 1px solid transparent!important;}::-webkit-input-placeholder{color:transparent;}</style>"
             window.document.body.innerHTML=prnhtml+htmlStyle;
             window.print();  //打印
