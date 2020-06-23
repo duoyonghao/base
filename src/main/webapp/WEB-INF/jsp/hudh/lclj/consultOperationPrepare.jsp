@@ -185,7 +185,7 @@
 								<li><label>13、<input name="Consultation" type="checkbox" value="牙周治疗" />牙周治疗</label></li>
 								<li><label>14、<input name="Consultation" type="checkbox" value="检验：血常规、血糖、感染性疾病、凝血4项" />检验：血常规、血糖、感染性疾病、凝血4项</label></li>
 								<!-- <li><label><input name="before_Modulo_bite" id="before_Modulo_bite" type="checkbox" value="15、术前取模、定咬合关系"/>15、术前取模、定咬合关系</label></li> -->
-								<li><label>222、<input name="Consultation" type="checkbox" value="人工种植牙知情同意书" /><font class="dentalImplant">人工种植牙知情同意书</font></label></li>
+								<%--<li><label>222、<input name="Consultation" type="checkbox" value="人工种植牙知情同意书" /><font class="dentalImplant">人工种植牙知情同意书</font></label></li>--%>
 							</ul>
 						</div>
 					</td>
