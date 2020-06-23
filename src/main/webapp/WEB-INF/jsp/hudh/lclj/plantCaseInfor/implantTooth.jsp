@@ -359,7 +359,15 @@
 			</div>
 			
 		</div>
-		<div><font>替代方案:</font>&nbsp;&nbsp;<input id="removabledenture" type="checkbox" value="活动义齿修复" class="inputstyle"/>&nbsp;&nbsp;<label for="removabledenture">活动义齿修复</label>&nbsp;&nbsp;<input id="fixeddenture" type="checkbox" class="inputstyle" value="固定义齿修复"/>&nbsp;&nbsp;<label for="fixeddenture">固定义齿修复</label></div>
+		<div><font>替代方案:</font>&nbsp;
+			&nbsp;
+			<input id="removabledenture" type="checkbox" value="活动义齿修复" class="inputstyle"/>&nbsp;&nbsp;
+			<label for="removabledenture">活动义齿修复</label>&nbsp;
+			&nbsp;
+			<input id="fixeddenture" type="checkbox" class="inputstyle" value="固定义齿修复"/>&nbsp;
+			&nbsp;
+			<label for="fixeddenture">固定义齿修复</label
+			></div>
 				<div class="consent_text">
 			医生已向我详细介绍了治疗方案、种植的程序、整个过程所需的时间和费用，我认同治疗方案，接受医院临床路径种植修复的程序和时间，并自愿支付其相关费用。
 		</div>
@@ -856,7 +864,7 @@
 	     			 plantingsystemselect : plantingsystemselect, //种植体系
 	     			 repairselect : repairselect //修复方式
 			};
-	        //console.log(JSON.stringify(param)+"---------更新参数");
+	        console.log(JSON.stringify(param)+"---------更新参数");
 	        $.ajax({
 				url: url,
 				type:"POST",
