@@ -459,31 +459,10 @@
 			$("#img").css("display","");
 			$("#img").attr('src', signature);
             if(doctorstatus&&!patientstatus){
-                updateDoctorSignature();
+                update();
             }
 		}
-        //更新
-        function updateDoctorSignature(){
-            var url = contextPath + '/HUDH_ZzblAskAct/updateLocatorFamiliar.act';
-            var doctorTime = $("#doctortime").val();//医生签字时间
-            var param = {
-                id : caseId,
-                doctorSignature :  signature,
-                doctorTime :  doctorTime,
 
-            };
-            $.axseSubmit(url, param,function() {},function(r) {
-                layer.alert("修改成功！", {
-                    end: function() {
-                        //window.parent.location.reload(); //刷新父页面
-                        var frameindex = parent.layer.getFrameIndex(window.name);
-                        parent.layer.close(frameindex); //再执行关闭
-                    }
-                });
-            },function(r){
-                layer.alert("修改失败！");
-            });
-        }
 		var patientSignature = document.getElementById("patientSignature");    
 		patientSignature.onclick = function(){
 			if(patientstatus){
@@ -501,32 +480,10 @@
 			$("#patientimg").css("display","");
 			$("#patientimg").attr('src', patientsignature);
 			if(!doctorstatus&&patientstatus){
-				updatePatientSignature();
+				update();
 			}
 		}
-		
-		//更新
-		function updatePatientSignature(){
-			var url = contextPath + '/HUDH_ZzblAskAct/updateLocatorFamiliar.act';
-			var patienttime = $("#patienttime").val();//修复医生签名时间
-	        var param = {
-	        		id : caseId,
-	        		patientSignature :  patientsignature,//患者签名
-	        		patientTime : patienttime//患者签名时间
 
-	        };
-	        $.axseSubmit(url, param,function() {},function(r) {
-	        	layer.alert("修改成功！", {
-		            end: function() {
-		            	//window.parent.location.reload(); //刷新父页面
-		                var frameindex = parent.layer.getFrameIndex(window.name);
-		                parent.layer.close(frameindex); //再执行关闭 
-		            }
-		      	});
-	        },function(r){
-	        	layer.alert("修改失败！");
-		    });
-		}	
 		//去掉自适应span元素的下边框
 		function diagnoseTextBorder(obj){
 			if($("#"+obj).text()){
