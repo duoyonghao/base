@@ -157,6 +157,25 @@
 		#secondLogoImg{
 			display: block!important;
 		}
+		.question_text{
+			font-size: 13px !important;
+		}
+		/*基本信息*/
+		.baseInfo .patient>.inputDiv{
+			height: 22px !important;
+			line-height: 22px !important;
+		}
+		.baseInfo .patient>.inputDiv>span,font{
+			font-size: 12px !important;
+			height: 22px !important;
+			line-height: 22px !important;
+		}
+		.patient .inputDiv:nth-child(4){
+			width: 190px!important;
+		}
+		.patient .inputDiv:nth-child(9){
+			width: 190px!important;
+		}
 	}
 	#anamnesis_continer .bgwhite{
 		background-color: white;
@@ -371,6 +390,39 @@
 		border:0px solid red;
 		outline: none;
 	}
+	/* 基本信息 */
+	.baseInfo{
+		width:100%;
+		padding-left: 8px;
+	}
+	.baseInfo .patient{
+		overflow: hidden;
+	}
+	/* 输入组合框 */
+	.baseInfo .patient>.inputDiv{
+		display:block;
+		float:left;
+		width: 235px;
+		height: 25px;
+	}
+	.patient .inputDiv:nth-child(5){
+		width: 100px!important;
+	}
+	.patient .inputDiv:nth-child(7){
+		width: 300px!important;
+	}
+
+	.baseInfo .patient>.inputDiv>span{
+		display: inline-block;
+		font-size: 16px;
+		line-height: 30px;
+		height: 30px;
+	}
+	.baseInfo .patient>.inputDiv>font{
+		font-size: 15px;
+		color:#00a6c0;
+		font-weight: bold;
+	}
 </style>
 <body>
 <!--startprint-->
@@ -386,11 +438,53 @@
 	<!-- 患者信息 -->
 	<div class="row patientInfo">
 		<div class="col-md-12 col-sm-12 col-xs-12 smallTitle" style="padding-left:0px;"><span class="circle"></span>基本信息</div>
-		<div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;display:flex;flex-direction:row;">
+		<div class="row baseInfo">
+			<div class="col-md-12 col-sm-12 colDefined">
+				<!-- 患者基本信息 -->
+				<div class="patient" style="width:90%;float:left;">
+					<div class="inputDiv">
+						<span>首诊时间：</span><font type="text" id="patient_first_diagnose"></font>
+					</div>
+					<div class="inputDiv">
+						<span>患者编号：</span><font type="text" id="patient_num"></font>
+					</div>
+					<div class="inputDiv" style="clear:left;">
+						<span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</span><font type="text" id="patient_name"></font>
+					</div>
+					<div class="inputDiv">
+						<span>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</span><font type="text" id="patient_sex"></font>
+					</div>
+					<div class="inputDiv" style="">
+						<span>年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄：</span><font type="text" id="patient_age"></font>
+					</div>
+					<div class="inputDiv" style="clear:left;">
+						<span>证件号码：</span><font type="text" id="patient_ID"></font>
+					</div>
+					<div class="inputDiv">
+						<%--                    <span>出生年月：</span><font type="text" id="patient_bone"></font>--%>
+						<span>现居住地址：</span><font type="text" id="patient_address"></font>
+					</div>
+					<div class="inputDiv" style="clear:left;">
+						<span>联系电话：</span><font type="text" id="patient_tel"></font>
+					</div>
+					<div class="inputDiv" >
+						<span>紧急联系人：</span><font type="text" id="patient_emergency_contact"></font>
+					</div>
+					<div class="inputDiv">
+						<span>紧急联系人电话：</span><font type="text" id="emergency_contact_tel"></font>
+					</div>
+				</div>
+				<div class="patientHeader" style="width:10%;float:left;">
+					<img src="<%=contextPath%>/static/image/kqdsFront/jiagong/headImg.jpg">
+					<input style="display:none;" type="file" />
+				</div>
+			</div>
+		</div>
+		<%--<div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;display:flex;flex-direction:row;">
 			<div class="patient_info">
 				<!-- 首诊时间 -->
 				<div class="rpInfo_import">
-					<span>首诊时间:</span><%--<input id="first_time" class="consent_time" type="text" readonly="readonly" placeholder="请选择日期"/>--%>
+					<span>首诊时间:</span>&lt;%&ndash;<input id="first_time" class="consent_time" type="text" readonly="readonly" placeholder="请选择日期"/>&ndash;%&gt;
 					<font class="alreadyInfo" id="first_time"></font>
 				</div>
 				<!-- 信息输入组合框 -->
@@ -448,7 +542,7 @@
 				<img style="min-width:45px;" src="<%=contextPath%>/static/image/kqdsFront/jiagong/headImg.jpg">
 				<input style="display:none;" type="file" />
 			</div>
-		</div>
+		</div>--%>
 	</div>
 	<!-- 主诉 -->
 	<div class="row" style="">
@@ -1538,13 +1632,13 @@
 		</div>
 	</div>
     <!-- 标题 -->
-    <div class="row">
+    <%--<div class="row">
         <div class="col-md-12 col-sm-12" style="position: relative;display: none;" id="secondLogoImg">
             <!-- <div class="big_title"><span class="bigtitle">主诉及既往病史</span></div> -->
             <img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
             <span class="bigtitle" style="visibility:hidden;">主诉及既往病史</span>
         </div>
-    </div>
+    </div>--%>
 	<!-- 其他 -->
 	<%--<div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 colDefined">
@@ -1558,7 +1652,7 @@
             </div>
         </div>
     </div>--%>
-	<div class="row question_row" style="text-align: right;border-top: 2px solid #776c6c;">
+	<div class="row question_row" style="text-align: right;border-top: 1px solid black;">
 		<p class="question_text" style="margin-top: 40px;font-size: 16px;"><font style="color:red;font-size: 18px;margin-right: 10px;">*</font>以上所述本人健康状况属实，对隐瞒病情所造成的不良后果责任自负。</p>
 	</div>
 	<!-- 手术签名 -->
@@ -1887,14 +1981,16 @@
 	}
 	//牙位图赋值
 	function toothMapInit(fObj,sObj,toothStr){
-		var toothArr=toothStr.split(";");
-		$("."+fObj).find("."+sObj).each(function(i,obj){
-			for (var i = 0; i < toothArr.length; i++) {
-				if($(this).find(".num").text()==toothArr[i]){
-					$(this).addClass("current");
+		if(toothStr){
+			var toothArr=toothStr.split(";");
+			$("."+fObj).find("."+sObj).each(function(i,obj){
+				for (var i = 0; i < toothArr.length; i++) {
+					if($(this).find(".num").text()==toothArr[i]){
+						$(this).addClass("current");
+					}
 				}
-			}
-		});
+			});
+		}
 	}
 
 	/* 牙齿症状选中 */
@@ -2540,6 +2636,21 @@
 
 	function doPrint() {
 		$("input").removeAttr("placeholder");
+		//有值显示边框，无值隐藏
+		$("input[type='text']").each(function(i,obj){
+			if($(this).attr("value")){
+				$(this).css("border","0px solid red").css("border-bottom","1px solid #c3c3c3");
+			}else{
+				$(this).css("border","0px solid red");
+			}
+		});
+		//删掉禁用属性，因为禁用打印为黑色
+		$("input[type='radio']").each(function(i,obj){
+			$(this).removeAttr("disabled");
+		});
+		$("input[type='checkbox']").each(function(i,obj){
+			$(this).removeAttr("disabled");
+		});
 		bdhtml=window.document.body.innerHTML;
 		sprnstr="<!--startprint-->";
 		eprnstr="<!--endprint-->";
