@@ -66,21 +66,21 @@
     ul, ol{
         margin:0px;
     }
-    /* 公司logo */
-    .logoImg{
-        width: 150px;
-        height: 45px;
+    #logoImg{
+        position: absolute;
+        top: 18px;
+        width: 200px;
     }
-    /* 大标题 */
-    .container-fluid .bigtitle{
-        display: inline-block;
-        width:70%;
+    .bigtitle{
+        display: block;
         text-align: center;
+        margin: 7px auto 18px;
         font-size: 26px;
+        line-height: 26px;
         letter-spacing: 1px;
         font-weight: bold;
-        margin-top: 0;
-        margin-bottom: 0;
+        color: #434343;
+        padding-top: 30px;
     }
     /* 小标题 */
     .container-fluid .smalltitle{
@@ -340,6 +340,16 @@
         .patient .inputDiv:nth-child(9){
             width: 190px!important;
         }
+        #logoImg{
+            position: absolute;
+            top: 10px!important;
+            width: 150px!important;
+        }
+        .bigtitle{
+            font-size: 22px;
+            margin: 0px auto 10px !important;
+        }
+
     }
 </style>
 <body>
@@ -347,9 +357,9 @@
 <div  class="container-fluid">
     <!-- 标题 -->
     <div class="row">
-        <div class="logoTitle" class="col-md-12 col-sm-12 col-xs-12">
-            <img class="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
-            <h2 class="bigtitle">口腔专科检查</h2>
+        <div class="col-md-12 col-sm-12" style="position: relative;padding: 0;">
+            <img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
+            <span class="bigtitle">口腔专科检查</span>
         </div>
     </div>
     <!-- 基本信息 -->
