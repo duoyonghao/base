@@ -1585,4 +1585,22 @@ public class KQDS_REGAct {
 		}
 		return null;
 	}
+
+	@RequestMapping(value = "/selectUserdocumentByReg.act")
+	public String selectUserdocumentByReg(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		try {
+			String seqId = request.getParameter("seqId");
+			JSONObject en = logic.selectUserdocumentByReg(seqId);
+			if (en == null) {
+				throw new Exception("数据不存在");
+			}
+			JSONObject jobj = new JSONObject();
+			jobj.put("data", en);
+			YZUtility.DEAL_SUCCESS(jobj, null, response, logger);
+		} catch (Exception ex) {
+			YZUtility.DEAL_ERROR(null, false, ex, response, logger);
+		}
+
+		return null;
+	}
 }

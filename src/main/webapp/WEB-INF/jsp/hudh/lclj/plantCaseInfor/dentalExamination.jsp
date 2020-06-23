@@ -695,6 +695,10 @@
     <script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/util.js"></script>
     <script language="javascript"  src="<%=contextPath%>/static/js/kqdsFront/LodopFuncs.js"></script>
     <script type="text/javascript">
+        var signature="";
+        var patientsignature="";
+        var doctorstatus=true;
+        var patientstatus=true;
         var contextPath = "<%=contextPath%>";
         var conditionData;
         var certificateData;
@@ -734,7 +738,6 @@
             document.ondragstart = function() {
                 return false;
             };
-            getButtonAllCurPage(menuid);
         });
         function getUser(usercode){
             var pageurl = '<%=contextPath%>/HUDH_FlowAct/findPatientInformation.act';
@@ -1063,6 +1066,89 @@
             // console.log(ToothItem+'-------')
             return ToothItem;
         }
+        var doctorSignature = document.getElementById("doctorSignature");
+        doctorSignature.onclick = function(){
+            if(doctorstatus){
+                layer.open({
+                    type: 2,
+                    title: '签字',
+                    shadeClose: true,
+                    shade: 0.6,
+                    area: ['70%', '65%'],
+                    content: contextPath + '/SignatureAct/toSignature.act?category=种植'
+                });
+            }
+        }
+        function addSignature(){
+            $("#doctorimg").css("display","");
+            $("#doctorimg").attr('src', signature);
+            if(doctorstatus&&!patientstatus){
+                updateDoctorSignature();
+            }
+        }
+        //更新
+        function updateDoctorSignature(){
+            var url = contextPath + '/HUDH_MedicalRecordsAct/installData.act';
+            var doctorTime = $("#doctortime").val();//医生签字时间
+            var param = {
+                seqId:updataid,
+                doctorSignature :  signature,
+                doctorTime :  doctorTime
+            };
+            $.axseSubmit(url, param,function() {},function(r) {
+                layer.alert("修改成功！", {
+                    end: function() {
+                        //window.parent.location.reload(); //刷新父页面
+                        var frameindex = parent.layer.getFrameIndex(window.name);
+                        parent.layer.close(frameindex); //再执行关闭
+                    }
+                });
+            },function(r){
+                layer.alert("修改失败！");
+            });
+        }
+        var patientSignature = document.getElementById("patientSignature");
+        patientSignature.onclick = function(){
+            if(patientstatus){
+                layer.open({
+                    type: 2,
+                    title: '签字',
+                    shadeClose: true,
+                    shade: 0.6,
+                    area: ['70%', '65%'],
+                    content: contextPath + '/SignatureAct/toSignature.act?category=患者'
+                });
+            }
+        }
+        function addPatientSignature(){
+            $("#patientimg").css("display","");
+            $("#patientimg").attr('src', patientsignature);
+            if(!doctorstatus&&patientstatus){
+                updatePatientSignature();
+            }
+        }
+        //更新
+        function updatePatientSignature(){
+            var url = contextPath + '/HUDH_MedicalRecordsAct/installData.act';
+            var patienttime = $("#patienttime").val();//修复医生签名时间
+            var param = {
+                seqId:updataid,
+                patientSignature :  patientsignature,//患者签名
+                patientTime : patienttime//患者签名时间
+
+            };
+            $.axseSubmit(url, param,function() {},function(r) {
+                layer.alert("修改成功！", {
+                    end: function() {
+                        //window.parent.location.reload(); //刷新父页面
+                        var frameindex = parent.layer.getFrameIndex(window.name);
+                        parent.layer.close(frameindex); //再执行关闭
+                    }
+                });
+            },function(r){
+                layer.alert("修改失败！");
+            });
+        }
         //    保存方法
         function save() {
 // 	   基本信息seqid
@@ -1095,8 +1181,8 @@
 // 诊断
             var medicalCertificate=saveTooth("medicalCertificateBox"); //牙位
             // //签字时间
-            // var patienttime = $("#patienttime").val();//患者签字时间
-            // var doctortime = $("#doctortime").val();//医生签字时间
+            var patienttime = $("#patienttime").val();//患者签字时间
+            var doctortime = $("#doctortime").val();//医生签字时间
             toothLoose = JSON.stringify(toothLoose);
             toothCondition = JSON.stringify(toothCondition);
             imageExamination = JSON.stringify(imageExamination);
@@ -1130,13 +1216,14 @@
                 pulpitis : pulpitis,
                 teethtilted : teethtilted,
                 nub : nub,
-// 诊断
+                patientSignature :  patientsignature,
+                doctorSignature :  signature,
                 defectiverepair : medicalCertificate,
-                // patienttime:patienttime,
-                // doctortime:doctortime
+                patientTime:patienttime,
+                doctorTime:doctortime
             };
-// 	    console.log(JSON.stringify(param)+"---------param");
-// 	    return;
+ 	    // console.log(JSON.stringify(param)+"---------param");
+ 	    // return;
             var url = contextPath + '/HUDH_MedicalRecordsAct/installData.act';
             $.axseSubmit(url, param,
                 function() {},
@@ -1190,8 +1277,8 @@
 // 诊断
             var medicalCertificate=saveTooth("medicalCertificateBox"); //牙位
             // //签字时间
-            // var patienttime = $("#patienttime").val();//患者签字时间
-            // var doctortime = $("#doctortime").val();//医生签字时间
+            var patienttime = $("#patienttime").val();//患者签字时间
+            var doctortime = $("#doctortime").val();//医生签字时间
             toothLoose = JSON.stringify(toothLoose);
             toothCondition = JSON.stringify(toothCondition);
             imageExamination = JSON.stringify(imageExamination);
@@ -1227,9 +1314,11 @@
                 teethtilted : teethtilted,
                 nub : nub,
 // 诊断
+                patientSignature :  patientsignature,
+                doctorSignature :  signature,
                 defectiverepair : medicalCertificate,
-                // patienttime:patienttime,
-                // doctortime:doctortime
+                patientTime:patienttime,
+                doctorTime:doctortime
             };
 // 	    console.log(JSON.stringify(param)+"---------param");
 // 	    return;
@@ -1270,6 +1359,20 @@
                         updataid=res.seqId;//获取更新修改id
                         $("#consent_saveBtn").css("display","none");//隐藏保存按钮
                         $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
+                        signature=res.doctorSignature;
+                        if(signature!=""){
+                            $("#doctorimg").attr('src', signature);
+                            doctorstatus=false;
+                        }else{
+                            $("#doctorimg").attr('display', 'none');
+                        }
+                        patientsignature=res.patientSignature;
+                        if(patientsignature!=""){
+                            $("#patientimg").attr('src', patientsignature);
+                            patientstatus=false;
+                        }else{
+                            $("#patientimg").attr('display', 'none');
+                        }
                         for(var i in res){
                             $("input[name="+i+"]").each(function(){
                                 var that=this;
@@ -1372,7 +1475,7 @@
                         toothMap(res["dentitiondefect"]);//获取牙位图数据
 // 	 					牙位赋值end
                     }
-
+                    getButtonAllCurPage(menuid);
                 }
             });
         }
@@ -1416,8 +1519,11 @@
         function getButtonPower() {
             var menubutton1 = "";
             for (var i = 0; i < listbutton.length; i++) {
-                if (listbutton[i].qxName == "zsbs_xgbd") {
+                if (listbutton[i].qxName == "zsbs_xgbd"&&doctorstatus&&patientstatus) {
                     $("#consent_updateBtn").removeClass("hidden");
+                }else if(listbutton[i].qxName =="lclj_ban_signature"){
+                    doctorstatus=false;
+                    patientstatus=false;
                 }
             }
             $("#bottomBarDdiv").append(menubutton1);

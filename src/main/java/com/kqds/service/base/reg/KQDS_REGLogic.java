@@ -1997,4 +1997,10 @@ public class KQDS_REGLogic extends BaseLogic {
 	public void updateRegJhStatus(Map<String,String> map) throws Exception {
 		dao.update(TableNameUtil.KQDS_REG + ".updateRegJhStatus", map);
 	}
+
+
+	public JSONObject selectUserdocumentByReg(String seqid) throws Exception {
+		// TODO Auto-generated method stub
+		return (JSONObject) dao.findForObject(TableNameUtil.KQDS_REG+".selectUserdocumentByReg", seqid);
+	}
 }

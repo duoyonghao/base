@@ -15,8 +15,24 @@ function getRegObjBySeqId(seqId) {
 
     return obj;
 }
+//查询挂号信息加患者的客服
+function getRegObjAndUserKefuBySeqId(seqId) {
+    var obj = null;
+    var detailurl = contextPath + '/KQDS_REGAct/selectUserdocumentByReg.act?seqId=' + seqId;
+    $.axse(detailurl, null,
+        function(r) {
+           if (r.retState == "0") {
+                obj = r.data;
+            } else {
+                layer.alert('根据主键查询挂号单信息出错！'  );
+            }
+        },
+        function() {
+            layer.alert('根据主键查询挂号单信息出错！' );
+        });
 
-
+    return obj;
+}
 /**
  * 根据患者编号获取最近一次挂号信息
  * @param usercode

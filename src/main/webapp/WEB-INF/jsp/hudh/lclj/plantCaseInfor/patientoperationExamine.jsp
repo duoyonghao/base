@@ -354,7 +354,7 @@
 		<div class="row">
 			<div class="col-md-12 col-sm-12" style="position: relative;">
 				<img class="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
-				<span class="bigtitle">种植牙术前安全核查单(护患)</span>
+				<span class="bigtitle">种植牙术前安全核查单(医护)</span>
 			</div>
 		</div>
 		<div class="row consent_text" style="">

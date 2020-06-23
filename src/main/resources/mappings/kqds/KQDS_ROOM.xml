@@ -528,19 +528,23 @@
 		u.familyship,
 		u.createuser as jd,
 		per4.user_name as jdr,
-		u.createtime jdsj
+		per6.user_name as phasedoctorname,
+		per7.user_name as askpersonname,
+		per8.user_name as kefuname,
+		u.createtime jdsj,
+		u.seq_id as uid
 		from KQDS_ROOM r
 		LEFT JOIN KQDS_UserDocument u on u.usercode = r.usercode
-		LEFT JOIN
-		SYS_PERSON per1 on per1.SEQ_ID = r.doctor
+		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = r.doctor
 		LEFT JOIN SYS_PERSON per2 on per2.SEQ_ID = r.nurse
 		LEFT JOIN SYS_PERSON per5 on per5.SEQ_ID = r.createuser
-		LEFT JOIN SYS_PERSON per3 on
-		per3.SEQ_ID = r.delperson
+		LEFT JOIN SYS_PERSON per3 on per3.SEQ_ID = r.delperson
 		LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID = u.createuser
+		LEFT JOIN SYS_PERSON per6 on per6.SEQ_ID = r.phasedoctor
+		LEFT JOIN SYS_PERSON per7 on per7.SEQ_ID = r.askperson
+		LEFT JOIN SYS_PERSON per8 on per8.SEQ_ID = u.kefu
 		LEFT JOIN SYS_DICT kcit1 on r.roomid = kcit1.seq_id
-		LEFT JOIN SYS_DICT kcit2 on r.zzxt =
-		kcit2.seq_id
+		LEFT JOIN SYS_DICT kcit2 on r.zzxt = kcit2.seq_id
 		where 1=1
 		<if test="starttime != null and starttime !='' ">
 			and r.starttime <![CDATA[ >= ]]>
