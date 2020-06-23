@@ -1424,7 +1424,6 @@
         }
         //打印方法
         function myPreviewAll() {
-            //删掉禁用属性，因为禁用打印为黑色
             $("input[type='radio']").each(function(i,obj){
                 $(this).removeAttr("disabled");
             });
