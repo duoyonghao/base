@@ -870,7 +870,7 @@
 		var param = {
 			seqId:  caseId, //临床路径ID
 			patientsignature :  patientsignature,//患者签名
-			patienttime : patienttime//患者签名时间
+			patientTime : patienttime//患者签名时间
 
 		};
 		$.axseSubmit(url, param,function() {},function(r) {
