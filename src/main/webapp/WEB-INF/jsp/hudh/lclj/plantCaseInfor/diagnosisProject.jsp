@@ -42,10 +42,10 @@
 		img[src=""],img:not([src]){
 			opacity:0;
 		}
-		#logoImg{
+		/*#logoImg{
 			width: 10%;
 			margin: 10px 0;
-		}
+		}*/
 		/*分隔线 */
 		.line {
 			display: block;
@@ -74,7 +74,36 @@
 			#replaceBox{
 				font-size: 12px;
 			}
+			#logoImg{
+				position: absolute;
+				top: 20px!important;
+				width: 150px!important;
+			}
+			.bigtitle{
+				font-size: 22px!important;
+				margin: 0px auto 10px !important;
+			}
 		}
+
+
+		#logoImg{
+			position: absolute;
+			top: 18px;
+			width: 200px;
+		}
+		.bigtitle{
+			display: block;
+			text-align: center;
+			margin: 7px auto 18px;
+			font-size: 26px;
+			line-height: 26px;
+			letter-spacing: 1px;
+			font-weight: bold;
+			color: #434343;
+			padding-top: 30px;
+		}
+
+
 	</style>
 </head>
 <body>
@@ -84,12 +113,12 @@
 	<!-- 标题 -->
 	<div id="diagnosis_continer" class="container-fluid twopage">
 		<div class="row">
-			<div>
+			<div class="col-md-12 col-sm-12" style="position: relative;padding: 0;">
 				<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
-				<i class="line"></i>
-				<h2 class="bigtitle" style="margin:0px!important;">诊疗方案</h2>
+				<span class="bigtitle">诊疗方案</span>
 			</div>
 		</div>
+
 
 		<div id="diagnosis_continer" class="container-fluid">
 			<!-- 患者信息 -->

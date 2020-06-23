@@ -553,8 +553,8 @@
 	<div class="row">
 		<!-- 修复相关需求 -->
 		<div class="consent_remark" style="margin: 1px 23px;">
-			<div class="overstriking" style="margin: 0 10px;">修复相关需求:</div>
-			<textarea id="requirerestor" rows="" cols="" autoHeight="true" style="border: 1px solid #ddd;margin: 0 0 0 10px;overflow-y: hidden;width:100%;"></textarea>
+			<div class="overstriking">修复相关需求:</div>
+			<textarea id="requirerestor" rows="" cols="" autoHeight="true" style="border: 1px solid #ddd;overflow-y: hidden;width:100%;"></textarea>
 		</div>
 		<pre id="replaceBox"></pre>
 	</div>
@@ -574,7 +574,7 @@
 			</div>
 		</div>
 		<div class="col-md-4 col-sm-4 col-xs-4 colDefined">
-			<div class="zl_signature">
+			<div class="zl_signature">0
 				<span id="patientSignature">患者签名：</span>
 				<img id="patientimg" style="width: 137px"/>
 				<input id="patienttime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期"/>
@@ -646,7 +646,6 @@
 				elem.scrollTop = 0; //防抖动
 				elem.style.height = elem.scrollHeight + 'px';
 				textareaHeight = elem.style.height.split("px")[0]
-				console.log(textareaHeight,"textareaHeight")
 			}
 			this.each(function(){
 				autoHeight(this);

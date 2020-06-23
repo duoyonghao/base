@@ -1292,7 +1292,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" style="margin-right:0;margin-left:0;border-bottom:1px solid #b3b3b3">
+                <div class="row" style="margin-right:0;margin-left:0;">
                     <div style="height: 50px;">
                         <div style="float: left;border-right: 1px solid #b3b3b3;width: 20%;height: 100%;">
                             <span class="titles">手术方式</span>
@@ -1320,15 +1320,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" style="margin-right:0;margin-left:0;border-bottom:1px solid #b3b3b3">
-                </div>
+
             </div>
         </div>
     </div>
     </br>
     </br>
     </br>
-    <div>
+    <div style="width: 100%;">
         <div style="border:1px solid #b3b3b3;">
             <div class="row" style="margin-right:0;margin-left:0;border-bottom:1px solid #b3b3b3">
 
@@ -2060,17 +2059,19 @@
             </div>
         </div>
         <div class="row">
-            <div class="consent_remark">
+            <div class="consent_remark" style="padding: 0 11px;">
                 <div class="overstriking" style="margin: 0 10px;">备注:</div>
-                <textarea id="requirerestor" rows="" cols="" onblur="TextLengthCheck(this.id,200);"
-                          style="border: 1px solid #ddd;margin:0 10px 5px 10px;width: 99%;"></textarea>
+                <%--<textarea id="requirerestor" rows="" cols="" onblur="TextLengthCheck(this.id,200);"
+                          style="border: 1px solid #ddd;margin:0 10px 5px 10px;width: 99%;"></textarea>--%>
+                <textarea id="requirerestor" rows="" cols="" autoHeight="true" style="border: 1px solid #ddd;overflow-y: hidden;width:100%;"></textarea>
             </div>
+            <%--<pre id="replaceBox"></pre>--%>
         </div>
         <div style="width: 100%;float: right;">
             <ul class="loseTooth_option">
                 <li>
-                    <input name="promise" id="promise" type="checkbox" value="我已知悉医生阐述的所有方案。" /><label
-                        for="promise">我已知悉医生阐述的所有方案。</label>
+                    <input name="promise" id="promise" type="checkbox" value="我已知悉医生阐述的所有方案。"/>
+                    <label for="promise">我已知悉医生阐述的所有方案。</label>
                 </li>
                 <li style="float: right;">
                     <div class="zl_signature" style="display: flex">
@@ -2164,6 +2165,24 @@
             id = formParentObj.id;	//选中患者id
             order_number = formParentObj.orderNumber;//选中患者order_number
         }
+
+        //textarea高度自适应
+        $.fn.autoHeight = function(){
+            function autoHeight(elem){
+                elem.style.height = 'auto';
+                elem.scrollTop = 0; //防抖动
+                elem.style.height = elem.scrollHeight + 'px';
+                textareaHeight = elem.style.height.split("px")[0]
+            }
+            this.each(function(){
+                autoHeight(this);
+                $(this).on('keyup', function(){
+                    autoHeight(this);
+                });
+            });
+        }
+        $('textarea[autoHeight]').autoHeight();
+
         //时间选择
         $(".consent_time").datetimepicker({
             language: 'zh-CN',
@@ -2215,7 +2234,6 @@
             },
             dataType: "json",
             success: function (result) {
-                console.log(result,"------------------")
                 if(result!=null){
                     $("#consent_saveBtn").css("display","none");//隐藏保存按钮
                     $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
@@ -2260,6 +2278,8 @@
                         //console.log(key+"-------------"+result[key]);
                         $("#"+key).attr("value",result[key]);// 填框赋值
                         $("#requirerestor").text(result["requirerestor"]);//textarea赋值
+                        $("#requirerestor").trigger("keyup");
+                        $("#replaceBox").text(result["requirerestor"]);//textarea替换框赋值
                         if(result[key].indexOf(";")>0){
                             var checkboxVal= result[key];//拼接多选框的值
                             var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
@@ -2540,9 +2560,18 @@
             $("#caizhi input").attr("checked", false)
         }
     }
-
+    function promisePlan() {
+        var obj = document.getElementsByName("promise");
+        var promise = "";
+        console.log(obj[k].checked,"promise")
+        if(obj[k].checked){
+            promise =obj[k].value;
+        }
+        return promise;
+    }
     //保存方法
     function save(){
+        console.log("---------保存")
         var url = contextPath + '/HUDH_LcljCaseAct/insert.act';
         var param = {
             usercode:$("#patient_num").text(),
@@ -2641,6 +2670,7 @@
             patientsignature : patientsignature,//患者签名
             patientsignature1 : patientsignature1//患者签名
         };
+        console.log(param);
         $.ajax({
             type: "POST",
             url: url,
@@ -2745,14 +2775,7 @@
         return clinical;
     }
 
-    function promisePlan() {
-        var obj = document.getElementsByName("promise");
-        var promise = "";
-        if(obj[k].checked){
-            promise =obj[k].value;
-        }
-        return promise;
-    }
+
 
     function accordPlan() {
         var obj = document.getElementsByName("accord");
@@ -2766,6 +2789,7 @@
 
     //修改
     function update(){
+        console.log($("input[name='promise']").is(':checked'),"---tu")
         var url = contextPath + '/HUDH_LcljCaseAct/update.act';
         var param = {
             lcljid:id,
@@ -2868,6 +2892,7 @@
             data: param,
             dataType: "json",
             success: function (r) {
+                console.log(r,"rrrrrrrrrrr")
                 if(r.retState== "0"){
                     layer.alert("修改成功！", {
                         end: function() {
@@ -2919,6 +2944,9 @@
             $(".article_two").css('display','none');
             $(".route").css('height','325px');
         }
+        if(textareaHeight>60) {
+            $(".twopage").css("page-break-after", "always");
+        };
         $(".btns").css('display','none');
         bdhtml=window.document.body.innerHTML;
         sprnstr="<!--startprint-->";
