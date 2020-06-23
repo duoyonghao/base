@@ -3505,7 +3505,7 @@ public class KQDS_UserDocumentAct {
 			String usercode=request.getParameter("usercode");
 			YZPriv priv = privLogic.findGeneral(person.getUserPriv());
 			boolean consequence=true;
-			if (!"0".equals(priv.getPrivNo())){
+			if (!priv.getPrivName().contains("管理员")){
 				List<JSONObject> list = logic.findByUsercode(usercode);
 				if(list.size()>0){
 					if(!"".equals(list.get(0).getString("kefu"))){
