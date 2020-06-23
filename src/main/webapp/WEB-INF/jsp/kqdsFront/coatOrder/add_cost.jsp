@@ -625,6 +625,7 @@ $(function() {
     //static_askperson = static_userObj.askperson; // ###用户表中还没设定咨询时，从挂号单中获取
 	if(static_regObj.kefu != null && static_regObj.kefu != ""){
         $("#askperson").val(static_regObj.kefu); //展示咨询
+        $("#askperson").attr("disabled","disabled");
 	}else{
 
         if(static_askperson == ""){
