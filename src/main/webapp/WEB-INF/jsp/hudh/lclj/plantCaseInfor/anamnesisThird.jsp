@@ -811,8 +811,8 @@
 				<!-- 选项 -->
 				<!-- 选项div -->
 				<div class="option_div">
-					<input name="istakemedicie" id="isTakeMedicie_y" value="1" type="radio" disabled="disabled"/><label for="isTakeMedicie_y">是</label>
-					<input name="istakemedicie" id="isTakeMedicie_n" value="0" type="radio" disabled="disabled"/><label for="isTakeMedicie_n">否</label>
+					<input name="istakemedicie" id="isTakeMedicie_y" value="1" type="radio"/><label for="isTakeMedicie_y">是</label>
+					<input name="istakemedicie" id="isTakeMedicie_n" value="0" type="radio"/><label for="isTakeMedicie_n">否</label>
 				</div>
 			</div>
 		</div>
@@ -869,8 +869,8 @@
 				<span class="select_name">是否常备药在身边:</span>
 				<!-- 选项 -->
 				<div class="option_div">
-					<input name="ispreparemedication" id="isPrepareMedication_y" value="1" type="radio" disabled="disabled"/><label for="isPrepareMedication_y">是</label>
-					<input name="ispreparemedication" id="isPrepareMedication_n" value="0" type="radio" disabled="disabled"/><label for="isPrepareMedication_n">否</label>
+					<input name="ispreparemedication" id="isPrepareMedication_y" value="1" type="radio"/><label for="isPrepareMedication_y">是</label>
+					<input name="ispreparemedication" id="isPrepareMedication_n" value="0" type="radio"/><label for="isPrepareMedication_n">否</label>
 				</div>
 			</div>
 		</div>
@@ -2053,7 +2053,7 @@
 		var toothlesstime=$("#toothlesstime").val(); //牙松动时间
 		var toothdecayedtime=$("#toothdecayedtime").val(); //龋齿时间
 		var toothsnaptime=$("#toothsnaptime").val(); //牙折断时间
-		var implantRestoration=$("input[name='ImplantRestoration']:checked").val(); //是否要求种植修复
+		var implantRestoration=$("input[name='implantrestoration']:checked").val(); //是否要求种植修复
 		//既往史
 		var isHypertension = $('input[name="ishypertension"]:checked').val();//是否有高血压
 		var hypertension = $("#hypertension").val();//患高血压年限
@@ -2284,7 +2284,7 @@
 		var toothlesstime=$("#toothlesstime").val(); //牙松动时间
 		var toothdecayedtime=$("#toothdecayedtime").val(); //龋齿时间
 		var toothsnaptime=$("#toothsnaptime").val(); //牙折断时间
-		var implantRestoration=$("input[name='ImplantRestoration']:checked").val(); //是否要求种植修复
+		var implantRestoration=$("input[name='implantrestoration']:checked").val(); //是否要求种植修复
 		//既往史
 		var isHypertension = $('input[name="ishypertension"]:checked').val();//是否有高血压
 		var hypertension = $("#hypertension").val();//患高血压年限
