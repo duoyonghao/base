@@ -48,35 +48,24 @@
 	img[src=""],img:not([src]){
 		opacity:0;
 	}
-	#logoImg{
-		width: 10%;
-		margin:10px 0 10px 0;
-	}
+
 	/*分隔线 */
 	.line {
 		display: block;
 		border-top:2px dotted #776c6c;
 		padding:10px 0;
 	}
-	/* .gap{
-		margin:10px 0;
-	} */
-	@page{
-		size:206mm 280mm;
-		margin: 0px auto;
-	}
-	.zl_signature>input{
-		margin-right: 20px;
-	}
-	.btns>button:focus{
-		border:0px solid red;
-		outline: none;
+
+
+	@page {
+		size: auto;
+		margin: 0mm auto;
 	}
 	#replaceBox{
 		display: none;
 		height: auto;
 		border:1px solid rgb(221, 221, 221);
-		margin: 0 0 0 10px;
+		margin:10px;
 		overflow-x: hidden;
 		white-space: pre-wrap;
 	}
@@ -90,7 +79,47 @@
 		#replaceBox{
 			font-size: 12px;
 		}
+		#logoImg{
+			position: absolute;
+			top: 20px!important;
+			width: 150px!important;
+		}
+		.bigtitle{
+			font-size: 22px!important;
+			margin: 0px auto 10px !important;
+		}
 	}
+
+
+	#logoImg{
+		position: absolute;
+		top: 18px;
+		width: 200px;
+	}
+	.bigtitle{
+		display: block;
+		text-align: center;
+		margin: 7px auto 18px;
+		font-size: 26px;
+		line-height: 26px;
+		letter-spacing: 1px;
+		font-weight: bold;
+		color: #434343;
+		padding-top: 30px;
+	}
+
+
+
+
+	.zl_signature>input{
+		margin-right: 20px;
+	}
+	.btns>button:focus{
+		border:0px solid red;
+		outline: none;
+	}
+
+
 	.row {
 		margin-right: 0 !important;
 		margin-left: 0!important;
@@ -100,16 +129,16 @@
 <body>
 <!--startprint-->
 <div id="repair_continer" class="container-fluid twopage">
+
 	<!-- 标题 -->
-	<div class="row restore" style="border-bottom: 2px solid #776c6c;">
-		<%--<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
-        <i class="line"></i>--%>
-		<div style="padding-bottom: 10px;">
-			<span class="bigtitle">修复方案确认单</span>
+	<div class="row">
+		<div class="col-md-12 col-sm-12" style="position: relative;padding: 0;">
+			<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
+			<span class="bigtitle">检查及诊断</span>
 		</div>
 	</div>
 	<!-- 患者详细信息 -->
-	<div class="row patient" style="border-bottom: 2px solid #776c6c;">
+	<div class="row patient" style="border-bottom: 2px solid #776c6c;border-top: 2px solid #776c6c;" >
 		<div class="col-md-3 col-sm-3 col-xs-3 colDefined">
 			<!-- 信息输入组合框 -->
 			<div class="rpInfo_import">
@@ -553,8 +582,8 @@
 	<div class="row">
 		<!-- 修复相关需求 -->
 		<div class="consent_remark" style="margin: 1px 23px;">
-			<div class="overstriking" style="margin: 0 10px;">修复相关需求:</div>
-			<textarea id="requirerestor" rows="" cols="" autoHeight="true" style="border: 1px solid #ddd;margin: 0 0 0 10px;overflow-y: hidden;width:100%;"></textarea>
+			<div class="overstriking">修复相关需求:</div>
+			<textarea id="requirerestor" rows="" cols="" autoHeight="true" style="border: 1px solid #ddd;overflow-y: hidden;width:100%;"></textarea>
 		</div>
 		<pre id="replaceBox"></pre>
 	</div>
@@ -574,7 +603,7 @@
 			</div>
 		</div>
 		<div class="col-md-4 col-sm-4 col-xs-4 colDefined">
-			<div class="zl_signature">
+			<div class="zl_signature">0
 				<span id="patientSignature">患者签名：</span>
 				<img id="patientimg" style="width: 137px"/>
 				<input id="patienttime" type="text" class="consent_time signature_time inputheight2" readonly="readonly" placeholder="请选择日期"/>
@@ -646,7 +675,6 @@
 				elem.scrollTop = 0; //防抖动
 				elem.style.height = elem.scrollHeight + 'px';
 				textareaHeight = elem.style.height.split("px")[0]
-				console.log(textareaHeight,"textareaHeight")
 			}
 			this.each(function(){
 				autoHeight(this);
@@ -870,7 +898,7 @@
 		var param = {
 			seqId:  caseId, //临床路径ID
 			patientsignature :  patientsignature,//患者签名
-			patienttime : patienttime//患者签名时间
+			patientTime : patienttime//患者签名时间
 
 		};
 		$.axseSubmit(url, param,function() {},function(r) {

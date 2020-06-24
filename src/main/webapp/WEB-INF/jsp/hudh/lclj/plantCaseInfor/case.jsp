@@ -2069,8 +2069,8 @@
         <div style="width: 100%;float: right;">
             <ul class="loseTooth_option">
                 <li>
-                    <input name="promise" id="promise" type="checkbox" value="我已知悉医生阐述的所有方案。" /><label
-                        for="promise">我已知悉医生阐述的所有方案。</label>
+                    <input name="promise" id="promise1" type="checkbox" value="我已知悉医生阐述的所有方案。" /><label
+                        for="promise1">我已知悉医生阐述的所有方案。</label>
                 </li>
                 <li style="float: right;">
                     <div class="zl_signature" style="display: flex">
@@ -2085,8 +2085,8 @@
         <div style="width: 100%;float: right;">
             <ul class="loseTooth_option">
                 <li>
-                    <input name="accord" id="accord" type="checkbox" value="我已知悉医生阐述的所有方案。" /><label
-                        for="accord">我自愿选择</label>
+                    <input name="accord" id="accord1" type="checkbox" value="我已知悉医生阐述的所有方案。" /><label
+                        for="accord1">我自愿选择</label>
                     <input type="text" id="wzy" style="border: 1px solid #e5e5e5">
                     同意医生采用上述治疗方案，医生已向我详细介绍了治疗方案、种植的程序、整个过程所需的时间和费用，我认同治疗方案，并自愿支付其相关费用。 </li>
             </ul>
@@ -2215,7 +2215,6 @@
             },
             dataType: "json",
             success: function (result) {
-                console.log(result,"------------------")
                 if(result!=null){
                     $("#consent_saveBtn").css("display","none");//隐藏保存按钮
                     $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
@@ -2748,8 +2747,10 @@
     function promisePlan() {
         var obj = document.getElementsByName("promise");
         var promise = "";
-        if(obj[k].checked){
-            promise =obj[k].value;
+        for ( k in obj ) {
+            if (obj[k].checked) {
+                promise = obj[k].value;
+            }
         }
         return promise;
     }
@@ -2757,8 +2758,10 @@
     function accordPlan() {
         var obj = document.getElementsByName("accord");
         var accord = "";
-        if(obj[k].checked){
-            accord = obj[k].value;
+        for ( k in obj ) {
+            if (obj[k].checked) {
+                accord = obj[k].value;
+            }
         }
         return accord;
     }
