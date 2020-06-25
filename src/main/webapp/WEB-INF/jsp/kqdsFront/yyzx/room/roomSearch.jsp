@@ -233,6 +233,9 @@ select {
 						<span>模糊查询</span>
     					<input type="text" style="font-size:11px;" id="musername" name="musername"  placeholder="患者姓名/手机" />
 		    		</li>
+					<li id="zdkf" style="margin-left: 15px;">
+						<!-- <span style="padding-left: 31px;"><input type="button" class="kqdsCommonBtn" onclick="setKeFu()" value="指定客服"></span> -->
+					</li>
 	    		</ul>
 	    	</section>
 	    </div>
@@ -349,6 +352,29 @@ function query() {
         'url': pageurl1
     });
 }
+//获取选中行的usercode
+function getIdSelections() {
+    return $.map($table1.bootstrapTable('getSelections'),
+        function(row) {
+            return row;
+        });
+}
+//指定客服
+function setKeFu() {
+    selectedrows = getIdSelections();
+    if (selectedrows.length == 0) {
+        layer.alert('请勾选复选框，选择需要指定客服的患者(可多选)' );
+    } else {
+        layer.open({
+            type: 2,
+            title: '指定客服',
+            shadeClose: false,
+            shade: 0.6,
+            area: ['90%', '98%'],
+            content: contextPath+'/KQDS_ChangeKeFuAct/setKefu.act?menuid='+"<%=menuid%>"+'&organization='+$("#organization").val()
+        });
+    }
+}
 //加载门诊表格
 function inittablemenzhen(nums) {
     $table1.bootstrapTable({
@@ -384,18 +410,23 @@ function inittablemenzhen(nums) {
             };
         },
         //basic', 'all', 'selected'. 
-        columns: [
-		{
-	    title : '序号',
-	    align: "center",
-	    width: 40,
-	    formatter: function (value, row, index) {
-	     /* return index + 1; */
-	     var pageSize = $('#table1').bootstrapTable('getOptions').pageSize;     //通过table的#id 得到每页多少条
-	        var pageNumber = $('#table1').bootstrapTable('getOptions').pageNumber; //通过table的#id 得到当前第几页
-	        return pageSize * (pageNumber - 1) + index + 1;    // 返回每条的序号： 每页条数 *（当前页 - 1 ）+ 序号
-	    }
-	   },       
+         columns: [
+		 {
+			field: ' ',
+			checkbox: true,
+			formatter: stateFormatter
+		 },
+		 {
+			title : '序号',
+			align: "center",
+			width: 40,
+			formatter: function (value, row, index) {
+			 /* return index + 1; */
+			 var pageSize = $('#table1').bootstrapTable('getOptions').pageSize;     //通过table的#id 得到每页多少条
+				var pageNumber = $('#table1').bootstrapTable('getOptions').pageNumber; //通过table的#id 得到当前第几页
+				return pageSize * (pageNumber - 1) + index + 1;    // 返回每条的序号： 每页条数 *（当前页 - 1 ）+ 序号
+			}
+		 },
          {
             title: '手术室',
             field: 'roomname',
@@ -474,8 +505,8 @@ function inittablemenzhen(nums) {
             }
         },
         {
-            title: '护士',
-            field: 'nursename',
+            title: '修复医生',
+            field: 'phasedoctorname',
             align: 'center',
             
             sortable: true,
@@ -487,6 +518,51 @@ function inittablemenzhen(nums) {
                     return "";
                 }
             }
+        },
+		{
+        	title: '客服',
+			field: 'kefuname',
+			align: 'center',
+
+			sortable: true,
+			formatter: function(value, row, index) {
+				if (value) {
+					html = '<span class="name" title="' + value + '">' + value + '</span>';
+					return html;
+				} else {
+					return "";
+				}
+			}
+		},
+        {
+			title: '咨询',
+			field: 'askpersonname',
+			align: 'center',
+
+			sortable: true,
+			formatter: function(value, row, index) {
+				if (value) {
+					html = '<span class="name" title="' + value + '">' + value + '</span>';
+					return html;
+				} else {
+					return "";
+				}
+			}
+        },
+        {
+			title: '护士',
+			field: 'nursename',
+			align: 'center',
+
+			sortable: true,
+			formatter: function(value, row, index) {
+				if (value) {
+					html = '<span class="name" title="' + value + '">' + value + '</span>';
+					return html;
+				} else {
+					return "";
+				}
+			}
         },
         {
             title: '种植系统',
@@ -673,11 +749,28 @@ function setHeight() {
         height: baseHeight - $(".searchModule").outerHeight()-15
     });
 }
-
+//复选框
+function stateFormatter(value, row, index) {
+    if (row.id === 2) {
+        return {
+            disabled: true,
+            checked: true
+        };
+    }
+    if (row.id === 0) {
+        return {
+            disabled: true,
+            checked: true
+        }
+    }
+    return value;
+}
 function getButtonPower() {
     var menubutton1 = "";
     for (var i = 0; i < listbutton.length; i++) {
-        if (listbutton[i].qxName == "roomcx_scbb") {
+        if(listbutton[i].qxName == "zdkf"){
+            menubutton1 += '<a href="javascript:void(0);" class="kqdsCommonBtn" onclick="setKeFu()">指定客服</a>';
+        }else if (listbutton[i].qxName == "roomcx_scbb") {
             menubutton1 += '<a  href="javascript:void(0);" class="kqdsCommonBtn" onclick="exportTable();">生成报表</a>';
         }else if (listbutton[i].qxName == "roomcx_mz") {
         	$("#roomcx_mz").removeClass("hide");

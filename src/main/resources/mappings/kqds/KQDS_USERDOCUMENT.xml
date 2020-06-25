@@ -4100,6 +4100,6 @@ WHERE
         GROUP BY cost.regno
     </select>
     <select id="findByUsercode" parameterType="java.lang.String" resultType="json">
-		select UserName, Sex, PhoneNumber1,PhoneNumber2, Age from KQDS_UserDocument where UserCode=#{usercode}
+		select UserName, Sex, PhoneNumber1, PhoneNumber2, Age , kefu from KQDS_UserDocument where UserCode=#{usercode}
 	</select>
 </mapper>

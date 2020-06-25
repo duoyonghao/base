@@ -70,21 +70,21 @@
 			color:#00a6c0;
 			font-weight: bold;
 		}
-		/* 标题 */
-		#content .bigtitle{
-			width:65%;
-			display: inline-block;
+		.logoImg{
+			position: absolute;
+			top: 18px;
+			width: 200px;
+		}
+		.bigtitle{
+			display: block;
 			text-align: center;
+			margin: 7px auto 18px;
 			font-size: 26px;
 			line-height: 26px;
-			margin: 45px auto 35px;
 			letter-spacing: 1px;
 			font-weight: bold;
-		}
-		/* 	logo */
-		.logoImg {
-			width: 150px;
-			height: 45px;
+			color: #434343;
+			padding-top: 30px;
 		}
 		/* 详细文字介绍 */
 		#content .consent_text{
@@ -222,6 +222,24 @@
 			size:205mm 280mm;
 			margin: 0 auto;
 		}
+		@media print{
+			.logoImg{
+				position: absolute;
+				top: 20px!important;
+				width: 150px!important;
+			}
+			.bigtitle{
+				font-size: 22px;
+				margin: 0px auto 10px !important;
+			}
+			.line{
+				border: 1px dashed #333;
+				width: 100%;
+				display: block;
+				margin-top: 10%;
+				margin-bottom: 5%;
+			}
+		}
 	</style>
 </head>
 <body style="padding: 0% 3%;">
@@ -229,32 +247,42 @@
 <div>
 	<div id="content" class="content">
 		<!-- 标题 -->
-		<img class="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
-		<h2 class="bigtitle">种植牙术前安全核查单(护患)</h2>
+		<div class="row">
+			<div class="col-md-12 col-sm-12" style="position: relative;">
+				<img class="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
+				<span class="bigtitle">种植牙术前安全核查单(护患)</span>
+			</div>
+		</div>
 		<div class="row consent_text" style="">
 			<div class="col-md-12 col-sm-12 colDefined">
 				<table class="contentItem" border="1" width="100%">
 					<tbody>
 					<tr>
+						<td><span>患者编号</span></td>
+						<td><font type="text" class="patient_usercode"></font></td></td>
 						<td><span>患者姓名</span></td>
 						<td><font type="text" class="patient_name"></font></td>
 						<td><span>性别</span></td>
 						<td><font type="text" class="patient_sex"></font></td>
 						<td><span>年龄</span></td>
 						<td><font type="text" class="patient_age"></font></td>
-						<td><span>手术医生</span></td>
-						<td><font type="text" id="patient_doctor" class="patient_doctor"></font></td>
+
 					</tr>
 					<tr>
-						<td colspan="3"><span>是否已服抗菌药</span>
+						<td colspan="1"><span>手术医生</span>
+						</td>
+						<td colspan="1">
+							<font type="text" id="patient_doctor" class="patient_doctor"></font>
+						</td>
+						<td colspan="2"><span>已服抗菌药</span>
 							<label><input class="" type="radio" name="antibacterialmedicine" value="0"/><span class=" ">是</span></label>
 							<label><input class="" type="radio" name="antibacterialmedicine" value="1"/><span class=" ">否</span></label>
 						</td>
-						<td colspan="3"><span>碘伏过敏史</span>
+						<td colspan="2"><span>碘伏过敏史</span>
 							<label><input class="" type="radio" name="iodineallergy" value="0"/><span class=" ">是</span></label>
 							<label><input class="" type="radio" name="iodineallergy" value="1"/><span class=" ">否</span></label>
 						</td>
-						<td colspan="3"><span>麻药过敏史</span>
+						<td colspan="2"><span>麻药过敏史</span>
 							<label><input class="" type="radio" name="anestheticallergy" value="0"/><span class=" ">是</span></label>
 							<label><input class="" type="radio" name="anestheticallergy" value="1"/><span class=" ">否</span></label>
 						</td>
@@ -322,10 +350,13 @@
 				<input id="nursetime1" type="text" class="nursetimeone consent_time inputhidden" readonly="readonly" placeholder="请选择日期"/>
 			</div>
 		</div>
-		<i style="border: 1px dashed #333;width: 100%;display: block;margin-top: 10%"></i>
-		<!-- 标题 -->
-		<img class="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
-		<h2 class="bigtitle top">种植牙术前安全核查单(医护)</h2>
+		<i class="line"></i>
+		<div class="row">
+			<div class="col-md-12 col-sm-12" style="position: relative;">
+				<img class="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
+				<span class="bigtitle">种植牙术前安全核查单(医护)</span>
+			</div>
+		</div>
 		<div class="row consent_text" style="">
 			<div class="col-md-12 col-sm-12 colDefined">
 				<table class="contentItem" border="1" width="100%">
