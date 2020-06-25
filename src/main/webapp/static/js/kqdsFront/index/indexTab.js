@@ -292,7 +292,7 @@ function hospitalOrderTable(type, tabId) {
                 align: 'center',
                 sortable: true,
                 formatter: function (value, row, index) {
-                    console.log("门诊预约=" + JSON.stringify(row));
+                    //console.log("门诊预约=" + JSON.stringify(row));
                     var iconhtml;
                     if (value != "" && value != null) {
                         iconhtml = '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
@@ -576,7 +576,7 @@ function netOrderTable(type, tabId) {
                 align: 'center',
                 sortable: true,
                 formatter: function (value, row, index) {
-                    console.log("网电预约=" + JSON.stringify(row));
+                    //console.log("网电预约=" + JSON.stringify(row));
                     var iconhtml;
                     if (value != "" && value != null) {
                         iconhtml = '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
@@ -863,7 +863,7 @@ function getOrderlist(status, type, tabId) {
                 align: 'center',
                 sortable: true,
                 formatter: function (value, row, index) {
-                    console.log("等待结账=" + JSON.stringify(row));
+                    //console.log("等待结账=" + JSON.stringify(row));
                     var iconhtml;
                     if (value != "" && value != null) {
                         iconhtml = '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
@@ -1185,7 +1185,7 @@ function getPayOrderlist(type, tabId) {
                 align: 'center',
                 sortable: true,
                 formatter: function (value, row, index) {
-                    console.log("已结账=" + JSON.stringify(row));
+                    //console.log("已结账=" + JSON.stringify(row));
                     var iconhtml;
                     if (value != "" && value != null) {
                         iconhtml = '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
@@ -1659,7 +1659,7 @@ function initTable(status, type, recesort, tabId) {
                 align: 'center',
                 sortable: true,
                 formatter: function (value, row, index) {
-                    console.log("等待治疗=" + JSON.stringify(row) + "...row");
+                    //console.log("等待治疗=" + JSON.stringify(row) + "...row");
                     var iconhtml;
                     if (value != "" && value != null) {
                         iconhtml = '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
