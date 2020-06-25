@@ -51,8 +51,8 @@ function bindPerUserNameBySeqIdTB(id, param) {
         return;
     }
 
-    var detailurl = contextPath + "/YZPersonAct/getPersonNameStrBySeqIds.act?ids=" + param;
-    $.axse(detailurl, null,
+    var detailurl = contextPath + "/YZPersonAct/getPersonNameStrBySeqIds.act";
+    $.axse(detailurl, {"ids":param},
     function(data) {
         $("#" + id).val(data.data);
     },

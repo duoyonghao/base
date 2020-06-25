@@ -59,9 +59,55 @@
 	img[src=""],img:not([src]){
       opacity:0;
  	}
-	@page{
-		size:205mm 285mm;
-		margin: 0 auto;
+	@page {
+		size: auto;
+		margin: 0mm auto;
+	}
+	#replaceBox{
+		display: none;
+		height: auto;
+		border:1px solid rgb(221, 221, 221);
+		margin:10px;
+		overflow-x: hidden;
+		white-space: pre-wrap;
+	}
+	@media print {
+		.consent_remark{
+			margin-top: 40px !important;
+		}
+		.zl_signature>span{
+			margin-top: 5px;
+		}
+		#replaceBox{
+			font-size: 12px;
+		}
+		#logoImg{
+			position: absolute;
+			top: 20px!important;
+			width: 150px!important;
+		}
+		.bigtitle{
+			font-size: 22px!important;
+			margin: 0px auto 10px !important;
+		}
+	}
+
+
+	#logoImg{
+		position: absolute;
+		top: 18px;
+		width: 200px;
+	}
+	.bigtitle{
+		display: block;
+		text-align: center;
+		margin: 7px auto 18px;
+		font-size: 26px;
+		line-height: 26px;
+		letter-spacing: 1px;
+		font-weight: bold;
+		color: #434343;
+		padding-top: 30px;
 	}
 </style>
 </head>
@@ -71,14 +117,14 @@
    	<div class="container-fluid examine_continer">
 		<!-- 标题 -->
 		<div class="row">
-			<div>
-				<!-- <div class="big_title"><span class="bigtitle">检查及诊断</span></div> -->
-				<h2 class="bigtitle" style="border-bottom: 2px solid #776c6c;padding-bottom: 15px;">检查及诊断</h2>
+			<div class="col-md-12 col-sm-12" style="position: relative;padding: 0;">
+				<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
+				<span class="bigtitle">检查及诊断</span>
 			</div>
-			
-		</div>	
+		</div>
+
 		<!-- 患者信息 -->
-		<div class="row">
+		<div class="row" style="border-top: 2px solid #776c6c;">
 			<div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="width:21%;">
 				<!-- 信息输入组合框 -->
 				<div class="rpInfo_import">
