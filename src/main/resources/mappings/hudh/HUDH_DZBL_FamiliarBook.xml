@@ -91,7 +91,7 @@
 	plantingsystemselect=#{plantingsystemselect}
 	</if>
 	</set>
-		where 1=1
+	where 1=1
 	<if test="SEQ_ID != null and SEQ_ID != ''">
 		AND SEQ_ID = #{SEQ_ID}
 	</if>

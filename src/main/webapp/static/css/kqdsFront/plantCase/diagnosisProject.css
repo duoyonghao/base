@@ -274,7 +274,7 @@ label{
 /* 备注输入框 */
 #diagnosis_continer #consent_remark>textarea{
 	width: 98%;
-   	height: 57px;
+   	height: 157px;
    	float: left;
    	background-color: transparent;
    	border:0px;
@@ -300,4 +300,8 @@ label{
 }
 .btns #consent_saveBtn{
 	margin-right: 30px;
+}
+#remark{
+	width: 100%;
+	height: 147px;
 }

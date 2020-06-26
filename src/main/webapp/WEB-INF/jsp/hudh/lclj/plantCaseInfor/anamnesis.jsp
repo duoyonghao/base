@@ -1425,7 +1425,7 @@
             if(doctorstatus&&!patientstatus){
                 updateDoctorSignature();
             }
-		}
+        }
         //更新
         function updateDoctorSignature(){
             var url = contextPath + '/HUDH_ZzblAskAct/updateCaseHistoryById.act';
@@ -1830,8 +1830,8 @@
 		function save() {
 			var patient_name = $("#patient_name").html();//患者姓名
 			var patient_sex = $("#patient_sex").html();//患者性别
-			var patient_age = $("#patient_age").html();//患者年龄
-			var agomphosTime = $("#agomphostime").val();//缺牙时间
+            var patient_age = $("#patient_age").html();//患者年龄
+            var agomphosTime = $("#agomphostime").val();//缺牙时间
 			var symptom=showSymptom();//牙齿症状选中
 			var plantTime = $("#planttime").val();//要求种植修复时间
 			var isHypertension = $('input[name="ishypertension"]:checked').val();//是否有高血压

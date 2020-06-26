@@ -222,8 +222,8 @@
 										</div>
 									</div>
 								</li>
-							 <%--  <li><label><input name="Consultation" type="checkbox" value="告知通知书" /><font class="inform">19、告知通知书</font></label></li>
-							    <li><label><input name="Consultation" type="checkbox" value="诊疗方案" /><font class="case">20、诊疗方案</font></label></li>--%>
+							   <%--<li><label><input name="Consultation" type="checkbox" value="告知通知书" /><font class="inform">19、告知通知书</font></label></li>
+							    <li><label><input name="Consultation" type="checkbox" value="诊疗方案" /><font class="case">20、诊疗方案</font></label></li> --%>
 							</ul>
 						</div>
 					</td>
@@ -643,21 +643,21 @@
 			}
 	  });
 		/* 判断新种植病历情况记录*/
-		// var plantRecordsurl =  contextPath + '/HUDH_MedicalRecordsAct/selectdata.act';
-		// $.ajax({
-		// 	url: plantRecordsurl,
-		// 	type:"POST",
-		// 	dataType:"json",
-		// 	data : {
-		// 		lcljId:id
-		// 	},
-		// 	success:function(result) {
-		// 		// console.log(JSON.stringify(result)+'----result');
-		// 		if(result.length>0){
-		// 			$(".plantRecords").prev().attr("checked","checked").attr("disabled","disabled");
-		// 		}
-		// 	}
-		// });
+		var plantRecordsurl =  contextPath + '/HUDH_MedicalRecordsAct/selectdata.act';
+		$.ajax({
+			url: plantRecordsurl,
+			type:"POST",
+			dataType:"json",
+			data : {
+				lcljId:id
+			},
+			success:function(result) {
+				// console.log(JSON.stringify(result)+'----result');
+				if(result.length>0){
+					$(".plantRecords").prev().attr("checked","checked").attr("disabled","disabled");
+				}
+			}
+		});
 		/* 判断人工种植牙知情同意书*/
 		var plantKnowbookurl = contextPath + '/HUDH_ZzblAskAct/findFamiliarBookById.act';
 		$.ajax({

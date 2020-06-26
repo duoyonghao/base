@@ -46,15 +46,25 @@
 		font-size: 14px;
 		font-weight: normal;
 	}
-	#logoImg{
-		width: 16.5%;
-	}
 	@media print{
 		*{
 			font-size: 12px;
 		}
+		#logoImg{
+			position: absolute;
+			top: 20px!important;
+			width: 150px!important;
+		}
+		#anamnesis_continer .bigtitle{
+			font-size: 22px;
+			margin: 0px auto 10px !important;
+		}
 		.smallTitle{
-			font-size: 16px !important;
+			font-size: 13px !important;
+			padding-top: 3px;
+		}
+		#pressure{
+			width: 80px !important;
 		}
 		.rpInfo_import{
 			margin-bottom: 0px !important;
@@ -142,10 +152,29 @@
 			margin-left: 20px !important;
 		}
 		#onmedication{
-			width: 81% !important;
+			width: 78% !important;
 		}
 		#secondLogoImg{
 			display: block!important;
+		}
+		.question_text{
+			font-size: 13px !important;
+		}
+		/*基本信息*/
+		.baseInfo .patient>.inputDiv{
+			height: 22px !important;
+			line-height: 22px !important;
+		}
+		.baseInfo .patient>.inputDiv>span,font{
+			font-size: 12px !important;
+			height: 22px !important;
+			line-height: 22px !important;
+		}
+		.patient .inputDiv:nth-child(4){
+			width: 190px!important;
+		}
+		.patient .inputDiv:nth-child(9){
+			width: 190px!important;
 		}
 	}
 	#anamnesis_continer .bgwhite{
@@ -164,10 +193,10 @@
 	}
 	/* 小标题 */
 	.smallTitle{
-		font-size: 19px;
+		font-size: 17px;
 		color: #333333;
 		font-weight: bold;
-		border-top: 2px solid #776c6c;
+		border-top: 1px solid black;
 	}
 	.smallTitle .circle{
 		display: inline-block;
@@ -285,7 +314,7 @@
 	#anamnesis_continer .bigtitle{
 		display: block;
 		text-align: center;
-		margin: 0 auto 25px;
+		margin: 7px auto 18px;
 	}
 	#logoImg{
 		position: absolute;
@@ -354,45 +383,56 @@
 		size:206mm 280mm;
 		margin: 0 auto;
 	}
-/*	@page:first{
-		@top-center { content: "This page is intentionally left blank" }
-		@bottom-center{
-			margin: 10pt;
-			!*margin: 10pt 0 30pt 0;
-			border-top: .25pt solid #666;*!
-			content: "Our Cats";
-			border: 1px solid red;
-			!*font-size: 9pt;
-			color: #333;*!
-		}
-        @bottom-left {
-            margin: 10pt 0 30pt 0;
-            border-top: .25pt solid #666;
-            content: "Our Cats";
-            font-size: 9pt;
-            color: #333;
-        }
-        !*@bottom-right {
-            margin: 10pt 0 30pt 0;
-            border-top: .25pt solid #666;
-            content: counter(page);
-            font-size: 9pt;
-        }
+	#anamnesis_continer span {
+		font-weight: normal;
+	}
+	.btns button:focus{
+		border:0px solid red;
+		outline: none;
+	}
+	/* 基本信息 */
+	.baseInfo{
+		width:100%;
+		padding-left: 8px;
+	}
+	.baseInfo .patient{
+		overflow: hidden;
+	}
+	/* 输入组合框 */
+	.baseInfo .patient>.inputDiv{
+		display:block;
+		float:left;
+		width: 235px;
+		height: 25px;
+	}
+	.patient .inputDiv:nth-child(5){
+		width: 100px!important;
+	}
+	.patient .inputDiv:nth-child(7){
+		width: 300px!important;
+	}
 
-        @top-right {
-            content: string(doctitle);
-            margin: 30pt 0 10pt 0;
-            font-size: 9pt;
-            color: #333;
-        }*!
-	}*/
+	.baseInfo .patient>.inputDiv>span{
+		display: inline-block;
+		font-size: 16px;
+		line-height: 30px;
+		height: 30px;
+	}
+	.baseInfo .patient>.inputDiv>font{
+		font-size: 15px;
+		color:#00a6c0;
+		font-weight: bold;
+	}
+	.signature_row .signature_time>.signature_box>span {
+		font-weight: normal !important;
+	}
 </style>
 <body>
 <!--startprint-->
 <div id="anamnesis_continer" class="container-fluid" style="height:100%;">
 	<!-- 标题 -->
 	<div class="row">
-		<div class="col-md-12 col-sm-12" style="position: relative;">
+		<div class="col-md-12 col-sm-12" style="position: relative;padding: 0;">
 			<!-- <div class="big_title"><span class="bigtitle">主诉及既往病史</span></div> -->
 			<img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
 			<span class="bigtitle">主诉及既往病史</span>
@@ -400,12 +440,54 @@
 	</div>
 	<!-- 患者信息 -->
 	<div class="row patientInfo">
-		<div class="col-md-12 col-sm-12 col-xs-12 smallTitle"><span class="circle"></span>基本信息</div>
-		<div class="col-md-12 col-sm-12 col-xs-12 smallTitle" style="padding:0px;display:flex;flex-direction:row;">
+		<div class="col-md-12 col-sm-12 col-xs-12 smallTitle" style="padding-left:0px;"><span class="circle"></span>基本信息</div>
+		<div class="row baseInfo">
+			<div class="col-md-12 col-sm-12 colDefined">
+				<!-- 患者基本信息 -->
+				<div class="patient" style="width:90%;float:left;">
+					<div class="inputDiv">
+						<span>首诊时间：</span><font type="text" id="patient_first_diagnose"></font>
+					</div>
+					<div class="inputDiv">
+						<span>患者编号：</span><font type="text" id="patient_num"></font>
+					</div>
+					<div class="inputDiv" style="clear:left;">
+						<span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</span><font type="text" id="patient_name"></font>
+					</div>
+					<div class="inputDiv">
+						<span>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</span><font type="text" id="patient_sex"></font>
+					</div>
+					<div class="inputDiv" style="">
+						<span>年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄：</span><font type="text" id="patient_age"></font>
+					</div>
+					<div class="inputDiv" style="clear:left;">
+						<span>证件号码：</span><font type="text" id="patient_ID"></font>
+					</div>
+					<div class="inputDiv">
+						<%--                    <span>出生年月：</span><font type="text" id="patient_bone"></font>--%>
+						<span>现居住地址：</span><font type="text" id="patient_address"></font>
+					</div>
+					<div class="inputDiv" style="clear:left;">
+						<span>联系电话：</span><font type="text" id="patient_tel"></font>
+					</div>
+					<div class="inputDiv" >
+						<span>紧急联系人：</span><font type="text" id="patient_emergency_contact"></font>
+					</div>
+					<div class="inputDiv">
+						<span>紧急联系人电话：</span><font type="text" id="emergency_contact_tel"></font>
+					</div>
+				</div>
+				<div class="patientHeader" style="width:10%;float:left;">
+					<img src="<%=contextPath%>/static/image/kqdsFront/jiagong/headImg.jpg">
+					<input style="display:none;" type="file" />
+				</div>
+			</div>
+		</div>
+		<%--<div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;display:flex;flex-direction:row;">
 			<div class="patient_info">
 				<!-- 首诊时间 -->
 				<div class="rpInfo_import">
-					<span>首诊时间:</span><%--<input id="first_time" class="consent_time" type="text" readonly="readonly" placeholder="请选择日期"/>--%>
+					<span>首诊时间:</span>&lt;%&ndash;<input id="first_time" class="consent_time" type="text" readonly="readonly" placeholder="请选择日期"/>&ndash;%&gt;
 					<font class="alreadyInfo" id="first_time"></font>
 				</div>
 				<!-- 信息输入组合框 -->
@@ -463,7 +545,7 @@
 				<img style="min-width:45px;" src="<%=contextPath%>/static/image/kqdsFront/jiagong/headImg.jpg">
 				<input style="display:none;" type="file" />
 			</div>
-		</div>
+		</div>--%>
 	</div>
 	<!-- 主诉 -->
 	<div class="row" style="">
@@ -518,7 +600,7 @@
 						<%--<span class="showToothMap" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>--%>
 					</div>
 					<div class="toothTime">
-						<span>时长：</span><input id="toothlosetime" type="text" placeholder="请输入时长"/>
+						<span>时长：</span><input id="toothlosetime" disabled style="cursor:not-allowed;" type="text" placeholder="请输入时长"/>
 					</div>
 				</li>
 				<li class="toothMapItem">
@@ -569,7 +651,7 @@
 						<%--<span class="showToothMap" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>--%>
 					</div>
 					<div class="toothTime">
-						<span>时长：</span><input id="toothlesstime" type="text" placeholder="请输入时长"/>
+						<span>时长：</span><input id="toothlesstime" type="text" disabled style="cursor:not-allowed;" placeholder="请输入时长"/>
 					</div>
 				</li>
 				<li class="toothMapItem">
@@ -620,7 +702,7 @@
 						<%--<span class="showToothMap" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>--%>
 					</div>
 					<div class="toothTime">
-						<span>时长：</span><input id="toothdecayedtime" type="text" placeholder="请输入时长"/>
+						<span>时长：</span><input id="toothdecayedtime" type="text" disabled style="cursor:not-allowed;" placeholder="请输入时长"/>
 					</div>
 				</li>
 				<li class="toothMapItem">
@@ -671,7 +753,7 @@
 						<%--<span class="showToothMap" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>--%>
 					</div>
 					<div class="toothTime">
-						<span>时长：</span><input id="toothsnaptime" type="text" placeholder="请输入时长"/>
+						<span>时长：</span><input id="toothsnaptime" type="text" disabled style="cursor:not-allowed;" placeholder="请输入时长"/>
 					</div>
 				</li>
 			</ul>
@@ -691,13 +773,13 @@
 	<!-- 高血压 -->
 	<div class="row">
 		<div class="col-md-12 col-sm-12 col-xs-12 smallTitle" style="padding-left:0px;"><span class="circle"></span>既往史</div>
-		<div class="col-md-1 col-sm-1 col-xs-1 colDefined combgGray backColor">
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 名称div -->
 			<div class="name_div common_style">
 				<span>高血压:</span>
 			</div>
 		</div>
-		<div class="col-md-1 col-sm-2 col-xs-2 colDefined combgGray backColor">
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<div class="select_group common_style">
 				<!-- 选项div -->
 				<div class="option_div">
@@ -706,22 +788,22 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-1 col-sm-2 col-xs-2 colDefined combgGray backColor">
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="hypertension" type="text" placeholder="时间"/>
+				<input id="hypertension" disabled type="text" style="cursor:not-allowed;" placeholder="时间"/>
 			</div>
 		</div>
-		<div class="col-md-2 col-sm-4 col-xs-4 colDefined combgGray">
+		<div class="col-md-3 col-sm-3 col-xs-3 colDefined combgGray">
 			<!-- 填写组合框 -->
 			<div class="fillWrite_group common_style">
 				<!-- 填写名称 -->
 				<span class="fillWrite_name" style="font-weight: normal;">目前血压:</span>
 				<!-- 填写框-->
-				<input id="pressure" style="width: 120px;text-align: center;padding: 0px;" class="fillWrite_input" placeholder="125/69" onblur="TextLengthCheck(this.id,10);" type="text"/>
+				<input id="pressure" disabled style="width:120px;text-align:center;padding:0px;cursor:not-allowed;" class="fillWrite_input" placeholder="125/69" onblur="TextLengthCheck(this.id,10);" type="text"/>
 			</div>
 		</div>
-		<div class="col-md-2 col-sm-3 col-xs-3 colDefined combgGray backColor">
+		<div class="col-md-3 col-sm-3 col-xs-3 colDefined combgGray backColor">
 			<!-- 选择组合框 -->
 			<div class="select_group common_style">
 				<!-- 选项名称 -->
@@ -729,17 +811,17 @@
 				<!-- 选项 -->
 				<!-- 选项div -->
 				<div class="option_div">
-					<input name="istakemedicie" id="isTakeMedicie_y" value="1" type="radio" disabled="disabled"/><label for="isTakeMedicie_y">是</label>
-					<input name="istakemedicie" id="isTakeMedicie_n" value="0" type="radio" disabled="disabled"/><label for="isTakeMedicie_n">否</label>
+					<input name="istakemedicie" disabled id="isTakeMedicie_y" value="1" type="radio"/><label for="isTakeMedicie_y">是</label>
+					<input name="istakemedicie" disabled id="isTakeMedicie_n" value="0" type="radio"/><label for="isTakeMedicie_n">否</label>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-5 col-sm-6 col-xs-6 colDefined combgGray">
+		<%--<div class="col-md-5 col-sm-6 col-xs-6 colDefined combgGray">
 			<!-- 填写组合框 -->
 			<div class="selectgroup common_style hypertensionmedicineDiv">
 				<span class="groupName" style="font-weight: normal;">常用药物：</span>
 				<select id="hypertensionmedicine" class="groupSelect selectpicker" multiple title="请选择" style="pointer-events: none;">
-					<%--<option value="">请选择</option>--%>
+					&lt;%&ndash;<option value="">请选择</option>&ndash;%&gt;
 					<option value="倍他洛克">倍他洛克</option>
 					<option value="比索洛尔">比索洛尔</option>
 					<option value="硝苯地平">硝苯地平</option>
@@ -753,9 +835,9 @@
 					<option value="络活喜">络活喜</option>
 				</select>
 			</div>
-			<%--打印展示--%>
+			&lt;%&ndash;打印展示&ndash;%&gt;
 			<div class="medicineText">常用药物：<span class="hypertensionmedicine"></span></div>
-		</div>
+		</div>--%>
 	</div>
 	<!-- 心脏病 -->
 	<div class="row">
@@ -774,10 +856,10 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-1 col-sm-2 col-xs-2 colDefined">
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 			<!-- 时间div -->
 			<div class="time_div common_style bgwhite">
-				<input id="heardiease" type="text" placeholder="时间"/>
+				<input id="heardiease" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/>
 			</div>
 		</div>
 		<div class="col-md-3 col-sm-5 col-xs-5 colDefined backcolorGray">
@@ -787,17 +869,17 @@
 				<span class="select_name">是否常备药在身边:</span>
 				<!-- 选项 -->
 				<div class="option_div">
-					<input name="ispreparemedication" id="isPrepareMedication_y" value="1" type="radio" disabled="disabled"/><label for="isPrepareMedication_y">是</label>
-					<input name="ispreparemedication" id="isPrepareMedication_n" value="0" type="radio" disabled="disabled"/><label for="isPrepareMedication_n">否</label>
+					<input name="ispreparemedication" id="isPrepareMedication_y" disabled style="cursor:not-allowed;" value="1" type="radio"/><label for="isPrepareMedication_y">是</label>
+					<input name="ispreparemedication" id="isPrepareMedication_n" disabled style="cursor:not-allowed;" value="0" type="radio"/><label for="isPrepareMedication_n">否</label>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4 col-sm-6 col-xs-6 colDefined backcolorGray">
+		<%--<div class="col-md-4 col-sm-6 col-xs-6 colDefined backcolorGray">
 			<!-- 填写组合框 -->
 			<div class="selectgroup common_style">
 				<span class="groupName" style="font-weight: normal;">常用药物：</span>
 				<select id="heardieasemedicine" class="groupSelect selectpicker" multiple title="请选择" style="pointer-events: none;">
-					<%--<option value="">请选择</option>--%>
+					&lt;%&ndash;<option value="">请选择</option>&ndash;%&gt;
 					<option value="速效救心丸">速效救心丸</option>
 					<option value="复方丹参滴丸">复方丹参滴丸</option>
 					<option value="复方丹参片">复方丹参片</option>
@@ -806,9 +888,9 @@
 					<option value="心痛定片(硝苯地平片)">心痛定片(硝苯地平片)</option>
 				</select>
 			</div>
-			<%--打印展示--%>
+			&lt;%&ndash;打印展示&ndash;%&gt;
 			<div class="medicineText">常用药物：<span class="heardieasemedicine"></span></div>
-		</div>
+		</div>--%>
 	</div>
 	<!-- 糖尿病 -->
 	<div class="row">
@@ -830,7 +912,7 @@
 		<div class="col-md-1 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="diabetes" type="text" placeholder="时间"/>
+				<input id="diabetes" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
 			</div>
 		</div>
 		<div class="col-md-3 col-sm-6 col-xs-6 colDefined combgGray backColor">
@@ -846,12 +928,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-3 col-sm-6 col-xs-6 colDefined combgGray">
+		<%--<div class="col-md-3 col-sm-6 col-xs-6 colDefined combgGray">
 			<!-- 填写组合框 -->
 			<div class="selectgroup common_style">
 				<span class="groupName" style="font-weight: normal;">口服常用药：</span>
 				<select id="diabetesoralmedicine" class="groupSelect selectpicker" multiple title="请选择" style="pointer-events: none;">
-					<%--<option value="">请选择</option>--%>
+					&lt;%&ndash;<option value="">请选择</option>&ndash;%&gt;
 					<option value="二甲双胍">二甲双胍</option>
 					<option value="格列美脲">格列美脲</option>
 					<option value="格列本脲">格列本脲</option>
@@ -870,7 +952,7 @@
 					<option value="拜糖平">拜糖平</option>
 				</select>
 			</div>
-			<%--打印展示--%>
+			&lt;%&ndash;打印展示&ndash;%&gt;
 			<div class="medicineText">口服常用药：<span class="diabetesoralmedicine"></span></div>
 		</div>
 		<div class="col-md-3 col-sm-6 col-xs-6 colDefined combgGray">
@@ -878,15 +960,15 @@
 			<div class="selectgroup common_style">
 				<span class="groupName" style="font-weight: normal;">注射常用药：</span>
 				<select id="diabetesinjectionmedicine" class="groupSelect selectpicker" multiple title="请选择" style="pointer-events: none;">
-					<%--<option value="">请选择</option>--%>
+					&lt;%&ndash;<option value="">请选择</option>&ndash;%&gt;
 					<option value="利拉鲁肽">利拉鲁肽</option>
 					<option value="艾塞那肽">艾塞那肽</option>
 					<option value="胰岛素">胰岛素</option>
 				</select>
 			</div>
-			<%--打印展示--%>
+			&lt;%&ndash;打印展示&ndash;%&gt;
 			<div class="medicineText">注射常用药：<span class="diabetesinjectionmedicine"></span></div>
-		</div>
+		</div>--%>
 	</div>
 	<!-- 六个月内做过心瓣膜手术 -->
 	<div class="row bgWhite">
@@ -935,13 +1017,13 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="bloodcoagulation" type="text" placeholder="时间"/>
+				<input id="bloodcoagulation" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/>
 			</div>
 		</div>
 	</div>
 	<!-- 服用抗凝药物 -->
 	<div class="row bgWhite">
-		<div class="col-md-5 col-sm-5 col-xs-5 colDefined">
+		<div class="col-md-8 col-sm-8 col-xs-8 colDefined">
 			<!-- 名称div -->
 			<div class="name_div common_style fillWrite_group">
 				<span class="print_textStyle ipadText">服用抗凝药物或其他可以导致凝血功能障碍的药物:</span>
@@ -954,18 +1036,18 @@
 				<input name="isantifreezing" id="isAntiFreezing_y" value="1" type="radio" onclick="ishaveantifreezing(this.name)"/><label for="isAntiFreezing_y">有</label>
 			</div>
 		</div>
-		<div class="col-md-2 col-sm-1 col-xs-1 colDefined backcolorGray">
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="antifreezingtime" type="text" placeholder="时间"/>
+				<input id="antifreezingtime" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/>
 			</div>
 		</div>
-		<div class="col-md-3 col-sm-4 col-xs-4 colDefined backcolorGray" style="padding-left: 10px;">
+		<%--<div class="col-md-3 col-sm-4 col-xs-4 colDefined backcolorGray" style="padding-left: 10px;">
 			<!-- 填写组合框 -->
 			<div class="selectgroup common_style">
 				<span class="groupName ipadText" style="font-weight: normal;">常用药物：</span>
 				<select id="antifreezingmedicine" class="groupSelect selectpicker" multiple title="请选择" style="pointer-events: none;">
-					<%--<option value="">请选择</option>--%>
+					&lt;%&ndash;<option value="">请选择</option>&ndash;%&gt;
 					<option value="阿司匹林">阿司匹林</option>
 					<option value="波立维">波立维</option>
 					<option value="华法林">华法林</option>
@@ -975,9 +1057,9 @@
 					<option value="利伐沙班">利伐沙班</option>
 				</select>
 			</div>
-			<%--打印展示--%>
+			&lt;%&ndash;打印展示&ndash;%&gt;
 			<div class="medicineText">常用药物：<span class="antifreezingmedicine"></span></div>
-		</div>
+		</div>--%>
 	</div>
 	<!-- 乙肝丙肝 -->
 	<div class="row">
@@ -997,7 +1079,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="hepatitisb" type="text" placeholder="时间"/>
+				<input id="hepatitisb" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
@@ -1016,7 +1098,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="hepatitisc" type="text" placeholder="时间"/>
+				<input id="hepatitisc" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/>
 			</div>
 		</div>
 	</div>
@@ -1038,7 +1120,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="hiv" type="text" placeholder="时间"/>
+				<input id="hiv" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
@@ -1057,7 +1139,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="cancer" type="text" placeholder="时间"/>
+				<input id="cancer" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
 			</div>
 		</div>
 	</div>
@@ -1079,7 +1161,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="syphilis" type="text" placeholder="时间"/>
+				<input id="syphilis" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
@@ -1098,7 +1180,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="maxillofacial" type="text" placeholder="时间"/>
+				<input id="maxillofacial" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
 			</div>
 		</div>
 	</div>
@@ -1120,7 +1202,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="inflammation" type="text" placeholder="时间"/>
+				<input id="inflammation" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-1 col-xs-1 colDefined backcolorGray">
@@ -1139,7 +1221,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="drugabuse" type="text" placeholder="时间"/>
+				<input id="drugabuse" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
 			</div>
 		</div>
 	</div>
@@ -1161,7 +1243,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="psychosis" type="text" placeholder="时间"/>
+				<input id="psychosis" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
@@ -1180,9 +1262,69 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="mucousmembrane" type="text" placeholder="时间"/>
+				<input id="mucousmembrane" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
 			</div>
 		</div>
+	</div>
+	<!-- 长期应用糖皮质激素 -->
+	<div class="row">
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
+			<!-- 名称div -->
+			<div class="name_div common_style">
+				<span>长期应用糖皮质激素:</span>
+			</div>
+		</div>
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
+			<!-- 选项div -->
+			<div class="option_div common_style">
+				<input name="isglucocorticoids" id="IsGlucocorticoids_n" value="0" type="radio" onclick="ishaveillness(this.name);ishavaGlucocorticoids(this.name);"/><label for="IsGlucocorticoids_n">无</label>
+				<input name="isglucocorticoids" id="IsGlucocorticoids_y" value="1" type="radio" onclick="ishaveillness(this.name);ishavaGlucocorticoids(this.name);"/><label for="IsGlucocorticoids_y">有</label>
+			</div>
+		</div>
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
+			<!-- 时间div -->
+			<div class="time_div common_style">
+				<input id="glucocorticoids" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+			</div>
+		</div>
+		<%--怀孕--%>
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
+			<!-- 名称div -->
+			<div class="name_div common_style">
+				<span>怀孕:</span>
+			</div>
+		</div>
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
+			<div class="select_group common_style">
+				<!-- 选项div -->
+				<div class="option_div">
+					<input name="ispregnancy" id="isPregnancy_n" value="0" type="radio" onclick="ishaveillness(this.name)"/><label for="isPregnancy_n">无</label>
+					<input name="ispregnancy" id="isPregnancy_y" value="1" type="radio" onclick="ishaveillness(this.name)"/><label for="isPregnancy_y">有</label>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
+			<!-- 时间div -->
+			<div class="time_div common_style">
+				<input id="pregnancy" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+			</div>
+		</div>
+		<%--<div class="col-md-6 col-sm-5 col-xs-5 colDefined combgGray">
+			<!-- 填写组合框 -->
+			<div class="selectgroup common_style">
+				<span class="groupName" style="font-weight: normal;">常用药物：</span>
+				<select id="glucocorticoidsmedicine" class="groupSelect selectpicker" multiple title="请选择" style="pointer-events: none;">
+					&lt;%&ndash;<option value="">请选择</option>&ndash;%&gt;
+					<option value="泼尼松">泼尼松</option>
+					<option value="甲泼尼松">甲泼尼松</option>
+					<option value="倍他米松">倍他米松</option>
+					<option value="得宝松">得宝松</option>
+					<option value="泼尼松龙">泼尼松龙</option>
+				</select>
+			</div>
+			&lt;%&ndash;打印展示&ndash;%&gt;
+			<div class="medicineText">常用药物：<span class="glucocorticoidsmedicine"></span></div>
+		</div>--%>
 	</div>
 	<!-- 骨质疏松症用药情况： -->
 	<div class="row bgWhite">
@@ -1205,7 +1347,7 @@
 				<!-- 填写名称 -->
 				<span class="fillWrite_name" style="font-weight: normal;">注射:</span>
 				<!-- 填写框-->
-				<input id="pharmacy" class="fillWrite_input" type="text" placeholder="时间"/>
+				<input id="pharmacy" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-3 col-xs-3 colDefined">
@@ -1214,15 +1356,15 @@
 				<!-- 填写名称 -->
 				<span class="fillWrite_name" style="font-weight: normal;">口服:</span>
 				<!-- 填写框-->
-				<input id="takeorallytime" class="fillWrite_input" type="text" placeholder="时间"/>
+				<input id="takeorallytime" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
 			</div>
 		</div>
-		<div class="col-md-3 col-sm-12 col-xs-12 colDefined">
+		<%--<div class="col-md-3 col-sm-12 col-xs-12 colDefined">
 			<!-- 填写组合框 -->
 			<div class="selectgroup common_style">
 				<span class="groupName" style="font-weight: normal;">常用药物：</span>
 				<select id="pharmacymedicine" class="groupSelect selectpicker" multiple title="请选择" style="pointer-events: none;">
-					<%--<option value="">请选择</option>--%>
+					&lt;%&ndash;<option value="">请选择</option>&ndash;%&gt;
 					<option value="钙剂">钙剂</option>
 					<option value="阿法骨化醇骨化三醇">阿法骨化醇骨化三醇</option>
 					<option value="活性维生素D">活性维生素D</option>
@@ -1234,47 +1376,9 @@
 					<option value="雌激素">雌激素</option>
 				</select>
 			</div>
-			<%--打印展示--%>
+			&lt;%&ndash;打印展示&ndash;%&gt;
 			<div class="medicineText">常用药物：<span class="pharmacymedicine"></span></div>
-		</div>
-	</div>
-	<!-- 长期应用糖皮质激素 -->
-	<div class="row">
-		<div class="col-md-2 col-sm-3 col-xs-3 colDefined combgGray">
-			<!-- 名称div -->
-			<div class="name_div common_style">
-				<span>长期应用糖皮质激素:</span>
-			</div>
-		</div>
-		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
-			<!-- 选项div -->
-			<div class="option_div common_style">
-				<input name="isglucocorticoids" id="IsGlucocorticoids_n" value="0" type="radio" onclick="ishaveillness(this.name);ishavaGlucocorticoids(this.name);"/><label for="IsGlucocorticoids_n">无</label>
-				<input name="isglucocorticoids" id="IsGlucocorticoids_y" value="1" type="radio" onclick="ishaveillness(this.name);ishavaGlucocorticoids(this.name);"/><label for="IsGlucocorticoids_y">有</label>
-			</div>
-		</div>
-		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
-			<!-- 时间div -->
-			<div class="time_div common_style">
-				<input id="glucocorticoids" type="text" placeholder="时间"/>
-			</div>
-		</div>
-		<div class="col-md-6 col-sm-5 col-xs-5 colDefined combgGray">
-			<!-- 填写组合框 -->
-			<div class="selectgroup common_style">
-				<span class="groupName" style="font-weight: normal;">常用药物：</span>
-				<select id="glucocorticoidsmedicine" class="groupSelect selectpicker" multiple title="请选择" style="pointer-events: none;">
-					<%--<option value="">请选择</option>--%>
-					<option value="泼尼松">泼尼松</option>
-					<option value="甲泼尼松">甲泼尼松</option>
-					<option value="倍他米松">倍他米松</option>
-					<option value="得宝松">得宝松</option>
-					<option value="泼尼松龙">泼尼松龙</option>
-				</select>
-			</div>
-			<%--打印展示--%>
-			<div class="medicineText">常用药物：<span class="glucocorticoidsmedicine"></span></div>
-		</div>
+		</div>--%>
 	</div>
 	<!-- 其他系统疾病 -->
 	<div class="row bgWhite">
@@ -1287,21 +1391,21 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 			<!-- 选项div -->
 			<div class="option_div common_style">
-				<input name="isotherdiseases" id="isOtherDiseasesString_n" value="0" type="radio" onclick="ishaveillness(this.name)"/><label for="isOtherDiseasesString_n">无</label>
-				<input name="isotherdiseases" id="isOtherDiseasesString_y" value="1" type="radio" onclick="ishaveillness(this.name)"/><label for="isOtherDiseasesString_y">有</label>
+				<input name="isotherdiseases" id="isOtherDiseasesString_n" value="0" type="radio" onclick="ishaveillness(this.name);ishaveOther(this.name);"/><label for="isOtherDiseasesString_n">无</label>
+				<input name="isotherdiseases" id="isOtherDiseasesString_y" value="1" type="radio" onclick="ishaveillness(this.name);ishaveOther(this.name);"/><label for="isOtherDiseasesString_y">有</label>
 			</div>
 		</div>
 
 		<div class="col-md-6 col-sm-7 col-xs-7 colDefined">
 			<!-- 其他疾病输入框 -->
 			<div class="time_div common_style">
-				<input id="otherdiseasestext" style="width:100%;border:0px;border-bottom: 1px solid #c3c3c3;" type="text" placeholder="其他系统疾病"/>
+				<input id="otherdiseasestext" style="width:100%;border:0px;border-bottom: 1px solid #c3c3c3;cursor:not-allowed;" type="text" disabled placeholder="其他系统疾病"/>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-1 col-xs-1 colDefined">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="otherdiseases" type="text" placeholder="时间"/>
+				<input id="otherdiseases" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
 			</div>
 		</div>
 	</div>
@@ -1327,37 +1431,13 @@
 			<div class="fillWrite_group common_style">
 				<!-- 填写名称 -->
 				<!-- 填写框-->
-				<input id="drugallergy" placeholder="请输入过敏药物" onblur="TextLengthCheck(this.id,28);" class="fillWrite_input" style="width:100%;border:0px;border-bottom: 1px solid #c3c3c3;" type="text"/>
+				<input id="drugallergy" placeholder="请输入过敏药物" disabled onblur="TextLengthCheck(this.id,28);" class="fillWrite_input" style="width:100%;border:0px;border-bottom: 1px solid #c3c3c3;cursor:not-allowed;" type="text"/>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-1 col-xs-1 colDefined combgGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="allergiclength" type="text" placeholder="时间"/>
-			</div>
-		</div>
-	</div>
-	<!-- 怀孕 -->
-	<div class="row bgWhite">
-		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
-			<!-- 名称div -->
-			<div class="name_div common_style">
-				<span>怀孕:</span>
-			</div>
-		</div>
-		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
-			<div class="select_group common_style">
-				<!-- 选项div -->
-				<div class="option_div">
-					<input name="ispregnancy" id="isPregnancy_n" value="0" type="radio" onclick="ishaveillness(this.name)"/><label for="isPregnancy_n">无</label>
-					<input name="ispregnancy" id="isPregnancy_y" value="1" type="radio" onclick="ishaveillness(this.name)"/><label for="isPregnancy_y">有</label>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-8 col-sm-8 col-xs-8 colDefined">
-			<!-- 时间div -->
-			<div class="time_div common_style">
-				<input id="pregnancy" type="text" placeholder="时间"/>
+				<input id="allergiclength" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
 			</div>
 		</div>
 	</div>
@@ -1367,9 +1447,9 @@
 			<!-- 填写组合框 -->
 			<div class="fillWrite_group common_style">
 				<!-- 填写名称 -->
-				<span class="fillWrite_name">正在服用的药物:</span>
+				<span class="fillWrite_name">正在服用的主要药物:</span>
 				<!-- 填写框-->
-				<input id="onmedication" placeholder="华法林，降压药，降糖药..." onblur="TextLengthCheck(this.id,40);" style="width: 88%;border:0px;border-bottom: 1px solid #c3c3c3;" class="fillWrite_input" type="text"/>
+				<input id="onmedication" placeholder="华法林，降压药，降糖药..." onblur="TextLengthCheck(this.id,40);" style="width: 87%;border:0px;border-bottom: 1px solid #c3c3c3;" class="fillWrite_input" type="text"/>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-1 col-xs-1 colDefined">
@@ -1394,8 +1474,8 @@
 			<div class="select_group common_style">
 				<!-- 选项div -->
 				<div class="option_div">
-					<input name="issmoke" id="isSmoke_n" value="0" type="radio" onclick="ishaveillness(this.name);ishavaDrugAllergy(this.name);"/><label for="isSmoke_n">无</label>
-					<input name="issmoke" id="isSmoke_y" value="1" type="radio" onclick="ishaveillness(this.name);ishavaDrugAllergy(this.name);"/><label for="isSmoke_y">有</label>
+					<input name="issmoke" id="isSmoke_n" value="0" type="radio" onclick="ishaveillness(this.name);isSmokeing(this.name);"/><label for="isSmoke_n">无</label>
+					<input name="issmoke" id="isSmoke_y" value="1" type="radio" onclick="ishaveillness(this.name);isSmokeing(this.name);"/><label for="isSmoke_y">有</label>
 				</div>
 			</div>
 		</div>
@@ -1403,7 +1483,7 @@
 			<!-- 填写组合框 -->
 			<div class="fillWrite_group common_style">
 				<!-- 填写框-->
-				<input id="smoketime" class="fillWrite_input" type="text" placeholder="时间"/>
+				<input id="smoketime" class="fillWrite_input" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/>
 			</div>
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-6 colDefined">
@@ -1412,7 +1492,7 @@
 				<!-- 填写名称 -->
 				<span class="fillWrite_name" style="font-weight: normal;">抽烟支数/日:</span>
 				<!-- 填写框-->
-				<input id="smokenum" class="fillWrite_input" type="text"/>
+				<input id="smokenum" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;"/>
 			</div>
 		</div>
 	</div>
@@ -1429,8 +1509,8 @@
 			<div class="select_group common_style">
 				<!-- 选项div -->
 				<div class="option_div">
-					<input name="isdrink" id="isDrink_n" value="0" type="radio" onclick="ishaveillness(this.name);ishavaDrugAllergy(this.name);"/><label for="isDrink_n">无</label>
-					<input name="isdrink" id="isDrink_y" value="1" type="radio" onclick="ishaveillness(this.name);ishavaDrugAllergy(this.name);"/><label for="isDrink_y">有</label>
+					<input name="isdrink" id="isDrink_n" value="0" type="radio" onclick="ishaveillness(this.name);isdrinking(this.name);"/><label for="isDrink_n">无</label>
+					<input name="isdrink" id="isDrink_y" value="1" type="radio" onclick="ishaveillness(this.name);isdrinking(this.name);"/><label for="isDrink_y">有</label>
 				</div>
 			</div>
 		</div>
@@ -1438,15 +1518,15 @@
 			<!-- 填写组合框 -->
 			<div class="fillWrite_group common_style">
 				<!-- 填写框-->
-				<input id="drinktime" class="fillWrite_input" type="text" placeholder="时间"/>
+				<input id="drinktime" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
 			</div>
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-6 colDefined combgGray">
 			<!-- 选项div -->
 			<div class="option_div common_style">
-				<input name="drinkscale" id="drinkScale_little" value="少量" type="radio"/><label for="drinkScale_little">少量</label>
-				<input name="drinkscale" id="drinkScale_center" value="中量" type="radio"/><label for="drinkScale_center">中量</label>
-				<input name="drinkscale" id="drinkScale_big" value="大量" type="radio"/><label for="drinkScale_big">大量</label>
+				<input name="drinkscale" id="drinkScale_little" disabled style="cursor:not-allowed;" value="少量" type="radio"/><label for="drinkScale_little">少量</label>
+				<input name="drinkscale" id="drinkScale_center" disabled style="cursor:not-allowed;" value="中量" type="radio"/><label for="drinkScale_center">中量</label>
+				<input name="drinkscale" id="drinkScale_big" disabled style="cursor:not-allowed;" value="大量" type="radio"/><label for="drinkScale_big">大量</label>
 			</div>
 		</div>
 	</div>
@@ -1463,8 +1543,8 @@
 			<div class="select_group common_style">
 				<!-- 选项div -->
 				<div class="option_div">
-					<input name="isodontoprisis" id="isOdontoprisis_n" value="0" type="radio" onclick="ishaveillness(this.name);ishavaDrugAllergy(this.name);"/><label for="isOdontoprisis_n">无</label>
-					<input name="isodontoprisis" id="isOdontoprisis_y" value="1" type="radio" onclick="ishaveillness(this.name);ishavaDrugAllergy(this.name);"/><label for="isOdontoprisis_y">有</label>
+					<input name="isodontoprisis" id="isOdontoprisis_n" value="0" type="radio" onclick="ishaveillness(this.name);isOdontoprisis(this.name);"/><label for="isOdontoprisis_n">无</label>
+					<input name="isodontoprisis" id="isOdontoprisis_y" value="1" type="radio" onclick="ishaveillness(this.name);isOdontoprisis(this.name);"/><label for="isOdontoprisis_y">有</label>
 				</div>
 			</div>
 		</div>
@@ -1472,15 +1552,15 @@
 			<!-- 填写组合框 -->
 			<div class="fillWrite_group common_style">
 				<!-- 填写框-->
-				<input id="odontoprisis" class="fillWrite_input" type="text" placeholder="时间"/>
+				<input id="odontoprisis" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
 			</div>
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-6 colDefined">
 			<!-- 选项div -->
 			<div class="option_div common_style">
-				<input name="odontoprisisdegree" id="odontoprisisDegree_more" value="1" type="radio"/><label for="odontoprisisDegree_more">频繁</label>
-				<input name="odontoprisisdegree" id="odontoprisisDegree_few" value="2" type="radio"/><label for="odontoprisisDegree_few">偶尔</label>
-				<input name="odontoprisisdegree" id="odontoprisisDegree_dimness" value="3" type="radio"/><label for="odontoprisisDegree_dimness">不清楚</label>
+				<input name="odontoprisisdegree" id="odontoprisisDegree_more" disabled style="cursor:not-allowed;" value="1" type="radio"/><label for="odontoprisisDegree_more">频繁</label>
+				<input name="odontoprisisdegree" id="odontoprisisDegree_few" disabled style="cursor:not-allowed;" value="2" type="radio"/><label for="odontoprisisDegree_few">偶尔</label>
+				<input name="odontoprisisdegree" id="odontoprisisDegree_dimness" disabled style="cursor:not-allowed;" value="3" type="radio"/><label for="odontoprisisDegree_dimness">不清楚</label>
 			</div>
 		</div>
 	</div>
@@ -1530,8 +1610,8 @@
 			<div class="select_group common_style">
 				<!-- 选项div -->
 				<div class="option_div">
-					<input name="isteethclean" id="isTeethclean_n" value="0" type="radio" onclick="ishaveillness(this.name);ishavaDrugAllergy(this.name);"/><label for="isTeethclean_n">无</label>
-					<input name="isteethclean" id="isTeethclean_y" value="1" type="radio" onclick="ishaveillness(this.name);ishavaDrugAllergy(this.name);"/><label for="isTeethclean_y">有</label>
+					<input name="isteethclean" id="isTeethclean_n" value="0" type="radio" onclick="ishaveillness(this.name);isteethclean(this.name);"/><label for="isTeethclean_n">无</label>
+					<input name="isteethclean" id="isTeethclean_y" value="1" type="radio" onclick="ishaveillness(this.name);isteethclean(this.name);"/><label for="isTeethclean_y">有</label>
 				</div>
 			</div>
 		</div>
@@ -1540,7 +1620,7 @@
 			<div class="fillWrite_group common_style">
 				<!-- 填写框-->
 				<span>频次</span>
-				<input id="teethcleannum" class="fillWrite_input" type="text" placeholder="时间"/>
+				<input id="teethcleannum" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
 				<span>次/年</span>
 			</div>
 		</div>
@@ -1550,18 +1630,18 @@
 			<div class="fillWrite_group common_style">
 				<!-- 填写框-->
 				<span>最近一次洁牙:</span>
-				<input id="planttime" class="fillWrite_input consent_time" type="text" readonly="readonly" style="width:150px;" placeholder="请选择日期"/>
+				<input id="planttime" class="fillWrite_input consent_time" type="text" disabled style="width:150px;cursor:not-allowed;" readonly="readonly" placeholder="请选择日期"/>
 			</div>
 		</div>
 	</div>
     <!-- 标题 -->
-    <div class="row">
+    <%--<div class="row">
         <div class="col-md-12 col-sm-12" style="position: relative;display: none;" id="secondLogoImg">
             <!-- <div class="big_title"><span class="bigtitle">主诉及既往病史</span></div> -->
             <img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
             <span class="bigtitle" style="visibility:hidden;">主诉及既往病史</span>
         </div>
-    </div>
+    </div>--%>
 	<!-- 其他 -->
 	<%--<div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 colDefined">
@@ -1575,7 +1655,7 @@
             </div>
         </div>
     </div>--%>
-	<div class="row question_row" style="text-align: right;border-top: 2px solid #776c6c;">
+	<div class="row question_row" style="text-align: right;border-top: 1px solid black;">
 		<p class="question_text" style="margin-top: 40px;font-size: 16px;"><font style="color:red;font-size: 18px;margin-right: 10px;">*</font>以上所述本人健康状况属实，对隐瞒病情所造成的不良后果责任自负。</p>
 	</div>
 	<!-- 手术签名 -->
@@ -1904,14 +1984,16 @@
 	}
 	//牙位图赋值
 	function toothMapInit(fObj,sObj,toothStr){
-		var toothArr=toothStr.split(";");
-		$("."+fObj).find("."+sObj).each(function(i,obj){
-			for (var i = 0; i < toothArr.length; i++) {
-				if($(this).find(".num").text()==toothArr[i]){
-					$(this).addClass("current");
+		if(toothStr){
+			var toothArr=toothStr.split(";");
+			$("."+fObj).find("."+sObj).each(function(i,obj){
+				for (var i = 0; i < toothArr.length; i++) {
+					if($(this).find(".num").text()==toothArr[i]){
+						$(this).addClass("current");
+					}
 				}
-			}
-		});
+			});
+		}
 	}
 
 	/* 牙齿症状选中 */
@@ -1971,7 +2053,7 @@
 		var toothlesstime=$("#toothlesstime").val(); //牙松动时间
 		var toothdecayedtime=$("#toothdecayedtime").val(); //龋齿时间
 		var toothsnaptime=$("#toothsnaptime").val(); //牙折断时间
-		var implantRestoration=$("input[name='ImplantRestoration']:checked").val(); //是否要求种植修复
+		var implantRestoration=$("input[name='implantrestoration']:checked").val(); //是否要求种植修复
 		//既往史
 		var isHypertension = $('input[name="ishypertension"]:checked').val();//是否有高血压
 		var hypertension = $("#hypertension").val();//患高血压年限
@@ -2202,7 +2284,7 @@
 		var toothlesstime=$("#toothlesstime").val(); //牙松动时间
 		var toothdecayedtime=$("#toothdecayedtime").val(); //龋齿时间
 		var toothsnaptime=$("#toothsnaptime").val(); //牙折断时间
-		var implantRestoration=$("input[name='ImplantRestoration']:checked").val(); //是否要求种植修复
+		var implantRestoration=$("input[name='implantrestoration']:checked").val(); //是否要求种植修复
 		//既往史
 		var isHypertension = $('input[name="ishypertension"]:checked').val();//是否有高血压
 		var hypertension = $("#hypertension").val();//患高血压年限
@@ -2432,11 +2514,11 @@
 		if($("input[name="+objName+"]:checked").val()==0){
 			//$("#"+inputTextid).val("").attr("disabled","disabled").css("background-color","#c3c3c3");  //原输入框
 			$("#"+inputTextid+"time").val("").attr("disabled","disabled").css("background-color","#c3c3c3"); //患病年限
-			$("#antifreezingmedicine").val("").attr("disabled","disabled").css("background-color","#c3c3c3").css("pointer-events","none"); //常用药物
+			//$("#antifreezingmedicine").val("").attr("disabled","disabled").css("background-color","#c3c3c3").css("pointer-events","none"); //常用药物
 		}else if($("input[name="+objName+"]:checked").val()==1){
 			//$("#"+inputTextid).removeAttr("disabled").css("background-color","transparent").css("cursor","auto"); //原输入框
 			$("#"+inputTextid+"time").removeAttr("disabled").css("background-color","transparent").css("cursor","auto"); //患病年限
-			$("#antifreezingmedicine").removeAttr("disabled").css("background-color","transparent").css("cursor","auto").css("pointer-events","auto"); //常用药物
+			//$("#antifreezingmedicine").removeAttr("disabled").css("background-color","transparent").css("cursor","auto").css("pointer-events","auto"); //常用药物
 		}
 	}
 	/* 梅毒单独验证   名字不对应 */
@@ -2451,11 +2533,11 @@
 	/* 骨质疏松单独验证，因为多了一个用药方式 */
 	function ishavapharmacy(objName){
 		if($("input[name="+objName+"]:checked").val()==0){
-			$("input[name='treatment']").removeAttr("checked").attr("disabled","disabled"); //静脉或者口服
-			$("#pharmacymedicine").val("").attr("disabled","disabled").css("pointer-events","none"); //常用药物
+			$("#takeorallytime").val("").attr("disabled","disabled").css("background-color","#c3c3c3"); //静脉或者口服
+			//$("#pharmacymedicine").val("").attr("disabled","disabled").css("pointer-events","none"); //常用药物
 		}else if($("input[name="+objName+"]:checked").val()==1){
-			$("input[name='treatment']").removeAttr("disabled").css("cursor","auto"); //静脉或者口服
-			$("#pharmacymedicine").removeAttr("disabled").css("cursor","auto").css("pointer-events","auto"); //常用药物
+			$("#takeorallytime").removeAttr("disabled").css("cursor","auto").css("background-color","transparent"); //静脉或者口服
+			//$("#pharmacymedicine").removeAttr("disabled").css("cursor","auto").css("pointer-events","auto"); //常用药物
 		}
 	}
 	/* 高血压单独验证，因为多了是否服药是否控制目前血压 */
@@ -2482,11 +2564,11 @@
 		if($("input[name="+objName+"]:checked").val()==0){
 			$("#heardiease").removeAttr("checked").attr("disabled","disabled"); //患病年限
 			$("input[name='ispreparemedication']").removeAttr("checked").attr("disabled","disabled"); //是否有常备药
-			$("#heardieasemedicine").val("").attr("disabled","disabled").css("pointer-events","none"); //常用药物
+			//$("#heardieasemedicine").val("").attr("disabled","disabled").css("pointer-events","none"); //常用药物
 		}else if($("input[name="+objName+"]:checked").val()==1){
 			$("#heardiease").removeAttr("disabled").css("cursor","auto");
 			$("input[name='ispreparemedication']").removeAttr("disabled").css("cursor","auto");
-			$("#heardieasemedicine").removeAttr("disabled").css("cursor","auto").css("pointer-events","auto");
+			//$("#heardieasemedicine").removeAttr("disabled").css("cursor","auto").css("pointer-events","auto");
 		}
 	}
 	/* 糖尿病，因为多了一个是否控制怎么控制 */
@@ -2495,33 +2577,78 @@
 			$("#diabetes").removeAttr("checked").attr("disabled","disabled");   //患病年限
 			$("input[name='dietcontrol']").removeAttr("checked").attr("disabled","disabled");   //怎么控制
 			$("input[name='isdietcontrol']").removeAttr("checked").attr("disabled","disabled");  //是否控制
-			$("#diabetesoralmedicine").val("").attr("disabled","disabled").css("pointer-events","none");  //口服常用药
-			$("#diabetesinjectionmedicine").val("").attr("disabled","disabled").css("pointer-events","none");  //注射常用药
+			//$("#diabetesoralmedicine").val("").attr("disabled","disabled").css("pointer-events","none");  //口服常用药
+			//$("#diabetesinjectionmedicine").val("").attr("disabled","disabled").css("pointer-events","none");  //注射常用药
 		}else if($("input[name="+objName+"]:checked").val()==1){
 			$("#diabetes").removeAttr("disabled").css("cursor","auto");
 			$("input[name='dietcontrol']").removeAttr("disabled").css("cursor","auto");
 			$("input[name='isdietcontrol']").removeAttr("disabled").css("cursor","auto");
-			$("#diabetesoralmedicine").removeAttr("disabled").css("cursor","auto").css("pointer-events","auto");
-			$("#diabetesinjectionmedicine").removeAttr("disabled").css("cursor","auto").css("pointer-events","auto");
+			//$("#diabetesoralmedicine").removeAttr("disabled").css("cursor","auto").css("pointer-events","auto");
+			//$("#diabetesinjectionmedicine").removeAttr("disabled").css("cursor","auto").css("pointer-events","auto");
 		}
 	}
 	/* 长期应用糖皮质激素验证*/
 	function ishavaGlucocorticoids(objName){
 		if($("input[name="+objName+"]:checked").val()==0){
-			$("#glucocorticoidsmedicine").val("").attr("disabled","disabled").css("background-color","#c3c3c3").css("pointer-events","none"); //常用药物
+			//$("#glucocorticoidsmedicine").val("").attr("disabled","disabled").css("background-color","#c3c3c3").css("pointer-events","none"); //常用药物
 		}else if($("input[name="+objName+"]:checked").val()==1){
-			$("#glucocorticoidsmedicine").removeAttr("disabled").css("background-color","transparent").css("cursor","auto").css("pointer-events","auto"); //常用药物
+			//$("#glucocorticoidsmedicine").removeAttr("disabled").css("background-color","transparent").css("cursor","auto").css("pointer-events","auto"); //常用药物
 		}
 	}
 	/* 药物过敏单独验证，因为多了过敏时间 */
 	function ishavaDrugAllergy(objName){
 		if($("input[name="+objName+"]:checked").val()==0){
-			$("#allergiclength").removeAttr("checked").attr("disabled","disabled").css("background-color","#c3c3c3");
+			$("#allergiclength").val("").removeAttr("checked").attr("disabled","disabled").css("background-color","#c3c3c3");
 		}else if($("input[name="+objName+"]:checked").val()==1){
 			$("#allergiclength").removeAttr("disabled").css("background-color","transparent").css("cursor","auto");
 		}
 	}
-
+	/*其他系统疾病单独验证：疾病输入框*/
+	function ishaveOther(objName){
+		if($("input[name="+objName+"]:checked").val()==0){
+			$("#otherdiseasestext").val("").attr("disabled","disabled").css("background-color","#c3c3c3").css("pointer-events","none");
+		}else if($("input[name="+objName+"]:checked").val()==1){
+			$("#otherdiseasestext").removeAttr("disabled").css("background-color","transparent").css("cursor","auto").css("pointer-events","auto");
+		}
+	}
+	/*吸烟单独验证*/
+	function isSmokeing(objName){
+		if($("input[name="+objName+"]:checked").val()==0){
+			$("#smoketime").val("").attr("disabled","disabled").css("background-color","#c3c3c3").css("pointer-events","none"); //抽烟时间
+			$("#smokenum").val("").attr("disabled","disabled").css("background-color","#c3c3c3").css("pointer-events","none"); //抽烟支数
+		}else if($("input[name="+objName+"]:checked").val()==1){
+			$("#smoketime").removeAttr("disabled").css("background-color","transparent").css("cursor","auto").css("pointer-events","auto"); //抽烟时间
+			$("#smokenum").removeAttr("disabled").css("background-color","transparent").css("cursor","auto").css("pointer-events","auto"); //抽烟支数
+		}
+	}
+	/*饮酒单独验证*/
+	function isdrinking(objName){
+		if($("input[name="+objName+"]:checked").val()==0){
+			$("input[name='drinkscale']").removeAttr("checked").attr("disabled","disabled");
+			$("#drinktime").val("").attr("disabled","disabled").css("background-color","#c3c3c3").css("pointer-events","none");
+		}else if($("input[name="+objName+"]:checked").val()==1){
+			$("input[name='drinkscale']").removeAttr("disabled").css("cursor","auto");
+			$("#drinktime").removeAttr("disabled").css("background-color","transparent").css("cursor","auto").css("pointer-events","auto");
+		}
+	}
+	/*磨牙单独验证*/
+	function isOdontoprisis(objName){
+		if($("input[name="+objName+"]:checked").val()==0){
+			$("input[name='odontoprisisdegree']").removeAttr("checked").attr("disabled","disabled");
+		}else if($("input[name="+objName+"]:checked").val()==1){
+			$("input[name='odontoprisisdegree']").removeAttr("disabled").css("cursor","auto");
+		}
+	}
+	/*洁牙习惯单独验证*/
+	function isteethclean(objName){
+		if($("input[name="+objName+"]:checked").val()==0){
+			$("#teethcleannum").val("").attr("disabled","disabled").css("background-color","#c3c3c3").css("pointer-events","none");
+			$("#planttime").val("").attr("disabled","disabled").css("background-color","#c3c3c3").css("pointer-events","none");
+		}else if($("input[name="+objName+"]:checked").val()==1){
+			$("#teethcleannum").removeAttr("disabled").css("background-color","transparent").css("cursor","auto").css("pointer-events","auto");
+			$("#planttime").removeAttr("disabled").css("background-color","transparent").css("cursor","auto").css("pointer-events","auto");
+		}
+	}
 
 	/* 获取拼接牙位并校验 */
 	function getValue(inputObj){
@@ -2557,6 +2684,22 @@
 
 	function doPrint() {
 		$("input").removeAttr("placeholder");
+		//有值显示边框，无值隐藏
+		$("input[type='text']").each(function(i,obj){
+			if($(this).attr("value")){
+				$(this).css("border","0px solid red").css("border-bottom","1px solid #c3c3c3");
+			}else{
+				$(this).css("border","0px solid red");
+			}
+		});
+		//删掉禁用属性，因为禁用打印为黑
+		// 色
+		$("input[type='radio']").each(function(i,obj){
+			$(this).removeAttr("disabled");
+		});
+		$("input[type='checkbox']").each(function(i,obj){
+			$(this).removeAttr("disabled");
+		});
 		bdhtml=window.document.body.innerHTML;
 		sprnstr="<!--startprint-->";
 		eprnstr="<!--endprint-->";

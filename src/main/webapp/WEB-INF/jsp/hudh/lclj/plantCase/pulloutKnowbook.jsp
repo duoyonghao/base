@@ -468,7 +468,7 @@
             if(doctorstatus&&!patientstatus){
                 updateDoctorSignature();
             }
-		}
+        }
         //更新
         function updateDoctorSignature(){
             var url = contextPath + '/HUDH_ZzblAskAct/updateLocatorFamiliar.act';

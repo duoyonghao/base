@@ -2,58 +2,58 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="KQDS_REG">
 
-	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsReg">
-		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
-		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
-		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
-		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
-		<result column="regway" jdbcType="VARCHAR" property="regway" />
-		<result column="regsort" jdbcType="VARCHAR" property="regsort" />
-		<result column="recesort" jdbcType="VARCHAR" property="recesort" />
-		<result column="regmoney" jdbcType="VARCHAR" property="regmoney" />
-		<result column="reggoal" jdbcType="VARCHAR" property="reggoal" />
-		<result column="regdept" jdbcType="VARCHAR" property="regdept" />
-		<result column="doctor" jdbcType="VARCHAR" property="doctor" />
-		<result column="askperson" jdbcType="VARCHAR" property="askperson" />
-		<result column="ifmedrecord" jdbcType="INTEGER" property="ifmedrecord" />
-		<result column="ifcost" jdbcType="INTEGER" property="ifcost" />
-		<result column="editreason" jdbcType="VARCHAR" property="editreason" />
-		<result column="receiveno" jdbcType="VARCHAR" property="receiveno" />
-		<result column="status" jdbcType="INTEGER" property="status" />
-		<result column="username" jdbcType="VARCHAR" property="username" />
-		<result column="del" jdbcType="INTEGER" property="del" />
-		<result column="cjstatus" jdbcType="INTEGER" property="cjstatus" />
-		<result column="remark" jdbcType="VARCHAR" property="remark" />
-		<result column="organization" jdbcType="VARCHAR" property="organization" />
-		<result column="repairdoctor" jdbcType="VARCHAR" property="repairdoctor" />
-		<result column="askpersondept" jdbcType="VARCHAR" property="askpersondept" />
-		<result column="jh" jdbcType="INTEGER" property="jh" />
-	</resultMap>
-	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.base.KqdsReg">
-		<result column="beforeeditreason" jdbcType="CLOB" property="beforeeditreason" />
-	</resultMap>
-	<sql id="Base_Column_List">
+    <resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsReg">
+        <id column="SEQ_ID" jdbcType="VARCHAR" property="seqId"/>
+        <result column="createuser" jdbcType="VARCHAR" property="createuser"/>
+        <result column="createtime" jdbcType="VARCHAR" property="createtime"/>
+        <result column="usercode" jdbcType="VARCHAR" property="usercode"/>
+        <result column="regway" jdbcType="VARCHAR" property="regway"/>
+        <result column="regsort" jdbcType="VARCHAR" property="regsort"/>
+        <result column="recesort" jdbcType="VARCHAR" property="recesort"/>
+        <result column="regmoney" jdbcType="VARCHAR" property="regmoney"/>
+        <result column="reggoal" jdbcType="VARCHAR" property="reggoal"/>
+        <result column="regdept" jdbcType="VARCHAR" property="regdept"/>
+        <result column="doctor" jdbcType="VARCHAR" property="doctor"/>
+        <result column="askperson" jdbcType="VARCHAR" property="askperson"/>
+        <result column="ifmedrecord" jdbcType="INTEGER" property="ifmedrecord"/>
+        <result column="ifcost" jdbcType="INTEGER" property="ifcost"/>
+        <result column="editreason" jdbcType="VARCHAR" property="editreason"/>
+        <result column="receiveno" jdbcType="VARCHAR" property="receiveno"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="del" jdbcType="INTEGER" property="del"/>
+        <result column="cjstatus" jdbcType="INTEGER" property="cjstatus"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="organization" jdbcType="VARCHAR" property="organization"/>
+        <result column="repairdoctor" jdbcType="VARCHAR" property="repairdoctor"/>
+        <result column="askpersondept" jdbcType="VARCHAR" property="askpersondept"/>
+        <result column="jh" jdbcType="INTEGER" property="jh"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.base.KqdsReg">
+        <result column="beforeeditreason" jdbcType="CLOB" property="beforeeditreason"/>
+    </resultMap>
+    <sql id="Base_Column_List">
 		SEQ_ID, createuser, createtime, usercode, regway, regsort, recesort, regmoney, reggoal,
 		regdept, doctor, askperson, ifmedrecord, ifcost, editreason, receiveno, status,
 		username,
 		del, cjstatus, remark, organization ,repairdoctor, askpersondept,jh
 	</sql>
-	<sql id="Blob_Column_List">
+    <sql id="Blob_Column_List">
 		beforeeditreason
 	</sql>
-	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
-		select
-		<include refid="Base_Column_List" />
-		,
-		<include refid="Blob_Column_List" />
-		from KQDS_REG
-		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
-	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from KQDS_REG
+        where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
 		delete from KQDS_REG
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
 	</delete>
-	<insert id="insert" parameterType="com.kqds.entity.base.KqdsReg">
+    <insert id="insert" parameterType="com.kqds.entity.base.KqdsReg">
 		insert into KQDS_REG (SEQ_ID, createuser, createtime,
 		usercode, regway, regsort,
 		recesort, regmoney, reggoal,
@@ -74,248 +74,248 @@
 		#{organization,jdbcType=VARCHAR},
 		#{beforeeditreason,jdbcType=CLOB})
 	</insert>
-	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsReg">
-		insert into KQDS_REG
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="seqId != null">
-				SEQ_ID,
-			</if>
-			<if test="createuser != null">
-				createuser,
-			</if>
-			<if test="createtime != null">
-				createtime,
-			</if>
-			<if test="usercode != null">
-				usercode,
-			</if>
-			<if test="regway != null">
-				regway,
-			</if>
-			<if test="regsort != null">
-				regsort,
-			</if>
-			<if test="recesort != null">
-				recesort,
-			</if>
-			<if test="regmoney != null">
-				regmoney,
-			</if>
-			<if test="reggoal != null">
-				reggoal,
-			</if>
-			<if test="regdept != null">
-				regdept,
-			</if>
-			<if test="doctor != null">
-				doctor,
-			</if>
-			<if test="askperson != null">
-				askperson,
-			</if>
-			<if test="ifmedrecord != null">
-				ifmedrecord,
-			</if>
-			<if test="ifcost != null">
-				ifcost,
-			</if>
-			<if test="editreason != null">
-				editreason,
-			</if>
-			<if test="receiveno != null">
-				receiveno,
-			</if>
-			<if test="status != null">
-				status,
-			</if>
-			<if test="username != null">
-				username,
-			</if>
-			<if test="del != null">
-				del,
-			</if>
-			<if test="cjstatus != null">
-				cjstatus,
-			</if>
-			<if test="remark != null">
-				remark,
-			</if>
-			<if test="organization != null">
-				organization,
-			</if>
-			<if test="beforeeditreason != null">
-				beforeeditreason,
-			</if>
-			<if test="repairdoctor != null">
-				repairdoctor,
-			</if>
-			<if test="askpersondept != null">
-				askpersondept,
-			</if>
-			<if test="jh != null">
-				jh,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="seqId != null">
-				#{seqId,jdbcType=VARCHAR},
-			</if>
-			<if test="createuser != null">
-				#{createuser,jdbcType=VARCHAR},
-			</if>
-			<if test="createtime != null">
-				#{createtime,jdbcType=VARCHAR},
-			</if>
-			<if test="usercode != null">
-				#{usercode,jdbcType=VARCHAR},
-			</if>
-			<if test="regway != null">
-				#{regway,jdbcType=VARCHAR},
-			</if>
-			<if test="regsort != null">
-				#{regsort,jdbcType=VARCHAR},
-			</if>
-			<if test="recesort != null">
-				#{recesort,jdbcType=VARCHAR},
-			</if>
-			<if test="regmoney != null">
-				#{regmoney,jdbcType=VARCHAR},
-			</if>
-			<if test="reggoal != null">
-				#{reggoal,jdbcType=VARCHAR},
-			</if>
-			<if test="regdept != null">
-				#{regdept,jdbcType=VARCHAR},
-			</if>
-			<if test="doctor != null">
-				#{doctor,jdbcType=VARCHAR},
-			</if>
-			<if test="askperson != null">
-				#{askperson,jdbcType=VARCHAR},
-			</if>
-			<if test="ifmedrecord != null">
-				#{ifmedrecord,jdbcType=INTEGER},
-			</if>
-			<if test="ifcost != null">
-				#{ifcost,jdbcType=INTEGER},
-			</if>
-			<if test="editreason != null">
-				#{editreason,jdbcType=VARCHAR},
-			</if>
-			<if test="receiveno != null">
-				#{receiveno,jdbcType=VARCHAR},
-			</if>
-			<if test="status != null">
-				#{status,jdbcType=INTEGER},
-			</if>
-			<if test="username != null">
-				#{username,jdbcType=VARCHAR},
-			</if>
-			<if test="del != null">
-				#{del,jdbcType=INTEGER},
-			</if>
-			<if test="cjstatus != null">
-				#{cjstatus,jdbcType=INTEGER},
-			</if>
-			<if test="remark != null">
-				#{remark,jdbcType=VARCHAR},
-			</if>
-			<if test="organization != null">
-				#{organization,jdbcType=VARCHAR},
-			</if>
-			<if test="beforeeditreason != null">
-				#{beforeeditreason,jdbcType=CLOB},
-			</if>
-			<if test="repairdoctor != null">
-				#{repairdoctor,jdbcType=VARCHAR},
-			</if>
-			<if test="askpersondept != null">
-				#{askpersondept,jdbcType=VARCHAR},
-			</if>
-			<if test="jh != null">
-				#{jh,jdbcType=INTEGER},
-			</if>
-		</trim>
-	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsReg">
-		update KQDS_REG
-		<set>
-			<if test="createuser != null">
-				createuser = #{createuser,jdbcType=VARCHAR},
-			</if>
-			<if test="createtime != null">
-				createtime = #{createtime,jdbcType=VARCHAR},
-			</if>
-			<if test="usercode != null">
-				usercode = #{usercode,jdbcType=VARCHAR},
-			</if>
-			<if test="regway != null">
-				regway = #{regway,jdbcType=VARCHAR},
-			</if>
-			<if test="regsort != null">
-				regsort = #{regsort,jdbcType=VARCHAR},
-			</if>
-			<if test="recesort != null">
-				recesort = #{recesort,jdbcType=VARCHAR},
-			</if>
-			<if test="regmoney != null">
-				regmoney = #{regmoney,jdbcType=VARCHAR},
-			</if>
-			<if test="reggoal != null">
-				reggoal = #{reggoal,jdbcType=VARCHAR},
-			</if>
-			<if test="regdept != null">
-				regdept = #{regdept,jdbcType=VARCHAR},
-			</if>
-			<if test="doctor != null">
-				doctor = #{doctor,jdbcType=VARCHAR},
-			</if>
-			<if test="askperson != null">
-				askperson = #{askperson,jdbcType=VARCHAR},
-			</if>
-			<if test="ifmedrecord != null">
-				ifmedrecord = #{ifmedrecord,jdbcType=INTEGER},
-			</if>
-			<if test="ifcost != null">
-				ifcost = #{ifcost,jdbcType=INTEGER},
-			</if>
-			<if test="editreason != null">
-				editreason = #{editreason,jdbcType=VARCHAR},
-			</if>
-			<if test="receiveno != null">
-				receiveno = #{receiveno,jdbcType=VARCHAR},
-			</if>
-			<if test="status != null">
-				status = #{status,jdbcType=INTEGER},
-			</if>
-			<if test="username != null">
-				username = #{username,jdbcType=VARCHAR},
-			</if>
-			<if test="del != null">
-				del = #{del,jdbcType=INTEGER},
-			</if>
-			<if test="cjstatus != null">
-				cjstatus = #{cjstatus,jdbcType=INTEGER},
-			</if>
-			<if test="remark != null">
-				remark = #{remark,jdbcType=VARCHAR},
-			</if>
-			<if test="organization != null">
-				organization = #{organization,jdbcType=VARCHAR},
-			</if>
-			<if test="beforeeditreason != null">
-				beforeeditreason = #{beforeeditreason,jdbcType=CLOB},
-			</if>
-			<if test="repairdoctor != null">
-				repairdoctor = #{repairdoctor,jdbcType=VARCHAR},
-			</if>
-			<if test="askpersondept != null">
-				askpersondept = #{askpersondept,jdbcType=VARCHAR},
-			</if>
-		</set>
-		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
-	</update>
-	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.kqds.entity.base.KqdsReg">
+    <insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsReg">
+        insert into KQDS_REG
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="seqId != null">
+                SEQ_ID,
+            </if>
+            <if test="createuser != null">
+                createuser,
+            </if>
+            <if test="createtime != null">
+                createtime,
+            </if>
+            <if test="usercode != null">
+                usercode,
+            </if>
+            <if test="regway != null">
+                regway,
+            </if>
+            <if test="regsort != null">
+                regsort,
+            </if>
+            <if test="recesort != null">
+                recesort,
+            </if>
+            <if test="regmoney != null">
+                regmoney,
+            </if>
+            <if test="reggoal != null">
+                reggoal,
+            </if>
+            <if test="regdept != null">
+                regdept,
+            </if>
+            <if test="doctor != null">
+                doctor,
+            </if>
+            <if test="askperson != null">
+                askperson,
+            </if>
+            <if test="ifmedrecord != null">
+                ifmedrecord,
+            </if>
+            <if test="ifcost != null">
+                ifcost,
+            </if>
+            <if test="editreason != null">
+                editreason,
+            </if>
+            <if test="receiveno != null">
+                receiveno,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="del != null">
+                del,
+            </if>
+            <if test="cjstatus != null">
+                cjstatus,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="organization != null">
+                organization,
+            </if>
+            <if test="beforeeditreason != null">
+                beforeeditreason,
+            </if>
+            <if test="repairdoctor != null">
+                repairdoctor,
+            </if>
+            <if test="askpersondept != null">
+                askpersondept,
+            </if>
+            <if test="jh != null">
+                jh,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="seqId != null">
+                #{seqId,jdbcType=VARCHAR},
+            </if>
+            <if test="createuser != null">
+                #{createuser,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=VARCHAR},
+            </if>
+            <if test="usercode != null">
+                #{usercode,jdbcType=VARCHAR},
+            </if>
+            <if test="regway != null">
+                #{regway,jdbcType=VARCHAR},
+            </if>
+            <if test="regsort != null">
+                #{regsort,jdbcType=VARCHAR},
+            </if>
+            <if test="recesort != null">
+                #{recesort,jdbcType=VARCHAR},
+            </if>
+            <if test="regmoney != null">
+                #{regmoney,jdbcType=VARCHAR},
+            </if>
+            <if test="reggoal != null">
+                #{reggoal,jdbcType=VARCHAR},
+            </if>
+            <if test="regdept != null">
+                #{regdept,jdbcType=VARCHAR},
+            </if>
+            <if test="doctor != null">
+                #{doctor,jdbcType=VARCHAR},
+            </if>
+            <if test="askperson != null">
+                #{askperson,jdbcType=VARCHAR},
+            </if>
+            <if test="ifmedrecord != null">
+                #{ifmedrecord,jdbcType=INTEGER},
+            </if>
+            <if test="ifcost != null">
+                #{ifcost,jdbcType=INTEGER},
+            </if>
+            <if test="editreason != null">
+                #{editreason,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveno != null">
+                #{receiveno,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="del != null">
+                #{del,jdbcType=INTEGER},
+            </if>
+            <if test="cjstatus != null">
+                #{cjstatus,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="organization != null">
+                #{organization,jdbcType=VARCHAR},
+            </if>
+            <if test="beforeeditreason != null">
+                #{beforeeditreason,jdbcType=CLOB},
+            </if>
+            <if test="repairdoctor != null">
+                #{repairdoctor,jdbcType=VARCHAR},
+            </if>
+            <if test="askpersondept != null">
+                #{askpersondept,jdbcType=VARCHAR},
+            </if>
+            <if test="jh != null">
+                #{jh,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsReg">
+        update KQDS_REG
+        <set>
+            <if test="createuser != null">
+                createuser = #{createuser,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=VARCHAR},
+            </if>
+            <if test="usercode != null">
+                usercode = #{usercode,jdbcType=VARCHAR},
+            </if>
+            <if test="regway != null">
+                regway = #{regway,jdbcType=VARCHAR},
+            </if>
+            <if test="regsort != null">
+                regsort = #{regsort,jdbcType=VARCHAR},
+            </if>
+            <if test="recesort != null">
+                recesort = #{recesort,jdbcType=VARCHAR},
+            </if>
+            <if test="regmoney != null">
+                regmoney = #{regmoney,jdbcType=VARCHAR},
+            </if>
+            <if test="reggoal != null">
+                reggoal = #{reggoal,jdbcType=VARCHAR},
+            </if>
+            <if test="regdept != null">
+                regdept = #{regdept,jdbcType=VARCHAR},
+            </if>
+            <if test="doctor != null">
+                doctor = #{doctor,jdbcType=VARCHAR},
+            </if>
+            <if test="askperson != null">
+                askperson = #{askperson,jdbcType=VARCHAR},
+            </if>
+            <if test="ifmedrecord != null">
+                ifmedrecord = #{ifmedrecord,jdbcType=INTEGER},
+            </if>
+            <if test="ifcost != null">
+                ifcost = #{ifcost,jdbcType=INTEGER},
+            </if>
+            <if test="editreason != null">
+                editreason = #{editreason,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveno != null">
+                receiveno = #{receiveno,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="del != null">
+                del = #{del,jdbcType=INTEGER},
+            </if>
+            <if test="cjstatus != null">
+                cjstatus = #{cjstatus,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="organization != null">
+                organization = #{organization,jdbcType=VARCHAR},
+            </if>
+            <if test="beforeeditreason != null">
+                beforeeditreason = #{beforeeditreason,jdbcType=CLOB},
+            </if>
+            <if test="repairdoctor != null">
+                repairdoctor = #{repairdoctor,jdbcType=VARCHAR},
+            </if>
+            <if test="askpersondept != null">
+                askpersondept = #{askpersondept,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.kqds.entity.base.KqdsReg">
 		update KQDS_REG
 		set createuser = #{createuser,jdbcType=VARCHAR},
 		createtime = #{createtime,jdbcType=VARCHAR},
@@ -341,7 +341,7 @@
 		beforeeditreason = #{beforeeditreason,jdbcType=CLOB}
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
 	</update>
-	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsReg">
+    <update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsReg">
 		update KQDS_REG
 		set createuser = #{createuser,jdbcType=VARCHAR},
 		createtime = #{createtime,jdbcType=VARCHAR},
@@ -367,1190 +367,1204 @@
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
 	</update>
 
-	<!--#################################### auto create ################################# -->
+    <!--#################################### auto create ################################# -->
 
-	<!--表名 -->
-	<sql id="tableName">
+    <!--表名 -->
+    <sql id="tableName">
 		KQDS_REG
 	</sql>
-	<select id="selectCountByMap" resultType="int">
-		select
-		count(1)
-		from
-		<include refid="tableName"></include>
-		where 1=1
-		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
-			and ${key} = #{val}
-		</foreach>
-	</select>
+    <select id="selectCountByMap" resultType="int">
+        select
+        count(1)
+        from
+        <include refid="tableName"></include>
+        where 1=1
+        <foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+            and ${key} = #{val}
+        </foreach>
+    </select>
 
-	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsReg">
-		select
-		<include refid="Base_Column_List" />
-		,
-		<include refid="Blob_Column_List" />
-		from
-		<include refid="tableName"></include>
-		where 1=1
-		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
-			and ${key} = #{val}
-		</foreach>
-		order by createtime
-	</select>
+    <select id="selectBeanListByMap" parameterType="map" resultType="KqdsReg">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from
+        <include refid="tableName"></include>
+        where 1=1
+        <foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+            and ${key} = #{val}
+        </foreach>
+        order by createtime
+    </select>
 
-	<select id="countCzReg" parameterType="map" resultType="int">
+    <select id="countCzReg" parameterType="map" resultType="int">
 		select count(1) as count from KQDS_REG where usercode = #{usercode} and recesort in (#{recesort})
 	</select>
-	<select id="getLastestRegInfo" parameterType="java.lang.String" resultType="json">
-		<bind name="temp_dbType" value="${system_dbType}" />
-		<if test="temp_dbType == 0">
-			select * from KQDS_REG where usercode = #{_parameter} order by createtime desc limit 0,1
-		</if>
-		<if test="temp_dbType == 1">
-			select top 1 reg.*,u.askperson as firstaskpersonId,per.user_name as firstaskpersonname from KQDS_REG reg
-			left join kqds_userdocument u on u.usercode = reg.usercode
-			left join sys_person per on per.seq_id = u.askperson <!-- 添加多表查询、返回第一咨询id和name -->
-			where reg.usercode = #{_parameter} order by createtime desc
-		</if>
-	</select>
-	<select id="getLastestRegInfoByDoctor" parameterType="java.util.Map" resultType="json">
+    <select id="getLastestRegInfo" parameterType="java.lang.String" resultType="json">
+        <bind name="temp_dbType" value="${system_dbType}"/>
+        <if test="temp_dbType == 0">
+            select * from KQDS_REG where usercode = #{_parameter} order by createtime desc limit 0,1
+        </if>
+        <if test="temp_dbType == 1">
+            select top 1 reg.*,u.askperson as firstaskpersonId,per.user_name as firstaskpersonname from KQDS_REG reg
+            left join kqds_userdocument u on u.usercode = reg.usercode
+            left join sys_person per on per.seq_id = u.askperson <!-- 添加多表查询、返回第一咨询id和name -->
+            where reg.usercode = #{_parameter} order by createtime desc
+        </if>
+    </select>
+    <select id="getLastestRegInfoByDoctor" parameterType="java.util.Map" resultType="json">
 		select  top 1 * from KQDS_REG where usercode = #{usercode} and doctor=#{doctor} order by createtime desc
 	</select>
-	<select id="getChuZhenIn24Hours" parameterType="map" resultType="json">
-		<bind name="temp_dbType" value="${system_dbType}" />
-		select * from KQDS_REG
-		where recesort = #{recesort} and usercode = #{usercode}
-		<if test="temp_dbType == 0">
-			and to_days(createtime) = to_days(now())
-		</if>
-		<if test="temp_dbType == 1">
-			and datediff(day,createtime,getdate())=0
-		</if>
-	</select>
-	<select id="selectDzlmenu" parameterType="map" resultType="json">
-		<bind name="temp_dbType" value="${system_dbType}" />
-		select
-		odept.dept_name as organizationname,
-		reg.del,
-		reg.receiveno,
-		per4.user_name as receivenoname,
-		reg.status,
-		reg.editreason,
-		reg.regway,
-		reg.SEQ_ID,
-		reg.usercode,
-		reg.username,
-		reg.cjstatus,
-		reg.recesort,
-		reg.regsort,
-		reg.regmoney,
-		reg.regdept,
-		reg.askperson,
-		reg.repairdoctor,
-		per5.user_name as repairdoctorname,
-		per1.user_name as askpersonname,
-		reg.doctor,
-		per2.user_name as doctorname,
-		reg.ifmedrecord,
-		reg.ifcost,
-		kcit1.dict_name as recesortname,
-		kcit2.dict_name as regsortname,
-		reg.createtime,
-		reg.createuser,
-		per3.user_name as createusername,
-		us.guider,
-		us.devchannel,
-		us.nexttype,
-		kcit3.dict_name as devchannelname,
-		hzly.dict_name as nexttypename,
-		us.sex,
-		us.age,
-		us.remark,
-		us.familyship,
-		us.iscreateLclj,
-		reg.askpersondept,
-		reg.jh
-		from KQDS_REG reg
-		LEFT JOIN KQDS_UserDocument us on us.usercode = reg.usercode
-		LEFT JOIN SYS_DEPT odept on odept.dept_code = reg.organization and odept.dept_parent = '0'
-		LEFT JOIN SYS_DICT kcit1 on reg.recesort = kcit1.seq_id
-		LEFT JOIN SYS_DICT kcit2 on reg.regsort = kcit2.seq_id
-		LEFT JOIN SYS_DICT kcit3 on us.devchannel = kcit3.seq_id
-		LEFT JOIN SYS_DICT hzly on us.nexttype = hzly.seq_id
-		LEFT JOIN SYS_PERSON per1 on reg.askperson = per1.seq_id
-		LEFT JOIN SYS_PERSON per2 on reg.doctor = per2.seq_id
-		LEFT JOIN SYS_PERSON per3 on reg.createuser = per3.seq_id
-		LEFT JOIN SYS_PERSON per4 on reg.receiveno = per4.seq_id
-		LEFT JOIN SYS_PERSON per5 on reg.repairdoctor = per5.seq_id
-		where 1=1
-		<if test="querytype != null and querytype !='' ">
-			and (
-			reg.doctor in (${querytype}) or reg.repairdoctor in (${querytype}) or reg.askperson in (${querytype}) or reg.createuser in (${querytype})
-			or EXISTS (select regno from KQDS_COSTORDER_DETAIL where reg.seq_id=regno and  (askperson in ( ${querytype}) or doctor in (${querytype}) or createuser in(${querytype})))
-			or EXISTS (select regno from KQDS_TOOTH_DOC where reg.seq_id=regno and createuser in ( ${querytype}))
-			or EXISTS (select regno from KQDS_MEDICALRECORD where reg.seq_id=regno and  createuser in ( ${querytype}))
-			or EXISTS (select usercode from KQDS_MEMBER_RECORD where us.usercode=usercode and  askperson in (${querytype}))
-			)
-		</if>
-		<if test="status != null and status !='' ">
-			<choose>
-				<when test='status == "5"'>
-					<if test="temp_dbType == 0">
-						and to_days(reg.createtime) = to_days(now())
-					</if>
-					<if test="temp_dbType == 1">
-						and datediff(day, reg.createtime,getdate())=0
-					</if>
-				</when>
-				<otherwise>
-					<if test='status == "2"'>
-						and reg.status >= #{status}
-					</if>
-					<if test='status != "2"'>
-						and reg.status = #{status}
-					</if>
-					<if test="temp_dbType == 0">
-						and to_days(reg.createtime) = to_days(now())
-					</if>
-					<if test="temp_dbType == 1">
-						and datediff(day, reg.createtime,getdate())=0
-					</if>
-				</otherwise>
-			</choose>
-		</if>
-		and reg.organization = #{organization}
-		<if test="searchValue != null and searchValue !='' ">
-			and (us.usercode like '%' + #{searchValue} + '%'
-			or us.username like '%' + #{searchValue} + '%'
-			or ${p1}
-			or ${p2}
-			or us.pym like '%' + #{searchValue} + '%'
-			)
-		</if>
-		<if test="recesort != null and recesort !='' ">
-			and reg.recesort = #{recesort}
-		</if>
-		<if test="sortName != null and sortName != ''">
-			ORDER BY ${sortName} ${sortOrder}
-		</if>
-		<if test="sortName == null ">
-			ORDER BY reg.recesort asc,reg.CreateTime desc
-		</if>
-	</select>
-	<select id="selectDzlmenuRecesortNum" parameterType="map" resultType="json">
-		<bind name="temp_dbType" value="${system_dbType}" />
-		select
-		count(reg.recesort) as num,reg.recesort
-		from KQDS_REG reg
-		LEFT JOIN KQDS_UserDocument us on us.usercode = reg.usercode
-		LEFT JOIN SYS_DEPT odept on odept.dept_code = reg.organization and odept.dept_parent = '0'
-		where 1=1
-		<if test="querytype != null and querytype !='' ">
-			and (reg.doctor in (${querytype}) or reg.repairdoctor in (${querytype}) or reg.askperson in (${querytype}) or reg.createuser in (${querytype})
-			or EXISTS (select regno from KQDS_COSTORDER_DETAIL where reg.seq_id=regno and  (askperson in( ${querytype}) or doctor in (${querytype}) or createuser in(${querytype})))
-			or EXISTS (select regno from KQDS_TOOTH_DOC where reg.seq_id =regno and createuser in( ${querytype}))
-			or EXISTS (select regno from KQDS_MEDICALRECORD where reg.seq_id =regno and createuser in( ${querytype}))
-			or EXISTS (select usercode from KQDS_MEMBER_RECORD where us.usercode=usercode and askperson in(${querytype}))
-			)
-		</if>
-		<if test="status != null and status !='' ">
-			<choose>
-				<when test='status == "5"'>
-					<if test="temp_dbType == 0">
-						and to_days(reg.createtime) = to_days(now())
-					</if>
-					<if test="temp_dbType == 1">
-						and datediff(day, reg.createtime,getdate())=0
-					</if>
-				</when>
-				<otherwise>
-					<if test='status == "2"'>
-						and reg.status >= #{status}
-					</if>
-					<if test='status != "2"'>
-						and reg.status = #{status}
-					</if>
-					<if test="temp_dbType == 0">
-						and to_days(reg.createtime) = to_days(now())
-					</if>
-					<if test="temp_dbType == 1">
-						and datediff(day, reg.createtime,getdate())=0
-					</if>
-				</otherwise>
-			</choose>
-		</if>
-		and reg.organization = #{organization}
-		<if test="searchValue != null and searchValue !='' ">
-			and (us.usercode like '%' + #{searchValue} + '%'
-			or us.username like '%' + #{searchValue} + '%'
-			or ${p1}
-			or ${p2}
-			or us.pym like '%' + #{searchValue} + '%'
-			)
-		</if>
-		<if test="recesort != null and recesort !='' ">
-			and reg.recesort = #{recesort}
-		</if>
-		GROUP BY reg.recesort
-	</select>
+    <select id="getChuZhenIn24Hours" parameterType="map" resultType="json">
+        <bind name="temp_dbType" value="${system_dbType}"/>
+        select * from KQDS_REG
+        where recesort = #{recesort} and usercode = #{usercode}
+        <if test="temp_dbType == 0">
+            and to_days(createtime) = to_days(now())
+        </if>
+        <if test="temp_dbType == 1">
+            and datediff(day,createtime,getdate())=0
+        </if>
+    </select>
+    <select id="selectDzlmenu" parameterType="map" resultType="json">
+        <bind name="temp_dbType" value="${system_dbType}"/>
+        select
+        odept.dept_name as organizationname,
+        reg.del,
+        reg.receiveno,
+        per4.user_name as receivenoname,
+        reg.status,
+        reg.editreason,
+        reg.regway,
+        reg.SEQ_ID,
+        reg.usercode,
+        reg.username,
+        reg.cjstatus,
+        reg.recesort,
+        reg.regsort,
+        reg.regmoney,
+        reg.regdept,
+        reg.askperson,
+        reg.repairdoctor,
+        per5.user_name as repairdoctorname,
+        per1.user_name as askpersonname,
+        per6.user_name as kefuname,
+        reg.doctor,
+        per2.user_name as doctorname,
+        reg.ifmedrecord,
+        reg.ifcost,
+        kcit1.dict_name as recesortname,
+        kcit2.dict_name as regsortname,
+        reg.createtime,
+        reg.createuser,
+        per3.user_name as createusername,
+        us.guider,
+        us.kefu,
+        us.devchannel,
+        us.nexttype,
+        kcit3.dict_name as devchannelname,
+        hzly.dict_name as nexttypename,
+        us.sex,
+        us.age,
+        us.remark,
+        us.familyship,
+        us.iscreateLclj,
+        reg.askpersondept,
+        reg.jh
+        from KQDS_REG reg
+        LEFT JOIN KQDS_UserDocument us on us.usercode = reg.usercode
+        LEFT JOIN SYS_DEPT odept on odept.dept_code = reg.organization and odept.dept_parent = '0'
+        LEFT JOIN SYS_DICT kcit1 on reg.recesort = kcit1.seq_id
+        LEFT JOIN SYS_DICT kcit2 on reg.regsort = kcit2.seq_id
+        LEFT JOIN SYS_DICT kcit3 on us.devchannel = kcit3.seq_id
+        LEFT JOIN SYS_DICT hzly on us.nexttype = hzly.seq_id
+        LEFT JOIN SYS_PERSON per1 on reg.askperson = per1.seq_id
+        LEFT JOIN SYS_PERSON per2 on reg.doctor = per2.seq_id
+        LEFT JOIN SYS_PERSON per3 on reg.createuser = per3.seq_id
+        LEFT JOIN SYS_PERSON per4 on reg.receiveno = per4.seq_id
+        LEFT JOIN SYS_PERSON per5 on reg.repairdoctor = per5.seq_id
+        LEFT JOIN SYS_PERSON per6 on us.kefu = per6.seq_id
+        where 1=1
+        <if test="querytype != null and querytype !='' ">
+            and (
+            reg.doctor in (${querytype}) or reg.repairdoctor in (${querytype}) or reg.askperson in (${querytype}) or
+            reg.createuser in (${querytype})
+            or EXISTS (select regno from KQDS_COSTORDER_DETAIL where reg.seq_id=regno and (askperson in ( ${querytype})
+            or doctor in (${querytype}) or createuser in(${querytype})))
+            or EXISTS (select regno from KQDS_TOOTH_DOC where reg.seq_id=regno and createuser in ( ${querytype}))
+            or EXISTS (select regno from KQDS_MEDICALRECORD where reg.seq_id=regno and createuser in ( ${querytype}))
+            or EXISTS (select usercode from KQDS_MEMBER_RECORD where us.usercode=usercode and askperson in
+            (${querytype}))
+            )
+        </if>
+        <if test="status != null and status !='' ">
+            <choose>
+                <when test='status == "5"'>
+                    <if test="temp_dbType == 0">
+                        and to_days(reg.createtime) = to_days(now())
+                    </if>
+                    <if test="temp_dbType == 1">
+                        and datediff(day, reg.createtime,getdate())=0
+                    </if>
+                </when>
+                <otherwise>
+                    <if test='status == "2"'>
+                        and reg.status >= #{status}
+                    </if>
+                    <if test='status != "2"'>
+                        and reg.status = #{status}
+                    </if>
+                    <if test="temp_dbType == 0">
+                        and to_days(reg.createtime) = to_days(now())
+                    </if>
+                    <if test="temp_dbType == 1">
+                        and datediff(day, reg.createtime,getdate())=0
+                    </if>
+                </otherwise>
+            </choose>
+        </if>
+        and reg.organization = #{organization}
+        <if test="searchValue != null and searchValue !='' ">
+            and (us.usercode like '%' + #{searchValue} + '%'
+            or us.username like '%' + #{searchValue} + '%'
+            or ${p1}
+            or ${p2}
+            or us.pym like '%' + #{searchValue} + '%'
+            )
+        </if>
+        <if test="recesort != null and recesort !='' ">
+            and reg.recesort = #{recesort}
+        </if>
+        <if test="sortName != null and sortName != ''">
+            ORDER BY ${sortName} ${sortOrder}
+        </if>
+        <if test="sortName == null ">
+            ORDER BY reg.recesort asc,reg.CreateTime desc
+        </if>
+    </select>
+    <select id="selectDzlmenuRecesortNum" parameterType="map" resultType="json">
+        <bind name="temp_dbType" value="${system_dbType}"/>
+        select
+        count(reg.recesort) as num,reg.recesort
+        from KQDS_REG reg
+        LEFT JOIN KQDS_UserDocument us on us.usercode = reg.usercode
+        LEFT JOIN SYS_DEPT odept on odept.dept_code = reg.organization and odept.dept_parent = '0'
+        where 1=1
+        <if test="querytype != null and querytype !='' ">
+            and (reg.doctor in (${querytype}) or reg.repairdoctor in (${querytype}) or reg.askperson in (${querytype})
+            or reg.createuser in (${querytype})
+            or EXISTS (select regno from KQDS_COSTORDER_DETAIL where reg.seq_id=regno and (askperson in( ${querytype})
+            or doctor in (${querytype}) or createuser in(${querytype})))
+            or EXISTS (select regno from KQDS_TOOTH_DOC where reg.seq_id =regno and createuser in( ${querytype}))
+            or EXISTS (select regno from KQDS_MEDICALRECORD where reg.seq_id =regno and createuser in( ${querytype}))
+            or EXISTS (select usercode from KQDS_MEMBER_RECORD where us.usercode=usercode and askperson
+            in(${querytype}))
+            )
+        </if>
+        <if test="status != null and status !='' ">
+            <choose>
+                <when test='status == "5"'>
+                    <if test="temp_dbType == 0">
+                        and to_days(reg.createtime) = to_days(now())
+                    </if>
+                    <if test="temp_dbType == 1">
+                        and datediff(day, reg.createtime,getdate())=0
+                    </if>
+                </when>
+                <otherwise>
+                    <if test='status == "2"'>
+                        and reg.status >= #{status}
+                    </if>
+                    <if test='status != "2"'>
+                        and reg.status = #{status}
+                    </if>
+                    <if test="temp_dbType == 0">
+                        and to_days(reg.createtime) = to_days(now())
+                    </if>
+                    <if test="temp_dbType == 1">
+                        and datediff(day, reg.createtime,getdate())=0
+                    </if>
+                </otherwise>
+            </choose>
+        </if>
+        and reg.organization = #{organization}
+        <if test="searchValue != null and searchValue !='' ">
+            and (us.usercode like '%' + #{searchValue} + '%'
+            or us.username like '%' + #{searchValue} + '%'
+            or ${p1}
+            or ${p2}
+            or us.pym like '%' + #{searchValue} + '%'
+            )
+        </if>
+        <if test="recesort != null and recesort !='' ">
+            and reg.recesort = #{recesort}
+        </if>
+        GROUP BY reg.recesort
+    </select>
 
-	<select id="selectDzQueryNum" parameterType="map" resultType="json">
-		select
-		count(*) as total,
-		sum(reg.cjstatus) as cjstatus
-		from KQDS_REG reg
-		LEFT JOIN KQDS_UserDocument us on us.usercode = reg.usercode
-		LEFT JOIN SYS_DEPT odept on odept.dept_code = reg.organization and odept.dept_parent = '0'
-		LEFT JOIN SYS_DICT kcit1 on reg.recesort = kcit1.seq_id
-		LEFT JOIN SYS_DICT kcit2 on reg.regsort = kcit2.seq_id
-		LEFT JOIN SYS_DICT kcit3 on us.devchannel = kcit3.seq_id
-		LEFT JOIN SYS_DICT hzly on us.nexttype = hzly.seq_id
-		LEFT JOIN SYS_PERSON per1 on reg.askperson = per1.seq_id
-		LEFT JOIN SYS_PERSON per2 on reg.doctor = per2.seq_id
-		LEFT JOIN SYS_PERSON per3 on reg.createuser = per3.seq_id
-		LEFT JOIN SYS_PERSON per4 on reg.receiveno = per4.seq_id
-		LEFT JOIN SYS_PERSON per5 on reg.repairdoctor = per5.seq_id
-		left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from
-		KQDS_NET_ORDER group by usercode) b where a.usercode=b.usercode and
-		a.createtime=b.createtime ) n on n.usercode=reg.usercode <!-- 确定唯一一条数据 -->
-		LEFT JOIN sys_dict kcit4 on n.accepttool = kcit4.SEQ_ID <!-- 添加查询受理工具信息 -->
-		LEFT JOIN sys_dict kcit5 on n.accepttype = kcit5.SEQ_ID <!-- 添加查询受理工具信息 -->
-		where 1=1
-		<if test="organization != null and organization !='' ">
-			and reg.organization = #{organization}
-		</if>
-		<if test="starttime != null and starttime !='' ">
-			and reg.createtime <![CDATA[ >= ]]>
-			#{starttime}
-		</if>
-		<if test="endtime != null and endtime !='' ">
-			and reg.createtime <![CDATA[ <= ]]>
-			#{endtime}
-		</if>
-		<if test="gongju != null and gongju !='' ">
-			and kcit4.SEQ_ID =#{gongju}
-		</if>
-		<if test="searchValue != null and searchValue !='' ">
-			and (
-			us.usercode like '%' + #{searchValue} + '%'
-			or us.username like '%' + #{searchValue} + '%'
-			or us.PhoneNumber1 like '%' + #{searchValue} + '%'
-			)
-		</if>
-		<if test="recesort != null and recesort !=''">
-			and reg.recesort=#{recesort}
-		</if>
-		<if test="cjstatus != null and cjstatus !=''">
-			and reg.cjstatus=#{cjstatus}
-		</if>
-		<if test="askpersonSearch != null and askpersonSearch !=''">
-			and reg.askperson=#{askpersonSearch}
-		</if>
-		<if test="doctorSearch != null and doctorSearch != '' ">
-			and reg.doctor=#{doctorSearch}
-		</if>
-		<if test="regsort != null and regsort != '' ">
-			and reg.regsort=#{regsort}
-		</if>
-		<if test="createuserSearch != null and createuserSearch != ''">
-			and reg.createuser=#{createuserSearch}
-		</if>
-		<if test="nexttype != null and nexttype != '' ">
-			and us.nexttype=#{nexttype}
-		</if>
-		<if test="devchannel != null and devchannel != '' ">
-			and us.devchannel=#{devchannel}
-		</if>
-		<if test="shouli != null and shouli != ''">
-			and kcit5.SEQ_ID=#{shouli}
-		</if>
-	</select>
+    <select id="selectDzQueryNum" parameterType="map" resultType="json">
+        select
+        count(*) as total,
+        sum(reg.cjstatus) as cjstatus
+        from KQDS_REG reg
+        LEFT JOIN KQDS_UserDocument us on us.usercode = reg.usercode
+        LEFT JOIN SYS_DEPT odept on odept.dept_code = reg.organization and odept.dept_parent = '0'
+        LEFT JOIN SYS_DICT kcit1 on reg.recesort = kcit1.seq_id
+        LEFT JOIN SYS_DICT kcit2 on reg.regsort = kcit2.seq_id
+        LEFT JOIN SYS_DICT kcit3 on us.devchannel = kcit3.seq_id
+        LEFT JOIN SYS_DICT hzly on us.nexttype = hzly.seq_id
+        LEFT JOIN SYS_PERSON per1 on reg.askperson = per1.seq_id
+        LEFT JOIN SYS_PERSON per2 on reg.doctor = per2.seq_id
+        LEFT JOIN SYS_PERSON per3 on reg.createuser = per3.seq_id
+        LEFT JOIN SYS_PERSON per4 on reg.receiveno = per4.seq_id
+        LEFT JOIN SYS_PERSON per5 on reg.repairdoctor = per5.seq_id
+        left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from
+        KQDS_NET_ORDER group by usercode) b where a.usercode=b.usercode and
+        a.createtime=b.createtime ) n on n.usercode=reg.usercode <!-- 确定唯一一条数据 -->
+        LEFT JOIN sys_dict kcit4 on n.accepttool = kcit4.SEQ_ID <!-- 添加查询受理工具信息 -->
+        LEFT JOIN sys_dict kcit5 on n.accepttype = kcit5.SEQ_ID <!-- 添加查询受理工具信息 -->
+        where 1=1
+        <if test="organization != null and organization !='' ">
+            and reg.organization = #{organization}
+        </if>
+        <if test="starttime != null and starttime !='' ">
+            and reg.createtime <![CDATA[ >= ]]>
+            #{starttime}
+        </if>
+        <if test="endtime != null and endtime !='' ">
+            and reg.createtime <![CDATA[ <= ]]>
+            #{endtime}
+        </if>
+        <if test="gongju != null and gongju !='' ">
+            and kcit4.SEQ_ID =#{gongju}
+        </if>
+        <if test="searchValue != null and searchValue !='' ">
+            and (
+            us.usercode like '%' + #{searchValue} + '%'
+            or us.username like '%' + #{searchValue} + '%'
+            or us.PhoneNumber1 like '%' + #{searchValue} + '%'
+            )
+        </if>
+        <if test="recesort != null and recesort !=''">
+            and reg.recesort=#{recesort}
+        </if>
+        <if test="cjstatus != null and cjstatus !=''">
+            and reg.cjstatus=#{cjstatus}
+        </if>
+        <if test="askpersonSearch != null and askpersonSearch !=''">
+            and reg.askperson=#{askpersonSearch}
+        </if>
+        <if test="doctorSearch != null and doctorSearch != '' ">
+            and reg.doctor=#{doctorSearch}
+        </if>
+        <if test="regsort != null and regsort != '' ">
+            and reg.regsort=#{regsort}
+        </if>
+        <if test="createuserSearch != null and createuserSearch != ''">
+            and reg.createuser=#{createuserSearch}
+        </if>
+        <if test="nexttype != null and nexttype != '' ">
+            and us.nexttype=#{nexttype}
+        </if>
+        <if test="devchannel != null and devchannel != '' ">
+            and us.devchannel=#{devchannel}
+        </if>
+        <if test="shouli != null and shouli != ''">
+            and kcit5.SEQ_ID=#{shouli}
+        </if>
+    </select>
 
-	<!-- 查询到诊患者 -->
-	<select id="selectDzQuery" parameterType="map" resultType="json">
-		select
-		odept.dept_name as organizationname,
-		reg.seq_id,
-		reg.del,
-		reg.receiveno,
-		per4.user_name as receivenoname,
-		reg.status,
-		reg.editreason,
-		reg.regway,
-		reg.usercode,
-		reg.username,
-		reg.cjstatus,
-		reg.recesort,
-		reg.regsort,
-		reg.regmoney,
-		reg.regdept,
-		reg.askperson,
-		reg.repairdoctor,
-		per6.user_name as jduser,
-		per5.user_name as repairdoctorname,
-		per1.user_name as askpersonname,
-		reg.doctor,
-		per2.user_name as doctorname,
-		reg.ifmedrecord,
-		reg.ifcost,
-		kcit1.dict_name as recesortname,
-		kcit2.dict_name as regsortname,
-		reg.createtime,
-		reg.createuser,
-		per3.user_name as createusername,
-		us.guider,
-		us.devchannel,
-		us.nexttype,
-		kcit3.dict_name as devchannelname,
-		hzly.dict_name as nexttypename,
-		us.sex,
-		us.iscreatelclj,
-		us.age,
-		us.remark,
-		kcit4.dict_name as slgj, <!-- 添加查询受理工具信息 -->
-		kcit5.dict_name as sllx
-		from KQDS_REG reg
-		LEFT JOIN KQDS_UserDocument us on us.usercode = reg.usercode
-		LEFT JOIN SYS_DEPT odept on odept.dept_code = reg.organization and odept.dept_parent = '0'
-		LEFT JOIN SYS_DICT kcit1 on reg.recesort = kcit1.seq_id
-		LEFT JOIN SYS_DICT kcit2 on reg.regsort = kcit2.seq_id
-		LEFT JOIN SYS_DICT kcit3 on us.devchannel = kcit3.seq_id
-		LEFT JOIN SYS_DICT hzly on us.nexttype = hzly.seq_id
-		LEFT JOIN SYS_PERSON per1 on reg.askperson = per1.seq_id
-		LEFT JOIN SYS_PERSON per2 on reg.doctor = per2.seq_id
-		LEFT JOIN SYS_PERSON per3 on reg.createuser = per3.seq_id
-		LEFT JOIN SYS_PERSON per4 on reg.receiveno = per4.seq_id
-		LEFT JOIN SYS_PERSON per5 on reg.repairdoctor = per5.seq_id
-		LEFT JOIN SYS_PERSON per6 on us.CreateUser = per6.seq_id
-		left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from
-		KQDS_NET_ORDER group by usercode) b where a.usercode=b.usercode and
-		a.createtime=b.createtime ) n on n.usercode=reg.usercode <!-- 确定唯一一条数据 -->
-		LEFT JOIN sys_dict kcit4 on n.accepttool = kcit4.SEQ_ID <!-- 添加查询受理工具信息 -->
-		LEFT JOIN sys_dict kcit5 on n.accepttype = kcit5.SEQ_ID <!-- 添加查询受理工具信息 -->
-		where 1=1
-		<if test="organization != null and organization !='' ">
-			and reg.organization = #{organization}
-		</if>
-		<if test="starttime != null and starttime !='' ">
-			and reg.createtime <![CDATA[ >= ]]>
-			#{starttime}
-		</if>
-		<if test="endtime != null and endtime !='' ">
-			and reg.createtime <![CDATA[ <= ]]>
-			#{endtime}
-		</if>
-		<if test="gongju != null and gongju !='' ">
-			and kcit4.SEQ_ID =#{gongju}
-		</if>
-		<if test="searchValue != null and searchValue !='' ">
-			and (
-			us.usercode like '%' + #{searchValue} + '%'
-			or us.username like '%' + #{searchValue} + '%'
-			or us.PhoneNumber1 like '%' + #{searchValue} + '%'
-			)
-		</if>
-		<if test="recesort != null and recesort !=''">
-			and reg.recesort=#{recesort}
-		</if>
-		<if test="cjstatus != null and cjstatus !=''">
-			and reg.cjstatus=#{cjstatus}
-		</if>
-		<if test="askpersonSearch != null and askpersonSearch !=''">
-			and reg.askperson=#{askpersonSearch}
-		</if>
-		<if test="doctorSearch != null and doctorSearch != '' ">
-			and reg.doctor=#{doctorSearch}
-		</if>
-		<if test="regsort != null and regsort != '' ">
-			and reg.regsort=#{regsort}
-		</if>
-		<if test="createuserSearch != null and createuserSearch != ''">
-			and reg.createuser=#{createuserSearch}
-		</if>
-		<if test="nexttype != null and nexttype != '' ">
-			and us.nexttype=#{nexttype}
-		</if>
-		<if test="devchannel != null and devchannel != '' ">
-			and us.devchannel=#{devchannel}
-		</if>
-		<if test="shouli != null and shouli != ''">
-			and kcit5.SEQ_ID=#{shouli}
-		</if>
-		<if test="sortName != null and sortName != ''">
-			ORDER BY ${sortName} ${sortOrder}
-		</if>
-		<if test="sortName == null">
-			ORDER BY reg.CreateTime desc
-		</if>
-	</select>
-	<select id="selectJzqk" parameterType="map" resultType="json">
-		select
-		reg.regdept,
-		reg.SEQ_ID,
-		reg.usercode,
-		reg.username,
-		reg.cjstatus,
-		kcit1.dict_name as recesort,
-		per4.user_name as askperson,
-		reg.ifmedrecord,
-		reg.ifcost,
-		reg.createtime,
-		per6.user_name as createuser,
-		kcit2.dict_name as regsort,
-		u.phonenumber1,
-		kcit3.dict_name as reggoal,
-		kcit4.dict_name as jzmdname,
-		j.reggoal as reggoalId,
-		j.jzmd as jzmdId,
-		kcit5.dict_name as txjzmdname,
-		j.remark,
-		j.seq_id as jzqkid,
-		per5.user_name as doctor,
-		j.dzdata,
-		j.fzdata
-		from KQDS_REG reg
-		LEFT JOIN KQDS_UserDocument u on reg.usercode = u.usercode
-		LEFT JOIN KQDS_jzqk j on j.regno = reg.seq_id
-		LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID = reg.askperson
-		LEFT JOIN SYS_PERSON per5 on per5.SEQ_ID = j.doctor
-		LEFT JOIN SYS_PERSON per6
-		on per6.SEQ_ID = reg.createuser
-		LEFT JOIN SYS_DICT kcit1 on reg.recesort = kcit1.seq_id
-		LEFT JOIN SYS_DICT kcit2 on reg.regsort = kcit2.seq_id
-		LEFT JOIN SYS_DICT kcit3 on j.reggoal
-		= kcit3.seq_id
-		LEFT JOIN SYS_DICT kcit4 on kcit4.seq_id = j.jzmd
-		LEFT JOIN KQDS_JZMD_TYPE jzmd2 on jzmd2.jzmdchildname = j.jzmd and jzmd2.organization = #{organization}
-		LEFT JOIN
-		SYS_DICT kcit5 on kcit5.seq_id = jzmd2.txjzmd
-		where 1=1
-		<if test="askperson != null and askperson !='' ">
-			and ( reg.askperson in (#{askperson}) or reg.createuser in (#{askperson}))
-		</if>
-		<if test="doctor != null and doctor !='' ">
-			and ( reg.doctor in (#{doctor}) or reg.createuser in (#{doctor}))
-		</if>
-		<if test="regdept != null and regdept !='' ">
-			and reg.regdept = #{regdept}
-		</if>
-		<if test="ghsj != null and ghsj !='' ">
-			and reg.createtime <![CDATA[ >= ]]>
-			#{ghsj}
-		</if>
-		<if test="ghsj2 != null and ghsj2 !='' ">
-			and reg.createtime <![CDATA[ <= ]]>
-			#{ghsj2}
-		</if>
-		<if test="usercodeorname != null and usercodeorname !='' ">
-			and (u.usercode like '%' + #{usercodeorname} + '%'
-			or u.username like '%' + #{usercodeorname} + '%'
-			or ${p1}
-			or ${p2}
-			or u.pym like '%' + #{usercodeorname} + '%'
-			)
-		</if>
-		<if test="reggoal != null and reggoal !='' ">
-			and j.reggoal = #{reggoal}
-		</if>
-		<if test="jzmd != null and jzmd !='' ">
-			and j.jzmd = #{jzmd}
-		</if>
-		<if test="isfz != null and isfz !='' ">
-			and fzdata != ''
-		</if>
-		<if test="fzsj != null and fzsj !='' ">
-			and fzdata <![CDATA[ >= ]]>
-			#{fzsj}
-		</if>
-		<if test="fzsj2 != null and fzsj2 !='' ">
-			and fzdata <![CDATA[ <= ]]>
-			#{fzsj2}
-		</if>
-		<if test="organization != null and organization !='' ">
-			and reg.organization = #{organization}
-		</if>
-		<if test="visualstaff != null and visualstaff !='' ">
-			and ( j.doctor in (${visualstaff}) )
-		</if>
-		<if test="sortName != null and sortName != ''">
-			ORDER BY ${sortName} ${sortOrder}
-		</if>
-		<if test="sortName == null ">
-			ORDER BY reg.CreateTime desc
-		</if>
-	</select>
-	<select id="selectByusercode" parameterType="java.lang.String" resultType="json">
-		select * from KQDS_REG where usercode in(${_parameter})<!-- 原有的#改为$符号，解决查询问题 -->
-	</select>
-	<select id="getTodayNetOrderByOrdertimeAndUsercode" parameterType="map" resultType="KqdsNetOrder">
-		select * from KQDS_NET_ORDER where usercode =#{usercode}
-		<if test="ordertime != null and ordertime !='' ">
-			and ordertime like '%' + #{ordertime} + '%'
-		</if>
-		order by createtime desc
-	</select>
-	<select id="getTodayHosOrderByOrdertimeAndUsercode" parameterType="map" resultType="json">
+    <!-- 查询到诊患者 -->
+    <select id="selectDzQuery" parameterType="map" resultType="json">
+        select
+        odept.dept_name as organizationname,
+        reg.seq_id,
+        reg.del,
+        reg.receiveno,
+        per4.user_name as receivenoname,
+        reg.status,
+        reg.editreason,
+        reg.regway,
+        reg.usercode,
+        reg.username,
+        reg.cjstatus,
+        reg.recesort,
+        reg.regsort,
+        reg.regmoney,
+        reg.regdept,
+        reg.askperson,
+        reg.repairdoctor,
+        per6.user_name as jduser,
+        per5.user_name as repairdoctorname,
+        per1.user_name as askpersonname,
+        reg.doctor,
+        per2.user_name as doctorname,
+        reg.ifmedrecord,
+        reg.ifcost,
+        kcit1.dict_name as recesortname,
+        kcit2.dict_name as regsortname,
+        reg.createtime,
+        reg.createuser,
+        per3.user_name as createusername,
+        us.guider,
+        us.devchannel,
+        us.nexttype,
+        kcit3.dict_name as devchannelname,
+        hzly.dict_name as nexttypename,
+        us.sex,
+        us.iscreatelclj,
+        us.age,
+        us.remark,
+        kcit4.dict_name as slgj, <!-- 添加查询受理工具信息 -->
+        kcit5.dict_name as sllx
+        from KQDS_REG reg
+        LEFT JOIN KQDS_UserDocument us on us.usercode = reg.usercode
+        LEFT JOIN SYS_DEPT odept on odept.dept_code = reg.organization and odept.dept_parent = '0'
+        LEFT JOIN SYS_DICT kcit1 on reg.recesort = kcit1.seq_id
+        LEFT JOIN SYS_DICT kcit2 on reg.regsort = kcit2.seq_id
+        LEFT JOIN SYS_DICT kcit3 on us.devchannel = kcit3.seq_id
+        LEFT JOIN SYS_DICT hzly on us.nexttype = hzly.seq_id
+        LEFT JOIN SYS_PERSON per1 on reg.askperson = per1.seq_id
+        LEFT JOIN SYS_PERSON per2 on reg.doctor = per2.seq_id
+        LEFT JOIN SYS_PERSON per3 on reg.createuser = per3.seq_id
+        LEFT JOIN SYS_PERSON per4 on reg.receiveno = per4.seq_id
+        LEFT JOIN SYS_PERSON per5 on reg.repairdoctor = per5.seq_id
+        LEFT JOIN SYS_PERSON per6 on us.CreateUser = per6.seq_id
+        left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from
+        KQDS_NET_ORDER group by usercode) b where a.usercode=b.usercode and
+        a.createtime=b.createtime ) n on n.usercode=reg.usercode <!-- 确定唯一一条数据 -->
+        LEFT JOIN sys_dict kcit4 on n.accepttool = kcit4.SEQ_ID <!-- 添加查询受理工具信息 -->
+        LEFT JOIN sys_dict kcit5 on n.accepttype = kcit5.SEQ_ID <!-- 添加查询受理工具信息 -->
+        where 1=1
+        <if test="organization != null and organization !='' ">
+            and reg.organization = #{organization}
+        </if>
+        <if test="starttime != null and starttime !='' ">
+            and reg.createtime <![CDATA[ >= ]]>
+            #{starttime}
+        </if>
+        <if test="endtime != null and endtime !='' ">
+            and reg.createtime <![CDATA[ <= ]]>
+            #{endtime}
+        </if>
+        <if test="gongju != null and gongju !='' ">
+            and kcit4.SEQ_ID =#{gongju}
+        </if>
+        <if test="searchValue != null and searchValue !='' ">
+            and (
+            us.usercode like '%' + #{searchValue} + '%'
+            or us.username like '%' + #{searchValue} + '%'
+            or us.PhoneNumber1 like '%' + #{searchValue} + '%'
+            )
+        </if>
+        <if test="recesort != null and recesort !=''">
+            and reg.recesort=#{recesort}
+        </if>
+        <if test="cjstatus != null and cjstatus !=''">
+            and reg.cjstatus=#{cjstatus}
+        </if>
+        <if test="askpersonSearch != null and askpersonSearch !=''">
+            and reg.askperson=#{askpersonSearch}
+        </if>
+        <if test="doctorSearch != null and doctorSearch != '' ">
+            and reg.doctor=#{doctorSearch}
+        </if>
+        <if test="regsort != null and regsort != '' ">
+            and reg.regsort=#{regsort}
+        </if>
+        <if test="createuserSearch != null and createuserSearch != ''">
+            and reg.createuser=#{createuserSearch}
+        </if>
+        <if test="nexttype != null and nexttype != '' ">
+            and us.nexttype=#{nexttype}
+        </if>
+        <if test="devchannel != null and devchannel != '' ">
+            and us.devchannel=#{devchannel}
+        </if>
+        <if test="shouli != null and shouli != ''">
+            and kcit5.SEQ_ID=#{shouli}
+        </if>
+        <if test="sortName != null and sortName != ''">
+            ORDER BY ${sortName} ${sortOrder}
+        </if>
+        <if test="sortName == null">
+            ORDER BY reg.CreateTime desc
+        </if>
+    </select>
+    <select id="selectJzqk" parameterType="map" resultType="json">
+        select
+        reg.regdept,
+        reg.SEQ_ID,
+        reg.usercode,
+        reg.username,
+        reg.cjstatus,
+        kcit1.dict_name as recesort,
+        per4.user_name as askperson,
+        reg.ifmedrecord,
+        reg.ifcost,
+        reg.createtime,
+        per6.user_name as createuser,
+        kcit2.dict_name as regsort,
+        u.phonenumber1,
+        kcit3.dict_name as reggoal,
+        kcit4.dict_name as jzmdname,
+        j.reggoal as reggoalId,
+        j.jzmd as jzmdId,
+        kcit5.dict_name as txjzmdname,
+        j.remark,
+        j.seq_id as jzqkid,
+        per5.user_name as doctor,
+        j.dzdata,
+        j.fzdata
+        from KQDS_REG reg
+        LEFT JOIN KQDS_UserDocument u on reg.usercode = u.usercode
+        LEFT JOIN KQDS_jzqk j on j.regno = reg.seq_id
+        LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID = reg.askperson
+        LEFT JOIN SYS_PERSON per5 on per5.SEQ_ID = j.doctor
+        LEFT JOIN SYS_PERSON per6
+        on per6.SEQ_ID = reg.createuser
+        LEFT JOIN SYS_DICT kcit1 on reg.recesort = kcit1.seq_id
+        LEFT JOIN SYS_DICT kcit2 on reg.regsort = kcit2.seq_id
+        LEFT JOIN SYS_DICT kcit3 on j.reggoal
+        = kcit3.seq_id
+        LEFT JOIN SYS_DICT kcit4 on kcit4.seq_id = j.jzmd
+        LEFT JOIN KQDS_JZMD_TYPE jzmd2 on jzmd2.jzmdchildname = j.jzmd and jzmd2.organization = #{organization}
+        LEFT JOIN
+        SYS_DICT kcit5 on kcit5.seq_id = jzmd2.txjzmd
+        where 1=1
+        <if test="askperson != null and askperson !='' ">
+            and ( reg.askperson in (#{askperson}) or reg.createuser in (#{askperson}))
+        </if>
+        <if test="doctor != null and doctor !='' ">
+            and ( reg.doctor in (#{doctor}) or reg.createuser in (#{doctor}))
+        </if>
+        <if test="regdept != null and regdept !='' ">
+            and reg.regdept = #{regdept}
+        </if>
+        <if test="ghsj != null and ghsj !='' ">
+            and reg.createtime <![CDATA[ >= ]]>
+            #{ghsj}
+        </if>
+        <if test="ghsj2 != null and ghsj2 !='' ">
+            and reg.createtime <![CDATA[ <= ]]>
+            #{ghsj2}
+        </if>
+        <if test="usercodeorname != null and usercodeorname !='' ">
+            and (u.usercode like '%' + #{usercodeorname} + '%'
+            or u.username like '%' + #{usercodeorname} + '%'
+            or ${p1}
+            or ${p2}
+            or u.pym like '%' + #{usercodeorname} + '%'
+            )
+        </if>
+        <if test="reggoal != null and reggoal !='' ">
+            and j.reggoal = #{reggoal}
+        </if>
+        <if test="jzmd != null and jzmd !='' ">
+            and j.jzmd = #{jzmd}
+        </if>
+        <if test="isfz != null and isfz !='' ">
+            and fzdata != ''
+        </if>
+        <if test="fzsj != null and fzsj !='' ">
+            and fzdata <![CDATA[ >= ]]>
+            #{fzsj}
+        </if>
+        <if test="fzsj2 != null and fzsj2 !='' ">
+            and fzdata <![CDATA[ <= ]]>
+            #{fzsj2}
+        </if>
+        <if test="organization != null and organization !='' ">
+            and reg.organization = #{organization}
+        </if>
+        <if test="visualstaff != null and visualstaff !='' ">
+            and ( j.doctor in (${visualstaff}) )
+        </if>
+        <if test="sortName != null and sortName != ''">
+            ORDER BY ${sortName} ${sortOrder}
+        </if>
+        <if test="sortName == null ">
+            ORDER BY reg.CreateTime desc
+        </if>
+    </select>
+    <select id="selectByusercode" parameterType="java.lang.String" resultType="json">
+        select * from KQDS_REG where usercode in(${_parameter})<!-- 原有的#改为$符号，解决查询问题 -->
+    </select>
+    <select id="getTodayNetOrderByOrdertimeAndUsercode" parameterType="map" resultType="KqdsNetOrder">
+        select * from KQDS_NET_ORDER where usercode =#{usercode}
+        <if test="ordertime != null and ordertime !='' ">
+            and ordertime like '%' + #{ordertime} + '%'
+        </if>
+        order by createtime desc
+    </select>
+    <select id="getTodayHosOrderByOrdertimeAndUsercode" parameterType="map" resultType="json">
 		select * from KQDS_HOSPITAL_ORDER
 		where starttime like '%' + #{ordertime} + '%' and
 		usercode =#{usercode}
 	</select>
-	<select id="selectJzcx" parameterType="map" resultType="json">
-		select
-		r.seq_id,
-		r.createtime,
-		r.usercode,
-		r.username,
-		u.idcardno,
-		r.regway,
-		r.regsort as regsortvalue,
-		r.recesort as recesortvalue,
-		r.regmoney,
-		dept.DEPT_NAME as regdept,
-		r.regdept as regdeptvalue,
-		r.askperson as askpersonvalue,
-		r.doctor as doctorvalue,
-		r.ifmedrecord,
-		r.ifcost,
-		r.status,
-		r.del,
-		r.cjstatus,
-		r.editreason,
-		r.organization,
-		u.age,
-		u.important,
-		u.invoice,
-		u.devchannel as devchannelvalue,
-		u.nexttype as nexttypevalue,
-		i.dev_item as devitemdescvalue,
-		u.phonenumber1,
-		u.phonenumber2,
-		u.pym,
-		u.sex,
-		u.iscreatelclj,
-		u.blcode,
-		u.seq_id as useqid,
-		u.askperson as firstaskperson,
-		i.detaildesc,
-		(select sum(c.actualmoney) from KQDS_COSTORDER c where c.regno = r.SEQ_ID and c.status=2 ) as jf
-		from KQDS_REG r
-		LEFT JOIN kqds_userdocument u on r.usercode = u.usercode
-		LEFT JOIN KQDS_RECEIVEINFO i on i.regno = r.SEQ_ID
-		LEFT JOIN SYS_DEPT dept on r.regdept = dept.seq_id
-		where 1=1
-		<if test="devItem != null and devItem !='' ">
-			and i.dev_item = #{devItem}
-		</if>
-		<if test="recesort != null and recesort !='' ">
-			and r.recesort = #{recesort}
-		</if>
-		<if test="askperson != null and askperson !='' ">
-			and r.askperson = #{askperson}
-		</if>
-		<if test="regdept != null and regdept !='' ">
-			and r.regdept = #{regdept}
-		</if>
-		<if test="doctor != null and doctor !='' ">
-			and r.doctor = #{doctor}
-		</if>
-		<if test="starttime != null and starttime !='' ">
-			and r.createtime <![CDATA[ >= ]]>
-			#{starttime}
-		</if>
-		<if test="endtime != null and endtime !='' ">
-			and r.createtime <![CDATA[ <= ]]>
-			#{endtime}
-		</if>
-		<if test="regsort != null and regsort !='' ">
-			and r.regsort = #{regsort}
-		</if>
-		<if test="cjstatus != null and cjstatus !='' ">
-			and r.cjstatus = #{cjstatus}
-		</if>
-		<if test="ifmedrecord != null and ifmedrecord !='' ">
-			and r.ifmedrecord =#{ifmedrecord}
-		</if>
-		<if test="searchValue != null and searchValue !='' ">
-			and (u.usercode like '%' + #{searchValue} + '%'
-			or u.username like '%' + #{searchValue} + '%'
-			or ${p1}
-			or ${p2}
-			or u.pym like '%' + #{searchValue} + '%'
-			)
-		</if>
-		<if test="firstaskperson != null and firstaskperson !='' ">
-			and u.askperson =#{firstaskperson}
-		</if>
-		<if test="usercode != null and usercode !='' ">
-			and u.usercode =#{usercode}
-		</if>
-		<if test="useqid != null and useqid !='' ">
-			and u.seq_id =#{useqid}
-		</if>
-		<if test="important != null and important !='' ">
-			and u.important = #{important}
-		</if>
-		<if test="devchannel != null and devchannel !='' ">
-			and u.devchannel = #{devchannel}
-		</if>
-		<if test="nexttype != null and nexttype !='' ">
-			and u.nexttype = #{nexttype}
-		</if>
-		<if test="ageSearch != null and ageSearch !='' ">
-			<if test='ageSearch =="10"'>
-				and u.age <![CDATA[ >= ]]>
-				'0' and u.age <![CDATA[ <= ]]>
-				'10'
-			</if>
-			<if test='ageSearch =="20"'>
-				and u.age <![CDATA[ >= ]]>
-				'10' and u.age <![CDATA[ <= ]]>
-				'20'
-			</if>
-			<if test='ageSearch =="30"'>
-				and u.age <![CDATA[ >= ]]>
-				'20' and u.age <![CDATA[ <= ]]>
-				'30'
-			</if>
-			<if test='ageSearch =="40"'>
-				and u.age <![CDATA[ >= ]]>
-				'30' and u.age <![CDATA[ <= ]]>
-				'40'
-			</if>
-			<if test='ageSearch =="50"'>
-				and u.age <![CDATA[ >= ]]>
-				'40' and u.age <![CDATA[ <= ]]>
-				'50'
-			</if>
-			<if test='ageSearch =="51"'>
-				and u.age <![CDATA[ >= ]]>
-				'50'
-			</if>
-		</if>
-		<if test="organization != null and organization !='' ">
-			and r.organization = #{organization}
-		</if>
-		<if test="seqid != null and seqid != '' ">
-			and r.seq_id= #{seqid}
-		</if>
-		<if test="gongju != null and gongju !='' ">
-			and u.accepttool = #{gongju} <!-- 根据受理工具类型筛选机 -->
-		</if>
-		<if test="visualstaff != null and visualstaff !='' ">
-			and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff}))
-			<!-- <if test="type != null and type !='' ">
-				<if test="costorderRegno != null and costorderRegno != '' ">
-				or r.seq_id in (${costorderRegno})
-				</if>
-				<if test="medicalrecordRegno != null and medicalrecordRegno != '' ">
-				or r.seq_id in (${medicalrecordRegno})
-				</if>
-				<if test="memberrecordUsercode != null and memberrecordUsercode != ''">
-				or u.usercode in (${memberrecordUsercode})
-				</if>
-			</if> -->
-		</if>
-		<if test="sortName != null and sortName != '' ">
-			ORDER BY ${sortName} ${sortOrder}
-		</if>
-		<if test="sortName == null">
-			ORDER BY r.CreateTime desc
-		</if>
-	</select>
-	<select id="selectJzcxtotal" parameterType="map" resultType="int">
-		select count(1)
-		from KQDS_REG r
-		LEFT JOIN kqds_userdocument u on r.usercode = u.usercode
-		LEFT JOIN KQDS_RECEIVEINFO i on i.regno = r.SEQ_ID
-		where 1=1
-		<if test="devItem != null and devItem !='' ">
-			and i.dev_item = #{devItem}
-		</if>
-		<if test="recesort != null and recesort !='' ">
-			and r.recesort = #{recesort}
-		</if>
-		<if test="askperson != null and askperson !='' ">
-			and r.askperson = #{askperson}
-		</if>
-		<if test="regdept != null and regdept !='' ">
-			and r.regdept = #{regdept}
-		</if>
-		<if test="doctor != null and doctor !='' ">
-			and r.doctor = #{doctor}
-		</if>
-		<if test="starttime != null and starttime !='' ">
-			and r.createtime <![CDATA[ >= ]]>
-			#{starttime}
-		</if>
-		<if test="endtime != null and endtime !='' ">
-			and r.createtime <![CDATA[ <= ]]>
-			#{endtime}
-		</if>
-		<if test="regsort != null and regsort !='' ">
-			and r.regsort = #{regsort}
-		</if>
-		<if test="cjstatus != null and cjstatus !='' ">
-			and r.cjstatus = #{cjstatus}
-		</if>
-		<if test="ifmedrecord != null and ifmedrecord !='' ">
-			and r.ifmedrecord = #{ifmedrecord}
-		</if>
-		<if test="searchValue != null and searchValue !='' ">
-			and (u.usercode like '%' + #{searchValue} + '%'
-			or u.username like '%' + #{searchValue} + '%'
-			or ${p1}
-			or ${p2}
-			or u.pym like '%' + #{searchValue} + '%'
-			)
-		</if>
-		<if test="important != null and important !='' ">
-			and u.important = #{important}
-		</if>
-		<if test="devchannel != null and devchannel !='' ">
-			and u.devchannel = #{devchannel}
-		</if>
-		<if test="nexttype != null and nexttype !='' ">
-			and u.nexttype = #{nexttype}
-		</if>
-		<if test="ageSearch != null and ageSearch !='' ">
-			<if test='ageSearch =="10"'>
-				and u.age <![CDATA[ >= ]]>
-				'0' and u.age <![CDATA[ <= ]]>
-				'10'
-			</if>
-			<if test='ageSearch =="20"'>
-				and u.age <![CDATA[ >= ]]>
-				'10' and u.age <![CDATA[ <= ]]>
-				'20'
-			</if>
-			<if test='ageSearch =="30"'>
-				and u.age <![CDATA[ >= ]]>
-				'20' and u.age <![CDATA[ <= ]]>
-				'30'
-			</if>
-			<if test='ageSearch =="40"'>
-				and u.age <![CDATA[ >= ]]>
-				'30' and u.age <![CDATA[ <= ]]>
-				'40'
-			</if>
-			<if test='ageSearch =="50"'>
-				and u.age <![CDATA[ >= ]]>
-				'40' and u.age <![CDATA[ <= ]]>
-				'50'
-			</if>
-			<if test='ageSearch =="51"'>
-				and u.age <![CDATA[ >= ]]>
-				'50'
-			</if>
-		</if>
-		<if test="organization != null and organization !='' ">
-			and r.organization = #{organization}
-		</if>
-		<if test="del != null and del !='' ">
-			and r.del = #{del}
-		</if>
-		<if test="gongju != null and gongju !='' ">
-			and u.accepttool = #{gongju} <!-- 根据受理工具类型筛选机 -->
-		</if>
-		<if test="visualstaff != null and visualstaff !='' ">
-			and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff}))
-			<!-- <if test="type != null and type !='' ">
-				<if test="costorderRegno != null and costorderRegno != '' ">
-				or r.seq_id in (${costorderRegno})
-				</if>
-				<if test="medicalrecordRegno != null and medicalrecordRegno != '' ">
-				or r.seq_id in (${medicalrecordRegno})
-				</if>
-				<if test="memberrecordUsercode != null and memberrecordUsercode != ''">
-				or u.usercode in (${memberrecordUsercode})
-				</if>
-			</if> -->
-		</if>
-	</select>
-	<select id="selectJzcxtotal1" parameterType="map" resultType="json">
-		select count(1) as num,r.recesort,sys.dict_name as dictname
-		from KQDS_REG r
-		LEFT JOIN kqds_userdocument u on r.usercode = u.usercode
-		LEFT JOIN KQDS_RECEIVEINFO i on i.regno = r.SEQ_ID
-		LEFT JOIN SYS_DICT sys on sys.SEQ_ID = r.recesort
-		where 1=1
-		<if test="devItem != null and devItem !='' ">
-			and i.dev_item = #{devItem}
-		</if>
-		<if test="recesort != null and recesort !='' ">
-			and r.recesort in (${recesort})
-		</if>
-		<if test="askperson != null and askperson !='' ">
-			and r.askperson = #{askperson}
-		</if>
-		<if test="regdept != null and regdept !='' ">
-			and r.regdept = #{regdept}
-		</if>
-		<if test="doctor != null and doctor !='' ">
-			and r.doctor = #{doctor}
-		</if>
-		<if test="starttime != null and starttime !='' ">
-			and r.createtime <![CDATA[ >= ]]>
-			#{starttime}
-		</if>
-		<if test="endtime != null and endtime !='' ">
-			and r.createtime <![CDATA[ <= ]]>
-			#{endtime}
-		</if>
-		<if test="regsort != null and regsort !='' ">
-			and r.regsort = #{regsort}
-		</if>
-		<if test="cjstatus != null and cjstatus !='' ">
-			and r.cjstatus = #{cjstatus}
-		</if>
-		<if test="ifmedrecord != null and ifmedrecord !='' ">
-			and r.ifmedrecord = #{ifmedrecord}
-		</if>
-		<if test="searchValue != null and searchValue !='' ">
-			and (u.usercode like '%' + #{searchValue} + '%'
-			or u.username like '%' + #{searchValue} + '%'
-			or ${p1}
-			or ${p2}
-			or u.pym like '%' + #{searchValue} + '%'
-			)
-		</if>
-		<if test="important != null and important !='' ">
-			and u.important = #{important}
-		</if>
-		<if test="devchannel != null and devchannel !='' ">
-			and u.devchannel = #{devchannel}
-		</if>
-		<if test="nexttype != null and nexttype !='' ">
-			and u.nexttype = #{nexttype}
-		</if>
-		<if test="ageSearch != null and ageSearch !='' ">
-			<if test='ageSearch =="10"'>
-				and u.age <![CDATA[ >= ]]>
-				'0' and u.age <![CDATA[ <= ]]>
-				'10'
-			</if>
-			<if test='ageSearch =="20"'>
-				and u.age <![CDATA[ >= ]]>
-				'10' and u.age <![CDATA[ <= ]]>
-				'20'
-			</if>
-			<if test='ageSearch =="30"'>
-				and u.age <![CDATA[ >= ]]>
-				'20' and u.age <![CDATA[ <= ]]>
-				'30'
-			</if>
-			<if test='ageSearch =="40"'>
-				and u.age <![CDATA[ >= ]]>
-				'30' and u.age <![CDATA[ <= ]]>
-				'40'
-			</if>
-			<if test='ageSearch =="50"'>
-				and u.age <![CDATA[ >= ]]>
-				'40' and u.age <![CDATA[ <= ]]>
-				'50'
-			</if>
-			<if test='ageSearch =="51"'>
-				and u.age <![CDATA[ >= ]]>
-				'50'
-			</if>
-		</if>
-		<if test="organization != null and organization !='' ">
-			and r.organization = #{organization}
-		</if>
-		<if test="del != null and del !='' ">
-			and r.del = #{del}
-		</if>
-		<if test="gongju != null and gongju !='' ">
-			and u.accepttool = #{gongju} <!-- 根据受理工具类型筛选机 -->
-		</if>
-		<if test="visualstaff != null and visualstaff !='' ">
-			and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff}))
-		</if>
-		<if test="recesort != null and recesort !='' ">
-			group by r.recesort,sys.dict_name
-		</if>
-	</select>
-	<select id="selectTodayNum" parameterType="map" resultType="json">
-		select
-		sum(r.cjstatus) as cjstatus
-		from KQDS_REG r
-		LEFT JOIN SYS_DEPT odept on odept.dept_code = r.organization and odept.dept_parent = '0'
-		LEFT JOIN kqds_userdocument u on r.usercode = u.usercode
-		left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by usercode) b
-		where a.usercode = b.usercode and a.createtime = b.createtime ) n on n.usercode = r.usercode
-		LEFT JOIN sys_person per7 ON per7.SEQ_ID = u.kefu  <!-- 添加客服检索条件 -->
-		where 1=1
-		<if test="organization != null and organization !='' ">
-			and r.organization = #{organization}
-		</if>
-		<if test="doctorSearch != null and doctorSearch !='' ">
-			and r.doctor = #{doctorSearch}
-		</if>
-		<if test="askpersonSearch != null and askpersonSearch !='' ">
-			and r.askperson = #{askpersonSearch}
-		</if>
-		<if test="searchValue != null and searchValue !='' ">
-			and (u.usercode like '%' + #{searchValue} + '%'
-			or u.username like '%' + #{searchValue} + '%'
-			or ${p1}
-			or ${p2}
-			or u.pym like '%' + #{searchValue} + '%'
-			)
-		</if>
-		<if test="importantSearch != null and importantSearch !='' ">
-			and u.important = #{importantSearch}
-		</if>
-		<if test="devchannelSearch != null and devchannelSearch !='' ">
-			and u.devchannel = #{devchannelSearch}
-		</if>
-		<if test="nexttype1 != null and nexttype1 !='' ">
-			and u.nexttype = #{nexttype1}
-		</if>
-		<if test="createuserSearch != null and createuserSearch !='' ">
-			and u.createuser = #{createuserSearch}
-		</if>
-		<if test="recesort != null and recesort !='' ">
-			and r.recesort = #{recesort}
-		</if>
-		<if test="regsort != null and regsort !='' ">
-			and r.regsort = #{regsort}
-		</if>
-		<if test="devchannel != null and devchannel !='' ">
-			and u.devchannel = #{devchannel}
-		</if>
-		<if test="nexttype != null and nexttype !='' ">
-			and u.nexttype = #{nexttype}
-		</if>
-		<if test="cjstatus != null and cjstatus !='' ">
-			and r.cjstatus = #{cjstatus}
-		</if>
-		<if test="starttime != null and starttime !='' ">
-			and r.createtime <![CDATA[ >= ]]>
-			#{starttime}
-		</if>
-		<if test="endtime != null and endtime !='' ">
-			and r.createtime <![CDATA[ <= ]]>
-			#{endtime}
-		</if>
+    <select id="selectJzcx" parameterType="map" resultType="json">
+        select
+        r.seq_id,
+        r.createtime,
+        r.usercode,
+        r.username,
+        u.idcardno,
+        r.regway,
+        r.regsort as regsortvalue,
+        r.recesort as recesortvalue,
+        r.regmoney,
+        dept.DEPT_NAME as regdept,
+        r.regdept as regdeptvalue,
+        r.askperson as askpersonvalue,
+        r.doctor as doctorvalue,
+        r.ifmedrecord,
+        r.ifcost,
+        r.status,
+        r.del,
+        r.cjstatus,
+        r.editreason,
+        r.organization,
+        u.age,
+        u.important,
+        u.invoice,
+        u.devchannel as devchannelvalue,
+        u.nexttype as nexttypevalue,
+        i.dev_item as devitemdescvalue,
+        u.phonenumber1,
+        u.phonenumber2,
+        u.pym,
+        u.sex,
+        u.iscreatelclj,
+        u.blcode,
+        u.seq_id as useqid,
+        u.askperson as firstaskperson,
+        i.detaildesc,
+        (select sum(c.actualmoney) from KQDS_COSTORDER c where c.regno = r.SEQ_ID and c.status=2 ) as jf
+        from KQDS_REG r
+        LEFT JOIN kqds_userdocument u on r.usercode = u.usercode
+        LEFT JOIN KQDS_RECEIVEINFO i on i.regno = r.SEQ_ID
+        LEFT JOIN SYS_DEPT dept on r.regdept = dept.seq_id
+        where 1=1
+        <if test="devItem != null and devItem !='' ">
+            and i.dev_item = #{devItem}
+        </if>
+        <if test="recesort != null and recesort !='' ">
+            and r.recesort = #{recesort}
+        </if>
+        <if test="askperson != null and askperson !='' ">
+            and r.askperson = #{askperson}
+        </if>
+        <if test="regdept != null and regdept !='' ">
+            and r.regdept = #{regdept}
+        </if>
+        <if test="doctor != null and doctor !='' ">
+            and r.doctor = #{doctor}
+        </if>
+        <if test="starttime != null and starttime !='' ">
+            and r.createtime <![CDATA[ >= ]]>
+            #{starttime}
+        </if>
+        <if test="endtime != null and endtime !='' ">
+            and r.createtime <![CDATA[ <= ]]>
+            #{endtime}
+        </if>
+        <if test="regsort != null and regsort !='' ">
+            and r.regsort = #{regsort}
+        </if>
+        <if test="cjstatus != null and cjstatus !='' ">
+            and r.cjstatus = #{cjstatus}
+        </if>
+        <if test="ifmedrecord != null and ifmedrecord !='' ">
+            and r.ifmedrecord =#{ifmedrecord}
+        </if>
+        <if test="searchValue != null and searchValue !='' ">
+            and (u.usercode like '%' + #{searchValue} + '%'
+            or u.username like '%' + #{searchValue} + '%'
+            or ${p1}
+            or ${p2}
+            or u.pym like '%' + #{searchValue} + '%'
+            )
+        </if>
+        <if test="firstaskperson != null and firstaskperson !='' ">
+            and u.askperson =#{firstaskperson}
+        </if>
+        <if test="usercode != null and usercode !='' ">
+            and u.usercode =#{usercode}
+        </if>
+        <if test="useqid != null and useqid !='' ">
+            and u.seq_id =#{useqid}
+        </if>
+        <if test="important != null and important !='' ">
+            and u.important = #{important}
+        </if>
+        <if test="devchannel != null and devchannel !='' ">
+            and u.devchannel = #{devchannel}
+        </if>
+        <if test="nexttype != null and nexttype !='' ">
+            and u.nexttype = #{nexttype}
+        </if>
+        <if test="ageSearch != null and ageSearch !='' ">
+            <if test='ageSearch =="10"'>
+                and u.age <![CDATA[ >= ]]>
+                '0' and u.age <![CDATA[ <= ]]>
+                '10'
+            </if>
+            <if test='ageSearch =="20"'>
+                and u.age <![CDATA[ >= ]]>
+                '10' and u.age <![CDATA[ <= ]]>
+                '20'
+            </if>
+            <if test='ageSearch =="30"'>
+                and u.age <![CDATA[ >= ]]>
+                '20' and u.age <![CDATA[ <= ]]>
+                '30'
+            </if>
+            <if test='ageSearch =="40"'>
+                and u.age <![CDATA[ >= ]]>
+                '30' and u.age <![CDATA[ <= ]]>
+                '40'
+            </if>
+            <if test='ageSearch =="50"'>
+                and u.age <![CDATA[ >= ]]>
+                '40' and u.age <![CDATA[ <= ]]>
+                '50'
+            </if>
+            <if test='ageSearch =="51"'>
+                and u.age <![CDATA[ >= ]]>
+                '50'
+            </if>
+        </if>
+        <if test="organization != null and organization !='' ">
+            and r.organization = #{organization}
+        </if>
+        <if test="seqid != null and seqid != '' ">
+            and r.seq_id= #{seqid}
+        </if>
+        <if test="gongju != null and gongju !='' ">
+            and u.accepttool = #{gongju} <!-- 根据受理工具类型筛选机 -->
+        </if>
+        <if test="visualstaff != null and visualstaff !='' ">
+            and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff}))
+            <!-- <if test="type != null and type !='' ">
+                <if test="costorderRegno != null and costorderRegno != '' ">
+                or r.seq_id in (${costorderRegno})
+                </if>
+                <if test="medicalrecordRegno != null and medicalrecordRegno != '' ">
+                or r.seq_id in (${medicalrecordRegno})
+                </if>
+                <if test="memberrecordUsercode != null and memberrecordUsercode != ''">
+                or u.usercode in (${memberrecordUsercode})
+                </if>
+            </if> -->
+        </if>
+        <if test="sortName != null and sortName != '' ">
+            ORDER BY ${sortName} ${sortOrder}
+        </if>
+        <if test="sortName == null">
+            ORDER BY r.CreateTime desc
+        </if>
+    </select>
+    <select id="selectJzcxtotal" parameterType="map" resultType="int">
+        select count(1)
+        from KQDS_REG r
+        LEFT JOIN kqds_userdocument u on r.usercode = u.usercode
+        LEFT JOIN KQDS_RECEIVEINFO i on i.regno = r.SEQ_ID
+        where 1=1
+        <if test="devItem != null and devItem !='' ">
+            and i.dev_item = #{devItem}
+        </if>
+        <if test="recesort != null and recesort !='' ">
+            and r.recesort = #{recesort}
+        </if>
+        <if test="askperson != null and askperson !='' ">
+            and r.askperson = #{askperson}
+        </if>
+        <if test="regdept != null and regdept !='' ">
+            and r.regdept = #{regdept}
+        </if>
+        <if test="doctor != null and doctor !='' ">
+            and r.doctor = #{doctor}
+        </if>
+        <if test="starttime != null and starttime !='' ">
+            and r.createtime <![CDATA[ >= ]]>
+            #{starttime}
+        </if>
+        <if test="endtime != null and endtime !='' ">
+            and r.createtime <![CDATA[ <= ]]>
+            #{endtime}
+        </if>
+        <if test="regsort != null and regsort !='' ">
+            and r.regsort = #{regsort}
+        </if>
+        <if test="cjstatus != null and cjstatus !='' ">
+            and r.cjstatus = #{cjstatus}
+        </if>
+        <if test="ifmedrecord != null and ifmedrecord !='' ">
+            and r.ifmedrecord = #{ifmedrecord}
+        </if>
+        <if test="searchValue != null and searchValue !='' ">
+            and (u.usercode like '%' + #{searchValue} + '%'
+            or u.username like '%' + #{searchValue} + '%'
+            or ${p1}
+            or ${p2}
+            or u.pym like '%' + #{searchValue} + '%'
+            )
+        </if>
+        <if test="important != null and important !='' ">
+            and u.important = #{important}
+        </if>
+        <if test="devchannel != null and devchannel !='' ">
+            and u.devchannel = #{devchannel}
+        </if>
+        <if test="nexttype != null and nexttype !='' ">
+            and u.nexttype = #{nexttype}
+        </if>
+        <if test="ageSearch != null and ageSearch !='' ">
+            <if test='ageSearch =="10"'>
+                and u.age <![CDATA[ >= ]]>
+                '0' and u.age <![CDATA[ <= ]]>
+                '10'
+            </if>
+            <if test='ageSearch =="20"'>
+                and u.age <![CDATA[ >= ]]>
+                '10' and u.age <![CDATA[ <= ]]>
+                '20'
+            </if>
+            <if test='ageSearch =="30"'>
+                and u.age <![CDATA[ >= ]]>
+                '20' and u.age <![CDATA[ <= ]]>
+                '30'
+            </if>
+            <if test='ageSearch =="40"'>
+                and u.age <![CDATA[ >= ]]>
+                '30' and u.age <![CDATA[ <= ]]>
+                '40'
+            </if>
+            <if test='ageSearch =="50"'>
+                and u.age <![CDATA[ >= ]]>
+                '40' and u.age <![CDATA[ <= ]]>
+                '50'
+            </if>
+            <if test='ageSearch =="51"'>
+                and u.age <![CDATA[ >= ]]>
+                '50'
+            </if>
+        </if>
+        <if test="organization != null and organization !='' ">
+            and r.organization = #{organization}
+        </if>
+        <if test="del != null and del !='' ">
+            and r.del = #{del}
+        </if>
+        <if test="gongju != null and gongju !='' ">
+            and u.accepttool = #{gongju} <!-- 根据受理工具类型筛选机 -->
+        </if>
+        <if test="visualstaff != null and visualstaff !='' ">
+            and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff}))
+            <!-- <if test="type != null and type !='' ">
+                <if test="costorderRegno != null and costorderRegno != '' ">
+                or r.seq_id in (${costorderRegno})
+                </if>
+                <if test="medicalrecordRegno != null and medicalrecordRegno != '' ">
+                or r.seq_id in (${medicalrecordRegno})
+                </if>
+                <if test="memberrecordUsercode != null and memberrecordUsercode != ''">
+                or u.usercode in (${memberrecordUsercode})
+                </if>
+            </if> -->
+        </if>
+    </select>
+    <select id="selectJzcxtotal1" parameterType="map" resultType="json">
+        select count(1) as num,r.recesort,sys.dict_name as dictname
+        from KQDS_REG r
+        LEFT JOIN kqds_userdocument u on r.usercode = u.usercode
+        LEFT JOIN KQDS_RECEIVEINFO i on i.regno = r.SEQ_ID
+        LEFT JOIN SYS_DICT sys on sys.SEQ_ID = r.recesort
+        where 1=1
+        <if test="devItem != null and devItem !='' ">
+            and i.dev_item = #{devItem}
+        </if>
+        <if test="recesort != null and recesort !='' ">
+            and r.recesort in (${recesort})
+        </if>
+        <if test="askperson != null and askperson !='' ">
+            and r.askperson = #{askperson}
+        </if>
+        <if test="regdept != null and regdept !='' ">
+            and r.regdept = #{regdept}
+        </if>
+        <if test="doctor != null and doctor !='' ">
+            and r.doctor = #{doctor}
+        </if>
+        <if test="starttime != null and starttime !='' ">
+            and r.createtime <![CDATA[ >= ]]>
+            #{starttime}
+        </if>
+        <if test="endtime != null and endtime !='' ">
+            and r.createtime <![CDATA[ <= ]]>
+            #{endtime}
+        </if>
+        <if test="regsort != null and regsort !='' ">
+            and r.regsort = #{regsort}
+        </if>
+        <if test="cjstatus != null and cjstatus !='' ">
+            and r.cjstatus = #{cjstatus}
+        </if>
+        <if test="ifmedrecord != null and ifmedrecord !='' ">
+            and r.ifmedrecord = #{ifmedrecord}
+        </if>
+        <if test="searchValue != null and searchValue !='' ">
+            and (u.usercode like '%' + #{searchValue} + '%'
+            or u.username like '%' + #{searchValue} + '%'
+            or ${p1}
+            or ${p2}
+            or u.pym like '%' + #{searchValue} + '%'
+            )
+        </if>
+        <if test="important != null and important !='' ">
+            and u.important = #{important}
+        </if>
+        <if test="devchannel != null and devchannel !='' ">
+            and u.devchannel = #{devchannel}
+        </if>
+        <if test="nexttype != null and nexttype !='' ">
+            and u.nexttype = #{nexttype}
+        </if>
+        <if test="ageSearch != null and ageSearch !='' ">
+            <if test='ageSearch =="10"'>
+                and u.age <![CDATA[ >= ]]>
+                '0' and u.age <![CDATA[ <= ]]>
+                '10'
+            </if>
+            <if test='ageSearch =="20"'>
+                and u.age <![CDATA[ >= ]]>
+                '10' and u.age <![CDATA[ <= ]]>
+                '20'
+            </if>
+            <if test='ageSearch =="30"'>
+                and u.age <![CDATA[ >= ]]>
+                '20' and u.age <![CDATA[ <= ]]>
+                '30'
+            </if>
+            <if test='ageSearch =="40"'>
+                and u.age <![CDATA[ >= ]]>
+                '30' and u.age <![CDATA[ <= ]]>
+                '40'
+            </if>
+            <if test='ageSearch =="50"'>
+                and u.age <![CDATA[ >= ]]>
+                '40' and u.age <![CDATA[ <= ]]>
+                '50'
+            </if>
+            <if test='ageSearch =="51"'>
+                and u.age <![CDATA[ >= ]]>
+                '50'
+            </if>
+        </if>
+        <if test="organization != null and organization !='' ">
+            and r.organization = #{organization}
+        </if>
+        <if test="del != null and del !='' ">
+            and r.del = #{del}
+        </if>
+        <if test="gongju != null and gongju !='' ">
+            and u.accepttool = #{gongju} <!-- 根据受理工具类型筛选机 -->
+        </if>
+        <if test="visualstaff != null and visualstaff !='' ">
+            and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff}))
+        </if>
+        <if test="recesort != null and recesort !='' ">
+            group by r.recesort,sys.dict_name
+        </if>
+    </select>
+    <select id="selectTodayNum" parameterType="map" resultType="json">
+        select
+        sum(r.cjstatus) as cjstatus
+        from KQDS_REG r
+        LEFT JOIN SYS_DEPT odept on odept.dept_code = r.organization and odept.dept_parent = '0'
+        LEFT JOIN kqds_userdocument u on r.usercode = u.usercode
+        left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER
+        group by usercode) b
+        where a.usercode = b.usercode and a.createtime = b.createtime ) n on n.usercode = r.usercode
+        LEFT JOIN sys_person per7 ON per7.SEQ_ID = u.kefu  <!-- 添加客服检索条件 -->
+        where 1=1
+        <if test="organization != null and organization !='' ">
+            and r.organization = #{organization}
+        </if>
+        <if test="doctorSearch != null and doctorSearch !='' ">
+            and r.doctor = #{doctorSearch}
+        </if>
+        <if test="askpersonSearch != null and askpersonSearch !='' ">
+            and r.askperson = #{askpersonSearch}
+        </if>
+        <if test="searchValue != null and searchValue !='' ">
+            and (u.usercode like '%' + #{searchValue} + '%'
+            or u.username like '%' + #{searchValue} + '%'
+            or ${p1}
+            or ${p2}
+            or u.pym like '%' + #{searchValue} + '%'
+            )
+        </if>
+        <if test="importantSearch != null and importantSearch !='' ">
+            and u.important = #{importantSearch}
+        </if>
+        <if test="devchannelSearch != null and devchannelSearch !='' ">
+            and u.devchannel = #{devchannelSearch}
+        </if>
+        <if test="nexttype1 != null and nexttype1 !='' ">
+            and u.nexttype = #{nexttype1}
+        </if>
+        <if test="createuserSearch != null and createuserSearch !='' ">
+            and u.createuser = #{createuserSearch}
+        </if>
+        <if test="recesort != null and recesort !='' ">
+            and r.recesort = #{recesort}
+        </if>
+        <if test="regsort != null and regsort !='' ">
+            and r.regsort = #{regsort}
+        </if>
+        <if test="devchannel != null and devchannel !='' ">
+            and u.devchannel = #{devchannel}
+        </if>
+        <if test="nexttype != null and nexttype !='' ">
+            and u.nexttype = #{nexttype}
+        </if>
+        <if test="cjstatus != null and cjstatus !='' ">
+            and r.cjstatus = #{cjstatus}
+        </if>
+        <if test="starttime != null and starttime !='' ">
+            and r.createtime <![CDATA[ >= ]]>
+            #{starttime}
+        </if>
+        <if test="endtime != null and endtime !='' ">
+            and r.createtime <![CDATA[ <= ]]>
+            #{endtime}
+        </if>
 
-		<if test="shouli != null and shouli !='' ">
-			and n.accepttype = #{shouli}
-		</if>
-		<if test="gongju != null and gongju !='' ">
-			and n.accepttool = #{gongju}
-		</if>
-		<if test="customer != null and customer !='' ">
-			and per7.user_name = #{customer}    <!-- 添加客服检索条件 -->
-		</if>
-		<if test="ywhf != null and ywhf !='' ">
-			<if test='ywhf = "0"'>
-				and (select count(v.usercode) from KQDS_Visit v where v.usercode=u.UserCode) = 0
-			</if>
-			<if test='ywhf != "0"'>
-				and (select count(v.usercode) from KQDS_Visit v where v.usercode=u.UserCode) > 0
-			</if>
-		</if>
-		<if test="visualstaff != null and visualstaff !='' ">
-			and (u.askperson in(${visualstaff}) or u.createuser in(${visualstaff}) or u.glr in(${visualstaff}))
-		</if>
-		<if test="visualstaffwd != null and visualstaffwd !='' ">
-			and (u.askperson in(${visualstaffwd}) or u.createuser in(${visualstaffwd}) or u.glr in(${visualstaffwd}))
-		</if>
-	</select>
+        <if test="shouli != null and shouli !='' ">
+            and n.accepttype = #{shouli}
+        </if>
+        <if test="gongju != null and gongju !='' ">
+            and n.accepttool = #{gongju}
+        </if>
+        <if test="customer != null and customer !='' ">
+            and per7.user_name = #{customer}    <!-- 添加客服检索条件 -->
+        </if>
+        <if test="ywhf != null and ywhf !='' ">
+            <if test='ywhf = "0"'>
+                and (select count(v.usercode) from KQDS_Visit v where v.usercode=u.UserCode) = 0
+            </if>
+            <if test='ywhf != "0"'>
+                and (select count(v.usercode) from KQDS_Visit v where v.usercode=u.UserCode) > 0
+            </if>
+        </if>
+        <if test="visualstaff != null and visualstaff !='' ">
+            and (u.askperson in(${visualstaff}) or u.createuser in(${visualstaff}) or u.glr in(${visualstaff}))
+        </if>
+        <if test="visualstaffwd != null and visualstaffwd !='' ">
+            and (u.askperson in(${visualstaffwd}) or u.createuser in(${visualstaffwd}) or u.glr in(${visualstaffwd}))
+        </if>
+    </select>
 
-	<select id="selectToday" parameterType="map" resultType="json">
-		select
-		r.seq_id,
-		odept.dept_name as organizationname,
-		r.createtime,
-		r.usercode,
-		r.username,
-		r.regway,
-		r.regmoney,
-		r.ifmedrecord,
-		r.ifcost,
-		r.status,
-		r.del,
-		r.cjstatus,
-		r.editreason,
-		u.age,
-		u.important,
-		u.createtime as jdsj,
-		u.phonenumber1,
-		u.sex,
-		kcit5.dict_name as accepttype,
-		kcit6.dict_name as accepttool,
-		<if test="flag !=null and flag != ''">
-			(select count(v.usercode) from KQDS_Visit v where v.usercode=u.UserCode) as ywhf,
-			per6.USER_NAME as dy,
-			per5.USER_NAME as createuser,
-			kcit2.dict_name as regsort,
-			kcit1.dict_name as recesort,
-			dept.DEPT_NAME as regdept,
-			per2.USER_NAME as doctor,
-			per1.USER_NAME as askperson,
-			kcit3.dict_name as devchannel,
-			hzly.dict_name as nexttype,
-			per3.USER_NAME as jdr,
-			per4.USER_NAME as jddy,
-			kcit4.dict_name as failreason1,
-		</if>
-		<!-- (select sum(c.actualmoney) from KQDS_COSTORDER c where c.regno = r.SEQ_ID and c.status = 2 ) as jf, -->
-		per7.user_name as kefuname  <!-- 添加客服检索条件 -->
-		from KQDS_REG r
-		LEFT JOIN SYS_DEPT odept on odept.dept_code = r.organization and odept.dept_parent = '0'
-		LEFT JOIN kqds_userdocument u on r.usercode = u.usercode
-		<if test="flag !=null and flag != ''">
-			LEFT JOIN KQDS_RECEIVEINFO i on i.regno = r.SEQ_ID
-			LEFT JOIN SYS_DICT kcit1 on r.recesort = kcit1.seq_id
-			LEFT JOIN SYS_DICT kcit2 on r.regsort = kcit2.seq_id
-			LEFT JOIN SYS_DICT kcit4 on i.failreason1 = kcit4.seq_id
-			LEFT JOIN SYS_DEPT dept on r.regdept = dept.seq_id
-			LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = r.askperson
-			LEFT JOIN SYS_PERSON per2 on per2.SEQ_ID = r.doctor
-			LEFT JOIN SYS_PERSON per3 on per3.SEQ_ID = u.createuser
-			LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID = u.guider
-			LEFT JOIN SYS_PERSON per5 on per5.SEQ_ID = r.createuser
-			LEFT JOIN SYS_PERSON per6 on per6.SEQ_ID = r.receiveno
-			LEFT JOIN SYS_DICT kcit3 on u.devchannel = kcit3.seq_id
-			LEFT JOIN SYS_DICT hzly on u.nexttype = hzly.seq_id
-		</if>
-		left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER group by usercode) b
-		where a.usercode = b.usercode and a.createtime = b.createtime ) n on n.usercode = r.usercode
-		LEFT JOIN SYS_DICT kcit5 on n.accepttype = kcit5.seq_id
-		LEFT JOIN SYS_DICT kcit6 on n.accepttool = kcit6.seq_id
-		LEFT JOIN sys_person per7 ON per7.SEQ_ID = u.kefu  <!-- 添加客服检索条件 -->
-		where 1=1
-		<if test="organization != null and organization !='' ">
-			and r.organization = #{organization}
-		</if>
-		<if test="doctorSearch != null and doctorSearch !='' ">
-			and r.doctor = #{doctorSearch}
-		</if>
-		<if test="askpersonSearch != null and askpersonSearch !='' ">
-			and r.askperson = #{askpersonSearch}
-		</if>
-		<if test="searchValue != null and searchValue !='' ">
-			and (u.usercode like '%' + #{searchValue} + '%'
-			or u.username like '%' + #{searchValue} + '%'
-			or ${p1}
-			or ${p2}
-			or u.pym like '%' + #{searchValue} + '%'
-			)
-		</if>
-		<if test="importantSearch != null and importantSearch !='' ">
-			and u.important = #{importantSearch}
-		</if>
-		<if test="devchannelSearch != null and devchannelSearch !='' ">
-			and u.devchannel = #{devchannelSearch}
-		</if>
-		<if test="nexttype1 != null and nexttype1 !='' ">
-			and u.nexttype = #{nexttype1}
-		</if>
-		<if test="createuserSearch != null and createuserSearch !='' ">
-			and u.createuser = #{createuserSearch}
-		</if>
-		<if test="recesort != null and recesort !='' ">
-			and r.recesort = #{recesort}
-		</if>
-		<if test="regsort != null and regsort !='' ">
-			and r.regsort = #{regsort}
-		</if>
-		<if test="devchannel != null and devchannel !='' ">
-			and u.devchannel = #{devchannel}
-		</if>
-		<if test="nexttype != null and nexttype !='' ">
-			and u.nexttype = #{nexttype}
-		</if>
-		<if test="cjstatus != null and cjstatus !='' ">
-			and r.cjstatus = #{cjstatus}
-		</if>
-		<if test="starttime != null and starttime !='' ">
-			and r.createtime <![CDATA[ >= ]]>
-			#{starttime}
-		</if>
-		<if test="endtime != null and endtime !='' ">
-			and r.createtime <![CDATA[ <= ]]>
-			#{endtime}
-		</if>
+    <select id="selectToday" parameterType="map" resultType="json">
+        select
+        r.seq_id,
+        odept.dept_name as organizationname,
+        r.createtime,
+        r.usercode,
+        r.username,
+        r.regway,
+        r.regmoney,
+        r.ifmedrecord,
+        r.ifcost,
+        r.status,
+        r.del,
+        r.cjstatus,
+        r.editreason,
+        u.age,
+        u.important,
+        u.createtime as jdsj,
+        u.phonenumber1,
+        u.sex,
+        kcit5.dict_name as accepttype,
+        kcit6.dict_name as accepttool,
+        <if test="flag !=null and flag != ''">
+            (select count(v.usercode) from KQDS_Visit v where v.usercode=u.UserCode) as ywhf,
+            per6.USER_NAME as dy,
+            per5.USER_NAME as createuser,
+            kcit2.dict_name as regsort,
+            kcit1.dict_name as recesort,
+            dept.DEPT_NAME as regdept,
+            per2.USER_NAME as doctor,
+            per1.USER_NAME as askperson,
+            kcit3.dict_name as devchannel,
+            hzly.dict_name as nexttype,
+            per3.USER_NAME as jdr,
+            per4.USER_NAME as jddy,
+            kcit4.dict_name as failreason1,
+        </if>
+        <!-- (select sum(c.actualmoney) from KQDS_COSTORDER c where c.regno = r.SEQ_ID and c.status = 2 ) as jf, -->
+        per7.user_name as kefuname  <!-- 添加客服检索条件 -->
+        from KQDS_REG r
+        LEFT JOIN SYS_DEPT odept on odept.dept_code = r.organization and odept.dept_parent = '0'
+        LEFT JOIN kqds_userdocument u on r.usercode = u.usercode
+        <if test="flag !=null and flag != ''">
+            LEFT JOIN KQDS_RECEIVEINFO i on i.regno = r.SEQ_ID
+            LEFT JOIN SYS_DICT kcit1 on r.recesort = kcit1.seq_id
+            LEFT JOIN SYS_DICT kcit2 on r.regsort = kcit2.seq_id
+            LEFT JOIN SYS_DICT kcit4 on i.failreason1 = kcit4.seq_id
+            LEFT JOIN SYS_DEPT dept on r.regdept = dept.seq_id
+            LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = r.askperson
+            LEFT JOIN SYS_PERSON per2 on per2.SEQ_ID = r.doctor
+            LEFT JOIN SYS_PERSON per3 on per3.SEQ_ID = u.createuser
+            LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID = u.guider
+            LEFT JOIN SYS_PERSON per5 on per5.SEQ_ID = r.createuser
+            LEFT JOIN SYS_PERSON per6 on per6.SEQ_ID = r.receiveno
+            LEFT JOIN SYS_DICT kcit3 on u.devchannel = kcit3.seq_id
+            LEFT JOIN SYS_DICT hzly on u.nexttype = hzly.seq_id
+        </if>
+        left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from KQDS_NET_ORDER
+        group by usercode) b
+        where a.usercode = b.usercode and a.createtime = b.createtime ) n on n.usercode = r.usercode
+        LEFT JOIN SYS_DICT kcit5 on n.accepttype = kcit5.seq_id
+        LEFT JOIN SYS_DICT kcit6 on n.accepttool = kcit6.seq_id
+        LEFT JOIN sys_person per7 ON per7.SEQ_ID = u.kefu  <!-- 添加客服检索条件 -->
+        where 1=1
+        <if test="organization != null and organization !='' ">
+            and r.organization = #{organization}
+        </if>
+        <if test="doctorSearch != null and doctorSearch !='' ">
+            and r.doctor = #{doctorSearch}
+        </if>
+        <if test="askpersonSearch != null and askpersonSearch !='' ">
+            and r.askperson = #{askpersonSearch}
+        </if>
+        <if test="searchValue != null and searchValue !='' ">
+            and (u.usercode like '%' + #{searchValue} + '%'
+            or u.username like '%' + #{searchValue} + '%'
+            or ${p1}
+            or ${p2}
+            or u.pym like '%' + #{searchValue} + '%'
+            )
+        </if>
+        <if test="importantSearch != null and importantSearch !='' ">
+            and u.important = #{importantSearch}
+        </if>
+        <if test="devchannelSearch != null and devchannelSearch !='' ">
+            and u.devchannel = #{devchannelSearch}
+        </if>
+        <if test="nexttype1 != null and nexttype1 !='' ">
+            and u.nexttype = #{nexttype1}
+        </if>
+        <if test="createuserSearch != null and createuserSearch !='' ">
+            and u.createuser = #{createuserSearch}
+        </if>
+        <if test="recesort != null and recesort !='' ">
+            and r.recesort = #{recesort}
+        </if>
+        <if test="regsort != null and regsort !='' ">
+            and r.regsort = #{regsort}
+        </if>
+        <if test="devchannel != null and devchannel !='' ">
+            and u.devchannel = #{devchannel}
+        </if>
+        <if test="nexttype != null and nexttype !='' ">
+            and u.nexttype = #{nexttype}
+        </if>
+        <if test="cjstatus != null and cjstatus !='' ">
+            and r.cjstatus = #{cjstatus}
+        </if>
+        <if test="starttime != null and starttime !='' ">
+            and r.createtime <![CDATA[ >= ]]>
+            #{starttime}
+        </if>
+        <if test="endtime != null and endtime !='' ">
+            and r.createtime <![CDATA[ <= ]]>
+            #{endtime}
+        </if>
 
-		<if test="shouli != null and shouli !='' ">
-			and n.accepttype = #{shouli}
-		</if>
-		<if test="gongju != null and gongju !='' ">
-			and n.accepttool = #{gongju}
-		</if>
-		<if test="customer != null and customer !='' ">
-			and per7.user_name = #{customer}    <!-- 添加客服检索条件 -->
-		</if>
-		<if test="ywhf != null and ywhf !='' ">
-			<if test='ywhf = "0"'>
-				and (select count(v.usercode) from KQDS_Visit v where v.usercode=u.UserCode) = 0
-			</if>
-			<if test='ywhf != "0"'>
-				and (select count(v.usercode) from KQDS_Visit v where v.usercode=u.UserCode) > 0
-			</if>
-		</if>
-		<if test="visualstaff != null and visualstaff !='' ">
-			and (u.askperson in(${visualstaff}) or u.createuser in(${visualstaff}) or u.glr in(${visualstaff}))
-		</if>
-		<if test="visualstaffwd != null and visualstaffwd !='' ">
-			and (u.askperson in(${visualstaffwd}) or u.createuser in(${visualstaffwd}) or u.glr in(${visualstaffwd}))
-		</if>
-		<if test="sortName != null and sortName !=''">
-			order by ${sortName} ${sortOrder}
-		</if>
-		<if test="sortName == null">
-			ORDER BY r.CreateTime desc
-		</if>
-	</select>
-	<select id="getCountIndex" parameterType="map" resultType="int">
-		<bind name="temp_dbType" value="${system_dbType}" />
-		select count(*) from KQDS_REG r
-		left join KQDS_UserDocument u on u.usercode = r.usercode
-		where 1=1 and r.del !='1'
-		<if test="querytype != null and querytype !='' ">
-			and (r.doctor in (${querytype}) or r.repairdoctor in (${querytype}) or r.askperson in (${querytype}) or r.createuser in (${querytype})
-			or EXISTS (select regno from KQDS_COSTORDER_DETAIL where r.seq_id=regno and (askperson in( ${querytype}) or doctor in (${querytype}) or createuser in( ${querytype})))
-			or EXISTS (select regno from KQDS_TOOTH_DOC where r.seq_id=regno and createuser in( ${querytype}))
-			or EXISTS (select regno from KQDS_MEDICALRECORD where r.seq_id=regno and createuser in( ${querytype}))
-			or EXISTS (select usercode from KQDS_MEMBER_RECORD where u.usercode=usercode and askperson in (${querytype}))
-			)
-		</if>
-		<!-- <if test="status2 != null and status2 !='' "> and r.status <![CDATA[ >= ]]> 2 </if> <if test="status5 != null and status5 !='' "> <if test="temp_dbType == 0"> and to_days(r.createtime)
-			= to_days(now()) </if> <if test="temp_dbType == 1"> and datediff(day, r.createtime,getdate())=0 </if> </if> <if test="status2no != null and status2no !='' "> <if test="temp_dbType ==
-			0"> and to_days(r.createtime) = to_days(now()) </if> <if test="temp_dbType == 1"> and datediff(day, r.createtime,getdate())=0 </if> </if> <if test="status2novalue != null and status2novalue
-			!='' "> and r.status= #{status2novalue} </if> -->
+        <if test="shouli != null and shouli !='' ">
+            and n.accepttype = #{shouli}
+        </if>
+        <if test="gongju != null and gongju !='' ">
+            and n.accepttool = #{gongju}
+        </if>
+        <if test="customer != null and customer !='' ">
+            and per7.user_name = #{customer}    <!-- 添加客服检索条件 -->
+        </if>
+        <if test="ywhf != null and ywhf !='' ">
+            <if test='ywhf = "0"'>
+                and (select count(v.usercode) from KQDS_Visit v where v.usercode=u.UserCode) = 0
+            </if>
+            <if test='ywhf != "0"'>
+                and (select count(v.usercode) from KQDS_Visit v where v.usercode=u.UserCode) > 0
+            </if>
+        </if>
+        <if test="visualstaff != null and visualstaff !='' ">
+            and (u.askperson in(${visualstaff}) or u.createuser in(${visualstaff}) or u.glr in(${visualstaff}))
+        </if>
+        <if test="visualstaffwd != null and visualstaffwd !='' ">
+            and (u.askperson in(${visualstaffwd}) or u.createuser in(${visualstaffwd}) or u.glr in(${visualstaffwd}))
+        </if>
+        <if test="sortName != null and sortName !=''">
+            order by ${sortName} ${sortOrder}
+        </if>
+        <if test="sortName == null">
+            ORDER BY r.CreateTime desc
+        </if>
+    </select>
+    <select id="getCountIndex" parameterType="map" resultType="int">
+        <bind name="temp_dbType" value="${system_dbType}"/>
+        select count(*) from KQDS_REG r
+        left join KQDS_UserDocument u on u.usercode = r.usercode
+        where 1=1 and r.del !='1'
+        <if test="querytype != null and querytype !='' ">
+            and (r.doctor in (${querytype}) or r.repairdoctor in (${querytype}) or r.askperson in (${querytype}) or
+            r.createuser in (${querytype})
+            or EXISTS (select regno from KQDS_COSTORDER_DETAIL where r.seq_id=regno and (askperson in( ${querytype}) or
+            doctor in (${querytype}) or createuser in( ${querytype})))
+            or EXISTS (select regno from KQDS_TOOTH_DOC where r.seq_id=regno and createuser in( ${querytype}))
+            or EXISTS (select regno from KQDS_MEDICALRECORD where r.seq_id=regno and createuser in( ${querytype}))
+            or EXISTS (select usercode from KQDS_MEMBER_RECORD where u.usercode=usercode and askperson in
+            (${querytype}))
+            )
+        </if>
+        <!-- <if test="status2 != null and status2 !='' "> and r.status <![CDATA[ >= ]]> 2 </if> <if test="status5 != null and status5 !='' "> <if test="temp_dbType == 0"> and to_days(r.createtime)
+            = to_days(now()) </if> <if test="temp_dbType == 1"> and datediff(day, r.createtime,getdate())=0 </if> </if> <if test="status2no != null and status2no !='' "> <if test="temp_dbType ==
+            0"> and to_days(r.createtime) = to_days(now()) </if> <if test="temp_dbType == 1"> and datediff(day, r.createtime,getdate())=0 </if> </if> <if test="status2novalue != null and status2novalue
+            !='' "> and r.status= #{status2novalue} </if> -->
 
-		${statusSql} <!-- 状态查询条件，上面的写法是错的 -->
-		<if test="searchValue != null and searchValue !='' ">
-			and (u.usercode like '%' + #{searchValue} + '%'
-			or u.username like '%' + #{searchValue} + '%'
-			or ${p1}
-			or ${p2}
-			or u.pym like '%' + #{searchValue} + '%'
-			)
-		</if>
-		<if test="organization != null and organization !='' ">
-			and r.organization = #{organization}
-		</if>
-	</select>
-	<select id="getCountTj" parameterType="map" resultType="json">
-		select count(recesort) nums, recesort,item.dict_name from SYS_DICT item
-		LEFT JOIN (select recesort from KQDS_reg where del != 1 and organization = #{organization}
-		<if test="starttime != null and starttime !='' ">
-			and createtime <![CDATA[ >= ]]>
-			#{starttime}
-		</if>
-		<if test="endtime != null and endtime !='' ">
-			and createtime <![CDATA[ <= ]]>
-			#{endtime}
-		</if>
-		) reg on reg.recesort = item.seq_id where 1=1 and parent_code ='JZFL'
-		and (item.organization = #{organization} or item.organization = '')
-		group by
-		recesort,item.dict_name,item.dict_code ORDER BY dict_code
-	</select>
-	<select id="getCountQylrNew" parameterType="map" resultType="int">
+        ${statusSql} <!-- 状态查询条件，上面的写法是错的 -->
+        <if test="searchValue != null and searchValue !='' ">
+            and (u.usercode like '%' + #{searchValue} + '%'
+            or u.username like '%' + #{searchValue} + '%'
+            or ${p1}
+            or ${p2}
+            or u.pym like '%' + #{searchValue} + '%'
+            )
+        </if>
+        <if test="organization != null and organization !='' ">
+            and r.organization = #{organization}
+        </if>
+    </select>
+    <select id="getCountTj" parameterType="map" resultType="json">
+        select count(recesort) nums, recesort,item.dict_name from SYS_DICT item
+        LEFT JOIN (select recesort from KQDS_reg where del != 1 and organization = #{organization}
+        <if test="starttime != null and starttime !='' ">
+            and createtime <![CDATA[ >= ]]>
+            #{starttime}
+        </if>
+        <if test="endtime != null and endtime !='' ">
+            and createtime <![CDATA[ <= ]]>
+            #{endtime}
+        </if>
+        ) reg on reg.recesort = item.seq_id where 1=1 and parent_code ='JZFL'
+        and (item.organization = #{organization} or item.organization = '')
+        group by
+        recesort,item.dict_name,item.dict_code ORDER BY dict_code
+    </select>
+    <select id="getCountQylrNew" parameterType="map" resultType="int">
 		select count(1) nums
 		from KQDS_reg r,
 		(select usercode,max(createtime) createtime from KQDS_reg where 1=1 and
@@ -1561,7 +1575,7 @@
 		where 1=1 and r.usercode = reg.usercode and r.createtime=reg.createtime
 		and r.organization = #{organization}
 	</select>
-	<select id="getCountQylrAll" parameterType="map" resultType="int">
+    <select id="getCountQylrAll" parameterType="map" resultType="int">
 		select count(1) nums
 		from KQDS_reg r,
 		(select usercode,max(createtime) createtime from KQDS_reg where 1=1 and
@@ -1571,462 +1585,468 @@
 		r.usercode = reg.usercode and r.createtime=reg.createtime
 		and r.organization = #{organization}
 	</select>
-	<select id="getcjl" parameterType="map" resultType="json">
-		<bind name="temp_dbType" value="${system_dbType}" />
-		select
-		<if test="temp_dbType == 0">
-			Round(a.col1/IFNULL(b.col1,0),4)*100 cjl
-		</if>
-		<if test="temp_dbType == 1">
-			Round(convert(float,a.col1)/NULLIF(b.col1,0),4)*100 cjl
-		</if>
-		from (select count(1) col1 from kqds_reg where cjstatus=1
-		and createtime <![CDATA[ >= ]]>
-		#{starttime} and createtime <![CDATA[ <= ]]>
-		#{endtime}
-		<if test="regsort != null and regsort !='' ">
-			and regsort = #{regsort}
-		</if>
-		<if test="recesort != null and recesort !='' ">
-			and recesort = #{recesort}
-		</if>
-		and organization = #{organization}
-		and askperson in(${visualstaff})
-		) a,
-		(select count(1) col1 from kqds_reg where 1=1
-		and createtime <![CDATA[ >= ]]>
-		#{starttime} and createtime <![CDATA[ <= ]]>
-		#{endtime}
-		<if test="regsort != null and regsort !='' ">
-			and regsort = #{regsort}
-		</if>
-		<if test="recesort != null and recesort !='' ">
-			and recesort = #{recesort}
-		</if>
-		and organization = #{organization}
-		and askperson in(${visualstaff})
-		) b
-	</select>
-	<select id="getCountQylrNew2" parameterType="map" resultType="int">
-		select count(1) nums from KQDS_reg where 1=1 and del != 1
-		and createtime <![CDATA[ >= ]]>
-		#{starttime} and createtime <![CDATA[ <= ]]>
-		#{endtime}
-		<if test="regsort != null and regsort !='' ">
-			and regsort = #{regsort}
-		</if>
-		<if test="recesort != null and recesort !='' ">
-			and recesort = #{recesort}
-		</if>
-		and organization = #{organization}
-		and askperson in(${visualstaff})
-	</select>
-	<select id="getCountQylrAll2" parameterType="map" resultType="int">
-		select count(1) nums from KQDS_reg where 1=1 and cjstatus=1
-		and createtime <![CDATA[ >= ]]>
-		#{starttime} and createtime <![CDATA[ <= ]]>
-		#{endtime}
-		<if test="regsort != null and regsort !='' ">
-			and regsort = #{regsort}
-		</if>
-		<if test="recesort != null and recesort !='' ">
-			and recesort = #{recesort}
-		</if>
-		<if test="organization != null and organization !='' ">
-			and organization = #{organization}
-		</if>
-		<if test="visualstaff != null and visualstaff !='' ">
-			and askperson in(${visualstaff})
-		</if>
-	</select>
-	<select id="selectToDayNewDetail" parameterType="map" resultType="json">
-		<bind name="temp_dbType" value="${system_dbType}" />
-		select
-		<if test="temp_dbType == 1">
-			TOP 1
-		</if>
-		reg.regsort,reg.askperson,kcit2.dict_name as sortname,p.user_name as askpersonname from kqds_reg reg
-		LEFT JOIN SYS_DICT kcit2 on reg.regsort = kcit2.seq_id
-		LEFT JOIN SYS_PERSON p
-		on p.SEQ_ID = reg.askperson
-		where 1=1
-		<if test="usercode != null and usercode !='' ">
-			and reg.usercode = #{usercode}
-		</if>
-		<if test="organization != null and organization !='' ">
-			and reg.organization = #{organization}
-		</if>
-		<if test="temp_dbType == 0">
-			and to_days(reg.createtime) = to_days(now())
-		</if>
-		<if test="temp_dbType == 1">
-			and datediff(day,reg.createtime,getdate())=0
-		</if>
-		ORDER BY reg.createtime desc
-		<if test="temp_dbType == 0">
-			limit 0,1
-		</if>
-	</select>
-	<select id="getRegForQsyy" parameterType="map" resultType="json">
+    <select id="getcjl" parameterType="map" resultType="json">
+        <bind name="temp_dbType" value="${system_dbType}"/>
+        select
+        <if test="temp_dbType == 0">
+            Round(a.col1/IFNULL(b.col1,0),4)*100 cjl
+        </if>
+        <if test="temp_dbType == 1">
+            Round(convert(float,a.col1)/NULLIF(b.col1,0),4)*100 cjl
+        </if>
+        from (select count(1) col1 from kqds_reg where cjstatus=1
+        and createtime <![CDATA[ >= ]]>
+        #{starttime} and createtime <![CDATA[ <= ]]>
+        #{endtime}
+        <if test="regsort != null and regsort !='' ">
+            and regsort = #{regsort}
+        </if>
+        <if test="recesort != null and recesort !='' ">
+            and recesort = #{recesort}
+        </if>
+        and organization = #{organization}
+        and askperson in(${visualstaff})
+        ) a,
+        (select count(1) col1 from kqds_reg where 1=1
+        and createtime <![CDATA[ >= ]]>
+        #{starttime} and createtime <![CDATA[ <= ]]>
+        #{endtime}
+        <if test="regsort != null and regsort !='' ">
+            and regsort = #{regsort}
+        </if>
+        <if test="recesort != null and recesort !='' ">
+            and recesort = #{recesort}
+        </if>
+        and organization = #{organization}
+        and askperson in(${visualstaff})
+        ) b
+    </select>
+    <select id="getCountQylrNew2" parameterType="map" resultType="int">
+        select count(1) nums from KQDS_reg where 1=1 and del != 1
+        and createtime <![CDATA[ >= ]]>
+        #{starttime} and createtime <![CDATA[ <= ]]>
+        #{endtime}
+        <if test="regsort != null and regsort !='' ">
+            and regsort = #{regsort}
+        </if>
+        <if test="recesort != null and recesort !='' ">
+            and recesort = #{recesort}
+        </if>
+        and organization = #{organization}
+        and askperson in(${visualstaff})
+    </select>
+    <select id="getCountQylrAll2" parameterType="map" resultType="int">
+        select count(1) nums from KQDS_reg where 1=1 and cjstatus=1
+        and createtime <![CDATA[ >= ]]>
+        #{starttime} and createtime <![CDATA[ <= ]]>
+        #{endtime}
+        <if test="regsort != null and regsort !='' ">
+            and regsort = #{regsort}
+        </if>
+        <if test="recesort != null and recesort !='' ">
+            and recesort = #{recesort}
+        </if>
+        <if test="organization != null and organization !='' ">
+            and organization = #{organization}
+        </if>
+        <if test="visualstaff != null and visualstaff !='' ">
+            and askperson in(${visualstaff})
+        </if>
+    </select>
+    <select id="selectToDayNewDetail" parameterType="map" resultType="json">
+        <bind name="temp_dbType" value="${system_dbType}"/>
+        select
+        <if test="temp_dbType == 1">
+            TOP 1
+        </if>
+        reg.regsort,reg.askperson,kcit2.dict_name as sortname,p.user_name as askpersonname from kqds_reg reg
+        LEFT JOIN SYS_DICT kcit2 on reg.regsort = kcit2.seq_id
+        LEFT JOIN SYS_PERSON p
+        on p.SEQ_ID = reg.askperson
+        where 1=1
+        <if test="usercode != null and usercode !='' ">
+            and reg.usercode = #{usercode}
+        </if>
+        <if test="organization != null and organization !='' ">
+            and reg.organization = #{organization}
+        </if>
+        <if test="temp_dbType == 0">
+            and to_days(reg.createtime) = to_days(now())
+        </if>
+        <if test="temp_dbType == 1">
+            and datediff(day,reg.createtime,getdate())=0
+        </if>
+        ORDER BY reg.createtime desc
+        <if test="temp_dbType == 0">
+            limit 0,1
+        </if>
+    </select>
+    <select id="getRegForQsyy" parameterType="map" resultType="json">
 		select * from KQDS_REG where usercode = #{usercode} and createtime like '%' + #{createtime} + '%'
 	</select>
-	<delete id="deletebyregno" parameterType="map">
-		<!-- WARNING - @mbg.generated This element is automatically generated by MyBatis Generator, do not modify. This element was generated on Thu Apr 12 10:54:48 CST 2018. -->
-		delete from KQDS_JZQK
-		where regno = #{regno}
-		and doctor = #{doctor}
-		and (reggoal is null or reggoal = '')
-		and doctor not in (select createuser from KQDS_TOOTH_DOC where regno =
-		#{regno})
-		and doctor not in (select createuser from KQDS_MEDICALRECORD where regno = #{regno})
-		and doctor not in (select doctor from KQDS_COSTORDER where regno = #{regno})
-		and
-		doctor not in (select createuser from KQDS_COSTORDER where regno = #{regno} )
-	</delete>
-	<delete id="deletereceive" parameterType="map">
-		<!-- WARNING - @mbg.generated This element is automatically generated by MyBatis Generator, do not modify. This element was generated on Thu Apr 12 10:54:48 CST 2018. -->
-		delete from KQDS_RECEIVEINFO_CONTENT where receiveid = #{receiveid,jdbcType=VARCHAR}
-	</delete>
-	<select id="getCountRegByGhfl" parameterType="map" resultType="int">
-		select count(1) nums from KQDS_REG where 1=1 and del = '0'
-		<if test="cjstatus != null and cjstatus !='' ">
-			and cjstatus = #{cjstatus}
-		</if>
-		<if test="recesort != null and recesort !='' ">
-			and recesort = #{recesort}
-		</if>
-		<if test="organization != null and organization !='' ">
-			and organization = #{organization}
-		</if>
-		<if test="starttime != null and starttime !='' ">
-			and createtime <![CDATA[ >= ]]>
-			#{starttime}
-		</if>
-		<if test="endtime != null and endtime !='' ">
-			and createtime <![CDATA[ <= ]]>
-			#{endtime}
-		</if>
-		<if test="regsort != null and regsort !='' ">
-			and regsort = #{regsort}
-		</if>
-		<if test="askperson != null and askperson !='' ">
-			and askperson = #{askperson}
-		</if>
-		<if test="doctor != null and doctor !='' ">
-			and doctor = #{doctor}
-		</if>
-		<if test="isdoctor != null and isdoctor !='' ">
-			and doctor != '' and doctor is not null
-		</if>
-	</select>
-	<select id="getListRegByGhfl" parameterType="map" resultType="json">
-		select seq_id,regsort, askperson,doctor,recesort,cjstatus,organization from KQDS_REG where 1=1 and del = '0'
-		<if test="cjstatus != null and cjstatus !='' ">
-			and cjstatus = #{cjstatus}
-		</if>
-		<if test="recesort != null and recesort !='' ">
-			and recesort = #{recesort}
-		</if>
-		<if test="personIds4Query != null and personIds4Query !='' ">
-			and (askperson in (${personIds4Query}) or doctor in (${personIds4Query}))
-		</if>
-		<if test="organization != null and organization !='' ">
-			and organization = #{organization}
-		</if>
-		<if test="starttime != null and starttime !='' ">
-			and createtime <![CDATA[ >= ]]>
-			#{starttime}
-		</if>
-		<if test="endtime != null and endtime !='' ">
-			and createtime <![CDATA[ <= ]]>
-			#{endtime}
-		</if>
-		<if test="regsort != null and regsort !='' ">
-			and regsort = #{regsort}
-		</if>
-		<if test="askperson != null and askperson !='' ">
-			and askperson = #{askperson}
-		</if>
-		<if test="doctor != null and doctor !='' ">
-			and doctor = #{doctor}
-		</if>
-		<if test="isdoctor != null and isdoctor !='' ">
-			and doctor != '' and doctor is not null
-		</if>
-	</select>
-	<select id="getCountHzly" parameterType="map" resultType="json">
-		select r.cjstatus,u.devchannel,r.recesort,u.nexttype,r.regsort nums from KQDS_REG r
-		left join KQDS_UserDocument u on r.usercode = u.usercode where 1=1 and r.del = '0'
-		<if test="cjstatus != null and cjstatus !='' ">
-			and r.cjstatus = #{cjstatus}
-		</if>
-		<if test="recesort != null and recesort !='' ">
-			and recesort = #{recesort}
-		</if>
-		<if test="organization != null and organization !='' ">
-			and r.organization = #{organization}
-		</if>
-		<if test="starttime != null and starttime !='' ">
-			and r.createtime <![CDATA[ >= ]]>
-			#{starttime}
-		</if>
-		<if test="endtime != null and endtime !='' ">
-			and r.createtime <![CDATA[ <= ]]>
-			#{endtime}
-		</if>
-		<if test="regsort != null and regsort !='' ">
-			and regsort = #{regsort}
-		</if>
-		<if test="devchannel != null and devchannel !='' ">
-			and u.devchannel = #{devchannel}
-		</if>
-		<if test="nexttype != null and nexttype !='' ">
-			and u.nexttype = #{nexttype}
-		</if>
-		<if test="visualstaff != null and visualstaff !='' ">
-			and (u.askperson in (${visualstaff}) or u.createuser in (${visualstaff}) )
-		</if>
-	</select>
-	<select id="getNoUsercode" parameterType="java.lang.String" resultType="json">
+    <delete id="deletebyregno" parameterType="map">
+        <!-- WARNING - @mbg.generated This element is automatically generated by MyBatis Generator, do not modify. This element was generated on Thu Apr 12 10:54:48 CST 2018. -->
+        delete from KQDS_JZQK
+        where regno = #{regno}
+        and doctor = #{doctor}
+        and (reggoal is null or reggoal = '')
+        and doctor not in (select createuser from KQDS_TOOTH_DOC where regno =
+        #{regno})
+        and doctor not in (select createuser from KQDS_MEDICALRECORD where regno = #{regno})
+        and doctor not in (select doctor from KQDS_COSTORDER where regno = #{regno})
+        and
+        doctor not in (select createuser from KQDS_COSTORDER where regno = #{regno} )
+    </delete>
+    <delete id="deletereceive" parameterType="map">
+        <!-- WARNING - @mbg.generated This element is automatically generated by MyBatis Generator, do not modify. This element was generated on Thu Apr 12 10:54:48 CST 2018. -->
+        delete from KQDS_RECEIVEINFO_CONTENT where receiveid = #{receiveid,jdbcType=VARCHAR}
+    </delete>
+    <select id="getCountRegByGhfl" parameterType="map" resultType="int">
+        select count(1) nums from KQDS_REG where 1=1 and del = '0'
+        <if test="cjstatus != null and cjstatus !='' ">
+            and cjstatus = #{cjstatus}
+        </if>
+        <if test="recesort != null and recesort !='' ">
+            and recesort = #{recesort}
+        </if>
+        <if test="organization != null and organization !='' ">
+            and organization = #{organization}
+        </if>
+        <if test="starttime != null and starttime !='' ">
+            and createtime <![CDATA[ >= ]]>
+            #{starttime}
+        </if>
+        <if test="endtime != null and endtime !='' ">
+            and createtime <![CDATA[ <= ]]>
+            #{endtime}
+        </if>
+        <if test="regsort != null and regsort !='' ">
+            and regsort = #{regsort}
+        </if>
+        <if test="askperson != null and askperson !='' ">
+            and askperson = #{askperson}
+        </if>
+        <if test="doctor != null and doctor !='' ">
+            and doctor = #{doctor}
+        </if>
+        <if test="isdoctor != null and isdoctor !='' ">
+            and doctor != '' and doctor is not null
+        </if>
+    </select>
+    <select id="getListRegByGhfl" parameterType="map" resultType="json">
+        select seq_id,regsort, askperson,doctor,recesort,cjstatus,organization from KQDS_REG where 1=1 and del = '0'
+        <if test="cjstatus != null and cjstatus !='' ">
+            and cjstatus = #{cjstatus}
+        </if>
+        <if test="recesort != null and recesort !='' ">
+            and recesort = #{recesort}
+        </if>
+        <if test="personIds4Query != null and personIds4Query !='' ">
+            and (askperson in (${personIds4Query}) or doctor in (${personIds4Query}))
+        </if>
+        <if test="organization != null and organization !='' ">
+            and organization = #{organization}
+        </if>
+        <if test="starttime != null and starttime !='' ">
+            and createtime <![CDATA[ >= ]]>
+            #{starttime}
+        </if>
+        <if test="endtime != null and endtime !='' ">
+            and createtime <![CDATA[ <= ]]>
+            #{endtime}
+        </if>
+        <if test="regsort != null and regsort !='' ">
+            and regsort = #{regsort}
+        </if>
+        <if test="askperson != null and askperson !='' ">
+            and askperson = #{askperson}
+        </if>
+        <if test="doctor != null and doctor !='' ">
+            and doctor = #{doctor}
+        </if>
+        <if test="isdoctor != null and isdoctor !='' ">
+            and doctor != '' and doctor is not null
+        </if>
+    </select>
+    <select id="getCountHzly" parameterType="map" resultType="json">
+        select r.cjstatus,u.devchannel,r.recesort,u.nexttype,r.regsort nums from KQDS_REG r
+        left join KQDS_UserDocument u on r.usercode = u.usercode where 1=1 and r.del = '0'
+        <if test="cjstatus != null and cjstatus !='' ">
+            and r.cjstatus = #{cjstatus}
+        </if>
+        <if test="recesort != null and recesort !='' ">
+            and recesort = #{recesort}
+        </if>
+        <if test="organization != null and organization !='' ">
+            and r.organization = #{organization}
+        </if>
+        <if test="starttime != null and starttime !='' ">
+            and r.createtime <![CDATA[ >= ]]>
+            #{starttime}
+        </if>
+        <if test="endtime != null and endtime !='' ">
+            and r.createtime <![CDATA[ <= ]]>
+            #{endtime}
+        </if>
+        <if test="regsort != null and regsort !='' ">
+            and regsort = #{regsort}
+        </if>
+        <if test="devchannel != null and devchannel !='' ">
+            and u.devchannel = #{devchannel}
+        </if>
+        <if test="nexttype != null and nexttype !='' ">
+            and u.nexttype = #{nexttype}
+        </if>
+        <if test="visualstaff != null and visualstaff !='' ">
+            and (u.askperson in (${visualstaff}) or u.createuser in (${visualstaff}) )
+        </if>
+    </select>
+    <select id="getNoUsercode" parameterType="java.lang.String" resultType="json">
 		select seq_id from KQDS_REG where 1=1
 		and usercode in (${_parameter})
 	</select>
-	<delete id="deleteByRegno" parameterType="java.lang.String">
-		<!-- WARNING - @mbg.generated This element is automatically generated by MyBatis Generator, do not modify. This element was generated on Thu Apr 12 10:54:48 CST 2018. -->
-		delete from KQDS_JZQK
-		where regno = #{regno,jdbcType=VARCHAR}
-	</delete>
-	<select id="getCountReg2" parameterType="map" resultType="int">
-		select count(*) from KQDS_REG r
-		left join KQDS_UserDocument u on u.usercode = r.usercode
-		where 1=1 and r.del !='1'
-		and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff})
-		or EXISTS (select regno from KQDS_COSTORDER_DETAIL where r.seq_id =regno and (askperson in ( ${visualstaff}) or doctor in (${visualstaff}) or createuser in (${visualstaff})))
-		or EXISTS (select regno from KQDS_TOOTH_DOC where r.seq_id=regno and createuser in ( ${visualstaff}))
-		or EXISTS (select regno from KQDS_MEDICALRECORD where r.seq_id=regno and createuser in ( ${visualstaff}))
-		or EXISTS (select usercode from KQDS_MEMBER_RECORD where u.usercode=usercode and askperson in (${visualstaff}))
-		)
-		and n.askperson in (${visualstaff})
-		and n.isdelete =0
-		<if test="createtime != null and createtime !='' ">
-			${createtime}
-		</if>
-		<if test="organization != null and organization !='' ">
-			and r.organization=#{organization}
-		</if>
-	</select>
-	<select id="getCountReg" parameterType="map" resultType="int">
-		select count(1) from KQDS_REG r
-		left join KQDS_UserDocument u on u.usercode = r.usercode
-		where 1=1 and r.del !='1'
-		and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff})
-		or EXISTS (select regno from KQDS_COSTORDER_DETAIL where r.seq_id=regno and (askperson in( ${visualstaff}) or doctor in (${visualstaff}) or createuser in( ${visualstaff})))
-		or EXISTS (select regno from KQDS_TOOTH_DOC where r.seq_id=regno and createuser in( ${visualstaff}))
-		or EXISTS (select regno from KQDS_MEDICALRECORD where r.seq_id=regno AND createuser in( ${visualstaff}))
-		or EXISTS (select usercode from KQDS_MEMBER_RECORD where u.usercode=usercode AND askperson in (${visualstaff}))
-		)
-		<if test="createtime != null and createtime !='' ">
-			${createtime}
-		</if>
-		<if test="organization != null and organization !='' ">
-			and r.organization=#{organization}
-		</if>
-	</select>
-	<select id="getRegList" parameterType="map" resultType="json">
-		<bind name="temp_dbType" value="${system_dbType}" />
-		<if test="temp_dbType == 0">
-			select
-		</if>
-		<if test="temp_dbType == 1">
-			select top ${num1} * from
-			(select row_number() over(order by r.createtime desc) as rownumber,
-		</if>
-		odept.dept_name as organizationname,u.usercode,p.user_name as askpersonname,p1.user_name as doctorname,p2.user_name as jdrname,kcit1.dict_name as recesortname,kcit2.dict_name as
-		regsortname,r.username,u.sex,u.age,u.totalpay,u.remark,r.createtime from KQDS_REG r
-		left join KQDS_UserDocument u on u.usercode = r.usercode
-		LEFT JOIN SYS_DICT kcit1 on r.recesort = kcit1.seq_id
-		LEFT JOIN SYS_DICT kcit2 on r.regsort = kcit2.seq_id
-		LEFT JOIN SYS_PERSON p on p.SEQ_ID = r.askperson
-		LEFT JOIN SYS_PERSON p1 on p1.SEQ_ID = r.doctor
-		LEFT JOIN SYS_PERSON p2 on p2.SEQ_ID = u.createuser
-		LEFT JOIN SYS_DEPT odept on odept.dept_code = u.organization and odept.dept_parent = '0' // 门诊名称
-		where 1=1 and r.del !='1'
-		and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff})
-		or EXISTS (select regno from KQDS_COSTORDER_DETAIL where r.seq_id=regno AND (askperson in (${visualstaff}) or doctor in (${visualstaff}) or createuser in ( ${visualstaff})))
-		or EXISTS (select regno from KQDS_TOOTH_DOC where r.seq_id=regno AND createuser in( ${visualstaff}))
-		or EXISTS (select regno from KQDS_MEDICALRECORD where r.seq_id=regno AND createuser in( ${visualstaff}))
-		or EXISTS (select usercode from KQDS_MEMBER_RECORD where u.usercode=usercode AND askperson in (${visualstaff}))
-		)
-		<if test="createtime != null and createtime !='' ">
-			<if test="temp_dbType == 0">
-				and to_days(r.createtime) = to_days(now())
-			</if>
-			<if test="temp_dbType == 1">
-				and datediff(day, r.createtime,getdate())=0
-			</if>
-		</if>
-		<if test="organization != null and organization !='' ">
-			and r.organization=#{organization}
-		</if>
-		<if test="recesort != null and recesort !='' ">
-			and r.recesort = #{recesort}
-		</if>
-		<if test="starttime != null and starttime !='' ">
-			and r.createtime <![CDATA[ >= ]]>
-			#{starttime}
-		</if>
-		<if test="endtime != null and endtime !='' ">
-			and r.createtime <![CDATA[ <= ]]>
-			#{endtime}
-		</if>
-		<if test="regsort != null and regsort !='' ">
-			and r.regsort = #{regsort}
-		</if>
-		<if test="search != null and search !='' ">
-			and (u.usercode like '%' + #{search} + '%'
-			or u.username like '%' + #{search} + '%'
-			or ${p1}
-			or ${p2}
-			or u.pym like '%' + #{search} + '%'
-			)
-		</if>
-		<if test="temp_dbType == 0">
-			order by n.createtime desc limit ${num1},${num2}
-		</if>
-		<if test="temp_dbType == 1">
-			order by n.createtime desc ) as u1 where 1=1 and rownumber > ${num2}
-		</if>
-	</select>
-	<select id="getRegListTotal" parameterType="map" resultType="int">
-		select count(1) from KQDS_REG r
-		left join KQDS_UserDocument u on u.usercode = r.usercode
-		where 1=1 and r.del !='1'
-		and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff})
-		or EXISTS (select regno from KQDS_COSTORDER_DETAIL where r.seq_id=regno AND (askperson in( ${visualstaff}) or doctor in (${visualstaff}) or createuser in( ${visualstaff})))
-		or EXISTS (select regno from KQDS_TOOTH_DOC where r.seq_id=regno AND createuser in( ${visualstaff}))
-		or EXISTS (select regno from KQDS_MEDICALRECORD where r.seq_id=regno AND createuser in( ${visualstaff}))
-		or EXISTS (select usercode from KQDS_MEMBER_RECORD where u.usercode=usercode AND askperson in (${visualstaff}))
-		)
-		<if test="createtime != null and createtime !='' ">
-			${createtime}
-		</if>
-		<if test="organization != null and organization !='' ">
-			and r.organization=#{organization}
-		</if>
-		<if test="recesort != null and recesort !='' ">
-			and r.recesort = #{recesort}
-		</if>
-		<if test="starttime != null and starttime !='' ">
-			and r.createtime <![CDATA[ >= ]]>
-			#{starttime}
-		</if>
-		<if test="endtime != null and endtime !='' ">
-			and r.createtime <![CDATA[ <= ]]>
-			#{endtime}
-		</if>
-		<if test="regsort != null and regsort !='' ">
-			and r.regsort = #{regsort}
-		</if>
-		<if test="search != null and search !='' ">
-			and (u.usercode like '%' + #{search} + '%'
-			or u.username like '%' + #{search} + '%'
-			or ${p1}
-			or ${p2}
-			or u.pym like '%' + #{search} + '%'
-			)
-		</if>
-	</select>
-	<select id="getRegListTotal2" parameterType="map" resultType="int">
-		select count(1) from KQDS_REG r
-		left join KQDS_UserDocument u on u.usercode = r.usercode
-		where 1=1 and r.del !='1'
-		and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff})
-		or EXISTS (select regno from KQDS_COSTORDER_DETAIL where r.seq_id =regno AND (askperson in ( ${visualstaff}) or doctor in (${visualstaff}) or createuser in( ${visualstaff})))
-		or EXISTS (select regno from KQDS_TOOTH_DOC where r.seq_id=regno AND createuser in( ${visualstaff}))
-		or EXISTS (select regno from KQDS_MEDICALRECORD where r.seq_id=regno AND createuser in( ${visualstaff}))
-		or EXISTS (select usercode from KQDS_MEMBER_RECORD where u.usercode=usercode AND askperson in (${visualstaff}))
-		)
-		<if test="createtime != null and createtime !='' ">
-			${createtime}
-		</if>
-		<if test="organization != null and organization !='' ">
-			and r.organization=#{organization}
-		</if>
-		<if test="recesort != null and recesort !='' ">
-			and r.recesort = #{recesort}
-		</if>
-		<if test="starttime != null and starttime !='' ">
-			and r.createtime <![CDATA[ >= ]]>
-			#{starttime}
-		</if>
-		<if test="endtime != null and endtime !='' ">
-			and r.createtime <![CDATA[ <= ]]>
-			#{endtime}
-		</if>
-		<if test="regsort != null and regsort !='' ">
-			and r.regsort = #{regsort}
-		</if>
-		<if test="czSeqId != null and czSeqId !='' ">
-			and r.recesort = #{czSeqId}
-		</if>
-		<if test="search != null and search !='' ">
-			and (u.usercode like '%' + #{search} + '%'
-			or u.username like '%' + #{search} + '%'
-			or ${p1}
-			or ${p2}
-			or u.pym like '%' + #{search} + '%'
-			)
-		</if>
+    <delete id="deleteByRegno" parameterType="java.lang.String">
+        <!-- WARNING - @mbg.generated This element is automatically generated by MyBatis Generator, do not modify. This element was generated on Thu Apr 12 10:54:48 CST 2018. -->
+        delete from KQDS_JZQK
+        where regno = #{regno,jdbcType=VARCHAR}
+    </delete>
+    <select id="getCountReg2" parameterType="map" resultType="int">
+        select count(*) from KQDS_REG r
+        left join KQDS_UserDocument u on u.usercode = r.usercode
+        where 1=1 and r.del !='1'
+        and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff})
+        or EXISTS (select regno from KQDS_COSTORDER_DETAIL where r.seq_id =regno and (askperson in ( ${visualstaff}) or
+        doctor in (${visualstaff}) or createuser in (${visualstaff})))
+        or EXISTS (select regno from KQDS_TOOTH_DOC where r.seq_id=regno and createuser in ( ${visualstaff}))
+        or EXISTS (select regno from KQDS_MEDICALRECORD where r.seq_id=regno and createuser in ( ${visualstaff}))
+        or EXISTS (select usercode from KQDS_MEMBER_RECORD where u.usercode=usercode and askperson in (${visualstaff}))
+        )
+        and n.askperson in (${visualstaff})
+        and n.isdelete =0
+        <if test="createtime != null and createtime !='' ">
+            ${createtime}
+        </if>
+        <if test="organization != null and organization !='' ">
+            and r.organization=#{organization}
+        </if>
+    </select>
+    <select id="getCountReg" parameterType="map" resultType="int">
+        select count(1) from KQDS_REG r
+        left join KQDS_UserDocument u on u.usercode = r.usercode
+        where 1=1 and r.del !='1'
+        and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff})
+        or EXISTS (select regno from KQDS_COSTORDER_DETAIL where r.seq_id=regno and (askperson in( ${visualstaff}) or
+        doctor in (${visualstaff}) or createuser in( ${visualstaff})))
+        or EXISTS (select regno from KQDS_TOOTH_DOC where r.seq_id=regno and createuser in( ${visualstaff}))
+        or EXISTS (select regno from KQDS_MEDICALRECORD where r.seq_id=regno AND createuser in( ${visualstaff}))
+        or EXISTS (select usercode from KQDS_MEMBER_RECORD where u.usercode=usercode AND askperson in (${visualstaff}))
+        )
+        <if test="createtime != null and createtime !='' ">
+            ${createtime}
+        </if>
+        <if test="organization != null and organization !='' ">
+            and r.organization=#{organization}
+        </if>
+    </select>
+    <select id="getRegList" parameterType="map" resultType="json">
+        <bind name="temp_dbType" value="${system_dbType}"/>
+        <if test="temp_dbType == 0">
+            select
+        </if>
+        <if test="temp_dbType == 1">
+            select top ${num1} * from
+            (select row_number() over(order by r.createtime desc) as rownumber,
+        </if>
+        odept.dept_name as organizationname,u.usercode,p.user_name as askpersonname,p1.user_name as
+        doctorname,p2.user_name as jdrname,kcit1.dict_name as recesortname,kcit2.dict_name as
+        regsortname,r.username,u.sex,u.age,u.totalpay,u.remark,r.createtime from KQDS_REG r
+        left join KQDS_UserDocument u on u.usercode = r.usercode
+        LEFT JOIN SYS_DICT kcit1 on r.recesort = kcit1.seq_id
+        LEFT JOIN SYS_DICT kcit2 on r.regsort = kcit2.seq_id
+        LEFT JOIN SYS_PERSON p on p.SEQ_ID = r.askperson
+        LEFT JOIN SYS_PERSON p1 on p1.SEQ_ID = r.doctor
+        LEFT JOIN SYS_PERSON p2 on p2.SEQ_ID = u.createuser
+        LEFT JOIN SYS_DEPT odept on odept.dept_code = u.organization and odept.dept_parent = '0' // 门诊名称
+        where 1=1 and r.del !='1'
+        and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff})
+        or EXISTS (select regno from KQDS_COSTORDER_DETAIL where r.seq_id=regno AND (askperson in (${visualstaff}) or
+        doctor in (${visualstaff}) or createuser in ( ${visualstaff})))
+        or EXISTS (select regno from KQDS_TOOTH_DOC where r.seq_id=regno AND createuser in( ${visualstaff}))
+        or EXISTS (select regno from KQDS_MEDICALRECORD where r.seq_id=regno AND createuser in( ${visualstaff}))
+        or EXISTS (select usercode from KQDS_MEMBER_RECORD where u.usercode=usercode AND askperson in (${visualstaff}))
+        )
+        <if test="createtime != null and createtime !='' ">
+            <if test="temp_dbType == 0">
+                and to_days(r.createtime) = to_days(now())
+            </if>
+            <if test="temp_dbType == 1">
+                and datediff(day, r.createtime,getdate())=0
+            </if>
+        </if>
+        <if test="organization != null and organization !='' ">
+            and r.organization=#{organization}
+        </if>
+        <if test="recesort != null and recesort !='' ">
+            and r.recesort = #{recesort}
+        </if>
+        <if test="starttime != null and starttime !='' ">
+            and r.createtime <![CDATA[ >= ]]>
+            #{starttime}
+        </if>
+        <if test="endtime != null and endtime !='' ">
+            and r.createtime <![CDATA[ <= ]]>
+            #{endtime}
+        </if>
+        <if test="regsort != null and regsort !='' ">
+            and r.regsort = #{regsort}
+        </if>
+        <if test="search != null and search !='' ">
+            and (u.usercode like '%' + #{search} + '%'
+            or u.username like '%' + #{search} + '%'
+            or ${p1}
+            or ${p2}
+            or u.pym like '%' + #{search} + '%'
+            )
+        </if>
+        <if test="temp_dbType == 0">
+            order by n.createtime desc limit ${num1},${num2}
+        </if>
+        <if test="temp_dbType == 1">
+            order by n.createtime desc ) as u1 where 1=1 and rownumber > ${num2}
+        </if>
+    </select>
+    <select id="getRegListTotal" parameterType="map" resultType="int">
+        select count(1) from KQDS_REG r
+        left join KQDS_UserDocument u on u.usercode = r.usercode
+        where 1=1 and r.del !='1'
+        and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff})
+        or EXISTS (select regno from KQDS_COSTORDER_DETAIL where r.seq_id=regno AND (askperson in( ${visualstaff}) or
+        doctor in (${visualstaff}) or createuser in( ${visualstaff})))
+        or EXISTS (select regno from KQDS_TOOTH_DOC where r.seq_id=regno AND createuser in( ${visualstaff}))
+        or EXISTS (select regno from KQDS_MEDICALRECORD where r.seq_id=regno AND createuser in( ${visualstaff}))
+        or EXISTS (select usercode from KQDS_MEMBER_RECORD where u.usercode=usercode AND askperson in (${visualstaff}))
+        )
+        <if test="createtime != null and createtime !='' ">
+            ${createtime}
+        </if>
+        <if test="organization != null and organization !='' ">
+            and r.organization=#{organization}
+        </if>
+        <if test="recesort != null and recesort !='' ">
+            and r.recesort = #{recesort}
+        </if>
+        <if test="starttime != null and starttime !='' ">
+            and r.createtime <![CDATA[ >= ]]>
+            #{starttime}
+        </if>
+        <if test="endtime != null and endtime !='' ">
+            and r.createtime <![CDATA[ <= ]]>
+            #{endtime}
+        </if>
+        <if test="regsort != null and regsort !='' ">
+            and r.regsort = #{regsort}
+        </if>
+        <if test="search != null and search !='' ">
+            and (u.usercode like '%' + #{search} + '%'
+            or u.username like '%' + #{search} + '%'
+            or ${p1}
+            or ${p2}
+            or u.pym like '%' + #{search} + '%'
+            )
+        </if>
+    </select>
+    <select id="getRegListTotal2" parameterType="map" resultType="int">
+        select count(1) from KQDS_REG r
+        left join KQDS_UserDocument u on u.usercode = r.usercode
+        where 1=1 and r.del !='1'
+        and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff})
+        or EXISTS (select regno from KQDS_COSTORDER_DETAIL where r.seq_id =regno AND (askperson in( ${visualstaff}) or
+        doctor in (${visualstaff}) or createuser in( ${visualstaff})))
+        or EXISTS (select regno from KQDS_TOOTH_DOC where r.seq_id=regno AND createuser in( ${visualstaff}))
+        or EXISTS (select regno from KQDS_MEDICALRECORD where r.seq_id=regno AND createuser in( ${visualstaff}))
+        or EXISTS (select usercode from KQDS_MEMBER_RECORD where u.usercode=usercode AND askperson in (${visualstaff}))
+        )
+        <if test="createtime != null and createtime !='' ">
+            ${createtime}
+        </if>
+        <if test="organization != null and organization !='' ">
+            and r.organization=#{organization}
+        </if>
+        <if test="recesort != null and recesort !='' ">
+            and r.recesort = #{recesort}
+        </if>
+        <if test="starttime != null and starttime !='' ">
+            and r.createtime <![CDATA[ >= ]]>
+            #{starttime}
+        </if>
+        <if test="endtime != null and endtime !='' ">
+            and r.createtime <![CDATA[ <= ]]>
+            #{endtime}
+        </if>
+        <if test="regsort != null and regsort !='' ">
+            and r.regsort = #{regsort}
+        </if>
+        <if test="czSeqId != null and czSeqId !='' ">
+            and r.recesort = #{czSeqId}
+        </if>
+        <if test="search != null and search !='' ">
+            and (u.usercode like '%' + #{search} + '%'
+            or u.username like '%' + #{search} + '%'
+            or ${p1}
+            or ${p2}
+            or u.pym like '%' + #{search} + '%'
+            )
+        </if>
+    </select>
+
+    <select id="findKqdsRegByUserCode" parameterType="String" resultType="json">
+        <!-- SELECT
+            reg.*,per.USER_NAME
+        FROM KQDS_REG reg
+        LEFT JOIN sys_person per ON per.SEQ_ID = reg.doctor
+        where usercode = #{usercode} -->
+        select a.* from KQDS_REG a,(select usercode,max(createtime) as createtime from KQDS_REG group by usercode) b
+        where a.usercode = b.usercode and a.createtime = b.createtime and a.usercode = #{usercode};
+    </select>
+
+    <!-- 查询成交状态 与就诊类别 -->
+    <select id="findRegByregNo" parameterType="java.lang.String" resultType="json">
+	select * from kqds_reg where SEQ_ID = #{regno}
 	</select>
 
-	<select id="findKqdsRegByUserCode" parameterType="String" resultType="json">
-		<!-- SELECT
-			reg.*,per.USER_NAME
-		FROM KQDS_REG reg
-		LEFT JOIN sys_person per ON per.SEQ_ID = reg.doctor
-		where usercode = #{usercode} -->
-		select a.* from KQDS_REG a,(select usercode,max(createtime) as createtime from KQDS_REG group by usercode) b
-		where a.usercode = b.usercode and a.createtime = b.createtime and a.usercode = #{usercode};
-	</select>
-
-	<!-- 查询成交状态 与就诊类别 -->
-	<select id="findRegByregNo" parameterType="java.lang.String" resultType="json">
-		select * from kqds_reg where SEQ_ID = #{regno}
-	</select>
-
-	<!-- 修改就诊分类 -->
-	<update id="updateRecesort" parameterType="java.lang.String">
-		update kqds_reg set recesort = '23' where SEQ_ID = #{regno}
+    <!-- 修改就诊分类 -->
+    <update id="updateRecesort" parameterType="java.lang.String">
+	update kqds_reg set recesort = '23' where SEQ_ID = #{regno}
 	</update>
-	<select id="getUserList" parameterType="map" resultType="json">
+    <select id="getUserList" parameterType="map" resultType="json">
+        SELECT
+        usercode
+        FROM
+        KQDS_REG r
+        WHERE
+        r.doctor = #{doctor}
+        AND r.regsort = #{regsort}
+        <if test="starttime != null and starttime !='' ">
+            and r.createtime <![CDATA[ >= ]]>
+            #{starttime}
+        </if>
+        <if test="endtime != null and endtime !='' ">
+            and r.createtime <![CDATA[ <= ]]>
+            #{endtime}
+        </if>
+    </select>
+    <select id="selectExistByUsercode" parameterType="java.util.Map" resultType="java.lang.String">
+        select Top 1 createtime from KQDS_REG
+        where
+        usercode=#{usercode}
+        order by createtime desc
+        <!-- and createtime <![CDATA[ >= ]]> #{starttime} -->
+        <!-- and createtime <![CDATA[ <= ]]> #{endtime} -->
+    </select>
+    <!-- 根据用户Code查询当天挂号 -->
+    <select id="findRecord" parameterType="map" resultType="json">
 		SELECT
-		usercode
-		FROM
-		KQDS_REG r
-		WHERE
-		r.doctor = #{doctor}
-		AND r.regsort = #{regsort}
-		<if test="starttime != null and starttime !='' ">
-			and r.createtime <![CDATA[ >= ]]>
-			#{starttime}
-		</if>
-		<if test="endtime != null and endtime !='' ">
-			and r.createtime <![CDATA[ <= ]]>
-			#{endtime}
-		</if>
-	</select>
-	<select id="selectExistByUsercode" parameterType="java.util.Map" resultType="java.lang.String">
-		select Top 1 createtime from KQDS_REG
-		where
-		usercode=#{usercode}
-		order by createtime desc
-		<!-- and createtime <![CDATA[ >= ]]> #{starttime} -->
-		<!-- and createtime <![CDATA[ <= ]]> #{endtime} -->
-	</select>
-	<!-- 根据用户Code查询当天挂号 -->
-	<select id="findRecord" parameterType="map" resultType="json">
-		SELECT
-		*
+			*
 		FROM KQDS_REG
 		WHERE 1=1
 		AND usercode = #{usercode}
@@ -2036,102 +2056,102 @@
 		ORDER BY createtime DESC
 	</select>
 
-	<select id="findKqdsRegByUsercodes" parameterType="String" resultType="json">
-		select
-		SEQ_ID,createuser,createtime,usercode,regway,regsort,recesort,regmoney,reggoal,regdept,
-		doctor,ifmedrecord,ifcost,editreason,receiveno,status,username,del,cjstatus,beforeeditreason,remark,
-		organization
-		from KQDS_REG where usercode in (${_parameter})
+    <select id="findKqdsRegByUsercodes" parameterType="String" resultType="json">
+	select 
+	SEQ_ID,createuser,createtime,usercode,regway,regsort,recesort,regmoney,reggoal,regdept,
+	doctor,ifmedrecord,ifcost,editreason,receiveno,status,username,del,cjstatus,beforeeditreason,remark,
+	organization
+	 from KQDS_REG where usercode in (${_parameter})
 	</select>
-	<!-- 查询年的基础数据 -->
-	<select id="findQuantityByAskpersonAndYear" parameterType="java.util.Map" resultType="json">
+    <!-- 查询年的基础数据 -->
+    <select id="findQuantityByAskpersonAndYear" parameterType="java.util.Map" resultType="json">
 		SELECT ${code}
-		FROM KQDS_REG where
+	    FROM KQDS_REG where 
 		1=1
 		AND recesort in (${recesort})
 		AND organization=#{organization}
 		AND askperson in (${visualstaff})
 	</select>
-	<!-- 查询年的基础数据 -->
-	<select id="findCJQuantityByAskpersonAndYear" parameterType="java.util.Map" resultType="json">
+    <!-- 查询年的基础数据 -->
+    <select id="findCJQuantityByAskpersonAndYear" parameterType="java.util.Map" resultType="json">
 		SELECT ${code}
-		FROM KQDS_REG where
-		1=1
+	    FROM KQDS_REG where 
+	    1=1
 		AND cjstatus=1
 		AND recesort in (${recesort})
 		AND organization=#{organization}
 		AND askperson in (${visualstaff})
 	</select>
-	<!-- 查询年的员工基础数据 -->
-	<select id="findAllCJQuantityByAskpersonAndYear" parameterType="java.util.Map" resultType="json">
-		SELECT
-		COUNT(r.askperson) as nums,r.askperson as seqid,p.USER_NAME as name
-		FROM
-		KQDS_REG r
-		LEFT JOIN sys_person p on p.SEQ_ID = r.askperson
-		WHERE
-		1 = 1
-		AND r.recesort in (${recesort})
-		AND YEAR (r.createtime) <![CDATA[ >= ]]> #{startyear}
-		AND YEAR (r.createtime) <![CDATA[ <= ]]> #{endyear}
-		AND r.organization = #{organization}
-		AND r.cjstatus = 1
-		<if test="askperson!=null and askperson!=''">
-			AND (${askperson})
-		</if>
-		GROUP BY
-		r.askperson,
-		p.USER_NAME
-		ORDER BY
-		r.askperson ASC
-	</select>
-	<!-- 查询年的员工基础数据 -->
-	<select id="findAllQuantityByAskpersonAndYear" parameterType="java.util.Map" resultType="json">
-		SELECT
-		COUNT(r.askperson) as nums,r.askperson as seqid,p.USER_NAME as name
-		FROM
-		KQDS_REG r
-		LEFT JOIN sys_person p on p.SEQ_ID = r.askperson
-		WHERE
-		1 = 1
-		AND r.recesort in (${recesort})
-		AND YEAR (r.createtime) <![CDATA[ >= ]]> #{startyear}
-		AND YEAR (r.createtime) <![CDATA[ <= ]]> #{endyear}
-		AND r.organization = #{organization}
-		<if test="askperson!=null and askperson!=''">
-			AND (${askperson})
-		</if>
-		GROUP BY
-		r.askperson,
-		p.USER_NAME
-		ORDER BY
-		r.askperson ASC
-	</select>
-	<!-- 查询月的基础数据 -->
-	<select id="findQuantityByAskpersonAndMonth" parameterType="java.util.Map" resultType="json">
+    <!-- 查询年的员工基础数据 -->
+    <select id="findAllCJQuantityByAskpersonAndYear" parameterType="java.util.Map" resultType="json">
+        SELECT
+        COUNT(r.askperson) as nums,r.askperson as seqid,p.USER_NAME as name
+        FROM
+        KQDS_REG r
+        LEFT JOIN sys_person p on p.SEQ_ID = r.askperson
+        WHERE
+        1 = 1
+        AND r.recesort in (${recesort})
+        AND YEAR (r.createtime) <![CDATA[ >= ]]> #{startyear}
+        AND YEAR (r.createtime) <![CDATA[ <= ]]> #{endyear}
+        AND r.organization = #{organization}
+        AND r.cjstatus = 1
+        <if test="askperson!=null and askperson!=''">
+            AND (${askperson})
+        </if>
+        GROUP BY
+        r.askperson,
+        p.USER_NAME
+        ORDER BY
+        r.askperson ASC
+    </select>
+    <!-- 查询年的员工基础数据 -->
+    <select id="findAllQuantityByAskpersonAndYear" parameterType="java.util.Map" resultType="json">
+        SELECT
+        COUNT(r.askperson) as nums,r.askperson as seqid,p.USER_NAME as name
+        FROM
+        KQDS_REG r
+        LEFT JOIN sys_person p on p.SEQ_ID = r.askperson
+        WHERE
+        1 = 1
+        AND r.recesort in (${recesort})
+        AND YEAR (r.createtime) <![CDATA[ >= ]]> #{startyear}
+        AND YEAR (r.createtime) <![CDATA[ <= ]]> #{endyear}
+        AND r.organization = #{organization}
+        <if test="askperson!=null and askperson!=''">
+            AND (${askperson})
+        </if>
+        GROUP BY
+        r.askperson,
+        p.USER_NAME
+        ORDER BY
+        r.askperson ASC
+    </select>
+    <!-- 查询月的基础数据 -->
+    <select id="findQuantityByAskpersonAndMonth" parameterType="java.util.Map" resultType="json">
 		SELECT ${code}
-		FROM KQDS_REG where
+	    FROM KQDS_REG where 
 		1=1
 		AND datepart(year,createtime)=#{year}
 		AND recesort in (${recesort})
 		AND organization=#{organization}
 		AND askperson in (${visualstaff})
 	</select>
-	<!-- 查询月的基础数据 -->
-	<select id="findCJQuantityByAskpersonAndMonth" parameterType="java.util.Map" resultType="json">
+    <!-- 查询月的基础数据 -->
+    <select id="findCJQuantityByAskpersonAndMonth" parameterType="java.util.Map" resultType="json">
 		SELECT ${code}
-		FROM KQDS_REG where
-		1=1
+	    FROM KQDS_REG where 
+	    1=1
 		AND cjstatus=1
 		AND datepart(year,createtime)=#{year}
 		AND recesort in (${recesort})
 		AND organization=#{organization}
 		AND askperson in (${visualstaff})
 	</select>
-	<!-- 查询天的基础数据 -->
-	<select id="findQuantityByAskpersonAndDay" parameterType="java.util.Map" resultType="json">
+    <!-- 查询天的基础数据 -->
+    <select id="findQuantityByAskpersonAndDay" parameterType="java.util.Map" resultType="json">
 		SELECT ${code}
-		FROM KQDS_REG where
+	    FROM KQDS_REG where 
 		1=1
 		AND datepart(year,createtime)=#{year}
 		AND datepart(month,createtime)=#{month}
@@ -2139,10 +2159,10 @@
 		AND organization=#{organization}
 		AND askperson in (${visualstaff})
 	</select>
-	<!-- 查询天的基础数据 -->
-	<select id="findCJQuantityByAskpersonAndDay" parameterType="java.util.Map" resultType="json">
+    <!-- 查询天的基础数据 -->
+    <select id="findCJQuantityByAskpersonAndDay" parameterType="java.util.Map" resultType="json">
 		SELECT  ${code}
-		FROM KQDS_REG where
+        FROM KQDS_REG where 
 		1=1
 		AND datepart(year,createtime)=#{year}
 		AND datepart(month,createtime)=#{month}
@@ -2151,20 +2171,20 @@
 		AND askperson in (${visualstaff})
 		AND cjstatus=1
 	</select>
-	<!-- 查询年中月的基础数据 -->
-	<select id="findQuantityByAskpersonAndMonthInYear" parameterType="java.util.Map" resultType="json">
+    <!-- 查询年中月的基础数据 -->
+    <select id="findQuantityByAskpersonAndMonthInYear" parameterType="java.util.Map" resultType="json">
 		SELECT ${code}
-		FROM KQDS_REG where
+	    FROM KQDS_REG where 
 		1=1
 		AND datepart(year,createtime)=#{year}
 		AND recesort in (${recesort})
 		AND organization=#{organization}
 		AND askperson in (${visualstaff})
 	</select>
-	<!-- 查询年中月的基础数据 -->
-	<select id="findCJQuantityByAskpersonAndMonthInYear" parameterType="java.util.Map" resultType="json">
+    <!-- 查询年中月的基础数据 -->
+    <select id="findCJQuantityByAskpersonAndMonthInYear" parameterType="java.util.Map" resultType="json">
 		SELECT  ${code}
-		FROM KQDS_REG where
+        FROM KQDS_REG where 
 		1=1
 		AND datepart(year,createtime)=#{year}
 		AND recesort in (${recesort})
@@ -2172,506 +2192,506 @@
 		AND askperson in (${visualstaff})
 		AND cjstatus=1
 	</select>
-	<!-- 查询月的员工数据 -->
-	<select id="findAllQuantityByAskpersonAndMonth" parameterType="java.util.Map" resultType="json">
-		SELECT
-		COUNT(r.askperson) as nums,r.askperson as seqid,p.USER_NAME as name
-		FROM
-		KQDS_REG r
-		LEFT JOIN sys_person p on p.SEQ_ID = r.askperson
-		WHERE
-		1 = 1
-		AND r.recesort in (${recesort})
-		AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
-		AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
-		<if test="years!='' and years!=null">
-			AND ${years}
-		</if>
-		AND r.organization = #{organization}
-		<if test="askperson!=null and askperson!=''">
-			AND (${askperson})
-		</if>
-		GROUP BY
-		r.askperson,
-		p.USER_NAME
-		ORDER BY
-		r.askperson ASC
-	</select>
-	<!-- 查询月的员工数据 -->
-	<select id="findAllCjQuantityByAskpersonAndMonth" parameterType="java.util.Map" resultType="json">
-		SELECT
-		COUNT(r.askperson) as nums,r.askperson as seqid,p.USER_NAME as name
-		FROM
-		KQDS_REG r
-		LEFT JOIN sys_person p on p.SEQ_ID = r.askperson
-		WHERE
-		1 = 1
-		AND r.recesort in (${recesort})
-		AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
-		AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
-		<if test="years!='' and years!=null">
-			AND ${years}
-		</if>
-		AND r.organization = #{organization}
-		AND r.cjstatus = 1
-		<if test="askperson!=null and askperson!=''">
-			AND (${askperson})
-		</if>
-		GROUP BY
-		r.askperson,
-		p.USER_NAME
-		ORDER BY
-		r.askperson ASC
-	</select>
-	<!-- 查询天的员工数据 -->
-	<select id="findAllQuantityByAskpersonAndDay" parameterType="java.util.Map" resultType="json">
-		SELECT
-		COUNT(r.askperson) as nums,r.askperson as seqid,p.USER_NAME as name
-		FROM
-		KQDS_REG r
-		LEFT JOIN sys_person p on p.SEQ_ID = r.askperson
-		WHERE
-		1 = 1
-		AND r.recesort in (${recesort})
-		AND DAY (r.createtime) <![CDATA[ >= ]]> #{startday}
-		AND DAY (r.createtime) <![CDATA[ <= ]]> #{endday}
-		<if test="years !='' and years !=null">
-			AND ${years}
-		</if>
-		<if test="months !='' and months !=null">
-			AND ${months}
-		</if>
-		AND r.organization = #{organization}
-		<if test="askperson!=null and askperson!=''">
-			AND (${askperson})
-		</if>
-		GROUP BY
-		r.askperson,
-		p.USER_NAME
-		ORDER BY
-		r.askperson ASC
-	</select>
-	<!-- 查询天的员工数据 -->
-	<select id="findAllCjQuantityByAskpersonAndDay" parameterType="java.util.Map" resultType="json">
-		SELECT
-		COUNT(r.askperson) as nums,r.askperson as seqid,p.USER_NAME as name
-		FROM
-		KQDS_REG r
-		LEFT JOIN sys_person p on p.SEQ_ID = r.askperson
-		WHERE
-		1 = 1
-		AND r.recesort in (${recesort})
-		AND DAY (r.createtime) <![CDATA[ >= ]]> #{startday}
-		AND DAY (r.createtime) <![CDATA[ <= ]]> #{endday}
-		<if test="years !='' and years !=null">
-			AND ${years}
-		</if>
-		<if test="months !='' and months !=null">
-			AND ${months}
-		</if>
-		AND r.organization = #{organization}
-		AND r.cjstatus = 1
-		<if test="askperson!=null and askperson!=''">
-			AND (${askperson})
-		</if>
-		GROUP BY
-		r.askperson,
-		p.USER_NAME
-		ORDER BY
-		r.askperson ASC
-	</select>
-	<select id="findDepartment" parameterType="map" resultType="json">
-		SELECT
-		deptname,
-		SUM (paymoney) AS performance
-		FROM
-		(
-		SELECT
-		d.dept_name AS deptname,
-		(
-		p.actualmoney - (
-		SELECT
-		ISNULL(
-		SUM (
-		paymoney - payyjj - payother2 - payintegral - paydjq
-		),
-		0
-		) AS paymoney
-		FROM
-		KQDS_COSTORDER_DETAIL
-		WHERE
-		1 = 1
-		AND itemname IN (
-		SELECT
-		treatitemname
-		FROM
-		KQDS_TREATITEM
-		WHERE
-		basetype = 'jyk671'
-		AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
-		)
-		AND costno = p.costno
-		) - (
-		SELECT
-		ISNULL(
-		SUM (
-		paymoney - payyjj - payother2 - payintegral - paydjq
-		),
-		0
-		) AS paymoney
-		FROM
-		KQDS_COSTORDER_DETAIL
-		WHERE
-		1 = 1
-		AND isyjjitem = 1
-		AND costno = p.costno
-		)
-		) paymoney,
-		p.costno AS costno
-		FROM
-		KQDS_REG r
-		LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
-		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-		LEFT JOIN sys_dept d ON r.regdept = d.SEQ_ID
-		WHERE
-		1 = 1
-		<if test="years != null and years != ''">
-			AND (${years})
-		</if>
-		AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
-		AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
-		AND r.organization = #{organization}
-		AND r.cjstatus = 1
-		AND cost.isdrugs = 0
-		AND r.askperson IN (${askperson})
-		GROUP BY
-		d.dept_name,
-		p.actualmoney,
-		p.costno
-		) AS detail
-		GROUP BY
-		deptname
-	</select>
+    <!-- 查询月的员工数据 -->
+    <select id="findAllQuantityByAskpersonAndMonth" parameterType="java.util.Map" resultType="json">
+        SELECT
+        COUNT(r.askperson) as nums,r.askperson as seqid,p.USER_NAME as name
+        FROM
+        KQDS_REG r
+        LEFT JOIN sys_person p on p.SEQ_ID = r.askperson
+        WHERE
+        1 = 1
+        AND r.recesort in (${recesort})
+        AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+        AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
+        <if test="years!='' and years!=null">
+            AND ${years}
+        </if>
+        AND r.organization = #{organization}
+        <if test="askperson!=null and askperson!=''">
+            AND (${askperson})
+        </if>
+        GROUP BY
+        r.askperson,
+        p.USER_NAME
+        ORDER BY
+        r.askperson ASC
+    </select>
+    <!-- 查询月的员工数据 -->
+    <select id="findAllCjQuantityByAskpersonAndMonth" parameterType="java.util.Map" resultType="json">
+        SELECT
+        COUNT(r.askperson) as nums,r.askperson as seqid,p.USER_NAME as name
+        FROM
+        KQDS_REG r
+        LEFT JOIN sys_person p on p.SEQ_ID = r.askperson
+        WHERE
+        1 = 1
+        AND r.recesort in (${recesort})
+        AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+        AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
+        <if test="years!='' and years!=null">
+            AND ${years}
+        </if>
+        AND r.organization = #{organization}
+        AND r.cjstatus = 1
+        <if test="askperson!=null and askperson!=''">
+            AND (${askperson})
+        </if>
+        GROUP BY
+        r.askperson,
+        p.USER_NAME
+        ORDER BY
+        r.askperson ASC
+    </select>
+    <!-- 查询天的员工数据 -->
+    <select id="findAllQuantityByAskpersonAndDay" parameterType="java.util.Map" resultType="json">
+        SELECT
+        COUNT(r.askperson) as nums,r.askperson as seqid,p.USER_NAME as name
+        FROM
+        KQDS_REG r
+        LEFT JOIN sys_person p on p.SEQ_ID = r.askperson
+        WHERE
+        1 = 1
+        AND r.recesort in (${recesort})
+        AND DAY (r.createtime) <![CDATA[ >= ]]> #{startday}
+        AND DAY (r.createtime) <![CDATA[ <= ]]> #{endday}
+        <if test="years !='' and years !=null">
+            AND ${years}
+        </if>
+        <if test="months !='' and months !=null">
+            AND ${months}
+        </if>
+        AND r.organization = #{organization}
+        <if test="askperson!=null and askperson!=''">
+            AND (${askperson})
+        </if>
+        GROUP BY
+        r.askperson,
+        p.USER_NAME
+        ORDER BY
+        r.askperson ASC
+    </select>
+    <!-- 查询天的员工数据 -->
+    <select id="findAllCjQuantityByAskpersonAndDay" parameterType="java.util.Map" resultType="json">
+        SELECT
+        COUNT(r.askperson) as nums,r.askperson as seqid,p.USER_NAME as name
+        FROM
+        KQDS_REG r
+        LEFT JOIN sys_person p on p.SEQ_ID = r.askperson
+        WHERE
+        1 = 1
+        AND r.recesort in (${recesort})
+        AND DAY (r.createtime) <![CDATA[ >= ]]> #{startday}
+        AND DAY (r.createtime) <![CDATA[ <= ]]> #{endday}
+        <if test="years !='' and years !=null">
+            AND ${years}
+        </if>
+        <if test="months !='' and months !=null">
+            AND ${months}
+        </if>
+        AND r.organization = #{organization}
+        AND r.cjstatus = 1
+        <if test="askperson!=null and askperson!=''">
+            AND (${askperson})
+        </if>
+        GROUP BY
+        r.askperson,
+        p.USER_NAME
+        ORDER BY
+        r.askperson ASC
+    </select>
+    <select id="findDepartment" parameterType="map" resultType="json">
+        SELECT
+        deptname,
+        SUM (paymoney) AS performance
+        FROM
+        (
+        SELECT
+        d.dept_name AS deptname,
+        (
+        p.actualmoney - (
+        SELECT
+        ISNULL(
+        SUM (
+        paymoney - payyjj - payother2 - payintegral - paydjq
+        ),
+        0
+        ) AS paymoney
+        FROM
+        KQDS_COSTORDER_DETAIL
+        WHERE
+        1 = 1
+        AND itemname IN (
+        SELECT
+        treatitemname
+        FROM
+        KQDS_TREATITEM
+        WHERE
+        basetype = 'jyk671'
+        AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
+        )
+        AND costno = p.costno
+        ) - (
+        SELECT
+        ISNULL(
+        SUM (
+        paymoney - payyjj - payother2 - payintegral - paydjq
+        ),
+        0
+        ) AS paymoney
+        FROM
+        KQDS_COSTORDER_DETAIL
+        WHERE
+        1 = 1
+        AND isyjjitem = 1
+        AND costno = p.costno
+        )
+        ) paymoney,
+        p.costno AS costno
+        FROM
+        KQDS_REG r
+        LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
+        LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+        LEFT JOIN sys_dept d ON r.regdept = d.SEQ_ID
+        WHERE
+        1 = 1
+        <if test="years != null and years != ''">
+            AND (${years})
+        </if>
+        AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+        AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
+        AND r.organization = #{organization}
+        AND r.cjstatus = 1
+        AND cost.isdrugs = 0
+        AND r.askperson IN (${askperson})
+        GROUP BY
+        d.dept_name,
+        p.actualmoney,
+        p.costno
+        ) AS detail
+        GROUP BY
+        deptname
+    </select>
 
-	<select id="findZperformance" parameterType="map" resultType="json">
-		SELECT
-		SUM (paymoney) AS zperformance
-		FROM
-		(
-		SELECT
-		d.dept_name AS deptname,
-		(
-		p.actualmoney - (
-		SELECT
-		ISNULL(
-		SUM (
-		paymoney - payyjj - payother2 - payintegral - paydjq
-		),
-		0
-		) AS paymoney
-		FROM
-		KQDS_COSTORDER_DETAIL
-		WHERE
-		1 = 1
-		AND itemname IN (
-		SELECT
-		treatitemname
-		FROM
-		KQDS_TREATITEM
-		WHERE
-		basetype = 'jyk671'
-		AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
-		)
-		AND costno = p.costno
-		) - (
-		SELECT
-		ISNULL(
-		SUM (
-		paymoney - payyjj - payother2 - payintegral - paydjq
-		),
-		0
-		) AS paymoney
-		FROM
-		KQDS_COSTORDER_DETAIL
-		WHERE
-		1 = 1
-		AND isyjjitem = 1
-		AND costno = p.costno
-		)
-		) paymoney,
-		p.costno AS costno
-		FROM
-		KQDS_REG r
-		LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
-		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-		LEFT JOIN sys_dept d ON r.regdept = d.SEQ_ID
-		WHERE
-		1 = 1
-		<if test="years != null and years != ''">
-			AND (${years})
-		</if>
-		AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
-		AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
-		AND r.organization = #{organization}
-		AND r.cjstatus = 1
-		AND cost.isdrugs = 0
-		AND r.askperson IN (${askperson})
-		GROUP BY
-		d.dept_name,
-		p.actualmoney,
-		p.costno
-		) AS detail
-	</select>
-	<!-- 对应医生业绩 -->
-	<select id="findDoctor" parameterType="map" resultType="json">
-		SELECT
-		doctor,
-		SUM (paymoney) AS paymoney
-		FROM
-		(
-		SELECT
-		s.USER_NAME AS doctor,
-		(
-		p.actualmoney - (
-		SELECT
-		ISNULL(
-		SUM (
-		paymoney - payyjj - payother2 - payintegral - paydjq
-		),
-		0
-		) AS paymoney
-		FROM
-		KQDS_COSTORDER_DETAIL
-		WHERE
-		1 = 1
-		AND itemname IN (
-		SELECT
-		treatitemname
-		FROM
-		KQDS_TREATITEM
-		WHERE
-		basetype = 'jyk671'
-		AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
-		)
-		AND costno = p.costno
-		) - (
-		SELECT
-		ISNULL(
-		SUM (
-		paymoney - payyjj - payother2 - payintegral - paydjq
-		),
-		0
-		) AS paymoney
-		FROM
-		KQDS_COSTORDER_DETAIL
-		WHERE
-		1 = 1
-		AND isyjjitem = 1
-		AND costno = p.costno
-		)
-		) paymoney,
-		p.costno AS costno
-		FROM
-		KQDS_REG r
-		LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
-		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-		LEFT JOIN sys_person s ON cost.doctor = s.SEQ_ID
-		WHERE
-		1 = 1
-		<if test="years != null and years != ''">
-			AND (${years})
-		</if>
-		AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
-		AND MONTH (r.createtime)<![CDATA[ <= ]]> #{endmonth}
-		AND r.organization = #{organization}
-		AND r.cjstatus = 1
-		AND cost.isdrugs = 0
-		AND r.askperson IN (${askperson})
-		GROUP BY
-		s.USER_NAME,
-		p.actualmoney,
-		p.costno
-		) AS detail
-		GROUP BY
-		doctor
-	</select>
+    <select id="findZperformance" parameterType="map" resultType="json">
+        SELECT
+        SUM (paymoney) AS zperformance
+        FROM
+        (
+        SELECT
+        d.dept_name AS deptname,
+        (
+        p.actualmoney - (
+        SELECT
+        ISNULL(
+        SUM (
+        paymoney - payyjj - payother2 - payintegral - paydjq
+        ),
+        0
+        ) AS paymoney
+        FROM
+        KQDS_COSTORDER_DETAIL
+        WHERE
+        1 = 1
+        AND itemname IN (
+        SELECT
+        treatitemname
+        FROM
+        KQDS_TREATITEM
+        WHERE
+        basetype = 'jyk671'
+        AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
+        )
+        AND costno = p.costno
+        ) - (
+        SELECT
+        ISNULL(
+        SUM (
+        paymoney - payyjj - payother2 - payintegral - paydjq
+        ),
+        0
+        ) AS paymoney
+        FROM
+        KQDS_COSTORDER_DETAIL
+        WHERE
+        1 = 1
+        AND isyjjitem = 1
+        AND costno = p.costno
+        )
+        ) paymoney,
+        p.costno AS costno
+        FROM
+        KQDS_REG r
+        LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
+        LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+        LEFT JOIN sys_dept d ON r.regdept = d.SEQ_ID
+        WHERE
+        1 = 1
+        <if test="years != null and years != ''">
+            AND (${years})
+        </if>
+        AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+        AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
+        AND r.organization = #{organization}
+        AND r.cjstatus = 1
+        AND cost.isdrugs = 0
+        AND r.askperson IN (${askperson})
+        GROUP BY
+        d.dept_name,
+        p.actualmoney,
+        p.costno
+        ) AS detail
+    </select>
+    <!-- 对应医生业绩 -->
+    <select id="findDoctor" parameterType="map" resultType="json">
+        SELECT
+        doctor,
+        SUM (paymoney) AS paymoney
+        FROM
+        (
+        SELECT
+        s.USER_NAME AS doctor,
+        (
+        p.actualmoney - (
+        SELECT
+        ISNULL(
+        SUM (
+        paymoney - payyjj - payother2 - payintegral - paydjq
+        ),
+        0
+        ) AS paymoney
+        FROM
+        KQDS_COSTORDER_DETAIL
+        WHERE
+        1 = 1
+        AND itemname IN (
+        SELECT
+        treatitemname
+        FROM
+        KQDS_TREATITEM
+        WHERE
+        basetype = 'jyk671'
+        AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
+        )
+        AND costno = p.costno
+        ) - (
+        SELECT
+        ISNULL(
+        SUM (
+        paymoney - payyjj - payother2 - payintegral - paydjq
+        ),
+        0
+        ) AS paymoney
+        FROM
+        KQDS_COSTORDER_DETAIL
+        WHERE
+        1 = 1
+        AND isyjjitem = 1
+        AND costno = p.costno
+        )
+        ) paymoney,
+        p.costno AS costno
+        FROM
+        KQDS_REG r
+        LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
+        LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+        LEFT JOIN sys_person s ON cost.doctor = s.SEQ_ID
+        WHERE
+        1 = 1
+        <if test="years != null and years != ''">
+            AND (${years})
+        </if>
+        AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+        AND MONTH (r.createtime)<![CDATA[ <= ]]> #{endmonth}
+        AND r.organization = #{organization}
+        AND r.cjstatus = 1
+        AND cost.isdrugs = 0
+        AND r.askperson IN (${askperson})
+        GROUP BY
+        s.USER_NAME,
+        p.actualmoney,
+        p.costno
+        ) AS detail
+        GROUP BY
+        doctor
+    </select>
 
-	<!-- 对应医生总业绩 -->
-	<select id="findZdoctor" parameterType="map" resultType="json">
-		SELECT
-		SUM (paymoney) AS paymoney
-		FROM
-		(
-		SELECT
-		s.USER_NAME AS doctor,
-		(
-		p.actualmoney - (
-		SELECT
-		ISNULL(
-		SUM (
-		paymoney - payyjj - payother2 - payintegral - paydjq
-		),
-		0
-		) AS paymoney
-		FROM
-		KQDS_COSTORDER_DETAIL
-		WHERE
-		1 = 1
-		AND itemname IN (
-		SELECT
-		treatitemname
-		FROM
-		KQDS_TREATITEM
-		WHERE
-		basetype = 'jyk671'
-		AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
-		)
-		AND costno = p.costno
-		) - (
-		SELECT
-		ISNULL(
-		SUM (
-		paymoney - payyjj - payother2 - payintegral - paydjq
-		),
-		0
-		) AS paymoney
-		FROM
-		KQDS_COSTORDER_DETAIL
-		WHERE
-		1 = 1
-		AND isyjjitem = 1
-		AND costno = p.costno
-		)
-		) paymoney,
-		p.costno AS costno
-		FROM
-		KQDS_REG r
-		LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
-		LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
-		LEFT JOIN sys_person s ON cost.doctor = s.SEQ_ID
-		WHERE
-		1 = 1
-		<if test="years != null and years != ''">
-			AND (${years})
-		</if>
-		AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
-		AND MONTH (r.createtime)<![CDATA[ <= ]]> #{endmonth}
-		AND r.organization = #{organization}
-		AND r.cjstatus = 1
-		AND cost.isdrugs = 0
-		AND r.askperson IN (${askperson})
-		GROUP BY
-		s.USER_NAME,
-		p.actualmoney,
-		p.costno
-		) AS detail
-	</select>
+    <!-- 对应医生总业绩 -->
+    <select id="findZdoctor" parameterType="map" resultType="json">
+        SELECT
+        SUM (paymoney) AS paymoney
+        FROM
+        (
+        SELECT
+        s.USER_NAME AS doctor,
+        (
+        p.actualmoney - (
+        SELECT
+        ISNULL(
+        SUM (
+        paymoney - payyjj - payother2 - payintegral - paydjq
+        ),
+        0
+        ) AS paymoney
+        FROM
+        KQDS_COSTORDER_DETAIL
+        WHERE
+        1 = 1
+        AND itemname IN (
+        SELECT
+        treatitemname
+        FROM
+        KQDS_TREATITEM
+        WHERE
+        basetype = 'jyk671'
+        AND nexttype = 'b87aa149-a257-4b00-8fad-2c9b331af38e'
+        )
+        AND costno = p.costno
+        ) - (
+        SELECT
+        ISNULL(
+        SUM (
+        paymoney - payyjj - payother2 - payintegral - paydjq
+        ),
+        0
+        ) AS paymoney
+        FROM
+        KQDS_COSTORDER_DETAIL
+        WHERE
+        1 = 1
+        AND isyjjitem = 1
+        AND costno = p.costno
+        )
+        ) paymoney,
+        p.costno AS costno
+        FROM
+        KQDS_REG r
+        LEFT JOIN KQDS_PAYCOST p ON r.seq_id = p.regno
+        LEFT JOIN KQDS_COSTORDER cost ON p.costno = cost.costno
+        LEFT JOIN sys_person s ON cost.doctor = s.SEQ_ID
+        WHERE
+        1 = 1
+        <if test="years != null and years != ''">
+            AND (${years})
+        </if>
+        AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+        AND MONTH (r.createtime)<![CDATA[ <= ]]> #{endmonth}
+        AND r.organization = #{organization}
+        AND r.cjstatus = 1
+        AND cost.isdrugs = 0
+        AND r.askperson IN (${askperson})
+        GROUP BY
+        s.USER_NAME,
+        p.actualmoney,
+        p.costno
+        ) AS detail
+    </select>
 
-	<!-- 种植体数量 -->
-	<select id="findImplantNum" parameterType="map" resultType="json">
-		SELECT
-		detail.itemname AS implantname,
-		SUM (cast(detail.num as numeric(12,0))) AS nums
-		FROM
-		KQDS_REG r
-		LEFT JOIN KQDS_COSTORDER c ON c.regno = r.SEQ_ID
-		LEFT JOIN KQDS_COSTORDER_DETAIL detail ON detail.costno = c.costno
-		LEFT JOIN sys_dept d ON r.regdept = d.SEQ_ID
-		WHERE
-		1 = 1
-		<if test="years != null and years != ''">
-			AND (${years})
-		</if>
-		AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
-		AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
-		AND r.organization = #{organization}
-		AND c.cjstatus = 1
-		AND c.isdrugs != 1
-		AND EXISTS (
-		SELECT treatitemno FROM KQDS_TREATITEM WHERE detail.itemno=treatitemno AND implant = '1'
-		)
-		AND r.askperson IN (${askperson})
-		GROUP BY
-		detail.itemname
-	</select>
+    <!-- 种植体数量 -->
+    <select id="findImplantNum" parameterType="map" resultType="json">
+        SELECT
+        detail.itemname AS implantname,
+        SUM (cast(detail.num as numeric(12,0))) AS nums
+        FROM
+        KQDS_REG r
+        LEFT JOIN KQDS_COSTORDER c ON c.regno = r.SEQ_ID
+        LEFT JOIN KQDS_COSTORDER_DETAIL detail ON detail.costno = c.costno
+        LEFT JOIN sys_dept d ON r.regdept = d.SEQ_ID
+        WHERE
+        1 = 1
+        <if test="years != null and years != ''">
+            AND (${years})
+        </if>
+        AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+        AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
+        AND r.organization = #{organization}
+        AND c.cjstatus = 1
+        AND c.isdrugs != 1
+        AND EXISTS (
+        SELECT treatitemno FROM KQDS_TREATITEM WHERE detail.itemno=treatitemno AND implant = '1'
+        )
+        AND r.askperson IN (${askperson})
+        GROUP BY
+        detail.itemname
+    </select>
 
-	<!-- 种植体总数量 -->
-	<select id="findImplantNumAll" parameterType="map" resultType="json">
-		SELECT
-		SUM (cast(detail.num as numeric(12,0))) AS nums
-		FROM
-		KQDS_REG r
-		LEFT JOIN KQDS_COSTORDER c ON c.regno = r.SEQ_ID
-		LEFT JOIN KQDS_COSTORDER_DETAIL detail ON detail.costno = c.costno
-		LEFT JOIN sys_dept d ON r.regdept = d.SEQ_ID
-		WHERE
-		1 = 1
-		<if test="years != null and years != ''">
-			AND (${years})
-		</if>
-		AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
-		AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
-		AND r.organization = #{organization}
-		AND c.cjstatus = 1
-		AND c.isdrugs != 1
-		AND detail.itemno IN (
-		SELECT treatitemno FROM KQDS_TREATITEM WHERE implant = '1'
-		)
-		AND r.askperson IN (${askperson})
-	</select>
+    <!-- 种植体总数量 -->
+    <select id="findImplantNumAll" parameterType="map" resultType="json">
+        SELECT
+        SUM (cast(detail.num as numeric(12,0))) AS nums
+        FROM
+        KQDS_REG r
+        LEFT JOIN KQDS_COSTORDER c ON c.regno = r.SEQ_ID
+        LEFT JOIN KQDS_COSTORDER_DETAIL detail ON detail.costno = c.costno
+        LEFT JOIN sys_dept d ON r.regdept = d.SEQ_ID
+        WHERE
+        1 = 1
+        <if test="years != null and years != ''">
+            AND (${years})
+        </if>
+        AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+        AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
+        AND r.organization = #{organization}
+        AND c.cjstatus = 1
+        AND c.isdrugs != 1
+        AND detail.itemno IN (
+        SELECT treatitemno FROM KQDS_TREATITEM WHERE implant = '1'
+        )
+        AND r.askperson IN (${askperson})
+    </select>
 
-	<!-- 折扣后也改变成交状态为已成交 syp 2019-10-07 -->
-	<update id="updateRegCjstatus" parameterType="String">
+    <!-- 折扣后也改变成交状态为已成交 syp 2019-10-07 -->
+    <update id="updateRegCjstatus" parameterType="String">
 		update KQDS_REG set cjstatus = '1' where SEQ_ID = #{seqId}
 	</update>
-	<!-- 数据报表 医生总数量 -->
-	<select id="selectDoctorSituationNums" parameterType="map" resultType="json">
-		SELECT
-		COUNT (r.doctor) AS nums,
-		r.doctor AS seqid,
-		p.USER_NAME AS name,
-		r.recesort,
-		r.regsort,
-		kcit2.dict_name as regsortname,
-		kcit.dict_name as recesortname
-		FROM
+    <!-- 数据报表 医生总数量 -->
+    <select id="selectDoctorSituationNums" parameterType="map" resultType="json">
+	SELECT
+	COUNT (r.doctor) AS nums,
+	r.doctor AS seqid,
+	p.USER_NAME AS name,
+	r.recesort,
+	r.regsort,
+	kcit2.dict_name as regsortname,
+	kcit.dict_name as recesortname
+	FROM
 		KQDS_REG r
-		LEFT JOIN sys_person p ON p.SEQ_ID = r.doctor
-		LEFT JOIN SYS_DICT kcit2 on r.regsort = kcit2.seq_id
-		LEFT JOIN SYS_DICT kcit on r.recesort = kcit.seq_id
-		WHERE
+	LEFT JOIN sys_person p ON p.SEQ_ID = r.doctor
+	LEFT JOIN SYS_DICT kcit2 on r.regsort = kcit2.seq_id
+	LEFT JOIN SYS_DICT kcit on r.recesort = kcit.seq_id
+	WHERE
 		1 = 1
 		and r.del = '0'
 		AND r.createtime <![CDATA[ >= ]]>	#{starttime}
 		AND r.createtime <![CDATA[ <= ]]>	#{endtime}
 		AND r.organization = #{organization}
 		AND r.doctor IN (${doctor})
-		GROUP BY
+	GROUP BY
 		r.doctor,
 		p.USER_NAME,
 		r.recesort,
 		r.regsort,
 		kcit2.dict_name,
 		kcit.dict_name
-		ORDER BY
+	ORDER BY
 		r.doctor ASC
 	</select>
-	<!-- 数据报表 医生成交数量 -->
-	<select id="selectDoctorSituationCJNums" parameterType="map" resultType="json">
-		SELECT
-		COUNT (r.doctor) AS nums,
-		r.doctor AS seqid,
-		p.USER_NAME AS name,
-		r.recesort,
-		r.regsort,
-		kcit2.dict_name as regsortname,
-		kcit.dict_name as recesortname
-		FROM
+    <!-- 数据报表 医生成交数量 -->
+    <select id="selectDoctorSituationCJNums" parameterType="map" resultType="json">
+	SELECT
+	COUNT (r.doctor) AS nums,
+	r.doctor AS seqid,
+	p.USER_NAME AS name,
+	r.recesort,
+	r.regsort,
+	kcit2.dict_name as regsortname,
+	kcit.dict_name as recesortname
+	FROM
 		KQDS_REG r
-		LEFT JOIN sys_person p ON p.SEQ_ID = r.doctor
-		LEFT JOIN SYS_DICT kcit2 on r.regsort = kcit2.seq_id
-		LEFT JOIN SYS_DICT kcit on r.recesort = kcit.seq_id
-		WHERE
+	LEFT JOIN sys_person p ON p.SEQ_ID = r.doctor
+	LEFT JOIN SYS_DICT kcit2 on r.regsort = kcit2.seq_id
+	LEFT JOIN SYS_DICT kcit on r.recesort = kcit.seq_id
+	WHERE
 		1 = 1
 		and r.del = '0'
 		and r.cjstatus='1'
@@ -2679,35 +2699,35 @@
 		AND r.createtime <![CDATA[ <= ]]>	#{endtime}
 		AND r.organization = #{organization}
 		AND r.doctor IN (${doctor})
-		GROUP BY
+	GROUP BY
 		r.doctor,
 		p.USER_NAME,
 		r.recesort,
 		r.regsort,
 		kcit2.dict_name,
 		kcit.dict_name
-		ORDER BY
+	ORDER BY
 		r.doctor ASC
 	</select>
 
-	<select id="selectRegByusercode" parameterType="map" resultType="json">
+    <select id="selectRegByusercode" parameterType="map" resultType="json">
 		SELECT
-		r.createtime,
-		d.dict_name AS recesort,
-		dict.dict_name AS regsort,
-		p.USER_NAME AS doctor
-		FROM
+	r.createtime,
+	d.dict_name AS recesort,
+	dict.dict_name AS regsort,
+	p.USER_NAME AS doctor
+	FROM
 		KQDS_REG r
-		LEFT JOIN sys_dict d ON d.SEQ_ID = r.recesort
-		LEFT JOIN sys_dict dict ON dict.SEQ_ID = r.regsort
-		LEFT JOIN sys_person p ON p.SEQ_ID = r.doctor
-		WHERE 1=1
-		AND usercode = #{usercode}
-		ORDER BY
+	LEFT JOIN sys_dict d ON d.SEQ_ID = r.recesort
+	LEFT JOIN sys_dict dict ON dict.SEQ_ID = r.regsort
+	LEFT JOIN sys_person p ON p.SEQ_ID = r.doctor
+	WHERE 1=1
+	AND usercode = #{usercode} 
+	ORDER BY 
 		createtime DESC
 	</select>
-	<select id="selectNameBySeqid" parameterType="java.util.Map" resultType="json">
-		select
+    <select id="selectNameBySeqid" parameterType="java.util.Map" resultType="json">
+		select 
 		r.seq_id as seqid,
 		per1.USER_NAME as askperson,
 		per2.USER_NAME as doctor,
@@ -2724,37 +2744,37 @@
 		LEFT JOIN SYS_DICT kcit2 on r.regsort = kcit2.seq_id
 		where r.seq_id in (${seqid})
 	</select>
-	<select id="selectSlgjBySeqid" parameterType="java.util.Map" resultType="json">
-		select
-		r.SEQ_ID as seqid,
-		kcit7.dict_name as slgj,
-		n.accepttool as slgjvalue
-		from KQDS_REG r
-		LEFT JOIN (
-		SELECT
-		a.usercode,a.accepttool
-		FROM
-		KQDS_NET_ORDER a,
-		(
-		SELECT
-		usercode,
-		MAX (createtime) createtime
-		FROM
-		KQDS_NET_ORDER
-		GROUP BY
-		usercode
-		) b
-		WHERE 1=1
-		AND	a.usercode = b.usercode
-		AND a.createtime = b.createtime
-		) n ON n.usercode = r.usercode
-		LEFT JOIN sys_dict kcit7 ON n.accepttool = kcit7.SEQ_ID
-		where 1=1
-		<if test="seqid != null and seqid != '' ">
-			and r.SEQ_ID in (${seqid})
-		</if>
-	</select>
-	<insert id="batchSaveReg" parameterType="java.util.List">
+    <select id="selectSlgjBySeqid" parameterType="java.util.Map" resultType="json">
+        select
+        r.SEQ_ID as seqid,
+        kcit7.dict_name as slgj,
+        n.accepttool as slgjvalue
+        from KQDS_REG r
+        LEFT JOIN (
+        SELECT
+        a.usercode,a.accepttool
+        FROM
+        KQDS_NET_ORDER a,
+        (
+        SELECT
+        usercode,
+        MAX (createtime) createtime
+        FROM
+        KQDS_NET_ORDER
+        GROUP BY
+        usercode
+        ) b
+        WHERE 1=1
+        AND a.usercode = b.usercode
+        AND a.createtime = b.createtime
+        ) n ON n.usercode = r.usercode
+        LEFT JOIN sys_dict kcit7 ON n.accepttool = kcit7.SEQ_ID
+        where 1=1
+        <if test="seqid != null and seqid != '' ">
+            and r.SEQ_ID in (${seqid})
+        </if>
+    </select>
+    <insert id="batchSaveReg" parameterType="java.util.List">
 		insert into KQDS_REG (SEQ_ID, createuser, createtime,
 		usercode, regway, regsort,
 		recesort, regmoney, reggoal,
@@ -2775,8 +2795,8 @@
 	</insert>
 
 
-	<select id="selectTodayNameBySeqid" parameterType="java.util.Map" resultType="json">
-		select
+    <select id="selectTodayNameBySeqid" parameterType="java.util.Map" resultType="json">
+		select 
 		r.seq_id as seqid,
 		per1.USER_NAME as askperson,
 		per2.USER_NAME as doctor,
@@ -2798,8 +2818,8 @@
 		LEFT JOIN SYS_DICT kcit4 on i.failreason1 = kcit4.seq_id
 		where r.seq_id in (${seqid})
 	</select>
-	<select id="selectTodayNameByUsercode" parameterType="java.util.Map" resultType="json">
-		select
+    <select id="selectTodayNameByUsercode" parameterType="java.util.Map" resultType="json">
+		select 
 		u.usercode as usercode,
 		per3.USER_NAME as jdr,
 		per4.USER_NAME as jddy,
@@ -2813,7 +2833,19 @@
 		where u.usercode in (${usercodes})
 	</select>
 
-	<update id="updateRegJhStatus" parameterType="java.util.Map">
+    <update id="updateRegJhStatus" parameterType="java.util.Map">
 		update KQDS_REG set jh=#{jh} where seq_id=#{seqid}
 	</update>
+
+    <select id="selectUserdocumentByReg" parameterType="java.util.Map" resultType="json">
+        select
+        r.SEQ_ID, r.createuser, r.createtime, r.usercode, r.regway, r.regsort, r.recesort, r.regmoney, r.reggoal,
+        r.regdept, r.doctor, r.askperson, r.ifmedrecord, r.ifcost, r.editreason, r.receiveno, r.status,
+        r.username, r.del, r.cjstatus, r.remark, r.organization , r.repairdoctor, r.askpersondept, r.jh, r.beforeeditreason,
+        u.kefu
+        from KQDS_REG r
+        LEFT JOIN KQDS_USERDOCUMENT u on r.usercode = u.usercode
+        where r.SEQ_ID = #{seqId,jdbcType=VARCHAR}
+    </select>
+
 </mapper>

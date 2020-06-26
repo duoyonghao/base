@@ -317,28 +317,29 @@ function openAddCost(){
 			    btn: ['是','否'] //按钮
 			}, function(){
 				layer.closeAll('dialog');
-				layer.open({
-					type: 2,
-					title: '费用添加',
-					// shadeClose: true,
-					shade: 0.6,
-					shadeClose:false,
-					area: ['95%', '98%'],
-					content: '<%=baseheader%>/KQDS_CostOrderAct/toDetail_AddCost.act?usercode='+onclickrowOobj.usercode+'&regno='+onclickrowOobj.seqId
-		           }); 
+                    layer.open({
+                        type: 2,
+                        title: '费用添加',
+                        // shadeClose: true,
+                        shade: 0.6,
+                        shadeClose: false,
+                        area: ['95%', '98%'],
+                        content: '<%=baseheader%>/KQDS_CostOrderAct/toDetail_AddCost.act?usercode=' + onclickrowOobj.usercode + '&regno=' + onclickrowOobj.seqId
+                    });
 			},function(){
 				layer.closeAll('dialog');
 			});
 		}else{
-			layer.open({
-				type: 2,
-				title: '费用添加',
-				// shadeClose: true,
-				shade: 0.6,
-				shadeClose:false,
-				area: ['95%', '98%'],
-				content: '<%=baseheader%>/KQDS_CostOrderAct/toDetail_AddCost.act?usercode='+onclickrowOobj.usercode+'&regno='+onclickrowOobj.seqId
-	           }); 
+
+                layer.open({
+                    type: 2,
+                    title: '费用添加',
+                    // shadeClose: true,
+                    shade: 0.6,
+                    shadeClose:false,
+                    area: ['95%', '98%'],
+                    content: '<%=baseheader%>/KQDS_CostOrderAct/toDetail_AddCost.act?usercode='+onclickrowOobj.usercode+'&regno='+onclickrowOobj.seqId
+                });
 		}
 	}else{
 		layer.alert('无权限，请联系管理员开通权限！' );

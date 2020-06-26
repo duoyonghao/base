@@ -754,6 +754,7 @@
 			});
 		}
 	}
+
 	function addSignature(){
 		$("#img").css("display","");
 		$("#img").attr('src', signature);
@@ -782,7 +783,6 @@
             layer.alert("修改失败！");
         });
     }
-
 	var patientSignature = document.getElementById("patientSignature");
 	patientSignature.onclick = function(){
 		if(patientstatus){

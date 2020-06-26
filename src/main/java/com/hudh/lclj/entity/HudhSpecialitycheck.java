@@ -98,6 +98,14 @@ public class HudhSpecialitycheck {
     
     private String organization;
 
+	private String patientTime;
+
+	private String doctorTime;
+
+	private String patientSignature;
+
+	private String doctorSignature;
+
 	/**  
 	  * @Title:  getSeqId <BR>  
 	  * @Description: please write your description <BR>  
@@ -962,32 +970,97 @@ public class HudhSpecialitycheck {
 		this.organization = organization;
 	}
 
-	/**   
-	  * <p>Title: toString</p>   
-	  * <p>Description: </p>   
-	  * @return   
-	  * @see java.lang.Object#toString()   
-	  */  
-	@Override
-	public String toString() {
-		return "HudhSpecialitycheck [seqId=" + seqId + ", lcljId=" + lcljId + ", lcljNum=" + lcljNum + ", userId="
-				+ userId + ", ismouthopening=" + ismouthopening + ", mouthopening=" + mouthopening + ", arthrosis="
-				+ arthrosis + ", occludingrelation=" + occludingrelation + ", verticalcurve=" + verticalcurve
-				+ ", horizontalcurve=" + horizontalcurve + ", distancebetween=" + distancebetween + ", labialline="
-				+ labialline + ", gumtypes=" + gumtypes + ", undergo=" + undergo + ", periodontalcondition="
-				+ periodontalcondition + ", mucosalsituation=" + mucosalsituation + ", onedu=" + onedu + ", twodu="
-				+ twodu + ", threedu=" + threedu + ", dentitiondefect=" + dentitiondefect + ", defectdentition="
-				+ defectdentition + ", saprodontia=" + saprodontia + ", residualcrown=" + residualcrown + ", pulpitis="
-				+ pulpitis + ", teethtilted=" + teethtilted + ", nub=" + nub + ", defectiverepair=" + defectiverepair
-				+ ", mouthapicitis=" + mouthapicitis + ", teethelongation=" + teethelongation + ", maxillarysinus="
-				+ maxillarysinus + ", alveolar=" + alveolar + ", genyantrum=" + genyantrum + ", bonemass=" + bonemass
-				+ ", onebone=" + onebone + ", twobone=" + twobone + ", threebone=" + threebone + ", fourboue="
-				+ fourboue + ", anodontism=" + anodontism + ", teethdefect=" + teethdefect + ", dummy=" + dummy
-				+ ", parodontopathy=" + parodontopathy + ", residualroot=" + residualroot + ", residualrown="
-				+ residualrown + ", apicitis=" + apicitis + ", other=" + other + "]";
+	public String getPatientTime() {
+		return patientTime;
 	}
 
-	/**   
+	public void setPatientTime(String patientTime) {
+		this.patientTime = patientTime;
+	}
+
+	public String getDoctorTime() {
+		return doctorTime;
+	}
+
+	public void setDoctorTime(String doctorTime) {
+		this.doctorTime = doctorTime;
+	}
+
+	public String getPatientSignature() {
+		return patientSignature;
+	}
+
+	public void setPatientSignature(String patientSignature) {
+		this.patientSignature = patientSignature;
+	}
+
+	public String getDoctorSignature() {
+		return doctorSignature;
+	}
+
+	public void setDoctorSignature(String doctorSignature) {
+		this.doctorSignature = doctorSignature;
+	}
+
+	@Override
+	public String toString() {
+		return "HudhSpecialitycheck{" +
+				"seqId='" + seqId + '\'' +
+				", lcljId='" + lcljId + '\'' +
+				", lcljNum='" + lcljNum + '\'' +
+				", userId='" + userId + '\'' +
+				", ismouthopening='" + ismouthopening + '\'' +
+				", mouthopening='" + mouthopening + '\'' +
+				", arthrosis='" + arthrosis + '\'' +
+				", occludingrelation='" + occludingrelation + '\'' +
+				", verticalcurve='" + verticalcurve + '\'' +
+				", horizontalcurve='" + horizontalcurve + '\'' +
+				", distancebetween='" + distancebetween + '\'' +
+				", labialline='" + labialline + '\'' +
+				", gumtypes='" + gumtypes + '\'' +
+				", undergo='" + undergo + '\'' +
+				", periodontalcondition='" + periodontalcondition + '\'' +
+				", mucosalsituation='" + mucosalsituation + '\'' +
+				", onedu='" + onedu + '\'' +
+				", twodu='" + twodu + '\'' +
+				", threedu='" + threedu + '\'' +
+				", dentitiondefect='" + dentitiondefect + '\'' +
+				", defectdentition='" + defectdentition + '\'' +
+				", saprodontia='" + saprodontia + '\'' +
+				", residualcrown='" + residualcrown + '\'' +
+				", pulpitis='" + pulpitis + '\'' +
+				", teethtilted='" + teethtilted + '\'' +
+				", nub='" + nub + '\'' +
+				", defectiverepair='" + defectiverepair + '\'' +
+				", mouthapicitis='" + mouthapicitis + '\'' +
+				", teethelongation='" + teethelongation + '\'' +
+				", maxillarysinus='" + maxillarysinus + '\'' +
+				", alveolar='" + alveolar + '\'' +
+				", genyantrum='" + genyantrum + '\'' +
+				", bonemass='" + bonemass + '\'' +
+				", onebone='" + onebone + '\'' +
+				", twobone='" + twobone + '\'' +
+				", threebone='" + threebone + '\'' +
+				", fourboue='" + fourboue + '\'' +
+				", anodontism='" + anodontism + '\'' +
+				", teethdefect='" + teethdefect + '\'' +
+				", dummy='" + dummy + '\'' +
+				", parodontopathy='" + parodontopathy + '\'' +
+				", residualroot='" + residualroot + '\'' +
+				", residualrown='" + residualrown + '\'' +
+				", apicitis='" + apicitis + '\'' +
+				", other='" + other + '\'' +
+				", createuser='" + createuser + '\'' +
+				", createtime='" + createtime + '\'' +
+				", organization='" + organization + '\'' +
+				", patientTime='" + patientTime + '\'' +
+				", doctorTime='" + doctorTime + '\'' +
+				", patientSignature='" + patientSignature + '\'' +
+				", doctorSignature='" + doctorSignature + '\'' +
+				'}';
+	}
+
+	/**
 	  * <p>Title: hashCode</p>   
 	  * <p>Description: </p>   
 	  * @return   

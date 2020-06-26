@@ -6,37 +6,39 @@ function getPerUserNameBySeqIdTB(id) {
     var value = "";
     var detailurl = contextPath + "/YZPersonAct/getPersonNameStrBySeqIds.act?ids=" + id;
     $.axse(detailurl, null,
-    function(data) {
-        value = data.data;
-    },
-    function() {
-        layer.alert('查询出错！'  );
-    });
+        function (data) {
+            value = data.data;
+        },
+        function () {
+            layer.alert('查询出错！');
+        });
     return value;
 }
+
 //验证人员是否是当前门诊的
-function yzUser(id){
-	var value = "";
+function yzUser(id) {
+    var value = "";
     var detailurl = contextPath + "/YZPersonAct/yzUser.act?ids=" + id;
     $.axse(detailurl, null,
-    function(data) {
-        value = data.data;
-    },
-    function() {
-        layer.alert('查询出错！'  );
-    });
+        function (data) {
+            value = data.data;
+        },
+        function () {
+            layer.alert('查询出错！');
+        });
     return value;
 }
+
 function getPersonMaxOrderno(deptId) {
     var value = "";
     var urldict = contextPath + "/YZPersonAct/getMaxOrderno.act?deptId=" + deptId;
     $.axse(urldict, null,
-    function(data) {
-        value = data.data;
-    },
-    function() {
-        layer.alert('查询出错！'  );
-    });
+        function (data) {
+            value = data.data;
+        },
+        function () {
+            layer.alert('查询出错！');
+        });
     return value;
 }
 
@@ -51,14 +53,14 @@ function bindPerUserNameBySeqIdTB(id, param) {
         return;
     }
 
-    var detailurl = contextPath + "/YZPersonAct/getPersonNameStrBySeqIds.act";
-    $.axse(detailurl, {"ids":param},
-    function(data) {
-        $("#" + id).val(data.data);
-    },
-    function() {
-        layer.alert('查询出错！'  );
-    });
+    var detailurl = contextPath + "/YZPersonAct/getPersonNameStrBySeqIds.act"; //?ids=+ param;
+    $.axse(detailurl, {"ids": param},
+        function (data) {
+            $("#" + id).val(data.data);
+        },
+        function () {
+            layer.alert('查询出错！');
+        });
 }
 /**
  * 根据用户ID获取用户姓名，并在id标签进行显示
