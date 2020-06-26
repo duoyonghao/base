@@ -101,13 +101,12 @@
 <body>
 	<div>
 		<!-- 测试按钮 lutian 2020/05/29  -->
-<%--		<div class="btnTest">--%>
-<%--			<button class="principleBtnGB">主诉改版</button>--%>
-<%--			<button class="principleBtn">主诉测试</button>--%>
-<%--			<button class="operationRecord">种植牙手术记录</button>--%>
-<%--			<button class="repairRecord">修复治疗记录</button>--%>
-<%--			<button class="postoperationItem">种植牙术后注意事项</button>--%>
-<%--		</div>--%>
+		<div class="btnTest" style="display: none;">
+			<button class="principleBtnGB">主诉改版</button>
+			<button class="operationRecord">种植牙手术记录</button>
+			<button class="repairRecord">修复治疗记录</button>
+			<button class="postoperationItem">种植牙术后注意事项</button>
+		</div>
 		<!-- -------------------------- -->
 		<table align="center"  id="operationBefore_form" style="width:100%;margin:70px auto 15px;">
 			<tbody>
@@ -400,23 +399,7 @@
 	  		}
 	  	});
 	  });
-
-	//主诉
-	$(".principleBtn").click(function(){
-	  	parent.layer.open({
-	  		title:"主诉测试",
-	  		type:2,
-	  		closeBtn:1,
-	  		content:contextPath + "/ZzblViewAct/toAnamnesisSecondInfor.act",
-	  		area:['100%','95%'],
-	  		cancel: function(){
-	  		},
-	  		end:function(){
-	  			window.location.reload();//刷新本页面
-	  		}
-	  	});
-	  });
-
+	
 	//种植牙手术记录
 	$(".operationRecord").click(function(){
 		var plant_physician,clinic_nurse; //种植医生，配台护士  lutian 2020/05/29

@@ -553,9 +553,9 @@
 		<div class="col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;">
 			<ul class="toothMapCase">
 				<li class="toothMapItem">
-					<input name="symptom" id="tooth_lose" type="checkbox" value="0"/><label for="tooth_lose">牙缺失</label>
+					<input name="symptom" id="tooth_lose" type="checkbox" value="0" onclick="isToothChecked(this.id);"/><label for="tooth_lose">牙缺失</label>
 					<!-- 牙位图 -->
-					<div class="toothMap toothloseMap" onclick="showToothMap(0);">
+					<div class="toothMap toothloseMap">
 						<ul class="upYa">
 							<li class="leftUpTooth"><span class="yaIcon le8"></span><span class="num numle8 ToothBit_checkbox1" name="zzadultupYa1">8</span></li>
 							<li class="leftUpTooth"><span class="yaIcon le7"></span><span class="num numle7 ToothBit_checkbox1" name="zzadultupYa1">7</span></li>
@@ -600,13 +600,13 @@
 						<%--<span class="showToothMap" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>--%>
 					</div>
 					<div class="toothTime">
-						<span>时长：</span><input id="toothlosetime" disabled style="cursor:not-allowed;" type="text" placeholder="请输入时长"/>
+						<span>时长：</span><input id="toothlosetime" type="text" disabled style="cursor:not-allowed;" placeholder="请输入时长"/>
 					</div>
 				</li>
 				<li class="toothMapItem">
-					<input name="symptom" id="tooth_less" type="checkbox" value="1"/><label for="tooth_less">牙松动</label>
+					<input name="symptom" id="tooth_less" type="checkbox" value="1" onclick="isToothChecked(this.id);"/><label for="tooth_less">牙松动</label>
 					<!-- 牙位图 -->
-					<div class="toothMap toothlessMap" onclick="showToothMap(1);">
+					<div class="toothMap toothlessMap">
 						<ul class="upYa">
 							<li class="leftUpTooth"><span class="yaIcon le8"></span><span class="num numle8 ToothBit_checkbox1" name="zzadultupYa1">8</span></li>
 							<li class="leftUpTooth"><span class="yaIcon le7"></span><span class="num numle7 ToothBit_checkbox1" name="zzadultupYa1">7</span></li>
@@ -655,9 +655,9 @@
 					</div>
 				</li>
 				<li class="toothMapItem">
-					<input name="symptom" id="tooth_decayed" type="checkbox" value="2"/><label for="tooth_decayed">龋齿</label>
+					<input name="symptom" id="tooth_decayed" type="checkbox" value="2" onclick="isToothChecked(this.id);"/><label for="tooth_decayed">龋齿</label>
 					<!-- 牙位图 -->
-					<div class="toothMap toothdecayedMap" onclick="showToothMap(2);">
+					<div class="toothMap toothdecayedMap">
 						<ul class="upYa">
 							<li class="leftUpTooth"><span class="yaIcon le8"></span><span class="num numle8 ToothBit_checkbox1" name="zzadultupYa1">8</span></li>
 							<li class="leftUpTooth"><span class="yaIcon le7"></span><span class="num numle7 ToothBit_checkbox1" name="zzadultupYa1">7</span></li>
@@ -706,9 +706,9 @@
 					</div>
 				</li>
 				<li class="toothMapItem">
-					<input name="symptom" id="tooth_snap" type="checkbox" value="3"/><label for="tooth_snap">牙折断</label>
+					<input name="symptom" id="tooth_snap" type="checkbox" value="3" onclick="isToothChecked(this.id);"/><label for="tooth_snap">牙折断</label>
 					<!-- 牙位图 -->
-					<div class="toothMap toothsnapMap" onclick="showToothMap(3);">
+					<div class="toothMap toothsnapMap">
 						<ul class="upYa">
 							<li class="leftUpTooth"><span class="yaIcon le8"></span><span class="num numle8 ToothBit_checkbox1" name="zzadultupYa1">8</span></li>
 							<li class="leftUpTooth"><span class="yaIcon le7"></span><span class="num numle7 ToothBit_checkbox1" name="zzadultupYa1">7</span></li>
@@ -753,11 +753,12 @@
 						<%--<span class="showToothMap" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>--%>
 					</div>
 					<div class="toothTime">
-						<span>时长：</span><input id="toothsnaptime" type="text" disabled style="cursor:not-allowed;" placeholder="请输入时长"/>
+						<span>时长：</span><input id="toothsnaptime" disabled style="cursor:not-allowed;"  type="text" placeholder="请输入时长"/>
 					</div>
 				</li>
 			</ul>
 			<!-- 选择组合框 -->
+
 			<div class="select_group common_style">
 				<!-- 选项名称 -->
 				<span class="select_name">是否要求种植修复:</span>
@@ -2649,6 +2650,21 @@
 			$("#planttime").removeAttr("disabled").css("background-color","transparent").css("cursor","auto").css("pointer-events","auto");
 		}
 	}
+	/*主诉牙齿情况验证*/
+	function isToothChecked(id){
+		var checkVal=$("#"+id).val();
+		if($("#"+id).is(':checked')){
+			$("#"+id).parents(".toothMapItem").find(".toothMap").attr("onclick","showToothMap("+checkVal+")");
+			$("#"+id).parents(".toothMapItem").find(".toothTime").find("input").removeAttr("disabled").css("background-color","transparent").css("cursor","auto").css("pointer-events","auto");
+		}else{
+			$("#"+id).parents(".toothMapItem").find(".toothMap").removeAttr("onclick");
+			$("#"+id).parents(".toothMapItem").find(".toothMap").find(".num").each(function(i,obj){
+				$(this).text("");
+			});
+			$("#"+id).parents(".toothMapItem").find(".toothTime").find("input").val("").attr("disabled","disabled").css("background-color","#c3c3c3").css("pointer-events","none");
+		}
+	}
+
 
 	/* 获取拼接牙位并校验 */
 	function getValue(inputObj){
