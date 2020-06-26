@@ -582,6 +582,10 @@ public class KQDS_RoomAct {
 			if (!YZUtility.isNullorEmpty(nurse)) {
 				map.put("nurse", nurse);
 			}
+			String kefu = request.getParameter("kefu");
+			if (!YZUtility.isNullorEmpty(kefu)) {
+				map.put("kefu", kefu);
+			}
 			String starttime = request.getParameter("starttime");
 				if(starttime==null || starttime.equals("")){
 					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");

@@ -22,8 +22,6 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kqds.entity.sys.YZPriv;
-import com.kqds.service.sys.priv.YZPrivLogic;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.slf4j.Logger;
@@ -33,7 +31,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.hudh.util.HUDHUtil;
 import com.kqds.core.global.YZActionKeys;
 import com.kqds.core.global.YZSysProps;
@@ -91,8 +88,6 @@ public class KQDS_UserDocumentAct {
 	private YZDictLogic dictLogic;
 	@Autowired
 	private KQDS_hz_labelLogic labelLogic;
-	@Autowired
-	private YZPrivLogic privLogic;
 
 	@RequestMapping(value = "/toCloudsTagsAdd.act")
 	public ModelAndView toCloudsTagsAdd(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -3498,29 +3493,4 @@ public class KQDS_UserDocumentAct {
 		return null;
 	}
 
-	@RequestMapping(value = "/comparisonKefuByUsercode.act")
-	public List<JSONObject> comparisonKefuByUsercode(HttpServletRequest request, HttpServletResponse response)throws Exception{
-		try {
-			YZPerson person = SessionUtil.getLoginPerson(request);
-			String usercode=request.getParameter("usercode");
-			YZPriv priv = privLogic.findGeneral(person.getUserPriv());
-			boolean consequence=true;
-			if (!priv.getPrivName().contains("管理员")){
-				List<JSONObject> list = logic.findByUsercode(usercode);
-				if(list.size()>0){
-					if(!"".equals(list.get(0).getString("kefu"))){
-						consequence=false;
-					}
-					if (person.getSeqId().equals(list.get(0).getString("kefu"))){
-						consequence=true;
-					}
-				}
-			}
-			YZUtility.DEAL_SUCCESS_VALID(consequence,response);
-					//DEAL_SUCCESS(consequence,null,response,logger);
-		} catch (Exception ex) {
-			YZUtility.DEAL_ERROR(null, false, ex, response, logger);
-		}
-		return null;
-	}
 }

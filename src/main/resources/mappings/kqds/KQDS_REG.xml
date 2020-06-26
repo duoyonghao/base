@@ -2836,4 +2836,16 @@
     <update id="updateRegJhStatus" parameterType="java.util.Map">
 		update KQDS_REG set jh=#{jh} where seq_id=#{seqid}
 	</update>
+
+    <select id="selectUserdocumentByReg" parameterType="java.util.Map" resultType="json">
+        select
+        r.SEQ_ID, r.createuser, r.createtime, r.usercode, r.regway, r.regsort, r.recesort, r.regmoney, r.reggoal,
+        r.regdept, r.doctor, r.askperson, r.ifmedrecord, r.ifcost, r.editreason, r.receiveno, r.status,
+        r.username, r.del, r.cjstatus, r.remark, r.organization , r.repairdoctor, r.askpersondept, r.jh, r.beforeeditreason,
+        u.kefu
+        from KQDS_REG r
+        LEFT JOIN KQDS_USERDOCUMENT u on r.usercode = u.usercode
+        where r.SEQ_ID = #{seqId,jdbcType=VARCHAR}
+    </select>
+
 </mapper>
