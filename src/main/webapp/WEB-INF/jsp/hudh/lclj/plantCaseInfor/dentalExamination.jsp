@@ -718,7 +718,7 @@
             initBlockToothMap("conditionToothBox");
             pro("toothConditionBox",conditionData);
             pro("medicalCertificateBox",certificateData);
-            initData();//数据初始化
+            // initData();//数据初始化
             //时间选择
             $(".consent_time").datetimepicker({
                 language:  'zh-CN',
