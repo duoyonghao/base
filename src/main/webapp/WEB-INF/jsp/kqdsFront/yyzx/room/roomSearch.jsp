@@ -231,7 +231,7 @@ select {
 					</li>
 					<li>
 						<span>客服</span>
-						<input type="hidden" name="nurse" id="kefu"/>
+						<input type="hidden" name="kefu" id="kefu"/>
 						<input type="text" id="kefuDesc" name="kefuDesc" placeholder="" readonly
 							   onClick="javascript:single_select_user(['kefu', 'kefuDesc'],'',1);"></input>
 					</li>
@@ -276,6 +276,7 @@ function queryParams(params) {
         zzxt: $("#zzxt").val(),
         roomstatus: $("#roomstatus").val(),
         doctor: $("#doctor").val(),
+        kefu: $("#kefu").val(),
         nurse: $("#nurse").val(),
         endtime: $("#endtime").val(),
         starttime: $("#starttime").val(),
@@ -296,6 +297,7 @@ function queryParamsB(params) {
         zzxt: $("#zzxt").val(),
         roomstatus: $("#roomstatus").val(),
         doctor: $("#doctor").val(),
+        kefu: $("#kefu").val(),
         nurse: $("#nurse").val(),
         endtime: $("#endtime").val(),
         starttime: $("#starttime").val(),
