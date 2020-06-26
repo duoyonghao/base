@@ -413,7 +413,8 @@ function initCaseList(result,father,btn,casenum){
 		itemName="方案";
 	}
 	if(result.length>=1){
-		$("."+father).find("."+btn).prev().attr("checked","checked").attr("disabled","disabled");
+		//$("."+father).find("."+btn).prev().attr("checked","checked").attr("disabled","disabled");
+		$("."+father).find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
 	}
 	var caseStyleHtml="";
 	var allCasesHtml='<option value="">请选择</option>';
