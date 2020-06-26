@@ -600,7 +600,7 @@
 						<%--<span class="showToothMap" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>--%>
 					</div>
 					<div class="toothTime">
-						<span>时长：</span><input id="toothlosetime" disabled style="cursor:not-allowed;" type="text" placeholder="请输入时长"/>
+						<span>时长：</span><input id="toothlosetime" type="text" placeholder="请输入时长"/>
 					</div>
 				</li>
 				<li class="toothMapItem">
@@ -651,7 +651,7 @@
 						<%--<span class="showToothMap" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>--%>
 					</div>
 					<div class="toothTime">
-						<span>时长：</span><input id="toothlesstime" type="text" disabled style="cursor:not-allowed;" placeholder="请输入时长"/>
+						<span>时长：</span><input id="toothlesstime" type="text" placeholder="请输入时长"/>
 					</div>
 				</li>
 				<li class="toothMapItem">
@@ -702,7 +702,7 @@
 						<%--<span class="showToothMap" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>--%>
 					</div>
 					<div class="toothTime">
-						<span>时长：</span><input id="toothdecayedtime" type="text" disabled style="cursor:not-allowed;" placeholder="请输入时长"/>
+						<span>时长：</span><input id="toothdecayedtime" type="text" placeholder="请输入时长"/>
 					</div>
 				</li>
 				<li class="toothMapItem">
@@ -753,7 +753,7 @@
 						<%--<span class="showToothMap" style="display:none;width: 100px;height: 28px;border-radius: 5px;/* margin-left: 41%; */background: #00a6c0;color: #fff;padding: 7px;">更改牙位</span>--%>
 					</div>
 					<div class="toothTime">
-						<span>时长：</span><input id="toothsnaptime" type="text" disabled style="cursor:not-allowed;" placeholder="请输入时长"/>
+						<span>时长：</span><input id="toothsnaptime" type="text" placeholder="请输入时长"/>
 					</div>
 				</li>
 			</ul>
