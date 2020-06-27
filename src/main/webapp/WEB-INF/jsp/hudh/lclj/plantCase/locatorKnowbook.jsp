@@ -463,7 +463,7 @@
             }
 		}
 
-		var patientSignature = document.getElementById("patientSignature");    
+		var patientSignature = document.getElementById("patientSignature");
 		patientSignature.onclick = function(){
 			if(patientstatus){
 				layer.open({

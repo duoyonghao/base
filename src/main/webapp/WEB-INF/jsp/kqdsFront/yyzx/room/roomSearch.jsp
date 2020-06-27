@@ -211,7 +211,7 @@ select {
 		                	<option value="0">手术前</option>
 		                	<option value="1">手术中</option>
 		                	<option value="2">手术后</option>
-						<select>	
+						</select>
 		    		</li>
 					<li>
 						<span>种植系统</span>
@@ -220,7 +220,7 @@ select {
 					<li>	
 						<span>医生</span>
 		    			<input type="hidden" name="doctor" id="doctor" />
-						<input type="text"" id="doctorDesc" name="doctorDesc" placeholder="" readonly
+						<input type="text" id="doctorDesc" name="doctorDesc" placeholder="" readonly
 								onClick="javascript:single_select_user(['doctor', 'doctorDesc'],'',1);"></input>
 					</li>
 					<li>	
@@ -228,6 +228,12 @@ select {
 		    			<input type="hidden" name="nurse" id="nurse"/>
 						<input type="text" id="nurseDesc" name="nurseDesc" placeholder="" readonly
 							onClick="javascript:single_select_user(['nurse', 'nurseDesc'],'',1);"></input>			
+					</li>
+					<li>
+						<span>客服</span>
+						<input type="hidden" name="kefu" id="kefu"/>
+						<input type="text" id="kefuDesc" name="kefuDesc" placeholder="" readonly
+							   onClick="javascript:single_select_user(['kefu', 'kefuDesc'],'',1);"></input>
 					</li>
 		    		<li>	
 						<span>模糊查询</span>
@@ -270,6 +276,7 @@ function queryParams(params) {
         zzxt: $("#zzxt").val(),
         roomstatus: $("#roomstatus").val(),
         doctor: $("#doctor").val(),
+        kefu: $("#kefu").val(),
         nurse: $("#nurse").val(),
         endtime: $("#endtime").val(),
         starttime: $("#starttime").val(),
@@ -290,6 +297,7 @@ function queryParamsB(params) {
         zzxt: $("#zzxt").val(),
         roomstatus: $("#roomstatus").val(),
         doctor: $("#doctor").val(),
+        kefu: $("#kefu").val(),
         nurse: $("#nurse").val(),
         endtime: $("#endtime").val(),
         starttime: $("#starttime").val(),

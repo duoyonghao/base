@@ -580,6 +580,9 @@
 		<if test="nurse != null and nurse !='' ">
 			and r.nurse = #{nurse}
 		</if>
+		<if test="kefu != null and kefu !='' ">
+			and u.kefu = #{kefu}
+		</if>
 		<if test="isdelete != null and isdelete !='' ">
 			<if test='isdelete == "0"'>
 				and r.isdelete != '1'

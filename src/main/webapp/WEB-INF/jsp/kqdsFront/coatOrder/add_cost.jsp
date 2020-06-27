@@ -654,6 +654,7 @@
     var static_userObj = null; // 患者对象
     var static_regObj = null;
     var hykdiscount = 100;
+    var kefustatus = true;
     $(function () {
         // 隐藏 项目介绍和优惠信息
         $("#xmjsDiv").hide();
@@ -700,18 +701,25 @@
         if (static_regno == "") { // 挂号单主键，新建收费单时通过Url传值，修改收费单时直接从收费单中获取
             static_regno = static_costorderObj.regno;
         }
-        static_regObj = getRegObjBySeqId(static_regno); // ### 根据主键获取挂号单对象
+        static_regObj = getRegObjAndUserKefuBySeqId(static_regno); // ### 根据主键获取挂号单对象
         //console.log(JSON.stringify(static_costorderObj)+"--------收费单对象");
         //console.log(JSON.stringify(static_userObj)+"--------患者对象");
         //console.log(JSON.stringify(static_regObj)+"--------挂号单对象");
 
         // 展示咨询，由于cost order中没存咨询，所以该代码放在此处，新增、修改订单时，都执行
         //static_askperson = static_userObj.askperson; // ###用户表中还没设定咨询时，从挂号单中获取
-        if (static_askperson == "") {
-            static_askperson = static_regObj.askperson;
-        }
-        if (static_askperson != null && static_askperson != "") {
-            $("#askperson").val(static_askperson); //展示咨询
+        if(static_regObj.kefu != null && static_regObj.kefu != ""){
+            $("#askperson").val(static_regObj.kefu); //展示咨询
+            $("#askperson").attr("disabled","disabled");
+            kefustatus=false;
+        }else{
+
+            if(static_askperson == ""){
+                static_askperson = static_regObj.askperson;
+            }
+            if (static_askperson != null && static_askperson != "") {
+                $("#askperson").val(static_askperson); //展示咨询
+            }
         }
 
 
@@ -900,6 +908,13 @@
             var repair = $('#repair').val();
             var isExistYYJItem = isExistTreatItemSort('1'); // 1 是预交金
             var isExistGHItem = isExistTreatItemSort('2');  // 2是护士
+            var askperson = $('#askperson').val();
+            if (!kefustatus){
+                if (perseqId != doctor && perseqId != repair && perseqId != askperson){
+                    layer.alert('该患者已指定客服，无权限开单！');
+                    return false;
+				}
+			}
             if ((isExistYYJItem != true) && isExistGHItem != true) { // 当不存在预交金和挂号项目时
                 // if(static_yjjiem != 1 && static_ghiem !=1){
                 if (doctor == "") {

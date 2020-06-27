@@ -29,7 +29,8 @@
 	  values(#{seqId,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{lcljId,jdbcType=VARCHAR}, 
 	  #{lcljNum,jdbcType=VARCHAR}, #{plantdoctor,jdbcType=VARCHAR}, #{nurse,jdbcType=VARCHAR}, 
 	  #{operationdate,jdbcType=VARCHAR}, #{localanesthesia,jdbcType=VARCHAR}, #{operatingrecord,jdbcType=VARCHAR}, 
-	  #{implantbarcode,jdbcType=VARCHAR}, #{periostbarcode,jdbcType=VARCHAR},#{doctorname,jdbcType=VARCHAR}, #{doctortime,jdbcType=VARCHAR}) 
+	  #{implantbarcode,jdbcType=VARCHAR}, #{periostbarcode,jdbcType=VARCHAR},#{doctorname,jdbcType=VARCHAR}, #{doctortime,jdbcType=VARCHAR},
+	  #{createuser,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR})
 	  </insert>
 	  
 	  <update id="updateRecord" parameterType="com.hudh.lclj.entity.HudhOperationNote">
