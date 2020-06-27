@@ -917,7 +917,7 @@ function onclick(e, treeId, treeNode) {
             return false;
         }
     }
-    console.log(JSON.stringify(treeNode) + "------treeNode");
+    //console.log(JSON.stringify(treeNode) + "------treeNode");
     //console.log(list + "list");
     if (treeNode.isParent) {
         if (list.indexOf(treeNode.id) > 0 && treeNode.level == 0) {

@@ -293,14 +293,14 @@ function hospitalOrderTable(type, tabId) {
                 sortable: true,
                 formatter: function (value, row, index) {
                     //console.log("门诊预约=" + JSON.stringify(row));
-                    var iconhtml;
+                    var iconhtml = "";
                     if (value != "" && value != null) {
-                        iconhtml = '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
+                        iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
                     }
                     if (row.kefu) {
                         iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/customerservice.jpg/>';
                     }
-                    return iconhtml;
+                    return iconhtml == "" ? "-" : iconhtml;
                 }
             },
             {
@@ -577,14 +577,14 @@ function netOrderTable(type, tabId) {
                 sortable: true,
                 formatter: function (value, row, index) {
                     //console.log("网电预约=" + JSON.stringify(row));
-                    var iconhtml;
+                    var iconhtml = "";
                     if (value != "" && value != null) {
-                        iconhtml = '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
+                        iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
                     }
                     if (row.kefu) {
                         iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/customerservice.jpg/>';
                     }
-                    return iconhtml;
+                    return iconhtml == "" ? "-" : iconhtml;
                 }
             },
             {
@@ -864,14 +864,14 @@ function getOrderlist(status, type, tabId) {
                 sortable: true,
                 formatter: function (value, row, index) {
                     //console.log("等待结账=" + JSON.stringify(row));
-                    var iconhtml;
+                    var iconhtml = "";
                     if (value != "" && value != null) {
-                        iconhtml = '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
+                        iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
                     }
                     if (row.kefu) {
                         iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/customerservice.jpg/>';
                     }
-                    return iconhtml;
+                    return iconhtml == "" ? "-" : iconhtml;
                 }
             },
             {
@@ -1186,14 +1186,14 @@ function getPayOrderlist(type, tabId) {
                 sortable: true,
                 formatter: function (value, row, index) {
                     //console.log("已结账=" + JSON.stringify(row));
-                    var iconhtml;
+                    var iconhtml = "";
                     if (value != "" && value != null) {
-                        iconhtml = '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
+                        iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
                     }
                     if (row.kefu) {
                         iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/customerservice.jpg/>';
                     }
-                    return iconhtml;
+                    return iconhtml == "" ? "-" : iconhtml;
                 }
             },
             {
@@ -1660,14 +1660,14 @@ function initTable(status, type, recesort, tabId) {
                 sortable: true,
                 formatter: function (value, row, index) {
                     //console.log("等待治疗=" + JSON.stringify(row) + "...row");
-                    var iconhtml;
+                    var iconhtml = "";
                     if (value != "" && value != null) {
-                        iconhtml = '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
+                        iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
                     }
                     if (row.kefu) {
                         iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/customerservice.jpg/>';
                     }
-                    return iconhtml;
+                    return iconhtml == "" ? "-" : iconhtml;
                 }
             },
             {
