@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sound.midi.SysexMessage;
 
+import com.kqds.entity.sys.YZPriv;
+import com.kqds.service.sys.priv.YZPrivLogic;
 import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -76,6 +78,8 @@ public class KQDS_REGAct {
 	private KQDS_ReceiveInfoLogic receiveLogic;
 	@Autowired
 	private YZPersonLogic personLogic;
+	@Autowired
+	private YZPrivLogic privLogic;
 
 	@RequestMapping(value = "/toJrhzCenter.act")
 	public ModelAndView toJrhzCenter(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -1593,6 +1597,14 @@ public class KQDS_REGAct {
 			JSONObject en = logic.selectUserdocumentByReg(seqId);
 			if (en == null) {
 				throw new Exception("数据不存在");
+			}
+			//查询是不是管理员
+			YZPerson person = SessionUtil.getLoginPerson(request);
+			YZPriv priv = privLogic.findGeneral(person.getUserPriv());
+			if(priv.getPrivName().contains("系统管理员")){
+				en.put("isAdministrator",true);
+			}else{
+				en.put("isAdministrator",false);
 			}
 			JSONObject jobj = new JSONObject();
 			jobj.put("data", en);

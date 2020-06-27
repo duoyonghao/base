@@ -317,6 +317,7 @@ function editOrder(status) { // 签署同意书，status值为3；没签署，st
     //费用详情 数据
     //循环获取表格中项目
     var list = [];
+    var qklist = [];
     var qfId = "";
     var isExistQFZerson = false; // 判断是否存在欠费且缴费金额为0的项目，如果存在，则不允许操作
     $('#table').find('tbody').each(function () {
@@ -344,6 +345,9 @@ function editOrder(status) { // 签署同意书，status值为3；没签署，st
                 } else if ($(this).index() == 4) {
                     //治疗项目
                     param.itemname = $(this).find("span").html();
+                    if($(this).find("div").html()=="欠款"){
+                        qklist.push($(this).find("div").html());
+                    }
                 } else if ($(this).index() == 5) {
                     //单位
                     param.unit = $(this).text();
@@ -402,7 +406,10 @@ function editOrder(status) { // 签署同意书，status值为3；没签署，st
         return false;
     }
 
-
+    if(qklist.length<list.length&&qklist.length>0){
+        layer.alert('收款项目包含欠费项目，如还款，请删除其它收费项目再继续操作！');
+        return false;
+    }
     var data = JSON.stringify(list);
     paramOrder.listDetail = data;
     paramOrder.type = costorder_type; // 新增收费项目0 修改 收费项目1  /** 这个type的作用，可以用costOrder的seqId是否有值来替换  **/

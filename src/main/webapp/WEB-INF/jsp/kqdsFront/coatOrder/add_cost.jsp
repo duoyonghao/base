@@ -709,9 +709,44 @@
         // 展示咨询，由于cost order中没存咨询，所以该代码放在此处，新增、修改订单时，都执行
         //static_askperson = static_userObj.askperson; // ###用户表中还没设定咨询时，从挂号单中获取
         if(static_regObj.kefu != null && static_regObj.kefu != ""){
-            $("#askperson").val(static_regObj.kefu); //展示咨询
-            $("#askperson").attr("disabled","disabled");
-            kefustatus=false;
+            var list = [];
+            var status=true;
+            $('#table').find('tbody').each(function () {
+                $(this).find('tr').each(function () {
+                    //var param={};
+                    $(this).find('td').each(function () {
+                        if ($(this).index() == 4) {
+                            list.push($(this).find("div").html());
+                        }
+                    });
+
+                });
+            });
+            if(list.length>0){
+                for (var i = 0; i < list.length; i++) {
+                    if(list[i]!="欠款"){
+                        status=false;
+                        break;
+                    }
+                }
+            }else{
+                $("#askperson").val(static_regObj.kefu); //展示咨询
+                if(!static_regObj.isAdministrator){
+                    $("#askperson").attr("disabled","disabled");
+                }
+                kefustatus=false;
+            }
+            if(status&&kefustatus){
+                if(static_askperson == ""){
+                    static_askperson = static_regObj.askperson;
+                }
+                if (static_askperson != null && static_askperson != "") {
+                    $("#askperson").val(static_askperson); //展示咨询
+                }
+            }
+            if(static_regObj.isAdministrator){
+                kefustatus=true;
+            }
         }else{
 
             if(static_askperson == ""){
