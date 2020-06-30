@@ -317,6 +317,7 @@ function editOrder(status) { // 签署同意书，status值为3；没签署，st
     //费用详情 数据
     //循环获取表格中项目
     var list = [];
+    var qklist = [];
     var qfId = "";
     var isExistQFZerson = false; // 判断是否存在欠费且缴费金额为0的项目，如果存在，则不允许操作
     $('#table').find('tbody').each(function () {
@@ -344,6 +345,9 @@ function editOrder(status) { // 签署同意书，status值为3；没签署，st
                 } else if ($(this).index() == 4) {
                     //治疗项目
                     param.itemname = $(this).find("span").html();
+                    if($(this).find("div").html()=="欠款"){
+                        qklist.push($(this).find("div").html());
+                    }
                 } else if ($(this).index() == 5) {
                     //单位
                     param.unit = $(this).text();
@@ -402,7 +406,10 @@ function editOrder(status) { // 签署同意书，status值为3；没签署，st
         return false;
     }
 
-
+    if(qklist.length<list.length&&qklist.length>0){
+        layer.alert('收款项目包含欠费项目，如还款，请删除其它收费项目再继续操作！');
+        return false;
+    }
     var data = JSON.stringify(list);
     paramOrder.listDetail = data;
     paramOrder.type = costorder_type; // 新增收费项目0 修改 收费项目1  /** 这个type的作用，可以用costOrder的seqId是否有值来替换  **/
@@ -605,8 +612,13 @@ function getOrderDetailList(costno) {
                 }
 
                 tablehtml += "<tr style='" + trbgcolor + "' onclick='getItemInfo(\"" + tabledata.itemno + "\")' expireflag='" + tabledata.expireflag + "' createtime='" + tabledata.createtime + "' >"; // 这里新增加了两个属性
-                //删除按钮0
-                tablehtml += '<td style=""><a href="javascript:void(0);" mce_href="javascript:void(0);" onclick="deltr(this,\'' + isqfrealFlag + '\',\'' + tabledata.seqId + '\')"><span style="color:red;">删除</span></a></td>';
+                if (Number(tabledata.y2) > 0) {
+                    //删除按钮0
+                    tablehtml += '<td style=""><a href="javascript:void(0);" mce_href="javascript:void(0);"><span style="color:red;">-</span></a></td>';
+                }else{
+                    //删除按钮0
+                    tablehtml += '<td style=""><a href="javascript:void(0);" mce_href="javascript:void(0);" onclick="deltr(this,1,\'' + tabledata.seqId + '\')"><span style="color:red;">删除</span></a></td>';
+                }
                 //项目编号1
                 tablehtml += '<td style="display:none;">' + tabledata.itemno + '</td>';
                 //医生
@@ -736,8 +748,13 @@ function getQfDetailList(usercode) {
                     // static_ghiem = 0;
                 }
                 tablehtml += "<tr style='' onclick='getItemInfo(\"" + tabledata.itemno + "\")' createtime='" + tabledata.createtime + "' >"; // 这里新增加了1个属性
-                //删除按钮0
-                tablehtml += '<td style=""><a href="javascript:void(0);" mce_href="javascript:void(0);" onclick="deltr(this,1,\'' + tabledata.seqId + '\')"><span style="color:red;">删除</span></a></td>';
+                if (Number(tabledata.y2) > 0) {
+                    //删除按钮0
+                    tablehtml += '<td style=""><a href="javascript:void(0);" mce_href="javascript:void(0);"><span style="color:red;">-</span></a></td>';
+                }else{
+                    //删除按钮0
+                    tablehtml += '<td style=""><a href="javascript:void(0);" mce_href="javascript:void(0);" onclick="deltr(this,1,\'' + tabledata.seqId + '\')"><span style="color:red;">删除</span></a></td>';
+                }
                 //项目编号1
                 tablehtml += '<td style="display:none;">' + tabledata.itemno + '</td>';
                 //医生
@@ -917,7 +934,7 @@ function onclick(e, treeId, treeNode) {
             return false;
         }
     }
-    console.log(JSON.stringify(treeNode) + "------treeNode");
+    //console.log(JSON.stringify(treeNode) + "------treeNode");
     //console.log(list + "list");
     if (treeNode.isParent) {
         if (list.indexOf(treeNode.id) > 0 && treeNode.level == 0) {

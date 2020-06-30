@@ -327,6 +327,13 @@ function inittable() {
             setTableHeaderWidth(".tableBox");
         
         },
+        onDblClickRow: function (row) {
+            if (row.status == "0") {
+                goPostVisit();
+            } else if (row.status == "1") {
+                goshowVisit();
+            }
+        },
         columns: [
 	/* 	{
             title: '门诊',

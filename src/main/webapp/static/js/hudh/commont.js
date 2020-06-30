@@ -49,7 +49,7 @@ var hudhSysDeptIdStatic = {
 	nurse : "2203a606-ed82-4dd0-8841-49a30282a45f,c72025b9-f2b3-43b0-ad32-eb327dda5257", //护士 护理部
 	repairdoctor : "892488fc-fc8c-44aa-8f36-b7225bc771f8,56ffc127-823d-4500-95cd-3f6fc8c31287,7806b36a-43c0-421d-9036-923e84e68c36,025d8a65-7ce8-4a21-bd95-84a9b309e57f,e440f58a-f48d-49d2-a7cd-6b67cb9cda99", //修复医生、全科医生
 	customer : "aeafb25a-ae9f-4d22-8230-3725cb942435,23fe2c29-cac3-43ab-b4ef-ef70c4ab85c5,eb47460f-e12a-4934-8e3b-bfa0df14ed23",//客服部
-	consumer : "23fe2c29-cac3-43ab-b4ef-ef70c4ab85c5,658b52d6-a42a-4b3d-9a19-bd0bc77210c5,abcea651-b674-42fd-a9e1-0dbd08f61525,41f199cd-e4be-4cfc-b553-555d13605976,e6066145-dd3b-4bf9-b2aa-d63b45375930,355168c8-de68-4a7b-aa41-0b33a4c31073,3b47a915-977b-4799-acf6-540d525722f4"//客户部
+	consumer : "23fe2c29-cac3-43ab-b4ef-ef70c4ab85c5,658b52d6-a42a-4b3d-9a19-bd0bc77210c5,abcea651-b674-42fd-a9e1-0dbd08f61525,41f199cd-e4be-4cfc-b553-555d13605976,e6066145-dd3b-4bf9-b2aa-d63b45375930,355168c8-de68-4a7b-aa41-0b33a4c31073"//客户部
 };
 function initSysUserByDeptId($obj,deptType,valueType){
 	if($obj && deptType) {

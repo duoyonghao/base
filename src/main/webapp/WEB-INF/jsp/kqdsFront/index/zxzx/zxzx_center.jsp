@@ -120,7 +120,7 @@
 <script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/tableExport.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/plugin/layer-v2.4/layer/layer.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/util.js"></script>
-<script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/index/zxindexTab.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/index/indexTab.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/index/btnfuc.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/bootstrap-table-jumpto.js"></script>
 <script type="text/javascript">

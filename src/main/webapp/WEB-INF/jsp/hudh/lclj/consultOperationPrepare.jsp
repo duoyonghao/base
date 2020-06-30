@@ -221,8 +221,8 @@
 										</div>
 									</div>
 								</li>
-							   <%--<li><label><input name="Consultation" type="checkbox" value="告知通知书" /><font class="inform">19、告知通知书</font></label></li>
-							    <li><label><input name="Consultation" type="checkbox" value="诊疗方案" /><font class="case">20、诊疗方案</font></label></li> --%>
+							   <%--<li><label><input name="Consultation" type="checkbox" value="告知通知书" /><font class="inform">19、告知通知书</font></label></li> --%>
+<%--							    <li><label><input name="Consultation" type="checkbox" value="诊疗方案" /><font class="case">20、诊疗方案</font></label></li>--%>
 							</ul>
 						</div>
 					</td>
