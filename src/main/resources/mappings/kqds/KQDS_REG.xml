@@ -470,6 +470,7 @@
         us.remark,
         us.familyship,
         us.iscreateLclj,
+        us.contagion,
         reg.askpersondept,
         reg.jh
         from KQDS_REG reg

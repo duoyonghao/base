@@ -642,6 +642,7 @@
         kcit2.dict_name as ordertypename,
         u.doorstatus zdoorstatus,
         u.iscreatelclj,
+        u.contagion,
         u.familyship
         from KQDS_HOSPITAL_ORDER h
         left join KQDS_UserDocument u on u.usercode = h.usercode
