@@ -612,8 +612,13 @@ function getOrderDetailList(costno) {
                 }
 
                 tablehtml += "<tr style='" + trbgcolor + "' onclick='getItemInfo(\"" + tabledata.itemno + "\")' expireflag='" + tabledata.expireflag + "' createtime='" + tabledata.createtime + "' >"; // 这里新增加了两个属性
-                //删除按钮0
-                tablehtml += '<td style=""><a href="javascript:void(0);" mce_href="javascript:void(0);" onclick="deltr(this,\'' + isqfrealFlag + '\',\'' + tabledata.seqId + '\')"><span style="color:red;">删除</span></a></td>';
+                if (Number(tabledata.y2) > 0) {
+                    //删除按钮0
+                    tablehtml += '<td style=""><a href="javascript:void(0);" mce_href="javascript:void(0);"><span style="color:red;">-</span></a></td>';
+                }else{
+                    //删除按钮0
+                    tablehtml += '<td style=""><a href="javascript:void(0);" mce_href="javascript:void(0);" onclick="deltr(this,1,\'' + tabledata.seqId + '\')"><span style="color:red;">删除</span></a></td>';
+                }
                 //项目编号1
                 tablehtml += '<td style="display:none;">' + tabledata.itemno + '</td>';
                 //医生
@@ -743,8 +748,13 @@ function getQfDetailList(usercode) {
                     // static_ghiem = 0;
                 }
                 tablehtml += "<tr style='' onclick='getItemInfo(\"" + tabledata.itemno + "\")' createtime='" + tabledata.createtime + "' >"; // 这里新增加了1个属性
-                //删除按钮0
-                tablehtml += '<td style=""><a href="javascript:void(0);" mce_href="javascript:void(0);" onclick="deltr(this,1,\'' + tabledata.seqId + '\')"><span style="color:red;">删除</span></a></td>';
+                if (Number(tabledata.y2) > 0) {
+                    //删除按钮0
+                    tablehtml += '<td style=""><a href="javascript:void(0);" mce_href="javascript:void(0);"><span style="color:red;">-</span></a></td>';
+                }else{
+                    //删除按钮0
+                    tablehtml += '<td style=""><a href="javascript:void(0);" mce_href="javascript:void(0);" onclick="deltr(this,1,\'' + tabledata.seqId + '\')"><span style="color:red;">删除</span></a></td>';
+                }
                 //项目编号1
                 tablehtml += '<td style="display:none;">' + tabledata.itemno + '</td>';
                 //医生
