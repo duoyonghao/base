@@ -1408,8 +1408,10 @@ WHERE
         <!-- 2019-3-10 修改信息查询页面可以查询到所有患者，去掉此处的权限校验 -->
         <if test="visualstaff != null and visualstaff !='' ">
             and (u.askperson in (${visualstaff}) or u.createuser in (${visualstaff}) or u.doctor in (${visualstaff})
-            or EXISTS (select usercode from KQDS_COSTORDER_DETAIL where u.usercode=usercode and (askperson in( ${visualstaff}) or doctor in (${visualstaff})))
-            or EXISTS (select usercode from KQDS_REG where u.usercode=usercode AND (askperson in( ${visualstaff}) or doctor in (${visualstaff}) ))
+            or EXISTS (select usercode from KQDS_COSTORDER_DETAIL where u.usercode=usercode and (askperson in(
+            ${visualstaff}) or doctor in (${visualstaff})))
+            or EXISTS (select usercode from KQDS_REG where u.usercode=usercode AND (askperson in( ${visualstaff}) or
+            doctor in (${visualstaff}) ))
             )
         </if>
         <if test="sortName != null and sortName != '' ">
@@ -1501,8 +1503,10 @@ WHERE
         </if>
         <if test="visualstaff != null and visualstaff !='' ">
             and (u.askperson in (${visualstaff}) or u.createuser in (${visualstaff}) or u.doctor in (${visualstaff})
-            or EXISTS (select usercode from KQDS_COSTORDER_DETAIL where u.usercode=usercode AND (askperson in ( ${visualstaff}) or doctor in (${visualstaff})))
-            or EXISTS (select usercode from KQDS_REG where u.usercode=usercode AND (askperson in( ${visualstaff}) or doctor in (${visualstaff})))
+            or EXISTS (select usercode from KQDS_COSTORDER_DETAIL where u.usercode=usercode AND (askperson in (
+            ${visualstaff}) or doctor in (${visualstaff})))
+            or EXISTS (select usercode from KQDS_REG where u.usercode=usercode AND (askperson in( ${visualstaff}) or
+            doctor in (${visualstaff})))
             )
         </if>
     </select>
@@ -4072,8 +4076,10 @@ WHERE
         <if test="visualstaff != null and visualstaff !='' ">
             and (
             u.askperson in (${visualstaff}) or u.createuser in (${visualstaff}) or u.doctor in (${visualstaff})
-            or EXISTS (select usercode from KQDS_COSTORDER_DETAIL where u.usercode=usercode AND (askperson in( ${visualstaff}) or doctor in (${visualstaff})))
-            or EXISTS (select usercode from KQDS_REG where u.usercode=usercode AND (askperson in( ${visualstaff}) or doctor in (${visualstaff})))
+            or EXISTS (select usercode from KQDS_COSTORDER_DETAIL where u.usercode=usercode AND (askperson in(
+            ${visualstaff}) or doctor in (${visualstaff})))
+            or EXISTS (select usercode from KQDS_REG where u.usercode=usercode AND (askperson in( ${visualstaff}) or
+            doctor in (${visualstaff})))
             )
         </if>
         <if test="sortName != null and sortName != '' ">
@@ -4102,4 +4108,12 @@ WHERE
     <select id="findByUsercode" parameterType="java.lang.String" resultType="json">
 		select UserName, Sex, PhoneNumber1, PhoneNumber2, Age , kefu from KQDS_UserDocument where UserCode=#{usercode}
 	</select>
+
+    <update id="updaterecord" parameterType="com.kqds.entity.base.KqdsUserdocument">
+        UPDATE KQDS_UserDocument set contagion = #{contagion} where usercode = #{usercode}
+    </update>
+
+    <select id="getrecord" parameterType="java.lang.String" resultType="json">
+        SELECT contagion FROM KQDS_UserDocument WHERE usercode = #{usercode}
+    </select>
 </mapper>

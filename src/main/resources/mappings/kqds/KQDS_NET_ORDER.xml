@@ -1128,7 +1128,8 @@
         n.seq_id,
         u.doorstatus zdoorstatus,
         u.familyship,
-        u.iscreateLclj
+        u.iscreateLclj,
+        u.contagion
         from KQDS_NET_ORDER n
         LEFT JOIN KQDS_UserDocument u on u.usercode = n.usercode
         LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID = u.kefu
