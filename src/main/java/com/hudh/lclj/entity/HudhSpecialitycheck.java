@@ -91,6 +91,8 @@ public class HudhSpecialitycheck {
     private String apicitis;
 
     private String other;
+
+	private String others;
     
     private String createuser;
     
@@ -106,7 +108,15 @@ public class HudhSpecialitycheck {
 
 	private String doctorSignature;
 
-	/**  
+	public String getOthers() {
+		return others;
+	}
+
+	public void setOthers(String others) {
+		this.others = others;
+	}
+
+	/**
 	  * @Title:  getSeqId <BR>  
 	  * @Description: please write your description <BR>  
 	  * @return: String <BR>  
