@@ -1563,6 +1563,8 @@
                             })//复选框及单选框赋值
                             $("#"+i+"[type='text']").attr("value",res[i]);// 填框赋值
                         }
+                        // 其他
+                        $("#others").val(res[i]);
 // 	 					牙位赋值start
                         if(res[i]="onedu"){
                             var toothLoose=res.onedu;
