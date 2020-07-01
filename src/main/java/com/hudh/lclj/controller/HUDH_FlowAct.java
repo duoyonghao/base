@@ -21,8 +21,10 @@ import com.kqds.entity.base.KqdsReg;
 import com.kqds.entity.sys.BootStrapPage;
 import com.kqds.entity.sys.YZPara;
 import com.kqds.entity.sys.YZPerson;
+import com.kqds.service.sys.para.YZParaLogic;
 import com.kqds.util.sys.SessionUtil;
 import com.kqds.util.sys.YZUtility;
+import com.kqds.util.sys.chain.ChainUtil;
 import com.kqds.util.sys.export.ExportBean;
 import com.kqds.util.sys.export.ExportTable;
 
@@ -53,7 +55,7 @@ import com.hudh.lclj.entity.OperatingRecord;
 @Controller
 @RequestMapping("/HUDH_FlowAct")
 public class HUDH_FlowAct {
-	
+
 	private Logger logger = LoggerFactory.getLogger(HUDH_FlowAct.class);
 	/**
 	 * 临床路径数据保存接口
@@ -63,13 +65,13 @@ public class HUDH_FlowAct {
 
 	@Autowired
 	private IZzblService zzblService;
-	
+
 	@Autowired
 	private IZzblCheckService zzblCheckService;
-	
+
 	@Autowired
 	private IRepairSchemeConfirmService rscService;
-	
+
 	@Autowired
 	private DzblService dzblService;
 
@@ -96,7 +98,7 @@ public class HUDH_FlowAct {
 		String left_down = request.getParameter("left_down"); //左下
 		String right_up = request.getParameter("right_up"); //右上
 		String right_down = request.getParameter("right_down"); //右下
-		
+
 		String counsellor = request.getParameter("counsellor");//咨询师
 		String plant_physician = request.getParameter("plant_physician");//种植医师
 		String repair_physician = request.getParameter("repair_physician");//修复医师
@@ -118,7 +120,7 @@ public class HUDH_FlowAct {
 		String abutment_station = request.getParameter("abutment_station");
 		String id = request.getParameter("id");//修复牙齿颗数总数
 		String userdocument_id = request.getParameter("seqId");////患者档案表ID
-		
+
 		LcljOrderTrack lcljOrderTrack = new LcljOrderTrack();
 		lcljOrderTrack.setBlcode(blcode);
 		lcljOrderTrack.setTooth(tooth_total);
@@ -127,7 +129,7 @@ public class HUDH_FlowAct {
 		YZPerson person = SessionUtil.getLoginPerson(request);
 		lcljOrderTrack.setCreatorid(person.getSeqId());
 		lcljOrderTrack.setCreatorname(person.getUserName());
-		
+
 		lcljOrderTrack.setCounsellor(counsellor);
 		lcljOrderTrack.setPlantPhysician(plant_physician);
 		lcljOrderTrack.setClinicNurse(clinic_nurse);
@@ -164,7 +166,7 @@ public class HUDH_FlowAct {
 			right_down = right_down.substring(0, right_down.length()-1);
 			lcljOrderTrack.setRightDown(right_down);
 		}
-		
+
 		if(YZUtility.isNotNullOrEmpty(repair_left_up)) {
 			repair_left_up = repair_left_up.substring(0, repair_left_up.length()-1);
 			lcljOrderTrack.setRepairLeftUp(repair_left_up);
@@ -181,7 +183,7 @@ public class HUDH_FlowAct {
 			repair_right_down = repair_right_down.substring(0, repair_right_down.length()-1);
 			lcljOrderTrack.setRepairRightDown(repair_right_down);
 		}
-		
+
 		try {
 			//保存临床跟踪数据
 			flowService.saveLcljOrderTrackInfo(lcljOrderTrack, id ,request);
@@ -191,7 +193,7 @@ public class HUDH_FlowAct {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 点击下一步提交给下一个节点
 	 * @param request
@@ -211,15 +213,15 @@ public class HUDH_FlowAct {
 			if(isShouShu.equals("SHOUSHU")) { //如果是手术治疗节点则更新牙位信息
 				Map<String,String> dataMap = new HashMap<String,String>();
 				dataMap.put("orderNumber",orderNumber);
-				String leftUp = request.getParameter("leftUp"); 
-				String leftDown = request.getParameter("leftDown"); 
-				String rightUp = request.getParameter("rightUp"); 
-				String rightDown = request.getParameter("rightDown"); 
-				String repairLeftUp = request.getParameter("repairLeftUp"); 
-				String repairLeftDown = request.getParameter("repairLeftDown"); 
-				String repairRightUp = request.getParameter("repairRightUp"); 
-				String repairRightDown = request.getParameter("repairRightDown"); 
-				String tooth = request.getParameter("toothTotal"); 
+				String leftUp = request.getParameter("leftUp");
+				String leftDown = request.getParameter("leftDown");
+				String rightUp = request.getParameter("rightUp");
+				String rightDown = request.getParameter("rightDown");
+				String repairLeftUp = request.getParameter("repairLeftUp");
+				String repairLeftDown = request.getParameter("repairLeftDown");
+				String repairRightUp = request.getParameter("repairRightUp");
+				String repairRightDown = request.getParameter("repairRightDown");
+				String tooth = request.getParameter("toothTotal");
 				String repairToothTotal = request.getParameter("repairToothTotal");
 				if(YZUtility.isNotNullOrEmpty(leftUp)) {
 					dataMap.put("leftUp", leftUp);
@@ -258,7 +260,7 @@ public class HUDH_FlowAct {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 点击退回上一节点
 	 * @param request
@@ -280,7 +282,7 @@ public class HUDH_FlowAct {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 保存备注信息
 	 * @param request
@@ -303,7 +305,7 @@ public class HUDH_FlowAct {
 //		lcljOptRecode.setCreator(person.getUserId());
 		lcljOptRecode.setCreator(person.getUserName());
 		try {
-			
+
 			flowService.saveOptRecode(lcljOptRecode);
 			YZUtility.DEAL_SUCCESS(null,null, response, logger);
 		} catch (Exception e) {
@@ -311,7 +313,7 @@ public class HUDH_FlowAct {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 根据orderNumber获取备注列表
 	 * @param request
@@ -324,7 +326,7 @@ public class HUDH_FlowAct {
 			HttpServletResponse response) throws Exception{
 		String orderNumber = request.getParameter("orderNumber"); //编号
 		String searchFlowink = request.getParameter("searchFlowink"); //流程步骤
-		
+
 		if(YZUtility.isNullorEmpty(searchFlowink)) {
 			searchFlowink = null;
 		}
@@ -333,7 +335,7 @@ public class HUDH_FlowAct {
 				List<JSONObject> data = flowService.findOptRecodeList(orderNumber,searchFlowink);
 				JSONObject jo = new JSONObject();
 				jo.put("remarks", JSON.toJSON(data));
-				
+
 				//获取当前人员是否有权限操作
 				YZPerson person = SessionUtil.getLoginPerson(request);
 				List<JSONObject> list = flowService.findLcljAdminOrAgency(request);
@@ -353,8 +355,8 @@ public class HUDH_FlowAct {
 		}
 		return null;
 	}
-	
-	
+
+
 	/**
 	 * 根据orderNumber获取患者挂号信息
 	 * @param request
@@ -378,7 +380,7 @@ public class HUDH_FlowAct {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 根据orderNumber获取手术及患者信息
 	 * 并判断当前节点是否超期，如果超期修改对应节点状态
@@ -410,9 +412,9 @@ public class HUDH_FlowAct {
 					String stusTemp = nodeListMap.get(lcljWorklist.getNodeId()).getStus();
 					if(null != stusTemp && !stusTemp.equals("1")) {
 						nodeListMap.get(lcljWorklist.getNodeId()).setStus(lcljWorklist.getNodeStatus() + "");
-					} 
+					}
 				}
-				
+
 				data.put("nodes", JSON.toJSONString(nodeList));
 //				YZUtility.DEAL_SUCCESS(data,null, response, logger);
 				return JSON.toJSONString(data);
@@ -422,7 +424,7 @@ public class HUDH_FlowAct {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 根据订单编号查询患者的信息
 	 * @param request
@@ -523,7 +525,7 @@ public class HUDH_FlowAct {
 			// 封装参数到实体类
 			BeanUtils.populate(bp, request.getParameterMap());
 		    JSONObject jsonO = flowService.findOrderTrackInforByOrderNumber(person, bp, map, organization, json);
-		 			
+
 		 	/*-------导出excel---------*/
 			if (flag != null && flag.equals("exportTable")) {
 			JSONObject data = flowService.findOrderTrackInforByOrderNumber(person, bp, map, organization, json);
@@ -541,14 +543,14 @@ public class HUDH_FlowAct {
 		}
 		return null;
 	}
-	
+
 	 /**
 	  * 根据配置的para_name找临床路径管理员
 	  * @return
 	  * @throws Exception
 	  */
 	@RequestMapping("/findLcljAdmin.act")
-	public String findLcljAdmin(HttpServletRequest request, 
+	public String findLcljAdmin(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		try {
 		    JSONObject jo = flowService.findLcljAdmin(request);
@@ -559,14 +561,14 @@ public class HUDH_FlowAct {
 		}
 		return null;
 	}
-	
+
 	 /**
 	  * 根据配置的para_name找临床路径管理员及配置的代办人
 	  * @return
 	  * @throws Exception
 	  */
 	@RequestMapping("/findLcljAdminOrAgency.act")
-	public String findLcljAdminOrAgency(HttpServletRequest request, 
+	public String findLcljAdminOrAgency(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		YZPerson person = SessionUtil.getLoginPerson(request);
 		try {
@@ -590,21 +592,21 @@ public class HUDH_FlowAct {
 		}
 		return null;
 	}
-	
+
 	/**
 	  * 更新代办人
 	  * @return
 	  * @throws Exception
 	  */
 	@RequestMapping("/updateAgencyUser.act")
-	public String updateAgencyUser(HttpServletRequest request, 
+	public String updateAgencyUser(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		String seqId = request.getParameter("seq_id");
 		String paraValue = request.getParameter("paraValue");
 		YZPara yzPara = new YZPara();
 		yzPara.setSeqId(seqId);
 		yzPara.setParaValue(paraValue);
-		
+
 		try {
 		    flowService.updateAgencyUser(yzPara);
 			YZUtility.DEAL_SUCCESS(null,null, response, logger);
@@ -614,14 +616,14 @@ public class HUDH_FlowAct {
 		}
 		return null;
 	}
-	
+
 	/**
 	  * 跟新备注信息状态
 	  * @return
 	  * @throws Exception
 	  */
 	@RequestMapping("/updateRemarkStus.act")
-	public String updateRemarkStus(HttpServletRequest request, 
+	public String updateRemarkStus(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		String id = request.getParameter("id");
 		String status = request.getParameter("status");
@@ -634,13 +636,13 @@ public class HUDH_FlowAct {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 根据条件精确查询临床路径患者信息
 	 * @param request
 	 * @param response
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@RequestMapping("/findOrderTrackInforByConditionQuery.act")
 	public String findOrderTrackInforByConditionQuery(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -676,13 +678,13 @@ public class HUDH_FlowAct {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 根据id更新手术数据信息
 	 * @param request
 	 * @param response
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@RequestMapping("/updateOrderTrackById.act")
 	public String updateOrderTrackById(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -704,7 +706,7 @@ public class HUDH_FlowAct {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 根据id删除手术信息
 	 * @param request
@@ -723,7 +725,7 @@ public class HUDH_FlowAct {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 改变临床路径流程植骨状态
 	 * @param request
@@ -741,7 +743,7 @@ public class HUDH_FlowAct {
 		String left_down = request.getParameter("left_down"); //左下
 		String right_up = request.getParameter("right_up"); //右上
 		String right_down = request.getParameter("right_down"); //右下
-		
+
 		String counsellor = request.getParameter("counsellor");//咨询师
 		String plant_physician = request.getParameter("plant_physician");//种植医师
 		String repair_physician = request.getParameter("repair_physician");//修复医师
@@ -757,9 +759,9 @@ public class HUDH_FlowAct {
 		String repair_right_up = request.getParameter("repair_right_up");//修复右上牙齿颗数
 		String repair_right_down = request.getParameter("repair_right_down");//修复右下牙齿颗数
 		String zz_tooth_total = request.getParameter("zz_tooth_total");//修复牙齿颗数总数
-		
+
 		String id = request.getParameter("id");
-		
+
 		LcljOrderTrack lcljOrderTrack = new LcljOrderTrack();
 		lcljOrderTrack.setBlcode(blcode);
 		lcljOrderTrack.setTooth(tooth_total);
@@ -768,7 +770,7 @@ public class HUDH_FlowAct {
 		YZPerson person = SessionUtil.getLoginPerson(request);
 		lcljOrderTrack.setCreatorid(person.getSeqId());
 		lcljOrderTrack.setCreatorname(person.getUserName());
-		
+
 		lcljOrderTrack.setCounsellor(counsellor);
 		lcljOrderTrack.setPlantPhysician(plant_physician);
 		lcljOrderTrack.setClinicNurse(clinic_nurse);
@@ -784,7 +786,7 @@ public class HUDH_FlowAct {
 		lcljOrderTrack.setRepairRightUp(repair_right_up);
 		lcljOrderTrack.setRepairRightDown(repair_right_down);
 		lcljOrderTrack.setRepairToothTotal(zz_tooth_total);
-		
+
 		if(YZUtility.isNotNullOrEmpty(left_up)) {
 			left_up = left_up.substring(0, left_up.length()-1); //去掉字符串尾部的逗号
 			lcljOrderTrack.setLeftUp(left_up);
@@ -801,7 +803,7 @@ public class HUDH_FlowAct {
 			right_down = right_down.substring(0, right_down.length()-1);
 			lcljOrderTrack.setRightDown(right_down);
 		}
-		
+
 		if(YZUtility.isNotNullOrEmpty(repair_left_up)) {
 			repair_left_up = repair_left_up.substring(0, repair_left_up.length()-1);
 			lcljOrderTrack.setRepairLeftUp(repair_left_up);
@@ -818,7 +820,7 @@ public class HUDH_FlowAct {
 			repair_right_down = repair_right_down.substring(0, repair_right_down.length()-1);
 			lcljOrderTrack.setRepairRightDown(repair_right_down);
 		}
-		
+
 		try {
 			//保存临床跟踪数据
 			flowService.changeLcljOrderTrackBoneStatus(lcljOrderTrack, id);
@@ -828,7 +830,7 @@ public class HUDH_FlowAct {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 根据id查询临床路径信息
 	 * @param request
@@ -847,7 +849,7 @@ public class HUDH_FlowAct {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 根据路径单号和节点id查询
 	 * @param request
@@ -878,8 +880,8 @@ public class HUDH_FlowAct {
 			YZUtility.DEAL_ERROR(ex.getMessage(), true, ex, response, logger);
 		}
 		return null;
-	} 
-	
+	}
+
 	/**
 	 * 更新临床路径节点信息
 	 * @param request
@@ -1030,10 +1032,10 @@ public class HUDH_FlowAct {
 			} else {
 				flowService.updateLcljOrderTrackById(lcljOrderTrack);
 			}*/
-			if(dzblService.findCaseHistoryById(id).size()>0 && dzblService.findCaseHistoryById(id)!=null ){
-				if(zzblCheckService.findZzblOprationById(id).size()>0 && zzblCheckService.findZzblOprationById(id)!=null){
-					if(zzblService.findZzblOprationById(id).size()>0 && zzblService.findZzblOprationById(id) !=null){
-						if(rscService.findRepairInforById(id).size()>0 && rscService.findRepairInforById(id)!=null){
+            if(dzblService.findCaseHistoryById(id) != null && dzblService.findCaseHistoryById(id).size()>0){
+                if(zzblCheckService.findZzblOprationById(id) != null && zzblCheckService.findZzblOprationById(id).size()>0){
+                    if(zzblService.findZzblOprationById(id) != null && zzblService.findZzblOprationById(id).size()>0){
+                        if(rscService.findRepairInforById(id) != null && rscService.findRepairInforById(id).size()>0){
 							if(dzblService.findFamiliarBook(id) != null || dzblService.findLocatorFamiliares(id).size()>0){
 								flowService.updateLcljOrderTrackById(lcljOrderTrack);
 								YZUtility.DEAL_SUCCESS(null, null, response, logger);

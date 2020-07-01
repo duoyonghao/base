@@ -171,6 +171,7 @@
     label {
         font-weight: normal;
         margin-bottom: 0px;
+        margin-left:2%;
     }
     /* 牙位图 */
     .toothBitmap{
@@ -426,13 +427,13 @@
                         <label><input class="" type="radio" name="ismouthopening" value="0" onclick="choose(this.name);"/><span class=" ">正常</span></label>
                         <label><input class="" type="radio" name="ismouthopening" value="1" onclick="choose(this.name);"/><span class=" ">受限</span></label><input class="border_bottom ismouthopeninginput" id="mouthopening" type="text" onblur="TextLengthCheck(this.id,2);" style="cursor: no-drop;" disabled="disabled"/>mm
                     </td>
-                    <td colspan="2" class="problemitem"><span class="">牙颞下颌关节</span></td>
+                    <td colspan="2" class="problemitem"><span class="">颞下颌关节</span></td>
                     <td colspan="5" class="chooseCheckbox" id="arthrosisCheckbox">
                         <label><input class="usual" type="checkbox" name="arthrosis" value="0" onclick="chooseUsual(this,this.name);"/><span class=" ">正常</span></label>
                         <label><input class="unusual" type="checkbox" name="arthrosis" value="1" onclick="chooseUnusual(this.name);"/><span class=" ">弹响</span></label>
                         <label><input class="unusual" type="checkbox" name="arthrosis" value="2" onclick="chooseUnusual(this.name);"/><span class=" ">疼痛</span></label>
-                        <label><input class="unusual" type="checkbox" name="arthrosis" value="3" onclick="chooseUnusual(this.name);"/><span class=" ">习惯性拖拉</span></label>
-                        <label><input class="unusual" type="checkbox" name="arthrosis" value="4" onclick="chooseUnusual(this.name);"/><span class=" ">绞索</span></label>
+                        <label><input class="unusual" type="checkbox" name="arthrosis" value="3" onclick="chooseUnusual(this.name);"/><span class=" ">习惯性脱位</span></label>
+                        <label><input class="unusual" type="checkbox" name="arthrosis" value="4" onclick="chooseUnusual(this.name);"/><span class=" ">绞锁</span></label>
                     </td>
                 </tr>
                 <tr>
@@ -467,7 +468,7 @@
                         <label><input class="" type="radio" name="labialline" value="中"/><span class=" ">中</span></label>
                         <label><input class="" type="radio" name="labialline" value="低"/><span class=" ">低</span></label>
                     </td>
-                    <td colspan="2" class="problemitem"><span class="">其他</span></td>
+                    <td colspan="2" class="problemitem"><span class="">其他:</span><input id="others" class="border_bottom" TextLengthCheck(this.id,8); style="width: 80%"/></td>
                 </tr>
                 <tr>
                     <td class="problemitem" colspan="2"><span class="">口腔治疗经历</span></td>
@@ -666,7 +667,7 @@
         <!-- 手术签名 -->
         <div class="consent_signature">
             <!-- 患者签名 -->
-            <div class="signature_time" style="float: left;">
+            <div class="signature_time" style="float: left;display: none">
                 <div class="signature_box">
                     <span id="patientSignature" style="margin-top: 8px;line-height: 50px;font-size: 16px">患者签名:</span>
                     <img id="patientimg" style="width:156px;height:auto;"/>
@@ -718,7 +719,7 @@
             initBlockToothMap("conditionToothBox");
             pro("toothConditionBox",conditionData);
             pro("medicalCertificateBox",certificateData);
-            // initData();//数据初始化
+            initData();//数据初始化
             //时间选择
             $(".consent_time").datetimepicker({
                 language:  'zh-CN',
@@ -1156,12 +1157,13 @@
 // 	    口腔专科检查
             var ismouthopening = $("#oralSpecialtyExamination").find("input[name='ismouthopening']:checked").val();//张口度ismouthopening
             var mouthopening = $("#mouthopening").val(); // 张口度mouth_openinput
-            var arthrosis=inputCheckedSave("arthrosis");//牙颞下颌关节
+            var arthrosis=inputCheckedSave("arthrosis");//颞下颌关节
             var occludingrelation=inputCheckedSave("occludingrelation");//咬合关系
             var verticalcurve=$("#oralSpecialtyExamination").find("input[name='verticalcurve']:checked").val();//纵曲线
             var horizontalcurve=$("#oralSpecialtyExamination").find("input[name='horizontalcurve']:checked").val();//横曲线
             var distancebetween=$("#distancebetween").val();//颌间距
             var labialline=$("#oralSpecialtyExamination").find("input[name='labialline']:checked").val();//唇线
+            var others=$("#others").val();//其他
             var gumtypes=$("#oralSpecialtyExamination").find("input[name='gumtypes']:checked").val();//牙龈生物学类型
             var undergo=inputCheckedSave("undergo"); //口腔治疗经历
             var periodontalcondition=inputCheckedSave("periodontalcondition");//牙周情况
@@ -1201,6 +1203,7 @@
                 horizontalcurve : horizontalcurve,
                 distancebetween : distancebetween,
                 labialline : labialline,
+                others:others,
                 gumtypes : gumtypes,
                 undergo : undergo,
                 periodontalcondition : periodontalcondition,

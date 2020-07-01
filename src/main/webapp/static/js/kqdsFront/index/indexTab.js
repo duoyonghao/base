@@ -152,31 +152,6 @@ function hospitalOrderTable(type, tabId) {
 
         },
         onLoadSuccess: function (data) {
-//            var tableList = data.rows;
-            // 总记录数：    本次上门：   未上门：    成交：   未成交：
-//            var sms = 0,
-//            wsms = 0,
-//            cjs = 0,
-//            wcjs = 0;
-//            for (var i = 0; i < tableList.length; i++) {
-//                if (tableList[i].cjstatus == "1") {
-//                    cjs = cjs + 1;
-//                } else {
-//                    wcjs = wcjs + 1;
-//                }
-//                if (tableList[i].orderstatus == "1") {
-//                    sms = sms + 1;
-//                } else {
-//                    wsms = wsms + 1;
-//                }
-//            }
-            /*var content ='<tr>'
-             content += '<td style="width:12%;"><span style="color:blue;">总记录数:<lable>'+tableList.length+'</lable></span></td>';
-             content += '<td style="width:12%;"><span style="color:blue;">本次上门数:<lable>'+sms+'</lable></span></td>';
-             content += '<td style="width:12%;"><span style="color:blue;">未上门数:<lable>'+wsms+'</lable></span></td>';
-             content += '<td style="width:12%;"><span style="color:blue;">成交数:<lable>'+cjs+'</lable></span></td>';
-             content += '<td style="width:12%;"><span style="color:blue;">未成交数:<lable>'+wcjs+'</lable></span></td>';
-             content += '</tr>';*/
             if (data.offset == 0) {
                 $("#dataCount").html("");
                 var content = '';
@@ -292,15 +267,18 @@ function hospitalOrderTable(type, tabId) {
                 align: 'center',
                 sortable: true,
                 formatter: function (value, row, index) {
-                    console.log("门诊预约=" + JSON.stringify(row));
-                    var iconhtml;
+                    //console.log("门诊预约=" + JSON.stringify(row));
+                    var iconhtml = "";
                     if (value != "" && value != null) {
-                        iconhtml = '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
+                        iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
                     }
                     if (row.kefu) {
-                        iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/customerservice.jpg/>';
+                        iconhtml += '<img class="kefu" src= ' + contextPath + '/static/image/kqdsFront/tag/customerservice.jpg/>';
                     }
-                    return iconhtml;
+                    if (row.contagion != "" && row.contagion != null && row.contagion == 1) {
+                        iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/contagion.jpg/>';
+                    }
+                    return iconhtml == "" ? "-" : iconhtml;
                 }
             },
             {
@@ -434,24 +412,6 @@ function netOrderTable(type, tabId) {
             }
         },
         onLoadSuccess: function (data) {
-//            var tableList = data;
-//            // 总记录数：    本次上门：   未上门：    成交：   未成交：
-//            var sms = 0,
-//            wsms = 0,
-//            cjs = 0,
-//            wcjs = 0;
-//            for (var i = 0; i < tableList.length; i++) {
-//                if (tableList[i].cjstatus == "1") {
-//                    cjs = cjs + 1;
-//                } else {
-//                    wcjs = wcjs + 1;
-//                }
-//                if (tableList[i].doorstatus == "1") {
-//                    sms = sms + 1;
-//                } else {
-//                    wsms = wsms + 1;
-//                }
-//            }
             $("#dataCount").html("");
             var content = '';
             content += '<li>总记录数:<span>' + data.total + '</span></li>';
@@ -576,15 +536,18 @@ function netOrderTable(type, tabId) {
                 align: 'center',
                 sortable: true,
                 formatter: function (value, row, index) {
-                    console.log("网电预约=" + JSON.stringify(row));
-                    var iconhtml;
+                    //console.log("网电预约=" + JSON.stringify(row));
+                    var iconhtml = "";
                     if (value != "" && value != null) {
-                        iconhtml = '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
+                        iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
                     }
                     if (row.kefu) {
-                        iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/customerservice.jpg/>';
+                        iconhtml += '<img class="kefu" src= ' + contextPath + '/static/image/kqdsFront/tag/customerservice.jpg/>';
                     }
-                    return iconhtml;
+                    if (row.contagion != "" && row.contagion != null && row.contagion == 1) {
+                        iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/contagion.jpg/>';
+                    }
+                    return iconhtml == "" ? "-" : iconhtml;
                 }
             },
             {
@@ -863,15 +826,18 @@ function getOrderlist(status, type, tabId) {
                 align: 'center',
                 sortable: true,
                 formatter: function (value, row, index) {
-                    console.log("等待结账=" + JSON.stringify(row));
-                    var iconhtml;
+                    //console.log("等待结账=" + JSON.stringify(row));
+                    var iconhtml = "";
                     if (value != "" && value != null) {
-                        iconhtml = '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
+                        iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
                     }
                     if (row.kefu) {
                         iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/customerservice.jpg/>';
                     }
-                    return iconhtml;
+                    if (row.contagion != "" && row.contagion != null && row.contagion == 1) {
+                        iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/contagion.jpg/>';
+                    }
+                    return iconhtml == "" ? "-" : iconhtml;
                 }
             },
             {
@@ -1185,15 +1151,18 @@ function getPayOrderlist(type, tabId) {
                 align: 'center',
                 sortable: true,
                 formatter: function (value, row, index) {
-                    console.log("已结账=" + JSON.stringify(row));
-                    var iconhtml;
+                    //console.log("已结账=" + JSON.stringify(row));
+                    var iconhtml = "";
                     if (value != "" && value != null) {
-                        iconhtml = '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
+                        iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
                     }
                     if (row.kefu) {
                         iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/customerservice.jpg/>';
                     }
-                    return iconhtml;
+                    if (row.contagion != "" && row.contagion != null && row.contagion == 1) {
+                        iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/contagion.jpg/>';
+                    }
+                    return iconhtml == "" ? "-" : iconhtml;
                 }
             },
             {
@@ -1659,15 +1628,18 @@ function initTable(status, type, recesort, tabId) {
                 align: 'center',
                 sortable: true,
                 formatter: function (value, row, index) {
-                    console.log("等待治疗=" + JSON.stringify(row) + "...row");
-                    var iconhtml;
+                    //console.log("等待治疗=" + JSON.stringify(row) + "...row");
+                    var iconhtml = "";
                     if (value != "" && value != null) {
-                        iconhtml = '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
+                        iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
                     }
                     if (row.kefu) {
                         iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/customerservice.jpg/>';
                     }
-                    return iconhtml;
+                    if (row.contagion != "" && row.contagion != null && row.contagion == 1) {
+                        iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/contagion.jpg/>';
+                    }
+                    return iconhtml == "" ? "-" : iconhtml;
                 }
             },
             {

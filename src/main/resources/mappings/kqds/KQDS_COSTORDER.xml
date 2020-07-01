@@ -1128,7 +1128,8 @@
         cost.cjstatus,
         cost.isprint,
         u.familyship,
-        u.iscreateLclj
+        u.iscreateLclj,
+        u.contagion
         from KQDS_COSTORDER cost
         LEFT JOIN KQDS_UserDocument u on cost.usercode = u.UserCode
         LEFT JOIN KQDS_PAYCOST p on cost.costno = p.costno
@@ -1530,7 +1531,8 @@
         per7.user_name as createusername,
         c.seq_id,
         u.familyship,
-        u.iscreateLclj
+        u.iscreateLclj,
+        u.contagion
         from KQDS_COSTORDER c
         LEFT JOIN KQDS_REG reg on reg.SEQ_ID = c.regno
         LEFT JOIN KQDS_UserDocument u on c.usercode = u.UserCode

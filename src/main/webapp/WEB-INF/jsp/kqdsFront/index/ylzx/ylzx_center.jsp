@@ -285,7 +285,8 @@ function getButtonPower(){
 		btnList	+= '{"qx":"fycx","name":"费用查询"},';
 		btnList	+= '{"qx":"ckbl","name":"查看病历"},';
 		btnList	+= '{"qx":"ylhz_ksll","name":"科室领料"},';
-		btnList	+= '{"qx":"ylhz_lclj","name":"临床路径"}';//#########添加临床路径按钮##########
+		btnList	+= '{"qx":"ylhz_lclj","name":"临床路径"},';//#########添加临床路径按钮##########
+        btnList	+= '{"qx":"tk","name":"退款申请"}';
 	    btnList	+= ']';
 	    var jsonbtnList = jQuery.parseJSON( btnList );
 //网电预约等6个按钮显示权限	

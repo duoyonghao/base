@@ -483,16 +483,16 @@
 
         $('.selectpicker').selectpicker({});//初始化种植体系下拉框
 
-        //textarea高度自适应
-        $.fn.autoHeight = function(){
-            function autoHeight(elem){
-                elem.style.height = 'auto';
-                elem.scrollTop = 0; //防抖动
-                elem.style.height = elem.scrollHeight + 'px';
-                height = elem.style.height.split("px")[0];
-                consent_remark_height=Number(height);
-                // console.log(height+'-----height');
-            }
+			//textarea高度自适应
+			$.fn.autoHeight = function(){
+				function autoHeight(elem){
+					elem.style.height = 'auto';
+					elem.scrollTop = 0; //防抖动
+					elem.style.height = elem.scrollHeight + 'px';
+					height = elem.style.height.split("px")[0];
+					consent_remark_height=Number(height);
+					// console.log(height+'-----height');
+				}
 
             this.each(function(){
                 autoHeight(this);
@@ -659,14 +659,14 @@
     };
 
 
-    function myPreviewAll2(){
-        LODOP=getLodop();
-        LODOP.PRINT_INIT("人工种植牙知情同意书");
-        //LODOP.SET_PRINT_PAGESIZE(1,0,0,"A4");
-        var htmlStyle="<style>button{display:none;}*{font-size: 12px;line-height: 18.5px;}.span{vertical-align:bottom;margin-bottom: 10px;}.margin{margin-top:-10px}.height{height:70%!important;}textarea{overflow-x:hidden;overflow-y:hidden;padding-left:50px!important;}.font{font-size: 16px!important;font-weight: bolder;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}";
-        htmlStyle+="#plantingsystemselect{font-size:12px;height:24px;vertical-align:bottom;}.selectTag{border:none;vertical-align:middle;font-size:12px!important;line-height:12px;appearance:none;-webkit-appearance:none;-moz-appearance:none;}select::-ms-expand{display:none;}";
-        htmlStyle+=".plantingsystemselectText{font-size:12px;height:24px;line-height:24px;vertical-align:bottom;margin-bottom:5px;}.selectTag{display:none!important;}.plantingsystemselectText{display:inline-block;}</style>";
-        var html="<!DOCTYPE html>"+document.getElementsByTagName("html")[0].innerHTML+htmlStyle;
+		function myPreviewAll2(){
+			LODOP=getLodop();  
+			LODOP.PRINT_INIT("人工种植牙知情同意书");
+			//LODOP.SET_PRINT_PAGESIZE(1,0,0,"A4");
+			var htmlStyle="<style>button{display:none;}*{font-size: 12px;line-height: 18.5px;}.span{vertical-align:bottom;margin-bottom: 10px;}.margin{margin-top:-10px}.height{height:70%!important;}textarea{overflow-x:hidden;overflow-y:hidden;padding-left:50px!important;}.font{font-size: 16px!important;font-weight: bolder;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}";
+			htmlStyle+="#plantingsystemselect{font-size:12px;height:24px;vertical-align:bottom;}.selectTag{border:none;vertical-align:middle;font-size:12px!important;line-height:12px;appearance:none;-webkit-appearance:none;-moz-appearance:none;}select::-ms-expand{display:none;}";
+			htmlStyle+=".plantingsystemselectText{font-size:12px;height:24px;line-height:24px;vertical-align:bottom;margin-bottom:5px;}.selectTag{display:none!important;}.plantingsystemselectText{display:inline-block;}</style>";
+			var html="<!DOCTYPE html>"+document.getElementsByTagName("html")[0].innerHTML+htmlStyle;
 // 			LODOP.ADD_PRINT_HTM(10,10,"100%","100%",html);
         LODOP.ADD_PRINT_HTM(0,0,"100%","100%",html);
         LODOP.PREVIEW();
@@ -896,22 +896,22 @@
         $("#bottomBarDdiv").append(menubutton1);
     }
 
-
-    //日期格式化
-    Date.prototype.Format = function (fmt) { //author: meizz
-        var o = {
-            "M+": this.getMonth() + 1, //月
-            "d+": this.getDate(), //日
-            "H+": this.getHours(), //时
-            "m+": this.getMinutes(), //分
-            "s+": this.getSeconds(), //秒
-            "q+": Math.floor((this.getMonth() + 3) / 3), //
-            "S": this.getMilliseconds() //
-        };
-        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-        for (var k in o)
-            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-        return fmt;
-    }
-</script>
+		
+		//日期格式化
+		 Date.prototype.Format = function (fmt) { //author: meizz
+	            var o = {
+	                "M+": this.getMonth() + 1, //月
+	                "d+": this.getDate(), //日
+	                "H+": this.getHours(), //时
+	                "m+": this.getMinutes(), //分
+	                "s+": this.getSeconds(), //秒
+	                "q+": Math.floor((this.getMonth() + 3) / 3), // 	
+	                "S": this.getMilliseconds() //
+	            };
+	            if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+	            for (var k in o)
+	            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+	            return fmt;
+	        }
+	</script>
 </html>

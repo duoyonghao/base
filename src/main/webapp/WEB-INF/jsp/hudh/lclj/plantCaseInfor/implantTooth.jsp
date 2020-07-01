@@ -443,254 +443,254 @@
 	</div>
 </div>
 </body>
-<script language="javascript"  src="<%=contextPath%>/static/js/kqdsFront/LodopFuncs.js"></script>
-<script type="text/javascript">
-	var signature="";
-	var patientsignature="";
-	var doctorstatus=true;
-	var patientstatus=true;
-	var contextPath = "<%=contextPath%>";
-	var id= window.parent.consultSelectPatient.seqid;	//选中患者id
-	var order_number= window.parent.consultSelectPatient.orderNumber;//选中患者order_number
-	var caseId=""; //已存在的病历id
-	var formParentObj;// 父页面的患者信息对象
-	var menuid=window.parent.menuid;//左侧菜单id
-	$(function(){
-		var userAgent = navigator.userAgent;
-		if (userAgent.indexOf("iPad") > -1){
-			$("#print_Btn").hide();//移动端打印按钮隐藏
-		}
-
-		if(window.parent.consultSelectPatient){
-			formParentObj=window.parent.consultSelectPatient;
-			id= formParentObj.seqid;	//选中患者id
-			order_number= formParentObj.orderNumber;//选中患者order_number
-		}else{
-			formParentObj=window.parent.patientObj;
-			id= formParentObj.id;	//选中患者id
-			order_number= formParentObj.orderNumber;//选中患者order_number
-		}
-
-		//时间选择
-		$(".consent_time").datetimepicker({
-			language:  'zh-CN',
-			minView: 2,
-			format: 'yyyy-mm-dd',
-			autoclose : true,//选中之后自动隐藏日期选择框
-			pickerPosition: "top-right",
-			todayBtn: true,
-			beforeShow: function () {
-				setTimeout(
-						function () {
-							$('#ui-datepicker-div').css("z-index", 21);
-						}, 100
-				);
+	<script language="javascript"  src="<%=contextPath%>/static/js/kqdsFront/LodopFuncs.js"></script>
+	<script type="text/javascript">
+		var signature="";
+		var patientsignature="";
+		var doctorstatus=true;
+		var patientstatus=true;
+		var contextPath = "<%=contextPath%>";	
+		var id= window.parent.consultSelectPatient.seqid;	//选中患者id
+		var order_number= window.parent.consultSelectPatient.orderNumber;//选中患者order_number
+		var caseId=""; //已存在的病历id
+		var formParentObj;// 父页面的患者信息对象
+		var menuid=window.parent.menuid;//左侧菜单id
+		$(function(){
+			var userAgent = navigator.userAgent; 
+		    if (userAgent.indexOf("iPad") > -1){
+		     	$("#print_Btn").hide();//移动端打印按钮隐藏
+		    }
+			
+			if(window.parent.consultSelectPatient){
+				formParentObj=window.parent.consultSelectPatient;
+				id= formParentObj.seqid;	//选中患者id
+				order_number= formParentObj.orderNumber;//选中患者order_number
+			}else{
+				formParentObj=window.parent.patientObj;
+				id= formParentObj.id;	//选中患者id
+				order_number= formParentObj.orderNumber;//选中患者order_number
 			}
+			
+			//时间选择
+		    $(".consent_time").datetimepicker({
+		        language:  'zh-CN',  
+		   		minView: 2,
+		        format: 'yyyy-mm-dd',
+		   		autoclose : true,//选中之后自动隐藏日期选择框   
+		   		pickerPosition: "top-right",
+		   		todayBtn: true,
+			   	beforeShow: function () {
+			         setTimeout(
+				         function () {
+				             $('#ui-datepicker-div').css("z-index", 21);
+				         }, 100
+			         );
+			    }
+		    });
+			
+		    initZzblInfor();
+			 // 2019/7/24 lutian 禁止页面拖拽
+			document.ondragstart = function() {
+	            return false;
+	        };
+		    
+	 	   $('.selectpicker').selectpicker({});//初始化种植体系下拉框
 		});
-
-		initZzblInfor();
-		// 2019/7/24 lutian 禁止页面拖拽
-		document.ondragstart = function() {
-			return false;
-		};
-
-		$('.selectpicker').selectpicker({});//初始化种植体系下拉框
-	});
-
-	var doctorSignature = document.getElementById("doctorSignature");
-	doctorSignature.onclick = function(){
-		if(doctorstatus){
-			layer.open({
-				type: 2,
-				title: '签字',
-				shadeClose: true,
-				shade: 0.6,
-				area: ['70%', '65%'],
-				content: contextPath + '/SignatureAct/toSignature.act?category=种植'
-			});
+		
+		var doctorSignature = document.getElementById("doctorSignature");    
+		doctorSignature.onclick = function(){ 
+			if(doctorstatus){
+				layer.open({
+			        type: 2,
+			        title: '签字',
+			        shadeClose: true,
+			        shade: 0.6,
+			        area: ['70%', '65%'],
+			        content: contextPath + '/SignatureAct/toSignature.act?category=种植'
+			    });
+			}
+	   }
+		function addSignature(){
+			$("#img").css("display","");
+			$("#img").attr('src', signature);
 		}
-	}
-	function addSignature(){
-		$("#img").css("display","");
-		$("#img").attr('src', signature);
-	}
-	var patientSignature = document.getElementById("patientSignature");
-	patientSignature.onclick = function(){
-		if(patientstatus){
-			layer.open({
-				type: 2,
-				title: '签字',
-				shadeClose: true,
-				shade: 0.6,
-				area: ['70%', '65%'],
-				content: contextPath + '/SignatureAct/toSignature.act?category=患者'
-			});
+		var patientSignature = document.getElementById("patientSignature");    
+		patientSignature.onclick = function(){ 
+			if(patientstatus){
+				layer.open({
+			        type: 2,
+			        title: '签字',
+			        shadeClose: true,
+			        shade: 0.6,
+			        area: ['70%', '65%'],
+			        content: contextPath + '/SignatureAct/toSignature.act?category=患者'
+			    });
+			}
+	   }
+		function addPatientSignature(){
+			$("#patientimg").css("display","");
+			$("#patientimg").attr('src', patientsignature);
+			if(!doctorstatus&&patientstatus){
+				updatePatientSignature();
+			}
 		}
-	}
-	function addPatientSignature(){
-		$("#patientimg").css("display","");
-		$("#patientimg").attr('src', patientsignature);
-		if(!doctorstatus&&patientstatus){
-			updatePatientSignature();
+		
+		//更新
+		function updatePatientSignature(){
+			var url = contextPath + '/HUDH_ZzblAskAct/updateFamiliarBookById.act';
+			var patienttime = $("#patienttime").val();//修复医生签名时间
+	        var param = {
+	        		seqId : caseId,
+	        		PatientSignature :  patientsignature,//患者签名
+	        		patienttime : patienttime//患者签名时间
+
+	        };
+	        $.axseSubmit(url, param,function() {},function(r) {
+	        	layer.alert("修改成功！", {
+		            end: function() {
+		            	//window.parent.location.reload(); //刷新父页面
+		                var frameindex = parent.layer.getFrameIndex(window.name);
+		                parent.layer.close(frameindex); //再执行关闭 
+		            }
+		      	});
+	        },function(r){
+	        	layer.alert("修改失败！");
+		    });
+		}	
+		
+		/* 2019/7/22 lutian span输入文字长度校验方法   obj：元素id  textLength：限制文字长度 */
+		function importTextLengthCheck(obj,textLength){
+			var objTextVal=$("#"+obj).text();
+			if(objTextVal.length>textLength){
+				layer.open({
+					 title: '提示',
+					 content:'文字长度不能超过'+textLength+'字!',
+					 end:function(){
+						 var inputNewVal=$("#"+obj).text();
+						 $("#"+obj).text(inputNewVal.substring(0,textLength)).focus();
+					 }
+				});
+				return;
+			}
 		}
-	}
-
-	//更新
-	function updatePatientSignature(){
-		var url = contextPath + '/HUDH_ZzblAskAct/updateFamiliarBookById.act';
-		var patienttime = $("#patienttime").val();//修复医生签名时间
-		var param = {
-			seqId : caseId,
-			PatientSignature :  patientsignature,//患者签名
-			patienttime : patienttime//患者签名时间
-
-		};
-		$.axseSubmit(url, param,function() {},function(r) {
-			layer.alert("修改成功！", {
-				end: function() {
-					//window.parent.location.reload(); //刷新父页面
-					var frameindex = parent.layer.getFrameIndex(window.name);
-					parent.layer.close(frameindex); //再执行关闭
-				}
-			});
-		},function(r){
-			layer.alert("修改失败！");
-		});
-	}
-
-	/* 2019/7/22 lutian span输入文字长度校验方法   obj：元素id  textLength：限制文字长度 */
-	function importTextLengthCheck(obj,textLength){
-		var objTextVal=$("#"+obj).text();
-		if(objTextVal.length>textLength){
-			layer.open({
-				title: '提示',
-				content:'文字长度不能超过'+textLength+'字!',
-				end:function(){
-					var inputNewVal=$("#"+obj).text();
-					$("#"+obj).text(inputNewVal.substring(0,textLength)).focus();
-				}
-			});
-			return;
+		
+		/* 2019/7/22 lutian input文字长度校验方法   obj：元素id  textNum：限制文字长度 */
+		function TextLengthCheck(obj,textNum){
+			var objTextVal=$("#"+obj).val();
+			var checkTitleBefore=$("#"+obj).parent(".common_style").find("span").text();//根据父元素的选择器找到标题
+			var checkTitle=checkTitleBefore.substring(0,checkTitleBefore.indexOf(":")); // 校验文字长长度的标题
+			if(objTextVal.length>textNum){
+				$("#"+obj).attr("maxlength",textNum);
+				//layer.alert(checkTitle+"文字长度不能超过"+textNum+"字!");
+				layer.open({
+					 title: '提示',
+					 content: checkTitle+'文字长度不能超过'+textNum+'字!',
+					 end:function(){
+						 var inputNewVal=$("#"+obj).val();
+						 $("#"+obj).val(inputNewVal.substring(0,textNum)).focus();
+					 }
+				});
+				return;
+			}
 		}
-	}
-
-	/* 2019/7/22 lutian input文字长度校验方法   obj：元素id  textNum：限制文字长度 */
-	function TextLengthCheck(obj,textNum){
-		var objTextVal=$("#"+obj).val();
-		var checkTitleBefore=$("#"+obj).parent(".common_style").find("span").text();//根据父元素的选择器找到标题
-		var checkTitle=checkTitleBefore.substring(0,checkTitleBefore.indexOf(":")); // 校验文字长长度的标题
-		if(objTextVal.length>textNum){
-			$("#"+obj).attr("maxlength",textNum);
-			//layer.alert(checkTitle+"文字长度不能超过"+textNum+"字!");
-			layer.open({
-				title: '提示',
-				content: checkTitle+'文字长度不能超过'+textNum+'字!',
-				end:function(){
-					var inputNewVal=$("#"+obj).val();
-					$("#"+obj).val(inputNewVal.substring(0,textNum)).focus();
-				}
-			});
-			return;
-		}
-	}
-
-	/* 页面赋值判断初始化 */
-	function initZzblInfor(){
-		//console.log(id+"--------------查询id");
-		var url = contextPath + '/HUDH_ZzblAskAct/findFamiliarBookById.act';
-		$.ajax({
-			url: url,
-			type:"POST",
-			dataType:"json",
-			data : {
-				id :  id, //临床路径ID
-				order_number : order_number
-			},
-			success:function(result){
-				//console.log(JSON.stringify(result)+"--------------添加成功后查询数据");
-				console.log(result,"------shuju")
-				caseId=result.seqId;  //病历id
-				/* 判断是否已经填写过内容 */
-				if(result.seqId){
-					$("#consent_saveBtn").css("display","none");//隐藏保存按钮
-					$("#consent_updateBtn").css("display","inline-block");//显示修改按钮
-					signature=result.doctorsignature;
-					if(signature!=""){
-						$("#img").attr('src', signature);
-						doctorstatus=false;
-					}else{
-						$("#img").attr('display', 'none');
-					}
-					patientsignature=result.patientsignature;
-					if(patientsignature!=""){
-						$("#patientimg").attr('src', patientsignature);
-						patientstatus=false;
-					}else{
-						$("#patientimg").attr('display', 'none');
-					}
-					//赋值
-					for(var key in result){
-						//console.log(key+"-------------"+result[key]);
-						if(result[key]){
-							if($("#"+key).attr("type")=="checkbox" && $("#"+key).val()==result[key]){
-								$("#"+key).attr("checked","checked");
-							}else{
-								$("#"+key).attr("value",result[key]);// 填框赋值
+		
+		/* 页面赋值判断初始化 */
+		function initZzblInfor(){
+			//console.log(id+"--------------查询id");
+			var url = contextPath + '/HUDH_ZzblAskAct/findFamiliarBookById.act';
+			$.ajax({
+				url: url,
+				type:"POST",
+				dataType:"json",
+				data : {
+					 id :  id, //临床路径ID
+					 order_number : order_number
+				},
+				success:function(result){
+					//console.log(JSON.stringify(result)+"--------------添加成功后查询数据");
+					console.log(result,"------shuju")
+					caseId=result.seqId;  //病历id
+					/* 判断是否已经填写过内容 */
+					if(result.seqId){
+						$("#consent_saveBtn").css("display","none");//隐藏保存按钮
+						$("#consent_updateBtn").css("display","inline-block");//显示修改按钮
+						signature=result.doctorsignature;
+						if(signature!=""){
+							$("#img").attr('src', signature);
+							doctorstatus=false;
+						}else{
+							$("#img").attr('display', 'none');
+						}
+						patientsignature=result.patientsignature;
+						if(patientsignature!=""){
+							$("#patientimg").attr('src', patientsignature);
+							patientstatus=false;
+						}else{
+							$("#patientimg").attr('display', 'none');
+						}
+						//赋值 
+						for(var key in result){
+							//console.log(key+"-------------"+result[key]);
+							if(result[key]){
+								if($("#"+key).attr("type")=="checkbox" && $("#"+key).val()==result[key]){
+										$("#"+key).attr("checked","checked");
+								}else{
+									$("#"+key).attr("value",result[key]);// 填框赋值
+								}
 							}
-						}
-						//$("#"+key).attr("value",result[key]);// 填框赋值
-						if($("#"+key).attr("contenteditable")=='true'){
-							$("#"+key).text(result[key]);// 可编辑span填框赋值
-						}
-						$("#remarks").text(result["remarks"]);//textarea赋值
-						//常用药物select赋值
-						if($("#"+key).find("option")){
-							$("#"+key).selectpicker('val', result[key]);
-							$("."+key+"Text").text(result[key]+result["plantingsystem"]);
-							/* $("#"+key).find("option").each(function(i,obj){
-                                if($(this).val()==result[key]){
-                                    $(this).prop("selected", true);//针对ipad赋值
-                                    $(this).attr("selected", true);
-                                }
-                            }); */
-						}
-						if(result[key].indexOf(";")>0){
-							var checkboxVal= result[key];//拼接多选框的值
-							var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
-							for(var i=0;i<checkboxValArr.length;i++){
-								$("input[name="+key+"]").each(function(){
-									if($(this).val()==checkboxValArr[i]){
-										$(this).attr("checked","checked");
+							//$("#"+key).attr("value",result[key]);// 填框赋值
+							if($("#"+key).attr("contenteditable")=='true'){
+								$("#"+key).text(result[key]);// 可编辑span填框赋值
+							}
+							$("#remarks").text(result["remarks"]);//textarea赋值
+							//常用药物select赋值
+							if($("#"+key).find("option")){
+								$("#"+key).selectpicker('val', result[key]);
+								$("."+key+"Text").text(result[key]+result["plantingsystem"]);
+								/* $("#"+key).find("option").each(function(i,obj){
+									if($(this).val()==result[key]){
+										$(this).prop("selected", true);//针对ipad赋值
+										$(this).attr("selected", true);
 									}
-								})
+								}); */
+							}
+							if(result[key].indexOf(";")>0){
+								var checkboxVal= result[key];//拼接多选框的值
+								var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
+								for(var i=0;i<checkboxValArr.length;i++){
+									$("input[name="+key+"]").each(function(){
+										if($(this).val()==checkboxValArr[i]){
+										   $(this).attr("checked","checked");
+										}
+									})
+								}
+							}
+							//牙位图赋值
+							if(result[key].indexOf(",")>0){
+								var toothPlaceVal= result[key];//拼接多选框的值
+								var toothPlaceValArr=toothPlaceVal.split(",");//将字符串转为数组
+								var newtoothPlaceVal=toothPlaceValArr.join("");
+								//console.log(newtoothPlaceVal+"---------去掉牙位图逗号"); 
+								$("#"+key).attr("value",newtoothPlaceVal);// 填框赋值
 							}
 						}
-						//牙位图赋值
-						if(result[key].indexOf(",")>0){
-							var toothPlaceVal= result[key];//拼接多选框的值
-							var toothPlaceValArr=toothPlaceVal.split(",");//将字符串转为数组
-							var newtoothPlaceVal=toothPlaceValArr.join("");
-							//console.log(newtoothPlaceVal+"---------去掉牙位图逗号");
-							$("#"+key).attr("value",newtoothPlaceVal);// 填框赋值
-						}
-					}
-					//$("input").attr("disabled","disabled").css("background","transparent");//查看信息的时候禁止在填写
-
+						//$("input").attr("disabled","disabled").css("background","transparent");//查看信息的时候禁止在填写
+						
+					} 
+					//获取当前页面所有按钮
+					getButtonAllCurPage(menuid);
 				}
-				//获取当前页面所有按钮
-				getButtonAllCurPage(menuid);
+		  });
+		} 
+		
+		/* 打印本页面方法 */
+		function myPreviewAll() {
+			if(doctorstatus&&signature==""){
+				$("#img").css("display","none");
 			}
-		});
-	}
-
-	/* 打印本页面方法 */
-	function myPreviewAll() {
-		if(doctorstatus&&signature==""){
-			$("#img").css("display","none");
-		}
-		if(patientstatus&&patientsignature==""){
-			$("#patientimg").css("display","none");
-		}
+			if(patientstatus&&patientsignature==""){
+				$("#patientimg").css("display","none");
+			}
 
 		bdhtml=window.document.body.innerHTML;
 		sprnstr="<!--startprint-->";

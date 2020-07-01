@@ -167,7 +167,7 @@ $(function() {
 });
 function setHeight(){
 	var windowHeight=$(window).outerHeight();
-	var tableHeight=(windowHeight-$(".searchWrap").outerHeight()-60)/2;//本页面有两个table
+	var tableHeight=windowHeight-$(".searchWrap").outerHeight()-60;//本页面有两个table
 	$("#table").bootstrapTable("resetView",{
 		height: tableHeight
 	})

@@ -180,7 +180,6 @@
     }
 
     .examine_continer .rpInfo_import>input {
-        width: 49%;
         background-color: transparent;
         font-weight: bold;
         border-radius: 0px;
@@ -366,10 +365,6 @@
         border-top:2px dotted #776c6c;
         padding:7px 0;
     }
-    #logoImg{
-        width: 15%;
-        margin: 15px 0;
-    }
     .scheme{
         border-bottom: 1px solid #b3b3b3;
         height: 134px;
@@ -383,110 +378,167 @@
         width: 20%;
         height:100%;
     }
-    @page{
-        size:auto;
-        margin: 30px auto;
+    @page {
+        size: auto;
+        margin: 0mm auto;
+    }
+    #replaceBox{
+        display: none;
+        height: auto;
+        border:1px solid rgb(221, 221, 221);
+        margin:10px;
+        overflow-x: hidden;
+        white-space: pre-wrap;
+    }
+    @media print {
+        .consent_remark{
+            margin-top: 40px !important;
+        }
+        .zl_signature>span{
+            margin-top: 5px;
+        }
+        #replaceBox{
+            font-size: 12px;
+        }
+        #logoImg{
+            position: absolute;
+            top: 20px!important;
+            width: 150px!important;
+        }
+        .bigtitle{
+            font-size: 22px!important;
+            margin: 0px auto 10px !important;
+        }
+    }
+
+    #logoImg{
+        position: absolute;
+        top: 18px;
+        width: 200px;
+    }
+    .bigtitle{
+        display: block;
+        text-align: center;
+        margin: 7px auto 18px;
+        font-size: 26px;
+        line-height: 26px;
+        letter-spacing: 1px;
+        font-weight: bold;
+        color: #434343;
+        padding-top: 30px;
+    }
+    .conceal{
+        display: none;
+    }
+    /* 基本信息 */
+    .baseInfo{
+        width:100%;
+        border-bottom: 1px solid black;
+        padding-left: 8px;
+    }
+    .baseInfo .patient{
+        overflow: hidden;
+    }
+    /* 输入组合框 */
+    .baseInfo .patient>.inputDiv{
+        display:block;
+        float:left;
+        width: 235px;
+        height: 25px;
+    }
+    .patient .inputDiv:nth-child(5){
+        width: 100px!important;
+    }
+    .patient .inputDiv:nth-child(7){
+        width: 300px!important;
+    }
+
+    .baseInfo .patient>.inputDiv>span{
+        display: inline-block;
+        font-size: 16px;
+        line-height: 30px;
+        height: 30px;
+    }
+    .baseInfo .patient>.inputDiv>font{
+        font-size: 15px;
+        color:#00a6c0;
+        font-weight: bold;
+    }
+
+    @media print {
+        .patient .inputDiv:nth-child(4){
+            width: 190px!important;
+        }
+        .patient .inputDiv:nth-child(9){
+            width: 190px!important;
+        }
+
+    }
+    .container-fluid{
+        margin: 0!important;
+        padding: 0!important;
     }
 </style>
 
 <body>
 <!--startprint-->
 <div style="width: 100%;padding: 10px 20px;">
-    <div>
-        <img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
-        <i class="line-logo"></i>
-        <h2 class="bigtitle">基本信息</h2>
-        <i class="line"></i>
+    <div style="page-break-after:always">
+
+        <!-- 标题 -->
+        <div class="row">
+            <div class="col-md-12 col-sm-12" style="position: relative;padding: 0;border-bottom: 2px solid #776c6c;">
+                <img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
+                <span class="bigtitle">检查及诊断</span>
+            </div>
+        </div>
 
         <!-- 基本信息 -->
         <div class="container-fluid examine_continer">
-            <!-- 患者信息 -->
-            <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
-                    <div class="rpInfo_import">
-                        <span>首诊时间：</span>
-                        <input id="patient_time" type="text" disabled="disabled" class="input" />
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-3 colDefined">
-                    <div class="rpInfo_import">
-                        <span>编号：</span>
-                        <font class="alreadyInfo input" id="patient_num" class="input"></font>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
-                    <div class="rpInfo_import">
-                        <span>姓名：</span>
-                        <input id="patient_name" type="text" disabled="disabled" />
-                    </div>
-                </div>
 
-                <div class="col-md-3 col-sm-3 col-xs-3 colDefined">
-                    <div class="rpInfo_import">
-                        <span>性别：</span>
-                        <input id="patient_sex" type="text" disabled="disabled" />
+            <div class="row baseInfo">
+                <div class="col-md-12 col-sm-12 colDefined">
+                    <!-- 患者基本信息 -->
+                    <div class="patient" style="width:90%;float:left;">
+                        <div class="inputDiv">
+                            <span>首诊时间：</span><font type="text" id="patient_time"></font>
+                        </div>
+                        <div class="inputDiv">
+                            <span>患者编号：</span><font type="text" id="patient_num"></font>
+                        </div>
+                        <div class="inputDiv" style="clear:left;">
+                            <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</span><font type="text" id="patient_name"></font>
+                        </div>
+                        <div class="inputDiv">
+                            <span>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</span><font type="text" id="patient_sex"></font>
+                        </div>
+                        <div class="inputDiv" style="">
+                            <span>年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄：</span><font type="text" id="patient_age"></font>
+                        </div>
+                        <div class="inputDiv" style="clear:left;">
+                            <span>证件号码：</span><font type="text" id="patient_idNumber"></font>
+                        </div>
+                        <div class="inputDiv">
+                            <%--                    <span>出生年月：</span><font type="text" id="patient_bone"></font>--%>
+                            <span>现居住地址：</span><font type="text" id="patient_site"></font>
+                        </div>
+                        <div class="inputDiv" style="clear:left;">
+                            <span>联系电话：</span><font type="text" id="patient_phone"></font>
+                        </div>
+                        <div class="inputDiv" >
+                            <span>紧急联系人：</span><font type="text" id="patient_instancyName"></font>
+                        </div>
+                        <div class="inputDiv">
+                            <span>紧急联系人电话：</span><font type="text" id="patient_instancyPhone"></font>
+                        </div>
                     </div>
-                </div>
-
-                <div class="col-md-3 col-sm-3 col-xs-3 colDefined">
-                    <div class="rpInfo_import">
-                        <span>年龄：</span>
-                        <input id="patient_age" type="text" disabled="disabled" />
-                    </div>
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
-                    <div class="rpInfo_import">
-                        <span>证件号码：</span>
-                        <input id="patient_idNumber" type="text" disabled="disabled" class="input" />
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
-                    <div class="rpInfo_import">
-                        <span>出生年月：</span>
-                        <input id="patient_date" type="text" disabled="disabled"
-                               style="width: 100px;color: #00a6c0;" />
+                    <div class="patientHeader" style="width:10%;float:left;">
+                        <img src="<%=contextPath%>/static/image/kqdsFront/jiagong/headImg.jpg">
+                        <input style="display:none;" type="file" />
                     </div>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
-                    <!-- 信息输入组合框 -->
-                    <div class="rpInfo_import">
-                        <span>联系电话：</span>
-                        <input id="patient_phone" type="text" disabled="disabled" />
-                    </div>
-
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="height:30px;">
-                    <div class="rpInfo_import">
-                        <span>紧急联系人：</span>
-                        <input id="patient_instancyName" type="text" disabled="disabled" class="input" />
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-4 colDefined" style="height:30px;">
-                    <div class="rpInfo_import">
-                        <span>紧急联系人电话：</span>
-                        <input id="patient_instancyPhone" type="text" disabled="disabled" class="input" />
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12 colDefined">
-                    <div class="rpInfo_import">
-                        <span>现居地址：</span>
-                        <input id="patient_site" type="text" disabled="disabled" class="input" />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <i class="line"></i>
         <!-- 大盒子，外边框 -->
         <!-- 诊疗方案 -->
         <div class="row">
@@ -497,25 +549,25 @@
         </div>
         <div style="border:1px solid #b3b3b3;">
             <!-- hezi -->
-            <div class="scheme">
+            <%-- <div class="scheme">
 
-                <div class="col-md-12 col-sm-12 col-xs-12 colDefined fangan">
-                    <div class="rpInfo_import" style="width: 100%;overflow: hidden;">
-                        <span style="float:left;">方案1：</font></span>
-                        <div style="float:left;width:73%;position: relative;">
-                                <span id="treatmentparts1" class="textAuto_element treatmentparts"
-                                      placeholder='有医生自行议填写' style="font-size: 16px;font-weight: bold;"
-                                      contenteditable="true"></span>
-                        </div>
+               --<div class="col-md-12 col-sm-12 col-xs-12 colDefined fangan">
+                     <div class="rpInfo_import" style="width: 100%;overflow: hidden;">
+                         <span style="float:left;">方案1：</font></span>
+                         <div style="float:left;width:73%;position: relative;">
+                                 <span id="treatmentparts1" class="textAuto_element treatmentparts"
+                                       placeholder='有医生自行议填写' style="font-size: 16px;font-weight: bold;"
+                                       contenteditable="true"></span>
+                         </div>
 
-                        <input name="consultation_opinion" id="consultation_opinionA" value="0" type="radio"
-                               type="radio" />
-                    </div>
-                </div>
+                         <input name="consultation_opinion" id="consultation_opinionA" value="0" type="radio"
+                                type="radio" />
+                     </div>
+                 </div>
                 <br>
-                <div class="col-md-12 col-sm-12 col-xs-12 colDefined fangan">
+              <div class="col-md-12 col-sm-12 col-xs-12 colDefined fangan">
                     <div class="rpInfo_import" style="width: 100%;overflow: hidden;">
-                        <span style="float:left;">方案2：</font></span>
+                        <span style="float:left;">方案2：</span>
                         <div style="float:left;width:73%;position: relative;">
                                 <span id="treatmentparts2" class="textAuto_element treatmentparts"
                                       placeholder='有医生自行议填写' style="font-size: 16px;font-weight: bold;"
@@ -526,7 +578,7 @@
                     </div>
                 </div>
                 <br>
-                <div class="col-md-12 col-sm-12 col-xs-12 colDefined fangan">
+               <div class="col-md-12 col-sm-12 col-xs-12 colDefined fangan">
                     <div class="rpInfo_import" style="width: 100%;overflow: hidden;">
                         <span style="float:left;">方案3：</font></span>
                         <div style="float:left;width:73%;position: relative;">
@@ -538,10 +590,10 @@
                                type="radio" />
                     </div>
                 </div>
-            </div>
+            </div>--%>
             <div class="row" style="margin-right:0;margin-left:0;">
                 <div class="col-md-12 col-sm-12 colDefined" style="border-bottom: 1px solid #b3b3b3;height: 40px;">
-                    <span class="smalltitle">以下详细方案待方案确认后填写</span>
+                    <span class="smalltitle">以下详细方案确认后填写，此方案为最终双方商榷后确认方案。</span>
                     <!-- <font>●</font> -->
                 </div>
                 <div class="before">
@@ -822,7 +874,7 @@
                 </div>
             </div>
 
-            <div class="row" style="margin-right:0;margin-left:0;border-bottom:1px solid #b3b3b3">
+            <div class="row" style="margin-right:0;margin-left:0;">
                 <div style="border-top:1px solid #b3b3b3;height: 200px;">
                     <div style="float: left;border-right: 1px solid #b3b3b3;width: 20%;height: 100%;">
                         <span class="" style="line-height: 213px;margin-left: 54px;">种植系统</span>
@@ -1292,7 +1344,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" style="margin-right:0;margin-left:0;border-bottom:1px solid #b3b3b3">
+                <div class="row" style="margin-right:0;margin-left:0;border-bottom: 1px solid #b3b3b3">
                     <div style="height: 50px;">
                         <div style="float: left;border-right: 1px solid #b3b3b3;width: 20%;height: 100%;">
                             <span class="titles">手术方式</span>
@@ -1321,18 +1373,6 @@
                     </div>
                 </div>
                 <div class="row" style="margin-right:0;margin-left:0;border-bottom:1px solid #b3b3b3">
-                </div>
-            </div>
-        </div>
-    </div>
-    </br>
-    </br>
-    </br>
-    <div>
-        <div style="border:1px solid #b3b3b3;">
-            <div class="row" style="margin-right:0;margin-left:0;border-bottom:1px solid #b3b3b3">
-
-                <div class="row" style="margin-right:0;margin-left:0;border-bottom:1px solid #b3b3b3">
 
                     <div class="col-md-12 col-sm-12 colDefined" style="border-bottom: 1px solid #b3b3b3;">
                         <span class="smalltitle titles">修复方案</span>
@@ -1354,7 +1394,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" style="margin-right:0;margin-left:0;    border-bottom: 1px solid #b3b3b3;">
+                <div class="row" style="margin-right:0;margin-left:0;border-bottom: 1px solid #b3b3b3;">
                     <div style="height: 77px;">
                         <div style="float: left;border-right: 1px solid #b3b3b3;width: 25%;height: 100%;">
                             <div style="float: left;width: 50%;height: 100%;border-right:1px solid #b3b3b3;">
@@ -1496,7 +1536,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" style="margin-right:0;margin-left:0;border-top:1px solid #b3b3b3;">
+
+            </div>
+        </div>
+    </div>
+    </div>
+        </br>
+
+    <div style="width: 100%;">
+        <!-- 标题 -->
+        <div class="row conceal">
+            <div class="col-md-12 col-sm-12" style="position: relative;padding: 0;">
+                <img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
+                <span class="bigtitle">检查及诊断</span>
+            </div>
+        </div>
+        <div style="border:1px solid #b3b3b3;">
+            <div class="row" style="margin-right:0;margin-left:0;border-bottom:1px solid #b3b3b3">
+
+
+
+                <div class="row" style="margin-right:0;margin-left:0;">
                     <div style="height: 413px;">
                         <div style="float: left;border-right: 1px solid #b3b3b3;width: 20%;height:100%;">
                             <span style="line-height: 400px;margin-left: 50px;">修复方式</span>
@@ -2062,9 +2122,11 @@
         <div class="row">
             <div class="consent_remark">
                 <div class="overstriking" style="margin: 0 10px;">备注:</div>
-                <textarea id="requirerestor" rows="" cols="" onblur="TextLengthCheck(this.id,200);"
-                          style="border: 1px solid #ddd;margin:0 10px 5px 10px;width: 99%;"></textarea>
+                <%--<textarea id="requirerestor" rows="" cols="" onblur="TextLengthCheck(this.id,200);"
+                          style="border: 1px solid #ddd;margin:0 10px 5px 10px;width: 99%;"></textarea>--%>
+                <textarea id="requirerestor" rows="" cols="" autoHeight="true" style="border: 1px solid #ddd;overflow-y: hidden;width:100%;"></textarea>
             </div>
+            <pre id="replaceBox"></pre>
         </div>
         <div style="width: 100%;float: right;">
             <ul class="loseTooth_option">
@@ -2164,6 +2226,22 @@
             id = formParentObj.id;	//选中患者id
             order_number = formParentObj.orderNumber;//选中患者order_number
         }
+        //textarea高度自适应
+        $.fn.autoHeight = function(){
+            function autoHeight(elem){
+                elem.style.height = 'auto';
+                elem.scrollTop = 0; //防抖动
+                elem.style.height = elem.scrollHeight + 'px';
+                textareaHeight = elem.style.height.split("px")[0]
+            }
+            this.each(function(){
+                autoHeight(this);
+                $(this).on('keyup', function(){
+                    autoHeight(this);
+                });
+            });
+        }
+        $('textarea[autoHeight]').autoHeight();
         //时间选择
         $(".consent_time").datetimepicker({
             language: 'zh-CN',
@@ -2194,17 +2272,18 @@
             },
             dataType: "json",
             success: function (r) {
-                $("#patient_time").attr("value", r.cztime);
+                console.log(r,"77777777777")
+                $("#patient_time").text(r.cztime);
                 $("#patient_num").text(r.usercode);
-                $("#patient_name").attr("value", r.username);
-                $("#patient_sex").attr("value", r.sex);
-                $("#patient_age").attr("value", r.age);
-                $("#patient_idNumber").attr("value", r.idcardno);
+                $("#patient_name").text(r.username);
+                $("#patient_sex").text(r.sex);
+                $("#patient_age").text(r.age);
+                $("#patient_idNumber").text(r.idcardno);
                 $("#patient_date").attr("value", r.birthday);
-                $("#patient_phone").attr("value", r.phonenumber1);
-                $("#patient_instancyName").attr("value", r.emergencyContact);
-                $("#patient_instancyPhone").attr("value", r.emergencyPhone);
-                $("#patient_site").attr("value", r.provincename + r.cityname + r.townname + r.streetName);
+                $("#patient_phone").text(r.phonenumber1);
+                $("#patient_instancyName").text(r.emergencyContact);
+                $("#patient_instancyPhone").text(r.emergencyPhone);
+                $("#patient_site").text(r.provincename + r.cityname + r.townname + r.streetName);
             }
         });
         $.ajax({
@@ -2259,6 +2338,8 @@
                         //console.log(key+"-------------"+result[key]);
                         $("#"+key).attr("value",result[key]);// 填框赋值
                         $("#requirerestor").text(result["requirerestor"]);//textarea赋值
+                        $("#requirerestor").trigger("keyup");
+                        $("#replaceBox").text(result["requirerestor"]);//textarea替换框赋值
                         if(result[key].indexOf(";")>0){
                             var checkboxVal= result[key];//拼接多选框的值
                             var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
@@ -2922,6 +3003,7 @@
             $(".article_two").css('display','none');
             $(".route").css('height','325px');
         }
+        $(".conceal").css('display','block');
         $(".btns").css('display','none');
         bdhtml=window.document.body.innerHTML;
         sprnstr="<!--startprint-->";
