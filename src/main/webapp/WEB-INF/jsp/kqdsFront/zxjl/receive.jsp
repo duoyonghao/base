@@ -510,16 +510,22 @@
     }
 
     function updaterecord(status) {
-        $.ajax({
-            type: "POST",
-            url: '<%=contextPath%>/KQDS_UserDocumentAct/updaterecord.act',
-            data: {usercode: onclickrowOobj.usercode, contagion: status},
-            dataType: "json",
-            success: function (data) {
-                layer.alert("操作成功!");
-            }, error: function (data) {
-                layer.alert("操作失败!");
-            }
+        layer.confirm('是否患有传染性疾病？', {
+            btn: ['是', '否'] //按钮
+        }, function () {
+            $.ajax({
+                type: "POST",
+                url: '<%=contextPath%>/KQDS_UserDocumentAct/updaterecord.act',
+                data: {usercode: onclickrowOobj.usercode, contagion: status},
+                dataType: "json",
+                success: function (data) {
+                    layer.alert("操作成功!");
+                }, error: function (data) {
+                    layer.alert("操作失败!");
+                }
+            });
+        }, function () {
+
         });
     }
 
