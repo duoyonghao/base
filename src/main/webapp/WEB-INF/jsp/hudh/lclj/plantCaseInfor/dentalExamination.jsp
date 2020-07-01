@@ -468,7 +468,7 @@
                         <label><input class="" type="radio" name="labialline" value="中"/><span class=" ">中</span></label>
                         <label><input class="" type="radio" name="labialline" value="低"/><span class=" ">低</span></label>
                     </td>
-                    <td colspan="2" class="problemitem"><span class="">其他:</span><input id="others" class="border_bottom" TextLengthCheck(this.id,8); style="width: 80%"/></td>
+                    <td colspan="2" class="problemitem"><span class="">其他:</span><input id="others" class="border_bottom" onblur="TextLengthCheck(this.id,15);" style="width: 80%"/></td>
                 </tr>
                 <tr>
                     <td class="problemitem" colspan="2"><span class="">口腔治疗经历</span></td>
@@ -1261,6 +1261,7 @@
             var horizontalcurve=$("#oralSpecialtyExamination").find("input[name='horizontalcurve']:checked").val();//横曲线
             var distancebetween=$("#distancebetween").val();//颌间距
             var labialline=$("#oralSpecialtyExamination").find("input[name='labialline']:checked").val();//唇线
+            var others=$("#others").val();//其他
             var gumtypes=$("#oralSpecialtyExamination").find("input[name='gumtypes']:checked").val();//牙龈生物学类型
             var undergo=inputCheckedSave("undergo"); //口腔治疗经历
             var periodontalcondition=inputCheckedSave("periodontalcondition");//牙周情况
@@ -1301,6 +1302,7 @@
                 horizontalcurve : horizontalcurve,
                 distancebetween : distancebetween,
                 labialline : labialline,
+                others:others,
                 gumtypes : gumtypes,
                 undergo : undergo,
                 periodontalcondition : periodontalcondition,
@@ -1388,6 +1390,8 @@
                             })//复选框及单选框赋值
                             $("#"+i+"[type='text']").attr("value",res[i]);// 填框赋值
                         }
+                        // 其他
+                        $("#others").val(res[i]);
 // 	 					牙位赋值start
                         if(res[i]="onedu"){
                             var toothLoose=res.onedu;

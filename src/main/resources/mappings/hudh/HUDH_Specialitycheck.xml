@@ -50,10 +50,11 @@
     <result column="createuser" jdbcType="VARCHAR" property="createuser" />
     <result column="createtime" jdbcType="VARCHAR" property="createtime" />
     <result column="organization" jdbcType="VARCHAR" property="organization" />
-      <result column="patienttime" jdbcType="VARCHAR" property="patientTime" />
-      <result column="doctortime" jdbcType="VARCHAR" property="doctorTime" />
-      <result column="patient_signature" jdbcType="VARCHAR" property="patientSignature" />
-      <result column="doctor_signature" jdbcType="VARCHAR" property="doctorSignature" />
+    <result column="patienttime" jdbcType="VARCHAR" property="patientTime" />
+    <result column="doctortime" jdbcType="VARCHAR" property="doctorTime" />
+    <result column="patient_signature" jdbcType="VARCHAR" property="patientSignature" />
+    <result column="doctor_signature" jdbcType="VARCHAR" property="doctorSignature" />
+    <result column="others" jdbcType="VARCHAR" property="others" />
   </resultMap>
   <sql id="Base_Column_List">   
 	SEQ_ID,lcljId, lcljNum, userId, IsmouthOpening, mouthOpening, arthrosis, occludingRelation, verticalCurve, horizontalCurve, 
@@ -62,7 +63,7 @@
     teethTilted, nub, defectiveRepair, mouthApicitis, teethElongation, maxillarySinus, 
     alveolar, genyantrum, boneMass, oneBone, twoBone, threeBone, fourBoue, anodontism, 
     teethDefect, dummy, parodontopathy, residualRoot, residualRown, apicitis, other, createuser, createtime, organization,
-    patienttime,doctortime,patient_signature,doctor_signature
+    patienttime,doctortime,patient_signature,doctor_signature,others
   </sql>
   <insert id="insert" parameterType="com.hudh.lclj.entity.HudhSpecialitycheck">
     insert into HUDH_SpecialityCheck (<include refid="Base_Column_List" />)
@@ -82,7 +83,7 @@
       #{parodontopathy,jdbcType=VARCHAR}, #{residualroot,jdbcType=VARCHAR}, #{residualrown,jdbcType=VARCHAR}, 
       #{apicitis,jdbcType=VARCHAR}, #{other,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR},
       #{createtime,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, #{patientTime,jdbcType=VARCHAR}, #{doctorTime,jdbcType=VARCHAR},
-      #{patientSignature,jdbcType=VARCHAR}, #{doctorSignature,jdbcType=VARCHAR})
+      #{patientSignature,jdbcType=VARCHAR}, #{doctorSignature,jdbcType=VARCHAR}, #{others,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hudh.lclj.entity.HudhSpecialitycheck">
     insert into HUDH_SpecialityCheck
@@ -234,6 +235,9 @@
         <if test="doctorSignature != null">
             doctor_signature,
         </if>
+        <if test="others != null">
+            others,
+        </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test=" seqId != null">
@@ -371,18 +375,21 @@
       <if test="other != null">
         #{other,jdbcType=VARCHAR},
       </if>
-        <if test="patientTime != null">
-            #{patientTime,jdbcType=VARCHAR},
-        </if>
-        <if test="doctorTime != null">
-            #{doctorTime,jdbcType=VARCHAR},
-        </if>
-        <if test="patientSignature != null">
-            #{patientSignature,jdbcType=VARCHAR},
-        </if>
-        <if test="doctorSignature != null">
-            #{doctorSignature,jdbcType=VARCHAR},
-        </if>
+      <if test="patientTime != null">
+        #{patientTime,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorTime != null">
+        #{doctorTime,jdbcType=VARCHAR},
+      </if>
+      <if test="patientSignature != null">
+        #{patientSignature,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorSignature != null">
+        #{doctorSignature,jdbcType=VARCHAR},
+      </if>
+      <if test="others != null">
+        #{others,jdbcType=VARCHAR}
+      </if>
     </trim>
   </insert>
   <update id="updateByseqId" parameterType="com.hudh.lclj.entity.HudhSpecialitycheck">
@@ -521,7 +528,10 @@
             patient_signature=#{patientSignature,jdbcType=VARCHAR},
         </if>
         <if test="doctorSignature != null">
-            doctor_signature=#{doctorSignature,jdbcType=VARCHAR}
+            doctor_signature=#{doctorSignature,jdbcType=VARCHAR},
+        </if>
+        <if test="others != null">
+            others=#{others,jdbcType=VARCHAR}
         </if>
     </set>
    	  WHERE SEQ_ID = #{seqId,jdbcType=VARCHAR}
