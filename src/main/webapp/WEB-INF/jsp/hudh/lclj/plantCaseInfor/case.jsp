@@ -379,7 +379,7 @@
         height:100%;
     }
     @page {
-        size: auto;
+        size: 206mm 280mm;
         margin: 0mm auto;
     }
     #replaceBox{
@@ -489,7 +489,7 @@
         <div class="row">
             <div class="col-md-12 col-sm-12" style="position: relative;padding: 0;border-bottom: 2px solid #776c6c;">
                 <img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
-                <span class="bigtitle">检查及诊断</span>
+                <span class="bigtitle">诊疗方案</span>
             </div>
         </div>
 
@@ -538,17 +538,9 @@
                     </div>
                 </div>
             </div>
+        </br>
 
-        <!-- 大盒子，外边框 -->
-        <!-- 诊疗方案 -->
-        <div class="row">
-            <div class="col-md-12 col-sm-12 colDefined">
-                <span class="smalltitle">诊疗方案</span>
-                <!-- <font>●</font> -->
-            </div>
-        </div>
         <div style="border:1px solid #b3b3b3;">
-            <!-- hezi -->
             <%-- <div class="scheme">
 
                --<div class="col-md-12 col-sm-12 col-xs-12 colDefined fangan">
@@ -862,7 +854,7 @@
                             <ul class="loseTooth_option">
                                 <li>
                                     <input name="preoperatives" id="explains" type="checkbox"
-                                           value="交待手术日注意事项 " /><label for="explains">种植系统 </label>
+                                           value="交待手术日注意事项 " /><label for="explains">交待手术日注意事项 </label>
                                 </li>
                                 <li>
                                     <input name="preoperatives" id="spreoperative" type="checkbox"
@@ -1287,9 +1279,8 @@
                                     </li>
                                     <li>(</li>
                                     <li>
-                                        <input name="paraoperative" id="hiao2" type="checkbox" value="海奥2" /><label
-                                            for="hiao2">海奥
-                                    </label>
+                                        <input name="paraoperative" id="hiao2" type="checkbox" value="博纳格" /><label
+                                            for="hiao2">博纳格 </label>
                                     </li>
                                     <li>
                                         <input name="paraoperative" id="bioOss2" type="checkbox"
@@ -1548,7 +1539,7 @@
         <div class="row conceal">
             <div class="col-md-12 col-sm-12" style="position: relative;padding: 0;">
                 <img id="logoImg" src="<%=contextPath%>/static/image/kqdsFront/jiagong/logoName.png">
-                <span class="bigtitle">检查及诊断</span>
+                <span class="bigtitle">诊疗方案</span>
             </div>
         </div>
         <div style="border:1px solid #b3b3b3;">
@@ -1835,7 +1826,7 @@
                     </div>
                 </div>
             </div>
-            <span class="smalltitle">替代方案：</span>
+            <span class="smalltitle" style="font-weight: 800;">替代方案：</span>
             <div style="height: 50px;border-bottom: 1px solid #b3b3b3;border-top: 1px solid #b3b3b3;">
                 <ul class="loseTooth_option" style="margin-left:10px;">
                     <li style="line-height: 49px; margin-right: 10px;">
@@ -3005,6 +2996,35 @@
         }
         $(".conceal").css('display','block');
         $(".btns").css('display','none');
+
+        var imgone = $("#img")[0].src
+        if( !imgone){
+            $("#img").css('display', 'none');
+            console.log("111")
+        }
+        var repairImgone = $("#repairImg")[0].src
+        if(!repairImgone){
+            $("#repairImg").css('display', 'none');
+        }
+        var patientimg1one = $("#patientimg1")[0].src
+        if(!patientimg1one){
+            $("#patientimg1").css('display', 'none');
+        }
+        var operationdoctortimeone = $("#operationdoctortime").val()
+        if(!operationdoctortimeone){
+            $("#operationdoctortime").css('display', 'none');
+        }
+        var doctortimeone = $("#doctortime").val()
+        if(!doctortimeone){
+            $("#doctortime").css('display', 'none');
+        }
+        var patienttime1one = $("#patienttime1").val()
+        if(!patienttime1one){
+            $("#patienttime1").css('display', 'none');
+        }
+
+
+
         bdhtml=window.document.body.innerHTML;
         sprnstr="<!--startprint-->";
         eprnstr="<!--endprint-->";
