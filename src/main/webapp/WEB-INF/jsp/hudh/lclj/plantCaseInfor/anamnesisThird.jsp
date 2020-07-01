@@ -173,8 +173,12 @@
 		.patient .inputDiv:nth-child(4){
 			width: 190px!important;
 		}
+		.patient .inputDiv:nth-child(8){
+			width: 160px!important;
+		}
 		.patient .inputDiv:nth-child(9){
-			width: 190px!important;
+			/*width: 190px!important;*/
+			width: 160px!important;
 		}
 	}
 	#anamnesis_continer .bgwhite{
@@ -467,10 +471,10 @@
 						<%--                    <span>出生年月：</span><font type="text" id="patient_bone"></font>--%>
 						<span>现居住地址：</span><font type="text" id="patient_address"></font>
 					</div>
-					<div class="inputDiv" style="clear:left;">
+					<div class="inputDiv urgencyDiv" style="clear:left;">
 						<span>联系电话：</span><font type="text" id="patient_tel"></font>
 					</div>
-					<div class="inputDiv" >
+					<div class="inputDiv urgencyDiv" >
 						<span>紧急联系人：</span><font type="text" id="patient_emergency_contact"></font>
 					</div>
 					<div class="inputDiv">
@@ -758,15 +762,9 @@
 				</li>
 			</ul>
 			<!-- 选择组合框 -->
-
 			<div class="select_group common_style">
 				<!-- 选项名称 -->
-				<span class="select_name">是否要求种植修复:</span>
-				<!-- 选项 -->
-				<div class="select_item" style="width:auto;">
-					<input name="implantrestoration" id="ir_yes" value="0" type="radio" style="vertical-align: text-bottom;margin-left: 10px;"/><label for="ir_yes">是</label>
-					<input name="implantrestoration" id="ir_no" value="1" type="radio" style="vertical-align: text-bottom;margin-left: 10px;"/><label for="ir_no">否</label>
-				</div>
+				<span class="select_name">要求种植修复</span>
 			</div>
 		</div>
 	</div>
@@ -792,16 +790,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="hypertension" disabled type="text" style="cursor:not-allowed;" placeholder="时间"/>
-			</div>
-		</div>
-		<div class="col-md-3 col-sm-3 col-xs-3 colDefined combgGray">
-			<!-- 填写组合框 -->
-			<div class="fillWrite_group common_style">
-				<!-- 填写名称 -->
-				<span class="fillWrite_name" style="font-weight: normal;">目前血压:</span>
-				<!-- 填写框-->
-				<input id="pressure" disabled style="width:120px;text-align:center;padding:0px;cursor:not-allowed;" class="fillWrite_input" placeholder="125/69" onblur="TextLengthCheck(this.id,10);" type="text"/>
+				<input id="hypertension" disabled type="text" style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-3 col-sm-3 col-xs-3 colDefined combgGray backColor">
@@ -815,6 +804,15 @@
 					<input name="istakemedicie" disabled id="isTakeMedicie_y" value="1" type="radio"/><label for="isTakeMedicie_y">是</label>
 					<input name="istakemedicie" disabled id="isTakeMedicie_n" value="0" type="radio"/><label for="isTakeMedicie_n">否</label>
 				</div>
+			</div>
+		</div>
+		<div class="col-md-3 col-sm-3 col-xs-3 colDefined combgGray">
+			<!-- 填写组合框 -->
+			<div class="fillWrite_group common_style">
+				<!-- 填写名称 -->
+				<span class="fillWrite_name" style="font-weight: normal;">目前血压:</span>
+				<!-- 填写框-->
+				<input id="pressure" disabled style="width:120px;text-align:center;padding:0px;cursor:not-allowed;" class="fillWrite_input" placeholder="125/69" onblur="TextLengthCheck(this.id,10);" type="text"/>
 			</div>
 		</div>
 		<%--<div class="col-md-5 col-sm-6 col-xs-6 colDefined combgGray">
@@ -845,7 +843,7 @@
 		<div class="col-md-2 col-sm-3 col-xs-3 colDefined">
 			<!-- 名称div -->
 			<div class="name_div common_style bgwhite">
-				<span>心脏病 心绞痛、心衰:</span>
+				<span>心脏疾病:</span>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
@@ -920,7 +918,7 @@
 			<!-- 选择组合框 -->
 			<div class="select_group common_style">
 				<!-- 选项名称 -->
-				<span class="select_name">怎么控制:</span>
+				<span class="select_name">控制方式:</span>
 				<!-- 选项 -->
 				<div class="select_item" style="width:auto;">
 					<input name="dietcontrol" id="dietControl_eat" value="饮食" type="checkbox" style="vertical-align: text-bottom;margin-left: 10px;" disabled="disabled"/><label for="dietControl_eat" style="margin-right: ">饮食</label>
@@ -1181,7 +1179,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="maxillofacial" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="maxillofacial" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 	</div>
@@ -1348,7 +1346,7 @@
 				<!-- 填写名称 -->
 				<span class="fillWrite_name" style="font-weight: normal;">注射:</span>
 				<!-- 填写框-->
-				<input id="pharmacy" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="pharmacy" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-3 col-xs-3 colDefined">
@@ -1357,7 +1355,7 @@
 				<!-- 填写名称 -->
 				<span class="fillWrite_name" style="font-weight: normal;">口服:</span>
 				<!-- 填写框-->
-				<input id="takeorallytime" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="takeorallytime" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<%--<div class="col-md-3 col-sm-12 col-xs-12 colDefined">
@@ -1380,6 +1378,51 @@
 			&lt;%&ndash;打印展示&ndash;%&gt;
 			<div class="medicineText">常用药物：<span class="pharmacymedicine"></span></div>
 		</div>--%>
+	</div>
+	<%--口干--%>
+	<div class="row">
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
+			<!-- 名称div -->
+			<div class="name_div common_style">
+				<span>口干:</span>
+			</div>
+		</div>
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
+			<!-- 选项div -->
+			<div class="option_div common_style">
+				<input name="isdry" id="isdry_n" value="0" type="radio" onclick="ishaveillness(this.name);ishavaGlucocorticoids(this.name);"/><label for="isdry_n">无</label>
+				<input name="isdry" id="isdry_y" value="1" type="radio" onclick="ishaveillness(this.name);ishavaGlucocorticoids(this.name);"/><label for="isdry_y">有</label>
+			</div>
+		</div>
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
+			<!-- 时间div -->
+			<%--<div class="time_div common_style">
+				<input id="dry" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+			</div>--%>
+		</div>
+		<%--怀孕--%>
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
+			<!-- 名称div -->
+			<div class="name_div common_style">
+				<span>最近一次拔牙:</span>
+			</div>
+		</div>
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
+			<div class="select_group common_style">
+				<!-- 选项div -->
+				<div class="option_div">
+					<input name="ispullouttooth" id="ispullouttooth_n" value="0" type="radio" onclick="ishaveillness(this.name)"/><label for="ispullouttooth_n">无</label>
+					<input name="ispullouttooth" id="ispullouttooth_y" value="1" type="radio" onclick="ishaveillness(this.name)"/><label for="ispullouttooth_y">有</label>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
+			<!-- 填写组合框 -->
+			<div class="fillWrite_group common_style">
+				<!-- 填写框-->
+				<input id="pullouttooth" class="fillWrite_input consent_time" type="text" disabled style="width:150px;cursor:not-allowed;" readonly="readonly" placeholder="请选择日期"/>
+			</div>
+		</div>
 	</div>
 	<!-- 其他系统疾病 -->
 	<div class="row bgWhite">
@@ -1484,7 +1527,7 @@
 			<!-- 填写组合框 -->
 			<div class="fillWrite_group common_style">
 				<!-- 填写框-->
-				<input id="smoketime" class="fillWrite_input" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/>
+				<input id="smoketime" class="fillWrite_input" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-6 colDefined">
@@ -1519,7 +1562,7 @@
 			<!-- 填写组合框 -->
 			<div class="fillWrite_group common_style">
 				<!-- 填写框-->
-				<input id="drinktime" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="drinktime" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-6 colDefined combgGray">
@@ -1537,7 +1580,7 @@
 			<!-- 填写组合框 -->
 			<div class="fillWrite_group common_style">
 				<!-- 填写名称 -->
-				<span class="fillWrite_name">磨牙:</span>
+				<span class="fillWrite_name">夜磨牙:</span>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
@@ -1553,7 +1596,7 @@
 			<!-- 填写组合框 -->
 			<div class="fillWrite_group common_style">
 				<!-- 填写框-->
-				<input id="odontoprisis" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="odontoprisis" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-6 colDefined">
@@ -1581,13 +1624,13 @@
 				<input name="chewinghabits" id="chewingHabits_d" value="双侧" type="radio"/><label for="chewingHabits_d">双侧</label>
 			</div>
 		</div>
-		<div class="col-md-2 col-sm-1 col-xs-1 colDefined">
+		<%--<div class="col-md-2 col-sm-1 col-xs-1 colDefined">
 			<!-- 填写组合框 -->
 			<div class="fillWrite_group common_style">
 				<!-- 填写框-->
 				<input id="chewinghabitstime" class="fillWrite_input" type="text" placeholder="时间"/>
 			</div>
-		</div>
+		</div>--%>
 		<div class="col-md-6 col-sm-7 col-xs-7 colDefined">
 			<!-- 填写组合框 -->
 			<div class="fillWrite_group common_style">
@@ -1685,7 +1728,7 @@
 				<input id="patienttime" type="text" class="signatureTime" readonly="readonly" placeholder="请选择日期"/>
 			</div>
 		</div>
-		<div class="col-md-6 col-sm-6 col-xs-6">
+		<%--<div class="col-md-6 col-sm-6 col-xs-6">
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-6">
 			<!-- 医生签名  -->
@@ -1694,7 +1737,7 @@
 				<img id="img" style="width:156px;height:auto;"/>
 				<input id="doctortime" type="text" class="signatureTime" readonly="readonly" placeholder="请选择日期"/>
 			</div>
-		</div>
+		</div>--%>
 	</div>
 
 </div>
@@ -1815,7 +1858,7 @@
 		});
 	}
 
-	var doctorSignature = document.getElementById("doctorSignature");
+	/*var doctorSignature = document.getElementById("doctorSignature");
 	doctorSignature.onclick = function(){
 		if(doctorstatus){
 			layer.open({
@@ -1827,7 +1870,7 @@
 				content: contextPath + '/SignatureAct/toSignature.act?category=种植'
 			});
 		}
-	}
+	}*/
 	function addSignature(){
 		$("#img").css("display","");
 		$("#img").attr('src', signature);
@@ -2136,6 +2179,10 @@
 		var PatientTime = $("#patienttime").val();//患者签字时间
 		/* var doctorSignature = $("#doctorSignature").val(); *///医生签字
 		var doctorTime = $("#doctortime").val();//医生签字时间     72
+		//新增参数
+		var isdry = $('input[name="isdry"]:checked').val();//口干
+		var ispullouttooth = $('input[name="ispullouttooth"]:checked').val();//最近一次拔牙
+		var pullouttooth = $("#pullouttooth").val();//最近一次拔牙时间
 
 		var url = contextPath + '/HUDH_ZzblAdviceAct/updateCaseHistoryById.act';
 		var param = {
@@ -2241,7 +2288,11 @@
 			patientTime : PatientTime,
 			doctorTime : doctorTime,
 			patientsignature : patientsignature,
-			doctorsignature : signature
+			doctorsignature : signature,
+			//新增参数
+			isdry : isdry,
+			ispullouttooth : ispullouttooth,
+			pullouttooth : pullouttooth
 		};
 		//console.log(JSON.stringify(param)+"------------修改参数");
 		$.axseSubmit(url, param,function() {},function(r) {
@@ -2367,6 +2418,11 @@
 		/* var doctorSignature = $("#doctorSignature").val(); *///医生签字
 		var doctorTime = $("#doctortime").val();//医生签字时间     72
 
+		//新增参数
+		var isdry = $('input[name="isdry"]:checked').val();//口干
+		var ispullouttooth = $('input[name="ispullouttooth"]:checked').val();//最近一次拔牙
+		var pullouttooth = $("#pullouttooth").val();//最近一次拔牙时间
+
 		var url = contextPath + '/HUDH_ZzblAdviceAct/saveCaseHistory.act';
 		var param = {
 			lcljId :  id,
@@ -2470,8 +2526,13 @@
 			patientTime : PatientTime,
 			doctorTime : doctorTime,
 			patientsignature : patientsignature,
-			doctorsignature : signature
+			doctorsignature : signature,
+			//新增参数
+			isdry : isdry,
+			ispullouttooth : ispullouttooth,
+			pullouttooth : pullouttooth
 		};
+		//console.log(JSON.stringify(param)+"---------保存参数");
 		$.axseSubmit(url, param,function() {},function(r) {
 			layer.alert("保存成功！", {
 				end: function() {
