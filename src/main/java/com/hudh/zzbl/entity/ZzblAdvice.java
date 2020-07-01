@@ -455,17 +455,11 @@ public class ZzblAdvice implements Serializable {
      * 修改时间
      */
     private String updatetime;
-    /**
-     * 口干
-     */
+
     private String isdry;
-    /**
-     * 最近一次拔牙
-     */
+
     private String ispullouttooth;
-    /**
-     * 最近一次拔牙时间
-     */
+
     private String pullouttooth;
 
     public String getIsdry() {
