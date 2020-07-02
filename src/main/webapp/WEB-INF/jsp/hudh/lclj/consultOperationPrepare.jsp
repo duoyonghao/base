@@ -126,7 +126,7 @@
 										</div>
 									</div>
 									<br/>
-									<label><input name="plantRecords" type="checkbox" value="种植病历"><font class="plantRecords">新种植病历</font></label>
+<%--									<label><input name="plantRecords" type="checkbox" value="种植病历"><font class="plantRecords">新种植病历</font></label>--%>
 								</li>
 								<li class="positionLi jczdLi">
 									<label><input name="Consultation" type="checkbox" disabled="disabled" value="口内检查" /><font class="mustIn">*</font><font class="examine_diagnose" onclick="showHiddenClick(this,'jczdLi');">2、口腔专科检查</font></label>
