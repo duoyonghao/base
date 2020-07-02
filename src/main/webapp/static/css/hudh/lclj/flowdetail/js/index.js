@@ -779,6 +779,10 @@ function b() {
  * 
  */
 var buttonFun = {
+    	additionalRecording : function(thi){
+            $("#lclj_tj").attr("disabled",false).css("background","#00A6C0").css("cursor","pointer");
+            $("#lclj_by").attr("disabled",false).css("background","#00A6C0").css("cursor","pointer");
+        },
 		goAssessor : function(thi){
 			var lcljss_Id=lcljId;
 			if(!lcljss_Id||lcljss_Id==""||lcljss_Id==null) {
@@ -1643,7 +1647,7 @@ var buttonFun = {
 			var extractionleftup1_r = $(window.frames["myiframe"].document).find("input[name='extractionleftup1_r']").val();
 			var extractionleftdown1_l = $(window.frames["myiframe"].document).find("input[name='extractionleftdown1_l']").val();
 			var extractionleftdown1_r = $(window.frames["myiframe"].document).find("input[name='extractionrightdown1_r']").val();
-			
+
 			var flag = true;
 			layer.alert('确认当前节点操作已全部完成', {
 				  closeBtn: 0    // 是否显示关闭按钮
