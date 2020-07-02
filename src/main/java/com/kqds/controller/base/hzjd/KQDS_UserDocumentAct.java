@@ -321,6 +321,15 @@ public class KQDS_UserDocumentAct {
         return mv;
     }
 
+    @RequestMapping(value = "/toHzjd_zxzl.act")
+    public ModelAndView toHzjd_zxzl(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String usercode = request.getParameter("usercode");
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("usercode", usercode);
+        mv.setViewName("/kqdsFront/hzjd/hzjd_zxzl.jsp");
+        return mv;
+    }
+
     @RequestMapping(value = "/toHzjd_Net.act")
     public ModelAndView toHzjd_Net(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String usercode = request.getParameter("usercode");
