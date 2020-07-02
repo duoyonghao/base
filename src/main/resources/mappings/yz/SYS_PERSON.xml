@@ -601,7 +601,7 @@
 		from
 		<include refid="tableName"></include>
 		p
-		LEFT JOIN SYS_DEPT d on p.dept_id = d.seq_id
+		LEFT JOIN SYS_DEPT d on p.dept_id = d.seq_id OR p.xy_dept = d.seq_id
 		where 1=1
 		and
 		d.DEPT_CODE = #{organization}
