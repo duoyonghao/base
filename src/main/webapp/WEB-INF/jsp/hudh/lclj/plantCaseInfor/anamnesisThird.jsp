@@ -180,6 +180,9 @@
 			/*width: 190px!important;*/
 			width: 160px!important;
 		}
+		.inputPrintWidth{
+			width: 50px !important;
+		}
 	}
 	#anamnesis_continer .bgwhite{
 		background-color: white;
@@ -840,7 +843,7 @@
 	</div>
 	<!-- 心脏病 -->
 	<div class="row">
-		<div class="col-md-2 col-sm-3 col-xs-3 colDefined">
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 			<!-- 名称div -->
 			<div class="name_div common_style bgwhite">
 				<span>心脏疾病:</span>
@@ -858,7 +861,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 			<!-- 时间div -->
 			<div class="time_div common_style bgwhite">
-				<input id="heardiease" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/>
+				<input id="heardiease" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-3 col-sm-5 col-xs-5 colDefined backcolorGray">
@@ -911,7 +914,7 @@
 		<div class="col-md-1 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="diabetes" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="diabetes" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-3 col-sm-6 col-xs-6 colDefined combgGray backColor">
@@ -1016,7 +1019,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="bloodcoagulation" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/>
+				<input id="bloodcoagulation" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 	</div>
@@ -1038,7 +1041,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="antifreezingtime" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/>
+				<input id="antifreezingtime" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<%--<div class="col-md-3 col-sm-4 col-xs-4 colDefined backcolorGray" style="padding-left: 10px;">
@@ -1078,7 +1081,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="hepatitisb" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/>
+				<input id="hepatitisb" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
@@ -1097,7 +1100,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="hepatitisc" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/>
+				<input id="hepatitisc" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 	</div>
@@ -1119,7 +1122,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="hiv" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="hiv" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
@@ -1138,7 +1141,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="cancer" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="cancer" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 	</div>
@@ -1160,7 +1163,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="syphilis" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="syphilis" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
@@ -1201,7 +1204,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="inflammation" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="inflammation" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-1 col-xs-1 colDefined backcolorGray">
@@ -1220,7 +1223,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="drugabuse" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="drugabuse" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 	</div>
@@ -1242,7 +1245,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="psychosis" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="psychosis" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
@@ -1261,7 +1264,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="mucousmembrane" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="mucousmembrane" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 	</div>
@@ -1283,7 +1286,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="glucocorticoids" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="glucocorticoids" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<%--怀孕--%>
@@ -1305,7 +1308,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="pregnancy" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="pregnancy" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<%--<div class="col-md-6 col-sm-5 col-xs-5 colDefined combgGray">
@@ -1449,7 +1452,7 @@
 		<div class="col-md-2 col-sm-1 col-xs-1 colDefined">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="otherdiseases" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input class="inputPrintWidth" id="otherdiseases" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 	</div>
@@ -1481,7 +1484,7 @@
 		<div class="col-md-2 col-sm-1 col-xs-1 colDefined combgGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="allergiclength" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input class="inputPrintWidth" id="allergiclength" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 	</div>
@@ -1499,7 +1502,7 @@
 		<div class="col-md-2 col-sm-1 col-xs-1 colDefined">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="onmedicationtime" type="text" placeholder="时间"/>
+				<input class="inputPrintWidth" id="onmedicationtime" type="text" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 	</div>
