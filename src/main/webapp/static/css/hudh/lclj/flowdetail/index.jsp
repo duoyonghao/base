@@ -384,6 +384,7 @@
 		</div>
 	</div>
 	<div id="buttom_info" style="background-color: #f5f5f5;">
+		<a href="javascript:void(0);"  class="blue_btn hide" onclick = "buttonFun.additionalRecording(this);" id="lclj_additional" >补录</a>
 		<a href="javascript:void(0);"  class="blue_btn hide" onclick = "buttonFun.goAssessor(this);" id="lclj_check" >审核</a>
 		<a href="javascript:void(0);" class="blue_btn hide" onclick="buttonFun.electiveOperation(this);" id="lclj_yy">预约</a> 
 		<button href="javascript:void(0);" class="blue_btn hide" onclick="buttonFun.gotoNext(this);" id="lclj_tj">提交</button> 
@@ -469,6 +470,7 @@
 		}
 		/* 按钮 */
 		var btnList = '[';
+        btnList	+= '{"qx":"lclj_additional","name":"补录"},'; // 最后一个不要逗号
 		btnList	+= '{"qx":"lclj_check","name":"审核"},'; // 最后一个不要逗号
 		btnList += '{"qx":"lclj_yy","name":"预约"},';
 		btnList += '{"qx":"lclj_tj","name":"提交"},';
