@@ -54,10 +54,10 @@ public class AdviceDao {
 	    * @return: JSONObject
 	   */
 	  @SuppressWarnings("unchecked")
-	public  JSONObject findCaseHistoryById(String id)
+	public  List<JSONObject> findCaseHistoryById(String id)
 	    throws Exception
 	  {
-	    JSONObject caseHistory = (JSONObject)dao.findForObject("HUDH_ZZBL_ADVICE.findCaseHistoryById", id);
+	  	List<JSONObject> caseHistory= (List<JSONObject>)dao.findForList("HUDH_ZZBL_ADVICE.findCaseHistoryById", id);
 	    return caseHistory;
 	  }
 	  

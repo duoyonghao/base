@@ -18,8 +18,8 @@ public class IZzblAdviceServiceImpl implements IZzblAdviceService {
     }
 
     @Override
-    public JSONObject findCaseHistoryById(String paramString) throws Exception {
-        JSONObject list = adviceDao.findCaseHistoryById(paramString);
+    public List<JSONObject> findCaseHistoryById(String paramString) throws Exception {
+        List<JSONObject> list = adviceDao.findCaseHistoryById(paramString);
         return list;
     }
 

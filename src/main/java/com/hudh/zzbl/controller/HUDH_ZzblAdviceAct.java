@@ -79,8 +79,8 @@ public class HUDH_ZzblAdviceAct {
         String id = request.getParameter("id");
         try
         {
-            JSONObject caseHistory = zzblAdviceService.findCaseHistoryById(id);
-            YZUtility.DEAL_SUCCESS(caseHistory,null,response,this.logger);
+            List<JSONObject> caseHistory = zzblAdviceService.findCaseHistoryById(id);
+            YZUtility.RETURN_LIST(caseHistory,response,logger);
         }
         catch (Exception e)
         {
