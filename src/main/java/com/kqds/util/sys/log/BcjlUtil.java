@@ -189,7 +189,6 @@ public class BcjlUtil {
      * 参数有患者编号
      *
      * @param operName
-     * @param jlname
      * @param jlcontent
      * @param request
      * @throws Exception
@@ -202,7 +201,6 @@ public class BcjlUtil {
      * 参数有患者编号和挂号编号
      *
      * @param operName
-     * @param jlname
      * @param jlcontent
      * @param request
      * @throws Exception
