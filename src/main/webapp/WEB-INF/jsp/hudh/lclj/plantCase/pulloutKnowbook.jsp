@@ -254,14 +254,14 @@
 				<div class="col-md-3 col-sm-3 col-xs-3 colDefined" style="padding:0px;margin-left: -3%;">
 					<!-- 信息输入组合框 -->
 					<div class="rpInfo_import">
-						<span>职业：</font></span>
+						<span>职业：</span>
 						<input placeholder="此输入框最多展示12个字" onblur="TextLengthCheck(this.id,30);" style="width:60.5%;" id="profession" type="text"/>
 					</div>
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-6 colDefined" style="padding:0px;margin-left: -4%;">
 					<!-- 信息输入组合框 -->
 					<div class="rpInfo_import" style="width: 100%;overflow: hidden;">
-						<span style="float:left;">地址：</font></span>
+						<span style="float:left;">地址：</span>
 						<div style="float:left;width:82.5%;position: relative;">
 							<span id="address" class="textAuto_element address" placeholder='请输入地址' onblur="importTextLengthCheck(this.id,60);" onkeyup="diagnoseTextBorder(this.id);" style="font-size: 16px;font-weight: bold;" contenteditable="true"></span>
 						</div>
@@ -284,7 +284,7 @@
 				<div class="col-md-12 col-sm-12 col-xs-12 colDefined" style="padding:0px;">
 					<!-- 信息输入组合框 -->
 					<div class="rpInfo_import" style="width: 100%;overflow: hidden;">
-						<span style="float:left;">治疗部位：</font></span>
+						<span style="float:left;">治疗部位：</span>
 						<div style="float:left;width:82.5%;position: relative;">
 							<span id="treatmentparts" class="textAuto_element treatmentparts" placeholder='请输入治疗部位' onblur="importTextLengthCheck(this.id,120);" onkeyup="diagnoseTextBorder(this.id);" style="font-size: 16px;font-weight: bold;" contenteditable="true"></span>
 						</div>
@@ -388,8 +388,30 @@
 		var formParentObj;// 父页面的患者信息对象
 		var caseId=""; //已存在的病历id
 		var menuid=window.parent.menuid;//左侧菜单id
-		$(function(){
-		     var userAgent = navigator.userAgent; 
+        var userAgent = navigator.userAgent;
+        var signatureWidth='70%';
+        var signatureHeight='65%';
+        $(function(){
+            if (userAgent.match(/mobile/i)) {
+                var mql = window.matchMedia('(orientation: portrait)');
+                function onMatchMediaChange(mql) {
+                    if (mql.matches) {
+                        //竖屏
+                        signatureWidth='98%';
+                        signatureHeight='50%';
+                    } else {
+                        //横屏
+                        signatureWidth='98%';
+                        signatureHeight='73%';
+                    }
+                }
+                // 输出当前屏幕模式
+                onMatchMediaChange(mql);
+
+                // 监听屏幕模式变化
+                mql.addListener(onMatchMediaChange);
+
+            }
 		     if (userAgent.indexOf("iPad") > -1){
 		     	$("#print_Btn").hide();//移动端打印按钮隐藏
 		     }
@@ -457,7 +479,7 @@
 			        title: '签字',
 			        shadeClose: true,
 			        shade: 0.6,
-			        area: ['70%', '65%'],
+                    area:userAgent.indexOf("iPad")>-1?[signatureWidth,signatureHeight] : ['70%', '65%'],
 			        content: contextPath + '/SignatureAct/toSignature.act?category=种植'
 			    });
 			}
@@ -499,7 +521,7 @@
 			        title: '签字',
 			        shadeClose: true,
 			        shade: 0.6,
-			        area: ['70%', '65%'],
+                    area:userAgent.indexOf("iPad")>-1?[signatureWidth,signatureHeight] : ['70%', '65%'],
 			        content: contextPath + '/SignatureAct/toSignature.act?category=患者'
 			    });
 			}
