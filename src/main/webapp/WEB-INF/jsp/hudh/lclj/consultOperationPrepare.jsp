@@ -118,6 +118,7 @@
 								<li class="positionLi jwsLi">
 									<label><input name="Consultation" type="checkbox" disabled="disabled" value="询问既往史" /><font class="mustIn">*</font><font class="ask_Previous" onclick="showHiddenClick(this,'jwsLi');">1、询问既往史及体格检查</font></label>
 									<div class="caseContiner" style="display:none;">
+										<button class="btnStyle" onclick="toggleCase(this,1,1);">切换新版</button>
 										<div class="zlCases"></div>
 										<div class="selectCases">
 											<select id="allCases"></select>
@@ -361,8 +362,8 @@
             return false;
         };
 
-
-        initCaseHistory();  //初始化主诉及既往病史
+		var anamnesisUrl = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
+        initCaseHistory(anamnesisUrl,1);  //初始化主诉及既往病史
         initZzblOpration(); //初始化检查及诊断
         initDiagnosisProject(); //初始化诊疗方案
         initRepairProject(); //初始化修复方案
@@ -372,7 +373,7 @@
         document.addEventListener("click",function(event){
         	event=event||window.event;
             var eve=event.target||eve.elementSrc;
-        	if(eve.className=='ask_Previous' || eve.className=='examine_diagnose' || eve.className=='diagnosis_case' || eve.className=='xiufu_test' || eve.id=='allCases'){
+        	if(eve.className=='ask_Previous' || eve.className=='examine_diagnose' || eve.className=='diagnosis_case' || eve.className=='xiufu_test' || eve.id=='allCases' || eve.className=='btnStyle'){
         	}else{
         		$(".caseContiner").each(function(i,obj){
         			$(this).css("display","none");
