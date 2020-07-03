@@ -86,4 +86,11 @@ public class AdviceDao {
 	  {
 	    dao.deleteSingleUUID("HUDH_ZZBL_ADVICE.deleteCaseHistoryById", id);
 	  }
+
+	public  JSONObject findCaseHistoryBySeqid(String id)
+			throws Exception
+	{
+		JSONObject caseHistory= (JSONObject)dao.findForObject("HUDH_ZZBL_ADVICE.findCaseHistoryBySeqid", id);
+		return caseHistory;
+	}
 }
