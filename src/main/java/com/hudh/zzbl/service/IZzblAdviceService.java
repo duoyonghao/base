@@ -36,7 +36,7 @@ public interface IZzblAdviceService {
 	  * @param: @throws Exception      
 	  * @return: JSONObject
 	 */
-	public JSONObject findCaseHistoryById(String paramString)
+	public List<JSONObject> findCaseHistoryById(String paramString)
 		    throws Exception;
 	
 	/**
