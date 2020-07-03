@@ -169,7 +169,7 @@
         select
         <include refid="Base_Column_List"/>
         from HUDH_ZZBL_ADVICE
-        where lcljId = #{id,jdbcType=VARCHAR}
+        where lcljId = #{id,jdbcType=VARCHAR} order by createtime
     </select>
 
     <!-- 根据id查询主诉及既往病史 -->
