@@ -172,6 +172,14 @@
         where lcljId = #{id,jdbcType=VARCHAR}
     </select>
 
+    <!-- 根据id查询主诉及既往病史 -->
+    <select id="findCaseHistoryBySeqid" parameterType="String" resultType="json">
+        select
+        <include refid="Base_Column_List"/>
+        from HUDH_ZZBL_ADVICE
+        where SEQ_ID = #{SEQ_ID,jdbcType=VARCHAR}
+    </select>
+
     <!-- 根据Id更新主诉及既往病史 -->
     <update id="updateCaseHistoryById" parameterType="com.hudh.zzbl.entity.ZzblAdvice">
         update HUDH_ZZBL_ADVICE set

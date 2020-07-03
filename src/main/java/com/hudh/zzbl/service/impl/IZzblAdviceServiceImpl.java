@@ -32,4 +32,11 @@ public class IZzblAdviceServiceImpl implements IZzblAdviceService {
     public void deleteCaseHistory(String paramString) throws Exception {
         adviceDao.deleteCaseHistoryById(paramString);
     }
+
+    @Override
+    public JSONObject findCaseHistoryBySeqid(String paramString) throws Exception {
+        JSONObject list=adviceDao.findCaseHistoryBySeqid(paramString);
+        return list;
+    }
+
 }

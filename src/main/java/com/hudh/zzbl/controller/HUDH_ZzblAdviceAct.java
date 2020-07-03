@@ -145,4 +145,27 @@ public class HUDH_ZzblAdviceAct {
         return null;
     }
 
+    /**
+     * 根据seqid查询主诉表单
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/findCaseHistoryBySeqid.act")
+    public JSONObject findCaseHistoryBySeqid(HttpServletRequest request, HttpServletResponse response)
+            throws Exception
+    {
+        String id = request.getParameter("seq_id");
+        try
+        {
+            JSONObject caseHistory = zzblAdviceService.findCaseHistoryBySeqid(id);
+            YZUtility.DEAL_SUCCESS(caseHistory,null,response,this.logger);
+        }
+        catch (Exception e)
+        {
+            YZUtility.DEAL_ERROR(null, false, e, response, this.logger);
+        }
+        return null;
+    }
 }
