@@ -1493,10 +1493,8 @@
         reg.recesort,
         kcit2.dict_name as recesortname,
         reg.createuser as ghcreateuser,
-        per8.user_name as
-        ghcreateusername,
-        (select guider from
-        KQDS_UserDocument where usercode = c.usercode) as guider,
+        per8.user_name as ghcreateusername,
+        (select guider from KQDS_UserDocument where usercode = c.usercode) as guider,
         c.costno,
         c.regno,
         c.sfuser,
@@ -1520,15 +1518,14 @@
         c.nurse,
         c.techperson,
         u.kefu,
-        per2.user_name as
-        doctorname,
-        per1.user_name as
-        nursename,
+        per2.user_name as doctorname,
+        per1.user_name as nursename,
         per3.user_name as techpersonname,
         per4.user_name as askpersonname,
         per5.user_name as regdoctorname,
         per6.user_name as receiveno,
         per7.user_name as createusername,
+        per9.user_name as kefuname,
         c.seq_id,
         u.familyship,
         u.iscreateLclj,
