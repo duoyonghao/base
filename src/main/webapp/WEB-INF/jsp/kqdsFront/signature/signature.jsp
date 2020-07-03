@@ -118,7 +118,7 @@ $(document).ready(function() {
 			            lineWidth: '3'
 			        };
 	$("#signature").jSignature(arguments); */
-	var $sigdiv = $("#signature").jSignature({'UndoButton':true,lineWidth: '10'})
+	var $sigdiv = $("#signature").jSignature({'UndoButton':true,lineWidth: '5'})
 	, $tools = $('#tools')
 	, $extraarea = $('#displayarea')
 	, pubsubprefix = 'jSignature.demo.'

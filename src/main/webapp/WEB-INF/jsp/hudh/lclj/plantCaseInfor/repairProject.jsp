@@ -702,7 +702,7 @@
             </div>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
-            <div class="zl_signature">0
+            <div class="zl_signature">
                 <span id="patientSignature">患者签名：</span>
                 <img id="patientimg" style="width: 137px"/>
                 <input id="patienttime" type="text" class="consent_time signature_time inputheight2" readonly="readonly"
@@ -737,7 +737,30 @@
     var caseId = ""; //已存在的病历id
     var menuid = window.parent.menuid;//左侧菜单id
     var seqidFather = "<%=seqidFather%>";
+    var userAgent = navigator.userAgent;
+    var signatureWidth='70%';
+    var signatureHeight='65%';
     $(function () {
+        if (userAgent.match(/mobile/i)) {
+            var mql = window.matchMedia('(orientation: portrait)');
+            function onMatchMediaChange(mql) {
+                if (mql.matches) {
+                    //竖屏
+                    signatureWidth='98%';
+                    signatureHeight='50%';
+                } else {
+                    //横屏
+                    signatureWidth='98%';
+                    signatureHeight='73%';
+                }
+            }
+            // 输出当前屏幕模式
+            onMatchMediaChange(mql);
+
+            // 监听屏幕模式变化
+            mql.addListener(onMatchMediaChange);
+
+        }
         //时间选择
         $(".consent_time").datetimepicker({
             language: 'zh-CN',
@@ -796,7 +819,7 @@
                 title: '签字',
                 shadeClose: true,
                 shade: 0.6,
-                area: ['70%', '65%'],
+                area:userAgent.indexOf("iPad")>-1?[signatureWidth,signatureHeight] : ['70%', '65%'],
                 content: contextPath + '/SignatureAct/toSignature.act?category=种植'
             });
         }
@@ -818,7 +841,7 @@
                 title: '签字',
                 shadeClose: true,
                 shade: 0.6,
-                area: ['70%', '65%'],
+                area:userAgent.indexOf("iPad")>-1?[signatureWidth,signatureHeight] : ['70%', '65%'],
                 content: contextPath + '/SignatureAct/toSignature.act?category=修复'
             });
         }
@@ -840,7 +863,7 @@
                 title: '签字',
                 shadeClose: true,
                 shade: 0.6,
-                area: ['70%', '65%'],
+                area:userAgent.indexOf("iPad")>-1?[signatureWidth,signatureHeight] : ['70%', '65%'],
                 content: contextPath + '/SignatureAct/toSignature.act?category=患者'
             });
         }
