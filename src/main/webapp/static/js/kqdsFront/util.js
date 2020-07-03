@@ -319,6 +319,7 @@ function addDProject(thi,num,casenum){
 	var contentUrl="";  //要打开的弹窗路径
 	var layerTitle="";
 	if(casenum==1 || casenum=="1"){
+		console.log("主诉弹窗*******");
 		layerTitle='主诉及既往病史';
 		if(consultAddBtn){
 			contentUrl=contextPath + "/ZzblViewAct/toAnamnesisInfor.act?seqidFather="+seqid;
@@ -346,6 +347,13 @@ function addDProject(thi,num,casenum){
 		}else{
 			contentUrl=contextPath + "/ZzblViewAct/toZzllRepairProject.act?seqidFather="+seqid;
 		}
+	}else if(casenum==5){
+		layerTitle='新版主诉即既往病史';
+		if(consultAddBtn){
+			contentUrl=contextPath + "/ZzblViewAct/toAnamnesisThirdInfor.act?seqidFather="+seqid;
+		}else{
+			contentUrl=contextPath + "/ZzblViewAct/toAnamnesisThirdInfor.act?seqidFather="+seqid;
+		}
 	}
 	var nameNum="";  //记录病历序号，null为新增病历
 	if(num){
@@ -371,7 +379,7 @@ $(function(){
 			document.addEventListener("click",function(event){
 		    	event=event||window.event;
 		        var eve=event.target||eve.elementSrc;
-		    	if(eve.className=='ask_Previous' || eve.className=='examine_diagnose' || eve.className=='diagnosis_case' || eve.className=='xiufu_test'){
+		    	if(eve.className=='ask_Previous' || eve.className=='examine_diagnose' || eve.className=='diagnosis_case' || eve.className=='xiufu_test' || eve.id=='allCases' || eve.className=='btnStyle'){
 		    	}else{
 		    		$(".caseContiner").each(function(i,obj){
 		    			$(this).css("display","none");
@@ -411,6 +419,9 @@ function initCaseList(result,father,btn,casenum){
 		itemName="方案";
 	}else if(casenum==4){
 		itemName="方案";
+	}else if(casenum==5){
+		itemName="病史";
+
 	}
 	if(result.length>=1){
 		//$("."+father).find("."+btn).prev().attr("checked","checked").attr("disabled","disabled");
@@ -438,10 +449,15 @@ function initCaseList(result,father,btn,casenum){
 		}
 	}
 	if(consultAddBtn){
-		caseStyleHtml+="<span class='caseStyle addCaseBtn' onclick='addDProject(this,null,"+casenum+");' id=''>新增<label>+</label></span>";
+		caseStyleHtml+="<span class='caseStyle addCaseBtn' onclick='addDProject(this,null,"+casenum+");' id='addCaseBtnOld'>新增<label>+</label></span>";
+
+		//caseStyleHtml+="<span class='caseStyle addCaseBtnNew' onclick='addDProject(this,null,"+casenum+");' id='addCaseBtnNew'>新增新版<label>+</label></span>";
 	}
 	$("."+father).find(".zlCases").html(caseStyleHtml);   //所有方案的初始化展示
 	$("."+father).find("#allCases").html(allCasesHtml);   //初始化方案下拉框
+	//$("."+father).find("#allCases").append(allCasesHtml);   //初始化方案下拉框
+
+
 }
 
 //选择方案
@@ -502,9 +518,48 @@ function updateCaseStatus(casenum,selectCasesId,status){
   	});
 }
 
+//新旧病历切换 thi:当前点击按钮  num:选中的病历 1:主诉及既往病历  2.检查及诊断 3.诊疗方案 4.修复方案  casetype:0-->老病历  1-->新病历
+function toggleCase(thi,num,casetype){
+	var toggleId=$(thi).attr("id");  //当前选中的病历seqid
+	var url="";
+	//主诉老病历
+	if(num==1 && casetype==0){
+		console.log("老病历。。。");
+		$(thi).text("切换新版");
+		$(thi).attr("onclick","toggleCase(this,1,1)");
+		url = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
+		initCaseHistory(url,1);
+	}
+	//主诉新病历
+	if(num==1 && casetype==1){
+		console.log("新病历。。。");
+		$(thi).text("切换旧版");
+		$(thi).attr("onclick","toggleCase(this,1,0)");
+		url = contextPath + '/HUDH_ZzblAdviceAct/findCaseHistoryById.act';
+		initCaseHistory(url,5);
+	}
+}
+
 //多方案布局初始化
-//初始化主诉及既往病史
-function initCaseHistory(){
+//初始化主诉及既往病史 (新老病历都有) casenum：1-->主诉老版 5-->主诉新版
+function initCaseHistory(url,casenum){
+	//var url = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
+	$.ajax({
+		url: url,
+		type:"POST",
+		dataType:"json",
+		data : {
+			id :  id, //临床路径ID
+			order_number : order_number
+		},
+		success:function(result){
+			//console.log(JSON.stringify(result)+"--------------主诉及既往病史初始化result");
+			initCaseList(result,"jwsLi","ask_Previous",casenum); //初始化诊疗方案列表
+		}
+	});
+
+}
+/*function initCaseHistory(){
 	var url = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
 	$.ajax({
 		url: url,
@@ -519,7 +574,7 @@ function initCaseHistory(){
 			initCaseList(result,"jwsLi","ask_Previous",1); //初始化诊疗方案列表
 		}
   });
-}
+}*/
 
 //初始化检查及诊断
 function initZzblOpration(){

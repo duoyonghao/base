@@ -1760,12 +1760,24 @@
 	var doctorstatus=true;
 	var patientstatus=true;
 	var contextPath = "<%=contextPath%>";
-	var id= window.parent.consultSelectPatient.seqid;	//选中患者临床id
-	var order_number= window.parent.consultSelectPatient.orderNumber;//选中患者order_number
+	//var id= window.parent.consultSelectPatient.seqid;	//选中患者临床id
+	//var order_number= window.parent.consultSelectPatient.orderNumber;//选中患者order_number
+	var id;	//选中患者临床id
+	var order_number;//选中患者order_number
 	var caseId=""; //已存在的病历id
 	var menuid=window.parent.menuid;//左侧菜单id
 	var seqidFather = "<%=seqidFather%>";
+	var usercode;
 	$(function(){
+		if(window.parent.consultSelectPatient){
+			id= window.parent.consultSelectPatient.seqid;
+			order_number= window.parent.consultSelectPatient.orderNumber;
+			usercode = window.parent.consultSelectPatient.usercode;
+		}else{
+			id= window.parent.patientObj.id;;
+			order_number= window.parent.patientObj.orderNumber;
+			usercode = window.parent.patientObj.usercode;
+		}
 		//针对ipad样式
 		var userAgent = navigator.userAgent;
 		if (userAgent.indexOf("iPad") > -1){
@@ -1810,7 +1822,7 @@
 		$('.selectpicker').selectpicker({});//初始化种植体系下拉框
 
 		/* 初始化患者基本信息 */
-		initPatientInfo(window.parent.consultSelectPatient.usercode);
+		initPatientInfo(usercode);
 		initZzblInfor();/* 页面赋值判断初始化 */
 
 		// 2019/7/24 lutian 禁止页面拖拽
@@ -1940,19 +1952,19 @@
 		}
 	}
 
-	/* 页面赋值判断初始化 */
+	/* 页面赋值初始化 */
 	function initZzblInfor(){
 		//console.log(id+"--------------查询id");
-		var url = contextPath + '/HUDH_ZzblAdviceAct/findCaseHistoryById.act';
+		var url = contextPath + '/HUDH_ZzblAdviceAct/findCaseHistoryBySeqid.act';
 		$.ajax({
 			url: url,
 			type:"POST",
 			dataType:"json",
 			data : {
-				id :  id
+				seq_id :  seqidFather
 			},
 			success:function(result){
-				//console.log(JSON.stringify(result)+"--------------患者查询信息");
+				console.log(JSON.stringify(result)+"--------------患者查询信息");
 				if(result){
 					if(result.seq_id){
 						caseId=result.seq_id; //已存在的seqid
@@ -1980,15 +1992,17 @@
 							}
 						})
 						//多选框赋值
-						if(result[key].indexOf(";")>0){
-							var checkboxVal= result[key];//拼接多选框的值
-							var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
-							for(var i=0;i<checkboxValArr.length;i++){
-								$("input[name="+key+"]").each(function(){
-									if($(this).val()==checkboxValArr[i]){
-										$(this).attr("checked","checked");
-									}
-								})
+						if(result[key]){
+							if(result[key].indexOf(";")>0){
+								var checkboxVal= result[key];//拼接多选框的值
+								var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
+								for(var i=0;i<checkboxValArr.length;i++){
+									$("input[name="+key+"]").each(function(){
+										if($(this).val()==checkboxValArr[i]){
+											$(this).attr("checked","checked");
+										}
+									})
+								}
 							}
 						}
 					}
