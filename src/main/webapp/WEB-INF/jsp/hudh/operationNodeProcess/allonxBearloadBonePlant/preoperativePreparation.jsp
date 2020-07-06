@@ -65,7 +65,7 @@
 </style>
 </head>
 <body>
-	<div style="margin-top: 5px;">
+	<div style="margin-top: 5px;border:1px solid blue;">
 	<ul>
 		<table align="center">
 			<tbody>

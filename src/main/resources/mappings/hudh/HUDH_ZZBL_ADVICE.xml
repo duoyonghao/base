@@ -183,7 +183,7 @@
     <!-- 根据Id更新主诉及既往病史 -->
     <update id="updateCaseHistoryById" parameterType="com.hudh.zzbl.entity.ZzblAdvice">
         update HUDH_ZZBL_ADVICE
-        <set>
+        <trim prefix="SET" suffixOverrides=",">
             <if test="lcljId != null">
                 lcljId = #{lcljId,jdbcType=VARCHAR},
             </if>
@@ -508,7 +508,7 @@
             <if test="pullouttooth != null">
                 pullouttooth = #{pullouttooth,jdbcType=VARCHAR}
             </if>
-        </set>
+        </trim>
         where SEQ_ID = #{SEQ_ID,jdbcType=VARCHAR}
     </update>
 
