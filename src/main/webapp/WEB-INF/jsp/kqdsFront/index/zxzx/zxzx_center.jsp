@@ -369,7 +369,7 @@
             $("#zxjz_jrhz").removeClass("hide");
         }
         for (var i = 0; i < jsonbtnList.length; i++) {
-            console.log("按钮---" + jsonbtnList[i].qx);
+            //console.log("按钮---" + jsonbtnList[i].qx);
             // 判断当前用户具备的按钮权限
             var index = jQuery.inArray(jsonbtnList[i].qx, listbuttonArray);
             // index = -1 时，表示当前用户没有此按钮的操作权限
