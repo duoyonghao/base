@@ -118,6 +118,7 @@
 								<li class="positionLi jwsLi">
 									<label><input name="Consultation" type="checkbox" disabled="disabled" value="询问既往史" /><font class="mustIn">*</font><font class="ask_Previous" onclick="showHiddenClick(this,'jwsLi');">1、询问既往史及体格检查</font></label>
 									<div class="caseContiner" style="display:none;">
+										<button class="btnStyle" onclick="toggleCase(this,1,1);">切换新版</button>
 										<div class="zlCases"></div>
 										<div class="selectCases">
 											<select id="allCases"></select>
@@ -125,7 +126,7 @@
 										</div>
 									</div>
 									<br/>
-									<label><input name="plantRecords" type="checkbox" value="种植病历"><font class="plantRecords">新种植病历</font></label>
+<%--									<label><input name="plantRecords" type="checkbox" value="种植病历"><font class="plantRecords">新种植病历</font></label>--%>
 								</li>
 								<li class="positionLi jczdLi">
 									<label><input name="Consultation" type="checkbox" disabled="disabled" value="口内检查" /><font class="mustIn">*</font><font class="examine_diagnose" onclick="showHiddenClick(this,'jczdLi');">2、口腔专科检查</font></label>
@@ -349,6 +350,7 @@
 	var alreadySelectZLFAId=""; //已经有选择的诊疗方案seq_id 页面初始化时判断状态并赋值
 	var alreadySelectXFFAId=""; //已经有选择的修复方案seq_id 页面初始化时判断状态并赋值
 	var consultAddBtn=true; //判断此页面是否为咨询填写,多方案是否加新增按钮
+    var alreadySelectZSBSMark="";  //记录上一次选中的主诉即既往病史是新病历还是老病历
 	var notification = 0;
 	$(function(){
 		checkOptions();//判断要填写的选项是否已填写并选中
@@ -361,18 +363,22 @@
             return false;
         };
 
-
-        initCaseHistory();  //初始化主诉及既往病史
+		var anamnesisUrl = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
+        initCaseHistory(anamnesisUrl,1);  //初始化主诉及既往病史
         initZzblOpration(); //初始化检查及诊断
         initDiagnosisProject(); //初始化诊疗方案
         initRepairProject(); //初始化修复方案
        	//dProjectclick(); //诊疗方案移入移除显示隐藏
+        initSelectList("jwsLi",1); //初始化既往病史下拉框
+        initSelectList("jczdLi",2); //检查即诊断下拉框
+        initSelectList("zlCasesLi",3); //诊疗方案下拉框
+        initSelectList("xffaLi",4); //修复方案下拉框
 
        	//全局监听
         document.addEventListener("click",function(event){
         	event=event||window.event;
             var eve=event.target||eve.elementSrc;
-        	if(eve.className=='ask_Previous' || eve.className=='examine_diagnose' || eve.className=='diagnosis_case' || eve.className=='xiufu_test' || eve.id=='allCases'){
+        	if(eve.className=='ask_Previous' || eve.className=='examine_diagnose' || eve.className=='diagnosis_case' || eve.className=='xiufu_test' || eve.id=='allCases' || eve.className=='btnStyle'){
         	}else{
         		$(".caseContiner").each(function(i,obj){
         			$(this).css("display","none");

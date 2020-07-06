@@ -80,6 +80,7 @@
 								<li class="positionLi jwsLi">
 									<label><input name="Consultation" type="checkbox" value="询问既往史" disabled="disabled"/><font class="ask_Previous" onclick="showHiddenClick(this,'jwsLi');">1、询问既往史及体格检查</font></label>
 									<div class="caseContiner" style="display:none;">
+										<button class="btnStyle" onclick="toggleCase(this,1,1);">切换新版</button>
 										<div class="zlCases"></div>
 										<div class="selectCases">
 											<select id="allCases"></select>
@@ -235,11 +236,17 @@ $(function(){
 	
     initFlow();
     checkOptions();//判断要填写的选项是否已填写并选中
-    
-    initCaseHistory();  //初始化主诉及既往病史
+
+	var anamnesisUrl = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
+	initCaseHistory(anamnesisUrl,1);  //初始化主诉及既往病史
+    //initCaseHistory();  //初始化主诉及既往病史
     initZzblOpration(); //初始化检查及诊断
     initDiagnosisProject(); //初始化诊疗方案
     initRepairProject(); //初始化修复方案
+	initSelectList("jwsLi",1); //初始化既往病史下拉框
+	initSelectList("jczdLi",2); //检查即诊断下拉框
+	initSelectList("zlCasesLi",3); //诊疗方案下拉框
+	initSelectList("xffaLi",4); //修复方案下拉框
 });
 
 //判断要填写的选项是否已填写并选中

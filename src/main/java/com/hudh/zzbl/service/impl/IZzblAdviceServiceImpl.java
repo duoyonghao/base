@@ -18,8 +18,8 @@ public class IZzblAdviceServiceImpl implements IZzblAdviceService {
     }
 
     @Override
-    public JSONObject findCaseHistoryById(String paramString) throws Exception {
-        JSONObject list = adviceDao.findCaseHistoryById(paramString);
+    public List<JSONObject> findCaseHistoryById(String paramString) throws Exception {
+        List<JSONObject> list = adviceDao.findCaseHistoryById(paramString);
         return list;
     }
 
@@ -32,4 +32,11 @@ public class IZzblAdviceServiceImpl implements IZzblAdviceService {
     public void deleteCaseHistory(String paramString) throws Exception {
         adviceDao.deleteCaseHistoryById(paramString);
     }
+
+    @Override
+    public JSONObject findCaseHistoryBySeqid(String paramString) throws Exception {
+        JSONObject list=adviceDao.findCaseHistoryBySeqid(paramString);
+        return list;
+    }
+
 }

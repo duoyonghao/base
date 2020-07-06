@@ -36,7 +36,7 @@ public interface IZzblAdviceService {
 	  * @param: @throws Exception      
 	  * @return: JSONObject
 	 */
-	public JSONObject findCaseHistoryById(String paramString)
+	public List<JSONObject> findCaseHistoryById(String paramString)
 		    throws Exception;
 	
 	/**
@@ -58,4 +58,15 @@ public interface IZzblAdviceService {
 	 */
 	public void deleteCaseHistory(String paramString)
 		    throws Exception;
+
+	/**
+	 * @Title: findCaseHistoryById
+	 * @Description: TODO(这里用一句话描述这个方法的作用)
+	 * @param: @param paramString
+	 * @param: @return
+	 * @param: @throws Exception
+	 * @return: JSONObject
+	 */
+	public JSONObject findCaseHistoryBySeqid(String paramString)
+			throws Exception;
 }

@@ -444,8 +444,30 @@
     var caseId=""; //已存在的病历id
     var formParentObj;// 父页面的患者信息对象
     var menuid=window.parent.menuid;//左侧菜单id
+    var userAgent = navigator.userAgent;
+    var signatureWidth='70%';
+    var signatureHeight='65%';
     $(function(){
-        var userAgent = navigator.userAgent;
+        if (userAgent.match(/mobile/i)) {
+            var mql = window.matchMedia('(orientation: portrait)');
+            function onMatchMediaChange(mql) {
+                if (mql.matches) {
+                    //竖屏
+                    signatureWidth='98%';
+                    signatureHeight='50%';
+                } else {
+                    //横屏
+                    signatureWidth='98%';
+                    signatureHeight='73%';
+                }
+            }
+            // 输出当前屏幕模式
+            onMatchMediaChange(mql);
+
+            // 监听屏幕模式变化
+            mql.addListener(onMatchMediaChange);
+
+        }
         if (userAgent.indexOf("iPad") > -1){
             $("#print_Btn").hide();//移动端打印按钮隐藏
         }
@@ -548,7 +570,7 @@
                 title: '签字',
                 shadeClose: true,
                 shade: 0.6,
-                area: ['70%', '65%'],
+                area:userAgent.indexOf("iPad")>-1?[signatureWidth,signatureHeight] : ['70%', '65%'],
                 content: contextPath + '/SignatureAct/toSignature.act?category=种植'
             });
         }
@@ -569,7 +591,7 @@
                 title: '签字',
                 shadeClose: true,
                 shade: 0.6,
-                area: ['70%', '65%'],
+                area:userAgent.indexOf("iPad")>-1?[signatureWidth,signatureHeight] : ['70%', '65%'],
                 content: contextPath + '/SignatureAct/toSignature.act?category=患者'
             });
         }

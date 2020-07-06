@@ -172,6 +172,9 @@ public class KQDS_Member_RecordLogic extends BaseLogic {
 		}
 		PageHelper.offsetPage(bp.getOffset(), bp.getLimit());
 		List<JSONObject> list = (List<JSONObject>) dao.findForList(TableNameUtil.KQDS_MEMBER_RECORD + ".selectListRefund", map);
+		for (JSONObject obj : list) {
+			obj.put("cjstatus", "已成交");
+		}
 		PageInfo<JSONObject> pageInfo = new PageInfo<JSONObject>(list);
 		JSONObject jobj = new JSONObject();
 		// 第一次加载数量，分页查询时不加载
@@ -685,6 +688,20 @@ public class KQDS_Member_RecordLogic extends BaseLogic {
 		
 		PageHelper.offsetPage(bp.getOffset(), bp.getLimit());
 		List<JSONObject> list = (List<JSONObject>) dao.findForList(table+ ".selectNoPageBySfmx", map);
+		for (JSONObject obj : list) {
+			obj.put("dict_name", "");
+			obj.put("dict_name_2", "");
+			obj.put("cjstatus", "已成交");
+			obj.put("istsxm", "");
+			obj.put("y2", "0");
+			obj.put("voidmoney", "0");
+			obj.put("qfbh", "");
+			obj.put("arrearmoney", "0");
+			obj.put("istk", "0");
+			obj.put("payother2", "0");
+			obj.put("paydjq", "0");
+			obj.put("payintegral", "0");
+		}
 		PageInfo<JSONObject> pageInfo = new PageInfo<JSONObject>(list);
 		JSONObject jobj = new JSONObject();
 		// 第一次加载数量，分页查询时不加载
