@@ -516,11 +516,6 @@ function initSelectList(father,casenum){
 		oldCaseResult = getResult(oldCaseUrl); //老病历查询结果
 		newCaseResult = "";
 	}
-	/*var oldZSBSUrl = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
-	var oldZSBSResult = getResult(oldZSBSUrl);  //老病历
-	var newZSBSUrl = contextPath + '/HUDH_ZzblAdviceAct/findCaseHistoryById.act';
-	var newZSBSResult = getResult(newZSBSUrl);  //新病例*/
-	//console.log(JSON.stringify(newZSBSResult)+"--------新病历返回数据");
 
 	if(oldCaseResult.length>=1 || newCaseResult.length>=1){
 		$("."+father).find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
@@ -577,10 +572,6 @@ function initSelectList(father,casenum){
 //选择方案
 // father:父布局li的class casenum：更新选中的病历act 1:主诉及既往病历  2.检查及诊断 3.诊疗方案 4.修复方案 5.新版主诉即既往病史  alreadySeqId：已经选中的病历
 function selectCase(father,casenum){
-	var selectCasesId=$("."+father).find("#allCases").val();
-	var mark=$("."+father+" option:selected").attr("mark");  //主诉新老病历的标记属性
-	var status=1;
-	updateCaseStatus(casenum,selectCasesId,status,mark);  //选中当前方案
 	if(casenum==1){
 		if(alreadySelectZSBSId){
 			updateCaseStatus(casenum,alreadySelectZSBSId,"0",alreadySelectZSBSMark);  //改变之前已经选中的方案
@@ -598,6 +589,10 @@ function selectCase(father,casenum){
 			updateCaseStatus(casenum,alreadySelectXFFAId,"0","0");  //改变之前已经选中的方案
 		}
 	}
+	var selectCasesId=$("."+father).find("#allCases").val();
+	var mark=$("."+father+" option:selected").attr("mark");  //主诉新老病历的标记属性
+	var status=1;
+	updateCaseStatus(casenum,selectCasesId,status,mark);  //选中当前方案
 }
 
 //诊疗方案选中方案（病历），改变状态

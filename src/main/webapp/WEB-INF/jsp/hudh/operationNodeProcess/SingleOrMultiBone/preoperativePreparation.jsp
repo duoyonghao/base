@@ -190,6 +190,7 @@ var alreadySelectJCZDId=""; //已经有选择的检查及诊断seq_id 页面初�
 var alreadySelectZLFAId=""; //已经有选择的诊疗方案seq_id 页面初始化时判断状态并赋值
 var alreadySelectXFFAId=""; //已经有选择的修复方案seq_id 页面初始化时判断状态并赋值
 var consultAddBtn=false; //判断此页面是否为咨询填写,多方案是否加新增按钮
+var alreadySelectZSBSMark="";  //记录上一次选中的主诉即既往病史是新病历还是老病历
 $(function(){
 	//时间选择
     $("#visit_time").datetimepicker({
@@ -201,11 +202,17 @@ $(function(){
     });
 	
     initFlow();
-    
-    initCaseHistory();  //初始化主诉及既往病史
+
+	var anamnesisUrl = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
+	initCaseHistory(anamnesisUrl,1);  //初始化主诉及既往病史，默认先展示老病历
+    //initCaseHistory();  //初始化主诉及既往病史
     initZzblOpration(); //初始化检查及诊断
     initDiagnosisProject(); //初始化诊疗方案
     initRepairProject(); //初始化修复方案
+	initSelectList("jwsLi",1); //初始化既往病史下拉框
+	initSelectList("jczdLi",2); //检查即诊断下拉框
+	initSelectList("zlCasesLi",3); //诊疗方案下拉框
+	initSelectList("xffaLi",4); //修复方案下拉框
 });
 
 //初始化流程
