@@ -130,8 +130,14 @@ public class ExportTable {
 		// 遍历集合数据，产生数据行
 		Iterator<JSONObject> it = dataset.iterator();
 		int index = 0;
+		int sheetindex=1;
 		while (it.hasNext()) {
 			index++;
+			if (index % 65535 == 0) {
+				sheet=workbook.createSheet(title + sheetindex);
+				sheetindex++;
+				index = 0;
+			}
 			row = sheet.createRow(index);
 			JSONObject t = it.next();
 			int mapkeyindex = 0;
