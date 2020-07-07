@@ -57,7 +57,7 @@
     }
     .container-fluid{
         width:100%;
-        font-family："微软雅黑";
+        font-family:"微软雅黑";
     }
     .colDefined{
         padding:0px;
