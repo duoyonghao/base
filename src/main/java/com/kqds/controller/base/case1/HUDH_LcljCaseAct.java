@@ -40,6 +40,7 @@ public class HUDH_LcljCaseAct {
 			hudhLcljBase.setId(YZUtility.getUUID());
 			hudhLcljBase.setOrganization(ChainUtil.getCurrentOrganization(request));
 			hudhLcljBase.setCreatetime(YZUtility.getCurDateTimeStr());
+			hudhLcljBase.setStatus("0");
 			logic.insertSelective(hudhLcljBase);
 			YZUtility.DEAL_SUCCESS(null, null, response, logger);
 		} catch (Exception ex) {
@@ -52,9 +53,9 @@ public class HUDH_LcljCaseAct {
 	public String select(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
 			String LcljId = request.getParameter("id");
-			HudhLcljBase list = logic.selectWithPage(LcljId);
-
-			YZUtility.RETURN_OBJ(list, response, logger);
+			List<HudhLcljBase> list = logic.selectWithPage(LcljId);
+			YZUtility.RETURN_LIST(list,response,logger);
+			//YZUtility.RETURN_OBJ(list, response, logger);
 		} catch (Exception ex) {
 			YZUtility.DEAL_ERROR(null, false, ex, response, logger);
 		}

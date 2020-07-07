@@ -198,6 +198,8 @@ public class HudhLcljBase {
     private String patientsignature;
     
     private String patientsignature1;
+
+    private String status;
     
     public String getOperationDoctorsignature() {
 		return operationDoctorsignature;
@@ -992,6 +994,12 @@ public class HudhLcljBase {
 	public void setPatientsignature1(String patientsignature1) {
 		this.patientsignature1 = patientsignature1;
 	}
-	
-	
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
