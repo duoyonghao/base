@@ -353,6 +353,13 @@ function addDProject(thi,num,casenum){
 		}else{
 			contentUrl=contextPath + "/ZzblViewAct/toAnamnesisThirdInfor.act?seqidFather="+seqid;
 		}
+	}else if(casenum==6){
+		layerTitle='新版口腔专科检查';
+		if(consultAddBtn){
+			contentUrl=contextPath+"/ZzblViewAct/toDentalExamination.act?seqidFather="+seqid;
+		}else{
+			contentUrl=contextPath+"/ZzblViewAct/toDentalExamination.act?seqidFather="+seqid;
+		}
 	}
 	var nameNum="";  //记录病历序号，null为新增病历
 	if(num){
@@ -468,6 +475,8 @@ function initCaseList(result,father,btn,casenum){
 		itemName="方案";
 	}else if(casenum==5){
 		itemName="新病史";
+	}else if(casenum==6){
+		itemName="新诊断";
 	}
 	if(result.length>=1){
 		$("."+father).find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
@@ -504,7 +513,8 @@ function initSelectList(father,casenum){
 		itemName="诊断";
 		oldCaseUrl = contextPath + '/HUDH_ZzblCheckAct/findZzblOprationById.act';  //老病历url
 		oldCaseResult = getResult(oldCaseUrl); //老病历查询结果
-		newCaseResult = "";  //暂无新版病历
+		newCaseUrl = contextPath + '/HUDH_MedicalRecordsAct/selectdata.act';//新病例url
+		newCaseResult = getResult(newCaseUrl);;  //新病例查询结果
 	}else if(casenum==3){
 		itemName="方案";
 		oldCaseUrl = contextPath + '/HUDH_ZzblAct/findZzblOprationById.act';  //老病历url
@@ -516,11 +526,6 @@ function initSelectList(father,casenum){
 		oldCaseResult = getResult(oldCaseUrl); //老病历查询结果
 		newCaseResult = "";
 	}
-	/*var oldZSBSUrl = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
-	var oldZSBSResult = getResult(oldZSBSUrl);  //老病历
-	var newZSBSUrl = contextPath + '/HUDH_ZzblAdviceAct/findCaseHistoryById.act';
-	var newZSBSResult = getResult(newZSBSUrl);  //新病例*/
-	//console.log(JSON.stringify(newZSBSResult)+"--------新病历返回数据");
 
 	if(oldCaseResult.length>=1 || newCaseResult.length>=1){
 		$("."+father).find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
@@ -535,6 +540,7 @@ function initSelectList(father,casenum){
 					alreadySelectZSBSMark=0;  //新老病历标记
 				}else if(casenum==2){
 					alreadySelectJCZDId=oldCaseResult[i].seq_id;  //记录上一个选中检查及诊断病历seq_id
+					alreadySelectJCZDMark=0;  //新老病历标记
 				}else if(casenum==3){
 					alreadySelectZLFAId=oldCaseResult[i].seq_id;  //记录上一个选中诊疗方案病历seq_id
 				}else if(casenum==4){
@@ -559,6 +565,7 @@ function initSelectList(father,casenum){
 					alreadySelectZSBSMark=1;  //新老病历标记
 				}else if(casenum==2){
 					alreadySelectJCZDId=newCaseResult[j].seq_id;  //记录上一个选中检查及诊断病历seq_id
+					alreadySelectJCZDMark=1;  //新老病历标记
 				}else if(casenum==3){
 					alreadySelectZLFAId=newCaseResult[j].seq_id;  //记录上一个选中诊疗方案病历seq_id
 				}else if(casenum==4){
@@ -577,17 +584,13 @@ function initSelectList(father,casenum){
 //选择方案
 // father:父布局li的class casenum：更新选中的病历act 1:主诉及既往病历  2.检查及诊断 3.诊疗方案 4.修复方案 5.新版主诉即既往病史  alreadySeqId：已经选中的病历
 function selectCase(father,casenum){
-	var selectCasesId=$("."+father).find("#allCases").val();
-	var mark=$("."+father+" option:selected").attr("mark");  //主诉新老病历的标记属性
-	var status=1;
-	updateCaseStatus(casenum,selectCasesId,status,mark);  //选中当前方案
 	if(casenum==1){
 		if(alreadySelectZSBSId){
 			updateCaseStatus(casenum,alreadySelectZSBSId,"0",alreadySelectZSBSMark);  //改变之前已经选中的方案
 		}
 	}else if(casenum==2){
 		if(alreadySelectJCZDId){
-			updateCaseStatus(casenum,alreadySelectJCZDId,"0","0");  //改变之前已经选中的方案
+			updateCaseStatus(casenum,alreadySelectJCZDId,"0",alreadySelectJCZDMark);  //改变之前已经选中的方案
 		}
 	}else if(casenum==3){
 		if(alreadySelectZLFAId){
@@ -598,6 +601,10 @@ function selectCase(father,casenum){
 			updateCaseStatus(casenum,alreadySelectXFFAId,"0","0");  //改变之前已经选中的方案
 		}
 	}
+	var selectCasesId=$("."+father).find("#allCases").val();
+	var mark=$("."+father+" option:selected").attr("mark");  //主诉新老病历的标记属性
+	var status=1;
+	updateCaseStatus(casenum,selectCasesId,status,mark);  //选中当前方案
 }
 
 //诊疗方案选中方案（病历），改变状态
@@ -612,7 +619,11 @@ function updateCaseStatus(casenum,selectCasesId,status,mark){
 			url = contextPath + '/HUDH_ZzblAdviceAct/updateCaseHistoryById.act'; //主诉新病历选中接口
 		}
 	}else if(casenum==2){
-		url = contextPath + '/HUDH_ZzblAct/selectedExamineDiagnoseInfor.act';
+		if(mark=="0"){
+			url = contextPath + '/HUDH_ZzblAct/selectedExamineDiagnoseInfor.act';//口腔专科检查选中--老版接口
+		}else if(mark=="1"){
+			// url = contextPath + '/HUDH_ZzblAdviceAct/updateCaseHistoryById.act';//口腔专科检查选中--新版接口
+		}
 	}else if(casenum==3){
 		url = contextPath + '/HUDH_ZzblAct/selectedScheme.act';
 	}else if(casenum==4){
@@ -639,7 +650,7 @@ function updateCaseStatus(casenum,selectCasesId,status,mark){
   	});
 }
 
-//新旧病历切换 thi:当前点击按钮  num:选中的病历 1:主诉及既往病历  2.检查及诊断 3.诊疗方案 4.修复方案 5.新版主诉即既往病史 casetype:0-->老病历  1-->新病历
+//新旧病历切换 thi:当前点击按钮  num:选中的病历 1:主诉及既往病历  2.检查及诊断 3.诊疗方案 4.修复方案 5.新版主诉即既往病史 6.新版口腔专科检查 casetype:0-->老病历  1-->新病历
 function toggleCase(thi,num,casetype){
 	var toggleId=$(thi).attr("id");  //当前选中的病历seqid
 	var url="";
@@ -657,6 +668,20 @@ function toggleCase(thi,num,casetype){
 		url = contextPath + '/HUDH_ZzblAdviceAct/findCaseHistoryById.act';
 		initCaseHistory(url,5);
 	}
+	//口腔专科检查
+	if(num==2 && casetype==0){
+		$(thi).text("切换新版");
+		$(thi).attr("onclick","toggleCase(this,2,1)");
+		url = contextPath + '/HUDH_ZzblCheckAct/findZzblOprationById.act';  //老病历url
+		initZzblOpration(url,2);
+	}
+	//口腔专科检查（新）
+	if(num==2 && casetype==1){
+		$(thi).text("切换旧版");
+		$(thi).attr("onclick","toggleCase(this,2,0)");
+		var url =  contextPath + '/HUDH_MedicalRecordsAct/selectdata.act';
+		initZzblOpration(url,6);
+	}
 }
 
 //查询数据
@@ -669,7 +694,8 @@ function getResult(url){
 		async:false,
 		data : {
 			id :  id, //临床路径ID
-			order_number : order_number
+			order_number : order_number,
+			lcljId:id, //临床路径ID(新版口腔专科检查参数)
 		},
 		success:function(result){
 			value = result;
@@ -690,7 +716,7 @@ function initCaseHistory(url,casenum){
 			order_number : order_number
 		},
 		success:function(result){
-			//console.log(JSON.stringify(result)+"--------------主诉及既往病史初始化result");
+			// console.log(JSON.stringify(result)+"--------------主诉及既往病史初始化result");
 			initCaseList(result,"jwsLi","ask_Previous",casenum); //初始化诊疗方案列表
 		}
 	});
@@ -713,19 +739,21 @@ function initCaseHistory(url,casenum){
 }*/
 
 //初始化检查及诊断
-function initZzblOpration(){
-	var url = contextPath + '/HUDH_ZzblCheckAct/findZzblOprationById.act';
+//初始化检查及诊断 (新老病历都有) casenum：2-->老版 6-->新版
+function initZzblOpration(url,casenum){
+	// var url = contextPath + '/HUDH_ZzblCheckAct/findZzblOprationById.act';
 	$.ajax({
 		url: url,
 		type:"POST",
 		dataType:"json",
 		data : {
 			 id :  id, //临床路径ID
-			 order_number : order_number
+			 order_number : order_number,
+			 lcljId:id, //临床路径ID(新版参数)
 		},
 		success:function(result){
-			//console.log(JSON.stringify(result)+"--------------检查及诊断初始化result");
-			initCaseList(result,"jczdLi","examine_diagnose",2); //初始化诊疗方案列表
+			// console.log(JSON.stringify(result)+"--------------检查及诊断初始化result");
+			initCaseList(result,"jczdLi","examine_diagnose",casenum); //初始化诊疗方案列表
 		}
   });
 }

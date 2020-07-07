@@ -55,6 +55,7 @@
     <result column="patient_signature" jdbcType="VARCHAR" property="patientSignature" />
     <result column="doctor_signature" jdbcType="VARCHAR" property="doctorSignature" />
     <result column="others" jdbcType="VARCHAR" property="others" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">   
 	SEQ_ID,lcljId, lcljNum, userId, IsmouthOpening, mouthOpening, arthrosis, occludingRelation, verticalCurve, horizontalCurve, 
@@ -63,7 +64,7 @@
     teethTilted, nub, defectiveRepair, mouthApicitis, teethElongation, maxillarySinus, 
     alveolar, genyantrum, boneMass, oneBone, twoBone, threeBone, fourBoue, anodontism, 
     teethDefect, dummy, parodontopathy, residualRoot, residualRown, apicitis, other, createuser, createtime, organization,
-    patienttime,doctortime,patient_signature,doctor_signature,others
+    patienttime,doctortime,patient_signature,doctor_signature,others,status
   </sql>
   <insert id="insert" parameterType="com.hudh.lclj.entity.HudhSpecialitycheck">
     insert into HUDH_SpecialityCheck (<include refid="Base_Column_List" />)
@@ -83,7 +84,7 @@
       #{parodontopathy,jdbcType=VARCHAR}, #{residualroot,jdbcType=VARCHAR}, #{residualrown,jdbcType=VARCHAR}, 
       #{apicitis,jdbcType=VARCHAR}, #{other,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR},
       #{createtime,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, #{patientTime,jdbcType=VARCHAR}, #{doctorTime,jdbcType=VARCHAR},
-      #{patientSignature,jdbcType=VARCHAR}, #{doctorSignature,jdbcType=VARCHAR}, #{others,jdbcType=VARCHAR})
+      #{patientSignature,jdbcType=VARCHAR}, #{doctorSignature,jdbcType=VARCHAR}, #{others,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hudh.lclj.entity.HudhSpecialitycheck">
     insert into HUDH_SpecialityCheck
@@ -238,6 +239,9 @@
         <if test="others != null">
             others,
         </if>
+        <if test="status != null">
+            status,
+        </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test=" seqId != null">
@@ -390,149 +394,157 @@
       <if test="others != null">
         #{others,jdbcType=VARCHAR}
       </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR}
+      </if>
     </trim>
   </insert>
   <update id="updateByseqId" parameterType="com.hudh.lclj.entity.HudhSpecialitycheck">
     update HUDH_SpecialityCheck
     <set>
-        <if test="ismouthopening != null">
-            IsmouthOpening = #{ismouthopening,jdbcType=VARCHAR},
-        </if>
-        <if test="mouthopening != null">
-            mouthOpening = #{mouthopening,jdbcType=VARCHAR},
-        </if>
-        <if test="arthrosis != null">
-            arthrosis = #{arthrosis,jdbcType=VARCHAR},
-        </if>
-        <if test="occludingrelation != null">
-            occludingRelation = #{occludingrelation,jdbcType=VARCHAR},
-        </if>
-        <if test="verticalcurve != null">
-            verticalCurve = #{verticalcurve,jdbcType=VARCHAR},
-        </if>
-        <if test="horizontalcurve != null">
-            horizontalCurve = #{horizontalcurve,jdbcType=VARCHAR},
-        </if>
-        <if test="distancebetween != null">
-            distanceBetween = #{distancebetween,jdbcType=VARCHAR},
-        </if>
-        <if test="labialline != null">
-            labialLine = #{labialline,jdbcType=VARCHAR},
-        </if>
-        <if test="gumtypes != null">
-            gumTypes = #{gumtypes,jdbcType=VARCHAR},
-        </if>
-        <if test="undergo != null">
-            undergo = #{undergo,jdbcType=VARCHAR},
-        </if>
-        <if test="periodontalcondition != null">
-            periodontalCondition = #{periodontalcondition,jdbcType=VARCHAR},
-        </if>
-        <if test="mucosalsituation != null">
-            mucosalSituation = #{mucosalsituation,jdbcType=VARCHAR},
-        </if>
-        <if test="onedu != null">
-            oneDu = #{onedu,jdbcType=VARCHAR},
-        </if>
-        <if test="twodu != null">
-            twoDu = #{twodu,jdbcType=VARCHAR},
-        </if>
-        <if test="threedu != null">
-            threeDu = #{threedu,jdbcType=VARCHAR},
-        </if>
-        <if test="dentitiondefect != null">
-            dentitionDefect = #{dentitiondefect,jdbcType=VARCHAR},
-        </if>
-        <if test="defectdentition != null">
-            defectDentition = #{defectdentition,jdbcType=VARCHAR},
-        </if>
-        <if test="saprodontia != null">
-            saprodontia = #{saprodontia,jdbcType=VARCHAR},
-        </if>
-        <if test="residualcrown != null">
-            residualCrown = #{residualcrown,jdbcType=VARCHAR},
-        </if>
-        <if test="pulpitis != null">
-            pulpitis = #{pulpitis,jdbcType=VARCHAR},
-        </if>
-        <if test="teethtilted != null">
-            teethTilted = #{teethtilted,jdbcType=VARCHAR},
-        </if>
-        <if test="nub != null">
-            nub = #{nub,jdbcType=VARCHAR},
-        </if>
-        <if test="defectiverepair != null">
-            defectiveRepair = #{defectiverepair,jdbcType=VARCHAR},
-        </if>
-        <if test="mouthapicitis != null">
-            mouthApicitis = #{mouthapicitis,jdbcType=VARCHAR},
-        </if>
-        <if test="teethelongation != null">
-            teethElongation = #{teethelongation,jdbcType=VARCHAR},
-        </if>
-        <if test="maxillarysinus != null">
-            maxillarySinus = #{maxillarysinus,jdbcType=VARCHAR},
-        </if>
-        <if test="alveolar != null">
-            alveolar = #{alveolar,jdbcType=VARCHAR},
-        </if>
-        <if test="genyantrum != null">
-            genyantrum = #{genyantrum,jdbcType=VARCHAR},
-        </if>
-        <if test="bonemass != null">
-            boneMass = #{bonemass,jdbcType=VARCHAR},
-        </if>
-        <if test="onebone != null">
-            oneBone = #{onebone,jdbcType=VARCHAR},
-        </if>
-        <if test="twobone != null">
-            twoBone = #{twobone,jdbcType=VARCHAR},
-        </if>
-        <if test="threebone != null">
-            threeBone = #{threebone,jdbcType=VARCHAR},
-        </if>
-        <if test="fourboue != null">
-            fourBoue = #{fourboue,jdbcType=VARCHAR},
-        </if>
-        <if test="anodontism != null">
-            anodontism = #{anodontism,jdbcType=VARCHAR},
-        </if>
-        <if test="teethdefect != null">
-            teethDefect = #{teethdefect,jdbcType=VARCHAR},
-        </if>
-        <if test="dummy != null">
-            dummy = #{dummy,jdbcType=VARCHAR},
-        </if>
-        <if test="parodontopathy != null">
-            parodontopathy = #{parodontopathy,jdbcType=VARCHAR},
-        </if>
-        <if test="residualroot != null">
-            residualRoot = #{residualroot,jdbcType=VARCHAR},
-        </if>
-        <if test="residualrown != null">
-            residualRown = #{residualrown,jdbcType=VARCHAR},
-        </if>
-        <if test="apicitis != null">
-            apicitis = #{apicitis,jdbcType=VARCHAR},
-        </if>
-        <if test="other != null">
-            other = #{other,jdbcType=VARCHAR},
-        </if>
-        <if test="patientTime != null">
-            patienttime=#{patientTime,jdbcType=VARCHAR},
-        </if>
-        <if test="doctorTime != null">
-            doctortime=#{doctorTime,jdbcType=VARCHAR},
-        </if>
-        <if test="patientSignature != null">
-            patient_signature=#{patientSignature,jdbcType=VARCHAR},
-        </if>
-        <if test="doctorSignature != null">
-            doctor_signature=#{doctorSignature,jdbcType=VARCHAR},
-        </if>
-        <if test="others != null">
-            others=#{others,jdbcType=VARCHAR}
-        </if>
+        <trim prefix="set" suffixOverrides=",">
+            <if test="ismouthopening != null">
+                IsmouthOpening = #{ismouthopening,jdbcType=VARCHAR},
+            </if>
+            <if test="mouthopening != null">
+                mouthOpening = #{mouthopening,jdbcType=VARCHAR},
+            </if>
+            <if test="arthrosis != null">
+                arthrosis = #{arthrosis,jdbcType=VARCHAR},
+            </if>
+            <if test="occludingrelation != null">
+                occludingRelation = #{occludingrelation,jdbcType=VARCHAR},
+            </if>
+            <if test="verticalcurve != null">
+                verticalCurve = #{verticalcurve,jdbcType=VARCHAR},
+            </if>
+            <if test="horizontalcurve != null">
+                horizontalCurve = #{horizontalcurve,jdbcType=VARCHAR},
+            </if>
+            <if test="distancebetween != null">
+                distanceBetween = #{distancebetween,jdbcType=VARCHAR},
+            </if>
+            <if test="labialline != null">
+                labialLine = #{labialline,jdbcType=VARCHAR},
+            </if>
+            <if test="gumtypes != null">
+                gumTypes = #{gumtypes,jdbcType=VARCHAR},
+            </if>
+            <if test="undergo != null">
+                undergo = #{undergo,jdbcType=VARCHAR},
+            </if>
+            <if test="periodontalcondition != null">
+                periodontalCondition = #{periodontalcondition,jdbcType=VARCHAR},
+            </if>
+            <if test="mucosalsituation != null">
+                mucosalSituation = #{mucosalsituation,jdbcType=VARCHAR},
+            </if>
+            <if test="onedu != null">
+                oneDu = #{onedu,jdbcType=VARCHAR},
+            </if>
+            <if test="twodu != null">
+                twoDu = #{twodu,jdbcType=VARCHAR},
+            </if>
+            <if test="threedu != null">
+                threeDu = #{threedu,jdbcType=VARCHAR},
+            </if>
+            <if test="dentitiondefect != null">
+                dentitionDefect = #{dentitiondefect,jdbcType=VARCHAR},
+            </if>
+            <if test="defectdentition != null">
+                defectDentition = #{defectdentition,jdbcType=VARCHAR},
+            </if>
+            <if test="saprodontia != null">
+                saprodontia = #{saprodontia,jdbcType=VARCHAR},
+            </if>
+            <if test="residualcrown != null">
+                residualCrown = #{residualcrown,jdbcType=VARCHAR},
+            </if>
+            <if test="pulpitis != null">
+                pulpitis = #{pulpitis,jdbcType=VARCHAR},
+            </if>
+            <if test="teethtilted != null">
+                teethTilted = #{teethtilted,jdbcType=VARCHAR},
+            </if>
+            <if test="nub != null">
+                nub = #{nub,jdbcType=VARCHAR},
+            </if>
+            <if test="defectiverepair != null">
+                defectiveRepair = #{defectiverepair,jdbcType=VARCHAR},
+            </if>
+            <if test="mouthapicitis != null">
+                mouthApicitis = #{mouthapicitis,jdbcType=VARCHAR},
+            </if>
+            <if test="teethelongation != null">
+                teethElongation = #{teethelongation,jdbcType=VARCHAR},
+            </if>
+            <if test="maxillarysinus != null">
+                maxillarySinus = #{maxillarysinus,jdbcType=VARCHAR},
+            </if>
+            <if test="alveolar != null">
+                alveolar = #{alveolar,jdbcType=VARCHAR},
+            </if>
+            <if test="genyantrum != null">
+                genyantrum = #{genyantrum,jdbcType=VARCHAR},
+            </if>
+            <if test="bonemass != null">
+                boneMass = #{bonemass,jdbcType=VARCHAR},
+            </if>
+            <if test="onebone != null">
+                oneBone = #{onebone,jdbcType=VARCHAR},
+            </if>
+            <if test="twobone != null">
+                twoBone = #{twobone,jdbcType=VARCHAR},
+            </if>
+            <if test="threebone != null">
+                threeBone = #{threebone,jdbcType=VARCHAR},
+            </if>
+            <if test="fourboue != null">
+                fourBoue = #{fourboue,jdbcType=VARCHAR},
+            </if>
+            <if test="anodontism != null">
+                anodontism = #{anodontism,jdbcType=VARCHAR},
+            </if>
+            <if test="teethdefect != null">
+                teethDefect = #{teethdefect,jdbcType=VARCHAR},
+            </if>
+            <if test="dummy != null">
+                dummy = #{dummy,jdbcType=VARCHAR},
+            </if>
+            <if test="parodontopathy != null">
+                parodontopathy = #{parodontopathy,jdbcType=VARCHAR},
+            </if>
+            <if test="residualroot != null">
+                residualRoot = #{residualroot,jdbcType=VARCHAR},
+            </if>
+            <if test="residualrown != null">
+                residualRown = #{residualrown,jdbcType=VARCHAR},
+            </if>
+            <if test="apicitis != null">
+                apicitis = #{apicitis,jdbcType=VARCHAR},
+            </if>
+            <if test="other != null">
+                other = #{other,jdbcType=VARCHAR},
+            </if>
+            <if test="patientTime != null">
+                patienttime=#{patientTime,jdbcType=VARCHAR},
+            </if>
+            <if test="doctorTime != null">
+                doctortime=#{doctorTime,jdbcType=VARCHAR},
+            </if>
+            <if test="patientSignature != null">
+                patient_signature=#{patientSignature,jdbcType=VARCHAR},
+            </if>
+            <if test="doctorSignature != null">
+                doctor_signature=#{doctorSignature,jdbcType=VARCHAR},
+            </if>
+            <if test="others != null">
+                others=#{others,jdbcType=VARCHAR}
+            </if>
+            <if test="status != null">
+                status=#{status,jdbcType=VARCHAR}
+            </if>
+        </trim>
     </set>
    	  WHERE SEQ_ID = #{seqId,jdbcType=VARCHAR}
   </update>
@@ -540,6 +552,6 @@
   	select 
   	<include refid="Base_Column_List" />
   	from HUDH_SpecialityCheck
-  	where lcljId = #{lcljId}
+  	where lcljId = #{lcljId} order by createtime ASC
   </select>
 </mapper>

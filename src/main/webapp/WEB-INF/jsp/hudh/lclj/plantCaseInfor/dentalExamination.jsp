@@ -7,6 +7,8 @@
     if (contextPath.equals("")) {
         contextPath = "/kqds";
     }
+    //当前诊断id
+    String seqidFather = request.getParameter("seqidFather");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -55,7 +57,7 @@
     }
     .container-fluid{
         width:100%;
-        font-family："微软雅黑";
+        font-family:"微软雅黑";
     }
     .colDefined{
         padding:0px;
@@ -686,12 +688,16 @@
     </div>
     <!--endprint-->
     <!-- 按钮 -->
+<%--    <div class="btns">--%>
+<%--        <button id="consent_saveBtn" onclick="save()">保存</button>--%>
+<%--        <button id="consent_updateBtn" style="display: none;" class="consent_updateBtn hidden" onclick="update()">修改表单</button>--%>
+<%--        <button id="print_Btn" onclick="myPreviewAll()" style="/*visibility: hidden;*/">打印本页内容</button>--%>
+<%--    </div>--%>
     <div class="btns">
         <button id="consent_saveBtn" onclick="save()">保存</button>
         <button id="consent_updateBtn" style="display: none;" class="consent_updateBtn hidden" onclick="update()">修改表单</button>
-        <button id="print_Btn" onclick="myPreviewAll()" style="/*visibility: hidden;*/">打印本页内容</button>
+        <button id="print_Btn" onclick="myPreviewAll()">打印本页内容</button>
     </div>
-
     <%--</body>--%>
     <script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/util.js"></script>
     <script language="javascript"  src="<%=contextPath%>/static/js/kqdsFront/LodopFuncs.js"></script>
@@ -709,6 +715,7 @@
         var order_number= patientInformation.orderNumber; //选中患者order_number
         var updataid="";
         var menuid=window.parent.menuid;//左侧菜单id
+        var seqidFather = "<%=seqidFather%>";
         $(function(){
             getUser(usercode);//获取患者信息并赋值
             gettionData();//获取各板块问题详情
@@ -1358,12 +1365,23 @@
                     lcljId:idlclj
                 },
                 success:function(result){
+                    var res;
                     // console.log(JSON.stringify(result)+'-----result');
                     if(result.length>0){
-                        var res=result[0];
-                        updataid=res.seqId;//获取更新修改id
-                        $("#consent_saveBtn").css("display","none");//隐藏保存按钮
-                        $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
+                        if(seqidFather){
+                            for (var i=0;i<result.length;i++) {
+                                if(seqidFather==result[i].seqId){
+                                    res=result[i];
+                                }
+                            }
+                        }
+                        updataid=seqidFather;//获取更新修改id
+                        // var res=result[0];
+                        // updataid=res.seqId;//获取更新修改id
+                        if(res){
+                            $("#consent_saveBtn").css("display","none");//隐藏保存按钮
+                            $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
+                        }
                         signature=res.doctorSignature;
                         if(signature!=""){
                             $("#doctorimg").attr('src', signature);

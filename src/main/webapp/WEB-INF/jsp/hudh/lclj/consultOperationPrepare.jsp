@@ -131,6 +131,7 @@
 								<li class="positionLi jczdLi">
 									<label><input name="Consultation" type="checkbox" disabled="disabled" value="口内检查" /><font class="mustIn">*</font><font class="examine_diagnose" onclick="showHiddenClick(this,'jczdLi');">2、口腔专科检查</font></label>
 									<div class="caseContiner" style="display:none;">
+										<button class="btnStyle" onclick="toggleCase(this,2,1);">切换新版</button>
 										<div class="zlCases"></div>
 										<div class="selectCases">
 											<select id="allCases"></select>
@@ -351,6 +352,7 @@
 	var alreadySelectXFFAId=""; //已经有选择的修复方案seq_id 页面初始化时判断状态并赋值
 	var consultAddBtn=true; //判断此页面是否为咨询填写,多方案是否加新增按钮
     var alreadySelectZSBSMark="";  //记录上一次选中的主诉即既往病史是新病历还是老病历
+	var alreadySelectJCZDMark=""; //记录上一次选中的口腔专科检查是新病历还是老病历
 	var notification = 0;
 	$(function(){
 		checkOptions();//判断要填写的选项是否已填写并选中
@@ -364,8 +366,9 @@
         };
 
 		var anamnesisUrl = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
-        initCaseHistory(anamnesisUrl,1);  //初始化主诉及既往病史
-        initZzblOpration(); //初始化检查及诊断
+		var jczdUrl  = contextPath + '/HUDH_ZzblCheckAct/findZzblOprationById.act';  //老病历url
+        initCaseHistory(anamnesisUrl,1);  //初始化主诉及既往病史，默认先展示老病历
+        initZzblOpration(jczdUrl,2); //初始化检查及诊断
         initDiagnosisProject(); //初始化诊疗方案
         initRepairProject(); //初始化修复方案
        	//dProjectclick(); //诊疗方案移入移除显示隐藏
@@ -641,7 +644,7 @@
 				lcljId:id
 			},
 			success:function(result) {
-				// console.log(JSON.stringify(result)+'----result');
+				// console.log(JSON.stringify(result)+'==================888888');
 				if(result.length>0){
 					$(".plantRecords").prev().attr("checked","checked").attr("disabled","disabled");
 				}
