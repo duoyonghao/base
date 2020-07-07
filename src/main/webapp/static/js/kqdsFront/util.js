@@ -622,7 +622,7 @@ function updateCaseStatus(casenum,selectCasesId,status,mark){
 		if(mark=="0"){
 			url = contextPath + '/HUDH_ZzblAct/selectedExamineDiagnoseInfor.act';//口腔专科检查选中--老版接口
 		}else if(mark=="1"){
-			// url = contextPath + '/HUDH_ZzblAdviceAct/updateCaseHistoryById.act';//口腔专科检查选中--新版接口
+			url = contextPath + '/HUDH_MedicalRecordsAct/installData.act';//口腔专科检查选中--新版接口
 		}
 	}else if(casenum==3){
 		url = contextPath + '/HUDH_ZzblAct/selectedScheme.act';
@@ -631,6 +631,7 @@ function updateCaseStatus(casenum,selectCasesId,status,mark){
 	}
     var param = {
 			SEQ_ID:selectCasesId,
+			seqId:selectCasesId,
     		id : selectCasesId,
     		status : status
     };
