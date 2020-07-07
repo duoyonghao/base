@@ -108,6 +108,8 @@ public class HudhSpecialitycheck {
 
 	private String doctorSignature;
 
+	private String status;
+
 	public String getOthers() {
 		return others;
 	}
@@ -1012,6 +1014,14 @@ public class HudhSpecialitycheck {
 		this.doctorSignature = doctorSignature;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "HudhSpecialitycheck{" +
@@ -1060,6 +1070,7 @@ public class HudhSpecialitycheck {
 				", residualrown='" + residualrown + '\'' +
 				", apicitis='" + apicitis + '\'' +
 				", other='" + other + '\'' +
+				", others='" + others + '\'' +
 				", createuser='" + createuser + '\'' +
 				", createtime='" + createtime + '\'' +
 				", organization='" + organization + '\'' +
@@ -1067,6 +1078,7 @@ public class HudhSpecialitycheck {
 				", doctorTime='" + doctorTime + '\'' +
 				", patientSignature='" + patientSignature + '\'' +
 				", doctorSignature='" + doctorSignature + '\'' +
+				", status='" + status + '\'' +
 				'}';
 	}
 
