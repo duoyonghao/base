@@ -2516,7 +2516,7 @@ WHERE
         a1.area_name as provincename,
         a2.area_name as cityname,
         a3.area_name as townname,
-        u.seq_id,
+        u.seq_id as uid,
         u.province,
         u.city,
         u.town,
@@ -3528,6 +3528,7 @@ WHERE
     <!-- 接诊查询,查询名字 -->
     <select id="findNameByUsercode" parameterType="java.util.Map" resultType="json">
 		select
+		u.seq_id as uid,
 		u.usercode,
 		per3.USER_NAME as jdr,
 		per4.USER_NAME as jddy,
@@ -3535,12 +3536,16 @@ WHERE
 		per8.USER_NAME as developername,
 		kcit3.dict_name as devchannel,
 		hzly.dict_name as nexttype,
-		kcit7.dict_name as slgj
+		kcit7.dict_name as slgj,
+		u.kefu,
+		per9.USER_NAME as kefuname,
+		u.contagion
 		from KQDS_UserDocument u
 		LEFT JOIN SYS_PERSON per3 on per3.SEQ_ID = u.createuser
 		LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID = u.guider
 		LEFT JOIN SYS_PERSON per7 on per7.SEQ_ID = u.askperson
 		LEFT JOIN SYS_PERSON per8 on per8.SEQ_ID = u.developer
+		LEFT JOIN SYS_PERSON per9 on per9.SEQ_ID = u.kefu
 		LEFT JOIN SYS_DICT kcit3 on kcit3.seq_id = u.devchannel
 		LEFT JOIN SYS_DICT hzly on hzly.seq_id = u.nexttype
 		LEFT JOIN sys_dict kcit7 ON kcit7.SEQ_ID=u.accepttool
