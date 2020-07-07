@@ -112,7 +112,8 @@
     .baseInfo .patient>.inputDiv{
         display:block;
         float:left;
-        width: 235px;
+        /*width: 235px;*/
+        width: 250px;
         height: 25px;
     }
     .patient .inputDiv:nth-child(5){
@@ -1366,7 +1367,6 @@
                 },
                 success:function(result){
                     var res;
-                    // console.log(JSON.stringify(result)+'-----result');
                     if(result.length>0){
                         if(seqidFather){
                             for (var i=0;i<result.length;i++) {
@@ -1375,27 +1375,30 @@
                                 }
                             }
                         }
+                        //console.log(JSON.stringify(res)+'-----result');
                         updataid=seqidFather;//获取更新修改id
                         // var res=result[0];
                         // updataid=res.seqId;//获取更新修改id
                         if(res){
                             $("#consent_saveBtn").css("display","none");//隐藏保存按钮
                             $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
+                            signature=res.doctorSignature;
+                            patientsignature=res.patientSignature;
                         }
-                        signature=res.doctorSignature;
                         if(signature!=""){
                             $("#doctorimg").attr('src', signature);
                             doctorstatus=false;
                         }else{
                             $("#doctorimg").attr('display', 'none');
                         }
-                        patientsignature=res.patientSignature;
                         if(patientsignature!=""){
                             $("#patientimg").attr('src', patientsignature);
                             patientstatus=false;
                         }else{
                             $("#patientimg").attr('display', 'none');
                         }
+                        // 其他
+                        $("#others").val(res["others"]);
                         for(var i in res){
                             $("input[name="+i+"]").each(function(){
                                 var that=this;
@@ -1408,8 +1411,6 @@
                             })//复选框及单选框赋值
                             $("#"+i+"[type='text']").attr("value",res[i]);// 填框赋值
                         }
-                        // 其他
-                        $("#others").val(res[i]);
 // 	 					牙位赋值start
                         if(res[i]="onedu"){
                             var toothLoose=res.onedu;

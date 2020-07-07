@@ -366,8 +366,8 @@
         };
 
 		var anamnesisUrl = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
-		var jczdUrl  = contextPath + '/HUDH_ZzblCheckAct/findZzblOprationById.act';  //老病历url
         initCaseHistory(anamnesisUrl,1);  //初始化主诉及既往病史，默认先展示老病历
+        var jczdUrl  = contextPath + '/HUDH_ZzblCheckAct/findZzblOprationById.act';  //老病历url
         initZzblOpration(jczdUrl,2); //初始化检查及诊断
         initDiagnosisProject(); //初始化诊疗方案
         initRepairProject(); //初始化修复方案
