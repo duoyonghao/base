@@ -228,6 +228,7 @@
 		<include refid="Blob_Column_List" />
 		from HUDH_LCLJ_BASE
 		where LcljId = #{lcljid,jdbcType=VARCHAR}
+        ORDER by createtime ASC
 	</select>
 	
   <insert id="insert" parameterType="com.kqds.entity.base.HudhLcljBase">
