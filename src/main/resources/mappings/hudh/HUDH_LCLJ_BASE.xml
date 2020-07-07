@@ -223,25 +223,11 @@
   
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultType="json">
 		select
-		 id AS seq_id, usercode, username, LcljId, LcljNum, createtime, createuser, organization, consultation_opinion,
-      promise, patienttime, operationdoctortime, doctortime, patienttime1, extractionleftup,
-      extractionrightup, extractionleftdown, extractionrightdown, dentiumleftup, dentiumrightup,
-      dentiumleftdown, dentiumrightdown, hiossenleftup, hiossenrightup, hiossenleftdown,
-      hiossenrightdown, icxleftup, icxrightup, icxleftdown, icxrightdown, camlogleftup,
-      camlogrightup, camlogleftdown, camlogrightdown, zimmerleftup, zimmerrightup, zimmerleftdown,
-      zimmerrightdown, nobelccleftup, nobelccrightup, nobelccleftdown, nobelccrightdown,
-      nobelactiveleftup, nobelactiverightup, nobelactiveleftdown, nobelactiverightdown,
-      pmcleftup, pmcrightup, pmcleftdown, pmcrightdown, temporarytleftup, temporarytrightup,
-      temporarytleftdown, temporarytrightdown, commonleftup, commonrightup, commonleftdown,
-      commonrightdown, instantlyleftup, instantlyrightup, instantlyleftdown, instantlyrightdown,
-      atonceleftup, atoncerightup, atonceleftdown, atoncerightdown, imagingleftup, imagingrightup,
-      imagingleftdown, imagingrightdown, lianguanleftup, lianguanrightup, lianguanleftdown,
-      lianguanrightdown, preoperatives, bicon, abutment, paraoperative, modus, repair,
-      alternative, clinical,bonemeal,ossein,periost,one,pathtype,deep,appointmenttime,wzy,accord,operationDoctorsignature,
-      repairDoctorsignature,patientsignature,patientsignature1,status
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
 		from HUDH_LCLJ_BASE
 		where LcljId = #{lcljid,jdbcType=VARCHAR}
-        ORDER by createtime ASC
 	</select>
 	
   <insert id="insert" parameterType="com.kqds.entity.base.HudhLcljBase">
@@ -1620,17 +1606,8 @@
         status = #{status,jdbcType=VARCHAR},
       </if>
     </trim>
-    <if test="id != null">
-     where id = #{id,jdbcType=VARCHAR}
+    <if test="lcljid != null">
+     where LcljId = #{lcljid,jdbcType=VARCHAR}
     </if>
   </update>
-
-  <select id="selectById" parameterType="java.lang.String" resultType="com.kqds.entity.base.HudhLcljBase">
-    select
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from HUDH_LCLJ_BASE
-    where id=#{id,jdbcType=VARCHAR}
-  </select>
 </mapper>

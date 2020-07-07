@@ -53,7 +53,7 @@ public class HUDH_LcljCaseAct {
 	public String select(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
 			String LcljId = request.getParameter("id");
-			List<JSONObject> list = logic.selectWithPage(LcljId);
+			List<HudhLcljBase> list = logic.selectWithPage(LcljId);
 			YZUtility.RETURN_LIST(list,response,logger);
 			//YZUtility.RETURN_OBJ(list, response, logger);
 		} catch (Exception ex) {
@@ -74,18 +74,6 @@ public class HUDH_LcljCaseAct {
 				
 		} catch (Exception ex) {
 			YZUtility.DEAL_ERROR(null, true, ex, response, logger);
-		}
-		return null;
-	}
-
-	@RequestMapping(value = "/selectById.act")
-	public String selectById(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		try {
-			String id = request.getParameter("id");
-			HudhLcljBase list = logic.selectById(id);
-			YZUtility.RETURN_OBJ(list, response, logger);
-		} catch (Exception ex) {
-			YZUtility.DEAL_ERROR(null, false, ex, response, logger);
 		}
 		return null;
 	}
