@@ -94,8 +94,8 @@
         var serverData = getDataFromServer(static_listurl);
         if (serverData) {
             var static_shichangPriv = null; // 市场角色主键值
-            var static_commonalityPriv = null; // 可观回访角色主键值
-            //var static_worksheetPriv = null; // 加工单角色主键值
+            var static_commonalityPriv = null;//临床筛选
+            var static_attendingPriv = null;// 可观回访角色主键值
             var static_dept = null; // 回访角色主键值
             var static_askPriv = null; // 咨询角色主键值
             var static_yuanzhangPriv = null; // 院长角色主键值
@@ -242,12 +242,11 @@
                     innerHtml += '</select>';
                     htmlstr += "<td width='25%'>" + innerHtml + "</td>";
                     static_dept = paralist[i].paraValue;
-                }/*else if("MACHINING_CENTER" == paralist[i].paraName){
-            	var innerHtml = '<select multiple name="paraValue" id="worksheetPrivSelect"></select>';
-            	htmlstr += "<td width='25%'>" + innerHtml + "</td>";
-            	static_worksheetPriv = paralist[i].paraValue;
-            }*/
-                else if ("ZY_LYCK" == paralist[i].paraName) {
+                } else if ("SYS_POSITION" == paralist[i].paraName) {
+                    var innerHtml = '<select multiple name="paraValue" id="attendingPrivSelect"></select>';
+                    htmlstr += "<td width='25%'>" + innerHtml + "</td>";
+                    static_attendingPriv = paralist[i].paraValue;
+                } else if ("ZY_LYCK" == paralist[i].paraName) {
                     var innerHtml = '<select multiple name="paraValue" id="resourcesPrivSelect"></select>';
                     htmlstr += "<td width='25%'>" + innerHtml + "</td>";
                     static_resources = paralist[i].paraValue;
@@ -265,7 +264,8 @@
 
             /*** 角色相关  **/
             getSlectUserPrivNoOrg("shichangPrivSelect"); // 市场角色主键值
-            getSlectUserPrivNoOrg("commonalityPrivSelect"); // 公用角色主键值
+            getSlectUserPrivNoOrg("commonalityPrivSelect"); // 临床筛选
+            getSlectUserPrivNoOrg("attendingPrivSelect"); // 可观回访部门
             getSlectUserPrivNoOrg("resourcesPrivSelect"); // 资源来源主键值
             //getSlectUserPrivNoOrg("worksheetPrivSelect"); // 公用角色主键值
             getSlectUserPrivNoOrg("askPrivSelect"); // 市场角色主键值
@@ -278,8 +278,8 @@
             getSlectUserPrivNoOrg("dzblOptSelect"); // 电子病历操作色主键值
             jQuery('#shichangPrivSelect').selectpicker({title: "请选择"});
             jQuery('#commonalityPrivSelect').selectpicker({title: "请选择"});
+            jQuery('#attendingPrivSelect').selectpicker({title: "请选择"});
             jQuery('#resourcesPrivSelect').selectpicker({title: "请选择"});
-            //jQuery('#worksheetPrivSelect').selectpicker({title: "请选择"});
             jQuery('#askPrivSelect').selectpicker({title: "请选择"});
             jQuery('#yuanzhangPrivSelect').selectpicker({title: "请选择"});
             jQuery('#doctorPrivSelect').selectpicker({title: "请选择"});
@@ -290,8 +290,8 @@
             jQuery('#dzblOptSelect').selectpicker({title: "请选择"});
             kqds_setMultiSelectVal("shichangPrivSelect", static_shichangPriv);
             kqds_setMultiSelectVal("commonalityPrivSelect", static_commonalityPriv);
+            kqds_setMultiSelectVal("attendingPrivSelect", static_attendingPriv);
             kqds_setMultiSelectVal("resourcesPrivSelect", static_resources);
-//      kqds_setMultiSelectVal("worksheetPrivSelect", static_worksheetPriv);
             kqds_setMultiSelectVal("askPrivSelect", static_askPriv);
             kqds_setMultiSelectVal("yuanzhangPrivSelect", static_yuanzhangPriv);
             kqds_setMultiSelectVal("doctorPrivSelect", static_doctorPriv);
