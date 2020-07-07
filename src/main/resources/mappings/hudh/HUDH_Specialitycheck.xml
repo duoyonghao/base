@@ -552,6 +552,6 @@
   	select 
   	<include refid="Base_Column_List" />
   	from HUDH_SpecialityCheck
-  	where lcljId = #{lcljId}
+  	where lcljId = #{lcljId} order by createtime ASC
   </select>
 </mapper>
