@@ -92,8 +92,10 @@ public class ZzblViewAct {
 	@RequestMapping("/toExamineDiagnoseCase.act")
 	public ModelAndView toExamineDiagnoseCase(HttpServletRequest request, HttpServletResponse response) {
 		String status = request.getParameter("status");
+		String seqidFather = request.getParameter("seqidFather");
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("status", status);
+		mv.addObject("seqidFather", seqidFather);
 		mv.setViewName("/hudh/lclj/plantCaseInfor/case.jsp");
 		return mv;
 	}

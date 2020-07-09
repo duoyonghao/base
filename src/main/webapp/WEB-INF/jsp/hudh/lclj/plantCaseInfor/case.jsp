@@ -7,6 +7,7 @@
     if (contextPath.equals("")) {
         contextPath = "/kqds";
     }
+    String seqidFather=request.getParameter("seqidFather");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -1251,7 +1252,7 @@
                             <div style="width: 80%;float: right;">
                                 <ul class="loseTooth_option">
                                     <li>
-                                        <label for="bonemeal ">骨粉<input name="bonemeal" id="bonemeal" value=""
+                                        <label for="bonemeal">骨粉<input name="bonemeal" id="bonemeal" value=""
                                                                         style="width:60px;" />g</label>
                                     </li>
                                     <li>(</li>
@@ -2188,6 +2189,7 @@
 </body>
 <script language="javascript" src="<%=contextPath%>/static/js/kqdsFront/LodopFuncs.js"></script>
 <script type="text/javascript">
+    var seqidFather="<%=seqidFather%>";
     var repairSignature="";
     var repairdoctorstatus=true;
     var signature="";
@@ -2261,9 +2263,9 @@
                 id: id,
                 order_number: order_number
             },
+
             dataType: "json",
             success: function (r) {
-                console.log(r,"77777777777")
                 $("#patient_time").text(r.cztime);
                 $("#patient_num").text(r.usercode);
                 $("#patient_name").text(r.username);
@@ -2279,12 +2281,13 @@
         });
         $.ajax({
             type: "POST",
-            url: contextPath + '/HUDH_LcljCaseAct/select.act',
+            url: contextPath + '/HUDH_LcljCaseAct/selectById.act',
             data: {
-                id: id
+                id: seqidFather
             },
             dataType: "json",
             success: function (result) {
+                console.log(result,"----ssss")
                 if(result!=null){
                     $("#consent_saveBtn").css("display","none");//隐藏保存按钮
                     $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
@@ -2343,8 +2346,8 @@
                             }
                         }
                     }
+                }
 
-                };
                 //获取当前页面所有按钮
                 getButtonAllCurPage(menuid);
             }
@@ -2620,10 +2623,10 @@
             username:$("#patient_name").val(),
             lcljid:id,
             lcljnum:order_number,
-            treatmentparts1:$("#treatmentparts1").text(),
-            treatmentparts2:$("#treatmentparts2").text(),
-            treatmentparts3:$("#treatmentparts3").text(),
-            consultationOpinion:$("input[name='consultation_opinion']:checked").val(),
+            //treatmentparts1:$("#treatmentparts1").text(),
+            //treatmentparts2:$("#treatmentparts2").text(),
+            //treatmentparts3:$("#treatmentparts3").text(),
+            //consultationOpinion:$("input[name='consultation_opinion']:checked").val(),
             deep:$("input[name='deep']:checked").val(),
             one:$("input[name='one']:checked").val(),
             preoperatives:preoperativesPlan(),
@@ -2843,14 +2846,13 @@
     function update(){
         var url = contextPath + '/HUDH_LcljCaseAct/update.act';
         var param = {
-            lcljid:id,
-            lcljnum:order_number,
-            treatmentparts1:$("#treatmentparts1").text(),
-            treatmentparts2:$("#treatmentparts2").text(),
-            treatmentparts3:$("#treatmentparts3").text(),
-            consultationOpinion:$("input[name='consultation_opinion']:checked").val(),
+            id:seqidFather,
+            //treatmentparts1:$("#treatmentparts1").text(),
+            //treatmentparts2:$("#treatmentparts2").text(),
+            //treatmentparts3:$("#treatmentparts3").text(),
+            //consultationOpinion:$("input[name='consultation_opinion']:checked").val(),
             deep:$("input[name='deep']:checked").val(),
-            one:$("input[name='one']:checked").val(),
+            //one:$("input[name='one']:checked").val(),
             preoperatives:preoperativesPlan(),
             bicon:biconPlan(),
             abutment:abutmentPlan(),

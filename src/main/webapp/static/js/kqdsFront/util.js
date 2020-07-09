@@ -332,7 +332,8 @@ function addDProject(thi,num,casenum){
 		}else{
 			contentUrl=contextPath + "/ZzblViewAct/toZzllExamineDiagnose.act?seqidFather="+seqid;
 		}
-	}else if(casenum==3){
+	}
+	else if(casenum==3){
 		layerTitle='诊疗方案';
 		if(consultAddBtn){
 			contentUrl=contextPath + "/ZzblViewAct/toDiagnosisProjectInfor.act?seqidFather="+seqid;
@@ -359,6 +360,13 @@ function addDProject(thi,num,casenum){
 			contentUrl=contextPath+"/ZzblViewAct/toDentalExamination.act?seqidFather="+seqid;
 		}else{
 			contentUrl=contextPath+"/ZzblViewAct/toDentalExamination.act?seqidFather="+seqid;
+		}
+	}else if(casenum==7){
+		layerTitle='新版诊疗方案';
+		if(consultAddBtn){
+			contentUrl=contextPath + "/ZzblViewAct/toExamineDiagnoseCase.act?seqidFather="+seqid;
+		}else{
+			contentUrl=contextPath + "/ZzblViewAct/toExamineDiagnoseCase.act?seqidFather="+seqid;
 		}
 	}
 	var nameNum="";  //记录病历序号，null为新增病历
@@ -477,17 +485,28 @@ function initCaseList(result,father,btn,casenum){
 		itemName="新病史";
 	}else if(casenum==6){
 		itemName="新诊断";
+	}else if(casenum==7){
+		itemName="新诊疗";
 	}
 	if(result.length>=1){
 		$("."+father).find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
 	}
 	var caseStyleHtml="";
 	for (var i =0;i<result.length;i++ ) {
-		if(result[i].status=="1"){
-			caseStyleHtml+="<span class='caseStyle' style='border-bottom:2px solid #00a6c0;' onclick='addDProject(this,"+(i+1)+","+casenum+");' id="+result[i].seqId+">"+itemName+"<label>"+(i+1)+"</label></span>";
-		}else{
-			caseStyleHtml+="<span class='caseStyle' onclick='addDProject(this,"+(i+1)+","+casenum+");' id="+result[i].seqId+">"+itemName+"<label>"+(i+1)+"</label></span>";
+		if(result[i].seqId){
+			if(result[i].status=="1"){
+				caseStyleHtml+="<span class='caseStyle' style='border-bottom:2px solid #00a6c0;' onclick='addDProject(this,"+(i+1)+","+casenum+");' id="+result[i].seqId+">"+itemName+"<label>"+(i+1)+"</label></span>";
+			}else{
+				caseStyleHtml+="<span class='caseStyle' onclick='addDProject(this,"+(i+1)+","+casenum+");' id="+result[i].seqId+">"+itemName+"<label>"+(i+1)+"</label></span>";
+			}
+		}else {
+			if(result[i].status=="1"){
+				caseStyleHtml+="<span class='caseStyle' style='border-bottom:2px solid #00a6c0;' onclick='addDProject(this,"+(i+1)+","+casenum+");' id="+result[i].id+">"+itemName+"<label>"+(i+1)+"</label></span>";
+			}else{
+				caseStyleHtml+="<span class='caseStyle' onclick='addDProject(this,"+(i+1)+","+casenum+");' id="+result[i].id+">"+itemName+"<label>"+(i+1)+"</label></span>";
+			}
 		}
+
 	}
 	if(consultAddBtn){
 		caseStyleHtml+="<span class='caseStyle addCaseBtn' onclick='addDProject(this,null,"+casenum+");' id='addCaseBtnOld'>新增<label>+</label></span>";
@@ -508,18 +527,19 @@ function initSelectList(father,casenum){
 		oldCaseUrl = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';  //老病历url
 		oldCaseResult = getResult(oldCaseUrl); //老病历查询结果
 		newCaseUrl = contextPath + '/HUDH_ZzblAdviceAct/findCaseHistoryById.act';  //新病例url
-		newCaseResult = getResult(newCaseUrl);;  //新病例查询结果
+		newCaseResult = getResult(newCaseUrl);  //新病例查询结果
 	}else if(casenum==2){
 		itemName="诊断";
 		oldCaseUrl = contextPath + '/HUDH_ZzblCheckAct/findZzblOprationById.act';  //老病历url
 		oldCaseResult = getResult(oldCaseUrl); //老病历查询结果
 		newCaseUrl = contextPath + '/HUDH_MedicalRecordsAct/selectdata.act';//新病例url
-		newCaseResult = getResult(newCaseUrl);;  //新病例查询结果
+		newCaseResult = getResult(newCaseUrl);  //新病例查询结果
 	}else if(casenum==3){
 		itemName="方案";
-		oldCaseUrl = contextPath + '/HUDH_ZzblAct/findZzblOprationById.act';  //老病历url
+		oldCaseUrl =contextPath + '/HUDH_ZzblAct/findZzblOprationById.act';  //老病历url
 		oldCaseResult = getResult(oldCaseUrl); //老病历查询结果
-		newCaseResult = "";
+		newCaseUrl = contextPath + '/HUDH_LcljCaseAct/select.act'; //新病例url
+		newCaseResult = getResult(newCaseUrl);  //新病例查询结果
 	}else if(casenum==4){
 		itemName="方案";
 		oldCaseUrl = contextPath + '/HUDH_RepairSchemeConfirmAct/findRepairInforById.act';  //老病历url
@@ -543,6 +563,7 @@ function initSelectList(father,casenum){
 					alreadySelectJCZDMark=0;  //新老病历标记
 				}else if(casenum==3){
 					alreadySelectZLFAId=oldCaseResult[i].seq_id;  //记录上一个选中诊疗方案病历seq_id
+					alreadySelectZLFAMark=0;  //新老病历标记
 				}else if(casenum==4){
 					alreadySelectXFFAId=oldCaseResult[i].seq_id;  //记录上一个选中修复方案病历seq_id
 				}
@@ -568,6 +589,7 @@ function initSelectList(father,casenum){
 					alreadySelectJCZDMark=1;  //新老病历标记
 				}else if(casenum==3){
 					alreadySelectZLFAId=newCaseResult[j].seq_id;  //记录上一个选中诊疗方案病历seq_id
+					alreadySelectZLFAMark=1;//新老病例标记
 				}else if(casenum==4){
 					alreadySelectXFFAId=newCaseResult[j].seq_id;  //记录上一个选中修复方案病历seq_id
 				}
@@ -582,7 +604,7 @@ function initSelectList(father,casenum){
 }
 
 //选择方案
-// father:父布局li的class casenum：更新选中的病历act 1:主诉及既往病历  2.检查及诊断 3.诊疗方案 4.修复方案 5.新版主诉即既往病史  alreadySeqId：已经选中的病历
+// father:父布局li的class casenum：更新选中的病历act 1:主诉及既往病历  2.检查及诊断 3.诊疗方案 4.修复方案 5.新版主诉即既往病史 6.新诊疗方案  alreadySeqId：已经选中的病历
 function selectCase(father,casenum){
 	if(casenum==1){
 		if(alreadySelectZSBSId){
@@ -594,7 +616,7 @@ function selectCase(father,casenum){
 		}
 	}else if(casenum==3){
 		if(alreadySelectZLFAId){
-			updateCaseStatus(casenum,alreadySelectZLFAId,"0","0");  //改变之前已经选中的方案
+			updateCaseStatus(casenum,alreadySelectZLFAId,"0",alreadySelectZLFAMark);  //改变之前已经选中的方案
 		}
 	}else if(casenum==4){
 		if(alreadySelectXFFAId){
@@ -608,7 +630,7 @@ function selectCase(father,casenum){
 }
 
 //诊疗方案选中方案（病历），改变状态
-//casenum:用来更新选中的病历act 1:主诉及既往病历  2.检查及诊断 3.诊疗方案 4.修复方案 5.新版主诉即既往病史 selectCasesId：病历seq_id status:要修改的状态值
+//casenum:用来更新选中的病历act 1:主诉及既往病历  2.检查及诊断 3.诊疗方案 4.修复方案 5.新版主诉即既往病史 6.新诊疗方案 selectCasesId：病历seq_id status:要修改的状态值
 //mark:标记新老病历  0-->老病历  1-->新病例
 function updateCaseStatus(casenum,selectCasesId,status,mark){
 	var url="";
@@ -625,7 +647,11 @@ function updateCaseStatus(casenum,selectCasesId,status,mark){
 			url = contextPath + '/HUDH_MedicalRecordsAct/installData.act';//口腔专科检查选中--新版接口
 		}
 	}else if(casenum==3){
-		url = contextPath + '/HUDH_ZzblAct/selectedScheme.act';
+		if(mark=="0"){
+			url = contextPath + '/HUDH_ZzblAct/selectedScheme.act';  //诊疗老病历选中接口
+		}else if(mark=="1"){
+			url = contextPath + '/HUDH_LcljCaseAct/update.act'; //诊疗新病历选中接口
+		}
 	}else if(casenum==4){
 		url = contextPath + '/HUDH_ZzblAct/selectedRepairProjectInfor.act';
 	}
@@ -682,6 +708,21 @@ function toggleCase(thi,num,casetype){
 		$(thi).attr("onclick","toggleCase(this,2,0)");
 		var url =  contextPath + '/HUDH_MedicalRecordsAct/selectdata.act';
 		initZzblOpration(url,6);
+	}
+
+	//诊疗方案
+	if(num==3 && casetype==0){
+		$(thi).text("切换新版");
+		$(thi).attr("onclick","toggleCase(this,3,1)");
+		var url =contextPath + '/HUDH_ZzblAct/findZzblOprationById.act';  //老病历url
+		initDiagnosisProject(url,3);
+	}
+	//诊疗方案（新）
+	if(num==3 && casetype==1){
+		$(thi).text("切换旧版");
+		$(thi).attr("onclick","toggleCase(this,3,0)");
+		var url = contextPath + '/HUDH_LcljCaseAct/select.act';
+		initDiagnosisProject(url,7);
 	}
 }
 
@@ -753,14 +794,30 @@ function initZzblOpration(url,casenum){
 			 lcljId:id, //临床路径ID(新版参数)
 		},
 		success:function(result){
-			// console.log(JSON.stringify(result)+"--------------检查及诊断初始化result");
+			// console.log(JSON.stringify(result)+"--------------诊疗方案---result");
 			initCaseList(result,"jczdLi","examine_diagnose",casenum); //初始化诊疗方案列表
 		}
   });
 }
 
 //初始化诊疗方案
-function initDiagnosisProject(){
+function initDiagnosisProject(url,casenum){
+	//var url = contextPath + '/HUDH_ZzblAct/findZzblOprationById.act';
+	$.ajax({
+		url: url,
+		type:"POST",
+		dataType:"json",
+		data : {
+			id :  id, //临床路径ID
+			order_number : order_number
+		},
+		success:function(result){
+			// console.log(url,JSON.stringify(result)+"1--------------诊疗方案result");
+			initCaseList(result,"zlCasesLi","diagnosis_case",casenum); //初始化诊疗方案列表
+		}
+	});
+}
+/*function initDiagnosisProject(){
 	var url = contextPath + '/HUDH_ZzblAct/findZzblOprationById.act';
 	$.ajax({
 		url: url,
@@ -775,7 +832,7 @@ function initDiagnosisProject(){
 			initCaseList(result,"zlCasesLi","diagnosis_case",3); //初始化诊疗方案列表
 		}
   });
-}
+}*/
 
 //初始化修复方案
 function initRepairProject(){
