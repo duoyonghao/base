@@ -242,6 +242,15 @@
         <if test="status != null">
             status,
         </if>
+        <if test="createuser != null">
+            createuser,
+        </if>
+        <if test="createtime != null">
+            createtime,
+        </if>
+        <if test="organization != null">
+            organization,
+        </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test=" seqId != null">
@@ -392,16 +401,24 @@
         #{doctorSignature,jdbcType=VARCHAR},
       </if>
       <if test="others != null">
-        #{others,jdbcType=VARCHAR}
+        #{others,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        #{status,jdbcType=VARCHAR}
+        #{status,jdbcType=VARCHAR},
       </if>
+        <if test="createuser != null">
+            #{createuser,jdbcType=VARCHAR},
+        </if>
+        <if test="createtime != null">
+            #{createtime,jdbcType=VARCHAR},
+        </if>
+        <if test="organization != null">
+            #{organization,jdbcType=VARCHAR}
+        </if>
     </trim>
   </insert>
   <update id="updateByseqId" parameterType="com.hudh.lclj.entity.HudhSpecialitycheck">
     update HUDH_SpecialityCheck
-    <set>
         <trim prefix="set" suffixOverrides=",">
             <if test="ismouthopening != null">
                 IsmouthOpening = #{ismouthopening,jdbcType=VARCHAR},
@@ -545,13 +562,13 @@
                 status=#{status,jdbcType=VARCHAR}
             </if>
         </trim>
-    </set>
    	  WHERE SEQ_ID = #{seqId,jdbcType=VARCHAR}
   </update>
   <select id="selectdata" parameterType="map" resultType="json">
   	select 
   	<include refid="Base_Column_List" />
   	from HUDH_SpecialityCheck
-  	where lcljId = #{lcljId} order by createtime ASC
+  	where lcljId = #{lcljId}
+  	ORDER BY createtime ASC
   </select>
 </mapper>

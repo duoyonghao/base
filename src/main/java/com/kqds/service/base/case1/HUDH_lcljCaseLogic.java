@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.kqds.dao.DaoSupport;
 import com.kqds.entity.base.HudhLcljBase;
 
+import java.util.List;
+
 @Service
 public class HUDH_lcljCaseLogic {
 	@Autowired
@@ -17,9 +19,9 @@ public class HUDH_lcljCaseLogic {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public HudhLcljBase selectWithPage(String lcljid) throws Exception {
+	public List<HudhLcljBase> selectWithPage(String lcljid) throws Exception {
 
-		HudhLcljBase hudhLcljBase = (HudhLcljBase) dao.findForObject("HUDH_LCLJ_BASE.selectByPrimaryKey", lcljid);
+		List<HudhLcljBase> hudhLcljBase = (List<HudhLcljBase>) dao.findForList("HUDH_LCLJ_BASE.selectByPrimaryKey", lcljid);
 		return hudhLcljBase;
 	}
 	

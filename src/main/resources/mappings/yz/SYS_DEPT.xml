@@ -18,6 +18,7 @@
 		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
 		<result column="ismore" jdbcType="VARCHAR" property="ismore" />
 		<result column="dept_type_other" jdbcType="VARCHAR" property="dept_type_other" />
+		<result column="iskefu" jdbcType="VARCHAR" property="iskefu" />
 	</resultMap>
 	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.sys.YZDept">
 		<result column="MANAGER" jdbcType="CLOB" property="manager" />
@@ -28,7 +29,7 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		SEQ_ID, DEPT_NAME, TEL_NO, FAX_NO, DEPT_NO, DEPT_PARENT, DEPT_CODE, DEPT_TYPE, DEPT_BYNAME,
-		PRINT_NAME, ORGFLAG, DEPT_ADDRESS, createtime, createuser, ismore,dept_type_other
+		PRINT_NAME, ORGFLAG, DEPT_ADDRESS, createtime, createuser, ismore,dept_type_other,iskefu
 	</sql>
 	<sql id="Blob_Column_List">
 		MANAGER, LEADER1, LEADER2, DEPT_FUNC,isvisit
@@ -121,6 +122,9 @@
 			<if test="isvisit != null">
 				isvisit,
 			</if>
+			<if test="iskefu != null">
+				iskefu,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="seqId != null">
@@ -179,6 +183,9 @@
 			</if>
 			<if test="isvisit != null">
 				#{isvisit,jdbcType=CLOB},
+			</if>
+			<if test="iskefu != null">
+				#{iskefu,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
@@ -239,6 +246,9 @@
 			<if test="isvisit != null">
 				isvisit = #{isvisit,jdbcType=CLOB},
 			</if>
+			<if test="iskefu != null">
+				iskefu = #{iskefu,jdbcType=CLOB},
+			</if>
 		</set>
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
 	</update>
@@ -265,7 +275,8 @@
 		#{leader1,jdbcType=CLOB},
 		LEADER2 = #{leader2,jdbcType=CLOB},
 		DEPT_FUNC = #{deptFunc,jdbcType=CLOB},
-		isvisit = #{isvisit,jdbcType=VARCHAR}
+		isvisit = #{isvisit,jdbcType=VARCHAR},
+		iskefu=#{iskefu,jdbcType=VARCHAR}
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.sys.YZDept">

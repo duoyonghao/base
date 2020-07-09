@@ -779,7 +779,7 @@
 		where 1=1
 		and is_leave = 0
 		<if test="dept_id != null and dept_id != ''">
-			and p.dept_id = #{dept_id}
+			and p.dept_id = #{dept_id} or xy_dept=#{dept_id}
 		</if>
 		<if test="seq_id != null and seq_id != ''">
 			and p.seq_id = #{seq_id}
