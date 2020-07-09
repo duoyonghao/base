@@ -3472,8 +3472,8 @@ public class KQDS_UserDocumentAct {
     public List<JSONObject> findByUsercode(HttpServletRequest request, HttpServletResponse response) throws Exception {
         try {
             String usercode = request.getParameter("usercode");
-            List<JSONObject> list = logic.findByUsercode(usercode);
-            YZUtility.RETURN_LIST(list, response, logger);
+            JSONObject list = logic.findByUsercode(usercode);
+            YZUtility.RETURN_OBJ(list, response, logger);
         } catch (Exception ex) {
             YZUtility.DEAL_ERROR(null, false, ex, response, logger);
         }

@@ -557,7 +557,7 @@ function init() {
         		    dataType: "json",
         		    data:{usercode:ev.usercode},
         		    success: function(r){
-                        $('#usercodeDesc').val(ev.usercode+'    '+ev.username+'    '+r[0].sex+'    '+r[0].age+'    '+r[0].phonenumber1);
+                        $('#usercodeDesc').val(ev.usercode+'    '+ev.username+'    '+r.sex+'    '+r.age+'    '+r.phonenumber1);
                         $('#usercode').val(value);
                         $('#username').val(ev.username);
         		    }
@@ -574,7 +574,7 @@ function init() {
 	        		    dataType: "json",
 	        		    data:{usercode:usercode},
 	        		    success: function(r){
-	                        $('#usercodeDesc').val(usercode+'    '+username+'    '+r[0].sex+'    '+r[0].age+'    '+r[0].phonenumber1);
+	                        $('#usercodeDesc').val(usercode+'    '+username+'    '+r.sex+'    '+r.age+'    '+r.phonenumber1);
 	                        $('#usercode').val(usercode);
 	                        $('#username').val(username);
 	        		    }

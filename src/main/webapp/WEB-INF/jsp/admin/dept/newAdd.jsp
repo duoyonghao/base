@@ -120,8 +120,8 @@
 						</td>
 						<td>
 							<div class="form-group">
-							<input type="radio" name="isvisit" id="isvisit" value="0" checked="checked"><label for="isvisit">否</label>&nbsp;
-					        <input type="radio" name="isvisit" id="isvisit" value="1"><label for="isvisit">是</label>
+							<input type="radio" name="isvisit" id="isvisit0" value="0" checked="checked"><label for="isvisit0">否</label>&nbsp;
+					        <input type="radio" name="isvisit" id="isvisit1" value="1"><label for="isvisit1">是</label>
 					        </div>
 						</td>
 				
@@ -132,9 +132,19 @@
 						</td>
 						<td>
 							<div class="form-group">
-								<input type="radio" name="ismore" id="ismore" value="0" checked="checked"><label for="ismore">否</label>&nbsp;
-						        <input type="radio" name="ismore" id="ismore" value="1"><label for="ismore">是</label>
+								<input type="radio" name="ismore" id="ismore0" value="0" checked="checked"><label for="ismore0">否</label>&nbsp;
+						        <input type="radio" name="ismore" id="ismore1" value="1"><label for="ismore1">是</label>
 					        </div>
+						</td>
+
+						<td>
+							<span class="impText">是否为客服</span>
+						</td>
+						<td>
+							<div class="form-group">
+								<input type="radio" name="iskefu" id="iskefu0" value="0" checked="checked"><label for="iskefu0">否</label>&nbsp;
+								<input type="radio" name="iskefu" id="iskefu1" value="1"><label for="iskefu1">是</label>
+							</div>
 						</td>
 					</tr>
 					<tr>

@@ -2304,8 +2304,8 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     }
 
     @SuppressWarnings("unchecked")
-    public List<JSONObject> findByUsercode(String usercode) throws Exception {
-        List<JSONObject> list = (List<JSONObject>) dao.findForList(TableNameUtil.KQDS_USERDOCUMENT + ".findByUsercode", usercode);
+    public JSONObject findByUsercode(String usercode) throws Exception {
+        JSONObject list = (JSONObject) dao.findForObject(TableNameUtil.KQDS_USERDOCUMENT + ".findByUsercode", usercode);
         return list;
     }
 
