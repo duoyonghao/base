@@ -143,6 +143,7 @@
 								<li class="positionLi zlCasesLi">
 									<label class="zlCasesLiText"><input name="Consultation" type="checkbox" disabled="disabled" value="制定手术方案和治疗计划" /><font class="mustIn">*</font><font class="diagnosis_case" onclick="showHiddenClick(this,'zlCasesLi');">4、制定手术方案和治疗计划</font></label>
 									<div class="caseContiner" style="display:none;">
+										<button class="btnStyle" onclick="toggleCase(this,3,1);">切换新版</button>
 										<div class="zlCases"></div>
 										<div class="selectCases">
 											<select id="allCases"></select>
@@ -224,7 +225,7 @@
 									</div>
 								</li>
 							   <%--<li><label><input name="Consultation" type="checkbox" value="告知通知书" /><font class="inform">19、告知通知书</font></label></li> --%>
-<%--							    <li><label><input name="Consultation" type="checkbox" value="诊疗方案" /><font class="case">20、诊疗方案</font></label></li>--%>
+						    <%--<li><label><input name="Consultation" type="checkbox" value="诊疗方案" /><font class="case">20、诊疗方案</font></label></li>--%>
 							</ul>
 						</div>
 					</td>
@@ -353,6 +354,7 @@
 	var consultAddBtn=true; //判断此页面是否为咨询填写,多方案是否加新增按钮
     var alreadySelectZSBSMark="";  //记录上一次选中的主诉即既往病史是新病历还是老病历
 	var alreadySelectJCZDMark=""; //记录上一次选中的口腔专科检查是新病历还是老病历
+	var alreadySelectZLFAMark=""; //记录上一次选中的诊疗方案是新病历还是老病历
 	var notification = 0;
 	$(function(){
 		checkOptions();//判断要填写的选项是否已填写并选中
@@ -366,10 +368,11 @@
         };
 
 		var anamnesisUrl = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
+		var jczdUrl  = contextPath + '/HUDH_ZzblCheckAct/findZzblOprationById.act';  //老病历url
+		var zlfaurl = contextPath + '/HUDH_ZzblAct/findZzblOprationById.act';//诊疗方案老url
         initCaseHistory(anamnesisUrl,1);  //初始化主诉及既往病史，默认先展示老病历
-        var jczdUrl  = contextPath + '/HUDH_ZzblCheckAct/findZzblOprationById.act';  //老病历url
         initZzblOpration(jczdUrl,2); //初始化检查及诊断
-        initDiagnosisProject(); //初始化诊疗方案
+        initDiagnosisProject(zlfaurl,3); //初始化诊疗方案
         initRepairProject(); //初始化修复方案
        	//dProjectclick(); //诊疗方案移入移除显示隐藏
         initSelectList("jwsLi",1); //初始化既往病史下拉框
@@ -729,20 +732,20 @@
 
 
 		//诊疗方案
-		// var zlfaurl = contextPath + '/HUDH_LcljCaseAct/select.act';
-		// $.ajax({
-		// 	url: zlfaurl,
-		// 	type:"POST",
-		// 	dataType:"json",
-		// 	data : {
-		// 		id : id
-		// 	},
-		// 	success:function(result){
-		// 		if(result!=null){
-		// 			$(".case").prev().attr("checked","checked").attr("disabled","disabled");
-		// 		}
-		// 	}
-	  // });
+		var zlfaurl = contextPath + '/HUDH_LcljCaseAct/select.act';
+		$.ajax({
+			url: zlfaurl,
+			type:"POST",
+			dataType:"json",
+			data : {
+				id : id
+			},
+			success:function(result){
+				if(result.size>0){
+					$(".case").prev().attr("checked","checked").attr("disabled","disabled");
+				}
+			}
+	  });
 
 		//新 人工种植牙知情同意书
 		var consentBookUrl = contextPath + '/HUDH_ZzblAskAct/findFamiliarBookById.act';
