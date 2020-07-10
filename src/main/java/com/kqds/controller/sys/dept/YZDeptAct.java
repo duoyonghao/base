@@ -765,9 +765,9 @@ public class YZDeptAct {
 		try {
 			List<JSONObject> list = deptLogic.selectBeanListByMap("\'" + person.getDeptId() + "\'");
 			if(list.size()>0){
-				if("0".equals(list.get(0).getInt("iskefu"))){
+				if("0".equals(list.get(0).getString("iskefu"))){
 					YZUtility.DEAL_SUCCESS_VALID(true,response);
-					return;
+					return ;
 				}
 			}
 			JSONObject user = userDocumentLogic.findByUsercode(usercode);
