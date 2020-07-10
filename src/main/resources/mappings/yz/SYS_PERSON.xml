@@ -34,6 +34,11 @@
 	<sql id="Blob_Column_List">
 		DEPT_ID_OTHER, USER_PRIV_OTHER
 	</sql>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"></include>
+		from sys_person
+	</select>
 	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
 		select
 		<include refid="Base_Column_List" />

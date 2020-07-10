@@ -270,6 +270,10 @@ public class YZPersonLogic extends BaseLogic {
 		return persons;
 	}
 
+	public List<YZPerson> getAll() throws Exception {
+		return (List<YZPerson>) dao.findForList(TableNameUtil.SYS_PERSON+".selectAll",null);
+	}
+
 	/**
 	 * 根据可见人员过滤树
 	 * 
