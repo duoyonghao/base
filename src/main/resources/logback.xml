@@ -14,6 +14,10 @@
         <destination>192.168.3.199:4560</destination>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
     </appender>
+
+    <logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="ERROR">
+        <appender-ref ref="STDOUT" />
+    </logger>
     <!-- 日志输出级别 -->
     <root level="INFO">
         <appender-ref ref="STDOUT" />

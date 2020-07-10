@@ -72,6 +72,7 @@
 	</mvc:interceptors>
 
 
+	<bean id="privilegeSynchronizer" class="com.kqds.core.global.PrivilegeSynchronizer"></bean>
 
 
 	<!-- 视图解释类 -->

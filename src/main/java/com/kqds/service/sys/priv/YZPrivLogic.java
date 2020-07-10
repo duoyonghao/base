@@ -164,6 +164,10 @@ public class YZPrivLogic extends BaseLogic {
 		return count;
 	}
 
+	public int countUserPrivileges(String belongs_to) throws Exception {
+		return (int) dao.findForObject(TableNameUtil.SYS_PRIV+".countUserPrivileges", belongs_to);
+	}
+
 	/**
 	 * 根据角色名称统计数量
 	 * 
