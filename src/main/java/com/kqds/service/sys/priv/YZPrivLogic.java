@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.kqds.entity.sys.YZPrivilege;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -86,6 +87,14 @@ public class YZPrivLogic extends BaseLogic {
 		// 记录日志
 		SysLogUtil.log(SysLogUtil.DELETE, SysLogUtil.SYS_PRIV, seqids, TableNameUtil.SYS_PRIV, request);
 		return count;
+	}
+
+	public void removeUserPrivileges(String seqId) throws Exception {
+		dao.delete(TableNameUtil.SYS_PRIV+".deleteByBelongsTo", seqId);
+	}
+
+	public void insertPrivilege(YZPrivilege yzPrivilege) throws Exception {
+		dao.save(TableNameUtil.SYS_PRIV+".insertPrivilege", yzPrivilege);
 	}
 
 	/**
