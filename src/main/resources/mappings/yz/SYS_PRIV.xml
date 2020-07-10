@@ -55,7 +55,7 @@
 	</delete>
 	<insert id="insertPrivilege" parameterType="com.kqds.entity.sys.YZPrivilege">
 		insert into sys_privilege (belongs_to,belongs_to_name, user_seq_id, user_name)
-		values (#{belongsTo, jdbcType=INTEGER},#{belongsToName, jdbcType=VARCHAR}, #{user_seq_id, jdbcType=INTEGER},#{user_name,jdbcType=VARCHAR})
+		values (#{belongsTo, jdbcType=INTEGER},#{belongsToName, jdbcType=VARCHAR}, #{userSeqId, jdbcType=INTEGER},#{userName,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insert" parameterType="com.kqds.entity.sys.YZPriv">
 		insert into sys_priv (SEQ_ID, PRIV_NAME, PRIV_NO,

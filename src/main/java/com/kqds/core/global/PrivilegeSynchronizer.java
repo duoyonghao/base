@@ -48,13 +48,13 @@ public class PrivilegeSynchronizer implements InitializingBean {
                                     List<String> userSeqIds = Arrays.asList(visualPerson.split(","));
                                     userSeqIds.forEach(userSeqId->{
                                         YZPrivilege yzPrivilege = new YZPrivilege();
-                                        yzPrivilege.setBelongs_to(seqId);
-                                        yzPrivilege.setBelongs_to_name(yzPerson.getUserName());
-                                        yzPrivilege.setUser_seq_id(userSeqId);
+                                        yzPrivilege.setBelongsTo(seqId);
+                                        yzPrivilege.setBelongsToName(yzPerson.getUserName());
+                                        yzPrivilege.setUserSeqId(userSeqId);
                                         YZPerson toUser = null;
                                         try {
                                             toUser = yzPersonLogic.getPersonBySeqId(userSeqId);
-                                            yzPrivilege.setUser_name(toUser.getUserName());
+                                            yzPrivilege.setUserName(toUser.getUserName());
                                         } catch (Exception e) {
                                             logger.error(e.getMessage());
                                         }
