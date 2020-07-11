@@ -1,6 +1,5 @@
 package com.kqds.core.global;
 
-//import com.kqds.entity.sys.YZOrderPriv;
 import com.kqds.entity.sys.YZPerson;
 import com.kqds.entity.sys.YZPriv;
 import com.kqds.entity.sys.YZPrivilege;
@@ -43,31 +42,24 @@ public class PrivilegeSynchronizer implements InitializingBean {
                             if (yzPerson != null) {
                                 String privSeqId = yzPerson.getUserPriv();
                                 YZPriv yzPriv = yzPrivLogic.getDetailBySeqId(privSeqId);
+                                //可见人
                                 String visualPerson = yzPriv.getVisualPerson();
+                                //可见部门
                                 String visualDept = yzPriv.getVisualDept();
-                                List<String> userSeqIds = new ArrayList<>();
+                                List<String> userSeqIds = new ArrayList<String>();
                                 //使自己能看到自己
                                 userSeqIds.add(seqId);
                                 if (StringUtils.isNotEmpty(visualDept) && StringUtils.isNotEmpty(visualPerson)) {
-                                    List<String> visualPersonList = Arrays.asList(visualPerson.split(","));
+                                    List<String> personList = Arrays.asList(visualPerson.split(","));
                                     List<String> deptSeqIds = Arrays.asList(visualDept.split(","));
+                                    //传入部门list查询对应的员工
                                     List<String> list = yzPersonLogic.findPersonalByDeptList(deptSeqIds);
-//                                    Map<String, Integer> map = new HashMap<String, Integer>(userSeqIds.size());
-//                                    //List<Resource> differentList = new ArrayList<Resource>();
-//                                    for (String userSId : userSeqIds) {
-//                                        map.put(userSId, 1);
-//                                    }
-//                                    for (String resource1 : list) {
-//                                        if (map.get(resource1) == null) {
-//                                            userSeqIds.add(resource1);
-//                                        }
-//                                    }
                                     userSeqIds.addAll(list);
-                                    userSeqIds.addAll(visualPersonList);
+                                    userSeqIds.addAll(personList);
                                     userSeqIds = userSeqIds.stream().distinct().collect(Collectors.toList());
-                                } else if (StringUtils.isNotEmpty(visualPerson)) {
+                                } else if (StringUtils.isNotEmpty(visualPerson) && StringUtils.isEmpty(visualDept) ) {
                                     userSeqIds.addAll(Arrays.asList(visualPerson.split(",")));
-                                } else if (StringUtils.isNotEmpty(visualDept)) {
+                                } else if (StringUtils.isNotEmpty(visualDept) && StringUtils.isEmpty(visualPerson)) {
                                     List<String> deptSeqIds = Arrays.asList(visualDept.split(","));
                                     userSeqIds.addAll(yzPersonLogic.findPersonalByDeptList(deptSeqIds));
                                 }
@@ -89,28 +81,6 @@ public class PrivilegeSynchronizer implements InitializingBean {
                                         logger.error(e.getMessage());
                                     }
                                 });
-//                                String orderVisualPerson = yzPriv.getOrderVisualPerson();
-//                                if (StringUtils.isNotEmpty(orderVisualPerson)) {
-//                                    List<String> oderUserSeqIds = Arrays.asList(orderVisualPerson.split(","));
-//                                    oderUserSeqIds.forEach(orderUserSeqId -> {
-//                                        YZOrderPriv yzOrderPriv = new YZOrderPriv();
-//                                        yzOrderPriv.setOrderBelongsTo(seqId);
-//                                        yzOrderPriv.setOrderBelongsToName(yzPerson.getUserName());
-//                                        yzOrderPriv.setOrderUserSeqId(orderUserSeqId);
-//                                        YZPerson toUser = null;
-//                                        try {
-//                                            toUser = yzPersonLogic.getPersonBySeqId(orderUserSeqId);
-//                                            yzOrderPriv.setOrderUserName(toUser.getUserName());
-//                                        } catch (Exception e) {
-//                                            logger.error(e.getMessage());
-//                                        }
-//                                        try {
-//                                            yzPrivLogic.insertOrderPriv(yzOrderPriv);
-//                                        } catch (Exception e) {
-//                                            logger.error(e.getMessage());
-//                                        }
-//                                    });
-//                                }
                             }
                         } catch (Exception e) {
                             logger.error(e.getMessage());
@@ -147,7 +117,6 @@ public class PrivilegeSynchronizer implements InitializingBean {
         }.start();
         logger.info("PrivilegeSynchronizer initialized-----------");
     }
-
 
     public void notifyChanged(String userSeqId) {
         waitingUsers.add(userSeqId);

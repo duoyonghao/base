@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.kqds.entity.sys.YZOrderPriv;
 import com.kqds.entity.sys.YZPrivilege;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,8 +62,7 @@ public class YZPrivLogic extends BaseLogic {
 
 	/**
 	 * 根据主键获取角色
-	 * 
-	 * @param conn
+	 *
 	 * @param seqId
 	 * @return
 	 * @throws Exception
@@ -75,8 +75,7 @@ public class YZPrivLogic extends BaseLogic {
 
 	/**
 	 * 根据主键进行删除
-	 * 
-	 * @param conn
+	 *
 	 * @param seqids
 	 * @return
 	 * @throws Exception
@@ -93,14 +92,20 @@ public class YZPrivLogic extends BaseLogic {
 		dao.delete(TableNameUtil.SYS_PRIV+".deleteByBelongsTo", seqId);
 	}
 
+	public void removeUserOrderPriv(String seqId) throws Exception {
+		dao.delete(TableNameUtil.SYS_PRIV+".deleteOrderPrivByBelongsTo", seqId);
+	}
+
 	public void insertPrivilege(YZPrivilege yzPrivilege) throws Exception {
 		dao.save(TableNameUtil.SYS_PRIV+".insertPrivilege", yzPrivilege);
 	}
 
+	public void insertOrderPriv(YZOrderPriv yzOrderPriv) throws Exception {
+		dao.save(TableNameUtil.SYS_PRIV+".insertOrderPriv", yzOrderPriv);
+	}
 	/**
 	 * 获取角色列表
-	 * 
-	 * @param conn
+	 *
 	 * @return
 	 * @throws Exception
 	 */
@@ -111,8 +116,7 @@ public class YZPrivLogic extends BaseLogic {
 
 	/**
 	 * 指定门诊+公共角色
-	 * 
-	 * @param conn
+	 *
 	 * @param organization
 	 * @return
 	 * @throws Exception
@@ -124,8 +128,7 @@ public class YZPrivLogic extends BaseLogic {
 
 	/**
 	 * 统计绑定该角色的用户数【主角色】
-	 * 
-	 * @param conn
+	 *
 	 * @param id
 	 * @return
 	 * @throws Exception
@@ -137,8 +140,7 @@ public class YZPrivLogic extends BaseLogic {
 
 	/**
 	 * 统计绑定该角色的用户数【辅助角色】
-	 * 
-	 * @param conn
+	 *
 	 * @param id
 	 * @return
 	 * @throws Exception
@@ -163,8 +165,7 @@ public class YZPrivLogic extends BaseLogic {
 
 	/**
 	 * 统计角色数量
-	 * 
-	 * @param conn
+	 *
 	 * @return
 	 * @throws Exception
 	 */
@@ -177,11 +178,12 @@ public class YZPrivLogic extends BaseLogic {
 		return (int) dao.findForObject(TableNameUtil.SYS_PRIV+".countUserPrivileges", belongs_to);
 	}
 
+	public int countUserOrderPriv(String belongs_to) throws Exception {
+		return (int) dao.findForObject(TableNameUtil.SYS_PRIV+".countUserOrderPriv", belongs_to);
+	}
 	/**
 	 * 根据角色名称统计数量
-	 * 
-	 * @param conn
-	 * @param dept
+	 *
 	 * @return
 	 * @throws Exception
 	 */
@@ -192,8 +194,7 @@ public class YZPrivLogic extends BaseLogic {
 
 	/**
 	 * 根据部门ID进行分页查询
-	 * 
-	 * @param conn
+	 *
 	 * @param bp
 	 * @return
 	 * @throws Exception
@@ -267,9 +268,7 @@ public class YZPrivLogic extends BaseLogic {
 
 	/**
 	 * 存取与用户相关的权限之前，做检查和初始化操作
-	 * 
-	 * @param privSeqId
-	 * @param conn
+	 *
 	 * @return
 	 * @throws Exception
 	 */
