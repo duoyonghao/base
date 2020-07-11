@@ -1,5 +1,6 @@
 package com.kqds.core.global;
 
+import com.kqds.entity.sys.YZOrderPriv;
 import com.kqds.entity.sys.YZPerson;
 import com.kqds.entity.sys.YZPriv;
 import com.kqds.entity.sys.YZPrivilege;
@@ -12,7 +13,9 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.stream.Collectors;
 
@@ -26,44 +29,81 @@ public class PrivilegeSynchronizer implements InitializingBean {
     YZPersonLogic yzPersonLogic;
 
     private ArrayBlockingQueue<String> waitingUsers = new ArrayBlockingQueue<>(1000);
+
     @Override
     public void afterPropertiesSet() throws Exception {
         new Thread(() -> {
             while (true) {
                 try {
                     String seqId = waitingUsers.take();
-                    if(StringUtils.isNotEmpty(seqId)) {
+                    if (StringUtils.isNotEmpty(seqId)) {
                         //执行同步操作
                         logger.info("PrivilegeSynchronizer: user [{}] privileges changed", seqId);
                         //全部删除当前用户的权限，并重新创建
                         try {
                             yzPrivLogic.removeUserPrivileges(seqId);
                             YZPerson yzPerson = yzPersonLogic.getPersonBySeqId(seqId);
-                            if(yzPerson != null) {
+                            if (yzPerson != null) {
                                 String privSeqId = yzPerson.getUserPriv();
                                 YZPriv yzPriv = yzPrivLogic.getDetailBySeqId(privSeqId);
                                 String visualPerson = yzPriv.getVisualPerson();
-                                String visualDept=yzPriv.getVisualDept();
-                                if(StringUtils.isNotEmpty(visualDept)){
+                                String visualDept = yzPriv.getVisualDept();
+                                List<String> userSeqIds = null;
+                                if (StringUtils.isNotEmpty(visualDept) && StringUtils.isNotEmpty(visualPerson)) {
                                     List<String> deptSeqIds = Arrays.asList(visualDept.split(","));
                                     List<String> list = yzPersonLogic.findPersonalByDeptList(deptSeqIds);
+                                    userSeqIds = Arrays.asList(visualPerson.split(","));
+                                    Map<String, Integer> map = new HashMap<String, Integer>(userSeqIds.size());
+                                    //List<Resource> differentList = new ArrayList<Resource>();
+                                    for (String userSId : userSeqIds) {
+                                        map.put(userSId, 1);
+                                    }
+                                    for (String resource1 : list) {
+                                        if (map.get(resource1) == null) {
+                                            userSeqIds.add(resource1);
+                                        }
+                                    }
+                                } else if (StringUtils.isNotEmpty(visualPerson)) {
+                                    userSeqIds = Arrays.asList(visualPerson.split(","));
+                                } else if (StringUtils.isNotEmpty(visualDept)) {
+                                    List<String> deptSeqIds = Arrays.asList(visualDept.split(","));
+                                    userSeqIds = yzPersonLogic.findPersonalByDeptList(deptSeqIds);
                                 }
-                                if(StringUtils.isNotEmpty(visualPerson)) {
-                                    List<String> userSeqIds = Arrays.asList(visualPerson.split(","));
-                                    userSeqIds.forEach(userSeqId->{
-                                        YZPrivilege yzPrivilege = new YZPrivilege();
-                                        yzPrivilege.setBelongsTo(seqId);
-                                        yzPrivilege.setBelongsToName(yzPerson.getUserName());
-                                        yzPrivilege.setUserSeqId(userSeqId);
+                                userSeqIds.forEach(userSeqId -> {
+                                    YZPrivilege yzPrivilege = new YZPrivilege();
+                                    yzPrivilege.setBelongsTo(seqId);
+                                    yzPrivilege.setBelongsToName(yzPerson.getUserName());
+                                    yzPrivilege.setUserSeqId(userSeqId);
+                                    YZPerson toUser = null;
+                                    try {
+                                        toUser = yzPersonLogic.getPersonBySeqId(userSeqId);
+                                        yzPrivilege.setUserName(toUser.getUserName());
+                                    } catch (Exception e) {
+                                        logger.error(e.getMessage());
+                                    }
+                                    try {
+                                        yzPrivLogic.insertPrivilege(yzPrivilege);
+                                    } catch (Exception e) {
+                                        logger.error(e.getMessage());
+                                    }
+                                });
+                                String orderVisualPerson = yzPriv.getOrderVisualPerson();
+                                if (StringUtils.isNotEmpty(orderVisualPerson)) {
+                                    List<String> oderUserSeqIds = Arrays.asList(orderVisualPerson.split(","));
+                                    oderUserSeqIds.forEach(orderUserSeqId -> {
+                                        YZOrderPriv yzOrderPriv = new YZOrderPriv();
+                                        yzOrderPriv.setOrderBelongsTo(seqId);
+                                        yzOrderPriv.setOrderBelongsToName(yzPerson.getUserName());
+                                        yzOrderPriv.setOrderUserSeqId(orderUserSeqId);
                                         YZPerson toUser = null;
                                         try {
-                                            toUser = yzPersonLogic.getPersonBySeqId(userSeqId);
-                                            yzPrivilege.setUserName(toUser.getUserName());
+                                            toUser = yzPersonLogic.getPersonBySeqId(orderUserSeqId);
+                                            yzOrderPriv.setOrderUserName(toUser.getUserName());
                                         } catch (Exception e) {
                                             logger.error(e.getMessage());
                                         }
                                         try {
-                                            yzPrivLogic.insertPrivilege(yzPrivilege);
+                                            yzPrivLogic.insertOrderPriv(yzOrderPriv);
                                         } catch (Exception e) {
                                             logger.error(e.getMessage());
                                         }
@@ -75,24 +115,23 @@ public class PrivilegeSynchronizer implements InitializingBean {
                         }
 
                     }
-                } catch (InterruptedException e) {
+                } catch (Exception e) {
                     logger.error(e.getMessage());
                 }
-
             }
-        },"PrivilegeSynchronizer-main").start();
+        }, "PrivilegeSynchronizer-main").start();
 
         //初始化同步操作
-        new Thread(){
+        new Thread() {
             @Override
             public void run() {
                 try {
                     List<YZPerson> users = yzPersonLogic.getAll();
                     List<String> sources = users.stream().map(YZPerson::getSeqId).collect(Collectors.toList());
-                    sources.forEach(seqId ->{
+                    sources.forEach(seqId -> {
                         try {
                             int count = yzPrivLogic.countUserPrivileges(seqId);
-                            if(count == 0) {
+                            if (count == 0) {
                                 waitingUsers.add(seqId);
                             }
                         } catch (Exception e) {
