@@ -448,7 +448,6 @@ function initTable(requrl) {
         sidePagination: "server",//分页方式：client客户端分页，server服务端分页（*）
         paginationShowPageGo: true,
         onLoadSuccess: function(data) { //加载成功时执行
-        	
         	//判断登录
         	var existornot=isExist(total);
         	if(!existornot){
@@ -564,9 +563,15 @@ function initTable(requrl) {
             sortable: true,
             formatter: function(value, row, index) {
             	//console.log("value="+value+",row="+JSON.stringify(row)+",index="+index);
-            	 if (value != "" && value != null) {
-                    return '<img class="iscreatelclj" onclick="skip(\'' + row.username + '\')" src= ' +contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
+				var img='';
+                if (value != "" && value != null) {
+                    img+='<img class="iscreatelclj" onclick="skip(\'' + row.username + '\')" src= ' +contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
                 }
+				if(row.kefu != "" && row.kefu != null){
+                    img += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/customerservice.jpg/>';
+                }
+
+                return img == "" ? "-" : img;
             }
         },
         {
@@ -823,6 +828,15 @@ function clean() {
 	$(".searchSelect li.selected").removeClass("selected");
   	$(".searchSelect button .pull-left").text("请选择");    
 }
+var loadIndex='';
+function download() {
+    //layer.msg('数据导出中，请等待');
+    loadIndex = layer.load(0, {shade: false});
+}
+function disload() {
+    layer.close(loadIndex);
+    layer.msg('数据导出完毕');
+}
 //导出
 function exporttable() {
 		var fieldArr=[];
@@ -835,8 +849,33 @@ function exporttable() {
 			}
 		});
 		var param  = JsontoUrldata(queryParams());
-		location.href = pageurl+"?flag=exportTable&fieldArr="+JSON.stringify(fieldArr)+"&fieldnameArr="+JSON.stringify(fieldnameArr)+"&"+param;
-}
+		//location.href = pageurl+"?flag=exportTable&fieldArr="+JSON.stringify(fieldArr)+"&fieldnameArr="+JSON.stringify(fieldnameArr)+"&"+param;
+    	var url = pageurl+"?flag=exportTable&fieldArr="+JSON.stringify(fieldArr)+"&fieldnameArr="+JSON.stringify(fieldnameArr)+"&"+param;
+    	download();
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);    // 也可用POST方式
+        xhr.responseType = "blob";
+        xhr.onload = function () {
+            if (this.status === 200) {
+                var blob = this.response;
+                // if (navigator.msSaveBlob == null) {
+                    var a = document.createElement('a');
+                    //var headerName = xhr.getResponseHeader("Content-disposition");
+                    //var fileName = decodeURIComponent(headerName).substring(20);
+                    a.download = "信息查询";
+                    a.href = URL.createObjectURL(blob);
+                    $("body").append(a);    // 修复firefox中无法触发click
+                    a.click();
+                    URL.revokeObjectURL(a.href);
+                    $(a).remove();
+                // } else {
+                //     navigator.msSaveBlob(blob, "信息查询");
+                // }
+            }
+            disload();
+        };
+        xhr.send();
+ }
 //档案合并
 function dahb(){
 	  layer.open({
