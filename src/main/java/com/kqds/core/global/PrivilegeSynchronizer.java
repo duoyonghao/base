@@ -1,6 +1,6 @@
 package com.kqds.core.global;
 
-import com.kqds.entity.sys.YZOrderPriv;
+//import com.kqds.entity.sys.YZOrderPriv;
 import com.kqds.entity.sys.YZPerson;
 import com.kqds.entity.sys.YZPriv;
 import com.kqds.entity.sys.YZPrivilege;
@@ -12,10 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.stream.Collectors;
 
@@ -48,27 +45,31 @@ public class PrivilegeSynchronizer implements InitializingBean {
                                 YZPriv yzPriv = yzPrivLogic.getDetailBySeqId(privSeqId);
                                 String visualPerson = yzPriv.getVisualPerson();
                                 String visualDept = yzPriv.getVisualDept();
-                                List<String> userSeqIds = null;
+                                List<String> userSeqIds = new ArrayList<>();
                                 if (StringUtils.isNotEmpty(visualDept) && StringUtils.isNotEmpty(visualPerson)) {
+                                    userSeqIds = Arrays.asList(visualPerson.split(","));
                                     List<String> deptSeqIds = Arrays.asList(visualDept.split(","));
                                     List<String> list = yzPersonLogic.findPersonalByDeptList(deptSeqIds);
-                                    userSeqIds = Arrays.asList(visualPerson.split(","));
-                                    Map<String, Integer> map = new HashMap<String, Integer>(userSeqIds.size());
-                                    //List<Resource> differentList = new ArrayList<Resource>();
-                                    for (String userSId : userSeqIds) {
-                                        map.put(userSId, 1);
-                                    }
-                                    for (String resource1 : list) {
-                                        if (map.get(resource1) == null) {
-                                            userSeqIds.add(resource1);
-                                        }
-                                    }
+//                                    Map<String, Integer> map = new HashMap<String, Integer>(userSeqIds.size());
+//                                    //List<Resource> differentList = new ArrayList<Resource>();
+//                                    for (String userSId : userSeqIds) {
+//                                        map.put(userSId, 1);
+//                                    }
+//                                    for (String resource1 : list) {
+//                                        if (map.get(resource1) == null) {
+//                                            userSeqIds.add(resource1);
+//                                        }
+//                                    }
+                                    userSeqIds.addAll(list);
+                                    userSeqIds = userSeqIds.stream().distinct().collect(Collectors.toList());
                                 } else if (StringUtils.isNotEmpty(visualPerson)) {
                                     userSeqIds = Arrays.asList(visualPerson.split(","));
                                 } else if (StringUtils.isNotEmpty(visualDept)) {
                                     List<String> deptSeqIds = Arrays.asList(visualDept.split(","));
                                     userSeqIds = yzPersonLogic.findPersonalByDeptList(deptSeqIds);
                                 }
+                                //使自己能看到自己
+                                userSeqIds.add(seqId);
                                 userSeqIds.forEach(userSeqId -> {
                                     YZPrivilege yzPrivilege = new YZPrivilege();
                                     yzPrivilege.setBelongsTo(seqId);
@@ -87,28 +88,28 @@ public class PrivilegeSynchronizer implements InitializingBean {
                                         logger.error(e.getMessage());
                                     }
                                 });
-                                String orderVisualPerson = yzPriv.getOrderVisualPerson();
-                                if (StringUtils.isNotEmpty(orderVisualPerson)) {
-                                    List<String> oderUserSeqIds = Arrays.asList(orderVisualPerson.split(","));
-                                    oderUserSeqIds.forEach(orderUserSeqId -> {
-                                        YZOrderPriv yzOrderPriv = new YZOrderPriv();
-                                        yzOrderPriv.setOrderBelongsTo(seqId);
-                                        yzOrderPriv.setOrderBelongsToName(yzPerson.getUserName());
-                                        yzOrderPriv.setOrderUserSeqId(orderUserSeqId);
-                                        YZPerson toUser = null;
-                                        try {
-                                            toUser = yzPersonLogic.getPersonBySeqId(orderUserSeqId);
-                                            yzOrderPriv.setOrderUserName(toUser.getUserName());
-                                        } catch (Exception e) {
-                                            logger.error(e.getMessage());
-                                        }
-                                        try {
-                                            yzPrivLogic.insertOrderPriv(yzOrderPriv);
-                                        } catch (Exception e) {
-                                            logger.error(e.getMessage());
-                                        }
-                                    });
-                                }
+//                                String orderVisualPerson = yzPriv.getOrderVisualPerson();
+//                                if (StringUtils.isNotEmpty(orderVisualPerson)) {
+//                                    List<String> oderUserSeqIds = Arrays.asList(orderVisualPerson.split(","));
+//                                    oderUserSeqIds.forEach(orderUserSeqId -> {
+//                                        YZOrderPriv yzOrderPriv = new YZOrderPriv();
+//                                        yzOrderPriv.setOrderBelongsTo(seqId);
+//                                        yzOrderPriv.setOrderBelongsToName(yzPerson.getUserName());
+//                                        yzOrderPriv.setOrderUserSeqId(orderUserSeqId);
+//                                        YZPerson toUser = null;
+//                                        try {
+//                                            toUser = yzPersonLogic.getPersonBySeqId(orderUserSeqId);
+//                                            yzOrderPriv.setOrderUserName(toUser.getUserName());
+//                                        } catch (Exception e) {
+//                                            logger.error(e.getMessage());
+//                                        }
+//                                        try {
+//                                            yzPrivLogic.insertOrderPriv(yzOrderPriv);
+//                                        } catch (Exception e) {
+//                                            logger.error(e.getMessage());
+//                                        }
+//                                    });
+//                                }
                             }
                         } catch (Exception e) {
                             logger.error(e.getMessage());
