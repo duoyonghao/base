@@ -46,8 +46,10 @@ public class PrivilegeSynchronizer implements InitializingBean {
                                 String visualPerson = yzPriv.getVisualPerson();
                                 String visualDept = yzPriv.getVisualDept();
                                 List<String> userSeqIds = new ArrayList<>();
+                                //使自己能看到自己
+                                userSeqIds.add(seqId);
                                 if (StringUtils.isNotEmpty(visualDept) && StringUtils.isNotEmpty(visualPerson)) {
-                                    userSeqIds = Arrays.asList(visualPerson.split(","));
+                                    List<String> visualPersonList = Arrays.asList(visualPerson.split(","));
                                     List<String> deptSeqIds = Arrays.asList(visualDept.split(","));
                                     List<String> list = yzPersonLogic.findPersonalByDeptList(deptSeqIds);
 //                                    Map<String, Integer> map = new HashMap<String, Integer>(userSeqIds.size());
@@ -61,15 +63,14 @@ public class PrivilegeSynchronizer implements InitializingBean {
 //                                        }
 //                                    }
                                     userSeqIds.addAll(list);
+                                    userSeqIds.addAll(visualPersonList);
                                     userSeqIds = userSeqIds.stream().distinct().collect(Collectors.toList());
                                 } else if (StringUtils.isNotEmpty(visualPerson)) {
-                                    userSeqIds = Arrays.asList(visualPerson.split(","));
+                                    userSeqIds.addAll(Arrays.asList(visualPerson.split(",")));
                                 } else if (StringUtils.isNotEmpty(visualDept)) {
                                     List<String> deptSeqIds = Arrays.asList(visualDept.split(","));
-                                    userSeqIds = yzPersonLogic.findPersonalByDeptList(deptSeqIds);
+                                    userSeqIds.addAll(yzPersonLogic.findPersonalByDeptList(deptSeqIds));
                                 }
-                                //使自己能看到自己
-                                userSeqIds.add(seqId);
                                 userSeqIds.forEach(userSeqId -> {
                                     YZPrivilege yzPrivilege = new YZPrivilege();
                                     yzPrivilege.setBelongsTo(seqId);
