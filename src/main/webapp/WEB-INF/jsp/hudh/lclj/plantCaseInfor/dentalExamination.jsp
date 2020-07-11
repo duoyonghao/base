@@ -717,7 +717,30 @@
         var updataid="";
         var menuid=window.parent.menuid;//左侧菜单id
         var seqidFather = "<%=seqidFather%>";
+        var userAgent = navigator.userAgent;
+        var signatureWidth='70%';
+        var signatureHeight='65%';
         $(function(){
+            if (userAgent.match(/mobile/i)) {
+                var mql = window.matchMedia('(orientation: portrait)');
+                function onMatchMediaChange(mql) {
+                    if (mql.matches) {
+                        //竖屏
+                        signatureWidth='98%';
+                        signatureHeight='50%';
+                    } else {
+                        //横屏
+                        signatureWidth='98%';
+                        signatureHeight='73%';
+                    }
+                }
+                // 输出当前屏幕模式
+                onMatchMediaChange(mql);
+
+                // 监听屏幕模式变化
+                mql.addListener(onMatchMediaChange);
+
+            }
             getUser(usercode);//获取患者信息并赋值
             gettionData();//获取各板块问题详情
             initToothMap("toothLooseMap");
@@ -1083,7 +1106,7 @@
                     title: '签字',
                     shadeClose: true,
                     shade: 0.6,
-                    area: ['70%', '65%'],
+                    area:userAgent.indexOf("iPad")>-1?[signatureWidth,signatureHeight] : ['70%', '65%'],
                     content: contextPath + '/SignatureAct/toSignature.act?category=种植'
                 });
             }
@@ -1124,7 +1147,7 @@
                     title: '签字',
                     shadeClose: true,
                     shade: 0.6,
-                    area: ['70%', '65%'],
+                    area:userAgent.indexOf("iPad")>-1?[signatureWidth,signatureHeight] : ['70%', '65%'],
                     content: contextPath + '/SignatureAct/toSignature.act?category=患者'
                 });
             }
