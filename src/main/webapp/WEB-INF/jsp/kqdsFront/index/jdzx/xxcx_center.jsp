@@ -572,6 +572,9 @@ function initTable(requrl) {
                 }
 
                 return img == "" ? "-" : img;
+            },
+			cellStyle: {
+                css: {"display": "flex", "flex-direction": "row"}
             }
         },
         {
