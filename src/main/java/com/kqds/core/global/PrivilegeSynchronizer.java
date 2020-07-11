@@ -6,7 +6,6 @@ import com.kqds.entity.sys.YZPrivilege;
 import com.kqds.service.sys.person.YZPersonLogic;
 import com.kqds.service.sys.priv.YZPrivLogic;
 import org.apache.commons.lang3.StringUtils;
-import org.assertj.core.util.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -44,6 +43,11 @@ public class PrivilegeSynchronizer implements InitializingBean {
                                 String privSeqId = yzPerson.getUserPriv();
                                 YZPriv yzPriv = yzPrivLogic.getDetailBySeqId(privSeqId);
                                 String visualPerson = yzPriv.getVisualPerson();
+                                String visualDept=yzPriv.getVisualDept();
+                                if(StringUtils.isNotEmpty(visualDept)){
+                                    List<String> deptSeqIds = Arrays.asList(visualDept.split(","));
+                                    List<String> list = yzPersonLogic.findPersonalByDeptList(deptSeqIds);
+                                }
                                 if(StringUtils.isNotEmpty(visualPerson)) {
                                     List<String> userSeqIds = Arrays.asList(visualPerson.split(","));
                                     userSeqIds.forEach(userSeqId->{

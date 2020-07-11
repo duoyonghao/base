@@ -826,4 +826,15 @@ public class YZPersonLogic extends BaseLogic {
 		int i=(int) dao.update(TableNameUtil.SYS_PERSON+".updateOrganization", map);
 		return i;
 	}
+
+	/**
+	 * 传入部门id查询对应人员
+	 * @param list
+	 * @return
+	 * @throws Exception
+	 */
+	public List<String> findPersonalByDeptList(List<String> list) throws Exception {
+		 List<String> json = (List<String>)dao.findForList(TableNameUtil.SYS_PERSON+".findPersonalByDeptList", list);
+		return json;
+	}
 }
