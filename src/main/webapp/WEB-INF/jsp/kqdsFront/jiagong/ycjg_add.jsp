@@ -640,11 +640,11 @@
 		        } 
 		    }); 
 			if(patient){
-				$("#userName").attr("value",patient[0].username).attr("readonly","readonly"); // 患者姓名赋值
-				$("#sex").attr("value",patient[0].sex).attr("readonly","readonly"); // 患者性别赋值
-				$("#age").attr("value",patient[0].age).attr("readonly","readonly"); // 患者年龄赋值
+				$("#userName").attr("value",patient.username).attr("readonly","readonly"); // 患者姓名赋值
+				$("#sex").attr("value",patient.sex).attr("readonly","readonly"); // 患者性别赋值
+				$("#age").attr("value",patient.age).attr("readonly","readonly"); // 患者年龄赋值
 				$("#userCode").attr("value",usercode).attr("readonly","readonly"); // 患者编号赋值
-				$("#phoneNumber").attr("value",patient[0].phonenumber1).attr("readonly","readonly"); // 患者手机号赋值
+				$("#phoneNumber").attr("value",patient.phonenumber1).attr("readonly","readonly"); // 患者手机号赋值
 			}  
 			
 			//时间选择

@@ -72,7 +72,8 @@
 	</mvc:interceptors>
 
 
-
+	<bean id="privilegeSynchronizer" class="com.kqds.core.global.PrivilegeSynchronizer"></bean>
+	<bean id="orderPrivilegeSynchronizer" class="com.kqds.core.global.OrderPrivilegeSynchronizer"></bean>
 
 	<!-- 视图解释类 -->
 	<!-- 配置SpringMVC的视图解析器 -->

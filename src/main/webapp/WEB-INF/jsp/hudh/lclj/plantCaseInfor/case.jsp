@@ -7,6 +7,7 @@
     if (contextPath.equals("")) {
         contextPath = "/kqds";
     }
+    String seqidFather=request.getParameter("seqidFather");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -1251,7 +1252,7 @@
                             <div style="width: 80%;float: right;">
                                 <ul class="loseTooth_option">
                                     <li>
-                                        <label for="bonemeal ">骨粉<input name="bonemeal" id="bonemeal" value=""
+                                        <label for="bonemeal">骨粉<input name="bonemeal" id="bonemeal" value=""
                                                                         style="width:60px;" />g</label>
                                     </li>
                                     <li>(</li>
@@ -2188,6 +2189,7 @@
 </body>
 <script language="javascript" src="<%=contextPath%>/static/js/kqdsFront/LodopFuncs.js"></script>
 <script type="text/javascript">
+    var seqidFather="<%=seqidFather%>";
     var repairSignature="";
     var repairdoctorstatus=true;
     var signature="";
@@ -2201,9 +2203,30 @@
     var pageurl = '<%=contextPath%>/HUDH_FlowAct/findPatientInformation.act';
     var id;	//选中患者id
     var order_number;//选中患者order_number
+    var userAgent = navigator.userAgent;
+    var signatureWidth='70%';
+    var signatureHeight='65%';
     $(function () {
+        if (userAgent.match(/mobile/i)) {
+            var mql = window.matchMedia('(orientation: portrait)');
+            function onMatchMediaChange(mql) {
+                if (mql.matches) {
+                    //竖屏
+                    signatureWidth='98%';
+                    signatureHeight='50%';
+                } else {
+                    //横屏
+                    signatureWidth='98%';
+                    signatureHeight='73%';
+                }
+            }
+            // 输出当前屏幕模式
+            onMatchMediaChange(mql);
 
-        var userAgent = navigator.userAgent;
+            // 监听屏幕模式变化
+            mql.addListener(onMatchMediaChange);
+
+        }
         if (userAgent.indexOf("iPad") > -1){
             $("#content").css("width","100%").css("padding","10px 30px");
 
@@ -2261,9 +2284,9 @@
                 id: id,
                 order_number: order_number
             },
+
             dataType: "json",
             success: function (r) {
-                console.log(r,"77777777777")
                 $("#patient_time").text(r.cztime);
                 $("#patient_num").text(r.usercode);
                 $("#patient_name").text(r.username);
@@ -2279,12 +2302,13 @@
         });
         $.ajax({
             type: "POST",
-            url: contextPath + '/HUDH_LcljCaseAct/select.act',
+            url: contextPath + '/HUDH_LcljCaseAct/selectById.act',
             data: {
-                id: id
+                id: seqidFather
             },
             dataType: "json",
             success: function (result) {
+                console.log(result,"----ssss")
                 if(result!=null){
                     $("#consent_saveBtn").css("display","none");//隐藏保存按钮
                     $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
@@ -2343,8 +2367,8 @@
                             }
                         }
                     }
+                }
 
-                };
                 //获取当前页面所有按钮
                 getButtonAllCurPage(menuid);
             }
@@ -2362,7 +2386,7 @@
                 title: '签字',
                 shadeClose: true,
                 shade: 0.6,
-                area: ['70%', '65%'],
+                area:userAgent.indexOf("iPad")>-1?[signatureWidth,signatureHeight] : ['70%', '65%'],
                 content: contextPath + '/SignatureAct/toSignature.act?category=种植'
             });
         }
@@ -2382,7 +2406,7 @@
                 title: '签字',
                 shadeClose: true,
                 shade: 0.6,
-                area: ['70%', '65%'],
+                area:userAgent.indexOf("iPad")>-1?[signatureWidth,signatureHeight] : ['70%', '65%'],
                 content: contextPath + '/SignatureAct/toSignature.act?category=修复'
             });
         }
@@ -2402,7 +2426,7 @@
                 title: '签字',
                 shadeClose: true,
                 shade: 0.6,
-                area: ['70%', '65%'],
+                area:userAgent.indexOf("iPad")>-1?[signatureWidth,signatureHeight] : ['70%', '65%'],
                 content: contextPath + '/SignatureAct/toSignature.act?category=患者'
             });
         }
@@ -2423,7 +2447,7 @@
                 title: '签字',
                 shadeClose: true,
                 shade: 0.6,
-                area: ['70%', '65%'],
+                area:userAgent.indexOf("iPad")>-1?[signatureWidth,signatureHeight] : ['70%', '65%'],
                 content: contextPath + '/SignatureAct/toSignature.act?category=患者1'
             });
         }
@@ -2620,10 +2644,10 @@
             username:$("#patient_name").val(),
             lcljid:id,
             lcljnum:order_number,
-            treatmentparts1:$("#treatmentparts1").text(),
-            treatmentparts2:$("#treatmentparts2").text(),
-            treatmentparts3:$("#treatmentparts3").text(),
-            consultationOpinion:$("input[name='consultation_opinion']:checked").val(),
+            //treatmentparts1:$("#treatmentparts1").text(),
+            //treatmentparts2:$("#treatmentparts2").text(),
+            //treatmentparts3:$("#treatmentparts3").text(),
+            //consultationOpinion:$("input[name='consultation_opinion']:checked").val(),
             deep:$("input[name='deep']:checked").val(),
             one:$("input[name='one']:checked").val(),
             preoperatives:preoperativesPlan(),
@@ -2843,14 +2867,13 @@
     function update(){
         var url = contextPath + '/HUDH_LcljCaseAct/update.act';
         var param = {
-            lcljid:id,
-            lcljnum:order_number,
-            treatmentparts1:$("#treatmentparts1").text(),
-            treatmentparts2:$("#treatmentparts2").text(),
-            treatmentparts3:$("#treatmentparts3").text(),
-            consultationOpinion:$("input[name='consultation_opinion']:checked").val(),
+            id:seqidFather,
+            //treatmentparts1:$("#treatmentparts1").text(),
+            //treatmentparts2:$("#treatmentparts2").text(),
+            //treatmentparts3:$("#treatmentparts3").text(),
+            //consultationOpinion:$("input[name='consultation_opinion']:checked").val(),
             deep:$("input[name='deep']:checked").val(),
-            one:$("input[name='one']:checked").val(),
+            //one:$("input[name='one']:checked").val(),
             preoperatives:preoperativesPlan(),
             bicon:biconPlan(),
             abutment:abutmentPlan(),

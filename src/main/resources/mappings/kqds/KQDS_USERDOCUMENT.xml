@@ -1317,6 +1317,7 @@ WHERE
         u.province,
         u.openid,
         u.bindstatus,
+        u.kefu,
         reg.createtime as regcreatetime
         from KQDS_USERDOCUMENT as u
         left join (select createtime,usercode from KQDS_REG where recesort = '20') reg on reg.usercode=u.usercode

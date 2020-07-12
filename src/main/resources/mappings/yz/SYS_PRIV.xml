@@ -20,6 +20,13 @@
 		<result column="order_visual_dept" jdbcType="CLOB" property="orderVisualDept" />
 		<result column="visit_dept" jdbcType="CLOB" property="visitDept" />
 	</resultMap>
+	<resultMap id="privilegeResultMap" type="com.kqds.entity.sys.YZPrivilege">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="belongs_to" jdbcType="VARCHAR" property="belongsTo" />
+		<result column="user_seq_id" jdbcType="VARCHAR" property="userSeqId" />
+		<result column="user_name" jdbcType="VARCHAR" property="userName" />
+		<result column="belongs_to_name" jdbcType="VARCHAR" property="belongsToName" />
+	</resultMap>
 	<sql id="Base_Column_List">
 		SEQ_ID, PRIV_NAME, PRIV_NO, createtime, createuser, organization
 	</sql>
@@ -27,6 +34,20 @@
 		FUNC_ID_STR, funcbutton, PRIV_ID_STR, visual_person, visual_dept, order_visual_person,
 		order_visual_dept,visit_dept<!-- ,firstFloor,upstair -->
 	</sql>
+	<select id="countUserPrivileges" parameterType="java.lang.String" resultType="int">
+		select
+		count(*)
+		from
+		sys_privilege
+		where belongs_to = #{_parameter}
+	</select>
+	<select id="countUserOrderPriv" parameterType="java.lang.String" resultType="int">
+		select
+		count(*)
+		from
+		sys_order_priv
+		where belongs_to = #{_parameter}
+	</select>
 	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
 		select
 		<include refid="Base_Column_List" />
@@ -39,6 +60,14 @@
 		delete from sys_priv
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
 	</delete>
+	<insert id="insertPrivilege" parameterType="com.kqds.entity.sys.YZPrivilege">
+		insert into sys_privilege (belongs_to,belongs_to_name, user_seq_id, user_name)
+		values (#{belongsTo, jdbcType=VARCHAR},#{belongsToName, jdbcType=VARCHAR}, #{userSeqId, jdbcType=VARCHAR},#{userName,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertOrderPriv" parameterType="com.kqds.entity.sys.YZOrderPriv">
+		insert into sys_order_priv (belongs_to,belongs_to_name, user_seq_id, user_name)
+		values (#{orderBelongsTo, jdbcType=VARCHAR},#{orderBelongsToName, jdbcType=VARCHAR}, #{orderUserSeqId, jdbcType=VARCHAR},#{orderUserName,jdbcType=VARCHAR})
+	</insert>
 	<insert id="insert" parameterType="com.kqds.entity.sys.YZPriv">
 		insert into sys_priv (SEQ_ID, PRIV_NAME, PRIV_NO,
 		createtime, createuser, organization,
@@ -260,6 +289,18 @@
 			#{item}
 		</foreach>
 	</select>
+
+	<delete id="deleteByBelongsTo" parameterType="java.lang.String">
+		delete from
+		sys_privilege
+		where belongs_to = #{_parameter}
+	</delete>
+
+	<delete id="deleteOrderPrivByBelongsTo" parameterType="java.lang.String">
+		delete from
+		sys_order_priv
+		where belongs_to = #{_parameter}
+	</delete>
 
 	<delete id="deleteBySeqIds">
 		delete from

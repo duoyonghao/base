@@ -34,6 +34,11 @@
 	<sql id="Blob_Column_List">
 		DEPT_ID_OTHER, USER_PRIV_OTHER
 	</sql>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"></include>
+		from sys_person
+	</select>
 	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
 		select
 		<include refid="Base_Column_List" />
@@ -779,7 +784,7 @@
 		where 1=1
 		and is_leave = 0
 		<if test="dept_id != null and dept_id != ''">
-			and p.dept_id = #{dept_id}
+			and p.dept_id = #{dept_id} or xy_dept=#{dept_id}
 		</if>
 		<if test="seq_id != null and seq_id != ''">
 			and p.seq_id = #{seq_id}
@@ -966,5 +971,17 @@
 		FROM
 			sys_person
 		WHERE seq_id=#{seqId}
+	</select>
+
+	<!-- 传入list查询-->
+	<select id="findPersonalByDeptList" parameterType="java.util.List" resultType="String">
+		SELECT
+		SEQ_ID
+		FROM
+		sys_person
+		WHERE
+		<foreach collection="list" index="index" item="deptid" open="(" close=")" separator="or">
+			DEPT_ID=#{deptid}
+		</foreach>
 	</select>
 </mapper>

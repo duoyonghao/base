@@ -97,6 +97,7 @@
     <result column="repairDoctorsignature" jdbcType="VARCHAR" property="repairDoctorsignature" />
     <result column="patientsignature" jdbcType="VARCHAR" property="patientsignature" />
     <result column="patientsignature1" jdbcType="VARCHAR" property="patientsignature1" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.base.HudhLcljBase">
     <result column="treatmentparts1" jdbcType="LONGVARCHAR" property="treatmentparts1" />
@@ -178,7 +179,7 @@
     imagingleftdown, imagingrightdown, lianguanleftup, lianguanrightup, lianguanleftdown, 
     lianguanrightdown, preoperatives, bicon, abutment, paraoperative, modus, repair, 
     alternative, clinical,bonemeal,ossein,periost,one,pathtype,deep,appointmenttime,wzy,accord,operationDoctorsignature,
-    repairDoctorsignature,patientsignature,patientsignature1
+    repairDoctorsignature,patientsignature,patientsignature1,status
   </sql>
   <sql id="Blob_Column_List">
     treatmentparts1, treatmentparts2, treatmentparts3, requirerestor
@@ -220,13 +221,27 @@
     </if>
   </delete>
   
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultType="json">
 		select
-		<include refid="Base_Column_List" />
-		,
-		<include refid="Blob_Column_List" />
+		 id AS seq_id, usercode, username, LcljId, LcljNum, createtime, createuser, organization, consultation_opinion,
+      promise, patienttime, operationdoctortime, doctortime, patienttime1, extractionleftup,
+      extractionrightup, extractionleftdown, extractionrightdown, dentiumleftup, dentiumrightup,
+      dentiumleftdown, dentiumrightdown, hiossenleftup, hiossenrightup, hiossenleftdown,
+      hiossenrightdown, icxleftup, icxrightup, icxleftdown, icxrightdown, camlogleftup,
+      camlogrightup, camlogleftdown, camlogrightdown, zimmerleftup, zimmerrightup, zimmerleftdown,
+      zimmerrightdown, nobelccleftup, nobelccrightup, nobelccleftdown, nobelccrightdown,
+      nobelactiveleftup, nobelactiverightup, nobelactiveleftdown, nobelactiverightdown,
+      pmcleftup, pmcrightup, pmcleftdown, pmcrightdown, temporarytleftup, temporarytrightup,
+      temporarytleftdown, temporarytrightdown, commonleftup, commonrightup, commonleftdown,
+      commonrightdown, instantlyleftup, instantlyrightup, instantlyleftdown, instantlyrightdown,
+      atonceleftup, atoncerightup, atonceleftdown, atoncerightdown, imagingleftup, imagingrightup,
+      imagingleftdown, imagingrightdown, lianguanleftup, lianguanrightup, lianguanleftdown,
+      lianguanrightdown, preoperatives, bicon, abutment, paraoperative, modus, repair,
+      alternative, clinical,bonemeal,ossein,periost,one,pathtype,deep,appointmenttime,wzy,accord,operationDoctorsignature,
+      repairDoctorsignature,patientsignature,patientsignature1,status
 		from HUDH_LCLJ_BASE
 		where LcljId = #{lcljid,jdbcType=VARCHAR}
+        ORDER by createtime ASC
 	</select>
 	
   <insert id="insert" parameterType="com.kqds.entity.base.HudhLcljBase">
@@ -261,7 +276,7 @@
       alternative, clinical, treatmentparts1, 
       treatmentparts2, treatmentparts3, 
       requirerestor,bonemeal,ossein,periost,one,pathtype,deep,appointmenttime,wzy,accord,operationDoctorsignature,
-    repairDoctorsignature,patientsignature,patientsignature1)
+    repairDoctorsignature,patientsignature,patientsignature1,status)
     values (#{id,jdbcType=VARCHAR}, #{usercode,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
       #{lcljid,jdbcType=VARCHAR}, #{lcljnum,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, 
       #{createuser,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, #{consultationOpinion,jdbcType=VARCHAR}, 
@@ -296,7 +311,7 @@
       #{periost,jdbcType=VARCHAR},#{one,jdbcType=VARCHAR},#{pathtype,jdbcType=VARCHAR},#{deep,jdbcType=VARCHAR},
       #{appointmenttime,jdbcType=VARCHAR},#{wzy,jdbcType=VARCHAR},#{accord,jdbcType=VARCHAR},
       #{operationDoctorsignature,jdbcType=VARCHAR},#{repairDoctorsignature,jdbcType=VARCHAR},
-      #{patientsignature,jdbcType=VARCHAR},#{patientsignature1,jdbcType=VARCHAR})
+      #{patientsignature,jdbcType=VARCHAR},#{patientsignature1,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.kqds.entity.base.HudhLcljBase">
         insert into HUDH_LCLJ_BASE
@@ -598,6 +613,9 @@
       <if test="patientsignature1 != null">
         patientsignature1,
       </if>
+      <if test="status != null">
+        status,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -897,6 +915,9 @@
       <if test="patientsignature1 != null">
         #{patientsignature1,jdbcType=VARCHAR},
       </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.kqds.entity.base.HudhLcljBase" resultType="java.lang.Long">
@@ -907,7 +928,7 @@
   </select>
    <update id="updateByExampleSelective" parameterType="map">
     update HUDH_LCLJ_BASE
-    <set>
+    <trim prefix="set" suffixOverrides=",">
       <if test="id != null">
         id = #{id,jdbcType=VARCHAR},
       </if>
@@ -1205,7 +1226,10 @@
       <if test="patientsignature1 != null">
         patientsignature1 = #{patientsignature1,jdbcType=VARCHAR},
       </if>
-    </set>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -1310,14 +1334,15 @@
       operationDoctorsignature = #{operationDoctorsignature,jdbcType=VARCHAR},
       repairDoctorsignature = #{repairDoctorsignature,jdbcType=VARCHAR},
       patientsignature = #{patientsignature,jdbcType=VARCHAR},
-      patientsignature1 = #{patientsignature1,jdbcType=VARCHAR}
+      patientsignature1 = #{patientsignature1,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="update" parameterType="com.kqds.entity.base.HudhLcljBase">
     update HUDH_LCLJ_BASE
-    <set>
+    <trim prefix="SET" suffixOverrides=",">
       <if test="consultationOpinion != null">
         consultation_opinion = #{consultationOpinion,jdbcType=VARCHAR},
       </if>
@@ -1591,9 +1616,21 @@
       <if test="patientsignature1 != null">
         patientsignature1 = #{patientsignature1,jdbcType=VARCHAR},
       </if>
-    </set>
-    <if test="lcljid != null">
-     where LcljId = #{lcljid,jdbcType=VARCHAR}
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    <if test="id != null">
+     where id = #{id,jdbcType=VARCHAR}
     </if>
   </update>
+
+  <select id="selectById" parameterType="java.lang.String" resultType="com.kqds.entity.base.HudhLcljBase">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from HUDH_LCLJ_BASE
+    where id=#{id,jdbcType=VARCHAR}
+  </select>
 </mapper>

@@ -1768,7 +1768,30 @@
 	var menuid=window.parent.menuid;//左侧菜单id
 	var seqidFather = "<%=seqidFather%>";
 	var usercode;
+    var userAgent = navigator.userAgent;
+    var signatureWidth='70%';
+    var signatureHeight='65%';
 	$(function(){
+        if (userAgent.match(/mobile/i)) {
+            var mql = window.matchMedia('(orientation: portrait)');
+            function onMatchMediaChange(mql) {
+                if (mql.matches) {
+                    //竖屏
+                    signatureWidth='98%';
+                    signatureHeight='50%';
+                } else {
+                    //横屏
+                    signatureWidth='98%';
+                    signatureHeight='73%';
+                }
+            }
+            // 输出当前屏幕模式
+            onMatchMediaChange(mql);
+
+            // 监听屏幕模式变化
+            mql.addListener(onMatchMediaChange);
+
+        }
 		if(window.parent.consultSelectPatient){
 			id= window.parent.consultSelectPatient.seqid;
 			order_number= window.parent.consultSelectPatient.orderNumber;
@@ -1779,7 +1802,6 @@
 			usercode = window.parent.patientObj.usercode;
 		}
 		//针对ipad样式
-		var userAgent = navigator.userAgent;
 		if (userAgent.indexOf("iPad") > -1){
 			$("#print_Btn").css("display","none");
 			$(".ipadText").css("font-size","14px");
@@ -1898,8 +1920,8 @@
 				title: '签字',
 				shadeClose: true,
 				shade: 0.6,
-				area: ['70%', '65%'],
-				content: contextPath + '/SignatureAct/toSignature.act?category=患者'
+                area:userAgent.indexOf("iPad")>-1?[signatureWidth,signatureHeight] : ['70%', '65%'],
+                content: contextPath + '/SignatureAct/toSignature.act?category=患者'
 			});
 		}
 	}
