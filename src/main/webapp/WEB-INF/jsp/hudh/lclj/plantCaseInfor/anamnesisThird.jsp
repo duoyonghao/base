@@ -1964,7 +1964,7 @@
 				seq_id :  seqidFather
 			},
 			success:function(result){
-				console.log(JSON.stringify(result)+"--------------患者查询信息");
+				//console.log(JSON.stringify(result)+"--------------患者查询信息");
 				if(result){
 					if(result.seq_id){
 						caseId=result.seq_id; //已存在的seqid
@@ -2037,6 +2037,12 @@
 					}else{
 						$("#patientimg").attr('display', 'none');
 					}
+				}
+				//修改表单：页面不禁用
+				if(result.seq_id){
+					$("input").removeAttr("disabled");
+					$("input").css("cursor","pointer").css("pointer-events","auto");
+					$("input[name='symptom']:checked").removeAttr("checked").trigger("click");
 				}
 				//获取当前页面所有按钮
 				getButtonAllCurPage(menuid);
