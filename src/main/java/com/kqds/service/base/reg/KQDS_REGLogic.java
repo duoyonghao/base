@@ -64,10 +64,10 @@ public class KQDS_REGLogic extends BaseLogic {
 	private YZDictLogic dictLogic;
 	@Autowired
 	private KQDS_Hospital_OrderLogic hospitalOrderLogic;
-	
+
 	/**
 	 * 统计该患者初诊数
-	 * 
+	 *
 	 * @param dbConn
 	 * @param usercode
 	 * @param czIdStrs
@@ -84,7 +84,7 @@ public class KQDS_REGLogic extends BaseLogic {
 
 	/**
 	 * 根据患者编号，获取上一次挂号信息
-	 * 
+	 *
 	 * @param conn
 	 * @param usercode
 	 * @return
@@ -97,7 +97,7 @@ public class KQDS_REGLogic extends BaseLogic {
 
 	/**
 	 * 查询患者24小时内的初诊挂号记录
-	 * 
+	 *
 	 * @param conn
 	 * @param usercode
 	 * @return
@@ -119,7 +119,7 @@ public class KQDS_REGLogic extends BaseLogic {
 
 	/**
 	 * 修改挂号时，对咨询记录数据并做相应处理
-	 * 
+	 *
 	 * @param dp
 	 * @param regold
 	 * @param dbConn
@@ -141,7 +141,7 @@ public class KQDS_REGLogic extends BaseLogic {
 
 	/**
 	 * 修改挂号时，对就诊情况数据并做相应处理，如果选择医生，更新患者档案表的医生数据
-	 * 
+	 *
 	 * @param dp
 	 * @param regold
 	 * @param dbConn
@@ -183,7 +183,7 @@ public class KQDS_REGLogic extends BaseLogic {
 
 	/**
 	 * 如果是门诊患者挂号，检测门诊预约数据，以最新的挂号数据为准进行更新
-	 * 
+	 *
 	 * @param dp
 	 * @param dbConn
 	 * @param request
@@ -216,7 +216,7 @@ public class KQDS_REGLogic extends BaseLogic {
 
 	/**
 	 * 如果是网电患者挂号，检测网电预约数据
-	 * 
+	 *
 	 * @param dp
 	 * @param dbConn
 	 * @param request
@@ -283,7 +283,7 @@ public class KQDS_REGLogic extends BaseLogic {
 
 	/**
 	 * 根据挂号编号，删除状态为未接诊的咨询记录
-	 * 
+	 *
 	 * @param regno
 	 * @param orm
 	 * @param dbConn
@@ -306,7 +306,7 @@ public class KQDS_REGLogic extends BaseLogic {
 
 	/**
 	 * 判断患者是否是 就诊情况的 复诊患者 【不做门诊条件过滤】
-	 * 
+	 *
 	 * @param dp
 	 * @param dbConn
 	 * @param person
@@ -337,7 +337,7 @@ public class KQDS_REGLogic extends BaseLogic {
 
 	/**
 	 * 生成咨询记录，内部调用
-	 * 
+	 *
 	 * @param dbConn
 	 * @param dp
 	 * @throws Exception
@@ -370,7 +370,7 @@ public class KQDS_REGLogic extends BaseLogic {
 
 	/**
 	 * 接待中心-等待治疗列表 【只查询当前所在门诊，Organization直接从登录用户的session中获取】
-	 * 
+	 *
 	 * @param conn
 	 * @param table
 	 * @param person
@@ -389,7 +389,7 @@ public class KQDS_REGLogic extends BaseLogic {
 				map.put("querytype", visualstaff);
 			}
 		}
-		
+
 		String recesort = request.getParameter("recesort");
 		if(YZUtility.isNotNullOrEmpty(recesort)) {
 			map.put("recesort", recesort);
@@ -465,9 +465,9 @@ public class KQDS_REGLogic extends BaseLogic {
 		PageHelper.offsetPage(bp.getOffset(), bp.getLimit());
 		List<JSONObject> list = (List<JSONObject>) dao.findForList(TableNameUtil.KQDS_REG + ".selectDzlmenu", map);
 		PageInfo<JSONObject> pageInfo = new PageInfo<JSONObject>(list);
-		JSONObject jobj = new JSONObject();	
+		JSONObject jobj = new JSONObject();
 		jobj.put("total", pageInfo.getTotal());
-		jobj.put("rows", list);	
+		jobj.put("rows", list);
 		if(bp.getOffset()==0){
 			JSONObject jzfljobj = new JSONObject();
 			List<YZDict> jzflDict = dictLogic.getListByParentCodeALL(DictUtil.JZFL, ChainUtil.getCurrentOrganization(request));
@@ -583,7 +583,7 @@ public class KQDS_REGLogic extends BaseLogic {
 
 	/**
 	 * 修改挂号记录的状态信息，如就诊科室
-	 * 
+	 *
 	 * @param conn
 	 * @param doctor
 	 *            费用单中的医生
@@ -715,13 +715,13 @@ public class KQDS_REGLogic extends BaseLogic {
 //						if(i==list2.size()-1){
 //							str.append("\'"+list2.get(i).getString("usercode")+"\'");
 //						}else{
-//							
+//
 //							str.append("\'"+list2.get(i).getString("usercode")+"\',");
 //						}
 //					}
 //					map.put("memberrecordUsercode", str.toString());
 //				}
-			}	
+			}
 		}
 		//根据可见人查询数据
 		int firstIndex=0;
@@ -752,7 +752,7 @@ public class KQDS_REGLogic extends BaseLogic {
 			}
 			if(map.get("sortName").equals("age")){
 				map.put("sortName", "u.age");
-			} 
+			}
 			if(map.get("sortName").equals("provincename")){
 				map.put("sortName", "u.province");
 			}
@@ -826,8 +826,8 @@ public class KQDS_REGLogic extends BaseLogic {
 				map.put("sortName", "r.receiveno");
 			}
 		}
-		
-		
+
+
 		if(bp!=null){
 			PageHelper.offsetPage(bp.getOffset(), bp.getLimit());
 		}
@@ -874,9 +874,9 @@ public class KQDS_REGLogic extends BaseLogic {
 		}else{
 			List<JSONObject> list = (List<JSONObject>) dao.findForList(TableNameUtil.KQDS_REG + ".selectJzcx", map);
 			//挂号id
-			StringBuilder str = new StringBuilder(); 
+			StringBuilder str = new StringBuilder();
 			//患者编号
-			StringBuilder str1 = new StringBuilder(); 
+			StringBuilder str1 = new StringBuilder();
 			for (int i = 0; i <list.size(); i++) {
 				String important = list.get(i).getString("important");
 				if ("1".equals(important)) {
@@ -951,7 +951,7 @@ public class KQDS_REGLogic extends BaseLogic {
 				if(nameList.size()>0){
 					for (JSONObject jsonObject : list) {
 						for (JSONObject jsonObject1 : nameList) {
-							if(jsonObject.getString("seq_id").equals(jsonObject1.getString("seqid"))){			
+							if(jsonObject.getString("seq_id").equals(jsonObject1.getString("seqid"))){
 								if(!YZUtility.isNullorEmpty(jsonObject1.getString("askperson"))){
 									jsonObject.put("askperson", jsonObject1.getString("askperson"));
 								}
@@ -978,7 +978,7 @@ public class KQDS_REGLogic extends BaseLogic {
 				if(dictNameList.size()>0){
 					for (JSONObject jsonObject : list) {
 						for (JSONObject jsonObject1 : dictNameList) {
-							if(jsonObject.getString("seq_id").equals(jsonObject1.getString("regno"))){	
+							if(jsonObject.getString("seq_id").equals(jsonObject1.getString("regno"))){
 								if(!YZUtility.isNullorEmpty(jsonObject1.getString("failreason1"))){
 									jsonObject.put("failreason1", jsonObject1.getString("failreason1"));
 								}
@@ -994,7 +994,7 @@ public class KQDS_REGLogic extends BaseLogic {
 //					for (JSONObject jsonObject : list) {
 //						jsonObject.put("slgj", "");
 //						for (JSONObject jsonObject1 : slgjList) {
-//							if(jsonObject.getString("seq_id").equals(jsonObject1.getString("seqid"))){	
+//							if(jsonObject.getString("seq_id").equals(jsonObject1.getString("seqid"))){
 //								if(!YZUtility.isNullorEmpty(jsonObject1.getString("slgj"))){
 //									jsonObject.put("slgj", jsonObject1.getString("slgj"));
 //								}
@@ -1002,8 +1002,8 @@ public class KQDS_REGLogic extends BaseLogic {
 //						}
 //					}
 //				}
-				
-			}	
+
+			}
 			if(str1.length()>0){
 				Map<String,String> map1 = new HashMap<String,String>();
 				map1.put("usercode", str1.toString());
@@ -1087,7 +1087,7 @@ public class KQDS_REGLogic extends BaseLogic {
 					}else{
 						jzflStr.append("\'"+jzflDict.get(j).getSeqId()+"\',");
 					}
-					
+
 				}
 				wheremap.put("recesort", jzflStr.toString());
 				List<JSONObject> jzfltotal = (List<JSONObject>) dao.findForList(TableNameUtil.KQDS_REG + ".selectJzcxtotal1", wheremap);
@@ -1095,15 +1095,15 @@ public class KQDS_REGLogic extends BaseLogic {
 					for (JSONObject jsonObject : jzfltotal) {
 						jzflobj.put(jsonObject.getString("dictname"), jsonObject.getString("num"));
 					}
-					jobj.put("jzfl", jzflobj);	
+					jobj.put("jzfl", jzflobj);
 				}
 			}
 			jobj.put("total", pageInfo.getTotal());
 			jobj.put("rows", list);
 			return jobj;
 		}
-		
-		
+
+
 	}
 
 	public JSONObject selectToday(String table, YZPerson person, Map<String, String> map, String visualstaff, String visualstaffwd,BootStrapPage bp,String flag) throws Exception {
@@ -1192,8 +1192,8 @@ public class KQDS_REGLogic extends BaseLogic {
 			if(sortName.equals("phonenumber1")){
 				map.put("sortName", "u.phonenumber1");
 			}
-			
-			
+
+
 		}
 		if (flag != null && flag.equals("exportTable")) {
 			map.put("flag", "exportTable");
@@ -1267,7 +1267,7 @@ public class KQDS_REGLogic extends BaseLogic {
 						}
 					}
 				}
-				
+
 			}
 			if(str.length()>0){
 				map.put("seqid", str.toString());
@@ -1314,13 +1314,13 @@ public class KQDS_REGLogic extends BaseLogic {
 			job.put("ywhf", ywhf);
 			}
 		}
-		
+
 		jobj1.put("total", pageInfo.getTotal());
 		jobj1.put("rows", list);
 		jobj1.put("nums", list1);
 		return jobj1;
 	}
-	
+
 	public JSONObject selectDzQuery(String table, YZPerson person, Map<String, String> map, String visualstaff, String visualstaffwd,BootStrapPage bp) throws Exception {
 		map.put("starttime", map.get("starttime") + ConstUtil.TIME_START);
 		map.put("endtime", map.get("endtime") + ConstUtil.TIME_END);
@@ -1398,7 +1398,7 @@ public class KQDS_REGLogic extends BaseLogic {
 		jobj.put("rows", list);
 		List<JSONObject> list1 = (List<JSONObject>) dao.findForList(TableNameUtil.KQDS_REG + ".selectDzQueryNum", map);
 		jobj.put("nums", list1);
-		
+
 		return jobj;
 	}
 
@@ -1606,7 +1606,7 @@ public class KQDS_REGLogic extends BaseLogic {
 
 	/**
 	 * 查询患者24小时内的初诊挂号记录
-	 * 
+	 *
 	 * @param conn
 	 * @param usercode
 	 * @return
@@ -1668,7 +1668,7 @@ public class KQDS_REGLogic extends BaseLogic {
 				if (0 == userdoc.getDoorstatus()) {
 					userdoc.setDoorstatus(1); // 更新患者总上门状态 0未上门 1已上门
 					updateSingleUUID(TableNameUtil.KQDS_USERDOCUMENT, userdoc);
-					//修改当天所有预约为已上门 
+					//修改当天所有预约为已上门
 				}
 
 				// 网电建档的患者，目前客户报备的，也属于网电的
@@ -1678,7 +1678,7 @@ public class KQDS_REGLogic extends BaseLogic {
 
 				// 门诊建档的患者
 				checkHosOrder(dp, request);
-		
+
 				//单次挂号挂多个预约信息下的挂号 先注释掉
 		//查询所有的门诊预约
 		//查询当天该患者的所有的预约信息，查询出
@@ -1815,9 +1815,9 @@ public class KQDS_REGLogic extends BaseLogic {
 //				}
 //			}
 //		}
-		
+
 	}
-	
+
 	/**
 	 * 根据患者编号查询挂号信息
 	 * @param usercode 2019-4-21 shaoyp
@@ -1829,32 +1829,32 @@ public class KQDS_REGLogic extends BaseLogic {
 		return json;
 	}
 
-	/**   
-	  * @Title: findRegByregNo   
-	  * @Description: TODO(查询挂号信息)   
+	/**
+	  * @Title: findRegByregNo
+	  * @Description: TODO(查询挂号信息)
 	  * @param: @param kQDS_REG
-	  * @param: @param regno      
+	  * @param: @param regno
 	  * @return: void
-	 * @throws Exception 
+	 * @throws Exception
 	  * @dateTime:2019年7月10日 上午9:46:35
-	  */  
+	  */
 	public JSONObject findRegByregNo(String kQDS_REG, String regno) throws Exception {
 		// TODO Auto-generated method stub
 		return (JSONObject) dao.findForObject(TableNameUtil.KQDS_REG+".findRegByregNo", regno);
 	}
-	
+
 	public String selectExistByUsercode(Map<String,String> map) throws Exception{
 		String createtime=(String) dao.findForObject(TableNameUtil.KQDS_REG+".selectExistByUsercode", map);
 		return createtime;
 	}
-	/**   
-	  * @Title: findRegRecord   
-	  * @Description: TODO(这里用一句话描述这个方法的作用)   
-	  * @param: @param map      
+	/**
+	  * @Title: findRegRecord
+	  * @Description: TODO(这里用一句话描述这个方法的作用)
+	  * @param: @param map
 	  * @return: void
-	 * @throws Exception 
+	 * @throws Exception
 	  * @dateTime:2019年8月24日 下午3:20:39
-	  */  
+	  */
 	public JSONObject findRegRecord(Map<String, String> map) throws Exception {
 		// TODO Auto-generated method stub
 		JSONObject json = new JSONObject();
@@ -1863,14 +1863,14 @@ public class KQDS_REGLogic extends BaseLogic {
 		return json;
 	}
 
-	/**   
-	  * @Title: findRecord   
-	  * @Description: TODO(查找今日挂号记录)   
-	  * @param: @param usercode      
+	/**
+	  * @Title: findRecord
+	  * @Description: TODO(查找今日挂号记录)
+	  * @param: @param usercode
 	  * @return: void
-	 * @throws Exception 
+	 * @throws Exception
 	  * @dateTime:2019年8月27日 下午4:36:35
-	  */  
+	  */
 	public JSONObject findRecord(Map<String, String> map) throws Exception {
 		// TODO Auto-generated method stub
 		List<JSONObject> list = (List<JSONObject>) dao.findForList(TableNameUtil.KQDS_REG+".findRecord", map);
@@ -1896,104 +1896,104 @@ public class KQDS_REGLogic extends BaseLogic {
 		return list;
 	}
 
-	/**   
-	  * @Title: findDepartment   
-	  * @Description: TODO(部门)   
+	/**
+	  * @Title: findDepartment
+	  * @Description: TODO(部门)
 	  * @param: @param map
-	  * @param: @return      
+	  * @param: @return
 	  * @return: List<JSONObject>
-	 * @throws Exception 
+	 * @throws Exception
 	  * @dateTime:2019年9月28日 下午4:29:34
-	  */  
+	  */
 	public List<JSONObject> findDepartment(Map<String, String> map) throws Exception {
 		// TODO Auto-generated method stub
 		return (List<JSONObject>) dao.findForList(TableNameUtil.KQDS_REG+".findDepartment", map);
 	}
 
-	/**   
-	  * @Title: findZperformance   
-	  * @Description: TODO(总)   
+	/**
+	  * @Title: findZperformance
+	  * @Description: TODO(总)
 	  * @param: @param map
-	  * @param: @return      
+	  * @param: @return
 	  * @return: JSONObject
-	 * @throws Exception 
+	 * @throws Exception
 	  * @dateTime:2019年9月28日 下午4:30:07
-	  */  
+	  */
 	public JSONObject findZperformance(Map<String, String> map) throws Exception {
 		// TODO Auto-generated method stub
 		return (JSONObject) dao.findForObject(TableNameUtil.KQDS_REG+".findZperformance", map);
 	}
 
-	/**   
-	  * @Title: findDoctor   
-	  * @Description: TODO(医生)   
+	/**
+	  * @Title: findDoctor
+	  * @Description: TODO(医生)
 	  * @param: @param map
-	  * @param: @return      
+	  * @param: @return
 	  * @return: List<JSONObject>
-	 * @throws Exception 
+	 * @throws Exception
 	  * @dateTime:2019年9月29日 下午3:30:14
-	  */  
+	  */
 	public List<JSONObject> findDoctor(Map<String, String> map) throws Exception {
 		// TODO Auto-generated method stub
 		return (List<JSONObject>) dao.findForList(TableNameUtil.KQDS_REG+".findDoctor", map);
 	}
 
-	/**   
-	  * @Title: findZdoctor   
-	  * @Description: TODO(这里用一句话描述这个方法的作用)   
+	/**
+	  * @Title: findZdoctor
+	  * @Description: TODO(这里用一句话描述这个方法的作用)
 	  * @param: @param map
-	  * @param: @return      
+	  * @param: @return
 	  * @return: List<JSONObject>
-	 * @throws Exception 
+	 * @throws Exception
 	  * @dateTime:2019年9月29日 下午3:47:28
-	  */  
+	  */
 	public JSONObject findZdoctor(Map<String, String> map) throws Exception {
 		// TODO Auto-generated method stub
 		return (JSONObject) dao.findForObject(TableNameUtil.KQDS_REG+".findZdoctor", map);
 	}
 
-	/**   
-	  * @Title: findImplantNum   
-	  * @Description: TODO(这里用一句话描述这个方法的作用)   
+	/**
+	  * @Title: findImplantNum
+	  * @Description: TODO(这里用一句话描述这个方法的作用)
 	  * @param: @param map
-	  * @param: @return      
+	  * @param: @return
 	  * @return: List<JSONObject>
-	 * @throws Exception 
+	 * @throws Exception
 	  * @dateTime:2019年10月5日 下午3:55:43
-	  */  
+	  */
 	public List<JSONObject> findImplantNum(Map<String, String> map) throws Exception {
 		// TODO Auto-generated method stub
 		return (List<JSONObject>)dao.findForList(TableNameUtil.KQDS_REG+".findImplantNum", map);
 	}
 
-	/**   
-	  * @Title: findImplantNumAll   
-	  * @Description: TODO(这里用一句话描述这个方法的作用)   
+	/**
+	  * @Title: findImplantNumAll
+	  * @Description: TODO(这里用一句话描述这个方法的作用)
 	  * @param: @param map
-	  * @param: @return      
+	  * @param: @return
 	  * @return: List<JSONObject>
-	 * @throws Exception 
+	 * @throws Exception
 	  * @dateTime:2019年10月5日 下午3:55:50
-	  */  
+	  */
 	public JSONObject findImplantNumAll(Map<String, String> map) throws Exception {
 		// TODO Auto-generated method stub
 		return (JSONObject) dao.findForObject(TableNameUtil.KQDS_REG+".findImplantNumAll", map);
 	}
-	
+
 	/**
 	 * 折扣后也改变成交状态为已成交 syp 2019-10-07
-	  * @Title: updateRegCjstatus   
-	  * @Description: TODO(折扣后也改变成交状态为已成交)   
+	  * @Title: updateRegCjstatus
+	  * @Description: TODO(折扣后也改变成交状态为已成交)
 	  * @param: @param seqId
-	  * @param: @throws Exception      
+	  * @param: @throws Exception
 	  * @return: void
 	  * @dateTime:2019年10月7日 下午6:16:15
 	 */
 	public void updateRegCjstatus(String seqId) throws Exception {
 		dao.update(TableNameUtil.KQDS_REG + ".updateRegCjstatus", seqId);
 	}
-	
-	
+
+
 	public void updateRegJhStatus(Map<String,String> map) throws Exception {
 		dao.update(TableNameUtil.KQDS_REG + ".updateRegJhStatus", map);
 	}

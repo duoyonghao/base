@@ -65,8 +65,9 @@
 			    <table id="dykdxm" class="table-striped table-condensed table-bordered" data-height="150"></table>
         	 </div>
         	<div id="buttonBar"> 
-                     <table style="width:90%;text-align: center;"> 
-                 		<tr>
+                     <table style="width:90%;text-align: center;">
+						 <tr>
+							 <td style="width:12%;display:none" align="right" id="addYjj"><span style="color:#00A6C0;">添加预交金: </span><input type="number" id="yjjNum" ></td>
                 			<td style="width:12%" align="right"><span id="tkezSpan" style="color:#00A6C0;">退款总额:<lable id="tkze">0</lable></span></td>
                  		</tr> 
                  	</table> 
@@ -75,6 +76,7 @@
 		<footer class="fixedBottomDiv">
 			<div class="clear2"></div>
          	<a class="kqdsCommonBtn" id="sqtk">申请退款</a>
+			<a class="kqdsCommonBtn" id="tjyjj">添加预交金</a>
 		</footer>
 	</div>
 	
@@ -408,8 +410,21 @@ function OrderDetail(costno) {
         }]
     });
 }
+$('#tjyjj').on('click',
+    function() {
+    $("#addYjj").css('display','');
+    });
+$('#yjjNum').bind('input propertychange', function(){
+    if($(this).val() && $(this).val()<= 0 ){
+        $(this).val(0);
+    }
+    if($(this).val()> $("#tkze").html()){
+        $(this).val($("#tkze").html());
+    }
+})
 $('#sqtk').on('click',
 function() {
+    var addYjj=$('#yjjNum').val();
     //var tkze = $("#tkze").html();
   	//遍历 计算 收费单的 退款总金额
     var list = $('#dykdxm').bootstrapTable('getData');
@@ -458,7 +473,8 @@ function() {
     //创建退款单
     var paramOrder = {
         costno: onclickrowOobj.costno,
-        tkze: tkze
+        tkze: tkze,
+        addYjj:addYjj
     };
     //循环获取表格中项目
     var list = [];

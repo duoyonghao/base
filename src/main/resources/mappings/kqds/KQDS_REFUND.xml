@@ -27,11 +27,12 @@
 		<result column="username" jdbcType="VARCHAR" property="username" />
 		<result column="tkze" jdbcType="DECIMAL" property="tkze" />
 		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="addyjj" jdbcType="DECIMAL" property="addyjj" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		SEQ_ID, createuser, createtime, usercode, costno, totalcost, voidmoney, shouldmoney,
 		arrearmoney, totalarrmoney, actualmoney, discountmoney, doctor, nurse, techperson,
-		status, remark, shtime, shuser, tkuser, tktime, username, tkze, organization
+		status, remark, shtime, shuser, tkuser, tktime, username, tkze, organization,addyjj
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
 		select
@@ -52,7 +53,7 @@
 		doctor, nurse, techperson,
 		status, remark, shtime,
 		shuser, tkuser, tktime,
-		username, tkze, organization
+		username, tkze, organization,addyjj
 		)
 		values (#{seqId,jdbcType=VARCHAR},
 		#{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
@@ -65,7 +66,7 @@
 		#{shtime,jdbcType=VARCHAR},
 		#{shuser,jdbcType=VARCHAR}, #{tkuser,jdbcType=VARCHAR}, #{tktime,jdbcType=VARCHAR},
 		#{username,jdbcType=VARCHAR}, #{tkze,jdbcType=DECIMAL},
-		#{organization,jdbcType=VARCHAR}
+		#{organization,jdbcType=VARCHAR},#{addyjj,jdbcType=DECIMAL}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsRefund">
@@ -143,6 +144,9 @@
 			<if test="organization != null">
 				organization,
 			</if>
+			<if test="addyjj != null">
+				addyjj,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="seqId != null">
@@ -216,6 +220,9 @@
 			</if>
 			<if test="organization != null">
 				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="addyjj != null">
+				#{addyjj,jdbcType=DECIMAL},
 			</if>
 		</trim>
 	</insert>
@@ -291,6 +298,9 @@
 			<if test="organization != null">
 				organization = #{organization,jdbcType=VARCHAR},
 			</if>
+			<if test="addyjj != null">
+				addyjj = #{addyjj,jdbcType=DECIMAL},
+			</if>
 		</set>
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
 	</update>
@@ -322,7 +332,8 @@
 		= #{tktime,jdbcType=VARCHAR},
 		username = #{username,jdbcType=VARCHAR},
 		tkze = #{tkze,jdbcType=DECIMAL},
-		organization = #{organization,jdbcType=VARCHAR}
+		organization = #{organization,jdbcType=VARCHAR},
+		addyjj = #{addyjj,jdbcType=DECIMAL}
 		where SEQ_ID =
 		#{seqId,jdbcType=VARCHAR}
 	</update>
@@ -370,9 +381,9 @@
 		t.shouldmoney,
 		t.arrearmoney,
 		t.actualmoney,
-		t.arrearmoney
-		from KQDS_REFUND
-		t
+		t.arrearmoney,
+		t.addyjj
+		from KQDS_REFUND t
 		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = t.createuser
 		left join KQDS_UserDocument u on u.usercode = t.usercode
 		where 1=1
