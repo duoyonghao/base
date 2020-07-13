@@ -316,7 +316,12 @@ function initTable() {
         //是否显示导出
         exportDataType: "basic",
         //basic', 'all', 'selected'.
-        onLoadSuccess:function(){
+        onLoadSuccess:function(data){
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#search").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+				$("#search").text("查询");
+			}
         	setHeight()
         	/*表格载入时，设置表头的宽度 */
             setTableHeaderWidth(".tableBox");
@@ -499,7 +504,9 @@ function() {
         layer.alert('请选择查询条件' );
         return false;
     }
-
+	//查询中，禁止查询按钮点击 lutian
+	$("#search").attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none");
+	$("#search").text("查询中");
     $('#table').bootstrapTable('refresh', {
         'url': pageurl
     });

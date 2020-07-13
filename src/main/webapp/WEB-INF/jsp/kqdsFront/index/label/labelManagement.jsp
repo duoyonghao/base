@@ -60,7 +60,7 @@
 				
 				<a href="javascript:void(0);" class="kqdsCommonBtn" onclick="clearQuery()">清空</a>
 				<a href="javascript:void(0);" class="kqdsCommonBtn" onclick="exportTable()">生成报表</a>
-				<a href="javascript:void(0);" class="kqdsCommonBtn" onclick="searchLabel()">查询</a>
+				<a href="javascript:void(0);" class="kqdsCommonBtn" onclick="searchLabel()" id="query">查询</a>
 			</div>
 		</div>
 		<div class="tableBox">
@@ -116,6 +116,9 @@ function clearQuery(){
 
 // 查询按钮
 function searchLabel() {
+	//查询中，禁止查询按钮点击 lutian
+	$("#query").attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none");
+	$("#query").text("查询中");
 	$('#table').bootstrapTable('refresh', {
         'url': pageurl
     });
@@ -183,6 +186,11 @@ function getPageList() {
         striped: true,
         sidePagination: "server",
         onLoadSuccess:function(data){
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","white").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
         	//console.log(JSON.stringify(data)+"---------list数据");
         },
         columns: [{

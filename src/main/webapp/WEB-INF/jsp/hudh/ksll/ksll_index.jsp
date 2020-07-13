@@ -416,6 +416,11 @@ function initTable(requrl) {
         striped: true,
         sidePagination: "server",//分页方式：client客户端分页，server服务端分页（*）
         onLoadSuccess: function(data) { //加载成功时执行
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
         	initialize=1;
         	//分页加载
         	/* showdata("table",data.rows); */
@@ -589,7 +594,7 @@ function queryParams(params) {
     };
     return temp;
 }
-function searchHzda() {
+function searchHzda(thi) {
     var deptpart = $('#deptpart').val();
     var house = $("#house").val();
     var goodscode = $('#goodscode').val();
@@ -599,6 +604,8 @@ function searchHzda() {
     	layer.alert("请输入查询条件");
     	return;
     }
+	$(thi).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(thi).text("查询中");
     $('#table').bootstrapTable('refresh', {
         'url': pageurl
     });
@@ -620,7 +627,7 @@ function getButton() {
     menubutton1 += '<a href="javascript:void(0);" class="kqdsCommonBtn" onclick="btnFun.consum()">内部消耗</a>';
     menubutton1 += '<a href="javascript:void(0);" class="kqdsCommonBtn" onclick="btnFun.consumCode()">内部消耗记录</a>';
     menubutton1 += '<a href="javascript:void(0);" class="kqdsCommonBtn clean" onclick="clean()">清空</a>';
-    menubutton1 += '<a href="javascript:void(0);" class="kqdsSearchBtn" onclick="searchHzda()">查询</a>';
+    menubutton1 += '<a href="javascript:void(0);" class="kqdsSearchBtn" onclick="searchHzda(this)" id="query">查询</a>';
     $("#bottomBarDdiv").append(menubutton1);
     setHeight();
 }

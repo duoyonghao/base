@@ -430,6 +430,11 @@ function getPayOrderlist(url) {
         sidePagination: "server",//分页方式：client客户端分页，server服务端分页（*）
         paginationShowPageGo: true,
         onLoadSuccess: function(data) { //加载成功时执行
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
 //         	隐藏患者来源子分类
 			var existornot=isExist(total);//资源隐藏判断条件ZY_LYCK
         	if(!existornot){
@@ -1291,6 +1296,8 @@ function() {
         layer.alert('请选择查询条件!' );
         return false;
     }
+	$(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(this).text("查询中");
     $('#table').bootstrapTable('refresh', {
         'url': pageurl
     });

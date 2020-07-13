@@ -82,7 +82,7 @@
 </head>
 
 <body>
-<div id="container" >
+<div id="container">
 <!--查询条件-->
 	<div class="searchWrap">
 		<div class="cornerBox">查询条件</div>
@@ -212,7 +212,9 @@ $(function(){
 	
 	//获取当前页面所有按钮
     findDept("<%=menuid%>");
-	
+    //查询中，禁止查询按钮点击 lutian
+	$("#query").attr("disabled","disabled").css("background-color","#b3b0b0").css("border","1px solid #b3b0b0").css("cursor","no-drop").css("pointer-events","none");
+	$("#query").text("查询中");
 });
 
 $("#query").click(function(){
@@ -235,9 +237,10 @@ $("#query").click(function(){
 	} 
 	/* 只能点击一次，10秒之后解绑 */
 	$(this).attr("disabled","disabled").css("background-color","#b3b0b0").css("border","1px solid #b3b0b0").css("cursor","no-drop").css("pointer-events","none");
-	setTimeout(function(){
+	$(this).text("查询中");
+	/*setTimeout(function(){
 		$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
-	}, 5000);
+	}, 5000);*/
 	
 	searchLabel();
 });
@@ -365,6 +368,11 @@ $('#tableTotal').bootstrapTable({
     	
     },
     onLoadSuccess: function(data) {
+		//解除查询按钮禁用 lutian
+		if(data){
+			$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+			$("#query").text("查询");
+		}
         //console.log(JSON.stringify(data)+"------各月总数据");
         getTotalData(data);
     },
@@ -518,7 +526,6 @@ function gettableSystem(){
 	    	
 	    },
 	    onLoadSuccess: function(data) {
-
 	    	//console.log(JSON.stringify(data)+"--------种植体系统data");
 	    	getdataRightSystem(data);
 	    },

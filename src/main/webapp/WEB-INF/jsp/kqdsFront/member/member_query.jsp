@@ -123,6 +123,7 @@ var qxnameArr = ['zzcx_scbb'];
 var func = ['exportTable'];
 pagesize = 100;
 $(function() {
+	$("input[type='text']").attr("autocomplete","off");  //去掉input输入框的历史记录  lutian
     //获取当前页面所有按钮
     getButtonPowerByPriv(qxnameArr, func, menuid);
     //时间选择
@@ -171,6 +172,11 @@ function getlist(requrl) {
             requrl = params.url; // 重新赋值   这个方法执行后，加载数据，然后执行onLoadSuccess方法
         },
         onLoadSuccess: function(data) { //加载成功时执行
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","auto").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
             if (nowpage == 0 && data.total > 0) {
                 maxpage = Math.floor(data.total / pagesize) + 1;
 
@@ -627,6 +633,8 @@ function exportTable() {
 }
 $('#query').on('click',
 function() {
+	$(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(this).text("查询中");
     loadedData = [];
     nowpage = 0;
     $table.bootstrapTable('refresh', {

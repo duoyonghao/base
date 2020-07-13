@@ -189,6 +189,8 @@ $(function() {
 });
 $('#searchHzda').on('click',
 function() {
+	$(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(this).text("查询中");
     $('#table').bootstrapTable('refresh', {
         'url': pageurl
     });
@@ -215,7 +217,12 @@ function getlist() {
          cache: false,
          striped: true,
          queryParams: queryParams,
-         onLoadSuccess:function(){
+         onLoadSuccess:function(data){
+			 //解除查询按钮禁用 lutian
+			 if(data){
+				 $("#searchHzda").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","auto").css("pointer-events","auto");
+				 $("#searchHzda").text("查询");
+			 }
         	 setHeight();
         	 //付款方式赋值
  	         getFkfsField();

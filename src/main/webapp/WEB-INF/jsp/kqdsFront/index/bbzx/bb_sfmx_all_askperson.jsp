@@ -381,7 +381,7 @@ $('#basetype').change(function() {
 	if($(this).val()){ // 如果一级有值，再请求
 		$("#nexttype").empty();
 		if(this.value == '预交金'){
-			console.log(this.value+"----");
+			//console.log(this.value+"----");
 			 var dict = $("#nexttype");
 			 dict.append("<option value=''>请选择</option>");
 			 dict.append("<option value='开卡'>开卡</option>");
@@ -405,6 +405,11 @@ function getPayOrderlist(url) {
         dataType: "json",
         queryParams: queryParams,
         onLoadSuccess: function(data) { //加载成功时执行
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","auto").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
         	if(nowpage == 0 && data.total>0){
        		    maxpage = Math.floor(data.total/pagesize)+1; 
 	       		$("#xiaoji").html(data.realmoney);
@@ -1196,6 +1201,8 @@ function() {
         layer.alert('请选择查询条件!' );
         return false;
     }
+	$(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(this).text("查询中");
     $('#table').bootstrapTable('refresh', {
         'url': pageurl
     });

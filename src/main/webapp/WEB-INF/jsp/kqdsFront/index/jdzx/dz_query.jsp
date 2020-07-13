@@ -258,7 +258,7 @@
 	                    <div class="btnBar" id="bottomBarDdiv" style="text-align: left;">
 	                     	 <a href="javascript:void(0);" class="kqdsCommonBtn clean" onclick="clean()">清空</a>
 	                     	 <a href="javascript:void(0);" class="kqdsCommonBtn" onclick="exportTable()">生成报表</a> 
-	               		     <a href="javascript:void(0);" class="kqdsSearchBtn" id="query" onclick="searchHzda()">查询</a>
+	               		     <a href="javascript:void(0);" class="kqdsSearchBtn" id="query" onclick="searchHzda(this)">查询</a>
 			            </div>
 	                </div>
 	            </div>
@@ -368,7 +368,11 @@ function initTable(status, type) {
         sidePagination: "server",//分页方式：client客户端分页，server服务端分页（*）
         paginationShowPageGo: true,
         onLoadSuccess: function(data) { //加载成功时执行
-        	
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","auto").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
         	//判断登录
         	var existornot=isExist(total);
         	if(!existornot){
@@ -758,7 +762,9 @@ function queryParams() {
     };
     return temp;
 }
-function searchHzda() {
+function searchHzda(thi) {
+	$(thi).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(thi).text("查询中");
     $('#table').bootstrapTable('refresh', {
         'url': pageurl
     });

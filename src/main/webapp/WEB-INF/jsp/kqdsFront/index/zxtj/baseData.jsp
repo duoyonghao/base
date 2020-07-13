@@ -74,7 +74,7 @@
 </head>
 
 <body>
-<div id="container" >
+<div id="container">
 	<!--查询条件-->
 	<div class="searchWrap">
 		<div class="cornerBox">查询条件</div>
@@ -206,6 +206,10 @@ $(function(){
 	
 	//获取当前页面所有按钮
     findDept("<%=menuid%>");
+
+	//查询中，禁止查询按钮点击 lutian
+	$("#query").attr("disabled","disabled").css("background-color","#b3b0b0").css("border","1px solid #b3b0b0").css("cursor","no-drop").css("pointer-events","none");
+	$("#query").text("查询中");
 });
 //jquery 导出excel 
 function exportTable(){
@@ -285,9 +289,10 @@ $("#query").click(function(){
     }
     /* 只能点击一次，10秒之后解绑 */
 	$(this).attr("disabled","disabled").css("background-color","#b3b0b0").css("border","1px solid #b3b0b0").css("cursor","no-drop").css("pointer-events","none");
-	setTimeout(function(){
+	$(this).text("查询中");
+	/*setTimeout(function(){
 		$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
-	}, 5000);
+	}, 5000);*/
 	
 	searchLabel();
 });
@@ -355,6 +360,11 @@ function gettabledata(){
         striped: true,
         onLoadSuccess: function(data) {
         	//console.log(JSON.stringify(data)+"-------数据加载成功返回数据");
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
         	allData=data;
         	getdata(); //基础数据成交占比(月) 
         	getdataRight(); //业绩占比,右边饼图

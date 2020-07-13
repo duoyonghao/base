@@ -373,6 +373,8 @@ $(function() {
     });
     $('#query').on('click',
     function() {
+		$(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+		$(this).text("查询中");
         //加载内容
         $table2.bootstrapTable('refresh', {
             'url': pageurl2
@@ -496,6 +498,11 @@ function inittablewangdian() {
             goToUserCenterPage(row.usercode);
         },
         onLoadSuccess: function(data) { //加载成功时执行
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","auto").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
         	//console.log("网电预约=0===0==-0=0=="+JSON.stringify(data));
          	$(".fixed-table-container").height($(".fixed-table-container").height()+50+"px");
             if_wd_table_int = "wd_table_has_init";

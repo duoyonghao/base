@@ -307,6 +307,7 @@ function queryParamsB(params) {
     return temp;
 }
 $(function() {
+	$("input[type='text']").attr("autocomplete","off");  //去掉input输入框的历史记录 LUTIAN
 	if('<%=organization%>' != ''){
 		static_organization = '<%=organization%>';
 	}else{
@@ -355,7 +356,9 @@ $(function() {
 function clearmenzhen() {
     $(".searchModule section :input").not(":button, :submit, :reset").val("").removeAttr("checked").remove("selected"); //核心
 }
-function query() {
+function query(thi) {
+	$(thi).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(thi).text("查询中");
     $('#table1').bootstrapTable('refresh', {
         'url': pageurl1
     });
@@ -397,7 +400,12 @@ function inittablemenzhen(nums) {
         pageList : [15, 20, 25,30],//可以选择每页大小
         sidePagination: "server",//后端分页 
         paginationShowPageGo: true,
-        onLoadSuccess:function(){
+        onLoadSuccess:function(data){
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","auto").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
         	/*table出现滚动条时 表头进行调整*/
         	setTableHeaderWidth(".tableBox");
         },
@@ -785,7 +793,7 @@ function getButtonPower() {
         }
     }
     menubutton1 += '<a href="javascript:void(0);" class="kqdsCommonBtn" onclick="clearmenzhen();">清空</a>';
-    menubutton1 += '<a href="javascript:void(0);" class="kqdsSearchBtn" onclick="query();">查询</a>';
+    menubutton1 += '<a href="javascript:void(0);" class="kqdsSearchBtn" onclick="query(this);" id="query">查询</a>';
     $("#tdmz").append(menubutton1);
     setHeight();
 }

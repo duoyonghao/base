@@ -176,6 +176,8 @@ $(".birthDate").datetimepicker({
 //查询按钮
 $('#query').on('click',
 function() {
+	$(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(this).text("查询中");
 	var pageurlhis = apppath+'/HUDH_DzblAct/findDzbl.act';
 	$('#table').bootstrapTable('refresh', {
         'url': pageurlhis
@@ -223,7 +225,12 @@ function gethisbl() {
         //paginationShowPageGo: true,
         sidePagination: "server",//后端分页 
         onLoadSuccess: function(data) { //加载成功时执行
-        	var tableList = data.rows;
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
+			var tableList = data.rows;
         },
         onDblClickCell: function(field, value, row, td) {
             detail(row.id,row.blcode);

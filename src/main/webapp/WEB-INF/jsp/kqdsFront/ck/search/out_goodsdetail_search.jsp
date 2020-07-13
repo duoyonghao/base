@@ -225,7 +225,9 @@ function queryParams(params) {
 }
 $('#query').on('click',
 function() {
-    $('#table').bootstrapTable('refresh', {
+	$(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(this).text("查询中");
+	$('#table').bootstrapTable('refresh', {
         'url': pageurl
     });
 });
@@ -265,6 +267,11 @@ function OrderDetail() {
         cache: false,
         striped: true,
         onLoadSuccess: function(data) { //加载成功时执行
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
         	$("#total").html(data.length);
         	var nums=0,allmoney=0;
 	        for(var i=0;i<data.length;i++){

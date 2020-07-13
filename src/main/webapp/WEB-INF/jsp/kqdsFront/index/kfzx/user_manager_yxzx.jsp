@@ -299,7 +299,7 @@
 		                <a href="javascript:void(0);" class="kqdsCommonBtn" onclick="goAddRenwu()">添加推广</a>
 		                <a href="javascript:void(0);" class="kqdsCommonBtn" onclick="goAddVisit()">添加回访</a>
 	                    <a href="javascript:void(0);" class="kqdsCommonBtn clean" id="clear">清空</a>
-	                    <a href="javascript:void(0);" class="kqdsSearchBtn" onclick="querySC();">查询</a>
+	                    <a href="javascript:void(0);" class="kqdsSearchBtn" onclick="querySC();" id="query">查询</a>
 	                </div>
                     <!-- <table class="kqds_table">
 			    		<tr>
@@ -592,6 +592,9 @@ function querySC() {
         layer.alert('请选择查询条件' );
         return false;
     } */
+	//查询中，禁止查询按钮点击 lutian
+	$("#query").attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none");
+	$("#query").text("查询中");
     $('#table').bootstrapTable('refresh', {
         'url': pageurl
     });
@@ -615,6 +618,11 @@ function initTable(nums) {
         paginationShowPageGo: true,
         sidePagination: "server",//后端分页 
         onLoadSuccess: function(data) { //加载成功时执行
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
             var tableList = data.nums[0];
             $("#zong").html(data.total);
             /* var sms = 0,

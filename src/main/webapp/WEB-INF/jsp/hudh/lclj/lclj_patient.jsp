@@ -472,6 +472,11 @@ $(function() {
         //smartDisplay: true,
         //toolbar: '#toolbar',//工具按钮用哪个容器
         onLoadSuccess: function(data) { //加载成功时执行\
+            //解除查询按钮禁用 lutian
+            if(data){
+                $("#searchHzlclj").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+                $("#searchHzlclj").text("查询");
+            }
 //         	console.log(JSON.stringify(data)+"--------------data");
         	 tableDataforSon=data;
         	 var tableList = $('#table').bootstrapTable('getData');
@@ -1098,6 +1103,8 @@ function query() {
         layer.alert("请选择查询条件" );
         return false;
     }  */
+    $("#searchHzlclj").attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+    $("#searchHzlclj").text("查询中");
     refresh();
 }
 //  审核提醒

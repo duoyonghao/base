@@ -227,6 +227,8 @@ $('#basetype').change(function() {
 //查询按钮onclik事件
 $('#query').on('click',
 function() {
+	$(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(this).text("查询中");
     //var sshouse = $("#sshouse").val();
     //var pareurl1 = pageurl + "?queryInput=" + $("#queryInput").val() + "&basetype=" + $("#basetype").val() + "&nexttype=" + $("#nexttype").val() + "&sshouse=" + sshouse;
     $('#table').bootstrapTable('refresh', {
@@ -272,6 +274,11 @@ function initTable() {
         striped: true,
         sidePagination: "client",//分页方式：client客户端分页，server服务端分页（*）
         onLoadSuccess: function(data) { //加载成功时执行
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
         	//console.log("返回数据="+JSON.stringify(data));
             /*滚动条出现 */
             setTableHeaderWidth(".tableBox");

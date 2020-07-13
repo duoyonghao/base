@@ -572,6 +572,11 @@ function initTable(status, type) {
         paginationShowPageGo: true,
         sidePagination: "server",//后端分页 
         onLoadSuccess: function(data) { //加载成功时执行
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
 //         	隐藏患者来源子分类
 			var existornot=isExist(total);//资源隐藏判断条件ZY_LYCK
         	if(!existornot){
@@ -995,7 +1000,11 @@ function queryParams1(params) {
     return temp;
 }
 function searchHzda() {
-    $('#table').bootstrapTable('refresh', {
+	//查询中，禁止查询按钮点击 lutian
+	$("#query").attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none");
+	$("#query").text("查询中");
+
+	$('#table').bootstrapTable('refresh', {
         'url': pageurl
     });
 }
