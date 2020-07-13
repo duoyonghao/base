@@ -392,6 +392,16 @@ function showHiddenClick(thi,father){
 			$(this).css("display","none");
 		});
 		$(thi).parents("."+father).find(".caseContiner").css("display","block");
+		var initWhich=thi.className;
+		if(initWhich=="ask_Previous"){//询问既往史
+			initCaseHistory();  //初始化主诉及既往病史
+		}else if(initWhich=="examine_diagnose"){//口内检查
+			initZzblOpration(); //初始化检查及诊断
+		}else if(initWhich=="diagnosis_case"){//制定手术方案和治疗计划
+			initDiagnosisProject(); //初始化诊疗方案
+		}else{//修复
+			initRepairProject(); //初始化修复方案
+		}
 	}else{
 		$(thi).parents("."+father).find(".caseContiner").css("display","none");
 	}

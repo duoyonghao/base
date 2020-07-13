@@ -361,11 +361,11 @@
             return false;
         };
 
-
-        initCaseHistory();  //初始化主诉及既往病史
-        initZzblOpration(); //初始化检查及诊断
-        initDiagnosisProject(); //初始化诊疗方案
-        initRepairProject(); //初始化修复方案
+		//
+        // initCaseHistory();  //初始化主诉及既往病史
+        // initZzblOpration(); //初始化检查及诊断
+        // initDiagnosisProject(); //初始化诊疗方案
+        // initRepairProject(); //初始化修复方案
        	//dProjectclick(); //诊疗方案移入移除显示隐藏
 
        	//全局监听
@@ -625,22 +625,6 @@
 
 			}
 	  });
-		/* 判断新种植病历情况记录*/
-		var plantRecordsurl =  contextPath + '/HUDH_MedicalRecordsAct/selectdata.act';
-		$.ajax({
-			url: plantRecordsurl,
-			type:"POST",
-			dataType:"json",
-			data : {
-				lcljId:id
-			},
-			success:function(result) {
-				// console.log(JSON.stringify(result)+'----result');
-				if(result.length>0){
-					$(".plantRecords").prev().attr("checked","checked").attr("disabled","disabled");
-				}
-			}
-		});
 		/* 判断人工种植牙知情同意书*/
 		var plantKnowbookurl = contextPath + '/HUDH_ZzblAskAct/findFamiliarBookById.act';
 		$.ajax({
@@ -849,22 +833,6 @@
 			  	}
 			});
 	  });
-	//新种植病历
-	  $(".plantRecords").click(function(){
-		  	parent.layer.open({
-		  		title:"种植病历",
-		  		type:2,
-		  		closeBtn:1,
-		  		content:contextPath+'/ZzblViewAct/toDentalExamination.act',
-		  		area:userAgent.indexOf("iPad") > -1 ? ['100%','95%'] : ['80%','80%'],
-		  		cancel: function(){
-		  		},
-		  		end:function(){
-		  			window.location.reload();//刷新本页面
-		  		}
-		  	});
-
-		  });
 	//修复方案
 	 /*  $(".xiufu_test").click(function(){
 		  if(plantPhysician==''&&repairPhysician==''){
