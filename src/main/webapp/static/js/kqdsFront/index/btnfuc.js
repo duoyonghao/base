@@ -621,6 +621,10 @@ function static_btnfucDeal(name, requrl, isParentOpen) {
             });
             break;
         }
+        case 'zxzx_zdkf': {
+            setKeFu();
+            break;
+        }
         default: {
             alert("没检测到与[" + name + "]指令匹配的方法。");
         }

@@ -4112,11 +4112,15 @@ WHERE
         GROUP BY cost.regno
     </select>
     <select id="findByUsercode" parameterType="java.lang.String" resultType="json">
-		select UserName, Sex, PhoneNumber1, PhoneNumber2, Age , kefu from KQDS_UserDocument where UserCode=#{usercode}
+		select UserCode, UserName, Sex, PhoneNumber1, PhoneNumber2, Age , kefu from KQDS_UserDocument where UserCode=#{usercode}
 	</select>
 
     <update id="updaterecord" parameterType="com.kqds.entity.base.KqdsUserdocument">
         UPDATE KQDS_UserDocument set contagion = #{contagion} where usercode = #{usercode}
+    </update>
+
+    <update id="setKeFu" parameterType="com.kqds.entity.base.KqdsUserdocument">
+        update KQDS_UserDocument set kefu = #{kefu} where usercode = #{usercode}
     </update>
 
     <select id="getrecord" parameterType="java.lang.String" resultType="json">

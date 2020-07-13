@@ -166,6 +166,7 @@
     var personroleother = "<%=person.getUserPrivOther()%>";
     var canKd = '<%=UserPrivUtil.getPrivValueByKey(UserPrivUtil.qxFlag2_canKd, request)%>';
     var menuid = "<%=menuid%>";
+    var $table = $("#table");
     var onclickrowOobj = "";
     var wquerycounturl = '<%=contextPath%>/KQDS_Net_OrderAct/getCountIndex1.act';
     var toptableclickval = 0;
@@ -342,6 +343,7 @@
         btnList += '{"qx":"xfmx_all_ask","name":"日收款明细"},';
         btnList += '{"qx":"zxzx_zsxm","name":"赠送项目"},';
         btnList += '{"qx":"syzs","name":"使用赠送"},';
+        btnList += '{"qx":"zxzx_zdkf","name":"指定客服"},';
         btnList += '{"qx":"cjlclj","name":"创建临床路径"}';
 
         btnList += ']';
@@ -397,6 +399,22 @@
         // setWidth() setHeight()，需要页面加载完成后再计算，所以此方法放到 getButtonPower() 方法的末尾执行
         setWidth();
         setHeight();
+    }
+
+    function setKeFu() {
+        console.log(JSON.stringify(onclickrowOobj) + "--------------");
+        if (onclickrowOobj == "") {
+            layer.alert('请选择需要指定客服的患者');
+        } else {
+            layer.open({
+                type: 2,
+                title: '指定客服',
+                shadeClose: false,
+                shade: 0.6,
+                area: ['90%', '98%'],
+                content: contextPath + '/KQDS_ChangeKeFuAct/toSetKefu.act?menuid=' + "<%=menuid%>" + '&organization=' + $("#organization").val()
+            });
+        }
     }
 </script>
 </body>
