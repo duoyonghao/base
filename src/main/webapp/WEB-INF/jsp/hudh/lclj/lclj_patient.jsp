@@ -427,6 +427,7 @@ var tableDataforSon;
 var consultSelectPatient;//选中患者信息对象
 var lcljId;
 var func = ['exportTable'];
+var form;
 $(function() {
 	vetoNum();
 	awaitVerifieNum();
@@ -725,7 +726,12 @@ $(function() {
     });
     $('.searchSelect').selectpicker("refresh");//咨询部门初始化刷新--2019-10-24 licc
 });
-
+function setForm(forms,num) {
+    form=forms[num];
+}
+function getForm() {
+    return form;
+}
 function queryParams(params) {
     var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
     	//pagenum:1,

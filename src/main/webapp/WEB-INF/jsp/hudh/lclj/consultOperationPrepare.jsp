@@ -558,12 +558,41 @@
 				 order_number : order_number
 			},
 			success:function(result){
-					// console.log(JSON.stringify(result)+"--------aaaaa");
+					 //console.log(JSON.stringify(result)+"--------aaaaa");
 					/* if(result.seqId){
 						$(".ask_Previous").prev().attr("checked","checked").attr("disabled","disabled");
 					}   */
 //					$('input').attr("disabled",true)
 					$("#remark").val(result.remark);
+					if(result.anamnesis){
+						$(".jwsLi").find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
+					}
+					if(result.examine){
+						$(".jczdLi").find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
+					}
+					if(result.diagnosis){
+						$(".zlCasesLi").find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
+					}
+					if(result.repair){
+						$(".xffaLi").find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
+					}
+                if(result.knowbook){
+                    var knowbook=result.knowbook.split(",");
+                    for (i=0;i<knowbook.length ;i++ )
+                    {
+                        if(knowbook[i]=='locator'){
+                            $(".locatorKnowbook").prev().attr("checked","checked").attr("disabled","disabled");
+						}
+                        if(knowbook[i]=='pullout'){
+                            $(".pulloutKnowbook").prev().attr("checked","checked").attr("disabled","disabled");
+                        }
+                        if(knowbook[i]=='plant'){
+                            $(".plantKnowbook").prev().attr("checked","checked").attr("disabled","disabled");
+                        }
+                    }
+                    //在保存接口修改临床路径表的同意书字段值后，进行查询判断是否有值
+                    //$(".dentalImplant").prev().attr("checked","checked").attr("disabled","disabled");
+				}
 
 					//基台放置信息赋值
 					var select_abutment_station = result.abutment_station;
@@ -626,7 +655,7 @@
 			}
 	  });
 		/* 判断人工种植牙知情同意书*/
-		var plantKnowbookurl = contextPath + '/HUDH_ZzblAskAct/findFamiliarBookById.act';
+		/*var plantKnowbookurl = contextPath + '/HUDH_ZzblAskAct/findFamiliarBookById.act';
 		$.ajax({
 			url: plantKnowbookurl,
 			type:"POST",
@@ -637,14 +666,14 @@
 			},
 			success:function(result){
 				//console.log(JSON.stringify(result)+"--------------添加成功后查询数据");
-				/* 判断是否已经填写过内容 */
+				/!* 判断是否已经填写过内容 *!/
 				if(result.seqId){
 					$(".plantKnowbook").prev().attr("checked","checked").attr("disabled","disabled");
 				}
 			}
-	  });
+	  });*/
 		/* 判断拔牙手术知情同意书*/
-		var plantKnowbookurl = contextPath + '/HUDH_ZzblAskAct/findLocatorFamiliar.act';
+		/*var plantKnowbookurl = contextPath + '/HUDH_ZzblAskAct/findLocatorFamiliar.act';
 		$.ajax({
 			url: plantKnowbookurl,
 			type:"POST",
@@ -656,14 +685,14 @@
 			},
 			success:function(result){
 				//console.log(JSON.stringify(result)+"--------------添加成功后查询数据");
-				/* 判断是否已经填写过内容 */
+				/!* 判断是否已经填写过内容 *!/
 				if(result.seqId){
 					$(".pulloutKnowbook").prev().attr("checked","checked").attr("disabled","disabled");
 				}
 			}
-	  });
+	  });*/
 		/* 判断LOCATOR覆盖义齿即刻负重(即刻用)知情同意书*/
-		var plantKnowbookurl = contextPath + '/HUDH_ZzblAskAct/findLocatorFamiliar.act';
+		/*var plantKnowbookurl = contextPath + '/HUDH_ZzblAskAct/findLocatorFamiliar.act';
 		$.ajax({
 			url: plantKnowbookurl,
 			type:"POST",
@@ -675,14 +704,14 @@
 			},
 			success:function(result){
 				//console.log(JSON.stringify(result)+"--------------添加成功后查询数据");
-				/* 判断是否已经填写过内容 */
+				/!* 判断是否已经填写过内容 *!/
 				if(result.seqId){
 					$(".locatorKnowbook").prev().attr("checked","checked").attr("disabled","disabled");
 				}
 			}
-	  });
+	  });*/
 
-		//告知通知书
+		/*//告知通知书
 		var gztzsurl = contextPath + '/HUDH_NotificationAct/findNotificationByLcljId.act';
 		$.ajax({
 			url: gztzsurl,
@@ -699,7 +728,7 @@
 				}
 			}
 
-	  });
+	  });*/
 
 
 
@@ -719,7 +748,7 @@
 		// 	}
 	  // });
 
-		//新 人工种植牙知情同意书
+		/*//新 人工种植牙知情同意书
 		var consentBookUrl = contextPath + '/HUDH_ZzblAskAct/findFamiliarBookById.act';
 		$.ajax({
 			url: consentBookUrl,
@@ -733,12 +762,11 @@
 					$(".dentalImplant").prev().attr("checked","checked").attr("disabled","disabled");
 				}
 			}
-		});
+		});*/
 
 }
-
 	//告知通知书
-	  $(".inform").click(function(){
+	  /*$(".inform").click(function(){
 	  	parent.layer.open({
 	  		title:"告知通知书",
 	  		type:2,
@@ -751,10 +779,10 @@
 	  			window.location.reload();//刷新本页面
 	  		}
 	  	});
-	  });
+	  });*/
 
 	//诊疗方案
-	  $(".case").click(function(){
+	 /* $(".case").click(function(){
 	  	parent.layer.open({
 	  		title:"诊疗方案",
 	  		type:2,
@@ -767,7 +795,7 @@
 	  			window.location.reload();//刷新本页面
 	  		}
 	  	});
-	  });
+	  });*/
 
 
 	//人工种植牙知情同意书

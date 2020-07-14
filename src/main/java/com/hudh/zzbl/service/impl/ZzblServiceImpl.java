@@ -1,9 +1,12 @@
 package com.hudh.zzbl.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.hudh.lclj.dao.LcljTrackDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +22,8 @@ public class ZzblServiceImpl implements IZzblService {
 	
 	@Autowired
 	private ZzblDao zzblDao;
+	@Autowired
+	private LcljTrackDao lcljTrackDao;
 
 	@Override
 	public void save(ZzblOperation dp, HttpServletRequest request) throws Exception {
@@ -216,6 +221,11 @@ public class ZzblServiceImpl implements IZzblService {
 		dp.setDoctorSignature(doctorSignature);
 		dp.setPatientsignature(patientsignature);
 		zzblDao.save(dp);
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("form","diagnosis");
+		map.put("status","1");
+		map.put("id",id);
+		lcljTrackDao.updateFormStatus(map);
 	}
 
 	@Override

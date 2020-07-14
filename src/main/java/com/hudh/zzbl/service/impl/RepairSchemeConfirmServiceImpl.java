@@ -1,9 +1,12 @@
 package com.hudh.zzbl.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.hudh.lclj.dao.LcljTrackDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +22,8 @@ public class RepairSchemeConfirmServiceImpl implements IRepairSchemeConfirmServi
 	
 	@Autowired
 	private RepairSchemeConfirmDao repairSchemeConfirmDao;
-
+	@Autowired
+	private LcljTrackDao lcljTrackDao;
 	@Override
 	public void saveRepairSchemeConfirmInfro(RepairSchemeConfirm dp, HttpServletRequest request) throws Exception {
 		// TODO Auto-generated method stub
@@ -192,6 +196,11 @@ public class RepairSchemeConfirmServiceImpl implements IRepairSchemeConfirmServi
 	    dp.setLocalplantselect(localplantselect);
 	    dp.setRequirerestor(requirerestor);
 		repairSchemeConfirmDao.saveRepairSchemeConfirmInfro(dp);
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("form","repair");
+		map.put("status","1");
+		map.put("id",id);
+		lcljTrackDao.updateFormStatus(map);
 	}
 
 	@Override

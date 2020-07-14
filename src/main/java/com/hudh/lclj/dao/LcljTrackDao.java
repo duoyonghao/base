@@ -431,4 +431,19 @@ public class LcljTrackDao {
 		// TODO Auto-generated method stub
 		return (JSONObject) dao.findForObject("HUDH_LCLJ_ORDERTRACK.findPatientInformation", usercode);
 	}
+
+	/**
+	 * 修改表单状态字段为1
+	 * @param map
+	 * @throws Exception
+	 */
+	public void updateFormStatus(Map<String,String> map) throws Exception {
+		//form 表示字段名称，status 表示字段保存的值 ， id 表示临床路径id
+		dao.update("HUDH_LCLJ_ORDERTRACK.updateFormStatus",map);
+	}
+
+	public void updateFormBookStatus(Map<String,String> map) throws Exception {
+		//form 表示字段名称，status 表示字段保存的值 ， id 表示临床路径id
+		dao.update("HUDH_LCLJ_ORDERTRACK.updateFormBookStatus",map);
+	}
 }
