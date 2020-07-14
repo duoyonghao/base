@@ -284,7 +284,7 @@
             <div id="nav">
                <ul>
 			      <li class="navdown" onclick="show(this)"><a href="#"><span>接诊</span></a></li>
-			      <li onclick="show(this)"><span>信息</span></li>
+                  <li onclick="show(this)"><span>信息</span></li>
 			      <li onclick="show(this)"><span>到诊</span></li>
 			      <li onclick="show(this)"><span>费用</span></li>
 			      <li onclick="show(this)"><span>明细</span></li>
