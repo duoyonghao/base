@@ -1315,7 +1315,6 @@
 		<button id="consent_updateBtn" style="display: none;" class="consent_updateBtn hidden" onclick="update()">修改表单</button>
 		<button id="print_Btn" onclick="myPreviewAll()">打印本页内容</button>
 	</div>
-	<div id="test"></div>
 </body>
 	<script language="javascript"  src="<%=contextPath%>/static/js/kqdsFront/LodopFuncs.js"></script>
 	<script type="text/javascript">
