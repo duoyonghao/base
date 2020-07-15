@@ -1771,6 +1771,7 @@
     var userAgent = navigator.userAgent;
     var signatureWidth='70%';
     var signatureHeight='65%';
+    var form=window.parent.getNewForm();
 	$(function(){
         if (userAgent.match(/mobile/i)) {
             var mql = window.matchMedia('(orientation: portrait)');
@@ -1976,8 +1977,89 @@
 
 	/* 页面赋值初始化 */
 	function initZzblInfor(){
+        if(form){
+            if(form.seq_id){
+                caseId=form.seq_id; //已存在的seqid
+                $("#consent_saveBtn").css("display","none");//隐藏保存按钮
+                $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
+            }
+            for(var key in form){
+                $("#"+key+"[type='text']").attr("value",form[key]);// 填框赋值
+                //常用药物select赋值
+                if($("#"+key).find("option")){
+                    $("#"+key).selectpicker('val', form[key]);
+                    $("."+key).text(form[key]);
+                    /*$("#"+key).find("option").each(function(i,obj){
+                        $(this).removeAttr("selected");
+                        if($(this).val()==result[key]){
+                            $(this).prop("selected", true);//针对ipad赋值
+                            $(this).attr("selected", true);
+                        }
+                    });*/
+                }
+                //单选按钮赋值
+                $("input[name="+key+"][type='radio']").each(function(){
+                    if($(this).val()==form[key]){
+                        $(this).attr("checked","checked");
+                    }
+                })
+                //多选框赋值
+                if(form[key]){
+                    if(form[key].indexOf(";")>0){
+                        var checkboxVal= form[key];//拼接多选框的值
+                        var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
+                        for(var i=0;i<checkboxValArr.length;i++){
+                            $("input[name="+key+"]").each(function(){
+                                if($(this).val()==checkboxValArr[i]){
+                                    $(this).attr("checked","checked");
+                                }
+                            })
+                        }
+                    }
+                }
+            }
+            //牙位图赋值
+            toothMapInit("toothloseMap","leftUpTooth",form.toothlosemapupleft);  //牙缺失
+            toothMapInit("toothloseMap","rightUpTooth",form.toothlosemapupright);  //牙缺失
+            toothMapInit("toothloseMap","leftDownTooth",form.toothlosemapdownleft);  //牙缺失
+            toothMapInit("toothloseMap","rightDownTooth",form.toothlosemapdownright);  //牙缺失
+            toothMapInit("toothlessMap","leftUpTooth",form.toothlessmapupleft);  //牙松动
+            toothMapInit("toothlessMap","rightUpTooth",form.toothlessmapupright);  //牙松动
+            toothMapInit("toothlessMap","leftDownTooth",form.toothlessmapdownleft);  //牙松动
+            toothMapInit("toothlessMap","rightDownTooth",form.toothlessmapdownright);  //牙松动
+            toothMapInit("toothdecayedMap","leftUpTooth",form.toothdecayedmapupleft);  //龋齿
+            toothMapInit("toothdecayedMap","rightUpTooth",form.toothdecayedmapupright);  //龋齿
+            toothMapInit("toothdecayedMap","leftDownTooth",form.toothdecayedmapdownleft);  //龋齿
+            toothMapInit("toothdecayedMap","rightDownTooth",form.toothdecayedmapdownright);  //龋齿
+            toothMapInit("toothsnapMap","leftUpTooth",form.toothsnapmapupleft);  //牙折断
+            toothMapInit("toothsnapMap","rightUpTooth",form.toothsnapmapupright);  //牙折断
+            toothMapInit("toothsnapMap","leftDownTooth",form.toothsnapmapdownleft);  //牙折断
+            toothMapInit("toothsnapMap","rightDownTooth",form.toothsnapmapdownright);  //牙折断
+            signature=form.doctorsignature;
+            if(signature!=""){
+                $("#img").attr('src', signature);
+                doctorstatus=false;
+            }else{
+                $("#img").attr('display', 'none');
+            }
+            patientsignature=form.patientsignature;
+            if(patientsignature!=""){
+                $("#patientimg").attr('src', patientsignature);
+                patientstatus=false;
+            }else{
+                $("#patientimg").attr('display', 'none');
+            }
+        }
+        //修改表单：页面不禁用
+        if(form.seq_id){
+            $("input").removeAttr("disabled");
+            $("input").css("cursor","pointer").css("pointer-events","auto");
+            $("input[name='symptom']:checked").removeAttr("checked").trigger("click");
+        }
+        //获取当前页面所有按钮
+        getButtonAllCurPage(menuid);
 		//console.log(id+"--------------查询id");
-		var url = contextPath + '/HUDH_ZzblAdviceAct/findCaseHistoryBySeqid.act';
+		/*var url = contextPath + '/HUDH_ZzblAdviceAct/findCaseHistoryBySeqid.act';
 		$.ajax({
 			url: url,
 			type:"POST",
@@ -1999,13 +2081,13 @@
 						if($("#"+key).find("option")){
 							$("#"+key).selectpicker('val', result[key]);
 							$("."+key).text(result[key]);
-							/*$("#"+key).find("option").each(function(i,obj){
+							/!*$("#"+key).find("option").each(function(i,obj){
                                 $(this).removeAttr("selected");
                                 if($(this).val()==result[key]){
                                     $(this).prop("selected", true);//针对ipad赋值
                                     $(this).attr("selected", true);
                                 }
-                            });*/
+                            });*!/
 						}
 						//单选按钮赋值
 						$("input[name="+key+"][type='radio']").each(function(){
@@ -2069,7 +2151,7 @@
 				//获取当前页面所有按钮
 				getButtonAllCurPage(menuid);
 			}
-		});
+		});*/
 	}
 	//牙位图赋值
 	function toothMapInit(fObj,sObj,toothStr){

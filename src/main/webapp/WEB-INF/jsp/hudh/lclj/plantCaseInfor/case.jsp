@@ -2204,6 +2204,7 @@
     var userAgent = navigator.userAgent;
     var signatureWidth='70%';
     var signatureHeight='65%';
+    var form=window.parent.getNewForm();
     $(function () {
         if (userAgent.match(/mobile/i)) {
             var mql = window.matchMedia('(orientation: portrait)');
@@ -2298,7 +2299,68 @@
                 $("#patient_site").text(r.provincename + r.cityname + r.townname + r.streetName);
             }
         });
-        $.ajax({
+        if(form){
+            $("#consent_saveBtn").css("display","none");//隐藏保存按钮
+            $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
+            signature=form.operationdoctorsignature;
+            if(signature!=""){
+                $("#img").attr('src', signature);
+                doctorstatus=false;
+            }else{
+                $("#img").attr('display', 'none');
+            }
+            repairSignature=form.repairdoctorsignature;
+            if(repairSignature!=""){
+                $("#repairImg").attr('src', repairSignature);
+                repairdoctorstatus=false;
+            }else{
+                $("#repairImg").attr('display', 'none');
+            }
+            patientsignature=form.patientsignature;
+            if(patientsignature!=""){
+                $("#patientimg").attr('src', patientsignature);
+                patientstatus=false;
+            }else{
+                $("#patientimg").attr('display', 'none');
+            }
+            patientsignature1=form.patientsignature1;
+            if(patientsignature1!=""){
+                $("#patientimg1").attr('src', patientsignature1);
+                patientstatus1=false;
+            }else{
+                $("#patientimg1").attr('display', 'none');
+            }
+            $("#treatmentparts1").html(form.treatmentparts1);
+            $("#treatmentparts2").html(form.treatmentparts2);
+            $("#treatmentparts3").html(form.treatmentparts3);
+            $("input[name='consultation_opinion'][value='"+form.consultationOpinion+"']").attr("checked",true);
+            $("input[name='one'][value='"+form.one+"']").attr("checked",true);
+            $("input[name='pathType'][value='"+form.pathtype+"']").attr("checked",true);
+            $("input[name='deep'][value='"+form.deep+"']").attr("checked",true);
+            $("input[name='promise'][value='"+form.promise+"']").attr("checked",true);
+            $("input[name='accord'][value='"+form.accord+"']").attr("checked",true);
+            for(var key in form){
+                //console.log(key+"-------------"+result[key]);
+                $("#"+key).attr("value",form[key]);// 填框赋值
+                $("#requirerestor").text(form["requirerestor"]);//textarea赋值
+                $("#requirerestor").trigger("keyup");
+                $("#replaceBox").text(form["requirerestor"]);//textarea替换框赋值
+                if(form[key].indexOf(";")>0){
+                    var checkboxVal= form[key];//拼接多选框的值
+                    var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
+                    for(var i=0;i<checkboxValArr.length;i++){
+                        $("input[name="+key+"]").each(function(){
+                            if($(this).val()==checkboxValArr[i]){
+                                $(this).attr("checked","checked");
+                            }
+                        })
+                    }
+                }
+            }
+        }
+        //获取当前页面所有按钮
+        getButtonAllCurPage(menuid);
+        /*$.ajax({
             type: "POST",
             url: contextPath + '/HUDH_LcljCaseAct/selectById.act',
             data: {
@@ -2306,7 +2368,6 @@
             },
             dataType: "json",
             success: function (result) {
-                console.log(result,"----ssss")
                 if(result!=null){
                     $("#consent_saveBtn").css("display","none");//隐藏保存按钮
                     $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
@@ -2370,7 +2431,7 @@
                 //获取当前页面所有按钮
                 getButtonAllCurPage(menuid);
             }
-        });
+        });*/
 
 
     });

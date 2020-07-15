@@ -1,9 +1,12 @@
 package com.hudh.zzbl.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.hudh.lclj.dao.LcljTrackDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +22,8 @@ public class ZzblCheckServiceImpl implements IZzblCheckService {
 	
 	@Autowired
 	private ZzblCheckDao zzblCheckDao;
-
+	@Autowired
+	private LcljTrackDao lcljTrackDao;
 	@Override
 	public void insertZzblCheck(ZzblCheck dp, HttpServletRequest request) throws Exception {
 		// TODO Auto-generated method stub
@@ -154,6 +158,11 @@ public class ZzblCheckServiceImpl implements IZzblCheckService {
 		dp.setDiagnosis(diagnosis);
 		dp.setOthers(others);
 		zzblCheckDao.insertZzblCheck(dp);
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("form","examine");
+		map.put("status","1");
+		map.put("id",id);
+		lcljTrackDao.updateFormStatus(map);
 	}
 
 	@Override
