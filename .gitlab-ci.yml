@@ -23,15 +23,16 @@ deploy-test:
   stage: test
   variables:
     tomcat_dir: D:\java_doc\apache-tomcat-8.0.36
+    service_name: 8.0.36
   script:
     - echo -n "stop tomcat server..."
-    - Stop-Service Tomcat8
+    - Stop-Service ${service_name}
     - echo -n "remove old artifacts..."
     - if (Test-Path ${tomcat_dir}\webapps\base) {rm -r ${tomcat_dir}\webapps\base}
     - echo -n "copy new artifacts..."
     - cp -r target\base ${tomcat_dir}\webapps
     - echo -n "start tomcat server..."
-    - Start-Service Tomcat8
+    - Start-Service ${service_name}
   dependencies:
     - build
   tags:
