@@ -15,9 +15,6 @@ build:
       - target/base
   tags:
     - package
-  only:
-    refs:
-      - master
 
 deploy-test:
   stage: test
@@ -36,8 +33,6 @@ deploy-test:
     - Start-Service ${service_name}
   dependencies:
     - build
+  when: manual
   tags:
     - test
-  only:
-    refs:
-      - master
