@@ -782,6 +782,19 @@
                             return "<span class='label label-success'>有回访</span>";
                         }
                     }
+                }, {
+                    title: '客服',
+                    field: 'kefuname',
+                    align: 'center',
+
+                    sortable: true,
+                    formatter: function (value, row, index) {
+                        if (value == "") {
+                            return "<span>-</span>";
+                        } else {
+                            return "<span>" + value + "</span>";
+                        }
+                    }
                 }]
         }).on('click-row.bs.table',
             function (e, row, element) {

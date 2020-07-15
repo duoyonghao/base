@@ -1302,7 +1302,7 @@ WHERE
         <bind name="temp_dbType" value="${system_dbType}"/>
         select (select count(v.usercode) from KQDS_Visit v where v.usercode=u.UserCode) as ywhf,
         u.createtime,
-        u.seq_id,
+        u.seq_id as uid,
         u.username,
         u.iscreatelclj,
         u.usercode,
@@ -1318,9 +1318,11 @@ WHERE
         u.openid,
         u.bindstatus,
         u.kefu,
+        p.USER_NAME as kefuname,
         reg.createtime as regcreatetime
         from KQDS_USERDOCUMENT as u
         left join (select createtime,usercode from KQDS_REG where recesort = '20') reg on reg.usercode=u.usercode
+        left join sys_person p on p.seq_id = u.kefu
         where 1=1
         and u.organization = #{organization}
         <if test="bindWX != null and bindWX !='' ">
@@ -3973,7 +3975,9 @@ WHERE
         p.PROVINCE_NAME,
         c.CITY_NAME,
         a.AREA_NAME,
-        s.STREET_NAME
+        s.STREET_NAME,
+        u.kefu,
+        p5.USER_NAME as kefuname
         from KQDS_USERDOCUMENT as u
         left join (
         <!-- select a.* from KQDS_REG a,(select usercode,max(createtime) createtime from
@@ -3986,6 +3990,7 @@ WHERE
         left join SYS_PERSON per2 on per2.seq_id = u.askperson
         left join SYS_PERSON per3 on per3.seq_id = u.developer
         left join SYS_PERSON per4 on per4.seq_id = u.createuser
+        left join sys_person p5 on p5.seq_id = u.kefu
         LEFT JOIN SYS_AREA a1 on u.province = a1.seq_id
         LEFT JOIN SYS_AREA a2 on u.city = a2.seq_id
         LEFT JOIN SYS_AREA a3 on u.town = a3.seq_id
