@@ -402,7 +402,7 @@
     }
 
     function setKeFu() {
-        console.log(JSON.stringify(onclickrowOobj) + "--------------");
+        //console.log(JSON.stringify(onclickrowOobj) + "--------------");
         if (onclickrowOobj == "") {
             layer.alert('请选择需要指定客服的患者');
         } else {
