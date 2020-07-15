@@ -244,6 +244,11 @@ function initTable() {
         dataType: "json",
         queryParams: queryParams,
         onLoadSuccess:function(data){
+            //解除查询按钮禁用 lutian
+            if(data){
+                $("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","auto").css("pointer-events","auto");
+                $("#query").text("查询");
+            }
             if(nowpage == 0 && data.total>0){
        		    maxpage = Math.floor(data.total/pagesize)+1; 
 	      	}
@@ -625,7 +630,7 @@ function initTableForUser() {
     });
 }
 
-function searchHzda() {
+function searchHzda(thi) {
 	layer.closeAll();
 	loadedData = [];
 	nowpage = 0;
@@ -636,6 +641,8 @@ function searchHzda() {
         layer.alert('请选择查询条件' );
         return false;
     }
+    $(thi).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+    $(thi).text("查询中");
     $('#table').bootstrapTable('refresh', {
         'url': pageurl
     });
@@ -698,7 +705,7 @@ function getButtonPower() {
         	menubutton1 += '<a href="javascript:void(0);" class="kqdsCommonBtn" onclick="sub();">手动减少</a>';
         }
     }
-    menubutton1 += '<a href="javascript:void(0);" onclick="searchHzda()" class="kqdsSearchBtn">查询</a>';
+    menubutton1 += '<a href="javascript:void(0);" onclick="searchHzda(this)" class="kqdsSearchBtn" id="query">查询</a>';
     $("#bottomBarDdiv").append(menubutton1);
 
     //计算主体的宽度

@@ -491,6 +491,9 @@ function searchHzda() {
       });
       return false;
   }
+  $("#searchHzda").attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+  $("#searchHzda").text("查询中");
+
   $('#table').bootstrapTable('refresh', {
          'url': pageurl
   });
@@ -550,6 +553,11 @@ function initTableList(){
       sidePagination: "server",//分页方式：client客户端分页，server服务端分页（*）
       paginationShowPageGo: true,
       onLoadSuccess: function(data) {
+		  //解除查询按钮禁用 lutian
+		  if(data){
+			  $("#searchHzda").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","auto").css("pointer-events","auto");
+			  $("#searchHzda").text("查询");
+		  }
 //      	  console.log(JSON.stringify(data)+"-----------paaagurl");
           if (usercode) { /** 建档后，提示是否挂号，点击是，则将usercocde参数传到此挂号页面  **/
               $("#searchValue").val(getNameByusercodesTB(usercode)[0].username);

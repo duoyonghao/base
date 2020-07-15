@@ -142,8 +142,13 @@ function getlist() {
         url: pageurl,
         dataType: "json",
         queryParams: queryParams,
-        onLoadSuccess:function(){
-        	setHeight();
+        onLoadSuccess:function(data){
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","white").css("border","1px solid #00a6c0").css("color","#00a6c0").css("cursor","pointer").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
+			setHeight();
         },
         columns: [
 		{
@@ -235,6 +240,9 @@ function queryParams(params) {
     return temp;
 }
 function refresh(){
+	//查询中，禁止查询按钮点击 lutian
+	$("#query").attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("color","white").css("pointer-events","none");
+	$("#query").text("查询中");
 	//点击查询时，置空入库明细列表
 	$('#dykdxm').find('tbody').html("");
     $('#table').bootstrapTable('refresh', {

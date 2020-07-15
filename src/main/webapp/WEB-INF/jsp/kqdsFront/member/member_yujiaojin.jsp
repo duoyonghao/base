@@ -107,6 +107,11 @@
             paginationShowPageGo: true,
             sidePagination: "server",//后端分页
             onLoadSuccess: function (data) { //加载成功时执行
+                //解除查询按钮禁用 lutian
+                if(data){
+                    $("#searchHfzx").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","auto").css("pointer-events","auto");
+                    $("#searchHfzx").text("查询");
+                }
             },
             columns: [{
                 title: '操作',
@@ -219,7 +224,8 @@
                     layer.alert('请选择查询条件');
                     return false;
                 }
-
+                $(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+                $(this).text("查询中");
                 var localUrl = pageurl + '?memberno=' + querymemberno + '&username=' + queryusercode;
                 $('#table').bootstrapTable('refresh', {
                     'url': localUrl

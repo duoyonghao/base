@@ -1252,8 +1252,7 @@
                             <div style="width: 80%;float: right;">
                                 <ul class="loseTooth_option">
                                     <li>
-                                        <label for="bonemeal">骨粉<input name="bonemeal" id="bonemeal" value=""
-                                                                        style="width:60px;" />g</label>
+                                        <label for="bonemeal">骨粉<input name="bonemeal" id="bonemeal" value="" style="width:60px;text-align: center;" />g</label>
                                     </li>
                                     <li>(</li>
                                     <li>
@@ -1275,8 +1274,7 @@
                             <div style="width: 80%;float: right;">
                                 <ul class="loseTooth_option">
                                     <li>
-                                        <label for="periost">骨膜<input name="periost" id="periost" value=""
-                                                                      style="width:60px;" />张</label>
+                                        <label for="periost">骨膜<input name="periost" id="periost" value="" style="width:60px;text-align: center;" />张</label>
                                     </li>
                                     <li>(</li>
                                     <li>

@@ -264,7 +264,12 @@ function initTable() {
         url: pageurl,
         dataType: "json",
         queryParams: queryParams,
-        onLoadSuccess:function(){
+        onLoadSuccess:function(data){
+            //解除查询按钮禁用 lutian
+            if(data){
+                $("#searchHzda").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+                $("#searchHzda").text("查询");
+            }
             setHeight();
         	/*表格载入时，设置表头的宽度 */
             setTableHeaderWidth(".tableBox");
@@ -479,6 +484,8 @@ function() {
         layer.alert('请选择查询条件' );
         return false;
     }
+    $(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+    $(this).text("查询中");
     dept = regdept;
 
     $('#table').bootstrapTable('refresh', {

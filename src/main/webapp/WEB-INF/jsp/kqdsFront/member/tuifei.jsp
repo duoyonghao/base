@@ -125,6 +125,7 @@ var menuid = "<%=menuid%>";
 var qxnameArr = ['tfcx_scbb'];
 var func = ['exportTable'];
 $(function() {
+	$("input[type='text']").attr("autocomplete","off");  //去掉input输入框的历史记录  lutian
 	initHosSelectList4Front('organization'); // 连锁门诊下拉框
 	//获取当前页面所有按钮
     getButtonPowerByPriv(qxnameArr,func,menuid);
@@ -193,6 +194,11 @@ function gettuifeilist() {
         striped: true,
         queryParams: queryParams,
         onLoadSuccess: function(data) { //加载成功时执行
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","auto").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
             $("#tdmoney").html(tdmoney.toFixed(2));
             $("#tdgivemoney").html(tdgivemoney.toFixed(2));
             $("#tdtotal").html(tdtotal.toFixed(2));
@@ -499,6 +505,8 @@ function exportTable() {
 }
 $('#query').on('click',
 function() {
+	$(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(this).text("查询中");
     number = 1; //序号
     tdmoney = 0,
     tdgivemoney = 0,

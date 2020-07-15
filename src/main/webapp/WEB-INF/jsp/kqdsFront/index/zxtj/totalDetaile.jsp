@@ -182,6 +182,9 @@ $(function(){
 	$('#recesort option:selected') .val("zymoney");
 	//获取当前页面所有按钮
     findDept("<%=menuid%>");
+
+	$("#query").attr("disabled","disabled").css("background-color","#b3b0b0").css("border","1px solid #b3b0b0").css("cursor","no-drop").css("pointer-events","none");
+	$("#query").text("查询中");
 });
 /* 查询按钮点击事件 */
 $("#query").click(function(){
@@ -206,9 +209,10 @@ $("#query").click(function(){
 	}
 	/* 只能点击一次，10秒之后解绑 */
 	$(this).attr("disabled","disabled").css("background-color","#b3b0b0").css("border","1px solid #b3b0b0").css("cursor","no-drop").css("pointer-events","none");
-	setTimeout(function(){
+	$(this).text("查询中");
+	/*setTimeout(function(){
 		$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
-	}, 5000);
+	}, 5000);*/
 	
 	searchLabel();
 });
@@ -253,6 +257,11 @@ function gettabledata(){
         cache: false,
         striped: true,
         onLoadSuccess: function(data) {
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
         	//console.log(JSON.stringify(data,+"1")+"-------数据加载成功返回数据");
         	//console.log(JSON.stringify(data)+"-------数据加载成功返回数据11111");
         	allData=data;

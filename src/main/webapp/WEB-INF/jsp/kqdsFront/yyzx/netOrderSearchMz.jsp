@@ -460,7 +460,9 @@ $(function(){
 	 $('.searchSelect').selectpicker("refresh");//咨询部门初始化刷新--2019-10-24 licc
 });
 function searchmenzhen(){
-	 $('#table1').bootstrapTable('refresh',{'url':pageurl1}); 
+	$("#searchmenzhen").attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$("#searchmenzhen").text("查询中");
+	$('#table1').bootstrapTable('refresh',{'url':pageurl1});
 }
 //加载门诊表格
 function inittablemenzhen(nums){
@@ -479,7 +481,12 @@ function inittablemenzhen(nums){
 			//加了分页器之后高度自适应
            	$(".fixed-table-container").height($(".fixed-table-container").height()+60+"px");
 		},
-		onLoadSuccess:function(){
+		onLoadSuccess:function(data){
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#searchmenzhen").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","auto").css("pointer-events","auto");
+				$("#searchmenzhen").text("查询");
+			}
 			//加了分页器之后高度自适应
             $(".fixed-table-container").height($(".fixed-table-container").height()+60+"px");
 			/*出现滚动条时，调整表头宽度*/

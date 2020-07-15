@@ -169,6 +169,8 @@ var nowday;
 var qxnameArr = ['ck_ckmx_scbb'];
 var func = ['exportTable'];
 var menuid=<%=menuid%>;
+var isClick = true;
+
 $(function() {
 // 	getDeptSelect("sqdeptid");
 	getSupplierSelectKeshi("sqdeptid");//搜索初始化
@@ -225,7 +227,9 @@ function queryParams(params) {
 }
 $('#query').on('click',
 function() {
-    $('#table').bootstrapTable('refresh', {
+	$(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(this).text("查询中");
+	$('#table').bootstrapTable('refresh', {
         'url': pageurl
     });
 });
@@ -235,19 +239,59 @@ function() {
     $("#supplier").select2("val", " ");
     $("#sqdeptid").select2("val", " ");
 });
+
+var loadIndex='';
+function download() {
+	layer.msg('数据导出中，请等待');
+	//loadIndex = layer.load(0, {shade: false});
+	isClick = false;
+}
+function disload() {
+	layer.close(loadIndex);
+	layer.msg('数据导出完毕');
+	isClick = true;
+}
 //导出
 function exportTable() {
-	var fieldArr=[];
-	var fieldnameArr=[];
-	$('#table thead tr th').each(function () {
-		var field = $(this).attr("data-field");
-		if(field!=""){
-			fieldArr.push(field);//获取字段
-			fieldnameArr.push($(this).children()[0].innerText);//获取字段中文
-		}
-	});
-	var param  = JsontoUrldata(queryParams());
-	location.href = pageurl+"&flag=exportTable&fieldArr="+JSON.stringify(fieldArr)+"&fieldnameArr="+JSON.stringify(fieldnameArr)+"&"+param;
+	if(isClick) {
+		isClick = false;
+		// console.log("生成报表")
+		var fieldArr=[];
+		var fieldnameArr=[];
+		$('#table thead tr th').each(function () {
+			var field = $(this).attr("data-field");
+			if(field!=""){
+				fieldArr.push(field);//获取字段
+				fieldnameArr.push($(this).children()[0].innerText);//获取字段中文
+			}
+		});
+		var param  = JsontoUrldata(queryParams());
+		var url = pageurl+"&flag=exportTable&fieldArr="+JSON.stringify(fieldArr)+"&fieldnameArr="+JSON.stringify(fieldnameArr)+"&"+param;
+		download();
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', url, true);    // 也可用POST方式
+		xhr.responseType = "blob";
+		xhr.onload = function () {
+			if (this.status === 200) {
+				var blob = this.response;
+				// if (navigator.msSaveBlob == null) {
+				var a = document.createElement('a');
+				//var headerName = xhr.getResponseHeader("Content-disposition");
+				//var fileName = decodeURIComponent(headerName).substring(20);
+				a.download = "出库明细";
+				a.href = URL.createObjectURL(blob);
+				$("body").append(a);    // 修复firefox中无法触发click
+				a.click();
+				URL.revokeObjectURL(a.href);
+				$(a).remove();
+				// } else {
+				//     navigator.msSaveBlob(blob, "信息查询");
+				// }
+			}
+			disload();
+		};
+		xhr.send();
+	}
 }
 function setHeight(){
 	var windowHeight=$(window).outerHeight();
@@ -265,6 +309,11 @@ function OrderDetail() {
         cache: false,
         striped: true,
         onLoadSuccess: function(data) { //加载成功时执行
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
         	$("#total").html(data.length);
         	var nums=0,allmoney=0;
 	        for(var i=0;i<data.length;i++){

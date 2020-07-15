@@ -365,6 +365,7 @@ function queryParams2(params) {
     return temp;
 }	
 $(function(){
+	$("input[type='text']").attr("autocomplete","off");  //去掉input输入框的历史记录  lutian
 	//获取当前日期
 	if(usercode == ""){
 		nowday = getNowFormatDate();
@@ -429,6 +430,8 @@ $(function(){
 	 $('.searchSelect').selectpicker("refresh");//咨询部门初始化刷新--2019-10-25 licc
 });
 function searchwangdian(){
+	 $("#searchwangdian").attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	 $("#searchwangdian").text("查询中");
 	 $('#table2').bootstrapTable('refresh',{'url':pageurl2}); 
 }
 //加载网电表格
@@ -446,6 +449,11 @@ function inittablewangdian(nums){
 		sidePagination: "server",//后端分页 
         paginationShowPageGo: true,
 		onLoadSuccess:function(data){
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#searchwangdian").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","auto").css("pointer-events","auto");
+				$("#searchwangdian").text("查询");
+			}
 			/*出现滚动条时，调整表头宽度*/
 			setTableHeaderWidth(".tableBox");
 			//console.log("----"+JSON.stringify(data));

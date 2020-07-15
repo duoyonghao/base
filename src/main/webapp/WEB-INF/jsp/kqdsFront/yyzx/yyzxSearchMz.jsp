@@ -236,7 +236,10 @@ var static_organization = null;
 var menuid = "<%=menuid%>";
 var qxnameArr = ['mzyy_scbb','hfzx_scbb'];
 var func = ['exportTable'];
+var isClick = true;
+
 $(function() {
+	$("input[type='text']").attr("autocomplete","off");  //去掉input输入框的历史记录
     //获取当前页面所有按钮##现在此方法 ## syp 17-5-2
     getButtonAllCurPage("<%=menuid%>");
   	//获取当前页面所有按钮
@@ -306,6 +309,8 @@ $(function() {
 
     $('#query').on('click',
     function() {
+    	$(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+		$(this).text("查询中");
         //加载内容
     	$('#table1').bootstrapTable('refresh', {
             'url': pageurl1
@@ -498,6 +503,11 @@ function inittablemenzhen() {
         	//console.log($(".fixed-table-container").height());
         
         	//console.log("门诊预约==---=="+JSON.stringify(data));
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","auto").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
         	//加了分页器之后高度自适应
            	$(".fixed-table-container").height($(".fixed-table-container").height()+50+"px");
         
@@ -855,19 +865,59 @@ function inittablemenzhen() {
         clickrow = $table1.bootstrapTable('getData')[index];
     });
 }
+
+var loadIndex='';
+function download() {
+	layer.msg('数据导出中，请等待');
+	//loadIndex = layer.load(0, {shade: false});
+	isClick = false;
+}
+function disload() {
+	layer.close(loadIndex);
+	layer.msg('数据导出完毕');
+	isClick = true;
+}
 //导出
 function exportTable() {
-    var fieldArr = [];
-    var fieldnameArr = [];
-    $('#table1 thead tr th').each(function() {
-        var field = $(this).attr("data-field");
-        if (field != "") {
-            fieldArr.push(field); //获取字段
-            fieldnameArr.push($(this).children()[0].innerText); //获取字段中文
-        }
-    });
-    var param = JsontoUrldata(queryParamsExport());
-    location.href = pageurl1 + "?flag=exportTable&fieldArr=" + JSON.stringify(fieldArr) + "&fieldnameArr=" + JSON.stringify(fieldnameArr) + "&" + param;
+	if(isClick) {
+		isClick = false;
+		// console.log("生成报表")
+		var fieldArr = [];
+		var fieldnameArr = [];
+		$('#table1 thead tr th').each(function() {
+			var field = $(this).attr("data-field");
+			if (field != "") {
+				fieldArr.push(field); //获取字段
+				fieldnameArr.push($(this).children()[0].innerText); //获取字段中文
+			}
+		});
+		var param = JsontoUrldata(queryParamsExport());
+		var url = pageurl1 + "?flag=exportTable&fieldArr=" + JSON.stringify(fieldArr) + "&fieldnameArr=" + JSON.stringify(fieldnameArr) + "&" + param;
+		download();
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', url, true);    // 也可用POST方式
+		xhr.responseType = "blob";
+		xhr.onload = function () {
+			if (this.status === 200) {
+				var blob = this.response;
+				// if (navigator.msSaveBlob == null) {
+				var a = document.createElement('a');
+				//var headerName = xhr.getResponseHeader("Content-disposition");
+				//var fileName = decodeURIComponent(headerName).substring(20);
+				a.download = "门诊预约查询";
+				a.href = URL.createObjectURL(blob);
+				$("body").append(a);    // 修复firefox中无法触发click
+				a.click();
+				URL.revokeObjectURL(a.href);
+				$(a).remove();
+				// } else {
+				//     navigator.msSaveBlob(blob, "信息查询");
+				// }
+			}
+			disload();
+		};
+		xhr.send();
+	}
 }
 function queryParamsExport(params) {
     var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
