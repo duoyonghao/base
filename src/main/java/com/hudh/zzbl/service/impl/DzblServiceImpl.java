@@ -9,9 +9,11 @@
   */ 
 package com.hudh.zzbl.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.hudh.lclj.dao.LcljTrackDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,11 +36,18 @@ import net.sf.json.JSONObject;
 @Service
 public class DzblServiceImpl implements DzblService{
 
-	 @Autowired
+	  @Autowired
 	  private DzblDao dzblDao;
+	  @Autowired
+	  private LcljTrackDao lcljTrackDao;
 	  
 	  public void saveCaseHistory(AdviceNote adviceNote) throws Exception{
-	    dzblDao.saveCaseHistory(adviceNote);
+	      dzblDao.saveCaseHistory(adviceNote);
+		  Map<String,String> map=new HashMap<String,String>();
+		  map.put("form","anamnesis");
+		  map.put("status","1");
+		  map.put("id",adviceNote.getLcljId());
+		  lcljTrackDao.updateFormStatus(map);
 	  }
 	  
 	  /**
@@ -90,6 +99,10 @@ public class DzblServiceImpl implements DzblService{
 	    throws Exception
 	  {
 	    dzblDao.saveFamiliarBook(familiarBook);
+		  Map<String,String> map=new HashMap<String,String>();
+		  map.put("status",",plant");
+		  map.put("id",familiarBook.getLcljId());
+		  lcljTrackDao.updateFormBookStatus(map);
 	  }
 	  
 	  /**
@@ -183,6 +196,16 @@ public class DzblServiceImpl implements DzblService{
 	  */  
 	@Override
 	public Integer saveLocatorFamiliar(LocatorFamiliar locatorFamiliar) throws Exception {
+		Map<String,String> map=new HashMap<String,String>();
+
+		if("0".equals(locatorFamiliar.getClassify())){
+			map.put("status",",locator");
+		}
+		if("1".equals(locatorFamiliar.getClassify())){
+			map.put("status",",pullout");
+		}
+		map.put("id",locatorFamiliar.getLcljId());
+		lcljTrackDao.updateFormBookStatus(map);
 		return (Integer)dzblDao.saveLocatorFamiliar(locatorFamiliar);
 	}
 

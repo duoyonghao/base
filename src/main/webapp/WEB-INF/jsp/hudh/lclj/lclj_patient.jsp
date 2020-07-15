@@ -428,7 +428,8 @@ var consultSelectPatient;//选中患者信息对象
 var lcljId;
 var func = ['exportTable'];
 var isClick = true;
-
+var oldForm;
+var newForm;
 $(function() {
 	vetoNum();
 	awaitVerifieNum();
@@ -732,7 +733,22 @@ $(function() {
     });
     $('.searchSelect').selectpicker("refresh");//咨询部门初始化刷新--2019-10-24 licc
 });
-
+function setOldForm(forms,num) {
+    if(forms){
+        oldForm=forms[num];
+    }
+}
+function getOldForm() {
+    return oldForm;
+}
+function setNewForm(forms,num) {
+    if(forms){
+        newForm=forms[num];
+    }
+}
+function getNewForm() {
+    return newForm;
+}
 function queryParams(params) {
     var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
     	//pagenum:1,

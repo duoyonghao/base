@@ -818,6 +818,7 @@
         var userAgent = navigator.userAgent;
         var signatureWidth='70%';
         var signatureHeight='65%';
+        var form=window.parent.getOldForm();
 		$(function(){
             if (userAgent.match(/mobile/i)) {
                 var mql = window.matchMedia('(orientation: portrait)');
@@ -925,7 +926,56 @@
 		}
 		
 		function initZzblInfor(){
-			var url = contextPath + '/HUDH_ZzblCheckAct/findZzblOprationById.act';
+		    if(form){
+                caseId=form.seqId;  //修改病历id
+                /* 判断是否已经填写过内容 */
+                if(form.id){
+                    $("#consent_saveBtn").css("display","none");//隐藏保存按钮
+                    $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
+                    //赋值
+                    for(var key in form){
+                        //console.log(key+"-------------"+result[key]);
+                        $("#"+key).attr("value",form[key]);// 填框赋值
+                        $("#others").trigger("keyup");
+                        if(key=="others"){
+                            $("#"+key).text(form[key]);//textarea赋值
+                            $("."+key).text(form[key]);// pre赋值
+                        }
+                        if(form[key].indexOf(";")>0){
+                            var checkboxVal= form[key];//拼接多选框的值
+                            var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
+                            for(var i=0;i<checkboxValArr.length;i++){
+                                $("input[name="+key+"]").each(function(){
+                                    if($(this).val()==checkboxValArr[i]){
+                                        $(this).attr("checked","checked");
+                                    }
+                                })
+                            }
+                        }
+                        //牙位图赋值
+                        if(form[key].indexOf(",")>0){
+                            var toothPlaceVal= form[key];//拼接多选框的值
+                            var toothPlaceValArr=toothPlaceVal.split(",");//将字符串转为数组
+                            var newtoothPlaceVal=toothPlaceValArr.join("");
+                            //console.log(newtoothPlaceVal+"---------去掉牙位图逗号");
+                            $("#"+key).attr("value",newtoothPlaceVal);// 填框赋值
+                        }
+
+                    }
+                    //$("input").attr("disabled","disabled");//查看信息的时候禁止在填写
+
+                    signature=form.doctor_signatory;
+                    if(signature!=""){
+                        $("#img").attr('src', signature);
+                        doctorstatus=false;
+                    }else{
+                        $("#img").attr('display', 'none');
+                    }
+                }
+			}
+            //获取当前页面所有按钮
+            getButtonAllCurPage(menuid);
+			/*var url = contextPath + '/HUDH_ZzblCheckAct/findZzblOprationById.act';
 			$.ajax({
 				url: url,
 				type:"POST",
@@ -946,7 +996,7 @@
 						}
 					}
 					caseId=seqidFather;  //修改病历id
-					/* 判断是否已经填写过内容 */
+					/!* 判断是否已经填写过内容 *!/
 					if(result.id){
 						$("#consent_saveBtn").css("display","none");//隐藏保存按钮
 						$("#consent_updateBtn").css("display","inline-block");//显示修改按钮
@@ -993,7 +1043,7 @@
 						//获取当前页面所有按钮
 						getButtonAllCurPage(menuid);
 				}
-		  });
+		  });*/
 		}
 		
 		//获取url中的参数

@@ -1331,6 +1331,7 @@
         var userAgent = navigator.userAgent;
         var signatureWidth='70%';
         var signatureHeight='65%';
+        var form=window.parent.getOldForm();
         $(function(){
             if (userAgent.match(/mobile/i)) {
                 var mql = window.matchMedia('(orientation: portrait)');
@@ -1533,8 +1534,78 @@
 		
 		/* 页面赋值判断初始化 */
 		function initZzblInfor(){
+		    if(form){
+                caseId=form.seqId;
+                /* 判断是否已经填写过内容 */
+                if(form.seqId){
+                    $("#consent_saveBtn").css("display","none");//隐藏保存按钮
+                    $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
+                    //赋值
+                    for(var key in form){
+                        //console.log(key+"-------------"+result[key]);
+                        $("#"+key+"[type='text']").attr("value",form[key]);// 填框赋值
+                        //常用药物select赋值
+                        if($("#"+key).find("option").length>0 && form[key]!=null){
+                            $("#"+key).selectpicker('val', form[key]);
+                            $("."+key).text(form[key]);
+                            // $("#"+key).find("option").each(function(i,obj){
+                            // 	$(this).removeAttr("selected");
+                            // 	if($(this).val()==result[key]){
+                            // 		$(this).prop("selected", true);//针对ipad赋值
+                            // 		$(this).attr("selected", true);
+                            // 	}
+                            // });
+                        }
+                        //单选按钮赋值
+                        $("input[name="+key+"][type='radio']").each(function(){
+                            if($(this).val()==form[key]){
+                                $(this).attr("checked","checked");
+                            }
+                        })
+                        if(form[key]){
+                            if(form[key].indexOf(";")>0){
+                                var checkboxVal= form[key];//拼接多选框的值
+                                var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
+                                for(var i=0;i<checkboxValArr.length;i++){
+                                    $("input[name="+key+"]").each(function(){
+                                        if($(this).val()==checkboxValArr[i]){
+                                            $(this).attr("checked","checked");
+                                        }
+                                    })
+                                }
+                            }
+                        }
+                        if(key.indexOf("is")>=0 && form[key]==1){
+                            $("input[name="+key+"]").each(function(i,obj){
+                                if($(this).val()==1){
+                                    $(this).trigger("click");
+                                }
+                            });
+                        }
+                    }
+                    //$("input").attr("disabled","disabled");//查看信息的时候禁止在填写
+                    signature=form.doctorsignature;
+                    if(signature!=""){
+                        $("#img").attr('src', signature);
+                        doctorstatus=false;
+                    }else{
+                        $("#img").attr('display', 'none');
+                    }
+                    patientsignature=form.patientsignature;
+                    if(patientsignature!=""){
+                        $("#patientimg").attr('src', patientsignature);
+                        patientstatus=false;
+                    }else{
+                        $("#patientimg").attr('display', 'none');
+                    }
+
+                }
+			}
+            /* 针对ipad自适应 */
+            //获取当前页面所有按钮
+            getButtonAllCurPage(menuid);
 			//console.log(id+"--------------查询id");
-			var url = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
+			/*var url = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
 			$.ajax({
 				url: url,
 				type:"POST",
@@ -1556,11 +1627,11 @@
 					}
 					caseId=seqidFather;  //病历id
 					//console.log(JSON.stringify(result)+"---------------result");
-					/* 判断是否已经填写过内容 */
+					/!* 判断是否已经填写过内容 *!/
 					if(result.seqId){
 						$("#consent_saveBtn").css("display","none");//隐藏保存按钮
 						$("#consent_updateBtn").css("display","inline-block");//显示修改按钮
-						//赋值 
+						//赋值
 						for(var key in result){
 							//console.log(key+"-------------"+result[key]);
 							$("#"+key+"[type='text']").attr("value",result[key]);// 填框赋值
@@ -1618,13 +1689,13 @@
 						}else{
 							$("#patientimg").attr('display', 'none');
 						}
-						
-					}  
-					/* 针对ipad自适应 */
+
+					}
+					/!* 针对ipad自适应 *!/
 					//获取当前页面所有按钮
 					 getButtonAllCurPage(menuid);
 				}
-		  });
+		  });*/
 		}
 		
 		/* 牙齿症状选中 */

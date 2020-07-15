@@ -311,6 +311,8 @@ function checknumber(StrInput) {
 /**************************************20180307 新增******************************************/
 
 /**************************************20200507 新增******************************************/
+var oldCaseResult; //老病历查询结果
+var newCaseResult;  //新病例查询结果
 /**临床路径电子病历弹窗 2020/05/07 lutian 
  * num:病历循环序号
    casenum:要打开的病历act  1:主诉及既往病历  2.检查及诊断 3.诊疗方案 4.修复方案 5.新版主诉即既往病史**/
@@ -373,6 +375,8 @@ function addDProject(thi,num,casenum){
 	if(num){
 		nameNum=num;
 	}
+    window.parent.setOldForm(oldCaseResult,num-1);
+    window.parent.setNewForm(newCaseResult,num-1);
 	parent.layer.open({
 		title:layerTitle+nameNum,
 		type:2,
@@ -414,6 +418,19 @@ function showHiddenClick(thi,father){
 			$(this).css("display","none");
 		});
 		$(thi).parents("."+father).find(".caseContiner").css("display","block");
+        var initWhich=thi.className;
+        if(initWhich=="ask_Previous"){//询问既往史
+            var anamnesisUrl = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
+            initCaseHistory(anamnesisUrl,1);  //初始化主诉及既往病史，默认先展示老病历
+        }else if(initWhich=="examine_diagnose"){//口内检查
+            var jczdUrl  = contextPath + '/HUDH_ZzblCheckAct/findZzblOprationById.act';  //老病历url
+            initZzblOpration(jczdUrl,2); //初始化检查及诊断
+        }else if(initWhich=="diagnosis_case"){//制定手术方案和治疗计划
+            var zlfaurl = contextPath + '/HUDH_ZzblAct/findZzblOprationById.act';//诊疗方案老url
+            initDiagnosisProject(zlfaurl,3); //初始化诊疗方案
+        }else{//修复
+            initRepairProject(); //初始化修复方案
+        }
 	}else{
 		$(thi).parents("."+father).find(".caseContiner").css("display","none");
 	}
@@ -488,9 +505,9 @@ function initCaseList(result,father,btn,casenum){
 	}else if(casenum==7){
 		itemName="新诊疗";
 	}
-	if(result.length>=1){
-		$("."+father).find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
-	}
+	// if(result.length>=1){
+	// 	$("."+father).find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
+	// }
 	var caseStyleHtml="";
 	for (var i =0;i<result.length;i++ ) {
 		if(result[i].seqId){
@@ -517,39 +534,37 @@ function initCaseList(result,father,btn,casenum){
 //初始化病历下拉框 新病历+老病历
 function initSelectList(father,casenum){
 	var allResult;
-	var oldCaseUrl;  //老病历url
-	var oldCaseResult; //老病历查询结果
+	//var oldCaseUrl;  //老病历url
 	var newCaseUrl;  //新病例url
-	var newCaseResult;  //新病例查询结果
 	var itemName="";
 	if(casenum==1){
 		itemName="病史";
-		oldCaseUrl = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';  //老病历url
-		oldCaseResult = getResult(oldCaseUrl); //老病历查询结果
+		//oldCaseUrl = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';  //老病历url
+		//oldCaseResult = getResult(oldCaseUrl); //老病历查询结果
 		newCaseUrl = contextPath + '/HUDH_ZzblAdviceAct/findCaseHistoryById.act';  //新病例url
 		newCaseResult = getResult(newCaseUrl);  //新病例查询结果
 	}else if(casenum==2){
 		itemName="诊断";
-		oldCaseUrl = contextPath + '/HUDH_ZzblCheckAct/findZzblOprationById.act';  //老病历url
-		oldCaseResult = getResult(oldCaseUrl); //老病历查询结果
+		//oldCaseUrl = contextPath + '/HUDH_ZzblCheckAct/findZzblOprationById.act';  //老病历url
+		//oldCaseResult = getResult(oldCaseUrl); //老病历查询结果
 		newCaseUrl = contextPath + '/HUDH_MedicalRecordsAct/selectdata.act';//新病例url
 		newCaseResult = getResult(newCaseUrl);  //新病例查询结果
 	}else if(casenum==3){
 		itemName="方案";
-		oldCaseUrl =contextPath + '/HUDH_ZzblAct/findZzblOprationById.act';  //老病历url
-		oldCaseResult = getResult(oldCaseUrl); //老病历查询结果
+		//oldCaseUrl =contextPath + '/HUDH_ZzblAct/findZzblOprationById.act';  //老病历url
+		//oldCaseResult = getResult(oldCaseUrl); //老病历查询结果
 		newCaseUrl = contextPath + '/HUDH_LcljCaseAct/select.act'; //新病例url
 		newCaseResult = getResult(newCaseUrl);  //新病例查询结果
 	}else if(casenum==4){
 		itemName="方案";
-		oldCaseUrl = contextPath + '/HUDH_RepairSchemeConfirmAct/findRepairInforById.act';  //老病历url
-		oldCaseResult = getResult(oldCaseUrl); //老病历查询结果
+		//oldCaseUrl = contextPath + '/HUDH_RepairSchemeConfirmAct/findRepairInforById.act';  //老病历url
+		//oldCaseResult = getResult(oldCaseUrl); //老病历查询结果
 		newCaseResult = "";
 	}
 
-	if(oldCaseResult.length>=1 || newCaseResult.length>=1){
-		$("."+father).find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
-	}
+	// if(oldCaseResult.length>=1 || newCaseResult.length>=1){
+	// 	$("."+father).find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
+	// }
 	var allCasesHtml='<option value="">请选择</option>';
 	//老病历遍历  mark：用来标记新老病历 0-->老病历  1-->新病历
 	if(oldCaseResult.length>0){
@@ -685,44 +700,50 @@ function toggleCase(thi,num,casetype){
 	if(num==1 && casetype==0){
 		$(thi).text("切换新版");
 		$(thi).attr("onclick","toggleCase(this,1,1)");
-		url = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
-		initCaseHistory(url,1);
+		//url = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
+		//initCaseHistory(url,1);
+        initCaseList(oldCaseResult,"jwsLi","ask_Previous",1);
 	}
 	//主诉新病历
 	if(num==1 && casetype==1){
 		$(thi).text("切换旧版");
 		$(thi).attr("onclick","toggleCase(this,1,0)");
-		url = contextPath + '/HUDH_ZzblAdviceAct/findCaseHistoryById.act';
-		initCaseHistory(url,5);
+		//url = contextPath + '/HUDH_ZzblAdviceAct/findCaseHistoryById.act';
+		//initCaseHistory(url,5);
+        initCaseList(newCaseResult,"jwsLi","ask_Previous",5);
 	}
 	//口腔专科检查
 	if(num==2 && casetype==0){
 		$(thi).text("切换新版");
 		$(thi).attr("onclick","toggleCase(this,2,1)");
-		url = contextPath + '/HUDH_ZzblCheckAct/findZzblOprationById.act';  //老病历url
-		initZzblOpration(url,2);
+		//url = contextPath + '/HUDH_ZzblCheckAct/findZzblOprationById.act';  //老病历url
+		//initZzblOpration(url,2);
+        initCaseList(oldCaseResult,"jczdLi","examine_diagnose",2);
 	}
 	//口腔专科检查（新）
 	if(num==2 && casetype==1){
 		$(thi).text("切换旧版");
 		$(thi).attr("onclick","toggleCase(this,2,0)");
-		var url =  contextPath + '/HUDH_MedicalRecordsAct/selectdata.act';
-		initZzblOpration(url,6);
+		//url =  contextPath + '/HUDH_MedicalRecordsAct/selectdata.act';
+		//initZzblOpration(url,6);
+        initCaseList(newCaseResult,"jczdLi","examine_diagnose",6);
 	}
 
 	//诊疗方案
 	if(num==3 && casetype==0){
 		$(thi).text("切换新版");
 		$(thi).attr("onclick","toggleCase(this,3,1)");
-		var url =contextPath + '/HUDH_ZzblAct/findZzblOprationById.act';  //老病历url
-		initDiagnosisProject(url,3);
+		// url =contextPath + '/HUDH_ZzblAct/findZzblOprationById.act';  //老病历url
+		//initDiagnosisProject(url,3);
+        initCaseList(oldCaseResult,"zlCasesLi","diagnosis_case",3);
 	}
 	//诊疗方案（新）
 	if(num==3 && casetype==1){
 		$(thi).text("切换旧版");
 		$(thi).attr("onclick","toggleCase(this,3,0)");
-		var url = contextPath + '/HUDH_LcljCaseAct/select.act';
-		initDiagnosisProject(url,7);
+		//var url = contextPath + '/HUDH_LcljCaseAct/select.act';
+		//initDiagnosisProject(url,7);
+        initCaseList(newCaseResult,"zlCasesLi","diagnosis_case",7);
 	}
 }
 
@@ -759,6 +780,8 @@ function initCaseHistory(url,casenum){
 		},
 		success:function(result){
 			// console.log(JSON.stringify(result)+"--------------主诉及既往病史初始化result");
+            oldCaseResult=result;
+            initSelectList("jwsLi",1); //初始化既往病史下拉框
 			initCaseList(result,"jwsLi","ask_Previous",casenum); //初始化诊疗方案列表
 		}
 	});
@@ -794,6 +817,8 @@ function initZzblOpration(url,casenum){
 			 lcljId:id, //临床路径ID(新版参数)
 		},
 		success:function(result){
+            oldCaseResult=result;
+            initSelectList("jczdLi",2); //检查即诊断下拉框
 			// console.log(JSON.stringify(result)+"--------------诊疗方案---result");
 			initCaseList(result,"jczdLi","examine_diagnose",casenum); //初始化诊疗方案列表
 		}
@@ -812,6 +837,8 @@ function initDiagnosisProject(url,casenum){
 			order_number : order_number
 		},
 		success:function(result){
+            oldCaseResult=result;
+            initSelectList("zlCasesLi",3); //诊疗方案下拉框
 			// console.log(url,JSON.stringify(result)+"1--------------诊疗方案result");
 			initCaseList(result,"zlCasesLi","diagnosis_case",casenum); //初始化诊疗方案列表
 		}
@@ -846,6 +873,8 @@ function initRepairProject(){
 			 order_number : order_number
 		},
 		success:function(result){
+            oldCaseResult=result;
+            initSelectList("xffaLi",4); //修复方案下拉框
 			//console.log(JSON.stringify(result)+"--------------修复方案初始化result");
 			initCaseList(result,"xffaLi","xiufu_test",4); //初始化诊疗方案列表
 		}

@@ -720,6 +720,7 @@
         var userAgent = navigator.userAgent;
         var signatureWidth='70%';
         var signatureHeight='65%';
+        var form=window.parent.getNewForm();
         $(function(){
             if (userAgent.match(/mobile/i)) {
                 var mql = window.matchMedia('(orientation: portrait)');
@@ -1380,7 +1381,135 @@
         }
         // 	返回数据赋值
         function initData(){
-            var url =  contextPath + '/HUDH_MedicalRecordsAct/selectdata.act';
+            if(form){
+                //console.log(JSON.stringify(res)+'-----result');
+                updataid=form.seqId;//获取更新修改id
+                // var res=result[0];
+                // updataid=res.seqId;//获取更新修改id
+                if(form){
+                    $("#consent_saveBtn").css("display","none");//隐藏保存按钮
+                    $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
+                    signature=form.doctorSignature;
+                    patientsignature=form.patientSignature;
+                }
+                if(signature!=""){
+                    $("#doctorimg").attr('src', signature);
+                    doctorstatus=false;
+                }else{
+                    $("#doctorimg").attr('display', 'none');
+                }
+                if(patientsignature!=""){
+                    $("#patientimg").attr('src', patientsignature);
+                    patientstatus=false;
+                }else{
+                    $("#patientimg").attr('display', 'none');
+                }
+                // 其他
+                $("#others").val(form["others"]);
+                for(var i in form){
+                    $("input[name="+i+"]").each(function(){
+                        var that=this;
+                        var split = form[i].split(",");
+                        for(var j = 0; j < split.length; j++){
+                            if($(that).val()==split[j]){
+                                $(that).attr("checked","checked");
+                            }
+                        }
+                    })//复选框及单选框赋值
+                    $("#"+i+"[type='text']").attr("value",form[i]);// 填框赋值
+                }
+// 	 					牙位赋值start
+                if(form[i]="onedu"){
+                    var toothLoose=form.onedu;
+                    var table_pro=$(".toothLooseNextBox").nextAll().find("td:even");
+                    table_pro.each(function(j,el){
+                        var $table_span=$(this).next().find("div");//赋值的div框
+                        var tabletooth=$(this).find("span").attr("id");	//要赋值的item
+                        for(var key in toothLoose){
+                            var toothLoosestr=toothLoose[key];
+                            if(toothLoose[key]!=""){
+                                //去掉字符串最后一个逗号
+                                toothLoosestr = (toothLoosestr.substring(toothLoosestr.length - 1) == ',') ? toothLoosestr.substring(0, toothLoosestr.length - 1) : toothLoosestr;
+                                var toothLooseArr = toothLoosestr.split(",");
+//	 									console.log(toothLooseArr+"-----toothLooseArr");
+                                if(tabletooth!=undefined&&tabletooth==key){
+                                    for(var j=0;j<toothLooseArr.length;j++){
+                                        $table_span.append('<span id='+toothLooseArr[j]+' itmid='+key+'>'+toothLooseArr[j]+","+'</span>');
+                                    }
+                                }
+                            }
+                        }
+                    })
+                }
+                if(form[i]="dentitiondefect"){
+                    var dentitiondefect=form.dentitiondefect;
+                    var table_pro=$("#toothConditionBox").find("td:odd");
+                    table_pro.each(function(j,el){
+                        var $table_span=$(this).prev().find("div");//赋值的div框
+                        var tabletooth=$(this).find("span").attr("id");	//要赋值的item
+                        for(var key in dentitiondefect){
+                            var dentitiondefectstr=dentitiondefect[key];
+                            if(dentitiondefect[key]!=""){
+                                //去掉字符串最后一个逗号
+                                dentitiondefectstr = (dentitiondefectstr.substring(dentitiondefectstr.length - 1) == ',') ? dentitiondefectstr.substring(0, dentitiondefectstr.length - 1) : dentitiondefectstr;
+                                var dentitiondefectArr = dentitiondefectstr.split(",");
+                                if(tabletooth!=undefined&&tabletooth==key){
+                                    for(var j=0;j<dentitiondefectArr.length;j++){
+                                        $table_span.append('<span id='+dentitiondefectArr[j]+' itmid='+key+'>'+dentitiondefectArr[j]+","+'</span>');
+                                    }
+                                }
+                            }
+                        }
+                    })
+                }
+                if(form[i]="defectdentition"){
+                    var defectdentition=form.defectdentition;
+                    var table_pro=$("#imageExaminationBox").find("td:odd");
+                    table_pro.each(function(j,el){
+                        var $table_span=$(this).prev().find("div");//赋值的div框
+                        var tabletooth=$(this).find("span").attr("id");	//要赋值的item
+                        for(var key in defectdentition){
+                            var defectdentitionstr=defectdentition[key];
+                            if(defectdentition[key]!=""){
+                                //去掉字符串最后一个逗号
+                                defectdentitionstr = (defectdentitionstr.substring(defectdentitionstr.length - 1) == ',') ? defectdentitionstr.substring(0, defectdentitionstr.length - 1) : defectdentitionstr;
+                                var defectdentitionArr = defectdentitionstr.split(",");
+                                if(tabletooth!=undefined&&tabletooth==key){
+                                    for(var j=0;j<defectdentitionArr.length;j++){
+                                        $table_span.append('<span id='+defectdentitionArr[j]+' itmid='+key+'>'+defectdentitionArr[j]+","+'</span>');
+                                    }
+                                }
+                            }
+                        }
+                    })
+
+                }
+                if(form[i]="defectiverepair"){
+                    var defectiverepair=form.defectiverepair;
+                    var table_pro=$("#medicalCertificateBox").find("td:odd");
+                    table_pro.each(function(j,el){
+                        var $table_span=$(this).prev().find("div");//赋值的div框
+                        var tabletooth=$(this).find("span").attr("id");	//要赋值的item
+                        for(var key in defectiverepair){
+                            var defectiverepairstr=defectiverepair[key];
+                            if(defectiverepair[key]!=""){
+                                //去掉字符串最后一个逗号
+                                defectiverepairstr = (defectiverepairstr.substring(defectiverepairstr.length - 1) == ',') ? defectiverepairstr.substring(0, defectiverepairstr.length - 1) : defectiverepairstr;
+                                var defectiverepairArr = defectiverepairstr.split(",");
+                                if(tabletooth!=undefined&&tabletooth==key){
+                                    for(var j=0;j<defectiverepairArr.length;j++){
+                                        $table_span.append('<span id='+defectiverepairArr[j]+' itmid='+key+'>'+defectiverepairArr[j]+","+'</span>');
+                                    }
+                                }
+                            }
+                        }
+                    })
+                }
+                toothMap(form["dentitiondefect"]);//获取牙位图数据
+// 	 					牙位赋值end
+            }
+            getButtonAllCurPage(menuid);
+            /*var url =  contextPath + '/HUDH_MedicalRecordsAct/selectdata.act';
             $.ajax({
                 url: url,
 // 				type:"POST",
@@ -1526,7 +1655,7 @@
                     }
                     getButtonAllCurPage(menuid);
                 }
-            });
+            });*/
         }
         // 初始化整体口腔情况牙位图
         function toothMap(data){//data返回的牙位及牙位问题
