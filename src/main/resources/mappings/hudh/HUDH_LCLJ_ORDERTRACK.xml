@@ -50,12 +50,18 @@
         <result column="abutment_station" jdbcType="VARCHAR" property="abutment_station"/>
         <result column="tooth_texture" jdbcType="VARCHAR" property="tooth_texture"/>
         <result column="userdocument_id" jdbcType="VARCHAR" property="userdocument_id"/>
+        <result column="anamnesis" jdbcType="VARCHAR" property="anamnesis"/>
+        <result column="examine" jdbcType="VARCHAR" property="examine"/>
+        <result column="diagnosis" jdbcType="VARCHAR" property="diagnosis"/>
+        <result column="repair" jdbcType="VARCHAR" property="repair"/>
+        <result column="knowbook" jdbcType="VARCHAR" property="knowbook"/>
     </resultMap>
 
     <sql id="Base_Column_List">
 		id, tooth, createtime, order_number, ss_time, flow_link, ss_status, type, bone , ss_stu, shgc_stu, dy_stu, blcode, left_up, left_down, right_up, right_down, nodes ,last_time ,creatorid,creatorname,
 		counsellor, plant_physician, repair_physician, clinic_nurse, customer_service, plant_system, crown_material, imageological_examination, consultation, advisory, repair_left_up, repair_left_down,
-		repair_right_up, repair_right_down, repair_tooth_total, isobsolete ,modeoperation ,remark,flowcode,dentalJaw, articleType, abutment_station, tooth_texture, userdocument_id
+		repair_right_up, repair_right_down, repair_tooth_total, isobsolete ,modeoperation ,remark,flowcode,dentalJaw, articleType, abutment_station, tooth_texture, userdocument_id,anamnesis,
+        examine,diagnosis,repair,knowbook
 	</sql>
 
     <insert id="insertLcljOrderTrack" parameterType="com.hudh.lclj.entity.LcljOrderTrack">
@@ -79,7 +85,8 @@
         #{repairRightUp,jdbcType=VARCHAR},#{repairRightDown,jdbcType=VARCHAR},#{repairToothTotal,jdbcType=VARCHAR},#{isobsolete,jdbcType=VARCHAR},
         #{modeoperation,jdbcType=INTEGER},#{remark,jdbcType=VARCHAR}
         ,#{flowcode,jdbcType=VARCHAR},#{dentalJaw,jdbcType=VARCHAR},#{articleType,jdbcType=VARCHAR}
-        ,#{abutment_station,jdbcType=VARCHAR},#{tooth_texture,jdbcType=VARCHAR},#{userdocument_id,jdbcType=VARCHAR})
+        ,#{abutment_station,jdbcType=VARCHAR},#{tooth_texture,jdbcType=VARCHAR},#{userdocument_id,jdbcType=VARCHAR},
+        '','','','','')
     </insert>
     <!-- 手术节点牙位修改I Old -->
     <!-- <update id="updateOrderTrack">
@@ -274,7 +281,12 @@
 		a.repair_tooth_total,
 		a.nodes,
 		a.abutment_station,
-		a.remark
+		a.remark,
+		a.anamnesis,
+		a.examine,
+		a.diagnosis,
+		a.repair,
+		a.knowbook
 		from HUDH_LCLJ_ORDERTRACK a 
 		left join HUDH_LCLJ_ORDERIMPLEMEN b 
 		on a.id=b.parentid
@@ -600,4 +612,12 @@
 		left join (select createtime,usercode from KQDS_REG where recesort = '20') reg on reg.usercode=u.usercode
 		where u.usercode=#{_parameter}
 	</select>
+    <!-- 修改多选表单的选中标识字段 -->
+    <update id="updateFormStatus" parameterType="map">
+        update HUDH_LCLJ_ORDERTRACK set ${form}=#{status} where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 修改同意书的选中标识字段，向后拼接 ，分割 -->
+    <update id="updateFormBookStatus" parameterType="map">
+        update HUDH_LCLJ_ORDERTRACK set knowbook=(knowbook+#{status}) where id = #{id,jdbcType=VARCHAR}
+    </update>
 </mapper>

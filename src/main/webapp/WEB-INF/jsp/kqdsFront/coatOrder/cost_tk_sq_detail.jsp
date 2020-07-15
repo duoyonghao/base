@@ -308,6 +308,8 @@ function qrtk(){
 	paramOrder.listDetail = data;
 	paramOrder.usercode=usercode;
 	paramOrder.username=username;
+	console.log(paramOrder);
+	return;
     var pageurl = '<%=contextPath%>/KQDS_RefundAct/editState.act';
     $.axse(pageurl, paramOrder,
     function(r) {

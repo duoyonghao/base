@@ -312,6 +312,18 @@ function getlist() {
                 //var ss = Number(row.actualmoney) - Number(searchOrderZs(row.costno));
                 return '<span>'+ value + '</span>';
             }
+        },
+		{
+			title: '转换预交金',
+			field: 'addyjj',
+			align: 'center',
+			formatter: function(value, row, index) {
+				if (Number(value) != 0) {
+					return '<span style="color:red">' + value + '</span>';
+				} else {
+					return '<span>'+value+'</span>';
+				}
+			}
         }
        ]
     }).on('click-row.bs.table',

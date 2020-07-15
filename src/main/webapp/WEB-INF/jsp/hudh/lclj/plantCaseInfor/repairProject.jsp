@@ -702,7 +702,7 @@
             </div>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
-            <div class="zl_signature">0
+            <div class="zl_signature">
                 <span id="patientSignature">患者签名：</span>
                 <img id="patientimg" style="width: 137px"/>
                 <input id="patienttime" type="text" class="consent_time signature_time inputheight2" readonly="readonly"
@@ -737,6 +737,7 @@
     var caseId = ""; //已存在的病历id
     var menuid = window.parent.menuid;//左侧菜单id
     var seqidFather = "<%=seqidFather%>";
+    var form=window.parent.getForm();
     $(function () {
         //时间选择
         $(".consent_time").datetimepicker({
@@ -876,7 +877,66 @@
     }
 
     function initZzblInfor() {
-        var url = contextPath + '/HUDH_RepairSchemeConfirmAct/findRepairInforById.act';
+        if(form){
+            caseId=form.seqId;
+            /* 判断是否已经填写过内容 */
+            if (form.id) {
+                $("#consent_saveBtn").css("display", "none");//隐藏保存按钮
+                $("#consent_updateBtn").css("display", "inline-block");//显示修改按钮
+                //赋值
+                for (var key in form) {
+                    //console.log(key+"-------------"+result[key]);
+                    $("#" + key).attr("value", form[key]);// 填框赋值
+                    $("#requirerestor").text(form["requirerestor"]);//textarea赋值
+                    $("#requirerestor").trigger("keyup");
+                    $("#replaceBox").text(form["requirerestor"]);//textarea替换框赋值
+                    if (form[key].indexOf(";") > 0) {
+                        var checkboxVal = form[key];//拼接多选框的值
+                        var checkboxValArr = checkboxVal.split(";");//将字符串转为数组
+                        for (var i = 0; i < checkboxValArr.length; i++) {
+                            $("input[name=" + key + "]").each(function () {
+                                if ($(this).val() == checkboxValArr[i]) {
+                                    $(this).attr("checked", "checked");
+                                }
+                            })
+                        }
+                    }
+                    //牙位图赋值
+                    if (form[key].indexOf(",") > 0) {
+                        var toothPlaceVal = form[key];//拼接多选框的值
+                        var toothPlaceValArr = toothPlaceVal.split(",");//将字符串转为数组
+                        var newtoothPlaceVal = toothPlaceValArr.join("");
+                        //console.log(newtoothPlaceVal+"---------去掉牙位图逗号");
+                        $("#" + key).attr("value", newtoothPlaceVal);// 填框赋值
+                    }
+                }
+                //$("input").attr("disabled","disabled");//查看信息的时候禁止在填写
+                signature = form.operationdoctorsignature;
+                if (signature != "") {
+                    $("#img").attr('src', signature);
+                    doctorstatus = false;
+                } else {
+                    $("#img").attr('display', 'none');
+                }
+                repairSignature = form.repairdoctorsignature;
+                if (repairSignature != "") {
+                    $("#repairImg").attr('src', repairSignature);
+                    repairdoctorstatus = false;
+                } else {
+                    $("#repairImg").attr('display', 'none');
+                }
+                patientsignature = form.patientsignature;
+                if (patientsignature != "") {
+                    $("#patientimg").attr('src', patientsignature);
+                    patientstatus = false;
+                } else {
+                    $("#patientimg").attr('display', 'none');
+                }
+            }
+            //获取当前页面所有按钮
+            getButtonAllCurPage(menuid);
+        }
+        /*var url = contextPath + '/HUDH_RepairSchemeConfirmAct/findRepairInforById.act';
         $.ajax({
             url: url,
             type: "POST",
@@ -897,7 +957,7 @@
                     }
                 }
                 caseId = seqidFather;  //修改病历id
-                /* 判断是否已经填写过内容 */
+                /!* 判断是否已经填写过内容 *!/
                 if (result.id) {
                     $("#consent_saveBtn").css("display", "none");//隐藏保存按钮
                     $("#consent_updateBtn").css("display", "inline-block");//显示修改按钮
@@ -954,7 +1014,7 @@
                 //获取当前页面所有按钮
                 getButtonAllCurPage(menuid);
             }
-        });
+        });*/
     }
 
     //获取url中的参数

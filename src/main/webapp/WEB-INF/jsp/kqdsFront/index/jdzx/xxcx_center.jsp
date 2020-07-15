@@ -563,10 +563,18 @@ function initTable(requrl) {
             align: 'center',
             sortable: true,
             formatter: function(value, row, index) {
-            	//console.log("value="+value+",row="+JSON.stringify(row)+",index="+index);
-            	 if (value != "" && value != null) {
-                    return '<img class="iscreatelclj" onclick="skip(\'' + row.username + '\')" src= ' +contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
+                var img = '';
+                if (value != "" && value != null) {
+                    img += '<img class="iscreatelclj" onclick="skip(\'' + row.username + '\')" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
                 }
+                if (row.kefu != "" && row.kefu != null) {
+                    img += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/customerservice.jpg/>';
+                }
+
+                return img == "" ? "-" : img;
+            },
+            cellStyle: {
+                css: {"display": "flex", "flex-direction": "row"}
             }
         },
         {

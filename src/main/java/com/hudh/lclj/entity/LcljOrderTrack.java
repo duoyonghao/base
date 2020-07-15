@@ -66,6 +66,13 @@ public class LcljOrderTrack {
 	private String dentalJaw;//上下颌  1：上颌  2：下颌
 	private String articleType;//项目分类  1：种植  2：正畸
 	private String abutment_station;//愈合基台
+
+	private String anamnesis;//主诉 判断是否填写
+	private String examine;//口腔检查
+	private String diagnosis;//手术方案
+	private String repair;//修复方案
+	private String knowbook;//同意书 多数据判断 , 分割
+
 	public String getAbutment_station() {
 		return abutment_station;
 	}
@@ -323,5 +330,45 @@ public class LcljOrderTrack {
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getAnamnesis() {
+		return anamnesis;
+	}
+
+	public void setAnamnesis(String anamnesis) {
+		this.anamnesis = anamnesis;
+	}
+
+	public String getExamine() {
+		return examine;
+	}
+
+	public void setExamine(String examine) {
+		this.examine = examine;
+	}
+
+	public String getDiagnosis() {
+		return diagnosis;
+	}
+
+	public void setDiagnosis(String diagnosis) {
+		this.diagnosis = diagnosis;
+	}
+
+	public String getRepair() {
+		return repair;
+	}
+
+	public void setRepair(String repair) {
+		this.repair = repair;
+	}
+
+	public String getKnowbook() {
+		return knowbook;
+	}
+
+	public void setKnowbook(String knowbook) {
+		this.knowbook = knowbook;
 	}
 }
