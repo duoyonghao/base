@@ -31,6 +31,7 @@ deploy-test:
     - if (Test-Path ${tomcat_dir}\webapps\base) {rm -r ${tomcat_dir}\webapps\base}
     - echo -n "copy new artifacts..."
     - cp -r target\base ${tomcat_dir}\webapps
+    - mv ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.example ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.properties
     - echo -n "start tomcat server..."
     - Start-Service ${service_name}
   dependencies:
