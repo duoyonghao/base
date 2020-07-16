@@ -1267,7 +1267,7 @@
                                     <li>)</li>
                                     <li>
                                         <label for="ossein">骨胶原<input name="ossein" id="ossein" value=""
-                                                                      style="width:60px;" />mg</label>
+                                         style="width:60px;text-align: center;" />mg</label>
                                     </li>
                                 </ul>
                             </div>

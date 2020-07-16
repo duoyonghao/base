@@ -800,7 +800,6 @@
                 );
             }
         });
-console.log(window," window.parent")
 
         //患者姓名、年龄、性别赋值
         $("#patient_name").attr("value", window.parent.consultSelectPatient.username);
