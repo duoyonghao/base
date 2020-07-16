@@ -73,6 +73,8 @@ public class LcljOrderTrack {
 	private String dentalJaw;//上下颌  1：上颌  2：下颌
 	private String articleType;//项目分类  1：种植  2：正畸
 	private String abutment_station;//愈合基台
+
+
 	public String getAbutment_station() {
 		return abutment_station;
 	}

@@ -510,13 +510,7 @@
     }
 
     function updaterecord(status) {
-        var layerTitle="";
-        if(status==1){
-            layerTitle="是否患有传染性疾病？";
-        }else if(status==0){
-            layerTitle="是否取消传染病登记？";
-        }
-        layer.confirm(layerTitle, {
+        layer.confirm('是否取消传染性疾病登记？', {
             btn: ['是', '否'] //按钮
         }, function () {
             $.ajax({

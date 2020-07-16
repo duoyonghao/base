@@ -152,6 +152,7 @@ public class KQDS_RefundAct {
 			KqdsRefund dp = new KqdsRefund();
 			BeanUtils.populate(dp, request.getParameterMap());
 			String costno = request.getParameter("costno");
+			String addYjj = request.getParameter("addYjj");
 			// 创建退款单
 			KqdsCostorder tkorder = (KqdsCostorder) logic.loadObjSingleUUID(TableNameUtil.KQDS_COSTORDER, costno);
 			String uuid = YZUtility.getUUID();
@@ -173,8 +174,10 @@ public class KQDS_RefundAct {
 			dp.setStatus(1);
 			dp.setRemark(tkorder.getRemark());
 			dp.setUsername(tkorder.getUsername());
-			dp.setOrganization(ChainUtil.getCurrentOrganization(request)); // ###
-																			// 【前端调用，以当前所在门诊为主】
+			dp.setOrganization(ChainUtil.getCurrentOrganization(request)); // ###// 【前端调用，以当前所在门诊为主】
+			if (!YZUtility.isNullorEmpty(addYjj)){
+				dp.setAddyjj(new BigDecimal(addYjj));
+			}
 			logic.saveSingleUUID(TableNameUtil.KQDS_REFUND, dp);
 
 			// 记录日志
@@ -200,7 +203,7 @@ public class KQDS_RefundAct {
 				detail.setSeqId(YZUtility.getUUID());
 				detail.setRefundid(dp.getSeqId());
 				detail.setCreatetime(orderDetail.getCreatetime());
-				detail.setCreateuser(orderDetail.getCreatetime());
+				detail.setCreateuser(orderDetail.getCreateuser());
 				detail.setUsercode(orderDetail.getUsercode());
 				detail.setItemno(orderDetail.getItemno());
 				detail.setItemname(orderDetail.getItemname());
@@ -367,6 +370,11 @@ public class KQDS_RefundAct {
 				addOrderDetail(newcostno, refundid, en.get(0).getTkze(), person, request);
 				// 添加结账记录
 				addPayOrder(newcostno, en.get(0).getCostno(), dp.getSeqId(), en.get(0).getTkze(), person, request);
+				//如果添加预交金字段有值则添加生成预交金项目
+				if(en.get(0).getAddyjj().compareTo(new BigDecimal("0"))==1){
+					//TODO 添加预交金项目
+
+				}
 				en.get(0).setTktime(YZUtility.getCurDateTimeStr());// 退款确认时间
 				en.get(0).setTkuser(person.getSeqId());// 退款确认人
 				// 给申请人添加提示信息 已退款
