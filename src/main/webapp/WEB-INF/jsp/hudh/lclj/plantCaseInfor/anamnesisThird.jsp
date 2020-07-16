@@ -1797,9 +1797,9 @@
 			order_number= window.parent.consultSelectPatient.orderNumber;
 			usercode = window.parent.consultSelectPatient.usercode;
 		}else{
-			id= window.parent.patientObj.id;;
+			id= window.parent.patientObj.id;
 			order_number= window.parent.patientObj.orderNumber;
-			usercode = window.parent.patientObj.usercode;
+			usercode = window.parent.patientObj.blcode;
 		}
 		//针对ipad样式
 		if (userAgent.indexOf("iPad") > -1){
