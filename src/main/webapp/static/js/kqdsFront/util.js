@@ -598,7 +598,7 @@ function initSelectList(father,casenum){
 	}
 
 	//新病例遍历
-	if(newCaseResult.length>0){
+	if(newCaseResult&&newCaseResult.length>0){
 		for (var j =0;j<newCaseResult.length;j++ ) {
 			if(newCaseResult[j].status=="1"){
 				if(casenum==1){
