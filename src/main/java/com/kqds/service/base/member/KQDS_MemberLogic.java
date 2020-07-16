@@ -2,15 +2,17 @@ package com.kqds.service.base.member;
 
 //合并测试
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.kqds.entity.base.*;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import net.sf.json.JsonConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,11 +22,6 @@ import com.github.pagehelper.PageInfo;
 import com.kqds.core.util.auth.YZAuthenticator;
 import com.kqds.core.util.db.DBUtil;
 import com.kqds.dao.DaoSupport;
-import com.kqds.entity.base.KqdsCostorder;
-import com.kqds.entity.base.KqdsCostorderDetail;
-import com.kqds.entity.base.KqdsMember;
-import com.kqds.entity.base.KqdsMemberRecord;
-import com.kqds.entity.base.KqdsUserdocument;
 import com.kqds.entity.sys.BootStrapPage;
 import com.kqds.entity.sys.YZPerson;
 import com.kqds.service.sys.base.BaseLogic;
@@ -42,6 +39,7 @@ import com.kqds.util.sys.sys.SysParaUtil;
 
 @Service
 public class KQDS_MemberLogic extends BaseLogic {
+	private static Logger logger = LoggerFactory.getLogger(KQDS_MemberLogic.class);
 	@Autowired
 	private DaoSupport dao;
 	@Autowired
@@ -116,7 +114,6 @@ public class KQDS_MemberLogic extends BaseLogic {
 	 * 根据usercode查询用户是否为会员 如果是 则返回会员等级
 	 * 
 	 * @param usercode
-	 * @param dbConn
 	 * @return
 	 * @throws Exception
 	 */
@@ -132,7 +129,6 @@ public class KQDS_MemberLogic extends BaseLogic {
 	/**
 	 * 【不做门诊条件过滤】 目前有三处调用此方法，分别为： 1、会员中心 2、预交金充值 3、退款申请 ，其中2、3不需要可见人员设置；且不需要门诊条件过滤
 	 * 
-	 * @param conn
 	 * @param table
 	 * @param map
 	 * @param visualstaff
@@ -408,7 +404,6 @@ public class KQDS_MemberLogic extends BaseLogic {
 	/**
 	 * 会员卡查询(统计) 【不做门诊条件过滤】
 	 * 
-	 * @param conn
 	 * @param table
 	 * @param map
 	 * @return
@@ -966,7 +961,6 @@ public class KQDS_MemberLogic extends BaseLogic {
 	/**
 	 * 查询期末余额
 	 * 
-	 * @param conn
 	 * @param memberno
 	 * @param endtime
 	 * @param key1
@@ -1007,9 +1001,8 @@ public class KQDS_MemberLogic extends BaseLogic {
 	/**
 	 * 根据usercode查询总余额
 	 * 
-	 * @param conn
-	 * @param table
-	 * @param costno
+	 * @param usercode
+	 * @param sftime
 	 * @return
 	 * @throws Exception
 	 */
@@ -1135,7 +1128,6 @@ public class KQDS_MemberLogic extends BaseLogic {
 	 * 
 	 * @param user
 	 * @param person
-	 * @param dbConn
 	 * @param request
 	 * @throws Exception
 	 */
@@ -1171,11 +1163,8 @@ public class KQDS_MemberLogic extends BaseLogic {
 
 	/**
 	 * 设置IC卡号 等于 会员卡号
-	 * 
-	 * @param usercode
-	 * @param dbConn
-	 * @param usercode
-	 * @param request
+	 *
+	 * @param table
 	 * @throws Exception
 	 */
 	public void editIcno(String table) throws Exception {
@@ -1184,14 +1173,76 @@ public class KQDS_MemberLogic extends BaseLogic {
 
 	/**
 	 * 清空IC卡号
-	 * 
-	 * @param usercode
-	 * @param dbConn
-	 * @param usercode
-	 * @param request
+	 *
+	 * @param table
 	 * @throws Exception
 	 */
 	public void emptyIcno(String table) throws Exception {
 		dao.update(TableNameUtil.KQDS_MEMBER + ".emptyIcno", null);
+	}
+
+	/**
+	 * 退款转换预交金
+	 * @param newcostno 新生成的编号
+	 * @param regno 挂号编号
+	 * @param listdata 退款明细
+	 * @param person
+	 * @param request
+	 * @param addyjj 转换预交金金额
+	 * @throws Exception
+	 */
+	public void addChongzhi(String newcostno, String regno, String listdata, YZPerson person, HttpServletRequest request ,BigDecimal addyjj ,String usercode) throws Exception {
+		JSONArray jArray = JSONArray.fromObject(listdata);
+		List<?> list2 = JSONArray.toList(jArray, new KqdsRefundDetail(), new JsonConfig());
+		KqdsRefundDetail detail = (KqdsRefundDetail) list2.get(0);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("memberno", usercode);
+
+		KqdsMemberRecord r = new KqdsMemberRecord();
+		try {
+			List<KqdsMember> list = (List<KqdsMember>) dao.loadList(TableNameUtil.KQDS_MEMBER, map);
+
+			KqdsMember en = list.get(0);
+			en.setMoney(KqdsBigDecimal.add(en.getMoney(), addyjj));
+			dao.updateSingleUUID(TableNameUtil.KQDS_MEMBER, en);
+
+			r.setSeqId(YZUtility.getUUID());
+			r.setUsercode(detail.getUsercode());
+			r.setUsername(en.getUsername());
+			r.setCardno(en.getMemberno());
+			r.setCreatetime(YZUtility.getCurDateTimeStr());
+			r.setCreateuser(person.getSeqId());
+			r.setType(ConstUtil.MEMBER_RECORD_TYPE_CZ);
+			r.setAskperson(detail.getAskperson());
+			r.setRegsort(regno);
+			r.setXjmoney(detail.getPayxj());
+			r.setYhkmoney(detail.getPaybank());
+			r.setQtmoney(detail.getPayother1());
+			r.setZfbmoney(detail.getPayzfb());
+			r.setWxmoney(detail.getPaywx());
+			r.setMmdmoney(detail.getPaymmd());
+			r.setBdfqmoney(detail.getPaybdfq());
+			r.setCmoney(detail.getPaymoney());// 充值金额
+			r.setCtotal(detail.getPaymoney());// 充值小计
+			r.setYmoney(en.getMoney());// 本金余额
+			r.setYgivemoney(en.getGivemoney());// 赠送余额
+			r.setYtotal(KqdsBigDecimal.add(en.getMoney(), en.getGivemoney()));// 余额小计
+			r.setOrganization(ChainUtil.getCurrentOrganization(request)); // 【前端页面调用，以所在门诊为准】
+			r.setCostno(newcostno);
+			dao.saveSingleUUID(TableNameUtil.KQDS_MEMBER_RECORD, r);
+
+			KqdsCostorder en1 =new KqdsCostorder();
+			en1.setSeqId(newcostno);
+			en1.setSftime(YZUtility.getCurDateTimeStr());
+			en1.setSfuser(person.getSeqId());
+			en1.setStatus(ConstUtil.COST_ORDER_STATUS_2);
+			dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER, en1);
+
+		} catch (Exception e) {
+			logger.error("此患者预交金卡不存在，请先进行开户操作! 谢谢合作");
+		}
+		// 记录日志
+		BcjlUtil.LogBcjl(r.getSeqId(), BcjlUtil.KQDS_MEMBER_RECORD, r, TableNameUtil.KQDS_MEMBER_RECORD, request);
+
 	}
 }

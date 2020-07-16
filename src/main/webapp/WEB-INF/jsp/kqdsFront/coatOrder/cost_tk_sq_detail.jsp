@@ -11,6 +11,7 @@
 	String status = request.getParameter("status");
 	String usercode = request.getParameter("usercode");
 	String username = request.getParameter("username");
+	String addyjj = request.getParameter("addyjj");
 %>
 <!DOCTYPE html>
 <html>
@@ -37,6 +38,7 @@
 		<footer class="fixedBottomDiv">
 			<div class="clear2"></div>
          	<a class="kqdsCommonBtn" id="sqtk">确认退款</a>
+			<span style="color:#00A6C0;" align="right">转换预交金:<lable id="switchYjj">0</lable></span>
 		</footer>
 	</div>
 	
@@ -58,10 +60,13 @@ var usercode ="<%=usercode%>";
 var username ="<%=username%>";
 var refundId = "<%=refundId%>";
 var status = "<%=status%>";
+var addyjj = "<%=addyjj%>";
 var frameindex = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 $(function(){
+    $("#switchYjj").html(Number(addyjj).toFixed(2));
  //1、表格初始化
 	OrderDetail(); /* 详细项目清单初始化  目的:显示出表头 */
+
 });
 function queryParams(params) {
     var temp = {  
@@ -239,7 +244,8 @@ function qrtk(){
 	//创建退款单
     var paramOrder = {
     		seqId:refundId,
-    		status:status
+    		status:status,
+        	addyjj:addyjj
 	    };
     //循环获取表格中项目
     var list = [];

@@ -27,7 +27,7 @@ public class DaoSupport implements DAO {
 	 * @param str
 	 * @param obj
 	 * @return
-	 * @throws ExceptionR
+	 * @throws Exception
 	 */
 	public Object save(String str, Object obj) throws Exception {
 		return sqlSessionTemplate.insert(str, obj);
@@ -37,7 +37,7 @@ public class DaoSupport implements DAO {
 	 * 批量更新
 	 * 
 	 * @param str
-	 * @param obj
+	 * @param objs
 	 * @return
 	 * @throws Exception
 	 */
@@ -77,7 +77,7 @@ public class DaoSupport implements DAO {
 	 * 批量更新
 	 * 
 	 * @param str
-	 * @param obj
+	 * @param objs
 	 * @return
 	 * @throws Exception
 	 */
@@ -103,7 +103,7 @@ public class DaoSupport implements DAO {
 	 * 批量更新
 	 * 
 	 * @param str
-	 * @param obj
+	 * @param objs
 	 * @return
 	 * @throws Exception
 	 */
@@ -127,7 +127,6 @@ public class DaoSupport implements DAO {
 	 * 清空表
 	 * 
 	 * @param str
-	 * @param obj
 	 * @return
 	 * @throws Exception
 	 */
@@ -187,7 +186,6 @@ public class DaoSupport implements DAO {
 	 * 
 	 * @param dp
 	 * @param tableName
-	 * @param request
 	 * @throws Exception
 	 */
 	public void saveSingleUUID(String tableName, Object dp) throws Exception {
@@ -199,7 +197,6 @@ public class DaoSupport implements DAO {
 	 * 
 	 * @param dp
 	 * @param tableName
-	 * @param request
 	 * @throws Exception
 	 */
 	public void updateSingleUUID(String tableName, Object dp) throws Exception {
@@ -208,10 +205,9 @@ public class DaoSupport implements DAO {
 
 	/**
 	 * 实现之前的 logic.deleteSingleUUID方法
-	 * 
-	 * @param dp
+	 *
 	 * @param tableName
-	 * @param request
+	 * @param seqId
 	 * @throws Exception
 	 */
 	public int deleteSingleUUID(String tableName, String seqId) throws Exception {

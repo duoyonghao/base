@@ -2,14 +2,10 @@ package com.kqds.service.base.paycost;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,7 +38,6 @@ import com.kqds.entity.base.KqdsTreatitem;
 import com.kqds.entity.base.KqdsUserdocument;
 import com.kqds.entity.base.KqdsVisit;
 import com.kqds.entity.base.kqdsHzLabellabeAndPatient;
-import com.kqds.entity.sys.YZDict;
 import com.kqds.entity.sys.YZPerson;
 import com.kqds.service.base.costOrder.KQDS_CostOrderLogic;
 import com.kqds.service.base.costOrderDetail.KQDS_CostOrder_DetailLogic;
@@ -62,7 +57,6 @@ import com.kqds.util.sys.TableNameUtil;
 import com.kqds.util.sys.YZUtility;
 import com.kqds.util.sys.chain.ChainUtil;
 import com.kqds.util.sys.log.BcjlUtil;
-import com.kqds.util.sys.other.CacheUtil;
 import com.kqds.util.sys.other.KqdsBigDecimal;
 import com.kqds.util.sys.sys.DictUtil;
 import com.kqds.util.sys.sys.SysParaUtil;
@@ -122,9 +116,9 @@ public class Kqds_PayCostLogic extends BaseLogic {
 	/**
 	 * 就诊情况
 	 * 
-	 * @param conn
-	 * @param table
-	 * @param itemno
+	 * @param regno
+	 * @param doctor
+	 * @param olddoctor
 	 * @return
 	 * @throws Exception
 	 */
@@ -148,7 +142,6 @@ public class Kqds_PayCostLogic extends BaseLogic {
 	/**
 	 * 首页收费项目分类 【通过配置 配置文件中的三大成交项目】【不做门诊条件过滤】
 	 * 
-	 * @param conn
 	 * @param table
 	 * @param itemno
 	 * @return
@@ -166,9 +159,7 @@ public class Kqds_PayCostLogic extends BaseLogic {
 	/**
 	 * 查询欠费项目
 	 * 
-	 * @param conn
-	 * @param table
-	 * @param itemno
+	 * @param detail
 	 * @return
 	 * @throws Exception
 	 */
@@ -988,9 +979,10 @@ public class Kqds_PayCostLogic extends BaseLogic {
 	/**
 	 * 如果消费项目中，存在需要提醒医生设置回访的项目，则生成一个提醒设置回访记录
 	 * 
-	 * @param dbConn
-	 * @param regno
+	 * @param dp
+	 * @param u
 	 * @param list
+	 * @param request
 	 * @return
 	 * @throws Exception
 	 */
@@ -1027,11 +1019,9 @@ public class Kqds_PayCostLogic extends BaseLogic {
 	/**
 	 * 【内部调用】
 	 * 
-	 * @param usercode
-	 * @param dbConn
-	 * @param Actualmoney
+	 * @param u
+	 * @param request
 	 * @param doctor
-	 * @param money22
 	 * @throws Exception
 	 */
 	public void setUserAllmoney(KqdsUserdocument u, String doctor, HttpServletRequest request) throws Exception {
@@ -1047,7 +1037,6 @@ public class Kqds_PayCostLogic extends BaseLogic {
 	 * 修改就诊情况 ################## 这个方法具体是什么逻辑，已经看不懂了... 17-12-29 ys
 	 * 
 	 * @param usercode
-	 * @param dbConn
 	 * @param doctor
 	 *            开单医生
 	 * @param olddoctor
@@ -1079,7 +1068,6 @@ public class Kqds_PayCostLogic extends BaseLogic {
 	 *            缴费金额数组
 	 * @param listDetail
 	 *            消费项目列表
-	 * @param dbConn
 	 * @param qmmoney
 	 *            会员卡的本金余额
 	 * @param qmye
@@ -1325,7 +1313,6 @@ public class Kqds_PayCostLogic extends BaseLogic {
 	 * 【内部调用】
 	 * 
 	 * @param regno
-	 * @param dbConn
 	 * @param cjstatus
 	 * @throws Exception
 	 */
@@ -1345,7 +1332,6 @@ public class Kqds_PayCostLogic extends BaseLogic {
 	/**
 	 * 【内部调用】
 	 * 
-	 * @param dbConn
 	 * @param dp
 	 * @param cjstatus
 	 * @throws Exception
@@ -1368,8 +1354,8 @@ public class Kqds_PayCostLogic extends BaseLogic {
 	/**
 	 * 【内部调用】
 	 * 
-	 * @param dbConn
-	 * @param costno
+	 * @param listdetail
+	 * @param request
 	 * @throws Exception
 	 */
 	@SuppressWarnings("unchecked")
@@ -1409,7 +1395,6 @@ public class Kqds_PayCostLogic extends BaseLogic {
 	/**
 	 * 【内部调用】
 	 * 
-	 * @param dbConn
 	 * @param dp
 	 * @param cjstatus
 	 * @throws Exception
@@ -1431,11 +1416,12 @@ public class Kqds_PayCostLogic extends BaseLogic {
 	/**
 	 * 积分增加
 	 * 
-	 * @param usercode
-	 * @param dbConn
-	 * @param Actualmoney
-	 * @param doctor
-	 * @param money22
+	 * @param typess
+	 * @param moneyss
+	 * @param dp
+	 * @param u
+	 * @param perId
+	 * @param request
 	 * @throws Exception
 	 */
 	private void setIntegralMoney(String[] typess, String[] moneyss, KqdsPaycost dp, KqdsUserdocument u, String perId, HttpServletRequest request) throws Exception {
