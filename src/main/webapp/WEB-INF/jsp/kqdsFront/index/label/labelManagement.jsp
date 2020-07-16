@@ -84,6 +84,7 @@ var static_deptid = "<%=deptId %>";
 var pageurl = "<%=contextPath%>/KQDS_LabelAct/findLabelAll.act";
 var parentlabelId;
 var selectObj; //当前选中的标签对象
+var isClick = true;
 
 $(function() {
 	getPageList();//初始化标签
@@ -362,20 +363,59 @@ function labelDelete() {
     });
 }
 
+var loadIndex='';
+function download() {
+	layer.msg('数据导出中，请等待');
+	//loadIndex = layer.load(0, {shade: false});
+	isClick = false;
+}
+function disload() {
+	layer.close(loadIndex);
+	layer.msg('数据导出完毕');
+	isClick = true;
+}
 //导出
 function exportTable() {
-	loadedData = [];
-	nowpage = 0;
-    var fieldArr = [];
-    var fieldnameArr = [];
-    $('#table thead tr th').each(function() {
-        var field = $(this).attr("data-field");
-        if (field != "") {
-            fieldArr.push(field); //获取字段
-            fieldnameArr.push($(this).children()[0].innerText); //获取字段中文
-        }
-    });
-    location.href = pageurl + "?flag=exportTable&fieldArr=" + JSON.stringify(fieldArr) + "&fieldnameArr=" + JSON.stringify(fieldnameArr);
+	if(isClick) {
+		isClick = false;
+		// console.log("生成报表")
+		loadedData = [];
+		nowpage = 0;
+		var fieldArr = [];
+		var fieldnameArr = [];
+		$('#table thead tr th').each(function() {
+			var field = $(this).attr("data-field");
+			if (field != "") {
+				fieldArr.push(field); //获取字段
+				fieldnameArr.push($(this).children()[0].innerText); //获取字段中文
+			}
+		});
+		var url = pageurl + "?flag=exportTable&fieldArr=" + JSON.stringify(fieldArr) + "&fieldnameArr=" + JSON.stringify(fieldnameArr);
+		download();
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', url, true);    // 也可用POST方式
+		xhr.responseType = "blob";
+		xhr.onload = function () {
+			if (this.status === 200) {
+				var blob = this.response;
+				// if (navigator.msSaveBlob == null) {
+				var a = document.createElement('a');
+				//var headerName = xhr.getResponseHeader("Content-disposition");
+				//var fileName = decodeURIComponent(headerName).substring(20);
+				a.download = "发药明细";
+				a.href = URL.createObjectURL(blob);
+				$("body").append(a);    // 修复firefox中无法触发click
+				a.click();
+				URL.revokeObjectURL(a.href);
+				$(a).remove();
+				// } else {
+				//     navigator.msSaveBlob(blob, "信息查询");
+				// }
+			}
+			disload();
+		};
+		xhr.send();
+	}
 }
 
 

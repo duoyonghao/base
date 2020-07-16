@@ -1,6 +1,7 @@
 package com.kqds.service.base.case1;
 
 
+import com.hudh.lclj.dao.LcljTrackDao;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,15 +9,24 @@ import org.springframework.stereotype.Service;
 import com.kqds.dao.DaoSupport;
 import com.kqds.entity.base.HudhLcljBase;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class HUDH_lcljCaseLogic {
 	@Autowired
 	private DaoSupport dao;
+	@Autowired
+	private LcljTrackDao lcljTrackDao;
 
 	public void insertSelective(HudhLcljBase hudhLcljBase) throws Exception {
 		dao.save("HUDH_LCLJ_BASE.insertSelective", hudhLcljBase);
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("form","diagnosis");
+		map.put("status","1");
+		map.put("id",hudhLcljBase.getLcljid());
+		lcljTrackDao.updateFormStatus(map);
 	}
 	
 	@SuppressWarnings("unchecked")

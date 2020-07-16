@@ -378,7 +378,7 @@ function getlist() {
             
             sortable: true,
             formatter:function(value, row, index){
-            	return "<span class='money'>"+(Number(row.actualmoney)-Number(row.payyjj))+"</span>";
+            	return "<span class='money'>"+(Number(row.actualmoney)-Number(row.payyjj)).toFixed(3)+"</span>";
             }
         },
         {

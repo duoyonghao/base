@@ -95,6 +95,7 @@ var nowday;
 var menuid = "<%=menuid%>";
 var qxnameArr = ['rskcx_scbb'];
 var func = ['exportTable'];
+var isClick = true;
 $(function() {
 	$("input[type='text']").attr("autocomplete","off");  //去掉input输入框的历史记录
 	initHosSelectList4Front('organization'); // 连锁门诊下拉框
@@ -154,15 +155,67 @@ function() {
     $("#organization").val(rgvalue);
 });
 
+
+var loadIndex='';
+function download() {
+	layer.msg('数据导出中，请等待');
+	//loadIndex = layer.load(0, {shade: false});
+	isClick = false;
+}
+function disload() {
+	layer.close(loadIndex);
+	layer.msg('数据导出完毕');
+	isClick = true;
+}
 function exportTable(){
-	$("#dykdxm").table2excel({
+	/*$("#dykdxm").table2excel({
 		exclude: ".noExl",//带noExlclass的行不会被输出到excel中
 		name: "Excel Document Name",
 		filename: "日收款查询（财务）",
 		exclude_img: true,
 		exclude_links: true,
 		exclude_inputs: true
-	});
+	});*/
+	if(isClick) {
+		isClick = false;
+		// console.log("生成报表")
+		var fieldArr = [];
+		var fieldnameArr = [];
+		$('#table thead tr th').each(function () {
+			var field = $(this).attr("data-field");
+			if (field != "") {
+				fieldArr.push(field);//获取字段
+				fieldnameArr.push($(this).children()[0].innerText);//获取字段中文
+			}
+		});
+		var param = JsontoUrldata(queryParams());
+		//location.href = pageurl+"?flag=exportTable&fieldArr="+JSON.stringify(fieldArr)+"&fieldnameArr="+JSON.stringify(fieldnameArr)+"&"+param;
+		var url = pageurl + "?flag=exportTable&fieldArr=" + JSON.stringify(fieldArr) + "&fieldnameArr=" + JSON.stringify(fieldnameArr) + "&" + param;
+		download();
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', url, true);    // 也可用POST方式
+		xhr.responseType = "blob";
+		xhr.onload = function () {
+			if (this.status === 200) {
+				var blob = this.response;
+				// if (navigator.msSaveBlob == null) {
+				var a = document.createElement('a');
+				//var headerName = xhr.getResponseHeader("Content-disposition");
+				//var fileName = decodeURIComponent(headerName).substring(20);
+				a.download = "费用查询";
+				a.href = URL.createObjectURL(blob);
+				$("body").append(a);    // 修复firefox中无法触发click
+				a.click();
+				URL.revokeObjectURL(a.href);
+				$(a).remove();
+				// } else {
+				//     navigator.msSaveBlob(blob, "信息查询");
+				// }
+			}
+			disload();
+		};
+		xhr.send();
+	}
 }
 
 function getTableHeight(){
@@ -300,6 +353,16 @@ function OrderDetail() {
    		$('.success').removeClass('success'); //去除之前选中的行的，选中样式
     	$(element).addClass('success'); //添加当前选中的 success样式用于区别
 });
+}
+function getButtonPower() {
+	var menubutton1 = "";
+	for (var i = 0; i < listbutton.length; i++) {
+		if (listbutton[i].qxName == "fycx_scbb") {
+			menubutton1 += '<a href="javascript:void(0);" class="kqdsCommonBtn" onclick="exportTable();">生成报表</a>';
+		}
+	}
+	$("#clean").before(menubutton1);
+	setHeight();
 }
 </script>
 </html>

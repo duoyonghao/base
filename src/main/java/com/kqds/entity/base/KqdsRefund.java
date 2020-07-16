@@ -51,6 +51,8 @@ public class KqdsRefund {
 
 	private String organization;
 
+	private BigDecimal addyjj;
+
 	public String getSeqId() {
 		return seqId;
 	}
@@ -241,5 +243,13 @@ public class KqdsRefund {
 
 	public void setOrganization(String organization) {
 		this.organization = organization == null ? null : organization.trim();
+	}
+
+	public BigDecimal getAddyjj() {
+		return addyjj;
+	}
+
+	public void setAddyjj(BigDecimal addyjj) {
+		this.addyjj = addyjj;
 	}
 }
