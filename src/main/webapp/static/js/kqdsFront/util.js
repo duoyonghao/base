@@ -375,8 +375,13 @@ function addDProject(thi,num,casenum){
 	if(num){
 		nameNum=num;
 	}
-    window.parent.setOldForm(oldCaseResult,num-1);
-    window.parent.setNewForm(newCaseResult,num-1);
+	if(window.parent.consultSelectPatient) {
+		window.parent.setOldForm(oldCaseResult, num - 1);
+		window.parent.setNewForm(newCaseResult, num - 1);
+	}else{
+		window.parent.parent.setOldForm(oldCaseResult, num - 1);
+		window.parent.parent.setNewForm(newCaseResult, num - 1);
+	}
 	parent.layer.open({
 		title:layerTitle+nameNum,
 		type:2,
@@ -567,7 +572,7 @@ function initSelectList(father,casenum){
 	// }
 	var allCasesHtml='<option value="">请选择</option>';
 	//老病历遍历  mark：用来标记新老病历 0-->老病历  1-->新病历
-	if(oldCaseResult.length>0){
+	if(oldCaseResult&&oldCaseResult.length>0){
 		for (var i =0;i<oldCaseResult.length;i++ ) {
 			if(oldCaseResult[i].status=="1"){
 				if(casenum==1){

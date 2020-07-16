@@ -1771,7 +1771,8 @@
     var userAgent = navigator.userAgent;
     var signatureWidth='70%';
     var signatureHeight='65%';
-    var form=window.parent.getNewForm();
+	var form;
+    // var form=window.parent.getNewForm();
 	$(function(){
         if (userAgent.match(/mobile/i)) {
             var mql = window.matchMedia('(orientation: portrait)');
@@ -1797,10 +1798,12 @@
 			id= window.parent.consultSelectPatient.seqid;
 			order_number= window.parent.consultSelectPatient.orderNumber;
 			usercode = window.parent.consultSelectPatient.usercode;
+			form=window.parent.getNewForm();
 		}else{
 			id= window.parent.patientObj.id;
 			order_number= window.parent.patientObj.orderNumber;
 			usercode = window.parent.patientObj.blcode;
+			form=window.parent.parent.getNewForm();
 		}
 		//针对ipad样式
 		if (userAgent.indexOf("iPad") > -1){
