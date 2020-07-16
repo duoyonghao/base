@@ -597,6 +597,7 @@ function initSelectList(father,casenum){
 		}
 	}
 
+
 	//新病例遍历
 	if(newCaseResult&&newCaseResult.length>0){
 		for (var j =0;j<newCaseResult.length;j++ ) {
