@@ -2850,7 +2850,6 @@
 		}else{
 			$("#"+id).parents(".toothMapItem").find(".toothMap").removeAttr("onclick");
 			$("#"+id).parents(".toothMapItem").find(".toothMap").find(".num").each(function(i,obj){
-				$(this).text("");
 				$(this).parent("li").removeClass("current");
 			});
 			$("#"+id).parents(".toothMapItem").find(".toothTime").find("input").val("").attr("disabled","disabled").css("background-color","#c3c3c3").css("pointer-events","none");
