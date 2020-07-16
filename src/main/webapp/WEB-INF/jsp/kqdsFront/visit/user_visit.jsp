@@ -476,7 +476,7 @@ function queryTable() {
     $("#allHFFL").attr("value",hffl);
     
     //查询各类条数
-    $.axse(querycounturl, queryParams(),
+    $.axseY(querycounturl, queryParams(),
     function(data) {
         if (data.retState == "0") {
             //总条数

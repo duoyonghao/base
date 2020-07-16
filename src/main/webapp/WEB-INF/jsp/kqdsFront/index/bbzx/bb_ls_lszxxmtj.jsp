@@ -156,6 +156,7 @@ var menuid = "<%=menuid%>";
 var qxnameArr = ['lszxxmtj_scbb'];
 var func = ['exportTable'];
 $(function(){
+	$("input[type='text']").attr("autocomplete","off");  //去掉input输入框的历史记录  lutian
 	//获取当前页面所有按钮
     getButtonPowerByPriv(qxnameArr,func,menuid);
  	//时间选择
@@ -178,6 +179,8 @@ $(function(){
 	
 });
 $("#query").click(function(){
+	$(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(this).text("查询中");
 	gettabledata();//表格
 });
 <!-- jquery 导出excel -->
@@ -196,9 +199,15 @@ function gettabledata(){
 	var starttime = $("#starttime").val();
 	var endtime = $("#endtime").val();
 	var url = pageurl+"?starttime="+starttime+"&endtime="+endtime;
-	 $.axse(url,null, 
+	 $.axseY(url,null,
              function(data){
-			    data = data.rows;
+				 //解除查询按钮禁用 lutian
+				 if(data){
+					 $("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+					 $("#query").text("查询");
+				 }
+
+				 data = data.rows;
 		 		if(data!=null){
 		 			if(data.length>0){
 		 				$('#table').html("");

@@ -281,6 +281,7 @@ var func = ['exportTable'];
 var isyx = "<%=isyx%>";
 var static_organization = '<%=ChainUtil.getCurrentOrganization(request)%>';
 $(function() {
+	$("input[type='text']").attr("autocomplete","off");  //去掉input输入框的历史记录  lutian
     initHosSelectListNoCheckWithNull('organization', static_organization);
  	// 咨询项目、受理类型、受理工具
     initDictSelectByClass('triggerChange');
@@ -306,6 +307,8 @@ $(function() {
     $('.searchSelect').selectpicker("refresh");//搜索初始化刷新2019.10.31--lutian
 });
 $("#query").click(function() {
+	$(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(this).text("查询中");
     gettabledata(); //表格
 });
 function queryParams(params) {
@@ -342,8 +345,13 @@ function exportTable() {
 function gettabledata() {
 	var param = JsontoUrldata(queryParams());
     var url = pageurl + "?"+param;
-    $.axse(url, null,
+    $.axseY(url, null,
     function(data) {
+		//解除查询按钮禁用 lutian
+		if(data){
+			$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+			$("#query").text("查询");
+		}
         data = data.rows;
         if (data != null) {
             if (data.length > 0) {

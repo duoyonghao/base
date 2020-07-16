@@ -188,6 +188,8 @@ $("#query").click(function(){
              return false;
           }
 	}
+	$(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(this).text("查询中");
 	getdata();//图表
 	gettabledata();//表格
 });
@@ -217,7 +219,7 @@ function gettabledata(){
 	var endtime = $("#endtime").val();
 	var ordertype = $("#ordertype").val();
 	 var url = pageurl+"?starttime="+starttime+"&endtime="+endtime+"&ordertype="+ordertype;
-	 $.axse(url,null, 
+	 $.axseY(url,null,
              function(data){
 		 		if(data!=null){
 		 			if(data.length>0){
