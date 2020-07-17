@@ -41,7 +41,7 @@ deploy-test:
 deploy-production-east:
   stage: production
   variables:
-    tomcat_dir: D:\java_doc\apache-tomcat-8.0.36
+    tomcat_dir: D:\tomcat\apache-tomcat-8.0.36
     service_name: 8.0.36
   script:
     - echo -n "stop tomcat server..."
@@ -50,7 +50,7 @@ deploy-production-east:
     - if (Test-Path ${tomcat_dir}\webapps\base) {rm -r ${tomcat_dir}\webapps\base}
     - echo -n "copy new artifacts..."
     - cp -r target\base ${tomcat_dir}\webapps
-    - mv ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.example ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.properties
+    - mv ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.example.production.east ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.properties
     - echo -n "start tomcat server..."
     - Start-Service ${service_name}
   dependencies:
@@ -66,7 +66,7 @@ deploy-production-east:
 deploy-production-west:
   stage: production
   variables:
-    tomcat_dir: D:\java_doc\apache-tomcat-8.0.36
+    tomcat_dir: D:\tomcat-XZM\apache-tomcat-8.0.36
     service_name: 8.0.36
   script:
     - echo -n "stop tomcat server..."
@@ -75,7 +75,7 @@ deploy-production-west:
     - if (Test-Path ${tomcat_dir}\webapps\base) {rm -r ${tomcat_dir}\webapps\base}
     - echo -n "copy new artifacts..."
     - cp -r target\base ${tomcat_dir}\webapps
-    - mv ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.example ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.properties
+    - mv ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.example.production.west ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.properties
     - echo -n "start tomcat server..."
     - Start-Service ${service_name}
   dependencies:
