@@ -345,6 +345,9 @@ public class   KsllColorServiceImpl implements IKsllColorService {
 		KsllGoods ksllGood = null;
 		for(JSONObject ksllCollorDetail : detailJson) {
 			KsllGoods tempksllGood  = goodsMap.get(ksllCollorDetail.getString("goodsdetailid")); //入科科室已经有该物品信息
+			if(tempksllGood ==null){
+				tempksllGood  = goodsMap.get(ksllCollorDetail.getString("goodscode"));
+			}
 			ksllGood = new KsllGoods();
 			if(null != tempksllGood) {
 				ksllGood.setId(tempksllGood.getId());
