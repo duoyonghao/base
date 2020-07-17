@@ -5,15 +5,14 @@ import com.hudh.lclj.StaticVar;
 import com.hudh.lclj.entity.*;
 import com.hudh.lclj.service.IFlowOperateService;
 import com.hudh.lclj.service.IFlowService;
+import com.hudh.lclj.service.impl.MedicalRecordsLogic;
 import com.hudh.util.HUDHUtil;
-import com.hudh.zzbl.service.DzblService;
-import com.hudh.zzbl.service.IRepairSchemeConfirmService;
-import com.hudh.zzbl.service.IZzblCheckService;
-import com.hudh.zzbl.service.IZzblService;
+import com.hudh.zzbl.service.*;
 import com.kqds.entity.base.KqdsReg;
 import com.kqds.entity.sys.BootStrapPage;
 import com.kqds.entity.sys.YZPara;
 import com.kqds.entity.sys.YZPerson;
+import com.kqds.service.base.case1.HUDH_lcljCaseLogic;
 import com.kqds.util.sys.SessionUtil;
 import com.kqds.util.sys.TableNameUtil;
 import com.kqds.util.sys.YZUtility;
@@ -72,6 +71,15 @@ public class HUDH_FlowAct {
      */
     @Autowired
     private IFlowOperateService flowOperateService;
+
+    @Autowired
+    private IZzblAdviceService zzblAdviceService;
+
+    @Autowired
+    private MedicalRecordsLogic mlogic;
+
+    @Autowired
+    private HUDH_lcljCaseLogic logic;
 
     /**
      * 保存临床路径跟踪信息
@@ -1046,9 +1054,11 @@ public class HUDH_FlowAct {
 			} else {
 				flowService.updateLcljOrderTrackById(lcljOrderTrack);
 			}*/
-            if (dzblService.findCaseHistoryById(id) != null && dzblService.findCaseHistoryById(id).size() > 0) {
-                if (zzblCheckService.findZzblOprationById(id) != null && zzblCheckService.findZzblOprationById(id).size() > 0) {
-                    if (zzblService.findZzblOprationById(id) != null && zzblService.findZzblOprationById(id).size() > 0) {
+            if (dzblService.findCaseHistoryById(id) != null && dzblService.findCaseHistoryById(id).size() > 0 ||zzblAdviceService.findCaseHistoryById(id).size()>0) {
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("lcljId", id);
+                if (zzblCheckService.findZzblOprationById(id) != null && zzblCheckService.findZzblOprationById(id).size() > 0 || mlogic.selectdata(map).size()>0) {
+                    if (zzblService.findZzblOprationById(id) != null && zzblService.findZzblOprationById(id).size() > 0 || logic.selectWithPage(id).size()>0) {
                         if (rscService.findRepairInforById(id) != null && rscService.findRepairInforById(id).size() > 0) {
                             if (dzblService.findFamiliarBook(id) != null || dzblService.findLocatorFamiliares(id).size() > 0) {
                                 flowService.updateLcljOrderTrackById(lcljOrderTrack);
