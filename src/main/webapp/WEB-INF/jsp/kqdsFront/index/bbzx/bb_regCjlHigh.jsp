@@ -132,7 +132,9 @@ $("#query").click(function(){
             }});
             return false;
          }
-	}   
+	}
+	$(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(this).text("查询中");
 	getdata();//图表
 	gettabledata();//表格
 });
@@ -142,8 +144,9 @@ function gettabledata(){
 	var ghfl = $("#regsort").val();
 	var jzfl = $("#recesort").val();
 	var url = pageurl+"?starttime="+starttime+"&endtime="+endtime+"&ghfl="+ghfl+"&jzfl="+jzfl+'&organization='+$("#organization").val();
-	 $.axse(url,null, 
+	 $.axseY(url,null,
              function(data){
+	 			//console.log(JSON.stringify(data)+"-------gettabledata");
 		 		if(data!=null){
 		 			if(data.length>0){
 		 				$('#table').html("");
@@ -191,8 +194,13 @@ function getdata(){
      	 url: contextPath+"/KQDS_REGAct/selectCountCjl.act?starttime="+starttime+"&endtime="+endtime+"&ghfl="+ghfl+"&jzfl="+jzfl+'&organization='+$("#organization").val(),
          context: document.body,
          success: function(data){
-        	 console.log(data);
-             jsonXDate = data.datearray;
+        	 //console.log(data+"-----------getdata");
+			 //解除查询按钮禁用 lutian
+			 if(data){
+				 $("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+				 $("#query").text("查询");
+			 }
+			 jsonXDate = data.datearray;
              for(var cj=0;cj<data.cjlarray.length;cj++){
             	 jsonD1[cj] = parseFloat(Number(data.cjlarray[cj]).toFixed(2));
              }

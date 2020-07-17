@@ -168,7 +168,8 @@ var menuid = "<%=menuid%>";
 var qxnameArr = ['hzly_scbb'];
 var func = ['exportTable'];
 $(function(){
-	initHosSelectList4Front('organization');// 连锁门诊下拉框	
+	$("input[type='text']").attr("autocomplete","off");  //去掉input输入框的历史记录  lutian
+	initHosSelectList4Front('organization');// 连锁门诊下拉框
 	initDictSelectByClass(); // 就诊分类
 	//获取当前页面所有按钮
     getButtonPowerByPriv(qxnameArr,func,menuid);
@@ -190,6 +191,8 @@ $(function(){
 	gettabledata();//表格
 });
 $("#query").click(function(){
+	$(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(this).text("查询中");
 	gettabledata();//表格
 });
 <!-- jquery 导出excel -->
@@ -209,8 +212,13 @@ function gettabledata(){
 	var endtime = $("#endtime").val();
 	var regsort = $("#regsort").val();
 	var url = pageurl+"?regsort="+regsort+"&starttime="+starttime+"&endtime="+endtime+"&depttype=0&organization="+$("#organization").val();
-	 $.axse(url,null, 
+	 $.axseY(url,null,
              function(data){
+				 //解除查询按钮禁用 lutian
+				 if(data){
+					 $("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+					 $("#query").text("查询");
+				 }
 			    data = data.rows;
 		 		if(data!=null){
 		 			if(data.length>0){

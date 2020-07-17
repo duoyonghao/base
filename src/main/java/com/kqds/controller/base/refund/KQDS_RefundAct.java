@@ -3,20 +3,17 @@ package com.kqds.controller.base.refund;
 //合并测试
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
@@ -38,15 +35,14 @@ import com.kqds.entity.base.KqdsRefundDetail;
 import com.kqds.entity.base.KqdsReg;
 import com.kqds.entity.base.KqdsUserdocument;
 import com.kqds.entity.base.kqdsHzLabellabeAndPatient;
-import com.kqds.entity.sys.YZDict;
 import com.kqds.entity.sys.YZPerson;
+import com.kqds.service.base.member.KQDS_MemberLogic;
 import com.kqds.service.base.costOrder.KQDS_CostOrderLogic;
 import com.kqds.service.base.costOrderDetail.KQDS_CostOrder_DetailLogic;
 import com.kqds.service.base.hzLabel.KQDS_HzLabelAssociatedLogic;
 import com.kqds.service.base.hzjd.KQDS_UserDocumentLogic;
 import com.kqds.service.base.label.KQDS_hz_labelLogic;
 import com.kqds.service.base.refund.KQDS_RefundLogic;
-import com.kqds.service.base.reg.KQDS_REGLogic;
 import com.kqds.service.sys.dict.YZDictLogic;
 import com.kqds.service.sys.person.YZPersonLogic;
 import com.kqds.util.base.PushUtil;
@@ -57,7 +53,6 @@ import com.kqds.util.sys.YZUtility;
 import com.kqds.util.sys.chain.ChainUtil;
 import com.kqds.util.sys.export.ExportTable;
 import com.kqds.util.sys.log.BcjlUtil;
-import com.kqds.util.sys.other.CacheUtil;
 import com.kqds.util.sys.other.KqdsBigDecimal;
 import com.kqds.util.sys.sys.DictUtil;
 import com.kqds.util.sys.sys.SysParaUtil;
@@ -90,8 +85,7 @@ public class KQDS_RefundAct {
 	@Autowired
 	private KQDS_HzLabelAssociatedLogic hzLabelAssociatedLogic;
 	@Autowired
-	private KQDS_REGLogic regLogic;
-
+	private KQDS_MemberLogic memberLogic;
 	@RequestMapping(value = "/toCost_TkIndex.act")
 	public ModelAndView toCost_TkIndex(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -128,11 +122,13 @@ public class KQDS_RefundAct {
 		String status = request.getParameter("status");
 		String usercode = request.getParameter("usercode");
 		String username = request.getParameter("username");
+		String addyjj = request.getParameter("addyjj");
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("refundId", refundId);
 		mv.addObject("status", status);
 		mv.addObject("usercode", usercode);
 		mv.addObject("username", username);
+		mv.addObject("addyjj", addyjj);
 		mv.setViewName("/kqdsFront/coatOrder/cost_tk_sq_detail.jsp");
 		return mv;
 	}
@@ -152,7 +148,6 @@ public class KQDS_RefundAct {
 			KqdsRefund dp = new KqdsRefund();
 			BeanUtils.populate(dp, request.getParameterMap());
 			String costno = request.getParameter("costno");
-			String addYjj = request.getParameter("addYjj");
 			// 创建退款单
 			KqdsCostorder tkorder = (KqdsCostorder) logic.loadObjSingleUUID(TableNameUtil.KQDS_COSTORDER, costno);
 			String uuid = YZUtility.getUUID();
@@ -174,10 +169,8 @@ public class KQDS_RefundAct {
 			dp.setStatus(1);
 			dp.setRemark(tkorder.getRemark());
 			dp.setUsername(tkorder.getUsername());
-			dp.setOrganization(ChainUtil.getCurrentOrganization(request)); // ###// 【前端调用，以当前所在门诊为主】
-			if (!YZUtility.isNullorEmpty(addYjj)){
-				dp.setAddyjj(new BigDecimal(addYjj));
-			}
+			dp.setOrganization(ChainUtil.getCurrentOrganization(request)); // ###
+																			// 【前端调用，以当前所在门诊为主】
 			logic.saveSingleUUID(TableNameUtil.KQDS_REFUND, dp);
 
 			// 记录日志
@@ -203,7 +196,7 @@ public class KQDS_RefundAct {
 				detail.setSeqId(YZUtility.getUUID());
 				detail.setRefundid(dp.getSeqId());
 				detail.setCreatetime(orderDetail.getCreatetime());
-				detail.setCreateuser(orderDetail.getCreateuser());
+				detail.setCreateuser(orderDetail.getCreatetime());
 				detail.setUsercode(orderDetail.getUsercode());
 				detail.setItemno(orderDetail.getItemno());
 				detail.setItemname(orderDetail.getItemname());
@@ -364,17 +357,13 @@ public class KQDS_RefundAct {
 				// 处理退款明细
 				updateCostDetailType(listdata, request);
 				// 添加费用单
-				String newcostno = addOrder(en.get(0).getCostno(), en.get(0).getTkze(), dp.getSeqId(), person, request);
+				String newcostno = addOrder(en.get(0).getCostno(), en.get(0).getTkze(), dp.getSeqId(), person, request, en.get(0).getAddyjj());
 				String refundid = en.get(0).getSeqId();
 				// 添加退款费用明细
-				addOrderDetail(newcostno, refundid, en.get(0).getTkze(), person, request);
+				addOrderDetail(newcostno, refundid, en.get(0).getTkze(), person, request, en.get(0));
 				// 添加结账记录
-				addPayOrder(newcostno, en.get(0).getCostno(), dp.getSeqId(), en.get(0).getTkze(), person, request);
-				//如果添加预交金字段有值则添加生成预交金项目
-				if(en.get(0).getAddyjj().compareTo(new BigDecimal("0"))==1){
-					//TODO 添加预交金项目
-
-				}
+				addPayOrder(newcostno, en.get(0), dp.getSeqId(), person, request, listdata);
+				newcostno=dp.getSeqId();
 				en.get(0).setTktime(YZUtility.getCurDateTimeStr());// 退款确认时间
 				en.get(0).setTkuser(person.getSeqId());// 退款确认人
 				// 给申请人添加提示信息 已退款
@@ -808,11 +797,11 @@ public class KQDS_RefundAct {
 	/**
 	 * 积分减少
 	 * 
+	 * @param costno
 	 * @param usercode
-	 * @param dbConn
-	 * @param Actualmoney
-	 * @param doctor
-	 * @param money22
+	 * @param refundid
+	 * @param perId
+	 * @param request
 	 * @throws Exception
 	 */
 	private void setIntegralMoney(String costno, String usercode, String refundid, String perId, HttpServletRequest request) throws Exception {
@@ -932,8 +921,7 @@ public class KQDS_RefundAct {
 
 	/**
 	 * 查询该项目 实际欠费情况【内部调用】
-	 * 
-	 * @param dbConn
+	 *
 	 * @param qfbh
 	 * @return
 	 * @throws Exception
@@ -951,8 +939,7 @@ public class KQDS_RefundAct {
 
 	/**
 	 * 退款单列表 【内部调用】
-	 * 
-	 * @param dbConn
+	 *
 	 * @param costno
 	 * @param tkje
 	 * @param refundid
@@ -961,7 +948,7 @@ public class KQDS_RefundAct {
 	 * @return
 	 * @throws Exception
 	 */
-	private String addOrder(String costno, BigDecimal tkje, String refundid, YZPerson person, HttpServletRequest request) throws Exception {
+	private String addOrder(String costno, BigDecimal tkje, String refundid, YZPerson person, HttpServletRequest request, BigDecimal addyjj) throws Exception {
 		// 欠款单
 
 		KqdsCostorder tkorder = (KqdsCostorder) logic.loadObjSingleUUID(TableNameUtil.KQDS_COSTORDER, costno);
@@ -1017,13 +1004,50 @@ public class KQDS_RefundAct {
 			}
 			logic.updateSingleUUID(TableNameUtil.KQDS_REG, reg);
 		}
+		//退款项目有转换预交金，添加收费项目
+		if(addyjj.compareTo(new BigDecimal(0))==1){
+			KqdsCostorder cost = new KqdsCostorder();
+			String uuid = YZUtility.getUUID();
+			cost.setSeqId(uuid);
+			cost.setCreateuser(person.getSeqId());
+			cost.setCreatetime(YZUtility.getCurDateTimeStr());
+			cost.setUsercode(tkorder.getUsercode());
+			cost.setCostno(uuid);
+			refundid=uuid;
+			cost.setTotalcost(addyjj);
+			cost.setVoidmoney(new BigDecimal(0));
+			cost.setShouldmoney(addyjj);
+			cost.setArrearmoney(new BigDecimal(0));
+			cost.setTotalarrmoney(new BigDecimal(0));
+			cost.setActualmoney(addyjj);
+			cost.setDiscountmoney(new BigDecimal(0));
+			cost.setDoctor(tkorder.getDoctor());
+			cost.setNurse(tkorder.getNurse());
+			cost.setTechperson(tkorder.getTechperson());
+			cost.setStatus("1");
+			cost.setRegno(tkorder.getRegno());
+			cost.setCjstatus(0);
+			cost.setIsprint(1);
+			cost.setUsername(tkorder.getUsername());
+			cost.setY2(new BigDecimal(0));
+			cost.setIsreg(0);
+			cost.setOrganization(ChainUtil.getCurrentOrganization(request)); // 【前端页面调用，以所在门诊为准】
+			cost.setIsback(0);
+			cost.setIsdrugs(0);
+			cost.setIssend(0);
+			cost.setRepairdoctor(tkorder.getRepairdoctor());//保存修复医生
+
+			logic.saveSingleUUID(TableNameUtil.KQDS_COSTORDER, cost);
+
+			// 记录日志
+			BcjlUtil.LogBcjlWithUserCode(BcjlUtil.NEW, BcjlUtil.KQDS_COSTORDER, cost, cost.getUsercode(), TableNameUtil.KQDS_COSTORDER, request);
+		}
 		return refundid;
 	}
 
 	/**
 	 * 添加退款明细 【内部调用】
-	 * 
-	 * @param dbConn
+	 *
 	 * @param newcostno
 	 * @param refundid
 	 * @param tkje
@@ -1031,15 +1055,21 @@ public class KQDS_RefundAct {
 	 * @param request
 	 * @throws Exception
 	 */
-	private void addOrderDetail(String newcostno, String refundid, BigDecimal tkje, YZPerson person, HttpServletRequest request) throws Exception {
-
+	private void addOrderDetail(String newcostno, String refundid, BigDecimal tkje, YZPerson person, HttpServletRequest request, KqdsRefund en) throws Exception {
+//newcostno 为退款转换预交金生成的id
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("refundid", refundid);
 		// 查询该退款单下的退款明细
 		List<KqdsRefundDetail> list = (List<KqdsRefundDetail>) logic.loadList(TableNameUtil.KQDS_REFUND_DETAIL, map);
+		String askperson="";
+		String regno="";
 		for (KqdsRefundDetail detail : list) {
 			// 查询该退款明细的收费项目明细
 			KqdsCostorderDetail orderdetail = (KqdsCostorderDetail) logic.loadObjSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail.getOrderdetailno());
+			if(en.getAddyjj().compareTo(new BigDecimal(0))>0){
+				askperson=orderdetail.getAskperson();
+				regno=orderdetail.getRegno();
+			}
 			// 查询该项目实际欠费情况
 			BigDecimal qf = realQfDetail(orderdetail.getQfbh());
 			if (0 == detail.getTknum()) {
@@ -1048,7 +1078,7 @@ public class KQDS_RefundAct {
 				orderdetail.setNum((0 - detail.getTknum()) + "");
 			}
 			orderdetail.setSeqId(detail.getSeqId());
-			orderdetail.setCostno(newcostno);
+			orderdetail.setCostno(refundid);
 			orderdetail.setCreatetime(YZUtility.getCurDateTimeStr());
 			orderdetail.setCreateuser(person.getSeqId());
 			// 退款总额
@@ -1085,13 +1115,45 @@ public class KQDS_RefundAct {
 			// 取消该欠费项目的欠费状态
 			editQfStatus(orderdetail.getQfbh(), request);
 		}
+		//退费转换预交金生成费用明细
+		if (en.getAddyjj().compareTo(new BigDecimal(0))==1){
+			KqdsCostorderDetail orderdetail=new KqdsCostorderDetail();
+			String uuid = YZUtility.getUUID();
+			orderdetail.setSeqId(uuid);
+			orderdetail.setCreateuser(person.getSeqId());
+			orderdetail.setCreatetime(YZUtility.getCurDateTimeStr());
+			orderdetail.setUsercode(en.getUsercode());
+			orderdetail.setCostno(newcostno);
+			orderdetail.setItemno("HUD007001");
+			orderdetail.setItemname("预收定金");
+			orderdetail.setUnit("元");
+			orderdetail.setUnitprice(en.getAddyjj());
+			orderdetail.setNum("1");
+			orderdetail.setDiscount("100");
+			orderdetail.setSubtotal(en.getAddyjj());
+			orderdetail.setArrearmoney(new BigDecimal(0));
+			orderdetail.setPaymoney(en.getAddyjj());
+			orderdetail.setVoidmoney(new BigDecimal(0));
+			orderdetail.setAskperson(askperson);
+			orderdetail.setDoctor(en.getDoctor());
+			orderdetail.setStatus("0");
+			orderdetail.setRegno(regno);
+			orderdetail.setQfbh("");
+			orderdetail.setIstsxm(0);
+			orderdetail.setIsqfreal(0);
+			orderdetail.setIstk(0);
+			orderdetail.setIssplit(0);
+			orderdetail.setOrganization(ChainUtil.getCurrentOrganization(request));
+			orderdetail.setIsyjjitem(1);
+			logic.saveSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, orderdetail);
+		}
 	}
 
 	/**
 	 * 取消该欠费项目的欠费状态 【内部调用】
 	 * 
 	 * @param qfbh
-	 * @param dbConn
+	 * @param request
 	 * @throws Exception
 	 */
 	private void editQfStatus(String qfbh, HttpServletRequest request) throws Exception {
@@ -1110,20 +1172,17 @@ public class KQDS_RefundAct {
 
 	/**
 	 * 添加退款收费 【内部调用】
-	 * 
-	 * @param dbConn
+	 *
 	 * @param newcostno
-	 * @param oldcostno
 	 * @param refundid
-	 * @param tkje
 	 * @param person
 	 * @param request
 	 * @throws Exception
 	 */
-	private void addPayOrder(String newcostno, String oldcostno, String refundid, BigDecimal tkje, YZPerson person, HttpServletRequest request) throws Exception {
+	private void addPayOrder(String newcostno, KqdsRefund en, String refundid, YZPerson person, HttpServletRequest request, String listdata) throws Exception {
 
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("costno", oldcostno);
+		map.put("costno", en.getCostno());
 		// 查询该costno下的收费信息
 		List<KqdsPaycost> listpay = (List<KqdsPaycost>) logic.loadList(TableNameUtil.KQDS_PAYCOST, map);
 		for (KqdsPaycost detail : listpay) {
@@ -1142,12 +1201,12 @@ public class KQDS_RefundAct {
 			}
 			String uuid = YZUtility.getUUID();
 			detail.setSeqId(uuid);
-			detail.setCostno(newcostno);
+			detail.setCostno(refundid);
 			detail.setCreatetime(YZUtility.getCurDateTimeStr());
 			detail.setCreateuser(person.getSeqId());
 			// 实收金额
 			// 退款总额
-			BigDecimal tkmoney = tkje;
+			BigDecimal tkmoney = en.getTkze();
 			// 缴费金额
 			detail.setActualmoney(KqdsBigDecimal.sub(BigDecimal.ZERO, tkmoney));
 			// 应收金额
@@ -1162,6 +1221,35 @@ public class KQDS_RefundAct {
 			detail.setOrganization(ChainUtil.getCurrentOrganization(request));// ###
 																				// 【前端调用，以当前所在门诊为主】
 			logic.saveSingleUUID(TableNameUtil.KQDS_PAYCOST, detail);
+		}
+		if (en.getAddyjj().compareTo(new BigDecimal(0))==1) {
+			KqdsPaycost detail = new KqdsPaycost();
+			String uuid = YZUtility.getUUID();
+			detail.setSeqId(uuid);
+			detail.setCreateuser(person.getSeqId());
+			detail.setCreatetime(YZUtility.getCurDateTimeStr());
+			detail.setUsercode(listpay.get(0).getUsercode());
+			detail.setUsername(listpay.get(0).getUsername());
+			detail.setDoctor(listpay.get(0).getDoctor());
+			detail.setNurse(listpay.get(0).getNurse());
+			detail.setTechperson(listpay.get(0).getTechperson());
+			detail.setAskperson(listpay.get(0).getAskperson());
+			detail.setCostno(newcostno);
+			detail.setTotalcost(en.getAddyjj());
+			detail.setShouldmoney(en.getAddyjj());
+			detail.setActualmoney(en.getAddyjj());
+			detail.setPaytype1(listpay.get(0).getPaytype1());
+			detail.setPaytype2(listpay.get(0).getPaytype2());
+			detail.setRegno(listpay.get(0).getRegno());
+			detail.setOrganization(ChainUtil.getCurrentOrganization(request));
+			logic.saveSingleUUID(TableNameUtil.KQDS_PAYCOST, detail);
+
+			memberLogic.addChongzhi(newcostno, listpay.get(0).getRegno(), listdata, person, request, en.getAddyjj(), en.getUsercode());
+			// 记录日志
+			BcjlUtil.LogBcjlWithUserCode(BcjlUtil.NEW, BcjlUtil.KQDS_PAYCOST, detail, detail.getUsercode(), TableNameUtil.KQDS_PAYCOST, request);
+
+
+
 		}
 	}
 

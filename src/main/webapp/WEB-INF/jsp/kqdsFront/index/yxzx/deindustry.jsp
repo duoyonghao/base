@@ -247,6 +247,7 @@ var usercodechild = "";//接收layer子窗口传值
 var usernamechild = "";//接收layer子窗口传值
 var nowday;
 var pageurl = '<%=contextPath%>/Kqds_DeindustryRecordAct/selectNoPage.act';
+var isClick = true;
 /** 上传代码 **/
 var fileArray = [];
 var fileModule = "deindustry";

@@ -383,7 +383,8 @@
 		t.actualmoney,
 		t.arrearmoney,
 		t.addyjj
-		from KQDS_REFUND t
+		from KQDS_REFUND
+		t
 		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = t.createuser
 		left join KQDS_UserDocument u on u.usercode = t.usercode
 		where 1=1

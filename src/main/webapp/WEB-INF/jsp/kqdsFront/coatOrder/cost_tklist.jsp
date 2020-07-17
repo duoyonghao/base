@@ -775,7 +775,7 @@ function toqrtk(status){
 	        shadeClose: false,
 	        //点击遮罩关闭层
 	        area: ['95%', '70%'],
-	        content: contextPath+'/KQDS_RefundAct/toTkSqDetail.act?refundId='+onclickrowOobj.seqId+'&status='+status+'&usercode='+onclickrowOobj.usercode+'&username='+onclickrowOobj.username
+	        content: contextPath+'/KQDS_RefundAct/toTkSqDetail.act?refundId='+onclickrowOobj.seqId+'&status='+status+'&usercode='+onclickrowOobj.usercode+'&username='+onclickrowOobj.username+'&addyjj='+onclickrowOobj.addyjj
 	    });
 }
 function deltk(){

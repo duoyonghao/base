@@ -190,6 +190,7 @@ var qxnameArr = ['doctor_scbb'];
 var func = ['exportTable'];
 var status;
 $(function(){
+	$("input[type='text']").attr("autocomplete","off");  //去掉input输入框的历史记录  lutian
 	initHosSelectList4Front('organization');// 连锁门诊下拉框	
 	//获取当前页面所有按钮
     getButtonPowerByPriv(qxnameArr,func,menuid);
@@ -218,6 +219,8 @@ $(function(){
  $('.searchSelect').selectpicker("refresh");//初始化刷新--2019-11.12 licc
 });
 $("#query").click(function(){
+	$(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(this).text("查询中");
 	gettabledata();//表格
 // 	getdata();//图表1
 //	getdataRightPlus();//图表2正数消费
@@ -241,9 +244,14 @@ function gettabledata(){
 	var deptCategory=$("#deptCategory").val();
 	var recesort=$("#recesort").val();
 	var url = pageurl+"?starttime="+starttime+"&endtime="+endtime+"&depttype=1&organization="+$("#organization").val()+"&deptCategory="+deptCategory+"&recesort="+recesort+"&qxname="+qxname;
-	 $.axse(url,null, 
+	 $.axseY(url,null,
              function(data){
 		// console.log(JSON.stringify(data)+"---------------");
+				 //解除查询按钮禁用 lutian
+				 if(data){
+					 $("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+					 $("#query").text("查询");
+				 }
 		        getdata(data);
 		        getdataRightPlus(data);
 		        getdataRightMinus(data);

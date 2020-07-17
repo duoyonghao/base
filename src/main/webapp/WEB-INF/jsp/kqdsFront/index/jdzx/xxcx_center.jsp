@@ -350,6 +350,7 @@
     var loc = new Location();
     var static_organization = '<%=ChainUtil.getCurrentOrganization(request)%>';
     $(function () {
+        $("input[type='text']").attr("autocomplete","off");  //去掉input输入框的历史记录  lutian
         // 连锁门诊下拉框
         initHosSelectListNoCheckWithNull('organization', static_organization);
         //initHosSelectList4Front('organization'); // 连锁门诊下拉框
@@ -491,6 +492,12 @@
             sidePagination: "server",//分页方式：client客户端分页，server服务端分页（*）
             paginationShowPageGo: true,
             onLoadSuccess: function (data) { //加载成功时执行
+                //解除查询按钮禁用 lutian
+                if(data){
+                    $("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+                    $("#query").text("查询");
+                }
+
                 //判断登录
                 var existornot = isExist(total);
                 if (!existornot) {
@@ -872,6 +879,9 @@
             layer.alert('请选择查询条件!');
             return false;
         }
+        //查询中，禁止查询按钮点击 lutian
+        $("#query").attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none");
+        $("#query").text("查询中");
         $('#table').bootstrapTable('refresh', {
             'url': pageurl
         });
@@ -1044,7 +1054,7 @@
             }
         }
         menubutton1 += '<a href="javascript:void(0);" class="kqdsCommonBtn clean" onclick="clean()">清空</a>';
-        menubutton1 += '<a href="javascript:void(0);" class="kqdsSearchBtn" onclick="searchHzda()">查询</a>';
+        menubutton1 += '<a href="javascript:void(0);" class="kqdsSearchBtn" onclick="searchHzda()" id="query">查询</a>';
         $("#bottomBarDdiv").append(menubutton1);
         setHeight();
     }

@@ -65,10 +65,10 @@
 			    <table id="dykdxm" class="table-striped table-condensed table-bordered" data-height="150"></table>
         	 </div>
         	<div id="buttonBar"> 
-                     <table style="width:90%;text-align: center;">
-						 <tr>
-							 <td style="width:12%;display:none" align="right" id="addYjj"><span style="color:#00A6C0;">添加预交金: </span><input type="number" id="yjjNum" ></td>
-                			<td style="width:12%" align="right"><span id="tkezSpan" style="color:#00A6C0;">退款总额:<lable id="tkze">0</lable></span></td>
+                     <table style="width:90%;text-align: center;"> 
+                 		<tr>
+							<td style="width:12%" align="right" id="zhyjj"><span  style="color:#00A6C0;">转换预交金:</span><input type="number" id="yjj" value="0"/></td>
+							<td style="width:12%" align="right"><span id="tkezSpan" style="color:#00A6C0;">退款总额:<lable id="tkze">0</lable></span></td>
                  		</tr> 
                  	</table> 
          	</div> 
@@ -76,7 +76,7 @@
 		<footer class="fixedBottomDiv">
 			<div class="clear2"></div>
          	<a class="kqdsCommonBtn" id="sqtk">申请退款</a>
-			<a class="kqdsCommonBtn" id="tjyjj">添加预交金</a>
+			<a class="kqdsCommonBtn" id="switchYjj">转换预交金</a>
 		</footer>
 	</div>
 	
@@ -96,9 +96,13 @@ var personrole = "<%=person.getUserPriv()%>";
 var pageurl = '<%=contextPath%>/KQDS_CostOrderAct/getByRegnoNopage.act';
 var onclickrowOobj = "";
 var frameindex = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+var menuid=window.parent.menuid;//左侧菜单id
+var s=0;
 $(function() {
     //1、表格初始化
     $("#tkezSpan").hide();
+    $("#switchYjj").hide();
+    $("#zhyjj").hide();
     //当前日期
     nowday = getNowFormatDate();
     $("#starttime").val(nowday);
@@ -115,10 +119,28 @@ $(function() {
     $("#starttime,#endtime").change(function() {
         timeCompartAndFz("starttime", "endtime");
     });
+    getButtonAllCurPage(menuid);
     getlist();
     OrderDetail();
     /* 详细项目清单初始化  目的:显示出表头 */
 });
+//实时监听预交金输入框的值
+$('#yjj').bind('input propertychange', function () {
+    if ($(this).val()>Number($('#tkze').html())||$(this).val()<0) {
+        $(this).val(Number($('#tkze').html()));
+    }
+})
+//转换预交金按钮点击展示输入框
+$('#switchYjj').on('click',
+    function() {
+    	if(s==0){
+    	    s=1;
+            $("#zhyjj").show();
+		}else {
+    	    s=0;
+            $("#zhyjj").hide();
+		}
+    });
 $('#searchHzda').on('click',
 function() {
     $('#table').bootstrapTable('refresh', {
@@ -266,6 +288,7 @@ function getlist() {
                     btn: ['是', '否'] //按钮
                 },
                 function() {
+                    $("#yjj").val(0);
                 	$("#tkze").html(0);
                     layer.closeAll('dialog');
                     $('.success').removeClass('success'); //去除之前选中的行的，选中样式
@@ -410,21 +433,8 @@ function OrderDetail(costno) {
         }]
     });
 }
-$('#tjyjj').on('click',
-    function() {
-    $("#addYjj").css('display','');
-    });
-$('#yjjNum').bind('input propertychange', function(){
-    if($(this).val() && $(this).val()<= 0 ){
-        $(this).val(0);
-    }
-    if($(this).val()> $("#tkze").html()){
-        $(this).val($("#tkze").html());
-    }
-})
 $('#sqtk').on('click',
 function() {
-    var addYjj=$('#yjjNum').val();
     //var tkze = $("#tkze").html();
   	//遍历 计算 收费单的 退款总金额
     var list = $('#dykdxm').bootstrapTable('getData');
@@ -436,6 +446,7 @@ function() {
     var tkyy = false; //退款原因： 只要由一项退款原因填写了 则通过验证
     var tsqk = false; //全部免除的项目也可以提款（防止开错项目的）
     var list = $('#dykdxm').bootstrapTable('getData');
+    var yjj=$('#yjj').val();
     for (var i = 0; i < list.length; i++) {
         var tkmoney = $("#tkmoney" + i).val();
         var tkremark = $("#tkremark" + i).val();
@@ -470,11 +481,15 @@ function() {
             return false;
         }
     }
+    if(Number(yjj)>Number(tkze)){
+        layer.alert('转换预交金大于退款总额，请检查！');
+        return false;
+	}
     //创建退款单
     var paramOrder = {
         costno: onclickrowOobj.costno,
         tkze: tkze,
-        addYjj:addYjj
+        addyjj:yjj
     };
     //循环获取表格中项目
     var list = [];
@@ -576,6 +591,14 @@ function setHeight(){
 	$("#dykdxm").bootstrapTable("resetView",{
 		height:height
 	})
+}
+//修改按钮权限
+function getButtonPower() {
+    for (var i = 0; i < listbutton.length; i++) {
+        if (listbutton[i].qxName == "switchYjj") {
+            $("#switchYjj").show();
+        }
+    }
 }
 </script>
 </html>

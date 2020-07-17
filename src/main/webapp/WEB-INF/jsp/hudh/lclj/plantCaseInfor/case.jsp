@@ -1267,7 +1267,7 @@
                                     <li>)</li>
                                     <li>
                                         <label for="ossein">骨胶原<input name="ossein" id="ossein" value=""
-                                                                      style="width:60px;" />mg</label>
+                                         style="width:60px;text-align: center;" />mg</label>
                                     </li>
                                 </ul>
                             </div>
@@ -2201,10 +2201,12 @@
     var pageurl = '<%=contextPath%>/HUDH_FlowAct/findPatientInformation.act';
     var id;	//选中患者id
     var order_number;//选中患者order_number
+    var usercode;//选中患者usercode
     var userAgent = navigator.userAgent;
     var signatureWidth='70%';
     var signatureHeight='65%';
-    var form=window.parent.getNewForm();
+    // var form=window.parent.getNewForm();
+    var form;
     $(function () {
         if (userAgent.match(/mobile/i)) {
             var mql = window.matchMedia('(orientation: portrait)');
@@ -2230,14 +2232,16 @@
             $("#content").css("width","100%").css("padding","10px 30px");
 
         }
-        if (window.parent.consultSelectPatient) {
-            formParentObj = window.parent.consultSelectPatient;
-            id = formParentObj.seqid;	//选中患者id
-            order_number = formParentObj.orderNumber;//选中患者order_number
-        } else {
-            formParentObj = window.parent.patientObj;
-            id = formParentObj.id;	//选中患者id
-            order_number = formParentObj.orderNumber;//选中患者order_number
+        if(window.parent.consultSelectPatient){
+            id= window.parent.consultSelectPatient.seqid;
+            order_number= window.parent.consultSelectPatient.orderNumber;
+            usercode = window.parent.consultSelectPatient.usercode;
+            form=window.parent.getNewForm();
+        }else{
+            id= window.parent.patientObj.id;
+            order_number= window.parent.patientObj.orderNumber;
+            usercode = window.parent.patientObj.blcode;
+            form=window.parent.parent.getNewForm();
         }
         //textarea高度自适应
         $.fn.autoHeight = function(){
@@ -2278,7 +2282,7 @@
             type: "POST",
             url: pageurl,
             data: {
-                usercode: window.parent.consultSelectPatient.usercode,//usercode
+                usercode: usercode,//usercode
                 status: 0,
                 id: id,
                 order_number: order_number

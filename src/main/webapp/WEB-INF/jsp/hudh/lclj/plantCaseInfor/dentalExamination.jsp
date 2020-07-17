@@ -710,17 +710,17 @@
         var contextPath = "<%=contextPath%>";
         var conditionData;
         var certificateData;
-        var patientInformation=window.parent.consultSelectPatient; //选中患者信息
-        var usercode=patientInformation.usercode; //选中患者usercode
-        var idlclj= patientInformation.seqid;	//选中患者临床路径id
-        var order_number= patientInformation.orderNumber; //选中患者order_number
+        var usercode;
+        var idlclj;
+        var order_number;
         var updataid="";
         var menuid=window.parent.menuid;//左侧菜单id
         var seqidFather = "<%=seqidFather%>";
         var userAgent = navigator.userAgent;
         var signatureWidth='70%';
         var signatureHeight='65%';
-        var form=window.parent.getNewForm();
+        var form;
+        // var form=window.parent.getNewForm();
         $(function(){
             if (userAgent.match(/mobile/i)) {
                 var mql = window.matchMedia('(orientation: portrait)');
@@ -741,6 +741,17 @@
                 // 监听屏幕模式变化
                 mql.addListener(onMatchMediaChange);
 
+            }
+            if(window.parent.consultSelectPatient){
+                idlclj= window.parent.consultSelectPatient.seqid;
+                order_number= window.parent.consultSelectPatient.orderNumber;
+                usercode = window.parent.consultSelectPatient.usercode;
+                form=window.parent.getNewForm();
+            }else{
+                idlclj= window.parent.patientObj.id;
+                order_number= window.parent.patientObj.orderNumber;
+                usercode = window.parent.patientObj.blcode;
+                form=window.parent.parent.getNewForm();
             }
             getUser(usercode);//获取患者信息并赋值
             gettionData();//获取各板块问题详情

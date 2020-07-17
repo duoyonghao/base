@@ -51,7 +51,7 @@ public class KqdsRefund {
 
 	private String organization;
 
-	private BigDecimal addyjj;
+	private BigDecimal addyjj;//转换预交金金额
 
 	public String getSeqId() {
 		return seqId;
