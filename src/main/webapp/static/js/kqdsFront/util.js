@@ -413,6 +413,7 @@ $(function(){
 	}
 });
 
+
 //点击选项显示隐藏病历列表  father:父布局 li的class
 function showHiddenClick(thi,father){
 	//展示自己
@@ -423,6 +424,10 @@ function showHiddenClick(thi,father){
 			$(this).css("display","none");
 		});
 		$(thi).parents("."+father).find(".caseContiner").css("display","block");
+// ++++++++++++++
+		// 隐藏节点切换入口
+		$(".btnStyle").css("display","none");
+// ++++++++++++++
         var initWhich=thi.className;
         if(initWhich=="ask_Previous"){//询问既往史
             var anamnesisUrl = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
