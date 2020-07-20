@@ -426,7 +426,7 @@ function showHiddenClick(thi,father){
 		$(thi).parents("."+father).find(".caseContiner").css("display","block");
 // ++++++++++++++
 		// 隐藏节点切换入口
-		$(".btnStyle").css("display","none");
+		// $(".btnStyle").css("display","none");
 // ++++++++++++++
         var initWhich=thi.className;
         if(initWhich=="ask_Previous"){//询问既往史
