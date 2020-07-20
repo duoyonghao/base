@@ -8,6 +8,7 @@
  */
 package com.hudh.lclj.service.impl;
 
+import com.hudh.lclj.dao.LcljTrackDao;
 import com.hudh.lclj.entity.*;
 import com.kqds.dao.DaoSupport;
 import com.kqds.util.sys.TableNameUtil;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +32,8 @@ public class MedicalRecordsLogic {
 
     @Autowired
     private DaoSupport dao;
+    @Autowired
+    private LcljTrackDao lcljTrackDao;
 
     /**
      * @throws Exception
@@ -43,6 +47,11 @@ public class MedicalRecordsLogic {
     public void installData(HudhSpecialitycheck dp) throws Exception {
         // TODO Auto-generated method stub
         dao.save(TableNameUtil.HUDH_SpecialityCheck + ".insertSelective", dp);
+        Map<String,String> map=new HashMap<String,String>();
+        map.put("form","examine");
+        map.put("status","1");
+        map.put("id",dp.getLcljId());
+        lcljTrackDao.updateFormStatus(map);
     }
 
     /**

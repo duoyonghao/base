@@ -1,17 +1,5 @@
 package com.kqds.service.base.costOrderDetail;
 
-import java.math.BigDecimal;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.kqds.core.util.auth.YZAuthenticator;
@@ -28,8 +16,17 @@ import com.kqds.util.sys.TableNameUtil;
 import com.kqds.util.sys.YZUtility;
 import com.kqds.util.sys.other.KqdsBigDecimal;
 import com.kqds.util.sys.sys.SysParaUtil;
-
 import net.sf.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @SuppressWarnings("rawtypes")
 @Service
@@ -104,10 +101,10 @@ public class KQDS_CostOrder_DetailLogic extends BaseLogic {
 		cls.put("basetypeName", "");
 		cls.put("nexttypeName", "");
 
-		Map<String, String> filters = new HashMap<String, String>();
-		filters.put("treatitemno", itemNO);
-		filters.put("treatitemname", itemName);
-		filters.put("organization", organization);
+        Map<String, String> filters = new HashMap<String, String>();
+        filters.put("treatitemno", itemNO);
+        filters.put("treatitemname", itemName);
+        filters.put("t.organization", organization);
 
 		List<KqdsTreatitem> itemList = (List<KqdsTreatitem>) dao.loadList(TableNameUtil.KQDS_TREATITEM, filters);
 

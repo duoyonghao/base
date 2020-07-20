@@ -72,6 +72,7 @@ public class HUDH_MedicalRecordsAct {
                 dp.setCreateuser(person.getSeqId());
                 dp.setCreatetime(YZUtility.getCurDateTimeStr());
                 dp.setOrganization(organization);
+                dp.setStatus("0");
                 mlogic.installData(dp);
                 BcjlUtil.LogBcjlWithUserCode(BcjlUtil.NEW, BcjlUtil.HUDH_SpecialityCheck, dp, dp.getUserId(),
                         TableNameUtil.HUDH_SpecialityCheck, request);

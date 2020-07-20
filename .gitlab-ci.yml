@@ -3,6 +3,7 @@ image: openjdk:8-jdk
 stages:
   - build
   - test
+  - production
 
 build:
   stage: build
@@ -20,7 +21,7 @@ deploy-test:
   stage: test
   variables:
     tomcat_dir: D:\java_doc\apache-tomcat-8.0.36
-    service_name: 8.0.36
+    service_name: Tomcat8
   script:
     - echo -n "stop tomcat server..."
     - Stop-Service ${service_name}
@@ -36,3 +37,53 @@ deploy-test:
   when: manual
   tags:
     - test
+
+deploy-production-east:
+  stage: production
+  variables:
+    tomcat_dir: D:\tomcat\apache-tomcat-8.0.36
+    service_name: Tomcat8
+  script:
+    - echo -n "stop tomcat server..."
+    - Stop-Service ${service_name}
+    - echo -n "remove old artifacts..."
+    - if (Test-Path ${tomcat_dir}\webapps\base) {rm -r ${tomcat_dir}\webapps\base}
+    - echo -n "copy new artifacts..."
+    - cp -r target\base ${tomcat_dir}\webapps
+    - mv ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.example.production.east ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.properties
+    - echo -n "start tomcat server..."
+    - Start-Service ${service_name}
+  dependencies:
+    - build
+    - deploy-test
+  when: manual
+  tags:
+    - production
+  only:
+    refs:
+      - master
+
+deploy-production-west:
+  stage: production
+  variables:
+    tomcat_dir: D:\tomcat-XZM\apache-tomcat-8.0.36
+    service_name: Tomcat8
+  script:
+    - echo -n "stop tomcat server..."
+    - Stop-Service ${service_name}
+    - echo -n "remove old artifacts..."
+    - if (Test-Path ${tomcat_dir}\webapps\base) {rm -r ${tomcat_dir}\webapps\base}
+    - echo -n "copy new artifacts..."
+    - cp -r target\base ${tomcat_dir}\webapps
+    - mv ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.example.production.west ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.properties
+    - echo -n "start tomcat server..."
+    - Start-Service ${service_name}
+  dependencies:
+    - build
+    - deploy-test
+  when: manual
+  tags:
+    - production
+  only:
+    refs:
+      - master

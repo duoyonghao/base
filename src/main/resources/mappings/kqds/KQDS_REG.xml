@@ -2726,7 +2726,8 @@
 	LEFT JOIN sys_dict dict ON dict.SEQ_ID = r.regsort
 	LEFT JOIN sys_person p ON p.SEQ_ID = r.doctor
 	WHERE 1=1
-	AND usercode = #{usercode} 
+	AND r.usercode = #{usercode}
+	and r.del=0
 	ORDER BY 
 		createtime DESC
 	</select>

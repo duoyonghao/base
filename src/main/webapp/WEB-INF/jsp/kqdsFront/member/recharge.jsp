@@ -43,7 +43,7 @@
             <div class="btnBar">
             	<a href="javascript:void(0);" class="kqdsCommonBtn" id="dayin">打印</a>
                 <a href="javascript:void(0);" class="kqdsCommonBtn" id="clean">清空</a>
-                <a href="javascript:void(0);" class="kqdsSearchBtn" id="query">查询</a>
+                <a href="javascript:void(0);" class="kqdsSearchBtn" id="query" style="pointer-events: none;border:1px solid red;">查询</a>
             </div>
             <div class="formBox">
                	<div class="kv">
@@ -107,8 +107,10 @@ var onclickrowobj = ""; //初始化选中行
 var menuid = "<%=menuid%>";
 var qxnameArr = ['czcx_scbb'];
 var func = ['exportTable'];
-$(function() {
+var isClick = true;
 
+$(function() {
+	$("input[type='text']").attr("autocomplete","off");  //去掉input输入框的历史记录
 	initHosSelectList4Front('organization'); // 连锁门诊下拉框
 
 	//获取当前页面所有按钮
@@ -153,6 +155,11 @@ function getkaichonglist() {
         striped: true,
         queryParams: queryParams,
         onLoadSuccess: function(data) { //加载成功时执行
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","auto").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
             $("#tdmoney").html(tdmoney.toFixed(2));
             $("#tdgivemoney").html(tdgivemoney.toFixed(2));
             $("#tdtotal").html(tdtotal.toFixed(2));
@@ -456,22 +463,63 @@ function() {
     });
 });
 
+var loadIndex='';
+function download() {
+	layer.msg('数据导出中，请等待');
+	//loadIndex = layer.load(0, {shade: false});
+	isClick = false;
+}
+function disload() {
+	layer.close(loadIndex);
+	layer.msg('数据导出完毕');
+	isClick = true;
+}
 //点击导出
 function exportTable() {
-    var fieldArr = [];
-    var fieldnameArr = [];
-    $('#table thead tr th').each(function() {
-        var field = $(this).attr("data-field");
-        if (field != "") {
-            fieldArr.push(field); //获取字段
-            fieldnameArr.push($(this).children()[0].innerText); //获取字段中文
-        }
-    });
-    var param = JsontoUrldata(queryParams());
-    location.href = pageurl + "?flag=exportTable&fieldArr=" + JSON.stringify(fieldArr) + "&fieldnameArr=" + JSON.stringify(fieldnameArr) + "&" + param;
+	if(isClick) {
+		isClick = false;
+		// console.log("生成报表")
+		var fieldArr = [];
+		var fieldnameArr = [];
+		$('#table thead tr th').each(function() {
+			var field = $(this).attr("data-field");
+			if (field != "") {
+				fieldArr.push(field); //获取字段
+				fieldnameArr.push($(this).children()[0].innerText); //获取字段中文
+			}
+		});
+		var param = JsontoUrldata(queryParams());
+		var url = pageurl + "?flag=exportTable&fieldArr=" + JSON.stringify(fieldArr) + "&fieldnameArr=" + JSON.stringify(fieldnameArr) + "&" + param;
+		download();
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', url, true);    // 也可用POST方式
+		xhr.responseType = "blob";
+		xhr.onload = function () {
+			if (this.status === 200) {
+				var blob = this.response;
+				// if (navigator.msSaveBlob == null) {
+				var a = document.createElement('a');
+				//var headerName = xhr.getResponseHeader("Content-disposition");
+				//var fileName = decodeURIComponent(headerName).substring(20);
+				a.download = "信息查询";
+				a.href = URL.createObjectURL(blob);
+				$("body").append(a);    // 修复firefox中无法触发click
+				a.click();
+				URL.revokeObjectURL(a.href);
+				$(a).remove();
+				// } else {
+				//     navigator.msSaveBlob(blob, "信息查询");
+				// }
+			}
+			disload();
+		};
+		xhr.send();
+	}
 }
 $('#query').on('click',
 function() {
+	$(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(this).text("查询中");
     onclickrowobj = ""; //初始化之前选中的行对象
     number = 1; //序号
     tdmoney = 0,
@@ -486,6 +534,7 @@ function() {
         'url': pageurl
     });
 });
+
 //计算左侧表格高度保证一屏展示
 function setHeight() {
   var baseHeight = $(window).height();

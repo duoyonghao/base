@@ -24,7 +24,6 @@ public class ZzblCheckServiceImpl implements IZzblCheckService {
 	private ZzblCheckDao zzblCheckDao;
 	@Autowired
 	private LcljTrackDao lcljTrackDao;
-
 	@Override
 	public void insertZzblCheck(ZzblCheck dp, HttpServletRequest request) throws Exception {
 		// TODO Auto-generated method stub

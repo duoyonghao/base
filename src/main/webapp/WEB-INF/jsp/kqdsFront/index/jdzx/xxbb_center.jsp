@@ -283,7 +283,11 @@ function initTable() {
         sidePagination: "server",//分页方式：client客户端分页，server服务端分页（*）
         paginationShowPageGo: true,
         onLoadSuccess:function(data){
-			
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
         	//console.log("信息宝贝==="+JSON.stringify(data));
             setWidth();
             setHeight();
@@ -477,6 +481,8 @@ function searchHzda() {
         layer.alert('请选择查询条件!' );
         return false;
     }
+	$("#query").attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$("#query").text("查询中");
     $('#table').bootstrapTable('refresh', {
         'url': pageurl
     });
@@ -563,7 +569,7 @@ function getButtonPower() {
         }
     }
     menubutton1 += '<a href="javascript:void(0);" class="kqdsCommonBtn" onclick="clean();">清空</a>';
-    menubutton1 += '<a href="javascript:void(0);" class="kqdsSearchBtn" onclick="searchHzda();">查询</a>';
+    menubutton1 += '<a href="javascript:void(0);" class="kqdsSearchBtn" onclick="searchHzda();" id="query">查询</a>';
     menubutton1 += '</div></div>';
     $("#bottomBarDdiv").append(menubutton1);
     yxzl();

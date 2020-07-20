@@ -173,8 +173,15 @@
 		.patient .inputDiv:nth-child(4){
 			width: 190px!important;
 		}
+		.patient .inputDiv:nth-child(8){
+			width: 160px!important;
+		}
 		.patient .inputDiv:nth-child(9){
-			width: 190px!important;
+			/*width: 190px!important;*/
+			width: 160px!important;
+		}
+		.inputPrintWidth{
+			width: 50px !important;
 		}
 	}
 	#anamnesis_continer .bgwhite{
@@ -409,7 +416,7 @@
 		width: 100px!important;
 	}
 	.patient .inputDiv:nth-child(7){
-		width: 300px!important;
+		width: 320px!important;
 	}
 
 	.baseInfo .patient>.inputDiv>span{
@@ -467,10 +474,10 @@
 						<%--                    <span>出生年月：</span><font type="text" id="patient_bone"></font>--%>
 						<span>现居住地址：</span><font type="text" id="patient_address"></font>
 					</div>
-					<div class="inputDiv" style="clear:left;">
+					<div class="inputDiv urgencyDiv" style="clear:left;">
 						<span>联系电话：</span><font type="text" id="patient_tel"></font>
 					</div>
-					<div class="inputDiv" >
+					<div class="inputDiv urgencyDiv" >
 						<span>紧急联系人：</span><font type="text" id="patient_emergency_contact"></font>
 					</div>
 					<div class="inputDiv">
@@ -758,15 +765,9 @@
 				</li>
 			</ul>
 			<!-- 选择组合框 -->
-
 			<div class="select_group common_style">
 				<!-- 选项名称 -->
-				<span class="select_name">是否要求种植修复:</span>
-				<!-- 选项 -->
-				<div class="select_item" style="width:auto;">
-					<input name="implantrestoration" id="ir_yes" value="0" type="radio" style="vertical-align: text-bottom;margin-left: 10px;"/><label for="ir_yes">是</label>
-					<input name="implantrestoration" id="ir_no" value="1" type="radio" style="vertical-align: text-bottom;margin-left: 10px;"/><label for="ir_no">否</label>
-				</div>
+				<span class="select_name">要求种植修复</span>
 			</div>
 		</div>
 	</div>
@@ -792,16 +793,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="hypertension" disabled type="text" style="cursor:not-allowed;" placeholder="时间"/>
-			</div>
-		</div>
-		<div class="col-md-3 col-sm-3 col-xs-3 colDefined combgGray">
-			<!-- 填写组合框 -->
-			<div class="fillWrite_group common_style">
-				<!-- 填写名称 -->
-				<span class="fillWrite_name" style="font-weight: normal;">目前血压:</span>
-				<!-- 填写框-->
-				<input id="pressure" disabled style="width:120px;text-align:center;padding:0px;cursor:not-allowed;" class="fillWrite_input" placeholder="125/69" onblur="TextLengthCheck(this.id,10);" type="text"/>
+				<input id="hypertension" disabled type="text" style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-3 col-sm-3 col-xs-3 colDefined combgGray backColor">
@@ -815,6 +807,15 @@
 					<input name="istakemedicie" disabled id="isTakeMedicie_y" value="1" type="radio"/><label for="isTakeMedicie_y">是</label>
 					<input name="istakemedicie" disabled id="isTakeMedicie_n" value="0" type="radio"/><label for="isTakeMedicie_n">否</label>
 				</div>
+			</div>
+		</div>
+		<div class="col-md-3 col-sm-3 col-xs-3 colDefined combgGray">
+			<!-- 填写组合框 -->
+			<div class="fillWrite_group common_style">
+				<!-- 填写名称 -->
+				<span class="fillWrite_name" style="font-weight: normal;">目前血压:</span>
+				<!-- 填写框-->
+				<input id="pressure" disabled style="width:120px;text-align:center;padding:0px;cursor:not-allowed;" class="fillWrite_input" placeholder="125/69" onblur="TextLengthCheck(this.id,10);" type="text"/>
 			</div>
 		</div>
 		<%--<div class="col-md-5 col-sm-6 col-xs-6 colDefined combgGray">
@@ -842,10 +843,10 @@
 	</div>
 	<!-- 心脏病 -->
 	<div class="row">
-		<div class="col-md-2 col-sm-3 col-xs-3 colDefined">
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 			<!-- 名称div -->
 			<div class="name_div common_style bgwhite">
-				<span>心脏病 心绞痛、心衰:</span>
+				<span>心脏疾病:</span>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
@@ -860,7 +861,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 			<!-- 时间div -->
 			<div class="time_div common_style bgwhite">
-				<input id="heardiease" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/>
+				<input id="heardiease" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-3 col-sm-5 col-xs-5 colDefined backcolorGray">
@@ -913,14 +914,14 @@
 		<div class="col-md-1 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="diabetes" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="diabetes" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-3 col-sm-6 col-xs-6 colDefined combgGray backColor">
 			<!-- 选择组合框 -->
 			<div class="select_group common_style">
 				<!-- 选项名称 -->
-				<span class="select_name">怎么控制:</span>
+				<span class="select_name">控制方式:</span>
 				<!-- 选项 -->
 				<div class="select_item" style="width:auto;">
 					<input name="dietcontrol" id="dietControl_eat" value="饮食" type="checkbox" style="vertical-align: text-bottom;margin-left: 10px;" disabled="disabled"/><label for="dietControl_eat" style="margin-right: ">饮食</label>
@@ -1018,7 +1019,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="bloodcoagulation" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/>
+				<input id="bloodcoagulation" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 	</div>
@@ -1040,7 +1041,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="antifreezingtime" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/>
+				<input id="antifreezingtime" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<%--<div class="col-md-3 col-sm-4 col-xs-4 colDefined backcolorGray" style="padding-left: 10px;">
@@ -1080,7 +1081,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="hepatitisb" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/>
+				<input id="hepatitisb" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
@@ -1099,7 +1100,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="hepatitisc" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/>
+				<input id="hepatitisc" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 	</div>
@@ -1121,7 +1122,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="hiv" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="hiv" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
@@ -1140,7 +1141,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="cancer" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="cancer" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 	</div>
@@ -1162,7 +1163,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="syphilis" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="syphilis" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
@@ -1181,7 +1182,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="maxillofacial" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="maxillofacial" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 	</div>
@@ -1203,7 +1204,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="inflammation" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="inflammation" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-1 col-xs-1 colDefined backcolorGray">
@@ -1222,7 +1223,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined backcolorGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="drugabuse" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="drugabuse" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 	</div>
@@ -1244,7 +1245,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="psychosis" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="psychosis" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
@@ -1263,7 +1264,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray backColor">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="mucousmembrane" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="mucousmembrane" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 	</div>
@@ -1285,7 +1286,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="glucocorticoids" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="glucocorticoids" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<%--怀孕--%>
@@ -1307,7 +1308,7 @@
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="pregnancy" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="pregnancy" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<%--<div class="col-md-6 col-sm-5 col-xs-5 colDefined combgGray">
@@ -1348,7 +1349,7 @@
 				<!-- 填写名称 -->
 				<span class="fillWrite_name" style="font-weight: normal;">注射:</span>
 				<!-- 填写框-->
-				<input id="pharmacy" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="pharmacy" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-3 col-xs-3 colDefined">
@@ -1357,7 +1358,7 @@
 				<!-- 填写名称 -->
 				<span class="fillWrite_name" style="font-weight: normal;">口服:</span>
 				<!-- 填写框-->
-				<input id="takeorallytime" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="takeorallytime" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<%--<div class="col-md-3 col-sm-12 col-xs-12 colDefined">
@@ -1380,6 +1381,51 @@
 			&lt;%&ndash;打印展示&ndash;%&gt;
 			<div class="medicineText">常用药物：<span class="pharmacymedicine"></span></div>
 		</div>--%>
+	</div>
+	<%--口干--%>
+	<div class="row">
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
+			<!-- 名称div -->
+			<div class="name_div common_style">
+				<span>口干:</span>
+			</div>
+		</div>
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
+			<!-- 选项div -->
+			<div class="option_div common_style">
+				<input name="isdry" id="isdry_n" value="0" type="radio" onclick="ishaveillness(this.name);ishavaGlucocorticoids(this.name);"/><label for="isdry_n">无</label>
+				<input name="isdry" id="isdry_y" value="1" type="radio" onclick="ishaveillness(this.name);ishavaGlucocorticoids(this.name);"/><label for="isdry_y">有</label>
+			</div>
+		</div>
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
+			<!-- 时间div -->
+			<%--<div class="time_div common_style">
+				<input id="dry" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+			</div>--%>
+		</div>
+		<%--怀孕--%>
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
+			<!-- 名称div -->
+			<div class="name_div common_style">
+				<span>最近一次拔牙:</span>
+			</div>
+		</div>
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
+			<div class="select_group common_style">
+				<!-- 选项div -->
+				<div class="option_div">
+					<input name="ispullouttooth" id="ispullouttooth_n" value="0" type="radio" onclick="ishaveillness(this.name)"/><label for="ispullouttooth_n">无</label>
+					<input name="ispullouttooth" id="ispullouttooth_y" value="1" type="radio" onclick="ishaveillness(this.name)"/><label for="ispullouttooth_y">有</label>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2 col-sm-2 col-xs-2 colDefined">
+			<!-- 填写组合框 -->
+			<div class="fillWrite_group common_style">
+				<!-- 填写框-->
+				<input id="pullouttooth" class="fillWrite_input consent_time" type="text" disabled style="width:150px;cursor:not-allowed;" readonly="readonly" placeholder="请选择日期"/>
+			</div>
+		</div>
 	</div>
 	<!-- 其他系统疾病 -->
 	<div class="row bgWhite">
@@ -1406,7 +1452,7 @@
 		<div class="col-md-2 col-sm-1 col-xs-1 colDefined">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="otherdiseases" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input class="inputPrintWidth" id="otherdiseases" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 	</div>
@@ -1438,7 +1484,7 @@
 		<div class="col-md-2 col-sm-1 col-xs-1 colDefined combgGray">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="allergiclength" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input class="inputPrintWidth" id="allergiclength" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 	</div>
@@ -1456,7 +1502,7 @@
 		<div class="col-md-2 col-sm-1 col-xs-1 colDefined">
 			<!-- 时间div -->
 			<div class="time_div common_style">
-				<input id="onmedicationtime" type="text" placeholder="时间"/>
+				<input class="inputPrintWidth" id="onmedicationtime" type="text" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 	</div>
@@ -1484,7 +1530,7 @@
 			<!-- 填写组合框 -->
 			<div class="fillWrite_group common_style">
 				<!-- 填写框-->
-				<input id="smoketime" class="fillWrite_input" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/>
+				<input id="smoketime" class="fillWrite_input" disabled style="cursor:not-allowed;" type="text" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-6 colDefined">
@@ -1519,7 +1565,7 @@
 			<!-- 填写组合框 -->
 			<div class="fillWrite_group common_style">
 				<!-- 填写框-->
-				<input id="drinktime" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="drinktime" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-6 colDefined combgGray">
@@ -1537,7 +1583,7 @@
 			<!-- 填写组合框 -->
 			<div class="fillWrite_group common_style">
 				<!-- 填写名称 -->
-				<span class="fillWrite_name">磨牙:</span>
+				<span class="fillWrite_name">夜磨牙:</span>
 			</div>
 		</div>
 		<div class="col-md-2 col-sm-2 col-xs-2 colDefined combgGray">
@@ -1553,7 +1599,7 @@
 			<!-- 填写组合框 -->
 			<div class="fillWrite_group common_style">
 				<!-- 填写框-->
-				<input id="odontoprisis" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/>
+				<input id="odontoprisis" class="fillWrite_input" type="text" disabled style="cursor:not-allowed;" placeholder="时间"/><span>年</span>
 			</div>
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-6 colDefined">
@@ -1581,13 +1627,13 @@
 				<input name="chewinghabits" id="chewingHabits_d" value="双侧" type="radio"/><label for="chewingHabits_d">双侧</label>
 			</div>
 		</div>
-		<div class="col-md-2 col-sm-1 col-xs-1 colDefined">
+		<%--<div class="col-md-2 col-sm-1 col-xs-1 colDefined">
 			<!-- 填写组合框 -->
 			<div class="fillWrite_group common_style">
 				<!-- 填写框-->
 				<input id="chewinghabitstime" class="fillWrite_input" type="text" placeholder="时间"/>
 			</div>
-		</div>
+		</div>--%>
 		<div class="col-md-6 col-sm-7 col-xs-7 colDefined">
 			<!-- 填写组合框 -->
 			<div class="fillWrite_group common_style">
@@ -1685,7 +1731,7 @@
 				<input id="patienttime" type="text" class="signatureTime" readonly="readonly" placeholder="请选择日期"/>
 			</div>
 		</div>
-		<div class="col-md-6 col-sm-6 col-xs-6">
+		<%--<div class="col-md-6 col-sm-6 col-xs-6">
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-6">
 			<!-- 医生签名  -->
@@ -1694,7 +1740,7 @@
 				<img id="img" style="width:156px;height:auto;"/>
 				<input id="doctortime" type="text" class="signatureTime" readonly="readonly" placeholder="请选择日期"/>
 			</div>
-		</div>
+		</div>--%>
 	</div>
 
 </div>
@@ -1714,14 +1760,52 @@
 	var doctorstatus=true;
 	var patientstatus=true;
 	var contextPath = "<%=contextPath%>";
-	var id= window.parent.consultSelectPatient.seqid;	//选中患者临床id
-	var order_number= window.parent.consultSelectPatient.orderNumber;//选中患者order_number
+	//var id= window.parent.consultSelectPatient.seqid;	//选中患者临床id
+	//var order_number= window.parent.consultSelectPatient.orderNumber;//选中患者order_number
+	var id;	//选中患者临床id
+	var order_number;//选中患者order_number
 	var caseId=""; //已存在的病历id
 	var menuid=window.parent.menuid;//左侧菜单id
 	var seqidFather = "<%=seqidFather%>";
+	var usercode;
+    var userAgent = navigator.userAgent;
+    var signatureWidth='70%';
+    var signatureHeight='65%';
+	var form;
+    // var form=window.parent.getNewForm();
 	$(function(){
+        if (userAgent.match(/mobile/i)) {
+            var mql = window.matchMedia('(orientation: portrait)');
+            function onMatchMediaChange(mql) {
+                if (mql.matches) {
+                    //竖屏
+                    signatureWidth='98%';
+                    signatureHeight='50%';
+                } else {
+                    //横屏
+                    signatureWidth='98%';
+                    signatureHeight='73%';
+                }
+            }
+            // 输出当前屏幕模式
+            onMatchMediaChange(mql);
+
+            // 监听屏幕模式变化
+            mql.addListener(onMatchMediaChange);
+
+        }
+		if(window.parent.consultSelectPatient){
+			id= window.parent.consultSelectPatient.seqid;
+			order_number= window.parent.consultSelectPatient.orderNumber;
+			usercode = window.parent.consultSelectPatient.usercode;
+			form=window.parent.getNewForm();
+		}else{
+			id= window.parent.patientObj.id;
+			order_number= window.parent.patientObj.orderNumber;
+			usercode = window.parent.patientObj.blcode;
+			form=window.parent.parent.getNewForm();
+		}
 		//针对ipad样式
-		var userAgent = navigator.userAgent;
 		if (userAgent.indexOf("iPad") > -1){
 			$("#print_Btn").css("display","none");
 			$(".ipadText").css("font-size","14px");
@@ -1764,7 +1848,7 @@
 		$('.selectpicker').selectpicker({});//初始化种植体系下拉框
 
 		/* 初始化患者基本信息 */
-		initPatientInfo(window.parent.consultSelectPatient.usercode);
+		initPatientInfo(usercode);
 		initZzblInfor();/* 页面赋值判断初始化 */
 
 		// 2019/7/24 lutian 禁止页面拖拽
@@ -1795,7 +1879,7 @@
 				$("#patient_age").text( r.age);//患者年龄
 				$("#patient_idnum").text( r.idcardno); //身份证号码
 				$("#patient_birthday").text( r.birthday); //生日
-				$("#patient_phone").text( r.phonenumber1); //电话
+				$("#patient_tel").text( r.phonenumber1); //电话
 				$("#urgency_people").text( r.emergencyContact);  //紧急联系人
 				$("#urgency_phone").text( r.emergencyPhone);  //紧急联系人电话
 				$("#patient_address").text( r.provincename + r.cityname + r.townname + r.streetName); //地址
@@ -1815,7 +1899,7 @@
 		});
 	}
 
-	var doctorSignature = document.getElementById("doctorSignature");
+	/*var doctorSignature = document.getElementById("doctorSignature");
 	doctorSignature.onclick = function(){
 		if(doctorstatus){
 			layer.open({
@@ -1827,7 +1911,7 @@
 				content: contextPath + '/SignatureAct/toSignature.act?category=种植'
 			});
 		}
-	}
+	}*/
 	function addSignature(){
 		$("#img").css("display","");
 		$("#img").attr('src', signature);
@@ -1840,8 +1924,8 @@
 				title: '签字',
 				shadeClose: true,
 				shade: 0.6,
-				area: ['70%', '65%'],
-				content: contextPath + '/SignatureAct/toSignature.act?category=患者'
+                area:userAgent.indexOf("iPad")>-1?[signatureWidth,signatureHeight] : ['70%', '65%'],
+                content: contextPath + '/SignatureAct/toSignature.act?category=患者'
 			});
 		}
 	}
@@ -1894,16 +1978,97 @@
 		}
 	}
 
-	/* 页面赋值判断初始化 */
+	/* 页面赋值初始化 */
 	function initZzblInfor(){
+        if(form){
+            if(form.seq_id){
+                caseId=form.seq_id; //已存在的seqid
+                $("#consent_saveBtn").css("display","none");//隐藏保存按钮
+                $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
+            }
+            for(var key in form){
+                $("#"+key+"[type='text']").attr("value",form[key]);// 填框赋值
+                //常用药物select赋值
+                if($("#"+key).find("option")){
+                    $("#"+key).selectpicker('val', form[key]);
+                    $("."+key).text(form[key]);
+                    /*$("#"+key).find("option").each(function(i,obj){
+                        $(this).removeAttr("selected");
+                        if($(this).val()==result[key]){
+                            $(this).prop("selected", true);//针对ipad赋值
+                            $(this).attr("selected", true);
+                        }
+                    });*/
+                }
+                //单选按钮赋值
+                $("input[name="+key+"][type='radio']").each(function(){
+                    if($(this).val()==form[key]){
+                        $(this).attr("checked","checked");
+                    }
+                })
+                //多选框赋值
+                if(form[key]){
+                    if(form[key].indexOf(";")>0){
+                        var checkboxVal= form[key];//拼接多选框的值
+                        var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
+                        for(var i=0;i<checkboxValArr.length;i++){
+                            $("input[name="+key+"]").each(function(){
+                                if($(this).val()==checkboxValArr[i]){
+                                    $(this).attr("checked","checked");
+                                }
+                            })
+                        }
+                    }
+                }
+            }
+            //牙位图赋值
+            toothMapInit("toothloseMap","leftUpTooth",form.toothlosemapupleft);  //牙缺失
+            toothMapInit("toothloseMap","rightUpTooth",form.toothlosemapupright);  //牙缺失
+            toothMapInit("toothloseMap","leftDownTooth",form.toothlosemapdownleft);  //牙缺失
+            toothMapInit("toothloseMap","rightDownTooth",form.toothlosemapdownright);  //牙缺失
+            toothMapInit("toothlessMap","leftUpTooth",form.toothlessmapupleft);  //牙松动
+            toothMapInit("toothlessMap","rightUpTooth",form.toothlessmapupright);  //牙松动
+            toothMapInit("toothlessMap","leftDownTooth",form.toothlessmapdownleft);  //牙松动
+            toothMapInit("toothlessMap","rightDownTooth",form.toothlessmapdownright);  //牙松动
+            toothMapInit("toothdecayedMap","leftUpTooth",form.toothdecayedmapupleft);  //龋齿
+            toothMapInit("toothdecayedMap","rightUpTooth",form.toothdecayedmapupright);  //龋齿
+            toothMapInit("toothdecayedMap","leftDownTooth",form.toothdecayedmapdownleft);  //龋齿
+            toothMapInit("toothdecayedMap","rightDownTooth",form.toothdecayedmapdownright);  //龋齿
+            toothMapInit("toothsnapMap","leftUpTooth",form.toothsnapmapupleft);  //牙折断
+            toothMapInit("toothsnapMap","rightUpTooth",form.toothsnapmapupright);  //牙折断
+            toothMapInit("toothsnapMap","leftDownTooth",form.toothsnapmapdownleft);  //牙折断
+            toothMapInit("toothsnapMap","rightDownTooth",form.toothsnapmapdownright);  //牙折断
+            signature=form.doctorsignature;
+            if(signature!=""){
+                $("#img").attr('src', signature);
+                doctorstatus=false;
+            }else{
+                $("#img").attr('display', 'none');
+            }
+            patientsignature=form.patientsignature;
+            if(patientsignature!=""){
+                $("#patientimg").attr('src', patientsignature);
+                patientstatus=false;
+            }else{
+                $("#patientimg").attr('display', 'none');
+            }
+        }
+        //修改表单：页面不禁用
+        if(form.seq_id){
+            $("input").removeAttr("disabled");
+            $("input").css("cursor","pointer").css("pointer-events","auto");
+            $("input[name='symptom']:checked").removeAttr("checked").trigger("click");
+        }
+        //获取当前页面所有按钮
+        getButtonAllCurPage(menuid);
 		//console.log(id+"--------------查询id");
-		var url = contextPath + '/HUDH_ZzblAdviceAct/findCaseHistoryById.act';
+		/*var url = contextPath + '/HUDH_ZzblAdviceAct/findCaseHistoryBySeqid.act';
 		$.ajax({
 			url: url,
 			type:"POST",
 			dataType:"json",
 			data : {
-				id :  id
+				seq_id :  seqidFather
 			},
 			success:function(result){
 				//console.log(JSON.stringify(result)+"--------------患者查询信息");
@@ -1919,13 +2084,13 @@
 						if($("#"+key).find("option")){
 							$("#"+key).selectpicker('val', result[key]);
 							$("."+key).text(result[key]);
-							/*$("#"+key).find("option").each(function(i,obj){
+							/!*$("#"+key).find("option").each(function(i,obj){
                                 $(this).removeAttr("selected");
                                 if($(this).val()==result[key]){
                                     $(this).prop("selected", true);//针对ipad赋值
                                     $(this).attr("selected", true);
                                 }
-                            });*/
+                            });*!/
 						}
 						//单选按钮赋值
 						$("input[name="+key+"][type='radio']").each(function(){
@@ -1934,15 +2099,17 @@
 							}
 						})
 						//多选框赋值
-						if(result[key].indexOf(";")>0){
-							var checkboxVal= result[key];//拼接多选框的值
-							var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
-							for(var i=0;i<checkboxValArr.length;i++){
-								$("input[name="+key+"]").each(function(){
-									if($(this).val()==checkboxValArr[i]){
-										$(this).attr("checked","checked");
-									}
-								})
+						if(result[key]){
+							if(result[key].indexOf(";")>0){
+								var checkboxVal= result[key];//拼接多选框的值
+								var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
+								for(var i=0;i<checkboxValArr.length;i++){
+									$("input[name="+key+"]").each(function(){
+										if($(this).val()==checkboxValArr[i]){
+											$(this).attr("checked","checked");
+										}
+									})
+								}
 							}
 						}
 					}
@@ -1978,10 +2145,16 @@
 						$("#patientimg").attr('display', 'none');
 					}
 				}
+				//修改表单：页面不禁用
+				if(result.seq_id){
+					$("input").removeAttr("disabled");
+					$("input").css("cursor","pointer").css("pointer-events","auto");
+					$("input[name='symptom']:checked").removeAttr("checked").trigger("click");
+				}
 				//获取当前页面所有按钮
 				getButtonAllCurPage(menuid);
 			}
-		});
+		});*/
 	}
 	//牙位图赋值
 	function toothMapInit(fObj,sObj,toothStr){
@@ -2136,6 +2309,10 @@
 		var PatientTime = $("#patienttime").val();//患者签字时间
 		/* var doctorSignature = $("#doctorSignature").val(); *///医生签字
 		var doctorTime = $("#doctortime").val();//医生签字时间     72
+		//新增参数
+		var isdry = $('input[name="isdry"]:checked').val();//口干
+		var ispullouttooth = $('input[name="ispullouttooth"]:checked').val();//最近一次拔牙
+		var pullouttooth = $("#pullouttooth").val();//最近一次拔牙时间
 
 		var url = contextPath + '/HUDH_ZzblAdviceAct/updateCaseHistoryById.act';
 		var param = {
@@ -2241,7 +2418,11 @@
 			patientTime : PatientTime,
 			doctorTime : doctorTime,
 			patientsignature : patientsignature,
-			doctorsignature : signature
+			doctorsignature : signature,
+			//新增参数
+			isdry : isdry,
+			ispullouttooth : ispullouttooth,
+			pullouttooth : pullouttooth
 		};
 		//console.log(JSON.stringify(param)+"------------修改参数");
 		$.axseSubmit(url, param,function() {},function(r) {
@@ -2367,6 +2548,11 @@
 		/* var doctorSignature = $("#doctorSignature").val(); *///医生签字
 		var doctorTime = $("#doctortime").val();//医生签字时间     72
 
+		//新增参数
+		var isdry = $('input[name="isdry"]:checked').val();//口干
+		var ispullouttooth = $('input[name="ispullouttooth"]:checked').val();//最近一次拔牙
+		var pullouttooth = $("#pullouttooth").val();//最近一次拔牙时间
+
 		var url = contextPath + '/HUDH_ZzblAdviceAct/saveCaseHistory.act';
 		var param = {
 			lcljId :  id,
@@ -2470,8 +2656,13 @@
 			patientTime : PatientTime,
 			doctorTime : doctorTime,
 			patientsignature : patientsignature,
-			doctorsignature : signature
+			doctorsignature : signature,
+			//新增参数
+			isdry : isdry,
+			ispullouttooth : ispullouttooth,
+			pullouttooth : pullouttooth
 		};
+		//console.log(JSON.stringify(param)+"---------保存参数");
 		$.axseSubmit(url, param,function() {},function(r) {
 			layer.alert("保存成功！", {
 				end: function() {
@@ -2659,7 +2850,7 @@
 		}else{
 			$("#"+id).parents(".toothMapItem").find(".toothMap").removeAttr("onclick");
 			$("#"+id).parents(".toothMapItem").find(".toothMap").find(".num").each(function(i,obj){
-				$(this).text("");
+				$(this).parent("li").removeClass("current");
 			});
 			$("#"+id).parents(".toothMapItem").find(".toothTime").find("input").val("").attr("disabled","disabled").css("background-color","#c3c3c3").css("pointer-events","none");
 		}

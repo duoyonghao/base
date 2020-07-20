@@ -270,6 +270,10 @@ public class YZPersonLogic extends BaseLogic {
 		return persons;
 	}
 
+	public List<YZPerson> getAll() throws Exception {
+		return (List<YZPerson>) dao.findForList(TableNameUtil.SYS_PERSON+".selectAll",null);
+	}
+
 	/**
 	 * 根据可见人员过滤树
 	 * 
@@ -821,5 +825,16 @@ public class YZPersonLogic extends BaseLogic {
 	public int updateOrganization(Map<String,String> map) throws Exception {
 		int i=(int) dao.update(TableNameUtil.SYS_PERSON+".updateOrganization", map);
 		return i;
+	}
+
+	/**
+	 * 传入部门id查询对应人员
+	 * @param list
+	 * @return
+	 * @throws Exception
+	 */
+	public List<String> findPersonalByDeptList(List<String> list) throws Exception {
+		 List<String> json = (List<String>)dao.findForList(TableNameUtil.SYS_PERSON+".findPersonalByDeptList", list);
+		return json;
 	}
 }

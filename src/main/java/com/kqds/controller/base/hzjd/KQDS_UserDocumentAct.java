@@ -321,6 +321,15 @@ public class KQDS_UserDocumentAct {
         return mv;
     }
 
+    @RequestMapping(value = "/toHzjd_zxzl.act")
+    public ModelAndView toHzjd_zxzl(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String usercode = request.getParameter("usercode");
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("usercode", usercode);
+        mv.setViewName("/kqdsFront/hzjd/hzjd_zxzl.jsp");
+        return mv;
+    }
+
     @RequestMapping(value = "/toHzjd_Net.act")
     public ModelAndView toHzjd_Net(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String usercode = request.getParameter("usercode");
@@ -515,6 +524,54 @@ public class KQDS_UserDocumentAct {
             }
             YZUtility.DEAL_SUCCESS(null, null, response, logger);
         } catch (Exception ex) {
+            YZUtility.DEAL_ERROR(null, true, ex, response, logger);
+        }
+        return null;
+    }
+
+    /**
+     * 单个设定客服
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/setKF.act")
+    public String setKF(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String usercode = request.getParameter("usercode");
+        String kefu = request.getParameter("kefu");
+        String kefuremark = request.getParameter("kefuremark");
+
+        try {
+            YZPerson person = SessionUtil.getLoginPerson(request);
+            JSONObject json = logic.findByUsercode(usercode);
+            KqdsUserdocument user = new KqdsUserdocument();
+            if (json != null) {
+                // 保存记录日志
+                KqdsChangeKefu wd = new KqdsChangeKefu();
+                wd.setSeqId(YZUtility.getUUID());
+                wd.setCreatetime(YZUtility.getCurDateTimeStr());
+                wd.setCreateuser(person.getSeqId());
+                if (!YZUtility.isNullorEmpty(json.getString("kefu"))) {
+                    wd.setOldper(json.getString("kefu"));
+                }
+                wd.setToper(kefu);
+                wd.setRemark(kefuremark);
+                wd.setUsercode(json.getString("usercode"));
+                wd.setUsername(json.getString("username"));
+                wd.setOrganization(ChainUtil.getCurrentOrganization(request)); // 【前端页面调用，以所在门诊为准】
+                user.setKefu(kefu);
+                user.setUsercode(json.getString("usercode"));
+                logic.setKF(wd, user);
+                // 记录日志
+                BcjlUtil.LogBcjlWithUserCode(BcjlUtil.NEW, BcjlUtil.KQDS_CHANGE_KEFU, wd, wd.getUsercode(),
+                        TableNameUtil.KQDS_CHANGE_KEFU, request);
+            }
+
+            YZUtility.DEAL_SUCCESS(null, null, response, logger);
+        } catch (
+                Exception ex) {
             YZUtility.DEAL_ERROR(null, true, ex, response, logger);
         }
         return null;
@@ -3463,8 +3520,8 @@ public class KQDS_UserDocumentAct {
     public List<JSONObject> findByUsercode(HttpServletRequest request, HttpServletResponse response) throws Exception {
         try {
             String usercode = request.getParameter("usercode");
-            List<JSONObject> list = logic.findByUsercode(usercode);
-            YZUtility.RETURN_LIST(list, response, logger);
+            JSONObject list = logic.findByUsercode(usercode);
+            YZUtility.RETURN_OBJ(list, response, logger);
         } catch (Exception ex) {
             YZUtility.DEAL_ERROR(null, false, ex, response, logger);
         }

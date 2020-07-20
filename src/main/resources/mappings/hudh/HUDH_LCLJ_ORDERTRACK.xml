@@ -55,6 +55,7 @@
         <result column="diagnosis" jdbcType="VARCHAR" property="diagnosis"/>
         <result column="repair" jdbcType="VARCHAR" property="repair"/>
         <result column="knowbook" jdbcType="VARCHAR" property="knowbook"/>
+
     </resultMap>
 
     <sql id="Base_Column_List">

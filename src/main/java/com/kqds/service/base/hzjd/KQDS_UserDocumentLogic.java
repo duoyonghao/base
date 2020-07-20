@@ -2028,6 +2028,12 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     }
 
     @Transactional(rollbackFor = {Exception.class})
+    public void setKF(KqdsChangeKefu wd, KqdsUserdocument user) throws Exception {
+        dao.saveSingleUUID(TableNameUtil.KQDS_CHANGE_KEFU, wd);
+        dao.update(TableNameUtil.KQDS_USERDOCUMENT + ".setKeFu", user);
+    }
+
+    @Transactional(rollbackFor = {Exception.class})
     public void setWd(KqdsChangeWd wd, KqdsUserdocument user) throws Exception {
         dao.updateSingleUUID(TableNameUtil.KQDS_USERDOCUMENT, user);
         dao.saveSingleUUID(TableNameUtil.KQDS_CHANGE_WD, wd);
@@ -2304,8 +2310,9 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     }
 
     @SuppressWarnings("unchecked")
-    public List<JSONObject> findByUsercode(String usercode) throws Exception {
-        List<JSONObject> list = (List<JSONObject>) dao.findForList(TableNameUtil.KQDS_USERDOCUMENT + ".findByUsercode", usercode);
+    @Transactional
+    public JSONObject findByUsercode(String usercode) throws Exception {
+        JSONObject list = (JSONObject) dao.findForObject(TableNameUtil.KQDS_USERDOCUMENT + ".findByUsercode", usercode);
         return list;
     }
 

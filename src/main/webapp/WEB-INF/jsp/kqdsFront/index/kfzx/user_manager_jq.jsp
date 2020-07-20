@@ -132,7 +132,7 @@ a:hover{
 			    	</table>
 			    	<div class="btnGroup">
 			    		<a href="javascript:void(0);" class="kqdsCommonBtn" id="clear">清空</a>
-                		<a href="javascript:void(0);" class="kqdsSearchBtn" onclick="querySC();">查询</a>
+                		<a href="javascript:void(0);" class="kqdsSearchBtn" onclick="querySC();" id="query">查询</a>
 			    	</div>
                 </div>
             </div>
@@ -212,6 +212,9 @@ function querySC() {
 	    });
 		return false;
 	}
+	//查询中，禁止查询按钮点击 lutian
+	$("#query").attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none");
+	$("#query").text("查询中");
     $('#table').bootstrapTable('refresh', {
         'url': pageurl
     });
@@ -229,7 +232,12 @@ function initTable(reqUrl) {
         clickToSelect: false,
         singleSelect: false,
         onLoadSuccess: function(data) { //加载成功时执行
-        	setWidth();
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
+			setWidth();
             setHeight();
             /*表格载入时，设置表头的宽度 */
             setTableHeaderWidth(".tableBox");

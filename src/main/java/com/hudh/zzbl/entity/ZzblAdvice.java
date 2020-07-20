@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 /**
  * 主诉及既往病史
- * @ClassName: AdviceNote
- * @Description: TODO(主诉及既往病史:用于研讨)
- * @author duoyh
- * @dateTime 2019年5月1日 下午1:47:40
  *
+ * @author duoyh
+ * @ClassName: AdviceNote
+ * @Description: TODO(主诉及既往病史 : 用于研讨)
+ * @dateTime 2019年5月1日 下午1:47:40
  */
-public class ZzblAdvice implements Serializable{
+public class ZzblAdvice implements Serializable {
 
 
     /**
@@ -107,355 +107,390 @@ public class ZzblAdvice implements Serializable{
      */
     private String toothlosetime;
     /**
-     *牙松动时间
+     * 牙松动时间
      */
     private String toothlesstime;
     /**
-     *龋齿时间
+     * 龋齿时间
      */
     private String toothdecayedtime;
     /**
-     *牙折断时间
+     * 牙折断时间
      */
     private String toothsnaptime;
     /**
-     *是否要求种植修复
+     * 是否要求种植修复
      */
     private String implantRestoration;
     /**
-     *是否有高血压
+     * 是否有高血压
      */
     private String isHypertension;
     /**
-     *患高血压年限
+     * 患高血压年限
      */
     private String hypertension;
     /**
-     *是否有在服药
+     * 是否有在服药
      */
     private String isTakeMedicie;
     /**
-     *当前血压
+     * 当前血压
      */
     private String pressure;
     /**
-     *高血压常用药物
+     * 高血压常用药物
      */
     private String hypertensionmedicine;
     /**
-     *是否患有心脏病（心绞痛、心衰）
+     * 是否患有心脏病（心绞痛、心衰）
      */
     private String isHearDiease;
     /**
-     *患心脏病年限
+     * 患心脏病年限
      */
     private String hearDiease;
     /**
-     *是否有长期备药在身边
+     * 是否有长期备药在身边
      */
     private String isPrepareMedication;
     /**
-     *心脏病常用药
+     * 心脏病常用药
      */
     private String heardieasemedicine;
     /**
-     *是否患有糖尿病
+     * 是否患有糖尿病
      */
     private String isDiabetes;
     /**
-     *患糖尿病年限
+     * 患糖尿病年限
      */
     private String diabetes;
     /**
-     *控制饮食的方式
+     * 控制饮食的方式
      */
     private String dietControl;
     /**
-     *糖尿病口服常用药
+     * 糖尿病口服常用药
      */
     private String diabetesoralmedicine;
     /**
-     *糖尿病注射常用药
+     * 糖尿病注射常用药
      */
     private String diabetesinjectionmedicine;
     /**
-     *六个月内做过心脏手术
+     * 六个月内做过心脏手术
      */
     private String isheartoperation;
     /**
-     *六个月内发生心梗
+     * 六个月内发生心梗
      */
     private String isheartinfarction;
     /**
-     *凝血功能不足性疾病
+     * 凝血功能不足性疾病
      */
     private String isBloodCoagulation;
     /**
-     *患病年限
+     * 患病年限
      */
     private String bloodCoagulation;
     /**
-     *服用抗凝药物或其他可以导致凝血功能障碍的药物
+     * 服用抗凝药物或其他可以导致凝血功能障碍的药物
      */
     private String isAntiFreezing;
     /**
-     *服用抗凝药物常用药物
+     * 服用抗凝药物常用药物
      */
     private String antifreezingmedicine;
     /**
-     *服药年限
+     * 服药年限
      */
     private String antiFreezingTime;
     /**
-     *是否患有乙肝
+     * 是否患有乙肝
      */
     private String isHepatitisB;
     /**
-     *患病年限
+     * 患病年限
      */
     private String hepatitisB;
     /**
-     *是否患有丙肝
+     * 是否患有丙肝
      */
     private String isHepatitisC;
     /**
-     *患病年限
+     * 患病年限
      */
     private String hepatitisC;
     /**
-     *是否患有HIV
+     * 是否患有HIV
      */
     private String isHIV;
     /**
-     *患病年限
+     * 患病年限
      */
     private String hiv;
     /**
-     *是否恶性肿瘤（癌症）
+     * 是否恶性肿瘤（癌症）
      */
     private String isCancer;
     /**
-     *患病年限
+     * 患病年限
      */
     private String cancer;
     /**
-     *是否患有梅毒
+     * 是否患有梅毒
      */
     private String isYphilis;
     /**
-     *患病年限
+     * 患病年限
      */
     private String syphilis;
     /**
-     *是否有过颌面部放疗术
+     * 是否有过颌面部放疗术
      */
     private String isMaxillofacial;
     /**
-     *间隔年限
+     * 间隔年限
      */
     private String maxillofacial;
     /**
-     *是否患有感染急性炎症
+     * 是否患有感染急性炎症
      */
     private String isInflammation;
     /**
-     *患病年限
+     * 患病年限
      */
     private String inflammation;
     /**
-     *是否吸毒
+     * 是否吸毒
      */
     private String isDrugAbuse;
     /**
-     *吸毒年限
+     * 吸毒年限
      */
     private String drugAbuse;
     /**
-     *是否患有心理、精神障碍
+     * 是否患有心理、精神障碍
      */
     private String isPsychosis;
     /**
-     *患病年限
+     * 患病年限
      */
     private String psychosis;
     /**
-     *是否患有皮肤黏膜病变
+     * 是否患有皮肤黏膜病变
      */
     private String isMucousMembrane;
     /**
-     *患病年限
+     * 患病年限
      */
     private String mucousMembrane;
     /**
-     *是否有骨质酥松用药
+     * 是否有骨质酥松用药
      */
     private String isPharmacy;
     /**
-     *注射用药时间
+     * 注射用药时间
      */
     private String pharmacy;
     /**
-     *口服用药时间
+     * 口服用药时间
      */
-    private String takeorallytime ;
+    private String takeorallytime;
     /**
-     *骨质疏松常用药物
+     * 骨质疏松常用药物
      */
     private String pharmacymedicine;
     /**
-     *长期应用糖皮质激素
+     * 长期应用糖皮质激素
      */
-    private String isGlucocorticoids ;
+    private String isGlucocorticoids;
     /**
-     *使用激素年限
+     * 使用激素年限
      */
     private String glucocorticoids;
     /**
-     *长期应用糖皮质激素常用药
+     * 长期应用糖皮质激素常用药
      */
     private String glucocorticoidsmedicine;
     /**
-     *是否患有其他疾病
+     * 是否患有其他疾病
      */
     private String isOtherDiseases;
     /**
-     *其他疾病输入
+     * 其他疾病输入
      */
     private String otherdiseasestext;
     /**
-     *患病年限
+     * 患病年限
      */
     private String otherDiseases;
     /**
-     *是否药物过敏
+     * 是否药物过敏
      */
     private String isDrugAllergy;
     /**
-     *过敏时间
+     * 过敏时间
      */
-    private String allergicLength ;
+    private String allergicLength;
     /**
-     *输入过敏药物
+     * 输入过敏药物
      */
     private String drugallergy;
     /**
-     *是否怀孕
+     * 是否怀孕
      */
     private String isPregnancy;
     /**
-     *受孕时间 单位：月
+     * 受孕时间 单位：月
      */
     private String pregnancy;
     /**
-     *正在服用药物
+     * 正在服用药物
      */
     private String onMedication;
     /**
-     *正在服用药物的时间
+     * 正在服用药物的时间
      */
     private String onmedicationtime;
     /**
-     *是否吸烟
+     * 是否吸烟
      */
     private String issmoke;
     /**
-     *抽烟时间
+     * 抽烟时间
      */
     private String smoketime;
     /**
-     *抽烟数量 支/日
+     * 抽烟数量 支/日
      */
     private String smokeNum;
     /**
-     *是否饮酒
+     * 是否饮酒
      */
     private String isdrink;
     /**
-     *饮酒年限
+     * 饮酒年限
      */
     private String drinkTime;
     /**
-     *饮酒量    1.少量 2.中量 3.大量
+     * 饮酒量    1.少量 2.中量 3.大量
      */
     private String drinkScale;
     /**
-     *是否磨牙
+     * 是否磨牙
      */
     private String isodontoprisis;
     /**
-     *磨牙时间
+     * 磨牙时间
      */
     private String odontoprisis;
     /**
-     *磨牙频率 1.频繁 2.偶尔
+     * 磨牙频率 1.频繁 2.偶尔
      */
     private String odontoprisisDegree;
     /**
-     *咀嚼习惯
+     * 咀嚼习惯
      */
     private String chewingHabits;
     /**
-     *咀嚼习惯时间
+     * 咀嚼习惯时间
      */
     private String chewinghabitstime;
     /**
-     *其他习惯输入
+     * 其他习惯输入
      */
     private String others;
     /**
-     *洁牙习惯
+     * 洁牙习惯
      */
     private String isteethclean;
     /**
-     *频次
+     * 频次
      */
     private String teethcleannum;
     /**
-     *最近一次洁牙时间
+     * 最近一次洁牙时间
      */
     private String planttime;
     /**
-     *患者签字时间
+     * 患者签字时间
      */
     private String patientTime;
     /**
-     *医生签字时间
+     * 医生签字时间
      */
     private String doctorTime;
     /**
-     *患者签字
+     * 患者签字
      */
-    private String patientsignature ;
+    private String patientsignature;
     /**
-     *医生签字
+     * 医生签字
      */
     private String doctorsignature;
 
     /**
-     *门诊
+     * 门诊
      */
     private String organization;
     /**
-     *创建人
+     * 创建人
      */
     private String createuser;
     /**
-     *创建时间
+     * 创建时间
      */
     private String createtime;
     /**
-     *状态
+     * 状态
      */
     private String status;
     /**
-     *修改人
+     * 修改人
      */
     private String updateuser;
     /**
-     *修改时间
+     * 修改时间
      */
     private String updatetime;
+    /**
+     * 口干
+     */
+    private String isdry;
+    /**
+     * 最近一次拔牙
+     */
+    private String ispullouttooth;
+    /**
+     * 最近一次拔牙时间
+     */
+    private String pullouttooth;
 
+    public String getIsdry() {
+        return isdry;
+    }
+
+    public void setIsdry(String isdry) {
+        this.isdry = isdry;
+    }
+
+    public String getIspullouttooth() {
+        return ispullouttooth;
+    }
+
+    public void setIspullouttooth(String ispullouttooth) {
+        this.ispullouttooth = ispullouttooth;
+    }
+
+    public String getPullouttooth() {
+        return pullouttooth;
+    }
+
+    public void setPullouttooth(String pullouttooth) {
+        this.pullouttooth = pullouttooth;
+    }
 
     public String getUpdateuser() {
         return updateuser;
@@ -1204,7 +1239,6 @@ public class ZzblAdvice implements Serializable{
     public void setPlanttime(String planttime) {
         this.planttime = planttime;
     }
-
 
 
     public String getDoctorTime() {

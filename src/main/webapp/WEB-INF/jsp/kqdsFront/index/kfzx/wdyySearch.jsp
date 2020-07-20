@@ -67,16 +67,6 @@ select {
 </style>
 </head>
 <body>
-<div style="padding:5px;">
-	<table style="width: 100%; ">
-		<tr>
-			<td id="tdwd" style="text-align:right;">
-				<a id="clearwangdian" href="javascript:void(0);" class="kqdsCommonBtn">清空</a>
-				<a id="searchwangdian" href="javascript:void(0);" class="kqdsSearchBtn">查询</a>
-			</td>
-		</tr>
-	</table>
-</div>
 	<div class="" id="wangdian">
 		<div class="register-bottom">
 		<table class="kqds_table">
@@ -135,6 +125,16 @@ select {
 				<td style="text-align:left;">
 				</td>
     		</tr>
+			</table>
+		</div>
+		<div style="padding:5px;">
+			<table style="width: 100%; ">
+				<tr>
+					<td id="tdwd" style="text-align:right;">
+						<a id="clearwangdian" href="javascript:void(0);" class="kqdsCommonBtn">清空</a>
+						<a id="searchwangdian" href="javascript:void(0);" class="kqdsSearchBtn">查询</a>
+					</td>
+				</tr>
 			</table>
 		</div>
 	    <!--表格-->
@@ -231,7 +231,10 @@ $(function() {
     });
     $('#searchwangdian').on('click',
     function() {
-        $('#table2').bootstrapTable('refresh', {
+		$(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+		$(this).text("查询中");
+
+		$('#table2').bootstrapTable('refresh', {
             'url': pageurl2
         });
     });
@@ -266,6 +269,11 @@ function inittablewangdian(nums) {
             goToUserCenterPage(row.usercode);
         },
         onLoadSuccess: function(data) { //加载成功时执行
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#searchwangdian").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+				$("#searchwangdian").text("查询");
+			}
             if_wd_table_int = "wd_table_has_init";
 
             var tableList = data.nums[0];

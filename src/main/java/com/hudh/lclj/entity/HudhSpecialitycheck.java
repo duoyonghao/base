@@ -91,6 +91,8 @@ public class HudhSpecialitycheck {
     private String apicitis;
 
     private String other;
+
+	private String others;
     
     private String createuser;
     
@@ -106,7 +108,17 @@ public class HudhSpecialitycheck {
 
 	private String doctorSignature;
 
-	/**  
+	private String status;
+
+	public String getOthers() {
+		return others;
+	}
+
+	public void setOthers(String others) {
+		this.others = others;
+	}
+
+	/**
 	  * @Title:  getSeqId <BR>  
 	  * @Description: please write your description <BR>  
 	  * @return: String <BR>  
@@ -1002,6 +1014,14 @@ public class HudhSpecialitycheck {
 		this.doctorSignature = doctorSignature;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "HudhSpecialitycheck{" +
@@ -1050,6 +1070,7 @@ public class HudhSpecialitycheck {
 				", residualrown='" + residualrown + '\'' +
 				", apicitis='" + apicitis + '\'' +
 				", other='" + other + '\'' +
+				", others='" + others + '\'' +
 				", createuser='" + createuser + '\'' +
 				", createtime='" + createtime + '\'' +
 				", organization='" + organization + '\'' +
@@ -1057,6 +1078,7 @@ public class HudhSpecialitycheck {
 				", doctorTime='" + doctorTime + '\'' +
 				", patientSignature='" + patientSignature + '\'' +
 				", doctorSignature='" + doctorSignature + '\'' +
+				", status='" + status + '\'' +
 				'}';
 	}
 

@@ -244,6 +244,7 @@ var func = ['exportTable'];
 var isyx = "<%=isyx%>";
 var static_organization = '<%=ChainUtil.getCurrentOrganization(request)%>';
 $(function() {
+	$("input[type='text']").attr("autocomplete","off");  //去掉input输入框的历史记录  lutian
 	// 连锁门诊下拉框
     initHosSelectListNoCheckWithNull('organization', static_organization);
     // 咨询项目、受理类型、受理工具
@@ -293,6 +294,8 @@ function queryParams(params) {
 }
 $('#query').on('click',
 function() {
+	$(this).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(this).text("查询中");
     $('#dykdxm').bootstrapTable('refresh', {
         'url': pageurl
     });
@@ -335,6 +338,11 @@ function OrderDetail() {
         },
         paginationShowPageGo: true,
         onLoadSuccess: function(data) { //加载成功时执行
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
         	//console.log("网电统计=="+JSON.stringify(data));
             var tableList = data;
             var hj = {};

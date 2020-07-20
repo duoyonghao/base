@@ -91,6 +91,7 @@
 		and d.goodscode in (select goodscode from HUDH_KSLL_COLLOR_DETAIL 
 		 where parentid = #{parentid,jdbcType=VARCHAR} and status!=3)
 		</if>
+		and kc.nums <![CDATA[ > ]]> 0
 		order by d.goodscode asc
 	</select>
 	

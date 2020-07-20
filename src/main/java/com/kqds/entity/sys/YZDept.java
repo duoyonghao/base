@@ -42,6 +42,8 @@ public class YZDept {
 	private String ismore;//是否多地点行医部门（0：不是多点行医部门、1：是多点行医的部门）
 
 	private String dept_type_other;
+
+	private String iskefu;//是否是客服部门
 	
 	public String getIsmore() {
 		return ismore;
@@ -220,5 +222,12 @@ public class YZDept {
 	public void setDept_type_other(String dept_type_other) {
 		this.dept_type_other = dept_type_other;
 	}
-	
+
+	public String getIskefu() {
+		return iskefu;
+	}
+
+	public void setIskefu(String iskefu) {
+		this.iskefu = iskefu;
+	}
 }

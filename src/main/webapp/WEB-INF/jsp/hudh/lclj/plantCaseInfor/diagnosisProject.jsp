@@ -759,8 +759,31 @@
     var menuid = window.parent.menuid;//左侧菜单id
     var seqId = "<%=seqId%>";   /* 左侧菜单id */
     var seqidFather = "<%=seqidFather%>";
-    var form=window.parent.getForm();
+    var userAgent = navigator.userAgent;
+    var signatureWidth='70%';
+    var signatureHeight='65%';
+    var form=window.parent.getOldForm();
     $(function () {
+        if (userAgent.match(/mobile/i)) {
+            var mql = window.matchMedia('(orientation: portrait)');
+            function onMatchMediaChange(mql) {
+                if (mql.matches) {
+                    //竖屏
+                    signatureWidth='98%';
+                    signatureHeight='50%';
+                } else {
+                    //横屏
+                    signatureWidth='98%';
+                    signatureHeight='73%';
+                }
+            }
+            // 输出当前屏幕模式
+            onMatchMediaChange(mql);
+
+            // 监听屏幕模式变化
+            mql.addListener(onMatchMediaChange);
+
+        }
         //时间选择
         $(".consent_time").datetimepicker({
             language: 'zh-CN',
@@ -777,7 +800,6 @@
                 );
             }
         });
-
 
         //患者姓名、年龄、性别赋值
         $("#patient_name").attr("value", window.parent.consultSelectPatient.username);
@@ -816,7 +838,7 @@
                 title: '签字',
                 shadeClose: true,
                 shade: 0.6,
-                area: ['800px', '400px'],
+                area:userAgent.indexOf("iPad")>-1?[signatureWidth,signatureHeight] : ['70%', '65%'],
                 content: contextPath + '/SignatureAct/toSignature.act?category=种植'
             });
         }
@@ -861,7 +883,7 @@
                 title: '签字',
                 shadeClose: true,
                 shade: 0.6,
-                area: ['800px', '400px'],
+                area:userAgent.indexOf("iPad")>-1?[signatureWidth,signatureHeight] : ['70%', '65%'],
                 content: contextPath + '/SignatureAct/toSignature.act?category=患者'
             });
         }
@@ -920,60 +942,8 @@
     }
 
     function initZzblInfor(seqId) {
-        if(form){
-            caseId=form.seqId;
-            /* 判断是否已经填写过内容 */
-            if (form.id) {
-                $("#consent_saveBtn").css("display", "none");//隐藏保存按钮
-                $("#consent_updateBtn").css("display", "inline-block");//显示修改按钮
-                //赋值
-                for (var key in form) {
-                    //console.log(key+"-------------"+result[key]);
-                    $("#" + key).attr("value", form[key]);// 填框赋值
-                    $("#remark").text(form["remark"]);//textarea赋值
-                    $("#remark").trigger("keyup");
-                    $("#replaceBox").text(form["remark"]);//textarea替换框赋值
-                    if (form[key].indexOf(";") > 0) {
-                        var checkboxVal = form[key];//拼接多选框的值
-                        var checkboxValArr = checkboxVal.split(";");//将字符串转为数组
-                        for (var i = 0; i < checkboxValArr.length; i++) {
-                            $("input[name=" + key + "]").each(function () {
-                                if ($(this).val() == checkboxValArr[i]) {
-                                    $(this).attr("checked", "checked");
-                                }
-                            })
-                        }
-                    }
-                    //牙位图赋值
-                    if (form[key].indexOf(",") > 0) {
-                        var toothPlaceVal = form[key];//拼接多选框的值
-                        var toothPlaceValArr = toothPlaceVal.split(",");//将字符串转为数组
-                        var newtoothPlaceVal = toothPlaceValArr.join("");
-                        //console.log(newtoothPlaceVal+"---------去掉牙位图逗号");
-                        $("#" + key).attr("value", newtoothPlaceVal);// 填框赋值
-                    }
-                }
-                //$("input").attr("disabled","disabled");//查看信息的时候禁止在填写
-                if (form.doctorsignature != "" && form.doctorsignature != null) {
-                    signature = form.doctorsignature;
-                    $("#img").attr('src', signature);
-                    doctorstatus = false;
-                } else {
-                    $("#img").attr('display', 'none');
-                }
-                if (form.patientsignature != "" && form.patientsignature != null) {
-                    patientsignature = form.patientsignature;
-                    $("#patientimg").attr('src', patientsignature);
-                    patientstatus = false;
-                } else {
-                    $("#patientimg").attr('display', 'none');
-                }
-            }
-            //获取当前页面所有按钮
-            getButtonAllCurPage(menuid);
-        }
         //console.log(seqId+"-----------初始化病历seqId");
-        /*var url = contextPath + '/HUDH_ZzblAct/findZzblOprationById.act';
+        var url = contextPath + '/HUDH_ZzblAct/findZzblOprationById.act';
         $.ajax({
             url: url,
             type: "POST",
@@ -995,7 +965,7 @@
                 }
                 //caseId=result.seqId;  //病历id
                 caseId = seqidFather;  //修改病历id
-                /!* 判断是否已经填写过内容 *!/
+                /* 判断是否已经填写过内容 */
                 if (result.id) {
                     $("#consent_saveBtn").css("display", "none");//隐藏保存按钮
                     $("#consent_updateBtn").css("display", "inline-block");//显示修改按钮
@@ -1045,7 +1015,7 @@
                 //获取当前页面所有按钮
                 getButtonAllCurPage(menuid);
             }
-        });*/
+        });
     }
 
     //获取url中的参数

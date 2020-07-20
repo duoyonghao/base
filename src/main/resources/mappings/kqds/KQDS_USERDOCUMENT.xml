@@ -1302,7 +1302,7 @@ WHERE
         <bind name="temp_dbType" value="${system_dbType}"/>
         select (select count(v.usercode) from KQDS_Visit v where v.usercode=u.UserCode) as ywhf,
         u.createtime,
-        u.seq_id,
+        u.seq_id as uid,
         u.username,
         u.iscreatelclj,
         u.usercode,
@@ -1317,9 +1317,12 @@ WHERE
         u.province,
         u.openid,
         u.bindstatus,
+        u.kefu,
+        p.USER_NAME as kefuname,
         reg.createtime as regcreatetime
         from KQDS_USERDOCUMENT as u
         left join (select createtime,usercode from KQDS_REG where recesort = '20') reg on reg.usercode=u.usercode
+        left join sys_person p on p.seq_id = u.kefu
         where 1=1
         and u.organization = #{organization}
         <if test="bindWX != null and bindWX !='' ">
@@ -2516,7 +2519,7 @@ WHERE
         a1.area_name as provincename,
         a2.area_name as cityname,
         a3.area_name as townname,
-        u.seq_id,
+        u.seq_id as uid,
         u.province,
         u.city,
         u.town,
@@ -3528,6 +3531,7 @@ WHERE
     <!-- 接诊查询,查询名字 -->
     <select id="findNameByUsercode" parameterType="java.util.Map" resultType="json">
 		select
+		u.seq_id as uid,
 		u.usercode,
 		per3.USER_NAME as jdr,
 		per4.USER_NAME as jddy,
@@ -3535,12 +3539,16 @@ WHERE
 		per8.USER_NAME as developername,
 		kcit3.dict_name as devchannel,
 		hzly.dict_name as nexttype,
-		kcit7.dict_name as slgj
+		kcit7.dict_name as slgj,
+		u.kefu,
+		per9.USER_NAME as kefuname,
+		u.contagion
 		from KQDS_UserDocument u
 		LEFT JOIN SYS_PERSON per3 on per3.SEQ_ID = u.createuser
 		LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID = u.guider
 		LEFT JOIN SYS_PERSON per7 on per7.SEQ_ID = u.askperson
 		LEFT JOIN SYS_PERSON per8 on per8.SEQ_ID = u.developer
+		LEFT JOIN SYS_PERSON per9 on per9.SEQ_ID = u.kefu
 		LEFT JOIN SYS_DICT kcit3 on kcit3.seq_id = u.devchannel
 		LEFT JOIN SYS_DICT hzly on hzly.seq_id = u.nexttype
 		LEFT JOIN sys_dict kcit7 ON kcit7.SEQ_ID=u.accepttool
@@ -3967,7 +3975,9 @@ WHERE
         p.PROVINCE_NAME,
         c.CITY_NAME,
         a.AREA_NAME,
-        s.STREET_NAME
+        s.STREET_NAME,
+        u.kefu,
+        p5.USER_NAME as kefuname
         from KQDS_USERDOCUMENT as u
         left join (
         <!-- select a.* from KQDS_REG a,(select usercode,max(createtime) createtime from
@@ -3980,6 +3990,7 @@ WHERE
         left join SYS_PERSON per2 on per2.seq_id = u.askperson
         left join SYS_PERSON per3 on per3.seq_id = u.developer
         left join SYS_PERSON per4 on per4.seq_id = u.createuser
+        left join sys_person p5 on p5.seq_id = u.kefu
         LEFT JOIN SYS_AREA a1 on u.province = a1.seq_id
         LEFT JOIN SYS_AREA a2 on u.city = a2.seq_id
         LEFT JOIN SYS_AREA a3 on u.town = a3.seq_id
@@ -4106,11 +4117,15 @@ WHERE
         GROUP BY cost.regno
     </select>
     <select id="findByUsercode" parameterType="java.lang.String" resultType="json">
-		select UserName, Sex, PhoneNumber1, PhoneNumber2, Age , kefu from KQDS_UserDocument where UserCode=#{usercode}
+		select UserCode, UserName, Sex, PhoneNumber1, PhoneNumber2, Age , kefu from KQDS_UserDocument where UserCode=#{usercode}
 	</select>
 
     <update id="updaterecord" parameterType="com.kqds.entity.base.KqdsUserdocument">
         UPDATE KQDS_UserDocument set contagion = #{contagion} where usercode = #{usercode}
+    </update>
+
+    <update id="setKeFu" parameterType="com.kqds.entity.base.KqdsUserdocument">
+        update KQDS_UserDocument set kefu = #{kefu} where usercode = #{usercode}
     </update>
 
     <select id="getrecord" parameterType="java.lang.String" resultType="json">

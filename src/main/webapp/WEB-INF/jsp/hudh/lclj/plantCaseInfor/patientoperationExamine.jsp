@@ -518,7 +518,7 @@
             }
         });
         getUserInformation(patient_usercode);
-        // initZzblInfor();/* 页面赋值判断初始化 */
+        initZzblInfor();/* 页面赋值判断初始化 */
         // 禁止页面拖拽
         document.ondragstart = function() {
             return false;

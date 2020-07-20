@@ -316,6 +316,7 @@ var pageurl = '<%=contextPath%>/KQDS_CostOrder_DetailAct/getAll.act';
 var canlookphone = '<%=UserPrivUtil.getPrivValueByKey(UserPrivUtil.qxFlag1_canLookPhone, request) %>';
 var personrole = "<%=person.getUserPriv()%>";
 var personroleother = "<%=person.getUserPrivOther()%>";
+var isClick = true;
 
 var loadperson='<%=person.getUserPriv()%>';
 var load=loadperson.split(",");//登陆这权限
@@ -410,7 +411,11 @@ function OrderDetail() {
         sidePagination: "server",//分页方式：client客户端分页，server服务端分页（*）
         paginationShowPageGo: true,
         onLoadSuccess: function(data) { //加载成功时执行
-        	
+			//解除查询按钮禁用 lutian
+			if(data){
+				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","auto").css("pointer-events","auto");
+				$("#query").text("查询");
+			}
         	//判断登录
         	var existornot=isExist(total);
         	if(!existornot){
@@ -1200,7 +1205,7 @@ function queryParams() {
     }
     return temp;
 }
-function searchHzda() {
+function searchHzda(thi) {
 	loadedData = [];
 	nowpage = 0;
 	nowday = null;
@@ -1229,6 +1234,8 @@ function searchHzda() {
         layer.alert('请选择查询条件!' );
         return false;
     }
+	$(thi).attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+	$(thi).text("查询中");
     $('#table').bootstrapTable('refresh', {
         'url': pageurl
     });
@@ -1254,19 +1261,59 @@ function clean() {
   	$(".searchSelect button .pull-left").text("请选择");   
 }
 
+var loadIndex='';
+function download() {
+	layer.msg('数据导出中，请等待');
+	//loadIndex = layer.load(0, {shade: false});
+	isClick = false;
+}
+function disload() {
+	layer.close(loadIndex);
+	layer.msg('数据导出完毕');
+	isClick = true;
+}
 //导出
 function exportTable() {
-    var fieldArr = [];
-    var fieldnameArr = [];
-    $('#table thead tr th').each(function() {
-        var field = $(this).attr("data-field");
-        if (field != "") {
-            fieldArr.push(field); //获取字段
-            fieldnameArr.push($(this).children()[0].innerText); //获取字段中文
-        }
-    });
-    var param = JsontoUrldata(queryParams());
-    location.href = pageurl + "?flag=exportTable&fieldArr=" + JSON.stringify(fieldArr) + "&fieldnameArr=" + JSON.stringify(fieldnameArr) + "&" + param;
+	if(isClick) {
+		isClick = false;
+		// console.log("生成报表")
+		var fieldArr = [];
+		var fieldnameArr = [];
+		$('#table thead tr th').each(function () {
+			var field = $(this).attr("data-field");
+			if (field != "") {
+				fieldArr.push(field);//获取字段
+				fieldnameArr.push($(this).children()[0].innerText);//获取字段中文
+			}
+		});
+		var param = JsontoUrldata(queryParams());
+		//location.href = pageurl+"?flag=exportTable&fieldArr="+JSON.stringify(fieldArr)+"&fieldnameArr="+JSON.stringify(fieldnameArr)+"&"+param;
+		var url = pageurl + "?flag=exportTable&fieldArr=" + JSON.stringify(fieldArr) + "&fieldnameArr=" + JSON.stringify(fieldnameArr) + "&" + param;
+		download();
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', url, true);    // 也可用POST方式
+		xhr.responseType = "blob";
+		xhr.onload = function () {
+			if (this.status === 200) {
+				var blob = this.response;
+				// if (navigator.msSaveBlob == null) {
+				var a = document.createElement('a');
+				//var headerName = xhr.getResponseHeader("Content-disposition");
+				//var fileName = decodeURIComponent(headerName).substring(20);
+				a.download = "明细查询";
+				a.href = URL.createObjectURL(blob);
+				$("body").append(a);    // 修复firefox中无法触发click
+				a.click();
+				URL.revokeObjectURL(a.href);
+				$(a).remove();
+				// } else {
+				//     navigator.msSaveBlob(blob, "信息查询");
+				// }
+			}
+			disload();
+		};
+		xhr.send();
+	}
 }
 function getButtonPower() {
     var menubutton1 = "";
@@ -1276,7 +1323,7 @@ function getButtonPower() {
         }
     }
     menubutton1 += '<a href="javascript:void(0);" class="kqdsCommonBtn clean" onclick="clean()">清空</a>';
-    menubutton1 += '<a href="javascript:void(0);" class="kqdsSearchBtn" onclick="searchHzda()">查询</a>';
+    menubutton1 += '<a href="javascript:void(0);" class="kqdsSearchBtn" onclick="searchHzda(this)" id="query">查询</a>';
     $("#bottomBarDdiv").append(menubutton1);
     setHeight();
 }

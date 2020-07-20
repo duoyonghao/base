@@ -510,7 +510,7 @@
     }
 
     function updaterecord(status) {
-        layer.confirm('是否患有传染性疾病？', {
+        layer.confirm('是否取消传染性疾病登记？', {
             btn: ['是', '否'] //按钮
         }, function () {
             $.ajax({

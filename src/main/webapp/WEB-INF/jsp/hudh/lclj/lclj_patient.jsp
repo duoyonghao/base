@@ -427,7 +427,9 @@ var tableDataforSon;
 var consultSelectPatient;//选中患者信息对象
 var lcljId;
 var func = ['exportTable'];
-var form;
+var isClick = true;
+var oldForm;
+var newForm;
 $(function() {
 	vetoNum();
 	awaitVerifieNum();
@@ -473,6 +475,11 @@ $(function() {
         //smartDisplay: true,
         //toolbar: '#toolbar',//工具按钮用哪个容器
         onLoadSuccess: function(data) { //加载成功时执行\
+            //解除查询按钮禁用 lutian
+            if(data){
+                $("#searchHzlclj").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
+                $("#searchHzlclj").text("查询");
+            }
 //         	console.log(JSON.stringify(data)+"--------------data");
         	 tableDataforSon=data;
         	 var tableList = $('#table').bootstrapTable('getData');
@@ -726,11 +733,21 @@ $(function() {
     });
     $('.searchSelect').selectpicker("refresh");//咨询部门初始化刷新--2019-10-24 licc
 });
-function setForm(forms,num) {
-    form=forms[num];
+function setOldForm(forms,num) {
+    if(forms){
+        oldForm=forms[num];
+    }
 }
-function getForm() {
-    return form;
+function getOldForm() {
+    return oldForm;
+}
+function setNewForm(forms,num) {
+    if(forms){
+        newForm=forms[num];
+    }
+}
+function getNewForm() {
+    return newForm;
 }
 function queryParams(params) {
     var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
@@ -1039,22 +1056,61 @@ var buttonFun = {
 		},
 		scbbLclj : function (){//生成报表
 			exportTable();
+            var loadIndex='';
+            function download() {
+                layer.msg('数据导出中，请等待');
+                //loadIndex = layer.load(0, {shade: false});
+                isClick = false;
+            }
+            function disload() {
+                layer.close(loadIndex);
+                layer.msg('数据导出完毕');
+                isClick = true;
+            }
 			//导出
 			function exportTable() {
-				loadedData = [];
-				nowpage = 0;
-			    var fieldArr = [];
-			    var fieldnameArr = [];
-			    $('#table thead tr th').each(function() {
-			        var field = $(this).attr("data-field");
-			        if (field != "") {
-			            fieldArr.push(field); //获取字段
-			            fieldnameArr.push($(this).children()[0].innerText); //获取字段中文
-			        }
-			    });
-			    var param = JsontoUrldata(queryParamsB());
-			    //console.log("param==-=-"+param);
-			    location.href = pageurl + "?flag=exportTable&fieldArr=" + JSON.stringify(fieldArr) + "&fieldnameArr=" + JSON.stringify(fieldnameArr) + "&" + param;
+                if(isClick) {
+                    isClick = false;
+                    // console.log("生成报表")
+                    loadedData = [];
+                    nowpage = 0;
+                    var fieldArr = [];
+                    var fieldnameArr = [];
+                    $('#table thead tr th').each(function() {
+                        var field = $(this).attr("data-field");
+                        if (field != "") {
+                            fieldArr.push(field); //获取字段
+                            fieldnameArr.push($(this).children()[0].innerText); //获取字段中文
+                        }
+                    });
+                    var param = JsontoUrldata(queryParamsB());
+                    //console.log("param==-=-"+param);
+                    var url = pageurl + "?flag=exportTable&fieldArr=" + JSON.stringify(fieldArr) + "&fieldnameArr=" + JSON.stringify(fieldnameArr) + "&" + param;
+                    download();
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('GET', url, true);    // 也可用POST方式
+                    xhr.responseType = "blob";
+                    xhr.onload = function () {
+                        if (this.status === 200) {
+                            var blob = this.response;
+                            // if (navigator.msSaveBlob == null) {
+                            var a = document.createElement('a');
+                            //var headerName = xhr.getResponseHeader("Content-disposition");
+                            //var fileName = decodeURIComponent(headerName).substring(20);
+                            a.download = "患者列表";
+                            a.href = URL.createObjectURL(blob);
+                            $("body").append(a);    // 修复firefox中无法触发click
+                            a.click();
+                            URL.revokeObjectURL(a.href);
+                            $(a).remove();
+                            // } else {
+                            //     navigator.msSaveBlob(blob, "信息查询");
+                            // }
+                        }
+                        disload();
+                    };
+                    xhr.send();
+                }
 			}
 		}	
 }
@@ -1104,6 +1160,8 @@ function query() {
         layer.alert("请选择查询条件" );
         return false;
     }  */
+    $("#searchHzlclj").attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
+    $("#searchHzlclj").text("查询中");
     refresh();
 }
 //  审核提醒

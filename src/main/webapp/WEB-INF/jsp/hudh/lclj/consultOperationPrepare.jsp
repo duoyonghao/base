@@ -118,6 +118,7 @@
 								<li class="positionLi jwsLi">
 									<label><input name="Consultation" type="checkbox" disabled="disabled" value="询问既往史" /><font class="mustIn">*</font><font class="ask_Previous" onclick="showHiddenClick(this,'jwsLi');">1、询问既往史及体格检查</font></label>
 									<div class="caseContiner" style="display:none;">
+										<button class="btnStyle" onclick="toggleCase(this,1,1);" style="">切换新版</button>
 										<div class="zlCases"></div>
 										<div class="selectCases">
 											<select id="allCases"></select>
@@ -130,6 +131,7 @@
 								<li class="positionLi jczdLi">
 									<label><input name="Consultation" type="checkbox" disabled="disabled" value="口内检查" /><font class="mustIn">*</font><font class="examine_diagnose" onclick="showHiddenClick(this,'jczdLi');">2、口腔专科检查</font></label>
 									<div class="caseContiner" style="display:none;">
+										<button class="btnStyle" onclick="toggleCase(this,2,1);" style="">切换新版</button>
 										<div class="zlCases"></div>
 										<div class="selectCases">
 											<select id="allCases"></select>
@@ -141,6 +143,7 @@
 								<li class="positionLi zlCasesLi">
 									<label class="zlCasesLiText"><input name="Consultation" type="checkbox" disabled="disabled" value="制定手术方案和治疗计划" /><font class="mustIn">*</font><font class="diagnosis_case" onclick="showHiddenClick(this,'zlCasesLi');">4、制定手术方案和治疗计划</font></label>
 									<div class="caseContiner" style="display:none;">
+										<button class="btnStyle" onclick="toggleCase(this,3,1);" style="">切换新版</button>
 										<div class="zlCases"></div>
 										<div class="selectCases">
 											<select id="allCases"></select>
@@ -222,7 +225,7 @@
 									</div>
 								</li>
 							   <%--<li><label><input name="Consultation" type="checkbox" value="告知通知书" /><font class="inform">19、告知通知书</font></label></li> --%>
-<%--							    <li><label><input name="Consultation" type="checkbox" value="诊疗方案" /><font class="case">20、诊疗方案</font></label></li>--%>
+						    <%--<li><label><input name="Consultation" type="checkbox" value="诊疗方案" /><font class="case">20、诊疗方案</font></label></li>--%>
 							</ul>
 						</div>
 					</td>
@@ -349,6 +352,9 @@
 	var alreadySelectZLFAId=""; //已经有选择的诊疗方案seq_id 页面初始化时判断状态并赋值
 	var alreadySelectXFFAId=""; //已经有选择的修复方案seq_id 页面初始化时判断状态并赋值
 	var consultAddBtn=true; //判断此页面是否为咨询填写,多方案是否加新增按钮
+    var alreadySelectZSBSMark="";  //记录上一次选中的主诉即既往病史是新病历还是老病历
+	var alreadySelectJCZDMark=""; //记录上一次选中的口腔专科检查是新病历还是老病历
+	var alreadySelectZLFAMark=""; //记录上一次选中的诊疗方案是新病历还是老病历
 	var notification = 0;
 	$(function(){
 		checkOptions();//判断要填写的选项是否已填写并选中
@@ -361,18 +367,24 @@
             return false;
         };
 
-		//
-        // initCaseHistory();  //初始化主诉及既往病史
-        // initZzblOpration(); //初始化检查及诊断
-        // initDiagnosisProject(); //初始化诊疗方案
-        // initRepairProject(); //初始化修复方案
-       	//dProjectclick(); //诊疗方案移入移除显示隐藏
+		//var anamnesisUrl = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
+		//var jczdUrl  = contextPath + '/HUDH_ZzblCheckAct/findZzblOprationById.act';  //老病历url
+		//var zlfaurl = contextPath + '/HUDH_ZzblAct/findZzblOprationById.act';//诊疗方案老url
+        //initCaseHistory(anamnesisUrl,1);  //初始化主诉及既往病史，默认先展示老病历
+        //initZzblOpration(jczdUrl,2); //初始化检查及诊断
+        //initDiagnosisProject(zlfaurl,3); //初始化诊疗方案
+        //initRepairProject(); //初始化修复方案
+       	 //dProjectclick(); //诊疗方案移入移除显示隐藏
+        //initSelectList("jwsLi",1); //初始化既往病史下拉框
+        //initSelectList("jczdLi",2); //检查即诊断下拉框
+        //initSelectList("zlCasesLi",3); //诊疗方案下拉框
+        //initSelectList("xffaLi",4); //修复方案下拉框
 
        	//全局监听
         document.addEventListener("click",function(event){
         	event=event||window.event;
             var eve=event.target||eve.elementSrc;
-        	if(eve.className=='ask_Previous' || eve.className=='examine_diagnose' || eve.className=='diagnosis_case' || eve.className=='xiufu_test' || eve.id=='allCases'){
+        	if(eve.className=='ask_Previous' || eve.className=='examine_diagnose' || eve.className=='diagnosis_case' || eve.className=='xiufu_test' || eve.id=='allCases' || eve.className=='btnStyle'){
         	}else{
         		$(".caseContiner").each(function(i,obj){
         			$(this).css("display","none");
@@ -558,31 +570,31 @@
 				 order_number : order_number
 			},
 			success:function(result){
-					 //console.log(JSON.stringify(result)+"--------aaaaa");
+					// console.log(JSON.stringify(result)+"--------aaaaa");
 					/* if(result.seqId){
 						$(".ask_Previous").prev().attr("checked","checked").attr("disabled","disabled");
 					}   */
 //					$('input').attr("disabled",true)
 					$("#remark").val(result.remark);
-					if(result.anamnesis){
-						$(".jwsLi").find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
-					}
-					if(result.examine){
-						$(".jczdLi").find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
-					}
-					if(result.diagnosis){
-						$(".zlCasesLi").find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
-					}
-					if(result.repair){
-						$(".xffaLi").find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
-					}
+                if(result.anamnesis){
+                    $(".jwsLi").find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
+                }
+                if(result.examine){
+                    $(".jczdLi").find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
+                }
+                if(result.diagnosis){
+                    $(".zlCasesLi").find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
+                }
+                if(result.repair){
+                    $(".xffaLi").find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
+                }
                 if(result.knowbook){
                     var knowbook=result.knowbook.split(",");
                     for (i=0;i<knowbook.length ;i++ )
                     {
                         if(knowbook[i]=='locator'){
                             $(".locatorKnowbook").prev().attr("checked","checked").attr("disabled","disabled");
-						}
+                        }
                         if(knowbook[i]=='pullout'){
                             $(".pulloutKnowbook").prev().attr("checked","checked").attr("disabled","disabled");
                         }
@@ -592,8 +604,19 @@
                     }
                     //在保存接口修改临床路径表的同意书字段值后，进行查询判断是否有值
                     //$(".dentalImplant").prev().attr("checked","checked").attr("disabled","disabled");
+                }
+                //会诊赋值
+                var advisory = result.advisory;
+                if(advisory){
+                    var disease_id = advisory.split(";");
+                    for(var i = 0; i < disease_id.length; i++){
+                        $("input[name='Advisory']").each(function(){
+                            if($(this).val()==disease_id[i]){
+                                $(this).attr("checked","checked").attr("disabled","disabled");
+                            }
+                        })
+                    }
 				}
-
 					//基台放置信息赋值
 					var select_abutment_station = result.abutment_station;
 					if(select_abutment_station){
@@ -654,6 +677,22 @@
 
 			}
 	  });
+		/* 判断新种植病历情况记录*/
+		/*var plantRecordsurl =  contextPath + '/HUDH_MedicalRecordsAct/selectdata.act';
+		$.ajax({
+			url: plantRecordsurl,
+			type:"POST",
+			dataType:"json",
+			data : {
+				lcljId:id
+			},
+			success:function(result) {
+				// console.log(JSON.stringify(result)+'==================888888');
+				if(result.length>0){
+					$(".plantRecords").prev().attr("checked","checked").attr("disabled","disabled");
+				}
+			}
+		});*/
 		/* 判断人工种植牙知情同意书*/
 		/*var plantKnowbookurl = contextPath + '/HUDH_ZzblAskAct/findFamiliarBookById.act';
 		$.ajax({
@@ -711,8 +750,8 @@
 			}
 	  });*/
 
-		/*//告知通知书
-		var gztzsurl = contextPath + '/HUDH_NotificationAct/findNotificationByLcljId.act';
+		//告知通知书
+		/*var gztzsurl = contextPath + '/HUDH_NotificationAct/findNotificationByLcljId.act';
 		$.ajax({
 			url: gztzsurl,
 			type:"POST",
@@ -733,23 +772,23 @@
 
 
 		//诊疗方案
-		// var zlfaurl = contextPath + '/HUDH_LcljCaseAct/select.act';
-		// $.ajax({
-		// 	url: zlfaurl,
-		// 	type:"POST",
-		// 	dataType:"json",
-		// 	data : {
-		// 		id : id
-		// 	},
-		// 	success:function(result){
-		// 		if(result!=null){
-		// 			$(".case").prev().attr("checked","checked").attr("disabled","disabled");
-		// 		}
-		// 	}
-	  // });
+		/*var zlfaurl = contextPath + '/HUDH_LcljCaseAct/select.act';
+		$.ajax({
+			url: zlfaurl,
+			type:"POST",
+			dataType:"json",
+			data : {
+				id : id
+			},
+			success:function(result){
+				if(result.size>0){
+					$(".case").prev().attr("checked","checked").attr("disabled","disabled");
+				}
+			}
+	  });*/
 
-		/*//新 人工种植牙知情同意书
-		var consentBookUrl = contextPath + '/HUDH_ZzblAskAct/findFamiliarBookById.act';
+		//新 人工种植牙知情同意书
+		/*var consentBookUrl = contextPath + '/HUDH_ZzblAskAct/findFamiliarBookById.act';
 		$.ajax({
 			url: consentBookUrl,
 			type:"POST",
@@ -765,8 +804,9 @@
 		});*/
 
 }
+
 	//告知通知书
-	  /*$(".inform").click(function(){
+	  $(".inform").click(function(){
 	  	parent.layer.open({
 	  		title:"告知通知书",
 	  		type:2,
@@ -779,10 +819,10 @@
 	  			window.location.reload();//刷新本页面
 	  		}
 	  	});
-	  });*/
+	  });
 
 	//诊疗方案
-	 /* $(".case").click(function(){
+	  $(".case").click(function(){
 	  	parent.layer.open({
 	  		title:"诊疗方案",
 	  		type:2,
@@ -795,7 +835,7 @@
 	  			window.location.reload();//刷新本页面
 	  		}
 	  	});
-	  });*/
+	  });
 
 
 	//人工种植牙知情同意书
@@ -861,6 +901,22 @@
 			  	}
 			});
 	  });
+	//新种植病历
+	  $(".plantRecords").click(function(){
+		  	parent.layer.open({
+		  		title:"种植病历",
+		  		type:2,
+		  		closeBtn:1,
+		  		content:contextPath+'/ZzblViewAct/toDentalExamination.act',
+		  		area:userAgent.indexOf("iPad") > -1 ? ['100%','95%'] : ['80%','80%'],
+		  		cancel: function(){
+		  		},
+		  		end:function(){
+		  			window.location.reload();//刷新本页面
+		  		}
+		  	});
+
+		  });
 	//修复方案
 	 /*  $(".xiufu_test").click(function(){
 		  if(plantPhysician==''&&repairPhysician==''){

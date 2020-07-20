@@ -298,6 +298,11 @@ function openAddCost(){
 		layer.alert('请在接待中心或者医疗中心进行费用添加！' );
 		return false;
 	}
+	//判断该患者是否指定客服
+	if(!selectKefuByLogin(onclickrowOobj.usercode)){
+        layer.alert('该患者无指定客服，无权限操作！' );
+        return false;
+	}
 	if(canKd == 0){
 		if(!(isStrInArrayString(personrole,"<%=static_askpriv%>") || isStrInArrayString(personrole,"<%=static_docpriv%>") || isStrInArrayStringEach("<%=static_askpriv%>",personroleother) || isStrInArrayStringEach("<%=static_docpriv%>",personroleother))){
 			layer.alert('只有咨询或者医生才有权限添加费用！' );
@@ -362,7 +367,21 @@ function openAddCostTest(){
 		content: '<%=baseheader%>/KQDS_CostOrderAct/toDetail_AddCostTest.act?usercode='+onclickrowOobj.usercode+'&regno='+onclickrowOobj.seqId
     });
 }
+//查询当前登录人是否为指定客服后的客服
+function selectKefuByLogin(usercode){
+    var flag=true;
+    var url = '<%=baseheader%>/YZDeptAct/selectKefuByLogin.act';
+    var param={"usercode":usercode};
+    $.axse(url, param, function(data) {
+        if(!data.valid){
+            flag=false;
+		}
 
+    }, function() {
+
+    });
+    return flag;
+}
 
 //删除费用单和项目清单
 function delCostItem(id){

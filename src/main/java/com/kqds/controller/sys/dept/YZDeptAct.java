@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kqds.service.base.hzjd.KQDS_UserDocumentLogic;
 import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,7 +43,8 @@ public class YZDeptAct {
 	private YZDeptLogic deptLogic;
 	@Autowired
 	private YZParaLogic paraLogic;
-
+	@Autowired
+	private KQDS_UserDocumentLogic userDocumentLogic;
 	@RequestMapping(value = "/toIndex.act")
 	public String toIndex(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		return "/admin/dept/index.jsp";
@@ -748,5 +750,36 @@ public class YZDeptAct {
 		} catch (Exception ex) {
 			YZUtility.DEAL_ERROR(null, false, ex, response, logger);
 		}
+	}
+
+	/**
+	 * 查询当前登录人是否为客服部门，如是客服部门则是否是当前患者的客服
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/selectKefuByLogin.act")
+	public void selectKefuByLogin(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String usercode = request.getParameter("usercode");
+		YZPerson person = SessionUtil.getLoginPerson(request);
+		try {
+			List<JSONObject> list = deptLogic.selectBeanListByMap("\'" + person.getDeptId() + "\'");
+			if(list.size()>0){
+				if("0".equals(list.get(0).getString("iskefu"))){
+					YZUtility.DEAL_SUCCESS_VALID(true,response);
+					return ;
+				}
+			}
+			JSONObject user = userDocumentLogic.findByUsercode(usercode);
+			if(!person.getSeqId().equals(user.getString("kefu"))){
+				YZUtility.DEAL_SUCCESS_VALID(false,response);
+				return;
+			}
+			YZUtility.DEAL_SUCCESS_VALID(true,response);
+
+		} catch (Exception ex) {
+			YZUtility.DEAL_ERROR(null, false, ex, response, logger);
+		}
+		return;
 	}
 }

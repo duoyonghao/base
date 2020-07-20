@@ -1328,9 +1328,31 @@
 		var caseId=""; //已存在的病历id
 		var menuid=window.parent.menuid;//左侧菜单id
 		var seqidFather = "<%=seqidFather%>";
-		var form=window.parent.getForm();
-		$(function(){
-			var userAgent = navigator.userAgent; 
+        var userAgent = navigator.userAgent;
+        var signatureWidth='70%';
+        var signatureHeight='65%';
+        var form=window.parent.getOldForm();
+        $(function(){
+            if (userAgent.match(/mobile/i)) {
+                var mql = window.matchMedia('(orientation: portrait)');
+                function onMatchMediaChange(mql) {
+                    if (mql.matches) {
+                        //竖屏
+                        signatureWidth='98%';
+                        signatureHeight='50%';
+                    } else {
+                        //横屏
+                        signatureWidth='98%';
+                        signatureHeight='73%';
+                    }
+                }
+                // 输出当前屏幕模式
+                onMatchMediaChange(mql);
+
+                // 监听屏幕模式变化
+                mql.addListener(onMatchMediaChange);
+
+            }
 			if (userAgent.indexOf("iPad") > -1){
 				$(".sexInfo").css("width","150px"); //年龄
 				$("input[name='symptom']").css("width","20px"); //牙齿选项
@@ -1411,13 +1433,13 @@
 		doctorSignature.onclick = function(){ 
 			if(doctorstatus){
 				layer.open({
-			        type: 2,
-			        title: '签字',
-			        shadeClose: true,
-			        shade: 0.6,
-			        area: ['70%', '65%'],
-			        content: contextPath + '/SignatureAct/toSignature.act?category=种植'
-			    });
+                    type: 2,
+                    title: '签字',
+                    shadeClose: true,
+                    shade: 0.6,
+                    area:userAgent.indexOf("iPad")>-1?[signatureWidth,signatureHeight] : ['70%', '65%'],
+                    content: contextPath + '/SignatureAct/toSignature.act?category=种植'
+                });
 			}
 	   }
 		function addSignature(){
@@ -1456,7 +1478,7 @@
 			        title: '签字',
 			        shadeClose: true,
 			        shade: 0.6,
-			        area: ['70%', '65%'],
+			        area: userAgent.indexOf("iPad")>-1?[signatureWidth,signatureHeight] : ['70%', '65%'],
 			        content: contextPath + '/SignatureAct/toSignature.act?category=患者'
 			    });
 			}
@@ -1514,6 +1536,7 @@
 		function initZzblInfor(){
 		    if(form){
                 caseId=form.seqId;
+                /* 判断是否已经填写过内容 */
                 if(form.seqId){
                     $("#consent_saveBtn").css("display","none");//隐藏保存按钮
                     $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
@@ -1577,10 +1600,10 @@
                     }
 
                 }
-                /* 针对ipad自适应 */
-                //获取当前页面所有按钮
-                getButtonAllCurPage(menuid);
 			}
+            /* 针对ipad自适应 */
+            //获取当前页面所有按钮
+            getButtonAllCurPage(menuid);
 			//console.log(id+"--------------查询id");
 			/*var url = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
 			$.ajax({
@@ -1608,7 +1631,7 @@
 					if(result.seqId){
 						$("#consent_saveBtn").css("display","none");//隐藏保存按钮
 						$("#consent_updateBtn").css("display","inline-block");//显示修改按钮
-						//赋值 
+						//赋值
 						for(var key in result){
 							//console.log(key+"-------------"+result[key]);
 							$("#"+key+"[type='text']").attr("value",result[key]);// 填框赋值
@@ -1666,8 +1689,8 @@
 						}else{
 							$("#patientimg").attr('display', 'none');
 						}
-						
-					}  
+
+					}
 					/!* 针对ipad自适应 *!/
 					//获取当前页面所有按钮
 					 getButtonAllCurPage(menuid);

@@ -272,7 +272,7 @@
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12 colDefined">
 				<!-- 填写框 -->
-				<div class="zl_fillWritediv" style="style="height: 30px;"">
+				<div class="zl_fillWritediv" style="height: 30px;">
 					<span style="line-height: 25px;font-weight:600;margin-right: 9%;">颌间距离:&nbsp;</span>
 					<input id="interarch_distance" onblur="TextLengthCheck(this.id,10);" type="text" style="width: 7%;"/>
 					<span>&nbsp;mm</span>
@@ -815,9 +815,31 @@
 		var caseId=""; //已存在的病历id
 		var menuid=window.parent.menuid;//左侧菜单id
 		var seqidFather = "<%=seqidFather%>";
-        var form=window.parent.getForm();
+        var userAgent = navigator.userAgent;
+        var signatureWidth='70%';
+        var signatureHeight='65%';
+        var form=window.parent.getOldForm();
 		$(function(){
-			
+            if (userAgent.match(/mobile/i)) {
+                var mql = window.matchMedia('(orientation: portrait)');
+                function onMatchMediaChange(mql) {
+                    if (mql.matches) {
+                        //竖屏
+                        signatureWidth='98%';
+                        signatureHeight='50%';
+                    } else {
+                        //横屏
+                        signatureWidth='98%';
+                        signatureHeight='73%';
+                    }
+                }
+                // 输出当前屏幕模式
+                onMatchMediaChange(mql);
+
+                // 监听屏幕模式变化
+                mql.addListener(onMatchMediaChange);
+
+            }
 			//时间选择
 		    $(".consent_time").datetimepicker({
 		        language:  'zh-CN',  
@@ -874,7 +896,7 @@
 			        title: '签字',
 			        shadeClose: true,
 			        shade: 0.6,
-			        area: ['70%', '60%'],
+                    area:userAgent.indexOf("iPad")>-1?[signatureWidth,signatureHeight] : ['70%', '65%'],
 			        content: contextPath + '/SignatureAct/toSignature.act?category=种植'
 			    });
 			}
@@ -904,8 +926,8 @@
 		}
 		
 		function initZzblInfor(){
-            if(form){
-                caseId=form.seqId;
+		    if(form){
+                caseId=form.seqId;  //修改病历id
                 /* 判断是否已经填写过内容 */
                 if(form.id){
                     $("#consent_saveBtn").css("display","none");//隐藏保存按钮
@@ -950,10 +972,9 @@
                         $("#img").attr('display', 'none');
                     }
                 }
-                //获取当前页面所有按钮
-                getButtonAllCurPage(menuid);
-            }
-
+			}
+            //获取当前页面所有按钮
+            getButtonAllCurPage(menuid);
 			/*var url = contextPath + '/HUDH_ZzblCheckAct/findZzblOprationById.act';
 			$.ajax({
 				url: url,

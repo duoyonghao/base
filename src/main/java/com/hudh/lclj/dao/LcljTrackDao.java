@@ -442,8 +442,13 @@ public class LcljTrackDao {
 		dao.update("HUDH_LCLJ_ORDERTRACK.updateFormStatus",map);
 	}
 
+	/**
+	 * 修改同意书字段填值
+	 * @param map
+	 * @throws Exception
+	 */
 	public void updateFormBookStatus(Map<String,String> map) throws Exception {
-		//form 表示字段名称，status 表示字段保存的值 ， id 表示临床路径id
+		//status 表示字段保存的值 ， id 表示临床路径id
 		dao.update("HUDH_LCLJ_ORDERTRACK.updateFormBookStatus",map);
 	}
 }

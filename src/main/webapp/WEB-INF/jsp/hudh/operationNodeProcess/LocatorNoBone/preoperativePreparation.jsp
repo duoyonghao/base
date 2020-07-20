@@ -67,6 +67,7 @@
 								<li class="positionLi jwsLi">
 									<label><input name="Consultation" type="checkbox" value="询问既往史" disabled="disabled"/><font class="ask_Previous" onclick="showHiddenClick(this,'jwsLi');">1、询问既往史及体格检查</font></label>
 									<div class="caseContiner" style="display:none;">
+										<button class="btnStyle" onclick="toggleCase(this,1,1);">切换新版</button>
 										<div class="zlCases"></div>
 										<div class="selectCases">
 											<select id="allCases"></select>
@@ -78,6 +79,7 @@
 								<li class="positionLi jczdLi">
 									<label><input name="Consultation" type="checkbox" value="口内检查" disabled="disabled"/><font class="examine_diagnose" onclick="showHiddenClick(this,'jczdLi');">2、口腔专科检查</font></label>
 									<div class="caseContiner" style="display:none;">
+										<button class="btnStyle" onclick="toggleCase(this,2,1);">切换新版</button>
 										<div class="zlCases"></div>
 										<div class="selectCases">
 											<select id="allCases"></select>
@@ -95,6 +97,7 @@
 								<li class="positionLi zlCasesLi">
 									<label class="zlCasesLiText"><input name="Consultation" type="checkbox" value="制定手术方案和治疗计划" /><font class="diagnosis_case" onclick="showHiddenClick(this,'zlCasesLi');">4、制定手术方案和治疗计划</font></label>
 									<div class="caseContiner" style="display:none;">
+										<button class="btnStyle" onclick="toggleCase(this,3,1);">切换新版</button>
 										<div class="zlCases"></div>
 										<div class="selectCases">
 											<select id="allCases"></select>
@@ -155,6 +158,9 @@ var alreadySelectJCZDId=""; //已经有选择的检查及诊断seq_id 页面初�
 var alreadySelectZLFAId=""; //已经有选择的诊疗方案seq_id 页面初始化时判断状态并赋值
 var alreadySelectXFFAId=""; //已经有选择的修复方案seq_id 页面初始化时判断状态并赋值
 var consultAddBtn=false; //判断此页面是否为咨询填写,多方案是否加新增按钮
+var alreadySelectZSBSMark="";  //记录上一次选中的主诉即既往病史是新病历还是老病历
+var alreadySelectJCZDMark=""; //记录上一次选中的口腔专科检查是新病历还是老病历
+var alreadySelectZLFAMark=""; //记录上一次选中的诊疗方案是新病历还是老病历
 $(function(){
 	//时间选择
     $("#visit_time").datetimepicker({
@@ -167,11 +173,19 @@ $(function(){
 	
     initFlow();
 	checkOptions();//判断要填写的选项是否已填写并选中
-    
-    initCaseHistory();  //初始化主诉及既往病史
-    initZzblOpration(); //初始化检查及诊断
-    initDiagnosisProject(); //初始化诊疗方案
+
+	var anamnesisUrl = contextPath + '/HUDH_ZzblAskAct/findCaseHistoryById.act';
+	initCaseHistory(anamnesisUrl,1);  //初始化主诉及既往病史，默认先展示老病历
+    //initCaseHistory();  //初始化主诉及既往病史
+	var jczdUrl  = contextPath + '/HUDH_ZzblCheckAct/findZzblOprationById.act';  //老病历url
+	var zlfaurl = contextPath + '/HUDH_ZzblAct/findZzblOprationById.act';//诊疗方案老url
+	initZzblOpration(jczdUrl,2); //初始化检查及诊断
+	initDiagnosisProject(zlfaurl,3); //初始化诊疗方案
     initRepairProject(); //初始化修复方案
+	initSelectList("jwsLi",1); //初始化既往病史下拉框
+	initSelectList("jczdLi",2); //检查即诊断下拉框
+	initSelectList("zlCasesLi",3); //诊疗方案下拉框
+	initSelectList("xffaLi",4); //修复方案下拉框
 });
 
 //判断要填写的选项是否已填写并选中
