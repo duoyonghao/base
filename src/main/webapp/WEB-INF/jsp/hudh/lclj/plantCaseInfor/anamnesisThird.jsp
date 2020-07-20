@@ -416,7 +416,7 @@
 		width: 100px!important;
 	}
 	.patient .inputDiv:nth-child(7){
-		width: 300px!important;
+		width: 320px!important;
 	}
 
 	.baseInfo .patient>.inputDiv>span{
@@ -1879,7 +1879,7 @@
 				$("#patient_age").text( r.age);//患者年龄
 				$("#patient_idnum").text( r.idcardno); //身份证号码
 				$("#patient_birthday").text( r.birthday); //生日
-				$("#patient_phone").text( r.phonenumber1); //电话
+				$("#patient_tel").text( r.phonenumber1); //电话
 				$("#urgency_people").text( r.emergencyContact);  //紧急联系人
 				$("#urgency_phone").text( r.emergencyPhone);  //紧急联系人电话
 				$("#patient_address").text( r.provincename + r.cityname + r.townname + r.streetName); //地址
