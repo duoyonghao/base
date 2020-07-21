@@ -952,9 +952,11 @@ public class HUDH_FlowAct {
 				throw new Exception("修复方案确认单还没有填写，请填写完再进行提交！");
 			} else {
 			}*/
-            if (dzblService.findCaseHistoryById(id).size() > 0 && dzblService.findCaseHistoryById(id) != null) {
-                if (zzblCheckService.findZzblOprationById(id).size() > 0 && zzblCheckService.findZzblOprationById(id) != null) {
-                    if (zzblService.findZzblOprationById(id).size() > 0 && zzblService.findZzblOprationById(id) != null) {
+            if (dzblService.findCaseHistoryById(id).size() > 0 && dzblService.findCaseHistoryById(id) != null || zzblAdviceService.findCaseHistoryById(id).size()>0) {
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("lcljId", id);
+                if (zzblCheckService.findZzblOprationById(id).size() > 0 && zzblCheckService.findZzblOprationById(id) != null|| mlogic.selectdata(map).size()>0) {
+                    if (zzblService.findZzblOprationById(id).size() > 0 && zzblService.findZzblOprationById(id) != null || logic.selectWithPage(id).size()>0) {
                         if (rscService.findRepairInforById(id).size() > 0 && rscService.findRepairInforById(id) != null) {
                             if (dzblService.findFamiliarBook(id) != null || dzblService.findLocatorFamiliares(id).size() > 0) {
                                 flowService.updateOrderTrackNodes(dataMap, flowCode, type, dentalJaw, lcljOrderTrack, request);
