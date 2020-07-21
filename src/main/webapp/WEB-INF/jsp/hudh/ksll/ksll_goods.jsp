@@ -77,8 +77,8 @@
            					<td style="text-align:left;"> 
 	           					<select name="floor" id="floor" style="width: 120px">
 	           						<option value="">请选择</option>
-	           						<option value="1" selected>负一层</option>
-	           						<option value="2">二楼</option>
+	           						<option value="1" selected>仓库</option>
+	           						<option value="2">技工室</option>
 	           					</select>
 	           				</td>
 <!-- 			                <td style="text-align:right;"><font color="red">*</font>&nbsp;&nbsp;领用仓库：</td> -->
