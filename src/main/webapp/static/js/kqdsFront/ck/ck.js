@@ -745,7 +745,9 @@ function getButtonPower() {
             menubutton1 += '<label id="ckdept" onclick="ckdept()" style="cursor:pointer">出库部门</label>';
         } else if (listbutton[i].qxName == "ckempty") {
             menubutton_cklb += '<label id="ckempty" onclick="ckempty()" style="cursor:pointer">清空仓库</label>';
-        } else if (listbutton[i].qxName == "mbxz") {
+        } else if (listbutton[i].qxName == "ck_dbck") {
+            menubuttonexp += '<label id="del" onclick="allocatingOutbound()" style="cursor:pointer">调拨出库</label>';
+        }  else if (listbutton[i].qxName == "mbxz") {
             menubuttonexp += '<label><a id="mbxz" onclick="mbxz();" class="webuploader-pick" style="cursor:pointer">模板下载</a></label>';
         } else if (listbutton[i].qxName == "sqdr") {
             menubuttonexp += '<label>' + '<input type="hidden" placeholder="" id="imgtype" name="imgtype" value="goods">' + '<div id="uploader-demo">	' + '<div id="fileList" class="uploader-list"></div>' + '<div id="filePicker">商品导入</div>' + '</div></label>';

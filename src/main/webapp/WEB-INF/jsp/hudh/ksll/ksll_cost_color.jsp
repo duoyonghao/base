@@ -106,8 +106,8 @@
 		                <div class="kv-v">
 		                    <select  name="floor" id="floor">
 		                    	<option value="">请选择</option>
-		                    	<option value="1">负一层</option>
-		                    	<option value="2">二楼</option>
+		                    	<option value="1">仓库</option>
+		                    	<option value="2">技工室</option>
 		                    </select>
 		                </div>
 		            </div>

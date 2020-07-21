@@ -74,8 +74,8 @@
 	           		<td style="text-align:right;"><font color="red">*</font>&nbsp;&nbsp;退还楼层：</td>
 			        <td style="text-align:left;"> 
 		    			<select  name="floor" id="floor">
-		    				<option value="1">负一层</option>
-		    				<option value="2">二层</option>
+		    				<option value="1">仓库</option>
+		    				<option value="2">技工室</option>
 		    			</select>
 			        </td>
 	           		<div class="kv">
