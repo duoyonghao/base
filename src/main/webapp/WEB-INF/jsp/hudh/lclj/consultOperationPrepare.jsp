@@ -118,7 +118,7 @@
 								<li class="positionLi jwsLi">
 									<label><input name="Consultation" type="checkbox" disabled="disabled" value="询问既往史" /><font class="mustIn">*</font><font class="ask_Previous" onclick="showHiddenClick(this,'jwsLi');">1、询问既往史及体格检查</font></label>
 									<div class="caseContiner" style="display:none;">
-										<button class="btnStyle" onclick="toggleCase(this,1,1);" style="display:none">切换新版</button>
+										<button class="btnStyle" onclick="toggleCase(this,1,1);" style="">切换新版</button>
 										<div class="zlCases"></div>
 										<div class="selectCases">
 											<select id="allCases"></select>
@@ -131,7 +131,7 @@
 								<li class="positionLi jczdLi">
 									<label><input name="Consultation" type="checkbox" disabled="disabled" value="口内检查" /><font class="mustIn">*</font><font class="examine_diagnose" onclick="showHiddenClick(this,'jczdLi');">2、口腔专科检查</font></label>
 									<div class="caseContiner" style="display:none;">
-										<button class="btnStyle" onclick="toggleCase(this,2,1);" style="display:none">切换新版</button>
+										<button class="btnStyle" onclick="toggleCase(this,2,1);" style="">切换新版</button>
 										<div class="zlCases"></div>
 										<div class="selectCases">
 											<select id="allCases"></select>
@@ -143,7 +143,7 @@
 								<li class="positionLi zlCasesLi">
 									<label class="zlCasesLiText"><input name="Consultation" type="checkbox" disabled="disabled" value="制定手术方案和治疗计划" /><font class="mustIn">*</font><font class="diagnosis_case" onclick="showHiddenClick(this,'zlCasesLi');">4、制定手术方案和治疗计划</font></label>
 									<div class="caseContiner" style="display:none;">
-										<button class="btnStyle" onclick="toggleCase(this,3,1);" style="display:none">切换新版</button>
+										<button class="btnStyle" onclick="toggleCase(this,3,1);" style="">切换新版</button>
 										<div class="zlCases"></div>
 										<div class="selectCases">
 											<select id="allCases"></select>
