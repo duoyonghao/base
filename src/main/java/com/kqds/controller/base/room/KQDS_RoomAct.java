@@ -82,7 +82,7 @@ public class KQDS_RoomAct {
 
 	/**
 	 * 新增、编辑
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @return
@@ -159,7 +159,7 @@ public class KQDS_RoomAct {
 
 	/**
 	 * 判断手术室预约情况
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @return
@@ -213,7 +213,7 @@ public class KQDS_RoomAct {
 
 	/**
 	 * 判断患者门诊预约情况 （同一医生和患者，存在门诊预约也可以手术预约）
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @return
@@ -244,7 +244,7 @@ public class KQDS_RoomAct {
 			if (order != null) {
 				if (!YZUtility.isNullorEmpty(order.getAskperson())) {
 					String doctorordername = personLogic.getNameStrBySeqIds(order.getAskperson());
-					if (!order.getAskperson().equals(doctor)) {
+					if (YZUtility.isNotNullOrEmpty(order.getAskperson())) {//!order.getAskperson().equals(doctor)
 						msg = "该时间段患者存在门诊预约：<br>医生：" + doctorordername + "&nbsp;&nbsp;&nbsp;时间：" + order.getStarttime().substring(11) + "-" + order.getEndtime().substring(11);
 						flag = 1;
 					}
@@ -260,7 +260,7 @@ public class KQDS_RoomAct {
 
 	/**
 	 * 判断患者门诊预约情况 （同一医生和患者，存在门诊预约也可以手术预约）
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @return
@@ -294,7 +294,7 @@ public class KQDS_RoomAct {
 			String msg = "";
 			if (order != null) {
 				if (!YZUtility.isNullorEmpty(order.getUsercode())) {
-					if (!order.getUsercode().equals(usercode)) {
+					if (YZUtility.isNotNullOrEmpty(order.getUsercode())) {//!order.getUsercode().equals(usercode)
 						msg = "该时间段医生存在门诊预约：<br>患者：" + order.getUsername() + "&nbsp;&nbsp;&nbsp;时间：" + order.getStarttime().substring(11) + "-" + order.getEndtime().substring(11);
 						flag = 1;
 					}
@@ -310,7 +310,7 @@ public class KQDS_RoomAct {
 
 	/**
 	 * 详情返回
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @return
@@ -337,7 +337,7 @@ public class KQDS_RoomAct {
 
 	/**
 	 * 删除
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @return
@@ -372,7 +372,7 @@ public class KQDS_RoomAct {
 
 	/**
 	 * 日历查询
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @return
@@ -474,16 +474,16 @@ public class KQDS_RoomAct {
 			String msg = "";
 			if (order != null) {
 				if (!YZUtility.isNullorEmpty(order.getDoctor()) || !YZUtility.isNullorEmpty(order.getNurse())) {
-					if (!order.getDoctor().equals(doctor) && !order.getNurse().equals(doctor)) {
-						String doctorordername = personLogic.getNameStrBySeqIds(order.getDoctor());
-						String nurseordername = "";//添加判断，如果预约没有选择护士  2019-8-2  syp
-						if ((!order.getNurse().equals(""))) {
-							nurseordername = personLogic.getNameStrBySeqIds(order.getNurse());
-						}
-						msg = "该时间段患者存在手术预约：<br>医生：" + doctorordername + "&nbsp;&nbsp;&nbsp;护士：" + nurseordername + "&nbsp;&nbsp;&nbsp;时间：" + order.getStarttime().substring(11)
-								+ "-" + order.getEndtime().substring(11);
-						flag = 1;
+					//if (!order.getDoctor().equals(doctor) && !order.getNurse().equals(doctor)) {
+					String doctorordername = personLogic.getNameStrBySeqIds(order.getDoctor());
+					String nurseordername = "";//添加判断，如果预约没有选择护士  2019-8-2  syp
+					if ((!order.getNurse().equals(""))) {
+						nurseordername = personLogic.getNameStrBySeqIds(order.getNurse());
 					}
+					msg = "该时间段患者存在手术预约：<br>医生：" + doctorordername + "&nbsp;&nbsp;&nbsp;护士：" + nurseordername + "&nbsp;&nbsp;&nbsp;时间：" + order.getStarttime().substring(11)
+							+ "-" + order.getEndtime().substring(11);
+					flag = 1;
+					//}
 				}
 			}
 			jobj.put("data", flag);
@@ -521,17 +521,17 @@ public class KQDS_RoomAct {
 			String msg = "";
 			if (order != null) {
 				if (!YZUtility.isNullorEmpty(order.getUsercode())) {
-					if (!order.getUsercode().equals(usercode)) {
-						Map<String, String> map2 = new HashMap<String, String>();
-						map2.put("usercode", order.getUsercode());
-						List<KqdsUserdocument> en = (List<KqdsUserdocument>) logic.loadList(TableNameUtil.KQDS_USERDOCUMENT, map2);
-						if (en == null || en.size() == 0) {
-							throw new Exception("患者不存在，usercode值为：" + order.getUsercode());
-						}
-						msg = "该时间段医生存在手术预约：<br>患者：" + en.get(0).getUsername() + "&nbsp;&nbsp;&nbsp;时间：" + order.getStarttime().substring(11) + "-"
-								+ order.getEndtime().substring(11);
-						flag = 1;
+					//if (!order.getUsercode().equals(usercode)) {
+					Map<String, String> map2 = new HashMap<String, String>();
+					map2.put("usercode", order.getUsercode());
+					List<KqdsUserdocument> en = (List<KqdsUserdocument>) logic.loadList(TableNameUtil.KQDS_USERDOCUMENT, map2);
+					if (en == null || en.size() == 0) {
+						throw new Exception("患者不存在，usercode值为：" + order.getUsercode());
 					}
+					msg = "该时间段医生存在手术预约：<br>患者：" + en.get(0).getUsername() + "&nbsp;&nbsp;&nbsp;时间：" + order.getStarttime().substring(11) + "-"
+							+ order.getEndtime().substring(11);
+					flag = 1;
+					//}
 				}
 			}
 			jobj.put("data", flag);
@@ -544,7 +544,7 @@ public class KQDS_RoomAct {
 
 	/**
 	 * 手术查询 【只查当前门诊】
-	 * 
+	 *
 	 * @param request
 	 * @param response
 	 * @return
@@ -587,10 +587,10 @@ public class KQDS_RoomAct {
 				map.put("kefu", kefu);
 			}
 			String starttime = request.getParameter("starttime");
-				if(starttime==null || starttime.equals("")){
-					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-					starttime = df.format(new Date());
-				}
+			if(starttime==null || starttime.equals("")){
+				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+				starttime = df.format(new Date());
+			}
 			if (!YZUtility.isNullorEmpty(starttime)) {
 				map.put("starttime", starttime + ConstUtil.TIME_START);
 			}
@@ -615,11 +615,11 @@ public class KQDS_RoomAct {
 			if (YZUtility.isNullorEmpty(jrroom)) {
 				jrroom = "0";
 			}
-			
+
 			// 初始化分页实体类
 			BootStrapPage bp = new BootStrapPage();
 			// 封装参数到实体类
-			BeanUtils.populate(bp, request.getParameterMap()); 
+			BeanUtils.populate(bp, request.getParameterMap());
 			JSONObject json = new JSONObject();
 			// 查当前门诊的
 			String visualstaff = SessionUtil.getVisualstaff(request);
@@ -634,7 +634,7 @@ public class KQDS_RoomAct {
 				map.put("sortName", sortName);
 				map.put("sortOrder", sortOrder);
 				json = logic.selectNoPage(TableNameUtil.KQDS_ROOM, map, visualstaff, jrroom,searchValue,bp,json);
-			}else{				
+			}else{
 				json = logic.selectNoPage(TableNameUtil.KQDS_ROOM, map, visualstaff, jrroom,searchValue,bp,json);
 			}
 			/*-------导出excel---------*/
