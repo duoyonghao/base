@@ -245,6 +245,7 @@ var frameindex = parent.layer.getFrameIndex(window.name);
 <%-- var username = '<%=request.getAttribute("username")%>'; --%>//######获取当前选中的患者附上姓名
 // 获取父页面选中的挂号记录
 var onclickrowOobj = window.parent.onclickrowOobj;
+var updateStatus=true;
 $(function() {
 	$("#searchValue").val(onclickrowOobj.username);
 	// 已结账的部分数据不能修改
@@ -567,22 +568,24 @@ function initTableLsit(){
         
      	// 根据父页面点击选择获取的挂号记录对象，初始化挂号信息
         ghxx();
-     	// --------------------方法块，不要拆分 -------------------/
-        initDictSelect("recesort","jzfl"); // 必须请求方式为同步
-     	// 根据患者是否是初次挂号，动态调整挂号分类
-        $('#recesort').trigger("change");
-        
-     	// 编辑时，赋默认值
-        if(onclickrowOobj.recesort){
-    		$("#recesort").val(onclickrowOobj.recesort);
-        }
-        if(onclickrowOobj.status != 0 && onclickrowOobj.status != 1){
-    		noEdit();
-    	}else{
-    		qxDisable();
-    	}
+        if(updateStatus){
+            // --------------------方法块，不要拆分 -------------------/
+            initDictSelect("recesort","jzfl"); // 必须请求方式为同步
+            // 根据患者是否是初次挂号，动态调整挂号分类
+            $('#recesort').trigger("change");
 
-     	// --------------------方法块，不要拆分 -------------------/
+            // 编辑时，赋默认值
+            if(onclickrowOobj.recesort){
+                $("#recesort").val(onclickrowOobj.recesort);
+            }
+            if(onclickrowOobj.status != 0 && onclickrowOobj.status != 1){
+                noEdit();
+            }else{
+                qxDisable();
+            }
+
+            // --------------------方法块，不要拆分 -------------------/
+		}
     });
 }
 
@@ -872,6 +875,7 @@ function getButtonPower() {
     $("#bottomBarDdiv").append(menubutton1);
 }
 function updateJurisdiction(){
+    updateStatus=false;
     $("#recesort").attr("disabled","disabled");
     $("#regsort").attr("disabled","disabled");
     $("#regway").attr("disabled","disabled");
