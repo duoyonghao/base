@@ -300,16 +300,25 @@ function initPersonSelectByDept(id, depttype) {
 }
 
 function noEdit(){
-	$("#recesort").attr("disabled","disabled");
-	$("#regsort").attr("disabled","disabled");
-	$("#askperson").attr("disabled","disabled");
-	$("#receivenoDesc").attr("disabled","disabled");
+    $("#recesort").attr("disabled","disabled");
+    $("#regsort").attr("disabled","disabled");
+    $("#askperson").attr("disabled","disabled");
+    $("#receivenoDesc").attr("disabled","disabled");
+
+    $("#regdept").attr("disabled","disabled");
+    $("#doctor").attr("disabled","disabled");
+    $("#repairdoctor").attr("disabled","disabled");
+
 }
 function qxDisable(){
-	$("#recesort").removeAttr("disabled");
-	$("#regsort").removeAttr("disabled");
-	$("#askperson").removeAttr("disabled");
-	$("#receivenoDesc").removeAttr("disabled");
+    $("#recesort").removeAttr("disabled");
+    $("#regsort").removeAttr("disabled");
+    $("#askperson").removeAttr("disabled");
+    $("#receivenoDesc").removeAttr("disabled");
+
+    $("#regdept").removeAttr("disabled");
+    $("#doctor").removeAttr("disabled");
+    $("#repairdoctor").removeAttr("disabled");
 }
 /**
  * 就诊分类
