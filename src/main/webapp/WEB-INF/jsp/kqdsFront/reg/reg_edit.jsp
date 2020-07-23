@@ -245,13 +245,14 @@ var frameindex = parent.layer.getFrameIndex(window.name);
 <%-- var username = '<%=request.getAttribute("username")%>'; --%>//######获取当前选中的患者附上姓名
 // 获取父页面选中的挂号记录
 var onclickrowOobj = window.parent.onclickrowOobj;
+//是否有reg_update_jurisdiction权限
 var updateStatus=true;
+//该挂号是否已有结账
+var regStatus=false;
 $(function() {
 	$("#searchValue").val(onclickrowOobj.username);
 	// 已结账的部分数据不能修改
-	if(onclickrowOobj.status != 0 && onclickrowOobj.status != 1){
-		noEdit();
-	}
+    findCountByRegno(onclickrowOobj);
     getButtonPower();
     initDictSelectByClass(); // 就诊分类、挂号分类、挂号方式
     initSysUserByDeptId($("#repairdoctor"),"repairdoctor");//初始化修复医生    
@@ -299,6 +300,31 @@ function initPersonSelectByDept(id, depttype) {
     });
 }
 
+//初始化医生、咨询--2019-10-19 licc
+function findCountByRegno(obj) {
+    if(obj!=null&&obj!=''){
+        var url = contextPath + "/Kqds_PayCostAct/findCountByRegno.act";
+        $.ajax({
+            type: "post",
+            traditional: true,//传参为数组时，属性在这里设置
+            data: {"regno":obj.seqId},
+            url: url,
+            async: false,
+            // async是异步的意思，设置为false则该方法是同步的
+            dataType: "json",
+            success: function(data) {
+                regStatus=true;//无结账
+                if(onclickrowOobj.status != 0 && onclickrowOobj.status != 1){
+                    noEdit();
+                }
+            },
+            error: function(e) {
+                noEdit();//已结账
+            }
+        });
+    }
+}
+
 function noEdit(){
     $("#recesort").attr("disabled","disabled");
     $("#regsort").attr("disabled","disabled");
@@ -308,7 +334,8 @@ function noEdit(){
     $("#regdept").attr("disabled","disabled");
     $("#doctor").attr("disabled","disabled");
     $("#repairdoctor").attr("disabled","disabled");
-
+    $("#regway").attr("disabled","disabled");
+    $("#askpersondept").attr("disabled","disabled");
 }
 function qxDisable(){
     $("#recesort").removeAttr("disabled");
@@ -319,6 +346,8 @@ function qxDisable(){
     $("#regdept").removeAttr("disabled");
     $("#doctor").removeAttr("disabled");
     $("#repairdoctor").removeAttr("disabled");
+    $("#regway").removeAttr("disabled");
+    $("#askpersondept").removeAttr("disabled");
 }
 /**
  * 就诊分类
@@ -577,7 +606,7 @@ function initTableLsit(){
         
      	// 根据父页面点击选择获取的挂号记录对象，初始化挂号信息
         ghxx();
-        if(updateStatus){
+        if(updateStatus&&regStatus){
             // --------------------方法块，不要拆分 -------------------/
             initDictSelect("recesort","jzfl"); // 必须请求方式为同步
             // 根据患者是否是初次挂号，动态调整挂号分类
