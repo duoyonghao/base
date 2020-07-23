@@ -467,4 +467,11 @@
 		ORDER BY
 		MONTH (createtime) ASC
 	</select>
+
+	<select id="findCountByRegno" parameterType="String" resultType="int">
+		SELECT
+		count(1)
+		FROM KQDS_PAYCOST where 1=1
+		AND regno=#{regno}
+	</select>
 </mapper>

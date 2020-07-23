@@ -378,24 +378,28 @@
 		</if>
 		<if test="starttime != null and starttime !='' and endtime != null and endtime !='' ">
 			and (
-			(startTime <![CDATA[ <= ]]>
-			#{starttime} AND endTime <![CDATA[ >= ]]>
-			#{endtime})
-			OR (startTime <![CDATA[ <= ]]>
-			#{starttime} AND endTime <![CDATA[ < ]]>
-			#{endtime} and endTime <![CDATA[ > ]]>
-			#{starttime})
-			OR (startTime <![CDATA[ >= ]]>
-			#{starttime} AND endTime <![CDATA[ >= ]]>
-			#{endtime} and startTime <![CDATA[ < ]]>
-			#{endtime})
-			OR (startTime <![CDATA[ >= ]]>
-			#{starttime} AND endTime <![CDATA[ <= ]]>
-			#{endtime} )
+			startTime BETWEEN #{starttime} AND #{endtime} OR
+			endTime BETWEEN #{starttime} AND #{endtime} OR
+			#{starttime} BETWEEN startTime AND endTime OR
+			#{endtime} BETWEEN startTime AND endTime
 			)
 		</if>
 		and isdelete != 1
 	</select>
+	<!--(startTime <![CDATA[ <= ]]>-->
+	<!--#{starttime} AND endTime <![CDATA[ >= ]]>-->
+	<!--#{endtime})-->
+	<!--OR (startTime <![CDATA[ <= ]]>-->
+	<!--#{starttime} AND endTime <![CDATA[ < ]]>-->
+	<!--#{endtime} and endTime <![CDATA[ > ]]>-->
+	<!--#{starttime})-->
+	<!--OR (startTime <![CDATA[ >= ]]>-->
+	<!--#{starttime} AND endTime <![CDATA[ >= ]]>-->
+	<!--#{endtime} and startTime <![CDATA[ < ]]>-->
+	<!--#{endtime})-->
+	<!--OR (startTime <![CDATA[ >= ]]>-->
+	<!--#{starttime} AND endTime <![CDATA[ <= ]]>-->
+	<!--#{endtime} )-->
 	<select id="checkSSSUsercode" parameterType="map" resultType="json">
 		select * from KQDS_Room where 1=1
 		<if test="doctor != null and doctor !='' ">
@@ -406,24 +410,28 @@
 		</if>
 		<if test="starttime != null and starttime !=''  and endtime != null and endtime !='' ">
 			and (
-			(startTime <![CDATA[ <= ]]>
-			#{starttime} AND endTime <![CDATA[ >= ]]>
-			#{endtime})
-			OR (startTime <![CDATA[ <= ]]>
-			#{starttime} AND endTime <![CDATA[ < ]]>
-			#{endtime} and endTime <![CDATA[ > ]]>
-			#{starttime})
-			OR (startTime <![CDATA[ >= ]]>
-			#{starttime} AND endTime <![CDATA[ >= ]]>
-			#{endtime} and startTime <![CDATA[ < ]]>
-			#{endtime})
-			OR (startTime <![CDATA[ >= ]]>
-			#{starttime} AND endTime <![CDATA[ <= ]]>
-			#{endtime} )
+			startTime BETWEEN #{starttime} AND #{endtime} OR
+			endTime BETWEEN #{starttime} AND #{endtime} OR
+			#{starttime} BETWEEN startTime AND endTime OR
+			#{endtime} BETWEEN startTime AND endTime
 			)
 		</if>
 		and isdelete != 1
 	</select>
+	<!--(startTime <![CDATA[ <= ]]>-->
+	<!--#{starttime} AND endTime <![CDATA[ >= ]]>-->
+	<!--#{endtime})-->
+	<!--OR (startTime <![CDATA[ <= ]]>-->
+	<!--#{starttime} AND endTime <![CDATA[ < ]]>-->
+	<!--#{endtime} and endTime <![CDATA[ > ]]>-->
+	<!--#{starttime})-->
+	<!--OR (startTime <![CDATA[ >= ]]>-->
+	<!--#{starttime} AND endTime <![CDATA[ >= ]]>-->
+	<!--#{endtime} and startTime <![CDATA[ < ]]>-->
+	<!--#{endtime})-->
+	<!--OR (startTime <![CDATA[ >= ]]>-->
+	<!--#{starttime} AND endTime <![CDATA[ <= ]]>-->
+	<!--#{endtime} )-->
 	<select id="selectList" parameterType="map" resultType="json">
 		select
 		r.SEQ_ID,
@@ -558,7 +566,7 @@
 			and r.zzxt = #{zzxt}
 		</if>
 		<if test="name !=null and name != '' ">
-		and u.username like '%' + #{name} + '%'
+			and u.username like '%' + #{name} + '%'
 		</if>
 		<if test="username != null and username !='' ">
 			and (u.usercode like '%' + #{username} + '%'
@@ -595,14 +603,14 @@
 			</if>
 		</if>
 		<if test="searchValue != null and searchValue != ''">
-			AND (u.username LIKE '%' + #{searchValue} + '%' 
-			OR u.PhoneNumber1 LIKE '%' + #{searchValue} + '%' 
+			AND (u.username LIKE '%' + #{searchValue} + '%'
+			OR u.PhoneNumber1 LIKE '%' + #{searchValue} + '%'
 			OR u.PhoneNumber2 LIKE '%' + #{searchValue} + '%')
 		</if>
 		<if test="sortName != null and sortName != '' ">
 			ORDER BY ${sortName} ${sortOrder}
 		</if>
-		<if test="sortName == null">		
+		<if test="sortName == null">
 			ORDER BY r.CreateTime desc
 		</if>
 	</select>
@@ -621,8 +629,8 @@
 			and (r.doctor in (${querytype}) or r.nurse in (${querytype}) or r.createuser in (${querytype}))
 		</if>
 		<if test="searchValue != null and searchValue != ''">
-			AND (u.username LIKE '%' + #{searchValue} + '%' 
-			OR u.PhoneNumber1 LIKE '%' + #{searchValue} + '%' 
+			AND (u.username LIKE '%' + #{searchValue} + '%'
+			OR u.PhoneNumber1 LIKE '%' + #{searchValue} + '%'
 			OR u.PhoneNumber2 LIKE '%' + #{searchValue} + '%')
 		</if>
 		<if test="organization != null and organization !='' ">
