@@ -349,6 +349,8 @@
     var allowedBtn = ["afa8bf41-af02-4504-99b9-b8b69de40aca", "34379b48-ac6f-4b61-9a99-1b427183ef25", "eea5c430-1d44-40bb-ba16-0ffad8b09697", "190e9256-2aeb-453a-9e8a-e35c0c7a48dc", "794d8599-9b96-4461-b2c1-05b5c373d486", "5d80d52d-9ca4-4389-be27-ae4a50d7e8c6", "46721f65-18ec-463f-b18c-e165fa589fbe", "388fcdf9-4969-46c6-b767-a7c3b7905f2f", "005e6673-15ab-46d7-b0f4-bb1ed99556a4", "713a8067-6890-4157-b7ee-b7d981401c8a", "6ff236ec-da8f-40d8-ba0b-e9105bd89f5d", "c17de419-b6d4-4eea-b2f6-4f7422b94914", "2589c8f7-f4ec-4247-8866-067550cc5ddb", "4b32630c-13ac-444e-8dcc-0f3844a2d2bb", "b586afb5-6b6e-442a-9387-246c5dfa2db9", "a0c50df9-3ba1-47ac-a739-6b2d17e3bc91", "de063632-8dc5-45f4-a616-b27ada252406", "5bcd3e00-a179-4265-8a9d-7fc966541016", "3ee5815c-f2b1-40c7-844a-489d0ff3f256", "fc47af55-26cc-4617-863d-6ac5be7b4d34", "0dfa1271-72b7-4593-b5d7-328b2d9567d5", "1f7fd635-241d-4969-93ae-4ffeb3b5b78f", "45a11365-4add-4a2e-81c4-ad12349a6592", "0d82d20e-404a-43d0-a977-99c208b1690a"];
     var loc = new Location();
     var static_organization = '<%=ChainUtil.getCurrentOrganization(request)%>';
+    var isClick = true;
+
     $(function () {
         $("input[type='text']").attr("autocomplete","off");  //去掉input输入框的历史记录  lutian
         // 连锁门诊下拉框
@@ -902,20 +904,22 @@
         $(".searchSelect button .pull-left").text("请选择");
     }
 
-    var loadIndex = '';
-
+    var loadIndex='';
     function download() {
-        //layer.msg('数据导出中，请等待');
-        loadIndex = layer.load(0, {shade: false});
+        layer.msg('数据导出中，请等待');
+        //loadIndex = layer.load(0, {shade: false});
+        isClick = false;
     }
-
     function disload() {
         layer.close(loadIndex);
         layer.msg('数据导出完毕');
+        isClick = true;
     }
 
     //导出
     function exporttable() {
+        if(isClick) {
+            isClick = false;
         var fieldArr = [];
         var fieldnameArr = [];
         $('#table thead tr th').each(function () {
@@ -952,6 +956,7 @@
             disload();
         };
         xhr.send();
+        }
     }
 
     //档案合并
