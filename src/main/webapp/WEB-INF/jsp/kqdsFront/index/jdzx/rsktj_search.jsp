@@ -168,15 +168,15 @@ function disload() {
 	isClick = true;
 }
 function exportTable(){
-	/*$("#dykdxm").table2excel({
+	$("#dykdxm").table2excel({
 		exclude: ".noExl",//带noExlclass的行不会被输出到excel中
 		name: "Excel Document Name",
 		filename: "日收款查询（财务）",
 		exclude_img: true,
 		exclude_links: true,
 		exclude_inputs: true
-	});*/
-	if(isClick) {
+	});
+	/*if(isClick) {
 		isClick = false;
 		// console.log("生成报表")
 		var fieldArr = [];
@@ -202,7 +202,7 @@ function exportTable(){
 				var a = document.createElement('a');
 				//var headerName = xhr.getResponseHeader("Content-disposition");
 				//var fileName = decodeURIComponent(headerName).substring(20);
-				a.download = "费用查询";
+				a.download = "日收款查询";
 				a.href = URL.createObjectURL(blob);
 				$("body").append(a);    // 修复firefox中无法触发click
 				a.click();
@@ -215,7 +215,7 @@ function exportTable(){
 			disload();
 		};
 		xhr.send();
-	}
+	}*/
 }
 
 function getTableHeight(){
