@@ -1503,4 +1503,15 @@ public class Kqds_PayCostLogic extends BaseLogic {
 		// TODO Auto-generated method stub
 		return (List<JSONObject>)dao.findForList(TableNameUtil.KQDS_COSTORDER+".discount", map);		
 	}
+
+	/**
+	 * 根据挂号id查询结账条数
+	 * @param regno
+	 * @return
+	 * @throws Exception
+	 */
+	public int findCountByRegno(String regno) throws Exception {
+		int i= (int) dao.findForObject(TableNameUtil.KQDS_PAYCOST+".findCountByRegno", regno);
+		return i;
+	}
 }

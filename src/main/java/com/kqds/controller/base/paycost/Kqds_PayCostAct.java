@@ -361,4 +361,26 @@ public class Kqds_PayCostAct {
 		return null;
 	}
 
+    /**
+     * 根据挂号id查询是否有结账记录
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+	@RequestMapping(value = "/findCountByRegno.act")
+	public String findCountByRegno(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		try {
+			String regno = request.getParameter("regno");
+			int i=logic.findCountByRegno(regno);
+			if(i>0){
+				YZUtility.DEAL_SUCCESS_VALID(false,response);
+			}
+			YZUtility.DEAL_SUCCESS_VALID(true,response);
+		} catch (Exception ex) {
+			YZUtility.DEAL_ERROR(null, false, ex, response, logger);
+		}
+
+		return null;
+	}
 }
