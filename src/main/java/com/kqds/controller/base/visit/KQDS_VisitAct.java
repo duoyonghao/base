@@ -567,7 +567,6 @@ public class KQDS_VisitAct {
 	 * 生成回访
 	 * 
 	 * @param request
-	 * @param response
 	 * @return
 	 * @throws Exception
 	 */
@@ -638,6 +637,9 @@ public class KQDS_VisitAct {
 			String usercode = request.getParameter("usercode");
 			if (!YZUtility.isNullorEmpty(usercode)) {
 				map.put("usercode", usercode);
+			}else{
+				YZUtility.DEAL_SUCCESS(null, "请选择患者，如已选择请刷新页面！", response, logger);
+				return null;
 			}
 			//满意度
 			String myd = request.getParameter("myd");
