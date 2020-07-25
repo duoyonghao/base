@@ -177,4 +177,13 @@ public interface IDataAnalysisService {
 	  */  
 	List<JSONObject> consumptionInterval(HttpServletRequest request, Map<String, String> map) throws Exception;
 
+	/**
+	 * 查询业绩
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	JSONObject bargainPerformance( Map<String, String> map) throws Exception;
+
+
 }

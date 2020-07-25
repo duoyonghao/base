@@ -584,4 +584,115 @@ public class DataAnalysisDao {
 		List<JSONObject> list=(List<JSONObject>) dao.findForList(TableNameUtil.KQDS_COSTORDER_DETAIL+ ".findDrugsmoneyByYear", map);
 		return list;
 	}
+
+	/**
+	 * 当月新诊初诊成交业绩
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	public JSONObject monthlyNewDiagnosisInitial(Map<String,String> map) throws Exception{
+		JSONObject list=(JSONObject) dao.findForObject(TableNameUtil.KQDS_PAYCOST+ ".monthlyNewDiagnosisInitial", map);
+		return list;
+	}
+
+	/**
+	 * 当月新诊复诊成交业绩
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	public JSONObject monthlyNewDiagnosisTurnover(Map<String,String> map) throws Exception{
+		JSONObject list=(JSONObject) dao.findForObject(TableNameUtil.KQDS_PAYCOST+ ".monthlyNewDiagnosisTurnover", map);
+		return list;
+	}
+
+
+	/**
+	 * 当月新诊再消费
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	public JSONObject monthlyNewDiagnosisConsumption(Map<String,String> map) throws Exception{
+		JSONObject list=(JSONObject) dao.findForObject(TableNameUtil.KQDS_PAYCOST+ ".monthlyNewDiagnosisConsumption", map);
+		return list;
+	}
+
+	/**
+	 * 非当月复诊再消费
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	public JSONObject notInMonthConsumptionByTurnover(Map<String,String> map) throws Exception{
+		JSONObject list=(JSONObject) dao.findForObject(TableNameUtil.KQDS_PAYCOST+ ".notInMonthConsumptionByTurnover", map);
+		return list;
+	}
+
+	/**
+	 * 非当月新诊复诊
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	public JSONObject notInMonthNewDiagnosisByTurnover(Map<String,String> map) throws Exception{
+		JSONObject list=(JSONObject) dao.findForObject(TableNameUtil.KQDS_PAYCOST+ ".notInMonthNewDiagnosisByTurnover", map);
+		return list;
+	}
+
+	/**
+	 * 非当月再消费
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	public JSONObject notInMonthConsumption(Map<String,String> map) throws Exception{
+		JSONObject list=(JSONObject) dao.findForObject(TableNameUtil.KQDS_PAYCOST+ ".notInMonthConsumption", map);
+		return list;
+	}
+
+	/**
+	 * 含三项的未成交资源总数
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	public int containsThreeUntradedResources(Map<String,String> map) throws Exception{
+		int list=(int) dao.findForObject(TableNameUtil.KQDS_PAYCOST+ ".containsThreeUntradedResources", map);
+		return list;
+	}
+
+	/**
+	 * 不含三项的未成交资源总数
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	public int noContainsThreeUntradedResources(Map<String,String> map) throws Exception{
+		int  list=(int) dao.findForObject(TableNameUtil.KQDS_PAYCOST+ ".noContainsThreeUntradedResources", map);
+		return list;
+	}
+
+	/**
+	 * 含三项的复诊成交数
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	public int containsThreeUntradedSubsequent(Map<String,String> map) throws Exception{
+		int list=(int) dao.findForObject(TableNameUtil.KQDS_PAYCOST+ ".containsThreeUntradedSubsequent", map);
+		return list;
+	}
+
+	/**
+	 * 不含三项的复诊成交数
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	public int noContainsThreeUntradedSubsequent(Map<String,String> map) throws Exception{
+		int list=(int) dao.findForObject(TableNameUtil.KQDS_PAYCOST+ ".noContainsThreeUntradedSubsequent", map);
+		return list;
+	}
 }

@@ -21,6 +21,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kqds.util.sys.ConstUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -2018,6 +2019,48 @@ public class HUDH_DataAnalysisAct {
 				map.put("years", "(year(r.createtime)="+(Integer.parseInt(endtime.substring(0, 4))+"")+")");
 				List<JSONObject> json = analysisService.consumptionInterval(request,map);
 			YZUtility.RETURN_LIST(json, response, logger);
+		} catch (Exception e) {
+			// TODO: handle exception
+			YZUtility.DEAL_ERROR("查询失败！", false, e, response, logger);
+		}
+		return null;
+	}
+
+	@RequestMapping(value = "/toBargainPerformance.act")
+	public ModelAndView toBargainPerformance(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/kqdsFront/index/zxtj/bargainPerformance.jsp");
+		return mv;
+	}
+	@RequestMapping("/bargainPerformance.act")
+	public String bargainPerformance(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		String starttime = request.getParameter("starttime");
+		String endtime = request.getParameter("endtime");
+		String organization = request.getParameter("organization");
+		try {
+			Map<String,String> map = new HashMap<String,String>();
+			if (!YZUtility.isNullorEmpty(starttime)) {
+				starttime = starttime + ConstUtil.TIME_START;
+				map.put("starttime", starttime);
+			}else{
+				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");// 设置日期格式
+				map.put("starttime", df.format(new Date()) + ConstUtil.TIME_START);
+			}
+			if (!YZUtility.isNullorEmpty(endtime)) {
+				endtime = endtime + ConstUtil.TIME_END;
+				map.put("endtime", endtime);
+			}else{
+				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");// 设置日期格式
+				map.put("endtime", df.format(new Date()) + ConstUtil.TIME_END);
+			}
+			if(!YZUtility.isNullorEmpty(organization)){
+				map.put("organization", organization);
+			}
+			//时间，门诊为必选
+			JSONObject json = analysisService.bargainPerformance(map);
+			List<JSONObject> list=new ArrayList<JSONObject>();
+			list.add(json);
+			YZUtility.RETURN_LIST(list, response, logger);
 		} catch (Exception e) {
 			// TODO: handle exception
 			YZUtility.DEAL_ERROR("查询失败！", false, e, response, logger);

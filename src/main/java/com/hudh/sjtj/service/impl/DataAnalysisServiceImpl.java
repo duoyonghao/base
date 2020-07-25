@@ -9,6 +9,7 @@
   */ 
 package com.hudh.sjtj.service.impl;
 
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import net.logstash.logback.encoder.org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -4257,7 +4259,7 @@ public class DataAnalysisServiceImpl implements IDataAnalysisService {
 	  * @param map
 	  * @return
 	  * @throws Exception   
-	  * @see com.hudh.sjtj.service.IDataAnalysisService#findCjsCale(java.util.Map)   
+	  * @see com.hudh.sjtj.service.IDataAnalysisService#(java.util.Map)
 	  */  
 	@Override
 	public List<JSONObject> findCjsCale(HttpServletRequest request,Map<String, String> map) throws Exception {
@@ -4941,5 +4943,45 @@ public class DataAnalysisServiceImpl implements IDataAnalysisService {
 					}
 				}	
 		return list;
+	}
+
+	@Override
+	public JSONObject bargainPerformance( Map<String, String> map) throws Exception {
+
+		 //当月新诊初诊成交业绩
+		JSONObject json1 =analysisDao.monthlyNewDiagnosisInitial(map);
+		 //当月新诊复诊成交业绩
+		JSONObject json2 =analysisDao.monthlyNewDiagnosisTurnover(map);
+		 //当月新诊再消费
+		JSONObject json3 = analysisDao.monthlyNewDiagnosisConsumption(map);
+		 //非当月复诊再消费
+		JSONObject json4 = analysisDao.notInMonthConsumptionByTurnover(map);
+		 //非当月新诊复诊
+		JSONObject json5=analysisDao.notInMonthNewDiagnosisByTurnover(map);
+		 //非当月再消费
+		JSONObject json6=analysisDao.notInMonthConsumption(map);
+        //含三项的未成交资源总数
+        int a=analysisDao.containsThreeUntradedResources(map);
+        //不含三项的未成交资源总数
+        int b=analysisDao.noContainsThreeUntradedResources(map) ;
+         //含三项的复诊成交数
+        int c=analysisDao.containsThreeUntradedSubsequent( map);
+        //不含三项的复诊成交数
+        int d=analysisDao.noContainsThreeUntradedSubsequent(map);
+		JSONObject json=new JSONObject();
+        json.put("dyxzcz",json1.getString("actualmoney"));
+        json.put("dyxzfz",json2.getString("actualmoney"));
+        json.put("dyxzzxf",json3.getString("actualmoney"));
+        json.put("fdyfzzxf",json4.getString("actualmoney"));
+        json.put("fdyxzfz",json5.getString("actualmoney"));
+        json.put("fdyzxf",json6.getString("actualmoney"));
+        json.put("fzzyj",new BigDecimal(json2.getString("actualmoney")).add(new BigDecimal(json5.getString("actualmoney"))).toString());
+        json.put("dyczyj",new BigDecimal(json1.getString("actualmoney")).add(new BigDecimal(json2.getString("actualmoney"))).add(new BigDecimal(json3.getString("actualmoney"))).toString());
+        json.put("fdyfzyj",new BigDecimal(json4.getString("actualmoney")).add(new BigDecimal(json5.getString("actualmoney"))).toString());
+        json.put("hsxwcjzyzs",a+"");
+        json.put("bhsxwcjzyzs",b+"");
+        json.put("hsxfzcj",c+"");
+        json.put("bhsxfzcj",d+"");
+        return json;
 	}
 }
