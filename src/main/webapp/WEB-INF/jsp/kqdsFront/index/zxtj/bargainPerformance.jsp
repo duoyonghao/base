@@ -379,8 +379,8 @@ function gettabledata(){
                        return "<span class='name'>" + Number(value).toFixed(2) + "</span>";
                    }
                }
-           },{
-                title: '当月新诊初诊成交业绩',
+            },{
+                title: '(当月新诊初诊成交业绩)',
                 field: 'dyxzcz',
                 align: 'center',
                 formatter: function(value, row, index) {
@@ -389,7 +389,7 @@ function gettabledata(){
                     }
                 }
             },{
-                title: '当月新诊复诊成交业绩',
+                title: '(当月新诊复诊成交业绩)',
                 field: 'dyxzfz',
                 align: 'center',
                 formatter: function(value, row, index) {
@@ -398,7 +398,7 @@ function gettabledata(){
                     }
                 }
             },{
-                title: '当月新诊再消费',
+                title: '(当月新诊再消费)',
                 field: 'dyxzzxf',
                 align: 'center',
                 formatter: function(value, row, index) {
@@ -406,16 +406,7 @@ function gettabledata(){
                         return "<span class='name'>" + Number(value).toFixed(2) + "</span>";
                     }
                 }
-            },{
-               title: '初诊人次',
-               field: 'czperson',
-               align: 'center',
-               formatter: function(value, row, index) {
-                   if (value) {
-                       return "<span class='name'>" + value + "</span>";
-                   }
-               }
-           },
+            },
             {
                title: '复诊总业绩',
                field: 'fzzyj',
@@ -445,13 +436,21 @@ function gettabledata(){
                    }
                }
            },{
-               title: '复诊成交率',
-               field: 'fzcjratio',
+               title: '含三项复诊成交率',
+               field: 'hsxfzcj',
                align: 'center',
                formatter: function(value, row, index) {
-                   if (value) {
-                       return "<span class='name'>" + (Number(value)*100).toFixed(2) + "%</span>";
-                   }
+				   var num;
+                   if(Number(value)==0){
+                       num=0;
+                       return "<span class='name'>" + (num*100).toFixed(2) + "%</span>";
+                   }else if(Number(row.hsxwcjzyzs)>0&&Number(value)>0){
+						num=Number(value)/Number(row.hsxwcjzyzs);
+                       return "<span class='name'>" + (num*100).toFixed(2) + "%</span>";
+				   }else if(Number(row.hsxwcjzyzs)>0&&Number(value)==0){
+                       num=1;
+                       return "<span class='name'>" + (num*100).toFixed(2) + "%</span>";
+				   }
                }
            },{
                 title: '不含三项未成交资源总数',
@@ -472,6 +471,23 @@ function gettabledata(){
                         return "<span class='name'>" + value + "</span>";
                     }
                 }
+            },{
+                title: '不含三项复诊成交率',
+                field: 'bhsxfzcj',
+                align: 'center',
+                formatter: function(value, row, index) {
+                    var num;
+                    if(Number(value)==0){
+                        num=0;
+                        return "<span class='name'>" + (num*100).toFixed(2) + "%</span>";
+                    }else if(Number(row.bhsxwcjzyzs)>0&&Number(value)>0){
+                        num=Number(value)/Number(row.bhsxwcjzyzs);
+                        return "<span class='name'>" + (num*100).toFixed(2) + "%</span>";
+                    }else if(Number(row.bhsxwcjzyzs)>0&&Number(value)==0){
+                        num=1;
+                        return "<span class='name'>" + (num*100).toFixed(2) + "%</span>";
+                    }
+                }
             },
             {
                title: '非当月复诊业绩',
@@ -483,7 +499,7 @@ function gettabledata(){
                    }
                }
            },{
-                title: '非当月复诊再消费',
+                title: '(非当月复诊再消费)',
                 field: 'fdyfzzxf',
                 align: 'center',
                 formatter: function(value, row, index) {
@@ -492,7 +508,7 @@ function gettabledata(){
                     }
                 }
             },{
-                title: '非当月新诊复诊',
+                title: '(非当月新诊复诊)',
                 field: 'fdyxzfz',
                 align: 'center',
                 formatter: function(value, row, index) {
@@ -500,36 +516,7 @@ function gettabledata(){
                         return "<span class='name'>" + Number(value).toFixed(2) + "</span>";
                     }
                 }
-            },{
-               title: '复查人次',
-               field: 'zxfperson',
-               align: 'center',
-               formatter: function(value, row, index) {
-                   if (value) {
-                       return "<span class='name'>" + value + "</span>";
-                   }
-               }
-           },
-            {
-               title: '再消费成交人次',
-               field: 'zxfcjperson',
-               align: 'center',
-               formatter: function(value, row, index) {
-                   if (value) {
-                       return "<span class='name'>" + value + "</span>";
-                   }
-               }
-           },
-            {
-               title: '再消费成交率',
-               field: 'zxfcjratio',
-               align: 'center',
-               formatter: function(value, row, index) {
-                   if (value) {
-                       return "<span class='name'>" + (Number(value)*100).toFixed(2) + "%</span>";
-                   }
-               }
-           },
+            },
            {
                title: '非当月再消费业绩',
                field: 'fdyzxf',

@@ -734,7 +734,7 @@
             and r.askperson = #{askperson}
         </if>
         and r.recesort='20'
-        and p.SEQ_ID is NULL or p.actualmoney=0
+        and (p.SEQ_ID is NULL or p.actualmoney=0)
         and r.organization=#{organization}
         GROUP BY r.usercode
         /*取差集  初诊未成交中有复诊成交中没有*/
@@ -767,7 +767,7 @@
             and r.askperson = #{askperson}
         </if>
         and r.recesort='21'
-        and p.SEQ_ID is NULL or p.actualmoney=0
+        and (p.SEQ_ID is NULL or p.actualmoney=0)
         AND r.organization=#{organization}
         GROUP BY r.usercode) a
     </select>
@@ -786,7 +786,7 @@
             and r.askperson = #{askperson}
         </if>
         and r.recesort='20'
-        and p.SEQ_ID is NULL or p.actualmoney=0
+        and (p.SEQ_ID is NULL or p.actualmoney=0)
         and r.organization=#{organization}
         GROUP BY r.usercode
         Union
@@ -882,7 +882,7 @@
             and r.askperson = #{askperson}
         </if>
         and r.recesort='21'
-        and p.SEQ_ID is NULL or p.actualmoney=0
+        and (p.SEQ_ID is NULL or p.actualmoney=0)
         AND r.organization=#{organization}
         GROUP BY r.usercode
         UNION
