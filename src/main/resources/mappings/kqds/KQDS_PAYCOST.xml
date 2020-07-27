@@ -474,4 +474,521 @@
 		FROM KQDS_PAYCOST where 1=1
 		AND regno=#{regno}
 	</select>
+
+	<!-- 当月新诊初诊成交业绩 -->
+	<select id="monthlyNewDiagnosisInitial" parameterType="map" resultType="json">
+		SELECT isnull(SUM(d.paymoney),0) as actualmoney
+		FROM
+		[dbo].[KQDS_COSTORDER] c
+		LEFT JOIN [dbo].[KQDS_COSTORDER_DETAIL] d on c.costno=d.costno
+		LEFT JOIN KQDS_TREATITEM t on d.itemno=t.treatitemno
+ 		/*LEFT JOIN KQDS_UserDocument u on c.usercode=u.UserCode*/
+		LEFT JOIN KQDS_PAYCOST p ON p.costno=c.costno
+		LEFT JOIN KQDS_REG r on c.regno=r.SEQ_ID
+		WHERE
+		1=1
+		<if test="regdept != null">
+			and r.regdept=#{regdept}
+
+		</if>
+		<if test="askperson  != null">
+			and r.askperson = #{askperson}
+		</if>
+		/*结账*/
+		and c.status=2
+		/*不是药费*/
+		and c.isdrugs=0
+		/*不是检查费*/
+		and t.basetype not IN ( 'jyk671','jyk572')
+		and c.organization=#{organization}
+		/*不是预交金*/
+		and d.isyjjitem != 1
+		/*判断是否为老介*/
+		/*and u.Introducer != ''*/
+		/*结账时间条件*/
+		and p.createtime <![CDATA[ >= ]]> #{starttime}
+		and p.createtime <![CDATA[ <= ]]> #{endtime}
+		and r.recesort='20'
+	</select>
+	<!-- 当月新诊复诊成交业绩 ,a.usercode GROUP BY a.usercode-->
+	<select id="monthlyNewDiagnosisTurnover" parameterType="map" resultType="json">
+		SELECT isnull(SUM(a.actualmoney),0) as actualmoney from
+		(SELECT DISTINCT p.usercode,p.actualmoney,p.SEQ_ID,p.regno FROM
+		(select usercode from KQDS_REG
+		where recesort='20'
+		and cjstatus='0'
+		and createtime <![CDATA[ >= ]]> #{starttime}
+		and createtime <![CDATA[ <= ]]> #{endtime}
+		<if test="regdept != null">
+			and r.regdept=#{regdept}
+		</if>
+		<if test="askperson  != null">
+			and r.askperson = #{askperson}
+		</if>
+		)  a
+		LEFT JOIN KQDS_PAYCOST p on p.usercode=a.usercode
+		LEFT JOIN [dbo].[KQDS_COSTORDER] c on c.costno=p.costno
+		LEFT JOIN [dbo].[KQDS_COSTORDER_DETAIL] d on d.costno=p.costno
+		LEFT JOIN KQDS_TREATITEM t on d.itemno=t.treatitemno
+		LEFT JOIN KQDS_REG r on p.regno=r.SEQ_ID
+		where p.actualmoney <![CDATA[ > ]]> 0
+		and c.status=2
+		/*不是药费*/
+		and c.isdrugs=0
+		/*不是检查费*/
+		and t.basetype not IN ( 'jyk671','jyk572')
+		and c.organization=#{organization}
+		/*不是预交金*/
+		and d.isyjjitem != 1
+		and p.createtime <![CDATA[ >= ]]> #{starttime}
+		and p.createtime <![CDATA[ <= ]]> #{endtime}
+		and r.recesort !='20'
+		<if test="regdept != null">
+			and r.regdept=#{regdept}
+		</if>
+		<if test="askperson  != null">
+			and r.askperson = #{askperson}
+		</if>) a
+	</select>
+
+	<!--当月新诊再消费 ,a.usercode GROUP BY a.usercode-->
+	<select id="monthlyNewDiagnosisConsumption" parameterType="map" resultType="json">
+		SELECT isnull(SUM(a.actualmoney),0) as actualmoney from
+		(SELECT DISTINCT p.usercode,p.actualmoney,p.SEQ_ID,p.regno FROM
+		(select usercode from KQDS_REG where recesort='20'
+		and cjstatus='1'
+		and createtime <![CDATA[ >= ]]> #{starttime}
+		and createtime <![CDATA[ <= ]]> #{endtime}
+		<if test="regdept != null">
+			and r.regdept=#{regdept}
+		</if>
+		<if test="askperson  != null">
+			and r.askperson = #{askperson}
+		</if>
+		)  a
+		LEFT JOIN KQDS_PAYCOST p on p.usercode=a.usercode
+		LEFT JOIN [dbo].[KQDS_COSTORDER] c on c.costno=p.costno
+		LEFT JOIN [dbo].[KQDS_COSTORDER_DETAIL] d on d.costno=p.costno
+		LEFT JOIN KQDS_TREATITEM t on d.itemno=t.treatitemno
+		LEFT JOIN KQDS_REG r on p.regno=r.SEQ_ID
+		where
+		p.actualmoney <![CDATA[ > ]]> 0
+		<if test="regdept != null">
+			and r.regdept=#{regdept}
+		</if>
+		<if test="askperson  != null">
+			and r.askperson = #{askperson}
+		</if>
+		and c.status=2
+		/*不是药费*/
+		and c.isdrugs=0
+		/*不是检查费*/
+		and t.basetype not IN ( 'jyk671','jyk572')
+		and c.organization=#{organization}
+		/*不是预交金*/
+		and d.isyjjitem != 1
+		and p.createtime <![CDATA[ >= ]]> #{starttime}
+		and p.createtime <![CDATA[ <= ]]> #{endtime}
+		and r.recesort !='20') a
+	</select>
+
+	<!--非当月复诊再消费-->
+	<select id="notInMonthConsumptionByTurnover" parameterType="map" resultType="json">
+		SELECT isnull(sum(b.actualmoney),0) as actualmoney
+		FROM KQDS_UserDocument u LEFT JOIN (
+		SELECT a.usercode, COUNT (a.usercode) AS num, SUM (a.actualmoney) AS actualmoney
+		FROM ( SELECT DISTINCT p.actualmoney, p.usercode, p.regno, p.SEQ_ID
+		FROM KQDS_PAYCOST p
+		LEFT JOIN [dbo].[KQDS_COSTORDER] c ON c.costno = p.costno
+		LEFT JOIN [dbo].[KQDS_COSTORDER_DETAIL] d ON d.costno = p.costno
+		LEFT JOIN KQDS_TREATITEM t ON d.itemno = t.treatitemno
+        /*LEFT JOIN KQDS_UserDocument u on c.usercode=u.UserCode*/
+		LEFT JOIN KQDS_REG r ON p.regno = r.SEQ_ID
+		WHERE 1=1
+		<if test="regdept != null">
+			and r.regdept=#{regdept}
+		</if>
+		<if test="askperson  != null">
+			and r.askperson = #{askperson}
+		</if>
+		/*结账*/
+		and c.status = 2
+        /*不是药费*/
+		AND c.isdrugs = 0
+        /*不是检查费*/
+		AND t.basetype NOT IN ('jyk671', 'jyk572')
+		AND c.organization = #{organization}
+        /*不是预交金*/
+		AND d.isyjjitem != 1
+        /*判断是否为老介*/
+		/*and u.Introducer != ''*/
+		/*结账时间条件*/
+		AND p.createtime <![CDATA[ >= ]]> #{starttime}
+		AND p.createtime <![CDATA[ <= ]]> #{endtime}
+		AND p.actualmoney <![CDATA[ > ]]> 0
+        /*挂号为复诊*/
+		AND MONTH (r.createtime) != MONTH (r.first_visit_time)
+		) a
+		GROUP BY
+		a.usercode
+		) b ON u.UserCode = b.usercode
+		WHERE
+		b.num <![CDATA[ > ]]> 1
+		AND u.totalpay = b.actualmoney
+	</select>
+
+	<!--非当月新诊复诊-->
+	<select id="notInMonthNewDiagnosisByTurnover" parameterType="map" resultType="json">
+		SELECT isnull(sum(b.actualmoney),0) as actualmoney FROM KQDS_UserDocument u
+		LEFT JOIN (
+		SELECT a.usercode, COUNT (a.usercode) AS num, SUM (a.actualmoney) AS actualmoney
+		FROM
+		( SELECT DISTINCT p.actualmoney, p.usercode, p.regno, p.SEQ_ID
+		FROM KQDS_PAYCOST p
+		LEFT JOIN [dbo].[KQDS_COSTORDER] c ON c.costno = p.costno
+		LEFT JOIN [dbo].[KQDS_COSTORDER_DETAIL] d ON d.costno = p.costno
+		LEFT JOIN KQDS_TREATITEM t ON d.itemno = t.treatitemno
+        /*LEFT JOIN KQDS_UserDocument u on c.usercode=u.UserCode*/
+		LEFT JOIN KQDS_REG r ON p.regno = r.SEQ_ID
+		WHERE 1=1
+		<if test="regdept != null">
+			and r.regdept=#{regdept}
+		</if>
+		<if test="askperson  != null">
+			and r.askperson = #{askperson}
+		</if>
+		/*结账*/
+		and c.status = 2
+		/*不是药费*/
+		AND c.isdrugs = 0
+		/*不是检查费*/
+		AND t.basetype NOT IN ('jyk671', 'jyk572')
+		AND c.organization = #{organization}
+		/*不是预交金*/
+		AND d.isyjjitem != 1
+		/*判断是否为老介*/
+		/*and u.Introducer != ''*/
+		/*结账时间条件*/
+		AND p.createtime <![CDATA[ >= ]]> #{starttime}
+		AND p.createtime <![CDATA[ <= ]]> #{endtime}
+		AND p.actualmoney <![CDATA[ > ]]> 0
+		AND MONTH (r.createtime) != MONTH (r.first_visit_time)
+		) a
+		GROUP BY
+		a.usercode
+		) b ON u.UserCode = b.usercode
+		WHERE
+		b.num = 1
+		AND u.totalpay = b.actualmoney
+	</select>
+	<!--非当月再消费-->
+	<select id="notInMonthConsumption" parameterType="map" resultType="json">
+		SELECT isnull(sum(b.actualmoney),0) as actualmoney FROM KQDS_UserDocument u
+		LEFT JOIN
+		(select a.usercode,COUNT(a.usercode) as num,SUM(a.actualmoney) as actualmoney from (select DISTINCT p.actualmoney,p.usercode,p.regno,p.SEQ_ID from KQDS_PAYCOST p
+		LEFT JOIN [dbo].[KQDS_COSTORDER] c on c.costno=p.costno
+		LEFT JOIN [dbo].[KQDS_COSTORDER_DETAIL] d on d.costno=p.costno
+		LEFT JOIN KQDS_TREATITEM t on d.itemno=t.treatitemno
+		/*LEFT JOIN KQDS_UserDocument u on c.usercode=u.UserCode*/
+		LEFT JOIN KQDS_REG r on p.regno=r.SEQ_ID
+		where 1=1
+		<if test="regdept != null">
+			and r.regdept=#{regdept}
+		</if>
+		<if test="askperson  != null">
+			and r.askperson = #{askperson}
+		</if>
+		/*结账*/
+		and c.status=2
+		/*不是药费*/
+		and c.isdrugs=0
+		/*不是检查费*/
+		and t.basetype not IN ( 'jyk671','jyk572')
+		and c.organization=#{organization}
+		/*不是预交金*/
+		and d.isyjjitem != 1
+		/*判断是否为老介*/
+		/*and u.Introducer != ''*/
+		/*结账时间条件*/
+		and p.createtime <![CDATA[ >= ]]> #{starttime}
+		and p.createtime <![CDATA[ <= ]]> #{endtime}
+		and p.actualmoney <![CDATA[ > ]]> 0
+		and Month(r.createtime)!=Month(r.first_visit_time)) a
+		GROUP BY a.usercode ) b on u.UserCode=b.usercode
+		where b.num=1
+		and u.totalpay <![CDATA[ > ]]> b.actualmoney
+	</select>
+
+    <!--含三项的未成交资源总数-->
+    <select id="containsThreeUntradedResources" parameterType="map" resultType="int">
+        SELECT COUNT(a.usercode) as num from (
+        /*初诊未成交*/
+        select r.usercode from KQDS_REG r
+        LEFT JOIN KQDS_PAYCOST p on p.regno=r.SEQ_ID
+        where
+        r.createtime <![CDATA[ >= ]]> #{starttime} and r.createtime <![CDATA[ <= ]]> #{endtime}
+        <if test="regdept != null">
+            and r.regdept=#{regdept}
+        </if>
+        <if test="askperson  != null">
+            and r.askperson = #{askperson}
+        </if>
+        and r.recesort='20'
+        and (p.SEQ_ID is NULL or p.actualmoney=0)
+        and r.organization=#{organization}
+        GROUP BY r.usercode
+        /*取差集  初诊未成交中有复诊成交中没有*/
+        except
+        /*复诊成交*/
+        select r.usercode from KQDS_REG r
+        LEFT JOIN KQDS_PAYCOST p on p.usercode=r.usercode
+        where
+        r.createtime <![CDATA[ >= ]]> #{starttime} and r.createtime <![CDATA[ <= ]]> #{endtime}
+        <if test="regdept != null">
+            and r.regdept=#{regdept}
+        </if>
+        <if test="askperson  != null">
+            and r.askperson = #{askperson}
+        </if>
+        and r.recesort='21'
+        and p.actualmoney <![CDATA[ > ]]> 0
+        AND r.organization=#{organization}
+        GROUP BY r.usercode
+        /*取合集 初诊未成交和复诊未成交合集*/
+        Union
+        select r.usercode from KQDS_REG r
+        LEFT JOIN KQDS_PAYCOST p on p.usercode=r.usercode
+        where
+        r.createtime <![CDATA[ >= ]]> #{starttime} and r.createtime <![CDATA[ <= ]]> #{endtime}
+        <if test="regdept != null">
+            and r.regdept=#{regdept}
+        </if>
+        <if test="askperson  != null">
+            and r.askperson = #{askperson}
+        </if>
+        and r.recesort='21'
+        and (p.SEQ_ID is NULL or p.actualmoney=0)
+        AND r.organization=#{organization}
+        GROUP BY r.usercode) a
+    </select>
+    <!--不含三项的未成交资源总数-->
+    <select id="noContainsThreeUntradedResources" parameterType="map" resultType="int">
+        /*初诊未成交*/
+        select COUNT(a.usercode) as num from (
+        select r.usercode from KQDS_REG r
+        LEFT JOIN KQDS_PAYCOST p on p.regno=r.SEQ_ID
+        where
+        r.createtime <![CDATA[ >= ]]> #{starttime} and r.createtime <![CDATA[ <= ]]> #{endtime}
+        <if test="regdept != null">
+            and r.regdept=#{regdept}
+        </if>
+        <if test="askperson  != null">
+            and r.askperson = #{askperson}
+        </if>
+        and r.recesort='20'
+        and (p.SEQ_ID is NULL or p.actualmoney=0)
+        and r.organization=#{organization}
+        GROUP BY r.usercode
+        Union
+        /*初诊不含三项挂号药费开单的未成交*/
+        select r.usercode from KQDS_REG r
+        LEFT JOIN KQDS_PAYCOST p on p.regno=r.SEQ_ID
+        LEFT JOIN KQDS_COSTORDER c on c.regno=r.SEQ_ID
+        where
+        r.createtime <![CDATA[ >= ]]> #{starttime} and r.createtime <![CDATA[ <= ]]> #{endtime}
+        <if test="regdept != null">
+            and r.regdept=#{regdept}
+        </if>
+        <if test="askperson  != null">
+            and r.askperson = #{askperson}
+        </if>
+        and r.recesort='20'
+        and c.status=2
+        and c.isdrugs=1
+        and r.organization=#{organization}
+        GROUP BY r.usercode
+        Union
+        /*初诊不含三项挂号预交金开单的未成交*/
+        select r.usercode from KQDS_REG r
+        LEFT JOIN KQDS_PAYCOST p on p.regno=r.SEQ_ID
+        LEFT JOIN KQDS_COSTORDER c on c.regno=r.SEQ_ID
+        LEFT JOIN KQDS_COSTORDER_DETAIL d on c.costno=d.costno
+        where
+        r.createtime <![CDATA[ >= ]]> #{starttime} and r.createtime <![CDATA[ <= ]]> #{endtime}
+        <if test="regdept != null">
+            and r.regdept=#{regdept}
+        </if>
+        <if test="askperson  != null">
+            and r.askperson = #{askperson}
+        </if>
+        and r.recesort='20'
+        and c.status=2
+        and d.isyjjitem = 1
+        and r.organization=#{organization}
+        GROUP BY r.usercode
+        Union
+        /*初诊不含三项挂号检查费开单的未成交*/
+        select r.usercode from KQDS_REG r
+        LEFT JOIN KQDS_PAYCOST p on p.regno=r.SEQ_ID
+        LEFT JOIN KQDS_COSTORDER c on c.regno=r.SEQ_ID
+        LEFT JOIN KQDS_COSTORDER_DETAIL d on c.costno=d.costno
+        LEFT JOIN KQDS_TREATITEM t on d.itemno=t.treatitemno
+        where
+        r.createtime <![CDATA[ >= ]]> #{starttime} and r.createtime <![CDATA[ <= ]]> #{endtime}
+        <if test="regdept != null">
+            and r.regdept=#{regdept}
+        </if>
+        <if test="askperson  != null">
+            and r.askperson = #{askperson}
+        </if>
+        and r.recesort='20'
+        and c.status=2
+        and t.basetype IN ( 'jyk671','jyk572')
+        and r.organization=#{organization}
+        GROUP BY r.usercode
+        except
+        /*复诊成交取差集*/
+        select r.usercode from KQDS_REG r
+        LEFT JOIN KQDS_PAYCOST p on p.usercode=r.usercode
+        LEFT JOIN KQDS_COSTORDER c on c.costno=p.costno
+        LEFT JOIN KQDS_COSTORDER_DETAIL d on d.costno=p.costno
+        LEFT JOIN KQDS_TREATITEM t on d.itemno=t.treatitemno
+        where
+        r.createtime <![CDATA[ >= ]]> #{starttime} and r.createtime <![CDATA[ <= ]]> #{endtime}
+        <if test="regdept != null">
+            and r.regdept=#{regdept}
+        </if>
+        <if test="askperson  != null">
+            and r.askperson = #{askperson}
+        </if>
+        and r.recesort='21'
+        and p.actualmoney <![CDATA[ > ]]> 0
+        and c.status=2
+        and c.isdrugs=0
+        and t.basetype not IN ( 'jyk671','jyk572')
+        and d.isyjjitem != 1
+        AND r.organization=#{organization}
+        GROUP BY r.usercode
+        /*取合集 初诊未成交和复诊未成交合集*/
+        Union
+        select r.usercode from KQDS_REG r
+        LEFT JOIN KQDS_PAYCOST p on p.usercode=r.usercode
+        where
+        r.createtime <![CDATA[ >= ]]> #{starttime} and r.createtime <![CDATA[ <= ]]> #{endtime}
+        <if test="regdept != null">
+            and r.regdept=#{regdept}
+        </if>
+        <if test="askperson  != null">
+            and r.askperson = #{askperson}
+        </if>
+        and r.recesort='21'
+        and (p.SEQ_ID is NULL or p.actualmoney=0)
+        AND r.organization=#{organization}
+        GROUP BY r.usercode
+        UNION
+        /*复诊不含三项挂号药费开单的未成交*/
+        select r.usercode from KQDS_REG r
+        LEFT JOIN KQDS_PAYCOST p on p.regno=r.SEQ_ID
+        LEFT JOIN KQDS_COSTORDER c on c.regno=r.SEQ_ID
+        where
+        r.createtime <![CDATA[ >= ]]> #{starttime} and r.createtime <![CDATA[ <= ]]> #{endtime}
+        <if test="regdept != null">
+            and r.regdept=#{regdept}
+        </if>
+        <if test="askperson  != null">
+            and r.askperson = #{askperson}
+        </if>
+        and r.recesort='21'
+        and c.status=2
+        and c.isdrugs=1
+        and r.organization=#{organization}
+        GROUP BY r.usercode
+        Union
+        /*复诊不含三项挂号预交金开单的未成交*/
+        select r.usercode from KQDS_REG r
+        LEFT JOIN KQDS_PAYCOST p on p.regno=r.SEQ_ID
+        LEFT JOIN KQDS_COSTORDER c on c.regno=r.SEQ_ID
+        LEFT JOIN KQDS_COSTORDER_DETAIL d on c.costno=d.costno
+        where
+        r.createtime <![CDATA[ >= ]]> #{starttime} and r.createtime <![CDATA[ <= ]]> #{endtime}
+        <if test="regdept != null">
+            and r.regdept=#{regdept}
+        </if>
+        <if test="askperson  != null">
+            and r.askperson = #{askperson}
+        </if>
+        and r.recesort='21'
+        and c.status=2
+        and d.isyjjitem = 1
+        and r.organization=#{organization}
+        GROUP BY r.usercode
+        Union
+        /*复诊不含三项挂号检查费开单的未成交*/
+        select r.usercode from KQDS_REG r
+        LEFT JOIN KQDS_PAYCOST p on p.regno=r.SEQ_ID
+        LEFT JOIN KQDS_COSTORDER c on c.regno=r.SEQ_ID
+        LEFT JOIN KQDS_COSTORDER_DETAIL d on c.costno=d.costno
+        LEFT JOIN KQDS_TREATITEM t on d.itemno=t.treatitemno
+        where
+        r.createtime <![CDATA[ >= ]]> #{starttime} and r.createtime <![CDATA[ <= ]]> #{endtime}
+        <if test="regdept != null">
+            and r.regdept=#{regdept}
+        </if>
+        <if test="askperson  != null">
+            and r.askperson = #{askperson}
+        </if>
+        and r.recesort='21'
+        and c.status=2
+        and t.basetype IN ( 'jyk671','jyk572')
+        and r.organization=#{organization}
+        GROUP BY r.usercode
+        ) a
+    </select>
+
+    <!--含三项的复诊成交数-->
+    <select id="containsThreeUntradedSubsequent" parameterType="map" resultType="int">
+        /*复诊成交*/
+        SELECT COUNT(a.usercode) as num from (
+        select r.usercode from KQDS_REG r
+        LEFT JOIN KQDS_PAYCOST p on p.usercode=r.usercode
+        where
+        r.createtime <![CDATA[ >= ]]> #{starttime} and r.createtime <![CDATA[ <= ]]> #{endtime}
+        <if test="regdept != null">
+            and r.regdept=#{regdept}
+        </if>
+        <if test="askperson  != null">
+            and r.askperson = #{askperson}
+        </if>
+        and r.recesort='21'
+        and p.actualmoney <![CDATA[ > ]]> 0
+        AND r.organization=#{organization}
+        GROUP BY r.usercode) a
+    </select>
+
+    <!--不含三项的复诊成交数-->
+    <select id="noContainsThreeUntradedSubsequent" parameterType="map" resultType="int">
+        /*复诊成交*/
+        SELECT COUNT(a.usercode) as num from (
+        select r.usercode  from KQDS_REG r
+        LEFT JOIN KQDS_PAYCOST p on p.usercode=r.usercode
+        LEFT JOIN KQDS_COSTORDER c on c.costno=p.costno
+        LEFT JOIN KQDS_COSTORDER_DETAIL d on d.costno=p.costno
+        LEFT JOIN KQDS_TREATITEM t on d.itemno=t.treatitemno
+        where
+        r.createtime <![CDATA[ >= ]]> #{starttime} and r.createtime <![CDATA[ <= ]]> #{endtime}
+        <if test="regdept != null">
+            and r.regdept=#{regdept}
+        </if>
+        <if test="askperson  != null">
+            and r.askperson = #{askperson}
+        </if>
+        and r.recesort='21'
+        and p.actualmoney <![CDATA[ > ]]> 0
+        and c.status=2
+        and c.isdrugs=0
+        and t.basetype not IN ( 'jyk671','jyk572')
+        and d.isyjjitem != 1
+        AND r.organization=#{organization}
+        GROUP BY r.usercode) a
+    </select>
 </mapper>
