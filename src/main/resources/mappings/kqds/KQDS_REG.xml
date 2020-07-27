@@ -156,7 +156,7 @@
                 jh,
             </if>
             <if test="usercode != null">
-                first_visit_time,--添加初诊时间
+                first_visit_time,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
