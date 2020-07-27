@@ -956,7 +956,7 @@ public class HUDH_FlowAct {
             if (YZUtility.isNotNullOrEmpty(lcljOrderTrack.getAnamnesis())) {
                 if (YZUtility.isNotNullOrEmpty(lcljOrderTrack.getExamine())) {
                     if (YZUtility.isNotNullOrEmpty(lcljOrderTrack.getDiagnosis())) {
-                        if (YZUtility.isNotNullOrEmpty(lcljOrderTrack.getRepair())) {
+                        //if (YZUtility.isNotNullOrEmpty(lcljOrderTrack.getRepair())) {
                             if(YZUtility.isNotNullOrEmpty(lcljOrderTrack.getKnowbook())){
                                 if(YZUtility.isNotNullOrEmpty(lcljOrderTrack.getImageologicalExamination())){
                                     if(YZUtility.isNotNullOrEmpty(lcljOrderTrack.getToothTexture())){
@@ -971,9 +971,9 @@ public class HUDH_FlowAct {
                             }else {
                                 throw new Exception("知情同意书还没有填写，请填写完再进行提交！");
                             }
-                        } else {
-                            throw new Exception("修复方案确认单还没有填写，请填写完再进行提交！");
-                        }
+                        //} else {
+                        //    throw new Exception("修复方案确认单还没有填写，请填写完再进行提交！");
+                        //}
                     } else {
                         throw new Exception("诊疗方案还没有填写，请填写完再进行提交！");
                     }
@@ -1102,16 +1102,16 @@ public class HUDH_FlowAct {
             if (YZUtility.isNotNullOrEmpty(lcljOrderTrack1.getAnamnesis())) {
                 if (YZUtility.isNotNullOrEmpty(lcljOrderTrack1.getExamine())) {
                     if (YZUtility.isNotNullOrEmpty(lcljOrderTrack1.getDiagnosis())) {
-                        if (YZUtility.isNotNullOrEmpty(lcljOrderTrack1.getRepair())) {
+                        //if (YZUtility.isNotNullOrEmpty(lcljOrderTrack1.getRepair())) {
                             if(YZUtility.isNotNullOrEmpty(lcljOrderTrack1.getKnowbook())) {
                                 flowService.updateLcljOrderTrackById(lcljOrderTrack);
                                 YZUtility.DEAL_SUCCESS(null, null, response, logger);
                             }else {
                                 throw new Exception("知情同意书还没有填写，请填写完再进行提交！");
                             }
-                        } else {
-                            throw new Exception("修复方案确认单还没有填写，请填写完再进行提交！");
-                        }
+                        //} else {
+                        //    throw new Exception("修复方案确认单还没有填写，请填写完再进行提交！");
+                        //}
                     } else {
                         throw new Exception("诊疗方案还没有填写，请填写完再进行提交！");
                     }
