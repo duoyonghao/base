@@ -215,7 +215,7 @@
 									</div>
 								</li>
 								<li class="positionLi xffaLi">
-									<label><font class="mustIn">*</font>18、<input name="Consultation" id="" type="checkbox" disabled="disabled" value="修复方案"/><font class="xiufu_test" onclick="showHiddenClick(this,'xffaLi');">修复方案</font></label>
+									<label><%--<font class="mustIn">*</font>--%>18、<input name="Consultation" id="" type="checkbox" disabled="disabled" value="修复方案"/><font class="xiufu_test" onclick="showHiddenClick(this,'xffaLi');">修复方案</font></label>
 									<div class="caseContiner" style="display:none;">
 										<div class="zlCases"></div>
 										<div class="selectCases">
@@ -326,7 +326,7 @@
 		</table>
 
 		<!-- 2019/7/10 lutian 电子病历提示滚动文字 -->
-		<marquee direction="left" behavior="scroll" scrolldelay="1000" loop="-1" scrollamount="70">请优先录入5个表单（1、既往史；2、口腔检查；4、手术方案；9、知情书；18、修复方案）。</marquee>
+		<marquee direction="left" behavior="scroll" scrolldelay="1000" loop="-1" scrollamount="70">请优先录入4个表单（1、既往史；2、口腔检查；4、手术方案；9、知情书）。</marquee><%--；18、修复方案--%>
 
 		<footer style="padding-bottom: 10px">
 			<!-- .clear2 本身无样式 -->
