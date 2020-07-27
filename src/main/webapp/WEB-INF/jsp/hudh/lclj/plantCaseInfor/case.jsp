@@ -2998,7 +2998,6 @@
             patientsignature : patientsignature,//患者签名
             patientsignature1 : patientsignature1//患者签名
         };
-        console.log(param,"param----")
         $.ajax({
             type: "POST",
             url: url,
@@ -3240,7 +3239,6 @@
             patientsignature : patientsignature,//患者签名
             patientsignature1 : patientsignature1//患者签名
         };
-        console.log("param------",JSON.stringify(param))
         $.ajax({
             type: "POST",
             url: url,
@@ -3304,7 +3302,6 @@
         var imgone = $("#img")[0].src
         if( !imgone){
             $("#img").css('display', 'none');
-            console.log("111")
         }
         var repairImgone = $("#repairImg")[0].src
         if(!repairImgone){
