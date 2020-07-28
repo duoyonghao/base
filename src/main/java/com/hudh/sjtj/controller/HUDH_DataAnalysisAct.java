@@ -2056,6 +2056,10 @@ public class HUDH_DataAnalysisAct {
 			if(!YZUtility.isNullorEmpty(organization)){
 				map.put("organization", organization);
 			}
+
+			String[] time=starttime.split("-");
+			map.put("year",time[0]);
+			map.put("month",time[1]);
 			//时间，门诊为必选
 			JSONObject json = analysisService.bargainPerformance(map);
 			List<JSONObject> list=new ArrayList<JSONObject>();

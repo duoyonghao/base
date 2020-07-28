@@ -517,8 +517,9 @@
 		(select usercode from KQDS_REG
 		where recesort='20'
 		and cjstatus='0'
-		and createtime <![CDATA[ >= ]]> #{starttime}
-		and createtime <![CDATA[ <= ]]> #{endtime}
+		and YEAR (createtime)=#{year}
+		and MONTH (createtime)=#{month}
+		and organization=#{organization}
 		<if test="regdept != null">
 			and r.regdept=#{regdept}
 		</if>
@@ -557,8 +558,9 @@
 		(SELECT DISTINCT p.usercode,p.actualmoney,p.SEQ_ID,p.regno FROM
 		(select usercode from KQDS_REG where recesort='20'
 		and cjstatus='1'
-		and createtime <![CDATA[ >= ]]> #{starttime}
-		and createtime <![CDATA[ <= ]]> #{endtime}
+		and YEAR (createtime)=#{year}
+		and MONTH (createtime)=#{month}
+		and organization=#{organization}
 		<if test="regdept != null">
 			and r.regdept=#{regdept}
 		</if>
