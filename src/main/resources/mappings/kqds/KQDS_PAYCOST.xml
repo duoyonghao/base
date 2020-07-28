@@ -1029,7 +1029,7 @@
 		AND d.dict_name != '老患者介绍'
 		and r.usercode = u.UserCode
 		and r.recesort = '20'
-		and (cost.actualmoney <![CDATA[ > ]]> 0 or cost.voidmoney = cost.totalmoney )
+		and (cost.actualmoney <![CDATA[ > ]]> 0 or cost.voidmoney = cost.totalcost )
 		and r.createtime <![CDATA[ >= ]]> #{starttime}
 		and r.createtime <![CDATA[ <= ]]> #{endtime}
 		and u.organization = #{organization} ) a
@@ -1051,7 +1051,7 @@
 		AND d.dict_name != '老患者介绍'
 		and r.usercode = u.UserCode
 		and r.recesort = '20'
-		and (cost.actualmoney <![CDATA[ > ]]> 0 or cost.voidmoney = cost.totalmoney  )
+		and (cost.actualmoney <![CDATA[ > ]]> 0 or cost.voidmoney = cost.totalcost  )
 		and r.createtime <![CDATA[ >= ]]> #{starttime}
 		and r.createtime <![CDATA[ <= ]]> #{endtime}
 		and u.organization = #{organization}
