@@ -517,8 +517,18 @@
 		(select usercode from KQDS_REG
 		where recesort='20'
 		and cjstatus='0'
-		and YEAR (createtime)=#{year}
-		and MONTH (createtime)=#{month}
+		<if test="year !=null">
+			and YEAR (createtime)=#{year}
+		</if>
+		<if test="month !=null">
+			and MONTH (createtime)=#{month}
+		</if>
+		<if test="czstarttime !=null">
+			and createtime <![CDATA[ >= ]]> #{czstarttime}
+		</if>
+		<if test="czendtime !=null">
+			and createtime <![CDATA[ <= ]]> #{czendtime}
+		</if>
 		and organization=#{organization}
 		<if test="regdept != null">
 			and r.regdept=#{regdept}
@@ -558,8 +568,18 @@
 		(SELECT DISTINCT p.usercode,p.actualmoney,p.SEQ_ID,p.regno FROM
 		(select usercode from KQDS_REG where recesort='20'
 		and cjstatus='1'
-		and YEAR (createtime)=#{year}
-		and MONTH (createtime)=#{month}
+		<if test="year !=null">
+			and YEAR (createtime)=#{year}
+		</if>
+		<if test="month !=null">
+			and MONTH (createtime)=#{month}
+		</if>
+		<if test="czstarttime !=null">
+			and createtime <![CDATA[ >= ]]> #{czstarttime}
+		</if>
+		<if test="czendtime !=null">
+			and createtime <![CDATA[ <= ]]> #{czendtime}
+		</if>
 		and organization=#{organization}
 		<if test="regdept != null">
 			and r.regdept=#{regdept}
@@ -1009,7 +1029,7 @@
 		AND d.dict_name != '老患者介绍'
 		and r.usercode = u.UserCode
 		and r.recesort = '20'
-		and (cost.actualmoney <![CDATA[ > ]]> 0 or cost.voidmoney <![CDATA[ > ]]> 0 )
+		and (cost.actualmoney <![CDATA[ > ]]> 0 or cost.voidmoney = cost.totalmoney )
 		and r.createtime <![CDATA[ >= ]]> #{starttime}
 		and r.createtime <![CDATA[ <= ]]> #{endtime}
 		and u.organization = #{organization} ) a
@@ -1031,7 +1051,7 @@
 		AND d.dict_name != '老患者介绍'
 		and r.usercode = u.UserCode
 		and r.recesort = '20'
-		and (cost.actualmoney <![CDATA[ > ]]> 0 or cost.voidmoney <![CDATA[ > ]]> 0 )
+		and (cost.actualmoney <![CDATA[ > ]]> 0 or cost.voidmoney = cost.totalmoney  )
 		and r.createtime <![CDATA[ >= ]]> #{starttime}
 		and r.createtime <![CDATA[ <= ]]> #{endtime}
 		and u.organization = #{organization}
