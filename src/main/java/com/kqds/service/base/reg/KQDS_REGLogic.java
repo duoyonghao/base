@@ -776,7 +776,7 @@ public class KQDS_REGLogic extends BaseLogic {
             PageHelper.offsetPage(bp.getOffset(), bp.getLimit());
         }
         if (flag != null && flag.equals("exportTable")) {
-            List<JSONObject> list = (List<JSONObject>) dao.findForList(TableNameUtil.KQDS_REG + ".selectJzcx", map);
+            List<JSONObject> list = (List<JSONObject>) dao.findForList(TableNameUtil.KQDS_REG + ".selectJzcxExportTable", map);
             List<String> list1 = new ArrayList<String>();
             for (JSONObject job : list) {
                 String important = job.getString("important");
