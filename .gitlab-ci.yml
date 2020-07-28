@@ -25,15 +25,11 @@ deploy-test:
   script:
     - echo -n "stop tomcat server..."
     - Stop-Service ${service_name}
-    - echo -n "copy old artifacts..."
-    - cp -r ${tomcat_dir}\webapps\base D:\databack
     - echo -n "remove old artifacts..."
     - if (Test-Path ${tomcat_dir}\webapps\base) {rm -r ${tomcat_dir}\webapps\base}
     - echo -n "copy new artifacts..."
     - cp -r target\base ${tomcat_dir}\webapps
     - mv ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.example ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.properties
-    - mv ${tomcat_dir}\webapps\base\static\hudh\commont.example ${tomcat_dir}\webapps\base\static\hudh\commont.js
-    - mv ${tomcat_dir}\webapps\base\WEB-INF\jsp\hudh\dzbl\dzbloptation.example.production.east ${tomcat_dir}\webapps\base\WEB-INF\jsp\hudh\dzbl\dzbloptation.jsp
     - echo -n "start tomcat server..."
     - Start-Service ${service_name}
   dependencies:
@@ -55,7 +51,6 @@ deploy-production-east:
     - echo -n "copy new artifacts..."
     - cp -r target\base ${tomcat_dir}\webapps
     - mv ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.example.production.east ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.properties
-    - mv ${tomcat_dir}\webapps\base\static\hudh\commont.example.production.east ${tomcat_dir}\webapps\base\static\hudh\commont.js
     - echo -n "start tomcat server..."
     - Start-Service ${service_name}
   dependencies:
@@ -81,8 +76,6 @@ deploy-production-west:
     - echo -n "copy new artifacts..."
     - cp -r target\base ${tomcat_dir}\webapps
     - mv ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.example.production.west ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.properties
-    - mv ${tomcat_dir}\webapps\base\static\hudh\commont.example.production.west ${tomcat_dir}\webapps\base\static\hudh\commont.js
-    - mv ${tomcat_dir}\webapps\base\WEB-INF\classes\mappings\yz\SYS_DEPT.example ${tomcat_dir}\webapps\base\WEB-INF\classes\mappings\yz\SYS_DEPT.xml
     - echo -n "start tomcat server..."
     - Start-Service ${service_name}
   dependencies:
