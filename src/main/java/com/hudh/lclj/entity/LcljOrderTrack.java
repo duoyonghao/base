@@ -46,6 +46,7 @@ public class LcljOrderTrack {
 	private String repairRightDown;
 	private String repairToothTotal;
 	private String tooth_texture;//牙质材料
+	private String toothTexture;//新加映射字段 牙冠材质 因原字段无法取值
 	private String userdocument_id;//患者档案表ID
 
 	private String anamnesis;//主诉 判断是否填写
@@ -372,5 +373,13 @@ public class LcljOrderTrack {
 
 	public void setKnowbook(String knowbook) {
 		this.knowbook = knowbook;
+	}
+
+	public String getToothTexture() {
+		return toothTexture;
+	}
+
+	public void setToothTexture(String toothTexture) {
+		this.toothTexture = toothTexture;
 	}
 }
