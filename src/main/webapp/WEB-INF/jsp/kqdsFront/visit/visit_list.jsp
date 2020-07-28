@@ -322,6 +322,9 @@ function inittable() {
         striped: true,
         onLoadSuccess:function(data){
         	//console.log(JSON.stringify(data)+"--------回访数据");
+        	if(data.retState==0){
+                layer.alert(data.retMsrg);
+			}
         	setHeight();
         	/*表格载入时，设置表头的宽度 */
             setTableHeaderWidth(".tableBox");

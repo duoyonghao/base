@@ -515,9 +515,9 @@ function initCaseList(result,father,btn,casenum){
 	}else if(casenum==7){
 		itemName="新诊疗";
 	}
-	// if(result.length>=1){
-	// 	$("."+father).find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
-	// }
+	if(result.length>=1){
+		$("."+father).find("input[name='Consultation']").attr("checked","checked").attr("disabled","disabled");
+	}
 	var caseStyleHtml="";
 	for (var i =0;i<result.length;i++ ) {
 		if(result[i].seqId){

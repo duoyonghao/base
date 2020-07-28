@@ -82,6 +82,7 @@
 									<div class="caseContiner" style="display:none;">
 										<button class="btnStyle" onclick="toggleCase(this,1,1);">切换新版</button>
 										<div class="zlCases"></div>
+
 										<div class="selectCases">
 											<select id="allCases"></select>
 											<button class="caseBtn" onclick="selectCase('jwsLi',1);">选此病史</button>

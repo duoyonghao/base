@@ -98,6 +98,22 @@
     <result column="patientsignature" jdbcType="VARCHAR" property="patientsignature" />
     <result column="patientsignature1" jdbcType="VARCHAR" property="patientsignature1" />
     <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="onedentalimplantleftup" jdbcType="VARCHAR" property="onedentalimplantleftup" />
+    <result column="onedentalimplantrightup" jdbcType="VARCHAR" property="onedentalimplantrightup" />
+    <result column="onedentalimplantleftdown" jdbcType="VARCHAR" property="onedentalimplantleftdown" />
+    <result column="onedentalimplantrightdown" jdbcType="VARCHAR" property="onedentalimplantrightdown" />
+    <result column="twodentalimplantleftup" jdbcType="VARCHAR" property="twodentalimplantleftup" />
+    <result column="twodentalimplantrightup" jdbcType="VARCHAR" property="twodentalimplantrightup" />
+    <result column="twodentalimplantleftdown" jdbcType="VARCHAR" property="twodentalimplantleftdown" />
+    <result column="twodentalimplantrightdown" jdbcType="VARCHAR" property="twodentalimplantrightdown" />
+    <result column="dentalimplantleftup" jdbcType="VARCHAR" property="dentalimplantleftup" />
+    <result column="dentalimplantrightup" jdbcType="VARCHAR" property="dentalimplantrightup" />
+    <result column="dentalimplantleftdown" jdbcType="VARCHAR" property="dentalimplantleftdown" />
+    <result column="dentalimplantrightdown" jdbcType="VARCHAR" property="dentalimplantrightdown" />
+    <result column="entiretyrepairleftup" jdbcType="VARCHAR" property="entiretyrepairleftup" />
+    <result column="entiretyrepairrightup" jdbcType="VARCHAR" property="entiretyrepairrightup" />
+    <result column="entiretyrepairleftdown" jdbcType="VARCHAR" property="entiretyrepairleftdown" />
+    <result column="entiretyrepairrightdown" jdbcType="VARCHAR" property="entiretyrepairrightdown" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.base.HudhLcljBase">
     <result column="treatmentparts1" jdbcType="LONGVARCHAR" property="treatmentparts1" />
@@ -179,7 +195,11 @@
     imagingleftdown, imagingrightdown, lianguanleftup, lianguanrightup, lianguanleftdown, 
     lianguanrightdown, preoperatives, bicon, abutment, paraoperative, modus, repair, 
     alternative, clinical,bonemeal,ossein,periost,one,pathtype,deep,appointmenttime,wzy,accord,operationDoctorsignature,
-    repairDoctorsignature,patientsignature,patientsignature1,status
+    repairDoctorsignature,patientsignature,patientsignature1,status,onedentalimplantleftup,
+    onedentalimplantrightup, onedentalimplantleftdown, onedentalimplantrightdown, twodentalimplantleftup,
+    twodentalimplantrightup, twodentalimplantleftdown, twodentalimplantrightdown, dentalimplantleftup,
+    dentalimplantrightup, dentalimplantleftdown, dentalimplantrightdown, entiretyrepairleftup, entiretyrepairrightup,
+    entiretyrepairleftdown, entiretyrepairrightdown
   </sql>
   <sql id="Blob_Column_List">
     treatmentparts1, treatmentparts2, treatmentparts3, requirerestor
@@ -238,7 +258,10 @@
       imagingleftdown, imagingrightdown, lianguanleftup, lianguanrightup, lianguanleftdown,
       lianguanrightdown, preoperatives, bicon, abutment, paraoperative, modus, repair,
       alternative, clinical,bonemeal,ossein,periost,one,pathtype,deep,appointmenttime,wzy,accord,operationDoctorsignature,
-      repairDoctorsignature,patientsignature,patientsignature1,status
+      repairDoctorsignature,patientsignature,patientsignature1,status,onedentalimplantleftup,onedentalimplantrightup,
+      onedentalimplantleftdown,onedentalimplantrightdown,twodentalimplantleftup,twodentalimplantrightup,
+      twodentalimplantleftdown,twodentalimplantrightdown,dentalimplantleftup,dentalimplantrightup,dentalimplantleftdown,
+      dentalimplantrightdown,entiretyrepairleftup,entiretyrepairrightup,entiretyrepairleftdown,entiretyrepairrightdown
 		from HUDH_LCLJ_BASE
 		where LcljId = #{lcljid,jdbcType=VARCHAR}
         ORDER by createtime ASC
@@ -276,7 +299,11 @@
       alternative, clinical, treatmentparts1, 
       treatmentparts2, treatmentparts3, 
       requirerestor,bonemeal,ossein,periost,one,pathtype,deep,appointmenttime,wzy,accord,operationDoctorsignature,
-    repairDoctorsignature,patientsignature,patientsignature1,status)
+    repairDoctorsignature,patientsignature,patientsignature1,status,
+    onedentalimplantleftup,onedentalimplantrightup,
+      onedentalimplantleftdown,onedentalimplantrightdown,twodentalimplantleftup,twodentalimplantrightup,
+      twodentalimplantleftdown,twodentalimplantrightdown,dentalimplantleftup,dentalimplantrightup,dentalimplantleftdown,
+      dentalimplantrightdown,entiretyrepairleftup,entiretyrepairrightup,entiretyrepairleftdown,entiretyrepairrightdown)
     values (#{id,jdbcType=VARCHAR}, #{usercode,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
       #{lcljid,jdbcType=VARCHAR}, #{lcljnum,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, 
       #{createuser,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, #{consultationOpinion,jdbcType=VARCHAR}, 
@@ -311,7 +338,11 @@
       #{periost,jdbcType=VARCHAR},#{one,jdbcType=VARCHAR},#{pathtype,jdbcType=VARCHAR},#{deep,jdbcType=VARCHAR},
       #{appointmenttime,jdbcType=VARCHAR},#{wzy,jdbcType=VARCHAR},#{accord,jdbcType=VARCHAR},
       #{operationDoctorsignature,jdbcType=VARCHAR},#{repairDoctorsignature,jdbcType=VARCHAR},
-      #{patientsignature,jdbcType=VARCHAR},#{patientsignature1,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR})
+      #{patientsignature,jdbcType=VARCHAR},#{patientsignature1,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},
+      #{onedentalimplantleftup,jdbcType=VARCHAR},#{onedentalimplantrightup,jdbcType=VARCHAR},
+      #{onedentalimplantleftdown,jdbcType=VARCHAR},#{onedentalimplantrightdown,jdbcType=VARCHAR},#{twodentalimplantleftup,jdbcType=VARCHAR},#{twodentalimplantrightup,jdbcType=VARCHAR},
+      #{twodentalimplantleftdown,jdbcType=VARCHAR},#{twodentalimplantrightdown,jdbcType=VARCHAR},#{dentalimplantleftup,jdbcType=VARCHAR},#{dentalimplantrightup,jdbcType=VARCHAR},#{dentalimplantleftdown,jdbcType=VARCHAR},
+      #{dentalimplantrightdown,jdbcType=VARCHAR},#{entiretyrepairleftup,jdbcType=VARCHAR},#{entiretyrepairrightup,jdbcType=VARCHAR},#{entiretyrepairleftdown,jdbcType=VARCHAR},#{entiretyrepairrightdown,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.kqds.entity.base.HudhLcljBase">
         insert into HUDH_LCLJ_BASE
@@ -616,6 +647,55 @@
       <if test="status != null">
         status,
       </if>
+
+      <if test="onedentalimplantleftup != null">
+        onedentalimplantleftup,
+      </if>
+      <if test="onedentalimplantrightup != null">
+        onedentalimplantrightup,
+      </if>
+      <if test="onedentalimplantleftdown != null">
+        onedentalimplantleftdown,
+      </if>
+      <if test="onedentalimplantrightdown != null">
+        onedentalimplantrightdown,
+      </if>
+      <if test="twodentalimplantleftup != null">
+        twodentalimplantleftup,
+      </if>
+      <if test="twodentalimplantrightup != null">
+        twodentalimplantrightup,
+      </if>
+      <if test="twodentalimplantleftdown != null">
+        twodentalimplantleftdown,
+      </if>
+      <if test="twodentalimplantrightdown != null">
+        twodentalimplantrightdown,
+      </if>
+      <if test="dentalimplantleftup != null">
+        dentalimplantleftup,
+      </if>
+      <if test="dentalimplantrightup != null">
+        dentalimplantrightup,
+      </if>
+      <if test="dentalimplantleftdown != null">
+        dentalimplantleftdown,
+      </if>
+      <if test="dentalimplantrightdown != null">
+        dentalimplantrightdown,
+      </if>
+      <if test="entiretyrepairleftup != null">
+        entiretyrepairleftup,
+      </if>
+      <if test="entiretyrepairrightup != null">
+        entiretyrepairrightup,
+      </if>
+      <if test="entiretyrepairleftdown != null">
+        entiretyrepairleftdown,
+      </if>
+      <if test="entiretyrepairrightdown != null">
+        entiretyrepairrightdown,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -917,6 +997,54 @@
       </if>
       <if test="status != null">
         #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="onedentalimplantleftup != null">
+        #{onedentalimplantleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="onedentalimplantrightup != null">
+        #{onedentalimplantrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="onedentalimplantleftdown != null">
+        #{onedentalimplantleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="onedentalimplantrightdown != null">
+        #{onedentalimplantrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="twodentalimplantleftup != null">
+        #{twodentalimplantleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="twodentalimplantrightup != null">
+        #{twodentalimplantrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="twodentalimplantleftdown != null">
+        #{twodentalimplantleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="twodentalimplantrightdown != null">
+        #{twodentalimplantrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="dentalimplantleftup != null">
+        #{dentalimplantleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="dentalimplantrightup != null">
+        #{dentalimplantrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="dentalimplantleftdown != null">
+        #{dentalimplantleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="dentalimplantrightdown != null">
+        #{dentalimplantrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="entiretyrepairleftup != null">
+        #{entiretyrepairleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="entiretyrepairrightup != null">
+        #{entiretyrepairrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="entiretyrepairleftdown != null">
+        #{entiretyrepairleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="entiretyrepairrightdown != null">
+        #{entiretyrepairrightdown,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -1229,6 +1357,55 @@
       <if test="status != null">
         status = #{status,jdbcType=VARCHAR},
       </if>
+
+      <if test="onedentalimplantleftup != null">
+        onedentalimplantleftup = #{onedentalimplantleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="onedentalimplantrightup != null">
+        onedentalimplantrightup = #{onedentalimplantrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="onedentalimplantleftdown != null">
+        onedentalimplantleftdown = #{onedentalimplantleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="onedentalimplantrightdown != null">
+        onedentalimplantrightdown = #{onedentalimplantrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="twodentalimplantleftup != null">
+        twodentalimplantleftup = #{twodentalimplantleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="twodentalimplantrightup != null">
+        twodentalimplantrightup = #{twodentalimplantrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="twodentalimplantleftdown != null">
+        twodentalimplantleftdown = #{twodentalimplantleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="twodentalimplantrightdown != null">
+        twodentalimplantrightdown = #{twodentalimplantrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="dentalimplantleftup != null">
+        dentalimplantleftup = #{dentalimplantleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="dentalimplantrightup != null">
+        dentalimplantrightup = #{dentalimplantrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="dentalimplantleftdown != null">
+        dentalimplantleftdown = #{dentalimplantleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="dentalimplantrightdown != null">
+        dentalimplantrightdown = #{dentalimplantrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="entiretyrepairleftup != null">
+        entiretyrepairleftup = #{entiretyrepairleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="entiretyrepairrightup != null">
+        entiretyrepairrightup = #{entiretyrepairrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="entiretyrepairleftdown != null">
+        entiretyrepairleftdown = #{entiretyrepairleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="entiretyrepairrightdown != null">
+        entiretyrepairrightdown = #{entiretyrepairrightdown,jdbcType=VARCHAR},
+      </if>
     </trim>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -1335,7 +1512,23 @@
       repairDoctorsignature = #{repairDoctorsignature,jdbcType=VARCHAR},
       patientsignature = #{patientsignature,jdbcType=VARCHAR},
       patientsignature1 = #{patientsignature1,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR}
+      status = #{status,jdbcType=VARCHAR},
+      onedentalimplantleftup = #{onedentalimplantleftup,jdbcType=VARCHAR},
+      onedentalimplantrightup = #{onedentalimplantrightup,jdbcType=VARCHAR},
+      onedentalimplantleftdown = #{onedentalimplantleftdown,jdbcType=VARCHAR},
+      onedentalimplantrightdown = #{onedentalimplantrightdown,jdbcType=VARCHAR},
+      twodentalimplantleftup = #{twodentalimplantleftup,jdbcType=VARCHAR},
+      twodentalimplantrightup = #{twodentalimplantrightup,jdbcType=VARCHAR},
+      twodentalimplantleftdown = #{twodentalimplantleftdown,jdbcType=VARCHAR},
+      twodentalimplantrightdown = #{twodentalimplantrightdown,jdbcType=VARCHAR},
+      dentalimplantleftup = #{dentalimplantleftup,jdbcType=VARCHAR},
+      dentalimplantrightup = #{dentalimplantrightup,jdbcType=VARCHAR},
+      dentalimplantleftdown = #{dentalimplantleftdown,jdbcType=VARCHAR},
+      dentalimplantrightdown = #{dentalimplantrightdown,jdbcType=VARCHAR},
+      entiretyrepairleftup = #{entiretyrepairleftup,jdbcType=VARCHAR},
+      entiretyrepairrightup = #{entiretyrepairrightup,jdbcType=VARCHAR},
+      entiretyrepairleftdown = #{entiretyrepairleftdown,jdbcType=VARCHAR},
+      entiretyrepairrightdown = #{entiretyrepairrightdown,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -1619,6 +1812,56 @@
       <if test="status != null">
         status = #{status,jdbcType=VARCHAR},
       </if>
+      <if test="onedentalimplantleftup != null">
+        onedentalimplantleftup = #{onedentalimplantleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="onedentalimplantrightup != null">
+        onedentalimplantrightup = #{onedentalimplantrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="onedentalimplantleftdown != null">
+        onedentalimplantleftdown = #{onedentalimplantleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="onedentalimplantrightdown != null">
+        onedentalimplantrightdown = #{onedentalimplantrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="twodentalimplantleftup != null">
+        twodentalimplantleftup = #{twodentalimplantleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="twodentalimplantrightup != null">
+        twodentalimplantrightup = #{twodentalimplantrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="twodentalimplantleftdown != null">
+        twodentalimplantleftdown = #{twodentalimplantleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="twodentalimplantrightdown != null">
+        twodentalimplantrightdown = #{twodentalimplantrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="dentalimplantleftup != null">
+        dentalimplantleftup = #{dentalimplantleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="dentalimplantrightup != null">
+        dentalimplantrightup = #{dentalimplantrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="dentalimplantleftdown != null">
+        dentalimplantleftdown = #{dentalimplantleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="dentalimplantrightdown != null">
+        dentalimplantrightdown = #{dentalimplantrightdown,jdbcType=VARCHAR},
+      </if>
+
+      <if test="entiretyrepairleftup != null">
+        entiretyrepairleftup = #{entiretyrepairleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="entiretyrepairrightup != null">
+        entiretyrepairrightup = #{entiretyrepairrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="entiretyrepairleftdown != null">
+        entiretyrepairleftdown = #{entiretyrepairleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="entiretyrepairrightdown != null">
+        entiretyrepairrightdown = #{entiretyrepairrightdown,jdbcType=VARCHAR},
+      </if>
+
     </trim>
     <if test="id != null">
      where id = #{id,jdbcType=VARCHAR}

@@ -155,6 +155,9 @@
             <if test="jh != null">
                 jh,
             </if>
+            <if test="usercode != null">
+                first_visit_time,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="seqId != null">
@@ -234,6 +237,9 @@
             </if>
             <if test="jh != null">
                 #{jh,jdbcType=INTEGER},
+            </if>
+            <if test="usercode != null">
+                (SELECT createtime from KQDS_REG where recesort='20' and usercode=#{usercode,jdbcType=VARCHAR})
             </if>
         </trim>
     </insert>
