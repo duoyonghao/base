@@ -49,6 +49,7 @@
         <result column="articleType" jdbcType="VARCHAR" property="articleType"/>
         <result column="abutment_station" jdbcType="VARCHAR" property="abutment_station"/>
         <result column="tooth_texture" jdbcType="VARCHAR" property="tooth_texture"/>
+        <result column="tooth_texture" jdbcType="VARCHAR" property="toothTexture"/>
         <result column="userdocument_id" jdbcType="VARCHAR" property="userdocument_id"/>
         <result column="anamnesis" jdbcType="VARCHAR" property="anamnesis"/>
         <result column="examine" jdbcType="VARCHAR" property="examine"/>
