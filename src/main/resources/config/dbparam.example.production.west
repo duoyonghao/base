@@ -5,16 +5,16 @@ system_dbType=1
 
 db.jdbc.driver = net.sourceforge.jtds.jdbc.Driver
 #db.jdbc.conurl = jdbc:jtds:sqlserver://192.168.1.164:1433;DatabaseName=kqds;SelectMethod=Cursor
-############### 测试环境
+    ############### 测试环境
 #db.jdbc.conurl = jdbc:jtds:sqlserver://192.168.8.195:1433;DatabaseName=kqds;SelectMethod=Cursor
-############### 测试环境
+    ############### 测试环境
 #db.jdbc.conurl = jdbc:jtds:sqlserver://192.168.8.108:1433;DatabaseName=kqds;SelectMethod=Cursor
-############### 本地环境
+    ############### 本地环境
 db.jdbc.conurl = jdbc:jtds:sqlserver://localhost:1433;DatabaseName=kqds;SelectMethod=Cursor
-############### 正式环境
+    ############### 正式环境
 #db.jdbc.conurl = jdbc:jtds:sqlserver://192.168.1.138:1433;DatabaseName=kqds;SelectMethod=Cursor
-db.jdbc.userName = sa
-db.jdbc.passward = HUDH_1234
+    db.jdbc.userName = sa
+db.jdbc.passward = hdb_1234
 #db.jdbc.passward = 1
 #db.jdbc.passward = 1
 db.jdbc.initialSize=20
@@ -37,9 +37,9 @@ db.jdbc.logAbandoned=true
 #mysql
 #db.jdbc.driver.mysql = com.mysql.jdbc.Driver
 #db.jdbc.conurl.mysql = jdbc:mysql://localhost:3306/kqds?useUnicode=true&characterEncoding=UTF-8
-#db.jdbc.userName.mysql = root
+    #db.jdbc.userName.mysql = root
 #db.jdbc.passward.mysql = zCwr2BjLzoY=
-#db.jdbc.initialSize.mysql=20
+    #db.jdbc.initialSize.mysql=20
 #db.jdbc.maxIdle.mysql=20
 #db.jdbc.maxActive.mysql=200
 #db.jdbc.maxWait.mysql=5000
