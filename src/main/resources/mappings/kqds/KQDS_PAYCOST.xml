@@ -1056,5 +1056,6 @@
 	<select id="numberOfFirstVisit" parameterType="map" resultType="int">
 		SELECT  COUNT(*) as num FROM  KQDS_REG where recesort = '20' and createtime <![CDATA[ >= ]]> #{starttime}
 		and createtime <![CDATA[ <= ]]> #{endtime}
+		and organization = #{organization}
 	</select>
 </mapper>
