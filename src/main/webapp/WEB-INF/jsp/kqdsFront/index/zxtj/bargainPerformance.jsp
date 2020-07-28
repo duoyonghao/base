@@ -371,8 +371,76 @@ function gettabledata(){
         },
         columns: [
             {
+                title: '初诊总到院人数',
+                field: 'numberOfFirstVisit',
+                align: 'center',
+                formatter: function(value, row, index) {
+                    if (value) {
+                        return "<span class='name'>" + value + "</span>";
+                    }
+                }
+            },
+            {
+                title: '初诊成交人数（不含3项）',
+                field: 'noContainsThreeUntradedFirstVisit',
+                align: 'center',
+                formatter: function(value, row, index) {
+                    if (value) {
+                        return "<span class='name'>" + value + "</span>";
+                    }
+                }
+            }, {
+                title: '不含三项初诊成交率',
+                field: 'noContainsThreeUntradedFirstVisit',
+                align: 'center',
+                formatter: function(value, row, index) {
+                    var num;
+                    if(Number(value)==0){
+                        num=0;
+                        return "<span class='name'>" + (num*100).toFixed(2) + "%</span>";
+                    }else if(Number(row.numberOfFirstVisit)>0&&Number(value)>0){
+                        num=Number(value)/Number(row.numberOfFirstVisit);
+                        return "<span class='name'>" + (num*100).toFixed(2) + "%</span>";
+                    }else if(Number(row.numberOfFirstVisit)>0&&Number(value)==0){
+                        num=1;
+                        return "<span class='name'>" + (num*100).toFixed(2) + "%</span>";
+                    }
+                }
+            },
+            {
+                title: '初诊成交人数（含3项）',
+                field: 'containsThreeUntradedFirstVisit',
+                align: 'center',
+                formatter: function(value, row, index) {
+                    if (value) {
+                        return "<span class='name'>" + value + "</span>";
+                    }
+                }
+            },{
+                title: '含三项初诊成交率',
+                field: 'containsThreeUntradedFirstVisit',
+                align: 'center',
+                formatter: function(value, row, index) {
+                    var num;
+                    if(Number(value)==0){
+                        num=0;
+                        return "<span class='name'>" + (num*100).toFixed(2) + "%</span>";
+                    }else if(Number(row.numberOfFirstVisit)>0&&Number(value)>0){
+                        num=Number(value)/Number(row.numberOfFirstVisit);
+                        return "<span class='name'>" + (num*100).toFixed(2) + "%</span>";
+                    }else if(Number(row.numberOfFirstVisit)>0&&Number(value)==0){
+                        num=1;
+                        return "<span class='name'>" + (num*100).toFixed(2) + "%</span>";
+                    }
+                }
+            },
+
+
+
+
+            {
                title: '当月初诊业绩',
-               field: 'dyczyj',
+               field: 'monthlyFirstVisit',
                align: 'center',
                formatter: function(value, row, index) {
                    if (value) {
@@ -381,7 +449,7 @@ function gettabledata(){
                }
             },{
                 title: '(当月新诊初诊成交业绩)',
-                field: 'dyxzcz',
+                field: 'monthlyNewDiagnosisInitial',
                 align: 'center',
                 formatter: function(value, row, index) {
                     if (value) {
@@ -390,7 +458,7 @@ function gettabledata(){
                 }
             },{
                 title: '(当月新诊复诊成交业绩)',
-                field: 'dyxzfz',
+                field: 'monthlyNewDiagnosisTurnover',
                 align: 'center',
                 formatter: function(value, row, index) {
                     if (value) {
@@ -399,7 +467,7 @@ function gettabledata(){
                 }
             },{
                 title: '(当月新诊再消费)',
-                field: 'dyxzzxf',
+                field: 'monthlyNewDiagnosisConsumption',
                 align: 'center',
                 formatter: function(value, row, index) {
                     if (value) {
@@ -409,7 +477,7 @@ function gettabledata(){
             },
             {
                title: '复诊总业绩',
-               field: 'fzzyj',
+               field: 'assessmentResults',
                align: 'center',
                formatter: function(value, row, index) {
                    if (value) {
@@ -418,7 +486,7 @@ function gettabledata(){
                }
            },{
                title: '含三项未成交资源总数',
-               field: 'hsxwcjzyzs',
+               field: 'containsThreeUntradedResources',
                align: 'center',
                formatter: function(value, row, index) {
                    if (value) {
@@ -428,7 +496,7 @@ function gettabledata(){
            },
             {
                title: '含三项复诊人次',
-               field: 'hsxfzcj',
+               field: 'containsThreeUntradedSubsequent',
                align: 'center',
                formatter: function(value, row, index) {
                    if (value) {
@@ -437,24 +505,24 @@ function gettabledata(){
                }
            },{
                title: '含三项复诊成交率',
-               field: 'hsxfzcj',
+               field: 'containsThreeUntradedSubsequent',
                align: 'center',
                formatter: function(value, row, index) {
 				   var num;
                    if(Number(value)==0){
                        num=0;
                        return "<span class='name'>" + (num*100).toFixed(2) + "%</span>";
-                   }else if(Number(row.hsxwcjzyzs)>0&&Number(value)>0){
-						num=Number(value)/Number(row.hsxwcjzyzs);
+                   }else if(Number(row.containsThreeUntradedResources)>0&&Number(value)>0){
+						num=Number(value)/Number(row.containsThreeUntradedResources);
                        return "<span class='name'>" + (num*100).toFixed(2) + "%</span>";
-				   }else if(Number(row.hsxwcjzyzs)>0&&Number(value)==0){
+				   }else if(Number(row.containsThreeUntradedResources)>0&&Number(value)==0){
                        num=1;
                        return "<span class='name'>" + (num*100).toFixed(2) + "%</span>";
 				   }
                }
            },{
                 title: '不含三项未成交资源总数',
-                field: 'bhsxwcjzyzs',
+                field: 'noContainsThreeUntradedResources',
                 align: 'center',
                 formatter: function(value, row, index) {
                     if (value) {
@@ -464,7 +532,7 @@ function gettabledata(){
             },
             {
                 title: '不含三项复诊人次',
-                field: 'bhsxfzcj',
+                field: 'noContainsThreeUntradedSubsequent',
                 align: 'center',
                 formatter: function(value, row, index) {
                     if (value) {
@@ -473,17 +541,17 @@ function gettabledata(){
                 }
             },{
                 title: '不含三项复诊成交率',
-                field: 'bhsxfzcj',
+                field: 'noContainsThreeUntradedSubsequent',
                 align: 'center',
                 formatter: function(value, row, index) {
                     var num;
                     if(Number(value)==0){
                         num=0;
                         return "<span class='name'>" + (num*100).toFixed(2) + "%</span>";
-                    }else if(Number(row.bhsxwcjzyzs)>0&&Number(value)>0){
-                        num=Number(value)/Number(row.bhsxwcjzyzs);
+                    }else if(Number(row.noContainsThreeUntradedResources)>0&&Number(value)>0){
+                        num=Number(value)/Number(row.noContainsThreeUntradedResources);
                         return "<span class='name'>" + (num*100).toFixed(2) + "%</span>";
-                    }else if(Number(row.bhsxwcjzyzs)>0&&Number(value)==0){
+                    }else if(Number(row.noContainsThreeUntradedResources)>0&&Number(value)==0){
                         num=1;
                         return "<span class='name'>" + (num*100).toFixed(2) + "%</span>";
                     }
@@ -491,7 +559,7 @@ function gettabledata(){
             },
             {
                title: '非当月复诊业绩',
-               field: 'fdyfzyj',
+               field: 'notInMonthTurnover',
                align: 'center',
                formatter: function(value, row, index) {
                    if (value) {
@@ -500,7 +568,7 @@ function gettabledata(){
                }
            },{
                 title: '(非当月复诊再消费)',
-                field: 'fdyfzzxf',
+                field: 'notInMonthConsumptionByTurnover',
                 align: 'center',
                 formatter: function(value, row, index) {
                     if (value) {
@@ -509,7 +577,7 @@ function gettabledata(){
                 }
             },{
                 title: '(非当月新诊复诊)',
-                field: 'fdyxzfz',
+                field: 'notInMonthNewDiagnosisByTurnover',
                 align: 'center',
                 formatter: function(value, row, index) {
                     if (value) {
@@ -519,7 +587,7 @@ function gettabledata(){
             },
            {
                title: '非当月再消费业绩',
-               field: 'fdyzxf',
+               field: 'notInMonthConsumption',
                align: 'center',
                formatter: function(value, row, index) {
                    if (value) {

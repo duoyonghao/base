@@ -695,4 +695,37 @@ public class DataAnalysisDao {
 		int list=(int) dao.findForObject(TableNameUtil.KQDS_PAYCOST+ ".noContainsThreeUntradedSubsequent", map);
 		return list;
 	}
+
+	/**
+	 * 含三项（非老介）初诊
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	public int containsThreeUntradedFirstVisit(Map<String,String> map) throws Exception{
+		int list=(int) dao.findForObject(TableNameUtil.KQDS_PAYCOST+ ".containsThreeUntradedFirstVisit", map);
+		return list;
+	}
+
+	/**
+	 * 不含三项 初诊
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	public int noContainsThreeUntradedFirstVisit(Map<String,String> map) throws Exception{
+		int list=(int) dao.findForObject(TableNameUtil.KQDS_PAYCOST+ ".noContainsThreeUntradedFirstVisit", map);
+		return list;
+	}
+
+	/**
+	 * 初诊总到院数
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	public int numberOfFirstVisit(Map<String,String> map) throws Exception{
+		int list=(int) dao.findForObject(TableNameUtil.KQDS_PAYCOST+ ".numberOfFirstVisit", map);
+		return list;
+	}
 }

@@ -4968,20 +4968,45 @@ public class DataAnalysisServiceImpl implements IDataAnalysisService {
         int c=analysisDao.containsThreeUntradedSubsequent( map);
         //不含三项的复诊成交数
         int d=analysisDao.noContainsThreeUntradedSubsequent(map);
+		//含三项（非老介）初诊
+		int e=analysisDao.containsThreeUntradedFirstVisit(map);
+		//不含三项 初诊
+		int f=analysisDao.noContainsThreeUntradedFirstVisit(map);
+		//初诊总到院数
+		int g=analysisDao.numberOfFirstVisit(map);
 		JSONObject json=new JSONObject();
-        json.put("dyxzcz",json1.getString("actualmoney"));
-        json.put("dyxzfz",json2.getString("actualmoney"));
-        json.put("dyxzzxf",json3.getString("actualmoney"));
-        json.put("fdyfzzxf",json4.getString("actualmoney"));
-        json.put("fdyxzfz",json5.getString("actualmoney"));
-        json.put("fdyzxf",json6.getString("actualmoney"));
-        json.put("fzzyj",new BigDecimal(json2.getString("actualmoney")).add(new BigDecimal(json5.getString("actualmoney"))).toString());
-        json.put("dyczyj",new BigDecimal(json1.getString("actualmoney")).add(new BigDecimal(json2.getString("actualmoney"))).add(new BigDecimal(json3.getString("actualmoney"))).toString());
-        json.put("fdyfzyj",new BigDecimal(json4.getString("actualmoney")).add(new BigDecimal(json5.getString("actualmoney"))).toString());
-        json.put("hsxwcjzyzs",a+"");
-        json.put("bhsxwcjzyzs",b+"");
-        json.put("hsxfzcj",c+"");
-        json.put("bhsxfzcj",d+"");
+		//当月新诊初诊成交业绩
+        json.put("monthlyNewDiagnosisInitial",json1.getString("actualmoney"));
+		//当月新诊复诊成交业绩
+        json.put("monthlyNewDiagnosisTurnover",json2.getString("actualmoney"));
+		//当月新诊再消费
+        json.put("monthlyNewDiagnosisConsumption",json3.getString("actualmoney"));
+		//非当月复诊再消费
+        json.put("notInMonthConsumptionByTurnover",json4.getString("actualmoney"));
+		//非当月新诊复诊
+        json.put("notInMonthNewDiagnosisByTurnover",json5.getString("actualmoney"));
+		//非当月再消费
+        json.put("notInMonthConsumption",json6.getString("actualmoney"));
+		//复诊总业绩
+        json.put("assessmentResults",new BigDecimal(json2.getString("actualmoney")).add(new BigDecimal(json5.getString("actualmoney"))).toString());
+        //当月初诊业绩
+        json.put("monthlyFirstVisit",new BigDecimal(json1.getString("actualmoney")).add(new BigDecimal(json2.getString("actualmoney"))).add(new BigDecimal(json3.getString("actualmoney"))).toString());
+        //非当月复诊业绩
+        json.put("notInMonthTurnover",new BigDecimal(json4.getString("actualmoney")).add(new BigDecimal(json5.getString("actualmoney"))).toString());
+		//含三项的未成交资源总数
+        json.put("containsThreeUntradedResources",a+"");
+		//不含三项的未成交资源总数
+        json.put("noContainsThreeUntradedResources",b+"");
+		//含三项的复诊成交数
+        json.put("containsThreeUntradedSubsequent",c+"");
+		//不含三项的复诊成交数
+        json.put("noContainsThreeUntradedSubsequent",d+"");
+		//含三项（非老介）初诊
+		json.put("containsThreeUntradedFirstVisit",e+"");
+		//不含三项 初诊
+		json.put("noContainsThreeUntradedFirstVisit",f+"");
+		//初诊总到院数
+		json.put("numberOfFirstVisit",g+"");
         return json;
 	}
 }
