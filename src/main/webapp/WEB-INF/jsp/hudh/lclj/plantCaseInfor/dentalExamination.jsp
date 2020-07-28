@@ -1083,11 +1083,6 @@
         }
         //    保存方法
         function save() {
-            // if ($("textarea")) {
-            //     str=$("textarea").selector;
-            //     str=str.replace(/<p>(.*?)<\/p>/g,"<input type='text' value='$1'>")
-            // }
-            return;
 // 	   基本信息seqid
             var patient_seqid = $("#patient_num").attr("seqid");
 // 	    口腔专科检查
