@@ -365,9 +365,6 @@
         width: 100%;
         text-align: center;
     }
-    pre{
-        display:none
-    }
 </style>
 <body>
 <!--startprint-->
