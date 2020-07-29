@@ -53,7 +53,6 @@ public class KQDS_REGLogic extends BaseLogic {
     /**
      * 统计该患者初诊数
      *
-     * @param dbConn
      * @param usercode
      * @param czIdStrs
      * @return
@@ -70,7 +69,6 @@ public class KQDS_REGLogic extends BaseLogic {
     /**
      * 根据患者编号，获取上一次挂号信息
      *
-     * @param conn
      * @param usercode
      * @return
      * @throws SQLException
@@ -83,7 +81,6 @@ public class KQDS_REGLogic extends BaseLogic {
     /**
      * 查询患者24小时内的初诊挂号记录
      *
-     * @param conn
      * @param usercode
      * @return
      * @throws SQLException
@@ -106,10 +103,6 @@ public class KQDS_REGLogic extends BaseLogic {
      * 修改挂号时，对咨询记录数据并做相应处理
      *
      * @param dp
-     * @param regold
-     * @param dbConn
-     * @param userdoc
-     * @param person
      * @throws Exception
      */
     public void checkReceive4RegEdit(KqdsReg dp, HttpServletRequest request) throws Exception {
@@ -129,7 +122,6 @@ public class KQDS_REGLogic extends BaseLogic {
      *
      * @param dp
      * @param regold
-     * @param dbConn
      * @param userdoc
      * @param person
      * @throws Exception
@@ -170,7 +162,6 @@ public class KQDS_REGLogic extends BaseLogic {
      * 如果是门诊患者挂号，检测门诊预约数据，以最新的挂号数据为准进行更新
      *
      * @param dp
-     * @param dbConn
      * @param request
      * @throws Exception
      */
@@ -203,7 +194,6 @@ public class KQDS_REGLogic extends BaseLogic {
      * 如果是网电患者挂号，检测网电预约数据
      *
      * @param dp
-     * @param dbConn
      * @param request
      * @throws Exception
      */
@@ -270,8 +260,6 @@ public class KQDS_REGLogic extends BaseLogic {
      * 根据挂号编号，删除状态为未接诊的咨询记录
      *
      * @param regno
-     * @param orm
-     * @param dbConn
      * @throws Exception
      */
     public void deleteReceiveInfoByRegNo(String regno, HttpServletRequest request) throws Exception {
@@ -293,9 +281,7 @@ public class KQDS_REGLogic extends BaseLogic {
      * 判断患者是否是 就诊情况的 复诊患者 【不做门诊条件过滤】
      *
      * @param dp
-     * @param dbConn
      * @param person
-     * @param orm
      * @throws Exception
      */
     public void checkUpdateInsertJZQK(KqdsReg dp, YZPerson person, String organization, HttpServletRequest request) throws Exception {
@@ -323,7 +309,6 @@ public class KQDS_REGLogic extends BaseLogic {
     /**
      * 生成咨询记录，内部调用
      *
-     * @param dbConn
      * @param dp
      * @throws Exception
      */
@@ -356,7 +341,6 @@ public class KQDS_REGLogic extends BaseLogic {
     /**
      * 接待中心-等待治疗列表 【只查询当前所在门诊，Organization直接从登录用户的session中获取】
      *
-     * @param conn
      * @param table
      * @param person
      * @param status
@@ -569,7 +553,6 @@ public class KQDS_REGLogic extends BaseLogic {
     /**
      * 修改挂号记录的状态信息，如就诊科室
      *
-     * @param conn
      * @param doctor  费用单中的医生
      * @param seqId   挂号记录主键
      * @param ststus  0 未成交 1已成交
@@ -776,7 +759,7 @@ public class KQDS_REGLogic extends BaseLogic {
             PageHelper.offsetPage(bp.getOffset(), bp.getLimit());
         }
         if (flag != null && flag.equals("exportTable")) {
-            List<JSONObject> list = (List<JSONObject>) dao.findForList(TableNameUtil.KQDS_REG + ".selectJzcx", map);
+            List<JSONObject> list = (List<JSONObject>) dao.findForList(TableNameUtil.KQDS_REG + ".selectJzcxExportTable", map);
             List<String> list1 = new ArrayList<String>();
             for (JSONObject job : list) {
                 String important = job.getString("important");
@@ -1543,8 +1526,6 @@ public class KQDS_REGLogic extends BaseLogic {
     /**
      * 查询患者24小时内的初诊挂号记录
      *
-     * @param conn
-     * @param usercode
      * @return
      * @throws SQLException
      */

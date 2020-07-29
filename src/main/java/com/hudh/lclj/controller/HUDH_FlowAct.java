@@ -952,21 +952,28 @@ public class HUDH_FlowAct {
 				throw new Exception("修复方案确认单还没有填写，请填写完再进行提交！");
 			} else {
 			}*/
-            if (dzblService.findCaseHistoryById(id).size() > 0 && dzblService.findCaseHistoryById(id) != null || zzblAdviceService.findCaseHistoryById(id).size()>0) {
-                Map<String, String> map = new HashMap<String, String>();
-                map.put("lcljId", id);
-                if (zzblCheckService.findZzblOprationById(id).size() > 0 && zzblCheckService.findZzblOprationById(id) != null|| mlogic.selectdata(map).size()>0) {
-                    if (zzblService.findZzblOprationById(id).size() > 0 && zzblService.findZzblOprationById(id) != null || logic.selectWithPage(id).size()>0) {
-                        if (rscService.findRepairInforById(id).size() > 0 && rscService.findRepairInforById(id) != null) {
-                            if (dzblService.findFamiliarBook(id) != null || dzblService.findLocatorFamiliares(id).size() > 0) {
-                                flowService.updateOrderTrackNodes(dataMap, flowCode, type, dentalJaw, lcljOrderTrack, request);
-                                YZUtility.DEAL_SUCCESS(null, null, response, logger);
-                            } else {
+			//多次查询改为字段状态判断
+            if (YZUtility.isNotNullOrEmpty(lcljOrderTrack.getAnamnesis())) {
+                if (YZUtility.isNotNullOrEmpty(lcljOrderTrack.getExamine())) {
+                    if (YZUtility.isNotNullOrEmpty(lcljOrderTrack.getDiagnosis())) {
+                        //if (YZUtility.isNotNullOrEmpty(lcljOrderTrack.getRepair())) {
+                            if(YZUtility.isNotNullOrEmpty(lcljOrderTrack.getKnowbook())){
+                                if(YZUtility.isNotNullOrEmpty(lcljOrderTrack.getImageologicalExamination())){
+                                    if(YZUtility.isNotNullOrEmpty(lcljOrderTrack.getToothTexture())){
+                                        flowService.updateOrderTrackNodes(dataMap, flowCode, type, dentalJaw, lcljOrderTrack, request);
+                                        YZUtility.DEAL_SUCCESS(null, null, response, logger);
+                                    }else{
+                                        throw new Exception("牙冠材质还没有选择，请选择后再进行提交！");
+                                    }
+                                }else{
+                                    throw new Exception("影像学检查还没有选择，请选择后再进行提交！");
+                                }
+                            }else {
                                 throw new Exception("知情同意书还没有填写，请填写完再进行提交！");
                             }
-                        } else {
-                            throw new Exception("修复方案确认单还没有填写，请填写完再进行提交！");
-                        }
+                        //} else {
+                        //    throw new Exception("修复方案确认单还没有填写，请填写完再进行提交！");
+                        //}
                     } else {
                         throw new Exception("诊疗方案还没有填写，请填写完再进行提交！");
                     }
@@ -976,6 +983,40 @@ public class HUDH_FlowAct {
             } else {
                 throw new Exception("主诉及既往病史还没有填写，请填写完再进行提交！");
             }
+
+
+//            if (dzblService.findCaseHistoryById(id).size() > 0 && dzblService.findCaseHistoryById(id) != null || zzblAdviceService.findCaseHistoryById(id).size()>0) {
+//                Map<String, String> map = new HashMap<String, String>();
+//                map.put("lcljId", id);
+//                if (zzblCheckService.findZzblOprationById(id).size() > 0 && zzblCheckService.findZzblOprationById(id) != null|| mlogic.selectdata(map).size()>0) {
+//                    if (zzblService.findZzblOprationById(id).size() > 0 && zzblService.findZzblOprationById(id) != null || logic.selectWithPage(id).size()>0) {
+//                        if (rscService.findRepairInforById(id).size() > 0 && rscService.findRepairInforById(id) != null) {
+//                            if (dzblService.findFamiliarBook(id) != null || dzblService.findLocatorFamiliares(id).size() > 0) {
+//                                if(YZUtility.isNotNullOrEmpty(lcljOrderTrack.getImageologicalExamination())){
+//                                    if(YZUtility.isNotNullOrEmpty(lcljOrderTrack.getTooth_texture())){
+//                                        flowService.updateOrderTrackNodes(dataMap, flowCode, type, dentalJaw, lcljOrderTrack, request);
+//                                        YZUtility.DEAL_SUCCESS(null, null, response, logger);
+//                                    }else{
+//                                        throw new Exception("牙冠材质还没有选择，请选择后再进行提交！");
+//                                    }
+//                                }else{
+//                                    throw new Exception("影像学检查还没有选择，请选择后再进行提交！");
+//                                }
+//                            } else {
+//                                throw new Exception("知情同意书还没有填写，请填写完再进行提交！");
+//                            }
+//                        } else {
+//                            throw new Exception("修复方案确认单还没有填写，请填写完再进行提交！");
+//                        }
+//                    } else {
+//                        throw new Exception("诊疗方案还没有填写，请填写完再进行提交！");
+//                    }
+//                } else {
+//                    throw new Exception("检查及诊断还没有填写，请填写完再进行提交！");
+//                }
+//            } else {
+//                throw new Exception("主诉及既往病史还没有填写，请填写完再进行提交！");
+//            }
 //				flowService.updateOrderTrackNodes(dataMap,flowCode,type,dentalJaw,lcljOrderTrack,request);
 //			}
         } catch (Exception ex) {
@@ -1056,21 +1097,21 @@ public class HUDH_FlowAct {
 			} else {
 				flowService.updateLcljOrderTrackById(lcljOrderTrack);
 			}*/
-            if (dzblService.findCaseHistoryById(id) != null && dzblService.findCaseHistoryById(id).size() > 0 ||zzblAdviceService.findCaseHistoryById(id).size()>0) {
-                Map<String, String> map = new HashMap<String, String>();
-                map.put("lcljId", id);
-                if (zzblCheckService.findZzblOprationById(id) != null && zzblCheckService.findZzblOprationById(id).size() > 0 || mlogic.selectdata(map).size()>0) {
-                    if (zzblService.findZzblOprationById(id) != null && zzblService.findZzblOprationById(id).size() > 0 || logic.selectWithPage(id).size()>0) {
-                        if (rscService.findRepairInforById(id) != null && rscService.findRepairInforById(id).size() > 0) {
-                            if (dzblService.findFamiliarBook(id) != null || dzblService.findLocatorFamiliares(id).size() > 0) {
+            //多次查询改为字段状态判断
+            LcljOrderTrack lcljOrderTrack1 = flowService.findLcljOrderTrsackByseqId(id);
+            if (YZUtility.isNotNullOrEmpty(lcljOrderTrack1.getAnamnesis())) {
+                if (YZUtility.isNotNullOrEmpty(lcljOrderTrack1.getExamine())) {
+                    if (YZUtility.isNotNullOrEmpty(lcljOrderTrack1.getDiagnosis())) {
+                        //if (YZUtility.isNotNullOrEmpty(lcljOrderTrack1.getRepair())) {
+                            if(YZUtility.isNotNullOrEmpty(lcljOrderTrack1.getKnowbook())) {
                                 flowService.updateLcljOrderTrackById(lcljOrderTrack);
                                 YZUtility.DEAL_SUCCESS(null, null, response, logger);
-                            } else {
+                            }else {
                                 throw new Exception("知情同意书还没有填写，请填写完再进行提交！");
                             }
-                        } else {
-                            throw new Exception("修复方案确认单还没有填写，请填写完再进行提交！");
-                        }
+                        //} else {
+                        //    throw new Exception("修复方案确认单还没有填写，请填写完再进行提交！");
+                        //}
                     } else {
                         throw new Exception("诊疗方案还没有填写，请填写完再进行提交！");
                     }
@@ -1080,6 +1121,30 @@ public class HUDH_FlowAct {
             } else {
                 throw new Exception("主诉及既往病史还没有填写，请填写完再进行提交！");
             }
+//            if (dzblService.findCaseHistoryById(id) != null && dzblService.findCaseHistoryById(id).size() > 0 ||zzblAdviceService.findCaseHistoryById(id).size()>0) {
+//                Map<String, String> map = new HashMap<String, String>();
+//                map.put("lcljId", id);
+//                if (zzblCheckService.findZzblOprationById(id) != null && zzblCheckService.findZzblOprationById(id).size() > 0 || mlogic.selectdata(map).size()>0) {
+//                    if (zzblService.findZzblOprationById(id) != null && zzblService.findZzblOprationById(id).size() > 0 || logic.selectWithPage(id).size()>0) {
+//                        if (rscService.findRepairInforById(id) != null && rscService.findRepairInforById(id).size() > 0) {
+//                            if (dzblService.findFamiliarBook(id) != null || dzblService.findLocatorFamiliares(id).size() > 0) {
+//                                flowService.updateLcljOrderTrackById(lcljOrderTrack);
+//                                YZUtility.DEAL_SUCCESS(null, null, response, logger);
+//                            } else {
+//                                throw new Exception("知情同意书还没有填写，请填写完再进行提交！");
+//                            }
+//                        } else {
+//                            throw new Exception("修复方案确认单还没有填写，请填写完再进行提交！");
+//                        }
+//                    } else {
+//                        throw new Exception("诊疗方案还没有填写，请填写完再进行提交！");
+//                    }
+//                } else {
+//                    throw new Exception("检查及诊断还没有填写，请填写完再进行提交！");
+//                }
+//            } else {
+//                throw new Exception("主诉及既往病史还没有填写，请填写完再进行提交！");
+//            }
 //			flowService.updateLcljOrderTrackById(lcljOrderTrack);
         } catch (Exception e) {
             YZUtility.DEAL_ERROR(e.getMessage(), true, e, response, logger);

@@ -45,4 +45,3 @@ db.jdbc.logAbandoned=true
 #db.jdbc.maxWait.mysql=5000
 #db.jdbc.defaultAutoCommit.mysql=false
 #db.jdbc.defaultReadOnly.mysql=false=======
-
