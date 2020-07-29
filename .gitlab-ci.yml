@@ -17,6 +17,7 @@ build:
   only:
     refs:
       - master
+      - dev
   tags:
     - package
 
