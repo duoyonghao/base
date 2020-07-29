@@ -451,7 +451,7 @@
         width: 100px!important;
     }
     .patient .inputDiv:nth-child(7){
-        width: 300px!important;
+        width: 470px!important;
     }
 
     .baseInfo .patient>.inputDiv>span{
