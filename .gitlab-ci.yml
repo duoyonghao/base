@@ -18,23 +18,11 @@ build:
     refs:
       - master
       - dev
+      - master-xzm
+      - debug
   tags:
     - package
 
-build-xzm:
-  stage: build
-  script:
-    - chmod u+x ./mvnw
-    - ./mvnw compile
-    - ./mvnw war:exploded
-  artifacts:
-    paths:
-      - target/base
-  only:
-    refs:
-      - master-xzm
-  tags:
-    - package
 
 deploy-test:
   stage: test
@@ -99,7 +87,7 @@ deploy-production-west:
     - echo -n "start tomcat server..."
     - Start-Service ${service_name}
   dependencies:
-    - build-xzm
+    - build
     - deploy-test
   when: manual
   tags:
