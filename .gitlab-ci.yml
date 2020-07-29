@@ -43,6 +43,8 @@ deploy-test:
   when: manual
   tags:
     - test
+  environment:
+    name: test
 
 deploy-production-east:
   stage: production
@@ -69,6 +71,8 @@ deploy-production-east:
   only:
     refs:
       - master
+  environment:
+    name: production
 
 deploy-production-west:
   stage: production
@@ -95,3 +99,5 @@ deploy-production-west:
   only:
     refs:
       - master-xzm
+  environment:
+    name: production-xzm
