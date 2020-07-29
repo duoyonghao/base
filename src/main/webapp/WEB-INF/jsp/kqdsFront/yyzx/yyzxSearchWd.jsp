@@ -460,7 +460,7 @@ function exportTable() {
 		// console.log("生成报表")
 		var fieldArr = [];
 		var fieldnameArr = [];
-		$('#table thead tr th').each(function () {
+		$('#table2 thead tr th').each(function () {
 			var field = $(this).attr("data-field");
 			if (field != "") {
 				fieldArr.push(field);//获取字段

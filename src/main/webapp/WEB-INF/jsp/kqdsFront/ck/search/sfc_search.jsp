@@ -35,7 +35,7 @@
 	}
 	/* .tableBox{
 		border:1px solid #ddd;
-	} 
+	}
 	.fixed-table-container{
 		border-left: 1px solid #ddd;
 		border-right: 1px solid #ddd;
@@ -60,7 +60,7 @@
         <table id="table" class="table-striped table-condensed table-bordered"></table>
     </div>
     <div class="tableBox">
-    	<table style="width: 100%"> 
+    	<table style="width: 100%">
        		<tr>
  				<td width="10%"><span style="color:#00A6C0;">共有记录：<lable id="total">0</lable>条</span></td>
  				<td width="10%"><span style="color:#00A6C0;">期初数量：<lable id="qcnums">0</lable></span></td>
@@ -71,7 +71,7 @@
  				<td width="10%"><span style="color:#00A6C0;">出库金额：<lable id="ckmoney">0</lable></span></td>
  				<td width="10%"><span style="color:#00A6C0;">期末数量：<lable id="qmnums">0</lable></span></td>
  				<td width="10%"><span style="color:#00A6C0;">期末金额：<lable id="qmmoney">0</lable></span></td>
-       		</tr> 
+       		</tr>
        	</table>
     </div>
        <!--查询条件-->
@@ -106,7 +106,7 @@
 					</div>
                 </div>
             </div>
-        </div> 
+        </div>
 </div>
 </body>
 <script type="text/javascript" src="<%=contextPath%>/static/js/app/plugin/jquery.js"></script>
@@ -117,7 +117,7 @@
 <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/bootstrap/bootstrap-datetimepicker.zh-CN.js" charset="utf-8" ></script>
 <script type="text/javascript" src="<%=contextPath%>/static/plugin/layer-v2.4/layer/layer.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/util.js"></script>
-<script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/ck/ck.js"></script> 
+<script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/ck/ck.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/bootstrap-table-jumpto.js"></script>
 <script type="text/javascript">
 var contextPath = "<%=contextPath%>";
@@ -153,14 +153,14 @@ $(function() {
         timeCompartAndFz("starttime", "endtime");
     });
 // 	setHeight();
-// 	$("#divkdxm").css("height",$(window).height() - $(".costHd").outerHeight() - $(".searchWrap").outerHeight() - 58);	
+// 	$("#divkdxm").css("height",$(window).height() - $(".costHd").outerHeight() - $(".searchWrap").outerHeight() - 58);
     OrderDetail(goodsid);
-    
+
     $(window).resize(function() {
 //      setHeight();
      setWidth();
-     
-//     var calculateHeight = $(window).height() - $(".costHd").outerHeight() - $(".searchWrap").outerHeight() - $(".operateModel").outerHeight() - 95; 
+
+//     var calculateHeight = $(window).height() - $(".costHd").outerHeight() - $(".searchWrap").outerHeight() - $(".operateModel").outerHeight() - 95;
      var calculateHeight = $(window).height() - $(".costHd").outerHeight() - $(".searchWrap").outerHeight() - $(".operateModel").outerHeight() - 60;
      $(".fixed-table-container").outerHeight(calculateHeight);
  });
@@ -193,7 +193,7 @@ function() {
     $('#table').bootstrapTable('refresh', {
         'url': pageurl
     });
-    
+
     $(".fixed-table-loading").css("display","block"); // 查询时间比较长时，如果第一次查询没有返回的情况下，发起第二次查询，仍要显示 Loading, please wait...
 });
 $('#clean').on('click',
@@ -262,7 +262,7 @@ function setHeight(){
 	});
 }
 function OrderDetail(goodsid) {
-	$("#table").attr("data-height", $(window).height() - $(".searchWrap").outerHeight() - $(".tableHd").outerHeight() - 10);	
+	$("#table").attr("data-height", $(window).height() - $(".searchWrap").outerHeight() - $(".tableHd").outerHeight() - 10);
     $("#table").bootstrapTable({
         url: pageurl,
         dataType: "json",
@@ -271,7 +271,7 @@ function OrderDetail(goodsid) {
         pagination: true,//是否显示分页（*）
         pageSize: 25,
         pageList : [10, 15, 20, 25],//可以选择每页大小
-      //在表格底部显示分页工具栏 
+      //在表格底部显示分页工具栏
         singleSelect: true,
         paginationShowPageGo: true,
         queryParamsType:'limit',
@@ -310,7 +310,7 @@ function OrderDetail(goodsid) {
 	    	$("#qmmoney").html(qmmoney.toFixed(3));
 	    	setHeight();
 	    	/*表格载入时，设置表头的宽度 */
-	        setTableHeaderWidth(".tableBox");	    	
+	        setTableHeaderWidth(".tableBox");
         },
         columns: [
 			{
@@ -335,7 +335,7 @@ function OrderDetail(goodsid) {
             	}else{
             		return '<span>-</span>';
             	}
-            	
+
             }
         },
 //         {
@@ -355,7 +355,7 @@ function OrderDetail(goodsid) {
 	            	html = '<span class="name" title="'+value+'">' + value + '</span>';
 	                return html;
 	            }
-	        }, 
+	        },
 	        {
 	            title: '二级类别',
 	            field: 'goodstypename',

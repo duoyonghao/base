@@ -236,6 +236,7 @@
         margin: auto;
     }
     .div_with3{
+        /*border:1px solid red!important;*/
         width:300px;
         height:35px;
         border:0px;
@@ -354,6 +355,15 @@
             margin: 0px auto 10px !important;
         }
 
+    }
+    textarea{
+        resize:none;
+        border: none;
+        border-radius: 5px;
+        overflow-y: hidden;
+        height:100%;
+        width: 100%;
+        text-align: center;
     }
 </style>
 <body>
@@ -512,23 +522,35 @@
                 </tr>
                 <tr>
                     <td  colspan="" class="problemitem table_width"><span class="" id="ysd1">Ⅰ°</span></td>
-                    <td  colspan="4" class="table_width"><div class="div_with placeholder" id="ysd1"></div></td>
+                    <td  colspan="4" class="table_width">
+                        <div class="div_with" sid="ysd1">
+                            <textarea name="ysd1"  cols="2" placeholder="对应牙位"></textarea>
+                        </div>
+                    </td>
                     <td  colspan="" class="problemitem table_width"><span class="" id="ysd2">Ⅱ°</span></td>
-                    <td  colspan="4" class="table_width"><div class="div_with placeholder" id="ysd2"></div></td>
+                    <td  colspan="4" class="table_width">
+                        <div class="div_with" sid="ysd2">
+                            <textarea name="ysd2"  cols="2" placeholder="对应牙位"></textarea>
+                        </div>
+                    </td>
 
                 </tr>
                 <tr>
                     <td  colspan="" class="problemitem table_width"><span class="" id="ysd3">Ⅲ°</span></td>
-                    <td  colspan="4" class="table_width"><div class="div_with placeholder" id="ysd3"></div></td>
+                    <td  colspan="4" class="table_width">
+                        <div class="div_with placeholder" sid="ysd3">
+                            <textarea name="ysd3"  cols="2" placeholder="对应牙位"></textarea>
+                        </div>
+                    </td>
                     <td  colspan="" class="table_width"></td>
                     <td  colspan="4" class="table_width"></td>
                 </tr>
             </table>
         </div>
     </div>
-    <div id="tooth" style="overflow:hidden;padding-left: 15%;">
+    <div id="tooth" style="overflow:hidden;padding-left: 15%;display:none" >
         <!-- 牙位图操作 -->
-        <div class="btnsYa">
+        <div class="btnsYa" style="display:none">
             <input type="button" id="toothLoose" class="nocurrent_btn" value="牙松动"/>
             <input type="button" id="toothCondition" class="nocurrent_btn" value="口腔情况"/>
             <input type="button" id="imageExamination" class="nocurrent_btn" value="影像学检查"/>
@@ -545,41 +567,11 @@
             <ul class="downYa">
             </ul>
         </div>
-        <div class="row toothBox toothProBox" id="toothConditionMap" style="min-width:600px;float:left; display: none;">
-            <ul class="upYa" >
-            </ul>
-            <div class="line">
-                <span class="left">右</span>
-                <span class="right">左</span>
-            </div>
-            <ul class="downYa">
-            </ul>
-        </div>
-        <div class="row toothBox toothProBox" id="imageExaminationMap" style="min-width:600px;float:left; display: none;">
-            <ul class="upYa" >
-            </ul>
-            <div class="line">
-                <span class="left">右</span>
-                <span class="right">左</span>
-            </div>
-            <ul class="downYa">
-            </ul>
-        </div>
-        <div class="row toothBox toothProBox" id="medicalCertificateMap" style="min-width:600px;float:left; display: none;">
-            <ul class="upYa" >
-            </ul>
-            <div class="line">
-                <span class="left">右</span>
-                <span class="right">左</span>
-            </div>
-            <ul class="downYa">
-            </ul>
-        </div>
     </div>
-    <div class="row toothBox blockToothBox" id="conditionToothBox" style="display:none;min-width:700px;width: 100%;overflow: hidden;margin-left: 10%;margin-top: 1px">
+    <div class="row toothBox blockToothBox" id="conditionToothBox" style="display:block;min-width:700px;width: 100%;overflow: hidden;margin-left: 10%;margin-top: 1px">
         <ul class="upYa" >
         </ul>
-        <div class="line" style="left: -20%;width: 40%;">
+        <div class="line" style="left: -20%;width: 30%;">
             <span class="left">右</span>
             <span class="right">左</span>
         </div>
@@ -599,9 +591,18 @@
                 <span class="smalltitle">影像学检查</span>
                 <table id="imageExaminationBox" class="contentItem contentItem2" border="1" width="100%">
                     <tr>
-                        <td class="table_width2"><div class='div_with2 placeholder' id="yxx14"></div></td>
+                        <td class="table_width2">
+                            <div class='div_with2 placeholder' sid="yxx14">
+                                <textarea name='yxx14'  cols='2' placeholder='对应牙位'></textarea></div>
+                            </div>
+                        </td>
                         <td colspan="3" class="problemitem table_width3"><span class="" id="yxx14">牙槽嵴顶距上颌窦底 </span><input class="border_bottom" id="saprodontia" type="text" onblur="TextLengthCheck(this.id,2);"/>mm</td>
-                        <td class="table_width2"><div class='div_with2 placeholder' id="yxx15"></div></td>
+                        <td colspan="" class="problemitem div_with2"><span class="" id="">距鼻底</span><input class="border_bottom" id="basisnasi" type="text" onblur="TextLengthCheck(this.id,2);"/>mm</td>
+                        <td class="table_width2">
+                            <div class='div_with2 placeholder' sid="yxx15">
+                                <textarea name='yxx15'  cols='2' placeholder='对应牙位'></textarea></div>
+                            </div>
+                        </td>
                         <td colspan="2" class="problemitem table_width3"><span class="" id="yxx15">距下牙槽神经管 </span><input class="border_bottom" id="residualcrown" type="text" onblur="TextLengthCheck(this.id,2);"/>mm</td>
                     </tr>
                     <tr>
@@ -612,7 +613,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3" class="table_width2"><div class='div_with2 placeholder' id="yxx16"></div></td>
+                        <td colspan="3" class="table_width2">
+                            <div class='div_with2 placeholder' sid="yxx16">
+                                <textarea name='yxx16'  cols='2' placeholder='对应牙位'></textarea></div>
+                            </div>
+                        </td>
                         <td colspan="2" class="problemitem">
                             <span class="" id="yxx16">种植区域骨量</span>
                         </td>
@@ -623,8 +628,10 @@
                     </tr>
                     <tr>
                         <td rowspan="4" class="problemitem"><span class="">种植区域骨质 </span></td></td>
-                        <td colspan="4" class="table_width2">
-                            <div class='placeholder div_with3' id="yxx17" class="div_with3"></div>
+                        <td colspan="5" class="table_width2">
+                            <div class='placeholder div_with3' sid="yxx17" class="div_with3">
+                                <textarea name='yxx17'  cols='2' placeholder='对应牙位'></textarea></div>
+                            </div>
                         </td>
                         <td colspan="" class="table_width2 problemitem">
                             <span class=""  id="yxx17">Ⅰ类骨</span>
@@ -632,24 +639,30 @@
 
                     </tr>
                     <tr>
-                        <td colspan="4" class="table_width2">
-                            <div class='placeholder div_with3' id="yxx18" class="div_with3"></div>
+                        <td colspan="5" class="table_width2">
+                            <div class='placeholder div_with3' sid="yxx18" class="div_with3">
+                                <textarea name='yxx18'  cols='2' placeholder='对应牙位'></textarea></div>
+                            </div>
                         </td>
                         <td colspan="" class="table_width2 problemitem" style="width: 30%">
                             <span class="" id="yxx18">Ⅱ类骨</span>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="table_width2">
-                            <div class='placeholder div_with3' id="yxx19" class="div_with3"></div>
+                        <td colspan="5" class="table_width2">
+                            <div class='placeholder div_with3' sid="yxx19" class="div_with3">
+                                <textarea name='yxx19'  cols='2' placeholder='对应牙位'></textarea></div>
+                            </div>
                         </td>
                         <td colspan="" class="table_width2 problemitem">
                             <span class="" id="yxx19">Ⅲ类骨</span>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="table_width2">
-                            <div class='placeholder div_with3' id="yxx20" class="div_with3"></div>
+                        <td colspan="5" class="table_width2">
+                            <div class='placeholder div_with3' sid="yxx20" class="div_with3">
+                                <textarea name='yxx20'  cols='2' placeholder='对应牙位'></textarea></div>
+                            </div>
                         </td>
                         <td colspan="" class="table_width2 problemitem">
                             <span class="" id="yxx20">Ⅳ类骨 </span>
@@ -689,11 +702,6 @@
     </div>
     <!--endprint-->
     <!-- 按钮 -->
-<%--    <div class="btns">--%>
-<%--        <button id="consent_saveBtn" onclick="save()">保存</button>--%>
-<%--        <button id="consent_updateBtn" style="display: none;" class="consent_updateBtn hidden" onclick="update()">修改表单</button>--%>
-<%--        <button id="print_Btn" onclick="myPreviewAll()" style="/*visibility: hidden;*/">打印本页内容</button>--%>
-<%--    </div>--%>
     <div class="btns">
         <button id="consent_saveBtn" onclick="save()">保存</button>
         <button id="consent_updateBtn" style="display: none;" class="consent_updateBtn hidden" onclick="update()">修改表单</button>
@@ -897,18 +905,18 @@
                     $(this).html("<span class='' id="+data[i].dictCode+">"+data[i].dictName+"</span>");
                 })
                 $("#"+obj).find("tbody tr").find("td:even").each(function(i,obj){
-                    $(this).html("<div class='div_with placeholder' id="+data[i].dictCode+"></div>");
+                    $(this).html("<div class='div_with placeholder' sid="+data[i].dictCode+"><textarea name="+data[i].dictCode+"  cols='2' placeholder='对应牙位'></textarea></div>");
                 })
             }else{
                 $("#"+obj).find("tbody tr").find("td:odd").not("td:last").each(function(i,obj){
                     $(this).html("<span class='' id="+data[i].dictCode+">"+data[i].dictName+"</span>");
                 })
                 $("#"+obj).find("tbody tr").find("td:even").not("td:last").each(function(i,obj){
-                    $(this).html("<div class='div_with placeholder' id="+data[i].dictCode+"></div>");
+                    $(this).html("<div class='div_with placeholder' sid="+data[i].dictCode+"><textarea name="+data[i].dictCode+"  cols='2' placeholder='对应牙位'></textarea></div>");
                 })
             }
         }
-        // 初始化牙位图
+        // 初始化牙位图默认展示
         function initToothMap(obj){
             var upelhtml="<li><input type='checkbox' class='lefttop' style='margin-top:65px;'></li>";
             for (var i=18;i>10;i--){
@@ -929,7 +937,7 @@
             downelhtml+="<li><input type='checkbox' class='rightdown' style='margin-top:20px;'></li>";
             $("#"+obj).find(".downYa").html(downelhtml);
         }
-        // 初始化牙位图
+        // 初始化牙位图打印展示
         function initBlockToothMap(obj){
             var uphtml="";
             for (var i=18;i>10;i--){
@@ -948,130 +956,7 @@
             }
             $("#"+obj).find(".downYa").html(downhtml);
         }
-        // 添加问题牙齿时（图）赋值---选中状态（红圈）
-        function checkedTooth(projectId,one){
-            var tooth=$("#"+projectId+"Map").find("ul li span.num").text();
-            var toothArr=[];
-            var toothArr = tooth.split(',');
-            var checkedArr=[];
-            for(var i=0;i<tooth.length;i+=2){
-                toothArr.push(tooth.slice(i,i+2));
-            }
-            if(one){
-                checkedArr.push(one);
-            }
-            for(j=0;j<toothArr.length;j++){
-                for(var i=0;i<checkedArr.length;i++){
-                    if(checkedArr[i]!=toothArr[j]){
-                        $("#"+projectId+"Map").find("ul li span[toothname="+toothArr[j]+"]").removeClass("checked_current");
-                    }
-                }
-            }
-            if(projectId=="toothLoose"){//牙松动布局不同
-                $("."+projectId+"NextBox").nextAll().find("td:odd").each(function(j,el){
-                    var thi=this;
-                    var span=$(thi).find("div").find("span");
-                    if(span.length>0){
-                        $(thi).find("div").find("span").each(function(k,e){
-                            checkedArr.push($(this).attr("id"));
-                            for(j=0;j<toothArr.length;j++){
-                                for(var i=0;i<checkedArr.length;i++){
-                                    if(checkedArr[i]==toothArr[j]){
-                                        $("#"+projectId+"Map").find("ul li span[toothname="+toothArr[j]+"]").addClass("checked_current");
-                                    }
-                                }
-                            }
-                        })
-                    }
-                })
-            }else{//整体口腔情况明细、影像学检查、诊断布局相同的
-                $("#"+projectId+"Box").find("tr td:even").each(function(j,el){
-                    var thi=this;
-                    var span=$(thi).find("div").find("span");
-                    if(span.length>0){
-                        $(thi).find("div").find("span").each(function(k,e){
-                            checkedArr.push($(this).attr("id"));
-                            for(j=0;j<toothArr.length;j++){
-                                for(var i=0;i<checkedArr.length;i++){
-                                    if(checkedArr[i]==toothArr[j]){
-                                        $("#"+projectId+"Map").find("ul li span[toothname="+toothArr[j]+"]").addClass("checked_current");
-                                    }
-                                }
-                            }
-                        })
-                    }
-                })
-            }
-        }
-        // 牙位图start========================================================================
-        // 		选择项目projectId
-        var projectId='';
-        var projectName='';
-        $('.btnsYa').on('click', 'input',function() {
-            $(this).siblings().removeClass('current_btn');
-            $(this).siblings().addClass('nocurrent_btn');
-            $(this).removeClass('nocurrent_btn');
-            $(this).addClass('current_btn');
-            if($(this).hasClass("current_btn")){
-                projectId=$(this).attr("id");
-                projectName=$(this).val();
-//  				lastIndex=$(this).index();
-                if(projectId=='toothLoose'){//1
-                    $("#toothLooseMap").css("display","block");
-                    $("#toothLooseMap").siblings(".toothBox").css("display","none");
-                    checkedTooth(projectId);
-                }else if(projectId=='toothCondition'){//2
-                    $("#toothConditionMap").css("display","block");
-                    $("#toothConditionMap").siblings(".toothBox").css("display","none");
-                    checkedTooth(projectId);
-                }else if(projectId=='imageExamination'){//3
-                    $("#imageExaminationMap").css("display","block");
-                    $("#imageExaminationMap").siblings(".toothBox").css("display","none");
-                    checkedTooth(projectId);
-                }else if(projectId=='medicalCertificate'){//4
-                    $("#medicalCertificateMap").css("display","block");
-                    $("#medicalCertificateMap").siblings(".toothBox").css("display","none");
-                    checkedTooth(projectId);
-                }
-            }else{}
-        })
-        //点击牙齿操作
-        var toothNum;
-        var toothMore;
-        $('.toothProBox').on('click', 'li',
-            function() {
-                if(!projectId){
-                    layer.alert("请选择要添加的牙位项目！");
-                    return false;
-                }
-                toothNumid=$(this).find("input").attr("class");
-                if(toothNumid=="lefttop"){//上下左右四个方位
-                    toothNum="11-18";
-                    toothMore=$(this).nextAll().find('span[name="adultupYa1"]').text();
-                }else if(toothNumid=="righttop"){
-                    toothNum="21-28";
-                    toothMore=$(this).prevAll().find('span[name="adultupYa2"]').text();
-                }else if(toothNumid=="leftdown"){
-                    toothNum="41-48";
-                    toothMore=$(this).nextAll().find('span[name="adultdownYa1"]').text();
-                }else if(toothNumid=="rightdown"){
-                    toothNum="31-38";
-                    toothMore=$(this).prevAll().find('span[name="adultdownYa2"]').text();
-                }else if(toothNumid=="alltooth"){//全口
-                    toothNum=$(this).find("input").val();
-                    toothMore=$(this).parents("#"+projectId+"Map").find('ul li').find('span[class="num"]').text();
-                }else{//普通单个牙位
-                    toothNum=$(this).find(".num").text();
-                    toothMore=$(this).find(".num").text();
-                }
-                layer.open({
-                    type: 2,
-                    title: projectName,
-                    area: ['55%', '30%'],
-                    content: contextPath+'/ZzblViewAct/toProject.act?id='+projectId+'&projectName='+projectName+'&toothNum='+toothNum+'&toothMore='+toothMore
-                })
-            })
-        // 牙位图end========================================================================
+
         // 复选框取值
         function inputCheckedSave(name) {
             var obj = $("#"+name+"Checkbox").find("input[name="+name+"]");
@@ -1088,9 +973,9 @@
             var toothLooseItem={};
             $(".toothLooseNextBox").nextAll().find("td:even").each(function(j,el){
                 var item=$(this).find("span").attr("id");
-                var itemTooth=$(this).next().find("div");
+                var itemTooth=$(this).next().find("div textarea");
                 if(item!=undefined){
-                    var checkedtoothStr=itemTooth.text();//获取牙位
+                    var checkedtoothStr=itemTooth.val();//获取牙位
                     toothLooseItem[item]=checkedtoothStr;
                 }
             })
@@ -1101,9 +986,9 @@
             var ToothItem={};
             $("#"+obj).find("tr td:odd").each(function(j,el){
                 var item=$(this).find("span").attr("id");
-                var itemTooth=$(this).prev().find("div");
+                var itemTooth=$(this).prev().find("div textarea");
                 if(item!=undefined){
-                    var checkedtoothStr=itemTooth.text(); //获取牙位
+                    var checkedtoothStr=itemTooth.val(); //获取牙位
                     ToothItem[item]=checkedtoothStr;
                 }
             })
@@ -1220,6 +1105,7 @@
             var imageExamination=saveTooth("imageExaminationBox");//牙位
             var saprodontia = $("#saprodontia").val();//牙槽嵴顶距上颌窦底
             var residualcrown = $("#residualcrown").val();//距下牙槽神经管
+            var basisnasi = $("#basisnasi").val();//距鼻底
             var pulpitis = $("#imageExaminationBox").find("input[name='pulpitis']:checked").val();//上颌窦情况是否正常
             var teethtilted=$("#teethtilted").val();//上颌窦情况异常情况
             var nub = $("#imageExaminationBox").find("input[name='nub']:checked").val();//种植区域骨量是否正常
@@ -1259,6 +1145,7 @@
                 defectdentition : imageExamination,
                 saprodontia : saprodontia,
                 residualcrown : residualcrown,
+                basisnasi:basisnasi,
                 pulpitis : pulpitis,
                 teethtilted : teethtilted,
                 nub : nub,
@@ -1393,7 +1280,7 @@
         // 	返回数据赋值
         function initData(){
             if(form){
-                //console.log(JSON.stringify(res)+'-----result');
+                // console.log(JSON.stringify(form))
                 updataid=form.seqId;//获取更新修改id
                 // var res=result[0];
                 // updataid=res.seqId;//获取更新修改id
@@ -1434,19 +1321,11 @@
                     var toothLoose=form.onedu;
                     var table_pro=$(".toothLooseNextBox").nextAll().find("td:even");
                     table_pro.each(function(j,el){
-                        var $table_span=$(this).next().find("div");//赋值的div框
                         var tabletooth=$(this).find("span").attr("id");	//要赋值的item
                         for(var key in toothLoose){
-                            var toothLoosestr=toothLoose[key];
                             if(toothLoose[key]!=""){
-                                //去掉字符串最后一个逗号
-                                toothLoosestr = (toothLoosestr.substring(toothLoosestr.length - 1) == ',') ? toothLoosestr.substring(0, toothLoosestr.length - 1) : toothLoosestr;
-                                var toothLooseArr = toothLoosestr.split(",");
-//	 									console.log(toothLooseArr+"-----toothLooseArr");
                                 if(tabletooth!=undefined&&tabletooth==key){
-                                    for(var j=0;j<toothLooseArr.length;j++){
-                                        $table_span.append('<span id='+toothLooseArr[j]+' itmid='+key+'>'+toothLooseArr[j]+","+'</span>');
-                                    }
+                                    $("textarea[name="+key+"]").text(toothLoose[key]);
                                 }
                             }
                         }
@@ -1456,18 +1335,11 @@
                     var dentitiondefect=form.dentitiondefect;
                     var table_pro=$("#toothConditionBox").find("td:odd");
                     table_pro.each(function(j,el){
-                        var $table_span=$(this).prev().find("div");//赋值的div框
                         var tabletooth=$(this).find("span").attr("id");	//要赋值的item
                         for(var key in dentitiondefect){
-                            var dentitiondefectstr=dentitiondefect[key];
                             if(dentitiondefect[key]!=""){
-                                //去掉字符串最后一个逗号
-                                dentitiondefectstr = (dentitiondefectstr.substring(dentitiondefectstr.length - 1) == ',') ? dentitiondefectstr.substring(0, dentitiondefectstr.length - 1) : dentitiondefectstr;
-                                var dentitiondefectArr = dentitiondefectstr.split(",");
                                 if(tabletooth!=undefined&&tabletooth==key){
-                                    for(var j=0;j<dentitiondefectArr.length;j++){
-                                        $table_span.append('<span id='+dentitiondefectArr[j]+' itmid='+key+'>'+dentitiondefectArr[j]+","+'</span>');
-                                    }
+                                        $("textarea[name="+key+"]").text(dentitiondefect[key]);
                                 }
                             }
                         }
@@ -1477,18 +1349,11 @@
                     var defectdentition=form.defectdentition;
                     var table_pro=$("#imageExaminationBox").find("td:odd");
                     table_pro.each(function(j,el){
-                        var $table_span=$(this).prev().find("div");//赋值的div框
                         var tabletooth=$(this).find("span").attr("id");	//要赋值的item
                         for(var key in defectdentition){
-                            var defectdentitionstr=defectdentition[key];
                             if(defectdentition[key]!=""){
-                                //去掉字符串最后一个逗号
-                                defectdentitionstr = (defectdentitionstr.substring(defectdentitionstr.length - 1) == ',') ? defectdentitionstr.substring(0, defectdentitionstr.length - 1) : defectdentitionstr;
-                                var defectdentitionArr = defectdentitionstr.split(",");
                                 if(tabletooth!=undefined&&tabletooth==key){
-                                    for(var j=0;j<defectdentitionArr.length;j++){
-                                        $table_span.append('<span id='+defectdentitionArr[j]+' itmid='+key+'>'+defectdentitionArr[j]+","+'</span>');
-                                    }
+                                    $("textarea[name="+key+"]").text(defectdentition[key]);
                                 }
                             }
                         }
@@ -1499,210 +1364,19 @@
                     var defectiverepair=form.defectiverepair;
                     var table_pro=$("#medicalCertificateBox").find("td:odd");
                     table_pro.each(function(j,el){
-                        var $table_span=$(this).prev().find("div");//赋值的div框
                         var tabletooth=$(this).find("span").attr("id");	//要赋值的item
                         for(var key in defectiverepair){
-                            var defectiverepairstr=defectiverepair[key];
                             if(defectiverepair[key]!=""){
-                                //去掉字符串最后一个逗号
-                                defectiverepairstr = (defectiverepairstr.substring(defectiverepairstr.length - 1) == ',') ? defectiverepairstr.substring(0, defectiverepairstr.length - 1) : defectiverepairstr;
-                                var defectiverepairArr = defectiverepairstr.split(",");
                                 if(tabletooth!=undefined&&tabletooth==key){
-                                    for(var j=0;j<defectiverepairArr.length;j++){
-                                        $table_span.append('<span id='+defectiverepairArr[j]+' itmid='+key+'>'+defectiverepairArr[j]+","+'</span>');
-                                    }
+                                    $("textarea[name="+key+"]").text(defectiverepair[key]);
                                 }
                             }
                         }
                     })
                 }
-                toothMap(form["dentitiondefect"]);//获取牙位图数据
-// 	 					牙位赋值end
             }
             getButtonAllCurPage(menuid);
-            /*var url =  contextPath + '/HUDH_MedicalRecordsAct/selectdata.act';
-            $.ajax({
-                url: url,
-// 				type:"POST",
-                dataType:"json",
-                data : {
-                    lcljId:idlclj
-                },
-                success:function(result){
-                    var res;
-                    if(result.length>0){
-                        if(seqidFather){
-                            for (var i=0;i<result.length;i++) {
-                                if(seqidFather==result[i].seqId){
-                                    res=result[i];
-                                }
-                            }
-                        }
-                        //console.log(JSON.stringify(res)+'-----result');
-                        updataid=seqidFather;//获取更新修改id
-                        // var res=result[0];
-                        // updataid=res.seqId;//获取更新修改id
-                        if(res){
-                            $("#consent_saveBtn").css("display","none");//隐藏保存按钮
-                            $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
-                            signature=res.doctorSignature;
-                            patientsignature=res.patientSignature;
-                        }
-                        if(signature!=""){
-                            $("#doctorimg").attr('src', signature);
-                            doctorstatus=false;
-                        }else{
-                            $("#doctorimg").attr('display', 'none');
-                        }
-                        if(patientsignature!=""){
-                            $("#patientimg").attr('src', patientsignature);
-                            patientstatus=false;
-                        }else{
-                            $("#patientimg").attr('display', 'none');
-                        }
-                        // 其他
-                        $("#others").val(res["others"]);
-                        for(var i in res){
-                            $("input[name="+i+"]").each(function(){
-                                var that=this;
-                                var split = res[i].split(",");
-                                for(var j = 0; j < split.length; j++){
-                                    if($(that).val()==split[j]){
-                                        $(that).attr("checked","checked");
-                                    }
-                                }
-                            })//复选框及单选框赋值
-                            $("#"+i+"[type='text']").attr("value",res[i]);// 填框赋值
-                        }
-// 	 					牙位赋值start
-                        if(res[i]="onedu"){
-                            var toothLoose=res.onedu;
-                            var table_pro=$(".toothLooseNextBox").nextAll().find("td:even");
-                            table_pro.each(function(j,el){
-                                var $table_span=$(this).next().find("div");//赋值的div框
-                                var tabletooth=$(this).find("span").attr("id");	//要赋值的item
-                                for(var key in toothLoose){
-                                    var toothLoosestr=toothLoose[key];
-                                    if(toothLoose[key]!=""){
-                                        //去掉字符串最后一个逗号
-                                        toothLoosestr = (toothLoosestr.substring(toothLoosestr.length - 1) == ',') ? toothLoosestr.substring(0, toothLoosestr.length - 1) : toothLoosestr;
-                                        var toothLooseArr = toothLoosestr.split(",");
-//	 									console.log(toothLooseArr+"-----toothLooseArr");
-                                        if(tabletooth!=undefined&&tabletooth==key){
-                                            for(var j=0;j<toothLooseArr.length;j++){
-                                                $table_span.append('<span id='+toothLooseArr[j]+' itmid='+key+'>'+toothLooseArr[j]+","+'</span>');
-                                            }
-                                        }
-                                    }
-                                }
-                            })
-                        }
-                        if(res[i]="dentitiondefect"){
-                            var dentitiondefect=res.dentitiondefect;
-                            var table_pro=$("#toothConditionBox").find("td:odd");
-                            table_pro.each(function(j,el){
-                                var $table_span=$(this).prev().find("div");//赋值的div框
-                                var tabletooth=$(this).find("span").attr("id");	//要赋值的item
-                                for(var key in dentitiondefect){
-                                    var dentitiondefectstr=dentitiondefect[key];
-                                    if(dentitiondefect[key]!=""){
-                                        //去掉字符串最后一个逗号
-                                        dentitiondefectstr = (dentitiondefectstr.substring(dentitiondefectstr.length - 1) == ',') ? dentitiondefectstr.substring(0, dentitiondefectstr.length - 1) : dentitiondefectstr;
-                                        var dentitiondefectArr = dentitiondefectstr.split(",");
-                                        if(tabletooth!=undefined&&tabletooth==key){
-                                            for(var j=0;j<dentitiondefectArr.length;j++){
-                                                $table_span.append('<span id='+dentitiondefectArr[j]+' itmid='+key+'>'+dentitiondefectArr[j]+","+'</span>');
-                                            }
-                                        }
-                                    }
-                                }
-                            })
-                        }
-                        if(res[i]="defectdentition"){
-                            var defectdentition=res.defectdentition;
-                            var table_pro=$("#imageExaminationBox").find("td:odd");
-                            table_pro.each(function(j,el){
-                                var $table_span=$(this).prev().find("div");//赋值的div框
-                                var tabletooth=$(this).find("span").attr("id");	//要赋值的item
-                                for(var key in defectdentition){
-                                    var defectdentitionstr=defectdentition[key];
-                                    if(defectdentition[key]!=""){
-                                        //去掉字符串最后一个逗号
-                                        defectdentitionstr = (defectdentitionstr.substring(defectdentitionstr.length - 1) == ',') ? defectdentitionstr.substring(0, defectdentitionstr.length - 1) : defectdentitionstr;
-                                        var defectdentitionArr = defectdentitionstr.split(",");
-                                        if(tabletooth!=undefined&&tabletooth==key){
-                                            for(var j=0;j<defectdentitionArr.length;j++){
-                                                $table_span.append('<span id='+defectdentitionArr[j]+' itmid='+key+'>'+defectdentitionArr[j]+","+'</span>');
-                                            }
-                                        }
-                                    }
-                                }
-                            })
 
-                        }
-                        if(res[i]="defectiverepair"){
-                            var defectiverepair=res.defectiverepair;
-                            var table_pro=$("#medicalCertificateBox").find("td:odd");
-                            table_pro.each(function(j,el){
-                                var $table_span=$(this).prev().find("div");//赋值的div框
-                                var tabletooth=$(this).find("span").attr("id");	//要赋值的item
-                                for(var key in defectiverepair){
-                                    var defectiverepairstr=defectiverepair[key];
-                                    if(defectiverepair[key]!=""){
-                                        //去掉字符串最后一个逗号
-                                        defectiverepairstr = (defectiverepairstr.substring(defectiverepairstr.length - 1) == ',') ? defectiverepairstr.substring(0, defectiverepairstr.length - 1) : defectiverepairstr;
-                                        var defectiverepairArr = defectiverepairstr.split(",");
-                                        if(tabletooth!=undefined&&tabletooth==key){
-                                            for(var j=0;j<defectiverepairArr.length;j++){
-                                                $table_span.append('<span id='+defectiverepairArr[j]+' itmid='+key+'>'+defectiverepairArr[j]+","+'</span>');
-                                            }
-                                        }
-                                    }
-                                }
-                            })
-                        }
-                        toothMap(res["dentitiondefect"]);//获取牙位图数据
-// 	 					牙位赋值end
-                    }
-                    getButtonAllCurPage(menuid);
-                }
-            });*/
-        }
-        // 初始化整体口腔情况牙位图
-        function toothMap(data){//data返回的牙位及牙位问题
-            var obj={};//数据整理以牙位为基准
-            for(var key in data){
-                var dentitiondefectstr=data[key];
-                //去掉字符串最后的逗号
-                dentitiondefectstr = (dentitiondefectstr.substring(dentitiondefectstr.length - 1) == ',') ? dentitiondefectstr.substring(0, dentitiondefectstr.length - 1) : dentitiondefectstr;
-                //字符串转数组
-                var list = dentitiondefectstr.split(",");
-                // 查询dictName值
-                for(var i=0;i<conditionData.length;i++){
-                    var newConditionData=conditionData[i];
-                    for(var j in newConditionData){
-                        if(newConditionData[j]==key){
-                            key=newConditionData["dictName"];
-                        }
-                    }
-                }
-                // 数据重组
-                for(var i=0;i<list.length;i++){
-                    if(list[i] in obj){
-                        obj[list[i]].push(key)
-                    }else{
-                        obj[list[i]]=[key]
-                    }
-                }
-            }
-            // console.log(JSON.stringify(obj)+"----obj");
-            var toothConditionCheck=Object.keys(obj);
-            // 牙位图赋框
-            for(var i=0;i<toothConditionCheck.length;i++){
-                if(toothConditionCheck[i]){
-                    $("#conditionToothBox ul").find("li span[toothname="+toothConditionCheck[i]+"]").addClass("checked_current");
-                }
-            }
         }
         //修改按钮权限
         function getButtonPower() {
@@ -1722,6 +1396,7 @@
             $("input[type='radio']").each(function(i,obj){
                 $(this).removeAttr("disabled");
             });
+
             bdhtml=window.document.body.innerHTML;
             sprnstr="<!--startprint-->";
             eprnstr="<!--endprint-->";

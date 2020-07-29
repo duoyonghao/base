@@ -200,6 +200,39 @@ public class HudhLcljBase {
     private String patientsignature1;
 
     private String status;
+    //第一次种植
+    private String onedentalimplantleftup;
+
+    private String onedentalimplantrightup;
+
+    private String onedentalimplantleftdown;
+
+    private String onedentalimplantrightdown;
+    //第二次种植
+    private String twodentalimplantleftup;
+
+    private String twodentalimplantrightup;
+
+    private String twodentalimplantleftdown;
+
+    private String twodentalimplantrightdown;
+
+    //修复方案种植牙位图
+    private String dentalimplantleftup;
+
+    private String dentalimplantrightup;
+
+    private String dentalimplantleftdown;
+
+    private String dentalimplantrightdown;
+    //整体修复牙位图
+    private String entiretyrepairleftup;
+
+    private String entiretyrepairrightup;
+
+    private String entiretyrepairleftdown;
+
+    private String entiretyrepairrightdown;
     
     public String getOperationDoctorsignature() {
 		return operationDoctorsignature;
@@ -1001,5 +1034,133 @@ public class HudhLcljBase {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getOnedentalimplantleftup() {
+        return onedentalimplantleftup;
+    }
+
+    public void setOnedentalimplantleftup(String onedentalimplantleftup) {
+        this.onedentalimplantleftup = onedentalimplantleftup;
+    }
+
+    public String getOnedentalimplantrightup() {
+        return onedentalimplantrightup;
+    }
+
+    public void setOnedentalimplantrightup(String onedentalimplantrightup) {
+        this.onedentalimplantrightup = onedentalimplantrightup;
+    }
+
+    public String getOnedentalimplantleftdown() {
+        return onedentalimplantleftdown;
+    }
+
+    public void setOnedentalimplantleftdown(String onedentalimplantleftdown) {
+        this.onedentalimplantleftdown = onedentalimplantleftdown;
+    }
+
+    public String getOnedentalimplantrightdown() {
+        return onedentalimplantrightdown;
+    }
+
+    public void setOnedentalimplantrightdown(String onedentalimplantrightdown) {
+        this.onedentalimplantrightdown = onedentalimplantrightdown;
+    }
+
+    public String getTwodentalimplantleftup() {
+        return twodentalimplantleftup;
+    }
+
+    public void setTwodentalimplantleftup(String twodentalimplantleftup) {
+        this.twodentalimplantleftup = twodentalimplantleftup;
+    }
+
+    public String getTwodentalimplantrightup() {
+        return twodentalimplantrightup;
+    }
+
+    public void setTwodentalimplantrightup(String twodentalimplantrightup) {
+        this.twodentalimplantrightup = twodentalimplantrightup;
+    }
+
+    public String getTwodentalimplantleftdown() {
+        return twodentalimplantleftdown;
+    }
+
+    public void setTwodentalimplantleftdown(String twodentalimplantleftdown) {
+        this.twodentalimplantleftdown = twodentalimplantleftdown;
+    }
+
+    public String getTwodentalimplantrightdown() {
+        return twodentalimplantrightdown;
+    }
+
+    public void setTwodentalimplantrightdown(String twodentalimplantrightdown) {
+        this.twodentalimplantrightdown = twodentalimplantrightdown;
+    }
+
+    public String getDentalimplantleftup() {
+        return dentalimplantleftup;
+    }
+
+    public void setDentalimplantleftup(String dentalimplantleftup) {
+        this.dentalimplantleftup = dentalimplantleftup;
+    }
+
+    public String getDentalimplantrightup() {
+        return dentalimplantrightup;
+    }
+
+    public void setDentalimplantrightup(String dentalimplantrightup) {
+        this.dentalimplantrightup = dentalimplantrightup;
+    }
+
+    public String getDentalimplantleftdown() {
+        return dentalimplantleftdown;
+    }
+
+    public void setDentalimplantleftdown(String dentalimplantleftdown) {
+        this.dentalimplantleftdown = dentalimplantleftdown;
+    }
+
+    public String getDentalimplantrightdown() {
+        return dentalimplantrightdown;
+    }
+
+    public void setDentalimplantrightdown(String dentalimplantrightdown) {
+        this.dentalimplantrightdown = dentalimplantrightdown;
+    }
+
+    public String getEntiretyrepairleftup() {
+        return entiretyrepairleftup;
+    }
+
+    public void setEntiretyrepairleftup(String entiretyrepairleftup) {
+        this.entiretyrepairleftup = entiretyrepairleftup;
+    }
+
+    public String getEntiretyrepairrightup() {
+        return entiretyrepairrightup;
+    }
+
+    public void setEntiretyrepairrightup(String entiretyrepairrightup) {
+        this.entiretyrepairrightup = entiretyrepairrightup;
+    }
+
+    public String getEntiretyrepairleftdown() {
+        return entiretyrepairleftdown;
+    }
+
+    public void setEntiretyrepairleftdown(String entiretyrepairleftdown) {
+        this.entiretyrepairleftdown = entiretyrepairleftdown;
+    }
+
+    public String getEntiretyrepairrightdown() {
+        return entiretyrepairrightdown;
+    }
+
+    public void setEntiretyrepairrightdown(String entiretyrepairrightdown) {
+        this.entiretyrepairrightdown = entiretyrepairrightdown;
     }
 }
