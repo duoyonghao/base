@@ -824,165 +824,7 @@
                 </div>
             </div>
 
-                <div class="row" style="margin-right:0;margin-left:0;border-top: 1px solid #b3b3b3;">
-                    <div style="height: 50px;">
-                        <div style="float: left;border-right: 1px solid #b3b3b3;width: 20%;height: 100%;">
-                            <span class="titles">拔牙</span>
-                        </div>
-                        <div style="width: 80%;float: right;">
-                            <div class="" style="margin-left: 10px;">
-                                <ul class="loseTooth_option">
-                                    <li style="width: 156px;height: 50px;">
-                                        <label for="spreoperative">
-                                            <div id="diagnosis_continer" class="container-fluid">
-                                                <div class="row">
-                                                    <!-- 牙位图 -->
-                                                    <div class="zl_toothMapdiv">
-                                                        <ul class="tooth_map"
-                                                            style="width: 100%;height: 50px;margin-left: 1%;">
-                                                            <li>
-                                                                <input id="extractionleftup"
-                                                                       onblur="TextLengthCheck(this.id,10);"
-                                                                       class="tooth_input" type="text">
-                                                            </li>
-                                                            <li>
-                                                                <input id="extractionrightup"
-                                                                       onblur="TextLengthCheck(this.id,10);"
-                                                                       class="tooth_input" type="text">
-                                                            </li>
-                                                            <li>
-                                                                <input id="extractionleftdown"
-                                                                       onblur="TextLengthCheck(this.id,10);"
-                                                                       class="tooth_input" type="text">
-                                                            </li>
-                                                            <li>
-                                                                <input id="extractionrightdown"
-                                                                       onblur="TextLengthCheck(this.id,10);"
-                                                                       class="tooth_input" type="text">
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
 
-                    </div>
-                </div>
-                <div class="row" style="margin-right:0;margin-left:0;border-top: 1px solid #b3b3b3">
-                    <div style="height: 50px;" class="opstall">
-                        <div style="float: left;border-right: 1px solid #b3b3b3;width: 20%;height: 100%;">
-                            <span class="titles">手术方式</span>
-                        </div>
-                        <div style="width: 80%;float: right;">
-                            <ul class="loseTooth_option" id="mode" style="margin-left:10px;">
-                                <li style="line-height: 50px;margin-right:10px;">
-                                    <input name="modus" id="immediately" type="checkbox" value="即刻种植" /><label
-                                        for="immediately">即刻种植 </label>
-                                </li>
-                                <li style="line-height: 50px;margin-right:10px;">
-                                    <input name="modus" id="early" type="checkbox" value="早期种植" /><label
-                                        for="early">早期种植
-                                </label>
-                                </li>
-                                <li style="line-height: 50px;margin-right:10px;">
-                                    <input name="modus" id="postpone" type="checkbox" value="延期种植" /><label
-                                        for="postpone">延期种植</label>
-                                </li>
-                                <li style="line-height: 50px;margin-right:10px;">
-                                    <input name="modus" id="minimally" type="checkbox" value="微创种植" /><label
-                                        for="minimally">微创种植</label>
-                                </li>
-
-                            </ul>
-                            <div style="margin-left: 10px;">
-                                <ul class="loseTooth_option">
-                                    <li style="height: 50px;line-height: 50px;">
-                                        <label>第一次种植</label>
-                                    </li>
-                                    <li style="width: 154px;height: 50px;margin-right: 10px;">
-                                        <label for="spreoperative">
-                                            <div id="diagnosis_continer" class="container-fluid">
-                                                <div class="row">
-                                                    <!-- 牙位图 -->
-                                                    <div class="zl_toothMapdiv">
-                                                        <ul class="tooth_map"
-                                                            style="width: 100%;height: 50px;margin-left: 1%;">
-                                                            <li>
-                                                                <input id="onedentalimplantleftup"
-                                                                       onblur="TextLengthCheck(this.id,10);"
-                                                                       class="tooth_input" type="text">
-                                                            </li>
-                                                            <li>
-                                                                <input id="onedentalimplantrightup"
-                                                                       onblur="TextLengthCheck(this.id,10);"
-                                                                       class="tooth_input" type="text">
-                                                            </li>
-                                                            <li>
-                                                                <input id="onedentalimplantleftdown"
-                                                                       onblur="TextLengthCheck(this.id,10);"
-                                                                       class="tooth_input" type="text">
-                                                            </li>
-                                                            <li>
-                                                                <input id="onedentalimplantrightdown"
-                                                                       onblur="TextLengthCheck(this.id,10);"
-                                                                       class="tooth_input" type="text">
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div>
-                                <ul class="loseTooth_option">
-                                    <li style="height: 50px;line-height: 50px;">
-                                        <label>第二次种植</label>
-                                    </li>
-                                    <li style="width: 154px;height: 50px;margin-right: 10px;">
-                                        <label for="spreoperative">
-                                            <div id="diagnosis_continer" class="container-fluid">
-                                                <div class="row">
-                                                    <!-- 牙位图 -->
-                                                    <div class="zl_toothMapdiv">
-                                                        <ul class="tooth_map"
-                                                            style="width: 100%;height: 50px;margin-left: 1%;">
-                                                            <li>
-                                                                <input id="twodentalimplantleftup"
-                                                                       onblur="TextLengthCheck(this.id,10);"
-                                                                       class="tooth_input" type="text">
-                                                            </li>
-                                                            <li>
-                                                                <input id="twodentalimplantrightup"
-                                                                       onblur="TextLengthCheck(this.id,10);"
-                                                                       class="tooth_input" type="text">
-                                                            </li>
-                                                            <li>
-                                                                <input id="twodentalimplantleftdown"
-                                                                       onblur="TextLengthCheck(this.id,10);"
-                                                                       class="tooth_input" type="text">
-                                                            </li>
-                                                            <li>
-                                                                <input id="twodentalimplantrightdown"
-                                                                       onblur="TextLengthCheck(this.id,10);"
-                                                                       class="tooth_input" type="text">
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             <div class="row" style="margin-right:0;margin-left:0;">
                 <div style="border-top:1px solid #b3b3b3;height: 200px;">
                     <div style="float: left;border-right: 1px solid #b3b3b3;width: 20%;height: 100%;">
@@ -1324,6 +1166,165 @@
                                     </label>
                                 </li>
                             </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-right:0;margin-left:0;border-top: 1px solid #b3b3b3;">
+                    <div style="height: 50px;">
+                        <div style="float: left;border-right: 1px solid #b3b3b3;width: 20%;height: 100%;">
+                            <span class="titles">拔牙</span>
+                        </div>
+                        <div style="width: 80%;float: right;">
+                            <div class="" style="margin-left: 10px;">
+                                <ul class="loseTooth_option">
+                                    <li style="width: 156px;height: 50px;">
+                                        <label for="spreoperative">
+                                            <div id="diagnosis_continer" class="container-fluid">
+                                                <div class="row">
+                                                    <!-- 牙位图 -->
+                                                    <div class="zl_toothMapdiv">
+                                                        <ul class="tooth_map"
+                                                            style="width: 100%;height: 50px;margin-left: 1%;">
+                                                            <li>
+                                                                <input id="extractionleftup"
+                                                                       onblur="TextLengthCheck(this.id,10);"
+                                                                       class="tooth_input" type="text">
+                                                            </li>
+                                                            <li>
+                                                                <input id="extractionrightup"
+                                                                       onblur="TextLengthCheck(this.id,10);"
+                                                                       class="tooth_input" type="text">
+                                                            </li>
+                                                            <li>
+                                                                <input id="extractionleftdown"
+                                                                       onblur="TextLengthCheck(this.id,10);"
+                                                                       class="tooth_input" type="text">
+                                                            </li>
+                                                            <li>
+                                                                <input id="extractionrightdown"
+                                                                       onblur="TextLengthCheck(this.id,10);"
+                                                                       class="tooth_input" type="text">
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row" style="margin-right:0;margin-left:0;border-top: 1px solid #b3b3b3">
+                    <div style="height: 50px;" class="opstall">
+                        <div style="float: left;border-right: 1px solid #b3b3b3;width: 20%;height: 100%;">
+                            <span class="titles">手术方式</span>
+                        </div>
+                        <div style="width: 80%;float: right;">
+                            <ul class="loseTooth_option" id="mode" style="margin-left:10px;">
+                                <li style="line-height: 50px;margin-right:10px;">
+                                    <input name="modus" id="immediately" type="checkbox" value="即刻种植" /><label
+                                        for="immediately">即刻种植 </label>
+                                </li>
+                                <li style="line-height: 50px;margin-right:10px;">
+                                    <input name="modus" id="early" type="checkbox" value="早期种植" /><label
+                                        for="early">早期种植
+                                </label>
+                                </li>
+                                <li style="line-height: 50px;margin-right:10px;">
+                                    <input name="modus" id="postpone" type="checkbox" value="延期种植" /><label
+                                        for="postpone">延期种植</label>
+                                </li>
+                                <li style="line-height: 50px;margin-right:10px;">
+                                    <input name="modus" id="minimally" type="checkbox" value="微创种植" /><label
+                                        for="minimally">微创种植</label>
+                                </li>
+
+                            </ul>
+                            <div style="margin-left: 10px;">
+                                <ul class="loseTooth_option">
+                                    <li style="height: 50px;line-height: 50px;">
+                                        <label>第一次种植</label>
+                                    </li>
+                                    <li style="width: 154px;height: 50px;margin-right: 10px;">
+                                        <label for="spreoperative">
+                                            <div id="diagnosis_continer" class="container-fluid">
+                                                <div class="row">
+                                                    <!-- 牙位图 -->
+                                                    <div class="zl_toothMapdiv">
+                                                        <ul class="tooth_map"
+                                                            style="width: 100%;height: 50px;margin-left: 1%;">
+                                                            <li>
+                                                                <input id="onedentalimplantleftup"
+                                                                       onblur="TextLengthCheck(this.id,10);"
+                                                                       class="tooth_input" type="text">
+                                                            </li>
+                                                            <li>
+                                                                <input id="onedentalimplantrightup"
+                                                                       onblur="TextLengthCheck(this.id,10);"
+                                                                       class="tooth_input" type="text">
+                                                            </li>
+                                                            <li>
+                                                                <input id="onedentalimplantleftdown"
+                                                                       onblur="TextLengthCheck(this.id,10);"
+                                                                       class="tooth_input" type="text">
+                                                            </li>
+                                                            <li>
+                                                                <input id="onedentalimplantrightdown"
+                                                                       onblur="TextLengthCheck(this.id,10);"
+                                                                       class="tooth_input" type="text">
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul class="loseTooth_option">
+                                    <li style="height: 50px;line-height: 50px;">
+                                        <label>第二次种植</label>
+                                    </li>
+                                    <li style="width: 154px;height: 50px;margin-right: 10px;">
+                                        <label for="spreoperative">
+                                            <div id="diagnosis_continer" class="container-fluid">
+                                                <div class="row">
+                                                    <!-- 牙位图 -->
+                                                    <div class="zl_toothMapdiv">
+                                                        <ul class="tooth_map"
+                                                            style="width: 100%;height: 50px;margin-left: 1%;">
+                                                            <li>
+                                                                <input id="twodentalimplantleftup"
+                                                                       onblur="TextLengthCheck(this.id,10);"
+                                                                       class="tooth_input" type="text">
+                                                            </li>
+                                                            <li>
+                                                                <input id="twodentalimplantrightup"
+                                                                       onblur="TextLengthCheck(this.id,10);"
+                                                                       class="tooth_input" type="text">
+                                                            </li>
+                                                            <li>
+                                                                <input id="twodentalimplantleftdown"
+                                                                       onblur="TextLengthCheck(this.id,10);"
+                                                                       class="tooth_input" type="text">
+                                                            </li>
+                                                            <li>
+                                                                <input id="twodentalimplantrightdown"
+                                                                       onblur="TextLengthCheck(this.id,10);"
+                                                                       class="tooth_input" type="text">
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
