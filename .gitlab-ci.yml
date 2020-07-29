@@ -14,6 +14,24 @@ build:
   artifacts:
     paths:
       - target/base
+  only:
+    refs:
+      - master
+  tags:
+    - package
+
+build-xzm:
+  stage: build
+  script:
+    - chmod u+x ./mvnw
+    - ./mvnw compile
+    - ./mvnw war:exploded
+  artifacts:
+    paths:
+      - target/base
+  only:
+    refs:
+      - master-xzm
   tags:
     - package
 
@@ -25,15 +43,14 @@ deploy-test:
   script:
     - echo -n "stop tomcat server..."
     - Stop-Service ${service_name}
-    - echo -n "remove old artifacts..."
-    - if (Test-Path ${tomcat_dir}\webapps\base) {rm -r ${tomcat_dir}\webapps\base}
+    - echo -n "backup old artifacts..."
+    - if (-not (Test-Path ${tomcat_dir}\backups)) {New-Item -itemType directory -path ${tomcat_dir} -name backups}
+    - if (Test-Path ${tomcat_dir}\webapps\base) {Move-Item ${tomcat_dir}\webapps\base ${tomcat_dir}\backups\base-$CI_JOB_ID}
     - echo -n "copy new artifacts..."
     - cp -r target\base ${tomcat_dir}\webapps
     - mv ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.example ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.properties
     - echo -n "start tomcat server..."
     - Start-Service ${service_name}
-  dependencies:
-    - build
   when: manual
   tags:
     - test
@@ -46,8 +63,9 @@ deploy-production-east:
   script:
     - echo -n "stop tomcat server..."
     - Stop-Service ${service_name}
-    - echo -n "remove old artifacts..."
-    - if (Test-Path ${tomcat_dir}\webapps\base) {rm -r ${tomcat_dir}\webapps\base}
+    - echo -n "backup old artifacts..."
+    - if (-not (Test-Path ${tomcat_dir}\backups)) {New-Item -itemType directory -path ${tomcat_dir} -name backups}
+    - if (Test-Path ${tomcat_dir}\webapps\base) {Move-Item ${tomcat_dir}\webapps\base ${tomcat_dir}\backups\base-$CI_JOB_ID}
     - echo -n "copy new artifacts..."
     - cp -r target\base ${tomcat_dir}\webapps
     - mv ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.example.production.east ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.properties
@@ -71,19 +89,20 @@ deploy-production-west:
   script:
     - echo -n "stop tomcat server..."
     - Stop-Service ${service_name}
-    - echo -n "remove old artifacts..."
-    - if (Test-Path ${tomcat_dir}\webapps\base) {rm -r ${tomcat_dir}\webapps\base}
+    - echo -n "backup old artifacts..."
+    - if (-not (Test-Path ${tomcat_dir}\backups)) {New-Item -itemType directory -path ${tomcat_dir} -name backups}
+    - if (Test-Path ${tomcat_dir}\webapps\base) {Move-Item ${tomcat_dir}\webapps\base ${tomcat_dir}\backups\base-$CI_JOB_ID}
     - echo -n "copy new artifacts..."
     - cp -r target\base ${tomcat_dir}\webapps
     - mv ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.example.production.west ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.properties
     - echo -n "start tomcat server..."
     - Start-Service ${service_name}
   dependencies:
-    - build
+    - build-xzm
     - deploy-test
   when: manual
   tags:
     - production
   only:
     refs:
-      - master
+      - master-xzm
