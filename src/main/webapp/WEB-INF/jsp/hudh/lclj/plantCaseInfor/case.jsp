@@ -1295,8 +1295,7 @@
                                                 <div class="row">
                                                     <!-- 牙位图 -->
                                                     <div class="zl_toothMapdiv">
-                                                        <ul class="tooth_map"
-                                                            style="width: 100%;height: 50px;margin-left: 1%;">
+                                                        <ul class="tooth_map" style="width: 100%;height: 50px;margin-left: 1%;">
                                                             <li>
                                                                 <input id="twodentalimplantleftup"
                                                                        onblur="TextLengthCheck(this.id,10);"
