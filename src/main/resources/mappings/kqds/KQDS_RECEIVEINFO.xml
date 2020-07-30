@@ -180,6 +180,33 @@
 			<if test="devItem != null">
 				DEV_ITEM = #{devItem,jdbcType=VARCHAR},
 			</if>
+			<if test="doctors != null">
+				doctors = #{doctors,jdbcType=VARCHAR},
+			</if>
+			<if test="mainSuit != null">
+				main_suit = #{mainSuit,jdbcType=VARCHAR},
+			</if>
+			<if test="scheme != null">
+				scheme = #{scheme,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=VARCHAR},
+			</if>
+			<if test="orderProject != null">
+				order_project = #{orderProject,jdbcType=VARCHAR},
+			</if>
+			<if test="orderPlan != null">
+				order_plan = #{orderPlan,jdbcType=VARCHAR},
+			</if>
+			<if test="follow != null">
+				follow = #{follow,jdbcType=VARCHAR},
+			</if>
+			<if test="failreasonMark != null">
+				failreason_mark = #{failreasonMark,jdbcType=VARCHAR},
+			</if>
+			<if test="othermark != null">
+				othe_rmark = #{othermark,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
 	</update>

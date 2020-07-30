@@ -145,13 +145,13 @@
                 <input type="hidden" name="seqId" id="seqId">
                 <input type="hidden" name="askstatus" id="askstatus">
                 <input type="hidden" name="doctors" id="doctors">
-                <input type="hidden" name="main_suit" id="main_suit">
+                <input type="hidden" name="mainSuit" id="mainSuit">
                 <input type="hidden" name="scheme" id="scheme">
                 <input type="hidden" name="price" id="price">
-                <input type="hidden" name="order_project" id="order_project">
-                <input type="hidden" name="order_plan" id="order_plan">
+                <input type="hidden" name="orderProject" id="orderProject">
+                <input type="hidden" name="orderPlan" id="orderPlan">
                 <input type="hidden" name="follow" id="follow">
-                <input type="hidden" name="failreason_mark" id="failreason_mark">
+                <input type="hidden" name="failreasonMark" id="failreasonMark">
                 <input type="hidden" name="othermark" id="othermark">
                 <tr>
                     <td style="width:10%;text-align:right;">客户姓名：</td>
@@ -472,8 +472,8 @@
             $("#askstatus").val(1);
         }
         var param = $('#form1').serialize();
-        var url = '<%=contextPath%>/KQDS_ReceiveInfoAct/insertOrUpdate.act?' + param;
-        $.axseSubmit(url, null,
+        var url = '<%=contextPath%>/KQDS_ReceiveInfoAct/insertOrUpdate.act';
+        $.axseSubmit(url, param,
             function () {
             },
             function (r) {
