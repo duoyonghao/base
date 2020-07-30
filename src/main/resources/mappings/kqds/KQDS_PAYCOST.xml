@@ -1057,7 +1057,7 @@
 		and u.organization = #{organization}
 		and detail.itemno not in(
 		SELECT
-		itemno
+		item.treatitemno
 		FROM
 		KQDS_TREATITEM item,
 		sys_dict d,
