@@ -244,7 +244,7 @@
     function goRemarkTemplate(){
         var dateNow=getNowDay(new Date());
         if(!onclickrowOobj2.seqId){
-            parent.layer.alert('请选择咨询信息!');
+            parent.layer.alert('请选择咨询记录!');
             return false;
         }
         var createtime=onclickrowOobj2.createtime.substr(0,10);
