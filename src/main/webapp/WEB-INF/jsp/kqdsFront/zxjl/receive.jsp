@@ -166,7 +166,7 @@
                 </tr>
                 <tr>
                     <td style="text-align:right;">
-                        <span id="goRemarkTemplate" onclick="goRemarkTemplate()" style="cursor: pointer;">情况备注：<span>
+                        <span id="goRemarkTemplate" class="kqdsSearchBtn" onclick="goRemarkTemplate()" style="cursor: pointer;">情况备注<span>
                     </td>
                     <td style="text-align:left;" colspan="5">
                         <textarea class="form-control" style="height:200px;" name="detaildesc" id="detaildesc" rows="12" disabled></textarea>
@@ -243,6 +243,10 @@
     //模板
     function goRemarkTemplate(){
         var dateNow=getNowDay(new Date());
+        if(!onclickrowOobj2.seqId){
+            parent.layer.alert('请选择咨询信息!');
+            return false;
+        }
         var createtime=onclickrowOobj2.createtime.substr(0,10);
         if(dateNow!=createtime){
             parent.layer.alert('咨询时间已过!');

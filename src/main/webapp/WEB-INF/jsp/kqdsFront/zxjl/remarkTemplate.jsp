@@ -98,7 +98,9 @@ textarea{
             </tr>
             <tr>
                 <td>主诉：</td>
-                <td colspan="4"><input type="text" name="main_suit" id="main_suit"></td>
+                <td colspan="4">
+                    <textarea class="form-control" name="main_suit" id="main_suit" rows="2"></textarea>
+                </td>
             </tr>
             <tr>
                 <td style="vertical-align: baseline;">方案：</td>
@@ -158,6 +160,7 @@ var parent_othermark=parent_doc.find("#othermark");//其他备注
 var doctorList;
 var tempData=window.parent.frames["tabIframe"].onclickrowOobj2;
 var depttype=<%=ConstUtil.DEPT_TYPE_1 %>;
+var index = parent.layer.getFrameIndex(window.name);
 $(function(){
     onclickrowOobj = window.parent.onclickrowOobj;
     $("#usercode").val(onclickrowOobj.usercode);
@@ -283,6 +286,9 @@ function submit(){
     parent_failreason_mark.val(failreason_mark);//添加未成交原因备注-hidden
     parent_othermark.val(othermark);//添加其他备注-hidden
     parent_pre.val(template);//添加模板--block
+    setTimeout(function () {
+        parent.layer.close(index);
+    },50);
 }
 </script>
 </html>
