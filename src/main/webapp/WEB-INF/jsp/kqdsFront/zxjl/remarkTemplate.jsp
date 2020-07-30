@@ -149,16 +149,17 @@ var onclickrowOobj = "";
 var parent_doc=$(window.parent.frames["tabIframe"].document);
 var parent_pre=parent_doc.find("#detaildesc");
 var parent_doctor=parent_doc.find("#doctors");//医生
-var parent_main_suit=parent_doc.find("#main_suit");//主诉
+var parent_main_suit=parent_doc.find("#mainSuit");//主诉
 var parent_scheme=parent_doc.find("#scheme");//方案
 var parent_price=parent_doc.find("#price");//报价
-var parent_order_project=parent_doc.find("#order_project");//预约金及今做项目
-var parent_order_plan=parent_doc.find("#order_plan");//预约时间及下次安排
+var parent_order_project=parent_doc.find("#orderProject");//预约金及今做项目
+var parent_order_plan=parent_doc.find("#orderPlan");//预约时间及下次安排
 var parent_follow=parent_doc.find("#follow");//后期跟进注意
-var parent_failreason_mark=parent_doc.find("#failreason_mark");//未成交原因备注
+var parent_failreason_mark=parent_doc.find("#failreasonMark");//未成交原因备注
 var parent_othermark=parent_doc.find("#othermark");//其他备注
 var doctorList;
 var tempData=window.parent.frames["tabIframe"].onclickrowOobj2;
+// console.log(JSON.stringify(tempData)+"------tempData");
 var depttype=<%=ConstUtil.DEPT_TYPE_1 %>;
 var index = parent.layer.getFrameIndex(window.name);
 $(function(){
@@ -237,15 +238,15 @@ function submit(){
     var failreason_mark=$("#failreason_mark").val();
     var othermark=$("#othermark").val();
     var template="";
-    template+="[医生]:"+doctors+"\n";
-    template+="[主诉]:"+main_suit+"\n";
-    template+="[方案]:"+scheme+"\n";
-    template+="[报价]:"+price+"\n";
-    template+="[预约金及今做项目]:"+order_project+"\n";
-    template+="[预约时间及下次安排]:"+order_plan+"\n";
-    template+="[后期跟进注意]:"+follow+"\n";
-    template+="[未成交原因备注]:"+failreason_mark+"\n";
-    template+="[其他备注]:"+othermark+"\n";
+    template+="【医生】:"+doctors+"\n";
+    template+="【主诉】:"+main_suit+"\n";
+    template+="【方案】:"+scheme+"\n";
+    template+="【报价】:"+price+"\n";
+    template+="【预约金及今做项目】:"+order_project+"\n";
+    template+="【预约时间及下次安排】:"+order_plan+"\n";
+    template+="【后期跟进注意】:"+follow+"\n";
+    template+="【未成交原因备注】:"+failreason_mark+"\n";
+    template+="【其他备注】:"+othermark+"\n";
     if(parent_pre.val()){
         parent_pre.val("");
     }
