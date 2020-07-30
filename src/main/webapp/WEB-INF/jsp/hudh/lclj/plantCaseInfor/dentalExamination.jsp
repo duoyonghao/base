@@ -1128,15 +1128,15 @@
 // 牙松动
             onedu : toothLoose,
 //牙缺失
-            toothDeficiency:toothDeficiency,
+            onebone:toothDeficiency,//后台字段onebone
 // 整体口腔情况明细
             dentitiondefect : toothCondition,
 // 影像学检查
             defectdentition : imageExamination,
             saprodontia : saprodontia,
             residualcrown : residualcrown,
-            basisnasi:basisnasi,
-            alveolarcrest:alveolarcrest,
+            twobone:basisnasi,//后台字段twobone
+            threebone:alveolarcrest,//后台字段threebone
             pulpitis : pulpitis,
             teethtilted : teethtilted,
             nub : nub,
@@ -1235,13 +1235,13 @@
 // 牙松动
             onedu : toothLoose,
 //牙缺失
-            toothDeficiency:toothDeficiency,
+            onebone:toothDeficiency,//后台字段onebone
 // 整体口腔情况明细
             dentitiondefect : toothCondition,
 // 影像学检查
             defectdentition : imageExamination,
-            basisnasi:basisnasi,
-            alveolarcrest:alveolarcrest,
+            twobone:basisnasi,//后台字段twobone
+            threebone:alveolarcrest,//后台字段threebone
             saprodontia : saprodontia,
             residualcrown : residualcrown,
             pulpitis : pulpitis,
@@ -1301,6 +1301,12 @@
             }
             // 其他
             $("#others").val(form["others"]);
+            //牙缺失
+            $("#toothDeficiency").val(form["onebone"]);
+            //距鼻底
+            $("#basisnasi").val(form["twobone"]);
+            //牙槽嵴宽度
+            $("#alveolarcrest").val(form["threebone"]);
             for(var i in form){
                 $("input[name="+i+"]").each(function(){
                     var that=this;
