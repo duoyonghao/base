@@ -159,7 +159,7 @@ var parent_failreason_mark=parent_doc.find("#failreasonMark");//未成交原因�
 var parent_othermark=parent_doc.find("#othermark");//其他备注
 var doctorList;
 var tempData=window.parent.frames["tabIframe"].onclickrowOobj2;
-// console.log(JSON.stringify(tempData)+"------tempData");
+console.log(JSON.stringify(tempData)+"------tempData");
 var depttype=<%=ConstUtil.DEPT_TYPE_1 %>;
 var index = parent.layer.getFrameIndex(window.name);
 $(function(){
@@ -168,20 +168,19 @@ $(function(){
     $("#username").val(onclickrowOobj.username);
     $('#doctor').selectpicker("refresh");
     initPersonSelectTemp("doctor",depttype);
-    // initTemp();//初始化当前模板信息
+    initTemp();//初始化当前模板信息
 })
-var doc=["4db6e6c8-b736-4ae3-a8ea-d5f667644a29","56ffc127-823d-4500-95cd-3f6fc8c31287"]
 function initTemp(){
     if(tempData.detaildesc!=""){
-        $('#doctor').selectpicker('val', doc);
-        // $('#main_suit').val(tempData.main_suit);
-        // $('#scheme').val(tempData.scheme);
-        // $('#price').val(tempData.price);
-        // $('#order_project').val(tempData.order_project);
-        // $('#order_plan').val(tempData.order_plan);
-        // $('#follow').val(tempData.follow);
-        // $('#failreason_mark').val(tempData.failreason_mark);
-        // $('#othermark').val(tempData.othermark);
+        // $('#doctor').selectpicker('val', doctors);
+        $('#main_suit').val(tempData.mainSuit);
+        $('#scheme').val(tempData.scheme);
+        $('#price').val(tempData.price);
+        $('#order_project').val(tempData.orderProject);
+        $('#order_plan').val(tempData.orderPlan);
+        $('#follow').val(tempData.follow);
+        $('#failreason_mark').val(tempData.failreasonMark);
+        $('#othermark').val(tempData.othermark);
     }
 }
 // console.log(JSON.stringify(tempData)+'----tempData');
@@ -224,8 +223,9 @@ function initPersonSelectName(ids,datalist) {
 
 function submit(){
     var doctors=$("#doctor").val();
+    parent_doctor.val(doctors);//添加医生id-hidden
     if(doctors){
-        initPersonSelectName(doctors,doctorList);
+        initPersonSelectName(doctors,doctorList);//转成姓名
     }else{
         doctors=""
     }
@@ -277,7 +277,6 @@ function submit(){
     if(parent_othermark){
         parent_othermark.val("");
     }
-    parent_doctor.val(doctors);//添加医生id-hidden
     parent_main_suit.val(main_suit);//添加主诉-hidden
     parent_scheme.val(scheme);//添加方案-hidden
     parent_price.val(price);//添加报价-hidden
