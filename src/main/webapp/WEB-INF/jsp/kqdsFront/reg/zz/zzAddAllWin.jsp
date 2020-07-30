@@ -86,7 +86,7 @@ function saveform() {
 	//循环获取表格中项目
 	var list = [];
 	for(var i = 0 ; i < rows.length; i++){
-		var seqId = rows[i].seqId;
+		var seqId = rows[i].uid;
 		//循环保存
 		var param = {
 			seqId : seqId
