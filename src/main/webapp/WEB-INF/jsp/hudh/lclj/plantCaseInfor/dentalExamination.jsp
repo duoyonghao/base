@@ -382,7 +382,7 @@
         border: none;
         border-radius: 5px;
         overflow-y: hidden;
-        height:100%;
+        height: 35px;
         width: 100%;
         text-align: center;
         outline:none;
