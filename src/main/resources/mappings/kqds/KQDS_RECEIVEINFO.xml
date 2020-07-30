@@ -281,7 +281,7 @@
 		receive.order_plan,
 		receive.follow,
 		receive.failreason_mark,
-		receive.othe_rmark,
+		receive.other_mark,
 		kcit1.dict_name as recesortname,
 		kcit2.dict_name as failreason1name,
 		kcit3.dict_name as devItemname,
