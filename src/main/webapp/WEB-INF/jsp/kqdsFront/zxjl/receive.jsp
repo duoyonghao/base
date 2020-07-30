@@ -169,7 +169,9 @@
                         <span id="goRemarkTemplate" class="kqdsSearchBtn" onclick="goRemarkTemplate()" style="cursor: pointer;">情况备注<span>
                     </td>
                     <td style="text-align:left;" colspan="5">
-                        <textarea class="form-control" style="height:200px;" name="detaildesc" id="detaildesc" rows="12" disabled></textarea>
+                        <div>
+                            <textarea class="form-control" style="height:200px;" name="detaildesc" id="detaildesc" rows="12" readonly="readonly"></textarea>
+                        </div>
                     </td>
                 </tr>
                 <tr>
