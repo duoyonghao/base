@@ -727,11 +727,13 @@
             return false;
         }
         var devchannel = $("#devchannel").val();
+        //console.log(devchannel+"devchannel---------");
         if (!devchannel) {
             layer.alert('患者来源必须选择！');
             return false;
         }
         var nexttype = $("#nexttype").val();
+        //console.log(nexttype+"nexttype---------");
         if (!nexttype) {
             layer.alert('患者来源子分类必须选择！');
             return false;
@@ -852,7 +854,10 @@
             expDate: expDate,
             headPic: headPic,
             photoDisplay: photoDisplay,
+            devchannel:devchannel,
+            nexttype:nexttype
         };
+        //console.log(JSON.stringify(params)+"====------------");
         $.axse(url, params,
             function (r) {
                 if (r.retState == "0") {
