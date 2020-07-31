@@ -205,7 +205,7 @@
 				failreason_mark = #{failreasonMark,jdbcType=VARCHAR},
 			</if>
 			<if test="othermark != null">
-				othe_rmark = #{othermark,jdbcType=VARCHAR},
+				other_mark = #{othermark,jdbcType=VARCHAR},
 			</if>
 		</set>
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
@@ -227,7 +227,16 @@
 		askstatus =
 		#{askstatus,jdbcType=INTEGER},
 		organization = #{organization,jdbcType=VARCHAR},
-		DEV_ITEM = #{devItem,jdbcType=VARCHAR}
+		DEV_ITEM = #{devItem,jdbcType=VARCHAR},
+		doctors = #{doctors,jdbcType=VARCHAR},
+		main_suit = #{mainSuit,jdbcType=VARCHAR},
+		scheme = #{scheme,jdbcType=VARCHAR},
+		price = #{price,jdbcType=VARCHAR},
+		order_project = #{orderProject,jdbcType=VARCHAR},
+		order_plan = #{orderPlan,jdbcType=VARCHAR},
+		follow = #{follow,jdbcType=VARCHAR},
+		failreason_mark = #{failreasonMark,jdbcType=VARCHAR},
+		other_mark = #{othermark,jdbcType=VARCHAR}
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
 	</update>
 
@@ -281,7 +290,7 @@
 		receive.order_plan,
 		receive.follow,
 		receive.failreason_mark,
-		receive.othe_rmark,
+		receive.other_mark,
 		kcit1.dict_name as recesortname,
 		kcit2.dict_name as failreason1name,
 		kcit3.dict_name as devItemname,
