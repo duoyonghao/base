@@ -205,7 +205,6 @@ function initPersonSelectTemp(id, depttype) {
             layer.alert('查询出错！' );
         });
 }
-
 // 查询userName值
 function initPersonSelectName(ids,datalist) {
     for (var i = 0; i < datalist.length; i++) {
@@ -287,7 +286,7 @@ function submit(){
     parent_failreason_mark.val(failreason_mark);//添加未成交原因备注-hidden
     parent_othermark.val(othermark);//添加其他备注-hidden
     parent_pre.val(template);//添加模板--block
-    setTimeout(function () {
+    setTimeout(function () {//50毫秒后关闭当前页面
         parent.layer.close(index);
     },50);
 }
