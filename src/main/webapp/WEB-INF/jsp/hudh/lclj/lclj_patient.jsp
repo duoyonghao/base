@@ -535,7 +535,7 @@ $(function() {
         },
         {
             title: '电话号码',
-            field: 'phonenumber',
+            field: 'phonenumber1',
             align: 'center',
             valign: 'middle',
             sortable: true,

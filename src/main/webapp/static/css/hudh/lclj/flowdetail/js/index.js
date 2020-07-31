@@ -626,6 +626,9 @@ function initFlow(){
 			  });*/
 			  /*****************牙位图操作 END*******************/
 			}
+			if(patientObj.nodename=="手术治疗"){
+				$(".showToothMap").css("display","none");
+			}
 		}
 	});
 }
@@ -3030,7 +3033,10 @@ function show(){
  * 节点点击事件
  * @param thi
  */
-function nodeClick(thi){	
+function nodeClick(thi){
+	if($(thi).attr("nodename")=="手术治疗"){
+		$(".showToothMap").css("display","none");
+	}
 //	alert($(thi).attr("viewurl"));
 //	alert($(thi).attr("id"));
 //	alert($(thi).attr("nodestatus"));

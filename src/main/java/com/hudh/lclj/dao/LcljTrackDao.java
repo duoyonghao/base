@@ -33,7 +33,6 @@ public class LcljTrackDao {
 	
 	/**
 	 * 向临床路径表插入数据
-	 * @param lcljOrder
 	 * @return
 	 * @throws Exception
 	 */
@@ -131,7 +130,6 @@ public class LcljTrackDao {
 	
 	/**
 	 * 更新临床路径节点信息
-	 * @param dataMap
 	 * @throws Exception
 	 */
 	public void updateOrderTrackNodes(LcljOrderTrack lcljOrderTrack) throws Exception {
@@ -150,7 +148,6 @@ public class LcljTrackDao {
 	
 	/**
 	 * 根据订单编号查询患者的信息
-	 * @param orderNumber
 	 * @return
 	 * @throws Exception 
 	 */
@@ -213,7 +210,6 @@ public class LcljTrackDao {
 	
 	/**
 	 * 根据订单编号查询患者的信息（展示已成交的患者临床路径 syp 2019-12-21）
-	 * @param orderNumber
 	 * @return
 	 * @throws Exception 
 	 */
@@ -287,7 +283,6 @@ public class LcljTrackDao {
 	
 	/**
 	 * 获取患者下面的挂号信息
-	 * @param dataMap
 	 * @return
 	 * @throws Exception
 	 */
@@ -366,7 +361,6 @@ public class LcljTrackDao {
 	
 	/**
 	 * 根据id更新临床路径信息
-	 * @param id
 	 * @throws Exception
 	 */
 	public void updateLcljOrderTrackById(LcljOrderTrack lcljOrderTrack) throws Exception {
@@ -381,9 +375,9 @@ public class LcljTrackDao {
 	 * @throws Exception 
 	  * @dateTime:2019年5月28日 上午10:09:59
 	  */  
-	public JSONObject savePreoperativeVerification(PreoperativeVerification pVerification) throws Exception {
+	public int savePreoperativeVerification(PreoperativeVerification pVerification) throws Exception {
 		// TODO Auto-generated method stub
-		return (JSONObject)dao.save("HUDH_LCLJ_preoperativeVerification.savePreoperativeVerification", pVerification); 
+		return (int)dao.save("HUDH_LCLJ_preoperativeVerification.savePreoperativeVerification", pVerification);
 	}
 
 	/**   
