@@ -852,6 +852,8 @@
             expDate: expDate,
             headPic: headPic,
             photoDisplay: photoDisplay,
+            devchannel:devchannel,
+            nexttype:nexttype
         };
         $.axse(url, params,
             function (r) {
