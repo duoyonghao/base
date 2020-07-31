@@ -159,7 +159,6 @@ var parent_failreason_mark=parent_doc.find("#failreasonMark");//未成交原因�
 var parent_othermark=parent_doc.find("#othermark");//其他备注
 var doctorList;
 var tempData=window.parent.frames["tabIframe"].onclickrowOobj2;
-console.log(JSON.stringify(tempData)+"------tempData");
 var depttype=<%=ConstUtil.DEPT_TYPE_1 %>;
 var index = parent.layer.getFrameIndex(window.name);
 $(function(){
@@ -172,7 +171,8 @@ $(function(){
 })
 function initTemp(){
     if(tempData.detaildesc!=""){
-        // $('#doctor').selectpicker('val', doctors);
+        var doctorsArr = tempData.doctors.split(',');
+        $('#doctor').selectpicker('val', doctorsArr);
         $('#main_suit').val(tempData.mainSuit);
         $('#scheme').val(tempData.scheme);
         $('#price').val(tempData.price);
@@ -180,7 +180,7 @@ function initTemp(){
         $('#order_plan').val(tempData.orderPlan);
         $('#follow').val(tempData.follow);
         $('#failreason_mark').val(tempData.failreasonMark);
-        $('#othermark').val(tempData.othermark);
+        $('#othermark').val(tempData.otherMark);
     }
 }
 // console.log(JSON.stringify(tempData)+'----tempData');
@@ -222,12 +222,12 @@ function initPersonSelectName(ids,datalist) {
 }
 
 function submit(){
-    var doctors=$("#doctor").val();
-    parent_doctor.val(doctors);//添加医生id-hidden
-    if(doctors){
-        initPersonSelectName(doctors,doctorList);//转成姓名
+    var doctors=$("#doctor").val();//id
+    var doctorsName=$("#doctor").val();//模板name
+    if(doctorsName){
+        initPersonSelectName(doctorsName,doctorList);//转成姓名（模板）
     }else{
-        doctors=""
+        doctorsName="";
     }
     var main_suit=$("#main_suit").val();
     var scheme=$("#scheme").val();
@@ -238,7 +238,7 @@ function submit(){
     var failreason_mark=$("#failreason_mark").val();
     var othermark=$("#othermark").val();
     var template="";
-    template+="【医生】:"+doctors+"\n";
+    template+="【医生】:"+doctorsName+"\n";
     template+="【主诉】:"+main_suit+"\n";
     template+="【方案】:"+scheme+"\n";
     template+="【报价】:"+price+"\n";
@@ -277,6 +277,7 @@ function submit(){
     if(parent_othermark){
         parent_othermark.val("");
     }
+    parent_doctor.val(doctors);//添加医生id-hidden
     parent_main_suit.val(main_suit);//添加主诉-hidden
     parent_scheme.val(scheme);//添加方案-hidden
     parent_price.val(price);//添加报价-hidden
