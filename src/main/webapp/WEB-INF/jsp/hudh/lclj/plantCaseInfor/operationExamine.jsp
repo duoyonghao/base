@@ -508,13 +508,18 @@
 						var frameindex = parent.layer.getFrameIndex(window.name);
 		                parent.layer.close(frameindex); // 再执行关闭
 					}) */
-					layer.alert("保存成功！", {
-			            end: function() {
-			            	window.parent.location.reload(); //刷新父页面
-			                var frameindex = parent.layer.getFrameIndex(window.name);
-			                parent.layer.close(frameindex); //再执行关闭
-			            }
-			      	});
+					if(result.retMsrg>0){
+                        layer.alert("保存成功！", {
+                            end: function() {
+                                window.parent.location.reload(); //刷新父页面
+                                var frameindex = parent.layer.getFrameIndex(window.name);
+                                parent.layer.close(frameindex); //再执行关闭
+                            }
+                        });
+					}else{
+                        layer.alert("保存失败！");
+					}
+
 				}
 		  });
 		}

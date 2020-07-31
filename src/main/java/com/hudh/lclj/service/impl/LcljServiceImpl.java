@@ -87,7 +87,6 @@ public class LcljServiceImpl implements ILcljService {
 
 	@Override
 	public LcljOrder findLcljOrderByOrderNumber(String orderNumber) throws Exception {
-		// TODO Auto-generated method stub
 		return lcljDao.findLcljOrderByOrderNumber(orderNumber);
 	}
 
@@ -132,7 +131,6 @@ public class LcljServiceImpl implements ILcljService {
 	 * @param lcljOrderImplemen
 	 */
 	private void createOperateInfo(String type, String bone, LcljOrderImplemen lcljOrderImplemen) {
-		// TODO Auto-generated method stub
 		Map<String, String> operateMap = new HashMap<String, String>();
 		if (type.equals(StaticVar.HUDH_LCLJ_DDK) && bone.equals(StaticVar.HUDH_LCLJ_NO)) { // 单颗多颗
 																							// ---无植骨
@@ -188,7 +186,6 @@ public class LcljServiceImpl implements ILcljService {
 
 	@Override
 	public int findLcljOrderTrackByOrderNumber(String orderNumber) throws Exception {
-		// TODO Auto-generated method stub
 		List<JSONObject> list = lcljTrackDao.findLcljOrderTrackByOrderNumber(orderNumber);
 		int ssTime = 0;
 		if (null != list) {
@@ -262,7 +259,6 @@ public class LcljServiceImpl implements ILcljService {
 
 	@Override
 	public int findHasOrderByBlcodeAndStu(String blCode) throws Exception {
-		// TODO Auto-generated method stub
 		Map<String, String> paraMap = new HashMap<String, String>();
 		paraMap.put("blcode", blCode);
 		paraMap.put("status", HUDHStaticVar.COMPLETE_STATE_WWC);
@@ -271,7 +267,6 @@ public class LcljServiceImpl implements ILcljService {
 
 	@Override
 	public JSONObject findLcljOrderTrsackById(String orderTrackId) throws Exception {
-		// TODO Auto-generated method stub
 		JSONObject jsonOb = lcljTrackDao.findLcljOrderTrsackById(orderTrackId);
 		if (null != jsonOb) {
 			return jsonOb;
@@ -301,7 +296,6 @@ public class LcljServiceImpl implements ILcljService {
 	@SuppressWarnings({ "unchecked", "unused" })
 	@Override
 	public void changeOperateStatus(String operateName, String flowLink, String orderTrackId) throws Exception {
-		// TODO Auto-generated method stub
 		LcljOrderImplemen lcljOrderImplemen = lcljOrderImplemenDao.findLcljOrderImplemenByTrackId(orderTrackId);
 		Map childClazzMap = new HashMap();
 		childClazzMap.put("detail", LcljOperateDetail.class);
@@ -353,7 +347,6 @@ public class LcljServiceImpl implements ILcljService {
 	
 	@Override
 	public String findOperateByTrackIdAndLink(String orderTrackId, String flowLink,String oprationName) throws Exception {
-		// TODO Auto-generated method stub
 		LcljOrderImplemen lcljOrderImplemen = lcljOrderImplemenDao.findLcljOrderImplemenByTrackId(orderTrackId);
 		String operates = null;
 		if (null != lcljOrderImplemen) {
@@ -371,7 +364,6 @@ public class LcljServiceImpl implements ILcljService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<LcljOperateDetail> findLcljOrderImplemenRemakeByTrackId(String orderTrackId,String flowLink,String oprationName) throws Exception {
-		// TODO Auto-generated method stub
 		LcljOrderImplemen lcljOrderImplemen = lcljOrderImplemenDao.findLcljOrderImplemenByTrackId(orderTrackId);
 		Map childClazzMap = new HashMap();
 		childClazzMap.put("detail", LcljOperateDetail.class);
@@ -417,7 +409,6 @@ public class LcljServiceImpl implements ILcljService {
 	
 	@Override
 	public void updateOrderStatus(String orderNumber) throws Exception {
-		// TODO Auto-generated method stub
 		/*
 		JSONObject jsonO = lcljTrackDao.findLcljOrderTrsackById(id);
 		LcljOrderTrack l = (LcljOrderTrack) jsonO.toBean(jsonO);
@@ -531,8 +522,7 @@ public class LcljServiceImpl implements ILcljService {
 	  * @see com.hudh.lclj.service.ILcljService#savePreoperativeVerification(com.hudh.lclj.entity.PreoperativeVerification)   
 	  */  
 	@Override
-	public JSONObject savePreoperativeVerification(PreoperativeVerification pVerification) throws Exception {
-		// TODO Auto-generated method stub
+	public int savePreoperativeVerification(PreoperativeVerification pVerification) throws Exception {
 		 return lcljTrackDao.savePreoperativeVerification(pVerification);
 	}
 
@@ -546,7 +536,6 @@ public class LcljServiceImpl implements ILcljService {
 	  */  
 	@Override
 	public JSONObject findPreoperativeVerification(String lcljId) throws Exception {
-		// TODO Auto-generated method stub
 		return lcljTrackDao.findPreoperativeVerification(lcljId);
 	}
 	

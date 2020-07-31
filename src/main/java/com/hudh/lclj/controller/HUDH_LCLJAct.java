@@ -452,8 +452,8 @@ public class HUDH_LCLJAct {
    		if(findPreoperativeVerification != null){
    			YZUtility.DEAL_SUCCESS(findPreoperativeVerification, "已填写，请勿重复填写！", response, logger);
    		}else{  			
-   			JSONObject preoperativeVerification = lcljService.savePreoperativeVerification(pVerification);
-   			YZUtility.DEAL_SUCCESS(preoperativeVerification, "save ok!", response, logger);
+   			int preoperativeVerification = lcljService.savePreoperativeVerification(pVerification);
+   			YZUtility.DEAL_SUCCESS(null, ""+preoperativeVerification, response, logger);
    		}
 	} catch (Exception e) {
 		// TODO: handle exception
