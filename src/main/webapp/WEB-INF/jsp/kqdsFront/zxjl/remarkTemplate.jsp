@@ -196,7 +196,7 @@ function initPersonSelectTemp(id, depttype) {
                 $('#'+id).selectpicker('destroy');
                 for (var j = 0; j < list.length; j++) {
                     var optionStr = list[j];
-                    if(optionStr.deptName!="综合医生（咨询）组"){
+                    if(optionStr.deptName!="综合医生（咨询）组"&&optionStr.deptName!="客服部"){//单独去重deptName不同
                         dict.append("<option value='" + optionStr.seqId + "'>" + optionStr.userName + "</option>");
                     }
                 }
