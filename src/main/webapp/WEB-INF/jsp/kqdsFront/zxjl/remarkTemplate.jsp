@@ -196,7 +196,9 @@ function initPersonSelectTemp(id, depttype) {
                 $('#'+id).selectpicker('destroy');
                 for (var j = 0; j < list.length; j++) {
                     var optionStr = list[j];
-                    dict.append("<option value='" + optionStr.seqId + "'>" + optionStr.userName + "</option>");
+                    if(optionStr.deptName!="综合医生（咨询）组"){
+                        dict.append("<option value='" + optionStr.seqId + "'>" + optionStr.userName + "</option>");
+                    }
                 }
                 $("#"+id).selectpicker("refresh"); //select搜索初始化刷新
             }
