@@ -542,6 +542,7 @@ public class KQDS_MemberAct {
 			String regsort = request.getParameter("regsort");
 			String moneys = request.getParameter("moneys");// 充值金额
 			String types = request.getParameter("types");// 充值方式 集合
+			String doctor = request.getParameter("doctor");//退款选择医生
 			// 退费原因
 			String tfremark = request.getParameter("tfremark");
 			BigDecimal xjmoney = BigDecimal.ZERO;
@@ -650,6 +651,7 @@ public class KQDS_MemberAct {
 			r.setYgivemoney(en.getGivemoney());// 赠送余额
 			r.setYtotal(KqdsBigDecimal.add(en.getMoney(), en.getGivemoney()));// 余额小计
 			r.setOrganization(ChainUtil.getCurrentOrganization(request)); // 【前端页面调用，以所在门诊为准】
+			r.setDoctor(doctor);
 			logic.saveSingleUUID(TableNameUtil.KQDS_MEMBER_RECORD_SH, r);
 
 			// 记录日志
@@ -868,9 +870,9 @@ public class KQDS_MemberAct {
 	 */
 	@RequestMapping(value = "/selectList.act")
 	public String selectList(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String sortName = request.getParameter("sortName");
-		String sortOrder = request.getParameter("sortOrder");
 		try {
+			String sortName = request.getParameter("sortName");
+			String sortOrder = request.getParameter("sortOrder");
 			String flag = request.getParameter("flag") == null ? "" : request.getParameter("flag");
 			String fieldArr = request.getParameter("fieldArr") == null ? "" : request.getParameter("fieldArr");
 			String fieldnameArr = request.getParameter("fieldnameArr") == null ? "" : request.getParameter("fieldnameArr");

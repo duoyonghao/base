@@ -28,12 +28,13 @@
 		<result column="sqremark" jdbcType="VARCHAR" property="sqremark" />
 		<result column="askperson" jdbcType="VARCHAR" property="askperson" />
 		<result column="regsort" jdbcType="VARCHAR" property="regsort" />
+		<result column="doctor" jdbcType="VARCHAR" property="doctor" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		SEQ_ID, createuser, createtime, usercode, username, cardno, type, cmoney, cgivemoney,
 		ctotal, ymoney, ygivemoney, ytotal, tfremark, xjmoney, yhkmoney, qtmoney,
 		zfbmoney,
-		wxmoney, organization, sqstatus, mmdmoney, bdfqmoney, sqremark, askperson, regsort
+		wxmoney, organization, sqstatus, mmdmoney, bdfqmoney, sqremark, askperson, regsort,doctor
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
 		select
@@ -55,7 +56,7 @@
 		yhkmoney, qtmoney, zfbmoney,
 		wxmoney, organization, sqstatus,
 		mmdmoney, bdfqmoney, sqremark,
-		askperson, regsort)
+		askperson, regsort,doctor)
 		values
 		(#{seqId,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
 		#{usercode,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{cardno,jdbcType=VARCHAR},
@@ -66,7 +67,7 @@
 		#{wxmoney,jdbcType=DECIMAL}, #{organization,jdbcType=VARCHAR}, #{sqstatus,jdbcType=INTEGER},
 		#{mmdmoney,jdbcType=DECIMAL}, #{bdfqmoney,jdbcType=DECIMAL},
 		#{sqremark,jdbcType=VARCHAR},
-		#{askperson,jdbcType=VARCHAR}, #{regsort,jdbcType=VARCHAR})
+		#{askperson,jdbcType=VARCHAR}, #{regsort,jdbcType=VARCHAR},#{doctor,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsMemberRecordSh">
 		insert into KQDS_MEMBER_RECORD_SH
@@ -149,6 +150,9 @@
 			<if test="regsort != null">
 				regsort,
 			</if>
+			<if test="doctor != null">
+				doctor,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="seqId != null">
@@ -228,6 +232,9 @@
 			</if>
 			<if test="regsort != null">
 				#{regsort,jdbcType=VARCHAR},
+			</if>
+			<if test="doctor != null">
+				#{doctor,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
@@ -309,6 +316,9 @@
 			<if test="regsort != null">
 				regsort = #{regsort,jdbcType=VARCHAR},
 			</if>
+			<if test="doctor != null">
+				doctor = #{doctor,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
 	</update>
@@ -389,8 +399,7 @@
 		r.mmdmoney,
 		r.bdfqmoney,
 		r.seq_id,
-		p.user_name as
-		createuser,
+		p.user_name as createuser,
 		r.createtime,
 		r.usercode,
 		r.username,
@@ -405,14 +414,15 @@
 		r.tfremark,
 		u.createuser as jdrid,
 		p3.user_name as jdrname,
+		p4.user_name as doctorname,
 		kcit3.dict_name as devchannel,
 		hzly.dict_name as nexttype
 		from KQDS_MEMBER_RECORD_SH r
 		LEFT JOIN SYS_PERSON p on r.createuser = p.seq_id
 		LEFT JOIN KQDS_UserDocument u on u.usercode = r.usercode
-		LEFT JOIN
-		SYS_PERSON p2 on u.AskPerson = p2.seq_id
+		LEFT JOIN SYS_PERSON p2 on r.askperson = p2.seq_id
 		LEFT JOIN SYS_PERSON p3 on u.createuser = p3.seq_id
+		LEFT JOIN SYS_PERSON p4 on r.doctor = p4.seq_id
 		LEFT JOIN SYS_DICT kcit3 on u.devchannel = kcit3.seq_id
 		LEFT JOIN SYS_DICT hzly on u.nexttype = hzly.seq_id
 		where 1=1
