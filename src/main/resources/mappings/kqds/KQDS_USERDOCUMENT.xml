@@ -1207,7 +1207,7 @@ WHERE
     </select>
     <!-- 咨询创建临床路径按权限查找患者  2019-7-30  syp -->
     <select id="selectWithNopageGhPermission" parameterType="map" resultType="json">
-        select u.seq_id,
+       select DISTINCT u.seq_id,
         u.usercode,
         u.username,
         u.sex,
@@ -1235,10 +1235,12 @@ WHERE
         from KQDS_REG a,(select usercode,max(createtime) createtime from
         KQDS_REG group by usercode) b where a.usercode=b.usercode and
         a.createtime = b.createtime) n on n.usercode = u.usercode
+        LEFT JOIN HUDH_LCLJ_ORDERTRACK o on o.blcode=u.usercode
         LEFT JOIN SYS_DEPT odept on odept.dept_code = u.organization and odept.dept_parent = '0'
         left join SYS_PERSON per1 on per1.seq_id = u.createuser
         left join SYS_PERSON per2 on per2.seq_id = n.askperson
         LEFT JOIN sys_person per3 ON per3.SEQ_ID = u.askperson
+        LEFT JOIN sys_person per4 ON (per4.USER_NAME = o.plant_physician OR per4.USER_NAME =o.repair_physician)
         where 1=1
         <if test="username != null and username !=''">
             and (u.username like '%' + #{username} + '%' or u.pym like '%' + #{username} + '%')
@@ -1262,7 +1264,8 @@ WHERE
         </if>
         <if test="querytype != null and querytype !='' ">
             and (per2.seq_id in (${querytype})
-            OR per3.seq_id IN (${querytype}))
+            OR per3.seq_id IN (${querytype})
+            OR per4.seq_id IN (${querytype}))
         </if>
         <if test="type != null and type !='' ">
             and u.type = #{type}
@@ -1273,7 +1276,7 @@ WHERE
         <if test="regsort != null and regsort !='' ">
             and n.regsort = #{regsort}
         </if>
-        ORDER BY u.CreateTime desc
+        <!--ORDER BY u.CreateTime desc-->
     </select>
     <select id="selectByUserCodes" parameterType="java.lang.String" resultType="json">
 		select

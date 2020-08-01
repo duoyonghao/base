@@ -435,7 +435,7 @@ $(function() {
   //咨询 下拉列表
   initPersonSelectByDeptType("askperson","<%=ConstUtil.DEPT_TYPE_0 %>");
   //跟踪方式下拉框
-  initssType();
+  //initssType();
   $('.searchSelect').selectpicker("refresh");//初始化刷新--2019-10-26 licc	
   //初始化多选下拉框
   $('#plant_system').selectpicker({
@@ -473,15 +473,15 @@ $(function() {
  
   /*****************种植牙位图操作*******************/
   //点击牙齿
-  $('#zhongzhi').on('click', 'li',
+  /*$('#zhongzhi').on('click', 'li',
   function() {
       $(this).toggleClass('current');
       getAllToothNum();
-  });
+  });*/
   
 //成人
   //自动选择--左上
-  $('#lefttop').on('click',
+  /*$('#lefttop').on('click',
   function() {
   	if ($('#lefttop').is(':checked')) {
   		 $("span[name=zzadultupYa1]").each(function(index) {
@@ -493,9 +493,9 @@ $(function() {
 	            $(this).parent().removeClass('current');
 	    	 });
       }
-  });
+  });*/
   //自动选择--右上
-  $('#righttop').on('click',
+  /*$('#righttop').on('click',
   function() {
   	if ($('#righttop').is(':checked')) {
 	  		 $("span[name=zzadultupYa2]").each(function(index) {
@@ -507,9 +507,9 @@ $(function() {
 	            $(this).parent().removeClass('current');
 	    	 });
       }
-  });
+  });*/
   //自动选择--左下
-  $('#leftdown').on('click',
+  /*$('#leftdown').on('click',
   function() {
   	if ($('#leftdown').is(':checked')) {
 	  		 $("span[name=zzadultdownYa1]").each(function(index) {
@@ -521,9 +521,9 @@ $(function() {
 	            $(this).parent().removeClass('current');
 	    	 });
       }
-  });
+  });*/
   //自动选择--右下
-  $('#rightdown').on('click',
+  /*$('#rightdown').on('click',
   function() {
   	if ($('#rightdown').is(':checked')) {
 	  		 $("span[name=zzadultdownYa2]").each(function(index) {
@@ -535,7 +535,7 @@ $(function() {
 	            $(this).parent().removeClass('current');
 	    	 });
       }
-  });
+  });*/
   /*****************牙位图操作 END*******************/
   
   
@@ -543,15 +543,15 @@ $(function() {
   
   /*****************修复牙位图操作*******************/
   //点击牙齿
-  $('#xiufu').on('click', 'li',
+  /*$('#xiufu').on('click', 'li',
   function() {
       $(this).toggleClass('current');
       getAllToothNumb();
-  }); 
+  }); */
   
 //成人
   //自动选择--左上
-  $('#repairlefttop').on('click',
+  /*$('#repairlefttop').on('click',
   function() {
   	if ($('#repairlefttop').is(':checked')) {
   		 $("span[name=repairadultupYa1]").each(function(index) {
@@ -563,9 +563,9 @@ $(function() {
 	            $(this).parent().removeClass('current');
 	    	 });
       }
-  });
+  });*/
   //自动选择--右上
-  $('#repairrighttop').on('click',
+  /*$('#repairrighttop').on('click',
   function() {
   	if ($('#repairrighttop').is(':checked')) {
 	  		 $("span[name=repairadultupYa2]").each(function(index) {
@@ -577,9 +577,9 @@ $(function() {
 	            $(this).parent().removeClass('current');
 	    	 });
       }
-  });
+  });*/
   //自动选择--左下
-  $('#repairleftdown').on('click',
+  /*$('#repairleftdown').on('click',
   function() {
   	if ($('#repairleftdown').is(':checked')) {
 	  		 $("span[name=repairadultdownYa1]").each(function(index) {
@@ -591,9 +591,9 @@ $(function() {
 	            $(this).parent().removeClass('current');
 	    	 });
       }
-  });
+  });*/
   //自动选择--右下
-  $('#repairrightdown').on('click',
+  /*$('#repairrightdown').on('click',
   function() {
   	if ($('#repairrightdown').is(':checked')) {
 	  		 $("span[name=repairadultdownYa2]").each(function(index) {
@@ -605,7 +605,7 @@ $(function() {
 	            $(this).parent().removeClass('current');
 	    	 });
       }
-  }); 
+  }); */
   /*****************牙位图操作 END*******************/
   initInfo();
 });
