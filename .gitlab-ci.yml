@@ -19,6 +19,7 @@ build:
       - master
       - dev
       - master-xzm
+      - future
       - debug
   tags:
     - package

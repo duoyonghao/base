@@ -415,6 +415,13 @@ public class KQDS_UserDocumentAct {
         return mv;
     }
 
+    @RequestMapping(value = "/toTemplate.act")
+    public ModelAndView toTemplate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/kqdsFront/zxjl/remarkTemplate.jsp");
+        return mv;
+    }
+
     @RequestMapping(value = "/toZengsong_List.act")
     public ModelAndView toZengsong_List(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView();

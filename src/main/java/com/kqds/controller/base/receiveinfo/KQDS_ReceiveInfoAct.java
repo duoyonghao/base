@@ -1,12 +1,8 @@
 package com.kqds.controller.base.receiveinfo;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,18 +18,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kqds.entity.base.KqdsReceiveinfo;
 import com.kqds.entity.base.KqdsReg;
 import com.kqds.entity.sys.BootStrapPage;
-import com.kqds.entity.sys.YZDict;
-import com.kqds.entity.sys.YZPerson;
 import com.kqds.service.base.hzjd.KQDS_UserDocumentLogic;
 import com.kqds.service.base.receiveinfo.KQDS_ReceiveInfoLogic;
 import com.kqds.service.base.reg.KQDS_REGLogic;
 import com.kqds.service.sys.dict.YZDictLogic;
-import com.kqds.util.sys.SessionUtil;
 import com.kqds.util.sys.TableNameUtil;
 import com.kqds.util.sys.YZUtility;
 import com.kqds.util.sys.log.BcjlUtil;
-import com.kqds.util.sys.other.CacheUtil;
-import com.kqds.util.sys.sys.DictUtil;
 
 import net.sf.json.JSONObject;
 
@@ -88,6 +79,15 @@ public class KQDS_ReceiveInfoAct {
 				KqdsReceiveinfo en = (KqdsReceiveinfo) logic.loadObjSingleUUID(TableNameUtil.KQDS_RECEIVEINFO, seqId);
 				en.setDetaildesc(dp.getDetaildesc());
 				en.setFailreason1(dp.getFailreason1());
+				en.setDoctors(dp.getDoctors());
+				en.setMainSuit(dp.getMainSuit());
+				en.setScheme(dp.getScheme());
+				en.setPrice(dp.getPrice());
+				en.setOrderProject(dp.getOrderProject());
+				en.setOrderPlan(dp.getOrderPlan());
+				en.setFollow(dp.getFollow());
+				en.setFailreasonMark(dp.getFailreasonMark());
+				en.setOthermark(dp.getOthermark());
 				if (!YZUtility.isNullorEmpty(dp.getFailreason1()) || !YZUtility.isNullorEmpty(dp.getDetaildesc())) {
 					en.setAskstatus(1);
 				} else {
