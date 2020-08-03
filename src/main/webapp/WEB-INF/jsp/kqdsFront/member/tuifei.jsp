@@ -272,6 +272,11 @@ function gettuifeilist() {
                 return '<span class="name">' + value + '</span>';
         	}
 		},
+		{title: '医生',field: 'doctorname',align: 'center',sortable: true,
+			formatter:function(value,row,index){
+				return '<span class="name">' + value + '</span>';
+			}
+		},
         {title: '患者来源',field: 'devchannel',align: 'center',sortable: true,
 			formatter:function(value,row,index){  
                 return '<span class="name">' + value + '</span>';

@@ -409,7 +409,11 @@ public class KQDS_Member_RecordLogic extends BaseLogic {
 			obj.put("ys", "");
 			obj.put("paymoney", "");
 			obj.put("voidmoney", "");
-			obj.put("doctor", obj.getString("doctor"));
+			if(!YZUtility.isNullorEmpty(obj.getString("doctor"))){
+				obj.put("doctor", obj.getString("doctor"));
+			}else{
+				obj.put("doctor", obj.getString("doctorname"));
+			}
 			obj.put("regdept", obj.getString("regdept"));
 			obj.put("status", "");
 			obj.put("regno", "");

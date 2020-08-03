@@ -26,6 +26,8 @@
 <link rel="stylesheet" type="text/css" href="<%=contextPath%>/static/css/kqdsFront/plugin/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="<%=contextPath%>/static/css/kqdsFront/plugin/bootstrapValidator.css" />
 <link rel="stylesheet" type="text/css" href="<%=contextPath%>/static/css/kqdsFront/addVisting.css" />
+<!-- select搜索筛选 -->
+<link rel="stylesheet" type="text/css" href="<%=contextPath%>/static/css/admin/index/bower_components/select/bootstrap-select.css"/>
 </head>
 <style type="text/css">
 	.kqds_btn{
@@ -46,8 +48,8 @@
 		align:center;
 		margin-left: auto;
 		margin-right: auto;
+		position: relative;
 	}
-	
 	.kqds_table  td { 
 		color: #666;
 		overflow: hidden;
@@ -66,7 +68,12 @@
 
 	#输入框缩短一些
 	input[type=text],.kv .kv-v input[type=text]{padding:0 10px;width:120px;height: 28px;line-height: 28px;border: solid 1px #e5e5e5;border-radius: 3px;-webkit-transition: all .3s;transition: all .3s;}
-
+	.doctorpos{
+		display: inline-block;
+		position: absolute;
+		top: 28px;
+		right: 160px;
+	}
 </style>
 <body>
 <div style="text-align:center;">
@@ -95,6 +102,10 @@
     				<select class="dict" tig="ghfl" name="regsort" id="regsort"></select>
     			</td>
     		</tr>
+			<div class="doctorpos">
+				<span class="searchTitle">医生：</span>
+				<select name="doctor" id="doctor" class="searchSelect" data-live-search="true"></select>
+			</div>
     		<tr>
     			<td style="text-align:right;">赠送余额：</td>
     			<td style="text-align:left;"><span id="zyue"></span></td>
@@ -129,6 +140,7 @@
     			</td>
     		</tr>
     	</table>
+
     	<table class="kqds_table" >
     		<tr>
     			<td style="text-align:right;width:10%;">退费原因：</td>
@@ -154,6 +166,9 @@
 <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/bootstrapvalidator/dist/bootstrapValidator.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/plugin/layer-v2.4/layer/layer.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/util.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/static/js/hudh/commont.js"></script>
+<!-- select搜索筛选 -->
+<script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/plugins/select/bootstrap-select.js"></script>
 
 <script type="text/javascript">
 
@@ -167,6 +182,8 @@ $(function(){
 	initMemberFkfsSelect("paytype1");//充值付款方式
 	//咨询 下拉列表
 	initPersonSelectByDeptType("askperson","<%=ConstUtil.DEPT_TYPE_0 %>");
+	//医生 下拉框
+    initSysUserByDeptId($("#doctor"), "doctor", "seqId");
 	initDictSelectByClass(); // 会员类型
 	$("#seqId").val(seqId);
 	$("#usercode").html(onclickrow.usercode);
@@ -177,6 +194,11 @@ $(function(){
 	var tmoney = Number(onclickrow.money) + Number(onclickrow.givemoney);
 	$("#totalmoney").html(tmoney.toFixed(2));//余额小计
 	getRegxx($("#usercode").html());
+    //后期添加保证每次选完医生后更新所选项目的医生
+    $("#doctor").on("change", function () {
+        $("select[id^='doctor']").val($("#doctor").val());
+    });
+    $('.searchSelect').selectpicker("refresh");//初始化刷新--2019.10.11--licc
 });
 
 //删除付款方式
@@ -238,7 +260,8 @@ function addrow(){
 	
 }
 
-function tijiao (){
+function tijiao(){
+    var doctor = $('#doctor').val();
 	//验证表单
 	var testfs = /^((-\d+(\.\d+)?)|(0+(\.0+)?))$/;
 	
@@ -382,7 +405,7 @@ function tijiao (){
     
     var param = $('#defaultForm').serialize();
     param+='&type=tuifei';
-    
+    param+='&doctor='+doctor;
     var url = '<%=contextPath%>/KQDS_MemberAct/tksqMember.act?'+ param + '&moneys=' + moneys + '&types=' + typestrs;
     var msg;
     $.axseSubmit(url,null, 

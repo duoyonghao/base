@@ -304,6 +304,7 @@ public class KQDS_Member_Record_ShAct {
 		r.setYgivemoney(en.getGivemoney());// 赠送余额
 		r.setYtotal(KqdsBigDecimal.add(en.getMoney(), en.getGivemoney()));// 余额小计
 		r.setOrganization(organization); // 【前端页面调用，以所在门诊为准】
+		r.setDoctor(dp.getDoctor());
 		logic.saveSingleUUID(TableNameUtil.KQDS_MEMBER_RECORD, r);
 		// 记录日志
 		BcjlUtil.LogBcjl(r.getSeqId(), BcjlUtil.KQDS_MEMBER_RECORD, r, TableNameUtil.KQDS_MEMBER_RECORD, request);

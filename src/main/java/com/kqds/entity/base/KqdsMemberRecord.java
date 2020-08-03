@@ -65,6 +65,8 @@ public class KqdsMemberRecord {
 
 	private String costno;
 
+	private String doctor;
+
 	public String getSeqId() {
 		return seqId;
 	}
@@ -311,5 +313,13 @@ public class KqdsMemberRecord {
 
 	public void setCostno(String costno) {
 		this.costno = costno == null ? null : costno.trim();
+	}
+
+	public String getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(String doctor) {
+		this.doctor = doctor;
 	}
 }

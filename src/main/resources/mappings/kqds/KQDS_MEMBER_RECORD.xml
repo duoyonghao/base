@@ -33,12 +33,13 @@
 		<result column="askperson" jdbcType="VARCHAR" property="askperson" />
 		<result column="regsort" jdbcType="VARCHAR" property="regsort" />
 		<result column="costno" jdbcType="VARCHAR" property="costno" />
+		<result column="doctor" jdbcType="VARCHAR" property="doctor" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		SEQ_ID, createuser, createtime, usercode, username, cardno, type, content, cmoney,
 		cgivemoney, ctotal, ymoney, ygivemoney, ytotal, tfremark, xjmoney, yhkmoney, qtmoney,
 		zzmoney, zzgivemoney, zfbmoney, wxmoney, szrusercode, szrusername, organization,
-		szcardno, mmdmoney, bdfqmoney, askperson, regsort, costno
+		szcardno, mmdmoney, bdfqmoney, askperson, regsort, costno,doctor
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
 		select
@@ -173,6 +174,9 @@
 			<if test="costno != null">
 				costno,
 			</if>
+			<if test="doctor != null">
+				doctor,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="seqId != null">
@@ -267,6 +271,9 @@
 			</if>
 			<if test="costno != null">
 				#{costno,jdbcType=VARCHAR},
+			</if>
+			<if test="doctor != null">
+				#{doctor,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
@@ -449,6 +456,7 @@
 		per5.USER_NAME as jduser,
 		per6.USER_NAME as developer,
 		per7.USER_NAME as jddy,
+		per8.USER_NAME as doctorname,
 		per12.USER_NAME as faskperson,
 		p.USER_NAME as askperson,
 		u.CreateTime as jdtime,
@@ -462,6 +470,7 @@
 		LEFT JOIN SYS_PERSON per5 on per5.SEQ_ID = u.createuser
 		LEFT JOIN SYS_PERSON per6 on per6.SEQ_ID = u.developer
 		LEFT JOIN SYS_PERSON per7 on per7.SEQ_ID = u.guider
+		LEFT JOIN SYS_PERSON per8 on per8.SEQ_ID = kmr.doctor
 		LEFT JOIN SYS_PERSON per12 on per12.SEQ_ID = u.askperson
 		LEFT JOIN SYS_DICT kcit3 on u.devchannel = kcit3.seq_id
 		LEFT JOIN SYS_DICT hzly on u.nexttype =hzly.seq_id
@@ -746,6 +755,7 @@
 		u.createtime as jdtime,
 		u.blcode,
 		p9.USER_NAME as doctor,
+		p6.USER_NAME as doctorname,
 		dept2.DEPT_NAME as regdept,
 		rec.tfremark
 		from KQDS_MEMBER_RECORD rec
@@ -756,6 +766,7 @@
 		LEFT JOIN SYS_PERSON p3 on p3.seq_id = u.createuser
 		LEFT JOIN SYS_PERSON p4 on p4.seq_id = u.developer
 		LEFT JOIN SYS_PERSON p5 on p5.seq_id = rec.createuser
+		LEFT JOIN SYS_PERSON p6 on p6.seq_id = rec.doctor
 		LEFT JOIN SYS_PERSON per7 on per7.SEQ_ID = u.guider
 		LEFT JOIN SYS_PERSON p8 on p8.SEQ_ID = rec.askperson
 		LEFT JOIN SYS_DICT kcit3 on u.devchannel = kcit3.seq_id
@@ -1124,6 +1135,7 @@
 		select
 		p2.USER_NAME as faskPerson,
 		p5.USER_NAME as askPerson,
+		p6.USER_NAME as doctorname,
 		r.cardno,
 		r.szcardno,
 		r.xjmoney,
@@ -1134,8 +1146,7 @@
 		r.mmdmoney,
 		r.bdfqmoney,
 		r.seq_id,
-		p.user_name as
-		createuser,
+		p.user_name as createuser,
 		r.createtime,
 		r.usercode,
 		r.username,
@@ -1158,17 +1169,15 @@
 		kcit3.dict_name as devchannel,
 		hzly.dict_name as nexttype
 		from KQDS_MEMBER_RECORD r
-		LEFT JOIN SYS_PERSON p on
-		r.createuser = p.seq_id
+		LEFT JOIN SYS_PERSON p on r.createuser = p.seq_id
 		LEFT JOIN KQDS_UserDocument u on u.usercode = r.usercode
 		LEFT JOIN SYS_PERSON p2 on u.AskPerson = p2.seq_id
-		LEFT JOIN SYS_PERSON p5 on r.AskPerson =
-		p5.seq_id
+		LEFT JOIN SYS_PERSON p5 on r.AskPerson = p5.seq_id
+		LEFT JOIN SYS_PERSON p6 on r.doctor = p6.seq_id
 		LEFT JOIN SYS_DICT kcit3 on u.devchannel = kcit3.seq_id
 		LEFT JOIN SYS_DICT hzly on u.nexttype = hzly.seq_id
 		LEFT JOIN SYS_PERSON p3 on p3.seq_id = u.createuser
-		LEFT JOIN
-		SYS_PERSON p4 on p4.seq_id = u.developer
+		LEFT JOIN SYS_PERSON p4 on p4.seq_id = u.developer
 		where 1=1
 		and r.organization = #{organization}
 		<if test="queryinput != null and queryinput !='' ">
@@ -1983,6 +1992,7 @@
 			hzly.dict_name AS nexttype,
 			u.CreateTime jdtime,
 			per3.USER_NAME AS jduser,
+			per5.USER_NAME AS doctor,
 			per10.USER_NAME AS faskperson,
 			u.type,
 			u.blcode,
@@ -2000,6 +2010,7 @@
 		LEFT JOIN SYS_PERSON per1 ON per1.SEQ_ID = rec.createuser
 		LEFT JOIN SYS_PERSON per3 ON per3.SEQ_ID = u.CreateUser
 		LEFT JOIN SYS_PERSON per4 ON per4.SEQ_ID = rec.askperson
+		LEFT JOIN SYS_PERSON per5 ON per5.SEQ_ID = rec.doctor
 		LEFT JOIN SYS_PERSON per6 ON per6.SEQ_ID = u.developer
 		LEFT JOIN SYS_PERSON per7 ON per7.SEQ_ID = u.guider
 		LEFT JOIN SYS_PERSON per10 ON per10.SEQ_ID = u.askperson
