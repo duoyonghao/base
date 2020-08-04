@@ -233,6 +233,11 @@ public class HudhLcljBase {
     private String entiretyrepairleftdown;
 
     private String entiretyrepairrightdown;
+    //牙冠材质
+    private String plantingsystemselect;
+    //牙冠材质
+    private String plantextureselect;
+
     
     public String getOperationDoctorsignature() {
 		return operationDoctorsignature;
@@ -1162,5 +1167,21 @@ public class HudhLcljBase {
 
     public void setEntiretyrepairrightdown(String entiretyrepairrightdown) {
         this.entiretyrepairrightdown = entiretyrepairrightdown;
+    }
+
+    public String getPlantingsystemselect() {
+        return plantingsystemselect;
+    }
+
+    public void setPlantingsystemselect(String plantingsystemselect) {
+        this.plantingsystemselect = plantingsystemselect;
+    }
+
+    public String getPlantextureselect() {
+        return plantextureselect;
+    }
+
+    public void setPlantextureselect(String plantextureselect) {
+        this.plantextureselect = plantextureselect;
     }
 }
