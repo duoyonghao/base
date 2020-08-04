@@ -89,6 +89,14 @@ function Yztable_net() {
                     }
                 }
             },
+            emergencyPhone:{
+                validators: {
+                    regexp: {
+                        regexp: /^\d{11}$/,
+                        message: '请输入11位手机号码1****'
+                    }
+                }
+            },
             devchannel: {
                 validators: {
                     notEmpty: {
@@ -598,6 +606,12 @@ function getDetail() {
         }
         if (baseInfo.phonenumber2) {
             $("#phonenumber2").val($.trim(baseInfo.phonenumber2));
+        }
+        if (baseInfo.emergencycontact) {
+            $("#emergencyContact").val(baseInfo.emergencycontact);
+        }
+        if (baseInfo.emergencyphone) {
+            $("#emergencyPhone").val(baseInfo.emergencyphone);
         }
 
         // 放到最后执行，防止下拉框还没初始化完成，就已经执行到这了
