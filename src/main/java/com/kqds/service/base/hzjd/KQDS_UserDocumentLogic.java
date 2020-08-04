@@ -84,7 +84,6 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 获取病历号
      *
-     * @param conn
      * @return
      * @throws
      */
@@ -119,10 +118,7 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 根据手机号码获取用户信息
      *
-     * @param dbConn
-     * @param seqId
-     * @param map
-     * @param table
+     * @param phonenumber
      * @return
      * @throws Exception
      */
@@ -136,7 +132,6 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 根据手机号码获取姓名和患者编号
      *
-     * @param dbConn
      * @param phonenumber
      * @return
      * @throws Exception
@@ -151,8 +146,7 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 患者列表(无拼音码)
      *
-     * @param request
-     * @param response
+     * @param conn
      * @return
      * @throws Exception
      */
@@ -167,9 +161,8 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 设置患者档案表的咨询人员
      *
-     * @param uercode
+     * @param usercode
      * @param askperson
-     * @param dbConn
      * @throws Exception
      */
     @SuppressWarnings("unchecked")
@@ -253,7 +246,7 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
                 BigDecimal totalpay2 = new BigDecimal(user2value.toString());
                 setMethod2.invoke(user2, KqdsBigDecimal.add(totalpay1, totalpay2));
             } else {
-                if (user1value != null && user2value == null) {
+                if (user1value != null && user2value == null||!"".equals(user1value)&&"".equals(user2value)) {
                     setMethod2.invoke(user2, user1value);
                 }
             }
@@ -277,7 +270,6 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
      * 根据患者编号获取患者信息
      *
      * @param usercode
-     * @param dbConn
      * @return
      * @throws Exception
      */
@@ -304,7 +296,6 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 根据患者编号获取基本信息
      *
-     * @param dbConn
      * @param userCode
      * @return
      * @throws Exception
@@ -453,9 +444,7 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 不分页查询 【不做门诊条件过滤】
      *
-     * @param conn
      * @param table
-     * @param bp
      * @return
      * @throws Exception
      */
@@ -500,7 +489,6 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 【不做门诊条件过滤】
      *
-     * @param conn
      * @param table
      * @param map
      * @return
@@ -519,7 +507,6 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 【不做门诊条件过滤】
      *
-     * @param conn
      * @param table
      * @param map
      * @return
@@ -568,7 +555,6 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 查询关联人 【不做门诊条件过滤】
      *
-     * @param conn
      * @param table
      * @param usercodes
      * @return
@@ -583,7 +569,6 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 首页 按钮 信息查询 【不支持跨院】
      *
-     * @param conn
      * @param table
      * @param visualstaff
      * @param map
@@ -799,7 +784,6 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 身份证号验证 【不做门诊条件过滤】
      *
-     * @param dbConn
      * @param map
      * @param table
      * @return
@@ -813,10 +797,7 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 手机号码验证 【不做门诊条件过滤】
      *
-     * @param dbConn
      * @param seqId
-     * @param phonenumber1
-     * @param phonenumber2
      * @param table
      * @return
      * @throws Exception
@@ -866,7 +847,6 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 通用 根据usercode 修改姓名 【不做门诊条件过滤】
      *
-     * @param conn
      * @param usercode
      * @param oldname
      * @param newname
@@ -898,7 +878,6 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 通用 根据usercode 修改姓名usercode、username 患者合并 【不做门诊条件过滤】
      *
-     * @param conn
      * @param usercode1
      * @param usercode2
      * @param username2
@@ -928,8 +907,6 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 获取有收费记录的患者编号
      *
-     * @param conn
-     * @param ids
      * @return
      * @throws Exception
      */
@@ -950,8 +927,6 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 获取患者编号根据手机号码
      *
-     * @param conn
-     * @param ids
      * @return
      * @throws Exception
      */
@@ -963,9 +938,6 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 实收金额
      *
-     * @param conn
-     * @param table
-     * @param date
      * @return
      * @throws Exception
      */
@@ -989,9 +961,6 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 实收金额(具体某一挂号)
      *
-     * @param conn
-     * @param table
-     * @param date
      * @return
      * @throws Exception
      */
@@ -1020,9 +989,6 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 实收金额(具体某一费用单)
      *
-     * @param conn
-     * @param table
-     * @param date
      * @return
      * @throws Exception
      */
@@ -1046,9 +1012,7 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 实收金额(具体某一费用单)
      *
-     * @param conn
-     * @param table
-     * @param date
+     * @param costno
      * @return
      * @throws Exception
      */
@@ -1071,9 +1035,6 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 积分付款金额(具体某一费用单)
      *
-     * @param conn
-     * @param table
-     * @param date
      * @return
      * @throws Exception
      */
@@ -1910,8 +1871,6 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 网电-客户中心-精确查询
      *
-     * @param conn
-     * @param table
      * @param queryinput
      * @return
      * @throws Exception
@@ -1957,8 +1916,6 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 分页查询
      *
-     * @param conn
-     * @param table
      * @param bp
      * @return
      * @throws Exception
@@ -1980,9 +1937,9 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 根据生日查询患者
      *
-     * @param conn
-     * @param table
-     * @param bp
+     * @param month
+     * @param day
+     * @param organization
      * @return
      * @throws Exception
      */
@@ -1999,7 +1956,6 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 根据用户编号获取用户信息，用于大量循环时使用
      *
-     * @param conn
      * @param usercode
      * @return
      * @throws Exception
@@ -2190,7 +2146,7 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     /**
      * 添加判断该患者是否创建临床路径 2019-5-12 shaoyp
      *
-     * @param usercode
+     * @param seqId
      * @throws Exception
      */
     public void isCreateLclj(String seqId, @Param("iscreateLclj") String iscreateLclj) throws Exception {

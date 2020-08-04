@@ -180,6 +180,33 @@
 			<if test="devItem != null">
 				DEV_ITEM = #{devItem,jdbcType=VARCHAR},
 			</if>
+			<if test="doctors != null">
+				doctors = #{doctors,jdbcType=VARCHAR},
+			</if>
+			<if test="mainSuit != null">
+				main_suit = #{mainSuit,jdbcType=VARCHAR},
+			</if>
+			<if test="scheme != null">
+				scheme = #{scheme,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=VARCHAR},
+			</if>
+			<if test="orderProject != null">
+				order_project = #{orderProject,jdbcType=VARCHAR},
+			</if>
+			<if test="orderPlan != null">
+				order_plan = #{orderPlan,jdbcType=VARCHAR},
+			</if>
+			<if test="follow != null">
+				follow = #{follow,jdbcType=VARCHAR},
+			</if>
+			<if test="failreasonMark != null">
+				failreason_mark = #{failreasonMark,jdbcType=VARCHAR},
+			</if>
+			<if test="othermark != null">
+				other_mark = #{othermark,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
 	</update>
@@ -200,7 +227,16 @@
 		askstatus =
 		#{askstatus,jdbcType=INTEGER},
 		organization = #{organization,jdbcType=VARCHAR},
-		DEV_ITEM = #{devItem,jdbcType=VARCHAR}
+		DEV_ITEM = #{devItem,jdbcType=VARCHAR},
+		doctors = #{doctors,jdbcType=VARCHAR},
+		main_suit = #{mainSuit,jdbcType=VARCHAR},
+		scheme = #{scheme,jdbcType=VARCHAR},
+		price = #{price,jdbcType=VARCHAR},
+		order_project = #{orderProject,jdbcType=VARCHAR},
+		order_plan = #{orderPlan,jdbcType=VARCHAR},
+		follow = #{follow,jdbcType=VARCHAR},
+		failreason_mark = #{failreasonMark,jdbcType=VARCHAR},
+		other_mark = #{othermark,jdbcType=VARCHAR}
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
 	</update>
 
@@ -246,6 +282,15 @@
 		receive.detaildesc,
 		receive.failreason1,
 		receive.dev_Item,
+		receive.doctors,
+		receive.main_suit,
+		receive.scheme,
+		receive.price,
+		receive.order_project,
+		receive.order_plan,
+		receive.follow,
+		receive.failreason_mark,
+		receive.other_mark,
 		kcit1.dict_name as recesortname,
 		kcit2.dict_name as failreason1name,
 		kcit3.dict_name as devItemname,

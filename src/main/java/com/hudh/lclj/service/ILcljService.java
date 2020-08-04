@@ -136,7 +136,7 @@ public interface ILcljService {
 	  * @return: void
 	  * @dateTime:2019年5月28日 上午10:06:09
 	  */  
-	 JSONObject savePreoperativeVerification(PreoperativeVerification pVerification) throws Exception;
+	 int savePreoperativeVerification(PreoperativeVerification pVerification) throws Exception;
 
 	/**   
 	  * @Title: findPreoperativeVerification   

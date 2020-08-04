@@ -55,6 +55,8 @@ public class KqdsMemberRecordSh {
 
 	private String regsort;
 
+	private String doctor;
+
 	public String getSeqId() {
 		return seqId;
 	}
@@ -261,5 +263,13 @@ public class KqdsMemberRecordSh {
 
 	public void setRegsort(String regsort) {
 		this.regsort = regsort == null ? null : regsort.trim();
+	}
+
+	public String getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(String doctor) {
+		this.doctor = doctor;
 	}
 }

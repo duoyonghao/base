@@ -2044,18 +2044,37 @@ public class HUDH_DataAnalysisAct {
 				map.put("starttime", starttime);
 			}else{
 				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");// 设置日期格式
-				map.put("starttime", df.format(new Date()) + ConstUtil.TIME_START);
+                starttime=df.format(new Date()) + ConstUtil.TIME_START;
+				map.put("starttime", starttime);
 			}
 			if (!YZUtility.isNullorEmpty(endtime)) {
 				endtime = endtime + ConstUtil.TIME_END;
 				map.put("endtime", endtime);
 			}else{
 				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");// 设置日期格式
-				map.put("endtime", df.format(new Date()) + ConstUtil.TIME_END);
+                endtime=df.format(new Date()) + ConstUtil.TIME_END;
+				map.put("endtime", endtime);
 			}
 			if(!YZUtility.isNullorEmpty(organization)){
 				map.put("organization", organization);
 			}
+
+			String[] time=starttime.split("-");
+            String[] time1=endtime.split("-");
+            //同年不同月
+            if(time[0].equals(time1[0])&&!time[1].equals(time1[1])){
+                map.put("czstarttime",starttime);
+                map.put("czendtime",endtime);
+                //同年同月
+            }else if(time[0].equals(time1[0])&&time[1].equals(time1[1])){
+                map.put("year",time[0]);
+                map.put("month",time[1]);
+                //不同年
+            }else{
+                map.put("czstarttime",starttime);
+                map.put("czendtime",endtime);
+            }
+
 			//时间，门诊为必选
 			JSONObject json = analysisService.bargainPerformance(map);
 			List<JSONObject> list=new ArrayList<JSONObject>();

@@ -39,6 +39,7 @@
 <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/bootstrap-table/bootstrap-table.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/bootstrap-table/bootstrap-table-zh-CN.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/bootstrap-table/bootstrap-table-export.js"></script>
+<script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/operationToggle.js"></script>
 <style type="text/css">
 	.a{
 		border-radius: 6px;
@@ -107,8 +108,20 @@
 											<li><label style="z-index:9999"><i style="color: red;font-style: normal;">*</i>1、手术时间：
 											<input class="time_select" name="operation_time" type="text" id="operation_time" value="" readonly="readonly" placeholder="请选择日期" style="width: 105px;vertical-align: middle;"/></label></li>
 											<li><label><i style="color: red;font-style: normal;">*</i>2、<input name="preoperation_one_houres" type="checkbox" value="2、术前1小时，口服抗菌药物"  id="preoperation_one_houres"/>术前1小时，口服抗菌药物</label></li>
-											<li><label><i style="color: red;font-style: normal;">*</i>3、<input name="preoperative_verification" type="checkbox" value="3、术前核查" id="preoperative_verification"/><font class="operation_examine">术前核查</font></label></li>
-<%--											<li><label><i style="color: red;font-style: normal;">*</i><input name="preoperative_verification" type="checkbox" value="3、术前核查" id="preoperative_patientsAndDoc"/><font class="operation_examine_patients">术前核查单（新）</font></label></li>--%>
+											<li class="hcd">
+												<label>
+													<i style="color: red;font-style: normal;">*</i>
+													3、<input name="preoperative_verification" type="checkbox" value="3、术前核查" id="preoperative_verification" disabled="disabled"/>
+													<font class="verification" onclick="showHiddenCase(this);">术前核查</font>
+												</label>
+												<div class="caseContiner" style="display:none;width: 10%;top: 120px;">
+													<button class="btnStyle" onclick="toggleOperationCase(this)" style="">切换旧版</button>
+													<div class="zlCases" style="text-align: center;padding: 10px;">
+														<font class="operation_examine_patients" style="font-size: 16px;font-weight: bolder;cursor: pointer;">术前核查单（新）</font>
+														<font class="operation_examine" style="display:none;font-size: 16px;font-weight: bolder;cursor: pointer;">术前核查（旧）</font>
+													</div>
+												</div>
+											</li>
 											<li>
 												<div class="preparation-ul">
 													<div><span style="font-weight: bold;" class=""><i style="color: red;font-style: normal;">*</i>4、麻醉方式：</span></div>
@@ -556,7 +569,7 @@ function checkOptions(){
 		},
 		success:function(result){
 			if(result.seqId){
-				$(".operation_examine").prev().attr("checked","checked").attr("disabled","disabled");
+				$(".verification").prev().attr("checked","checked").attr("disabled","disabled");
 			}  
 			
 		}
@@ -573,7 +586,7 @@ function checkOptions(){
 		},
 		success:function(result){
 			if(result.length>0){
-				$(".operation_examine_patients").prev().attr("checked","checked").attr("disabled","disabled");
+				$(".verification").prev().attr("checked","checked").attr("disabled","disabled");
 			}
 
 		}

@@ -114,6 +114,8 @@
     <result column="entiretyrepairrightup" jdbcType="VARCHAR" property="entiretyrepairrightup" />
     <result column="entiretyrepairleftdown" jdbcType="VARCHAR" property="entiretyrepairleftdown" />
     <result column="entiretyrepairrightdown" jdbcType="VARCHAR" property="entiretyrepairrightdown" />
+    <result column="plantingsystemselect" jdbcType="VARCHAR" property="plantingsystemselect" />
+    <result column="plantextureselect" jdbcType="VARCHAR" property="plantextureselect" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.base.HudhLcljBase">
     <result column="treatmentparts1" jdbcType="LONGVARCHAR" property="treatmentparts1" />
@@ -199,7 +201,7 @@
     onedentalimplantrightup, onedentalimplantleftdown, onedentalimplantrightdown, twodentalimplantleftup,
     twodentalimplantrightup, twodentalimplantleftdown, twodentalimplantrightdown, dentalimplantleftup,
     dentalimplantrightup, dentalimplantleftdown, dentalimplantrightdown, entiretyrepairleftup, entiretyrepairrightup,
-    entiretyrepairleftdown, entiretyrepairrightdown
+    entiretyrepairleftdown, entiretyrepairrightdown,plantingsystemselect,plantextureselect
   </sql>
   <sql id="Blob_Column_List">
     treatmentparts1, treatmentparts2, treatmentparts3, requirerestor
@@ -261,7 +263,7 @@
       repairDoctorsignature,patientsignature,patientsignature1,status,onedentalimplantleftup,onedentalimplantrightup,
       onedentalimplantleftdown,onedentalimplantrightdown,twodentalimplantleftup,twodentalimplantrightup,
       twodentalimplantleftdown,twodentalimplantrightdown,dentalimplantleftup,dentalimplantrightup,dentalimplantleftdown,
-      dentalimplantrightdown,entiretyrepairleftup,entiretyrepairrightup,entiretyrepairleftdown,entiretyrepairrightdown
+      dentalimplantrightdown,entiretyrepairleftup,entiretyrepairrightup,entiretyrepairleftdown,entiretyrepairrightdown,plantingsystemselect,plantextureselect
 		from HUDH_LCLJ_BASE
 		where LcljId = #{lcljid,jdbcType=VARCHAR}
         ORDER by createtime ASC
@@ -303,7 +305,8 @@
     onedentalimplantleftup,onedentalimplantrightup,
       onedentalimplantleftdown,onedentalimplantrightdown,twodentalimplantleftup,twodentalimplantrightup,
       twodentalimplantleftdown,twodentalimplantrightdown,dentalimplantleftup,dentalimplantrightup,dentalimplantleftdown,
-      dentalimplantrightdown,entiretyrepairleftup,entiretyrepairrightup,entiretyrepairleftdown,entiretyrepairrightdown)
+      dentalimplantrightdown,entiretyrepairleftup,entiretyrepairrightup,entiretyrepairleftdown,entiretyrepairrightdown,
+      plantingsystemselect,plantextureselect)
     values (#{id,jdbcType=VARCHAR}, #{usercode,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
       #{lcljid,jdbcType=VARCHAR}, #{lcljnum,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, 
       #{createuser,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, #{consultationOpinion,jdbcType=VARCHAR}, 
@@ -342,7 +345,8 @@
       #{onedentalimplantleftup,jdbcType=VARCHAR},#{onedentalimplantrightup,jdbcType=VARCHAR},
       #{onedentalimplantleftdown,jdbcType=VARCHAR},#{onedentalimplantrightdown,jdbcType=VARCHAR},#{twodentalimplantleftup,jdbcType=VARCHAR},#{twodentalimplantrightup,jdbcType=VARCHAR},
       #{twodentalimplantleftdown,jdbcType=VARCHAR},#{twodentalimplantrightdown,jdbcType=VARCHAR},#{dentalimplantleftup,jdbcType=VARCHAR},#{dentalimplantrightup,jdbcType=VARCHAR},#{dentalimplantleftdown,jdbcType=VARCHAR},
-      #{dentalimplantrightdown,jdbcType=VARCHAR},#{entiretyrepairleftup,jdbcType=VARCHAR},#{entiretyrepairrightup,jdbcType=VARCHAR},#{entiretyrepairleftdown,jdbcType=VARCHAR},#{entiretyrepairrightdown,jdbcType=VARCHAR})
+      #{dentalimplantrightdown,jdbcType=VARCHAR},#{entiretyrepairleftup,jdbcType=VARCHAR},#{entiretyrepairrightup,jdbcType=VARCHAR},#{entiretyrepairleftdown,jdbcType=VARCHAR},#{entiretyrepairrightdown,jdbcType=VARCHAR},
+      #{plantingsystemselect,jdbcType=VARCHAR},#{plantextureselect,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.kqds.entity.base.HudhLcljBase">
         insert into HUDH_LCLJ_BASE
@@ -696,6 +700,12 @@
       <if test="entiretyrepairrightdown != null">
         entiretyrepairrightdown,
       </if>
+      <if test="plantingsystemselect != null">
+        plantingsystemselect,
+      </if>
+      <if test="plantextureselect != null">
+        plantextureselect,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -1045,6 +1055,12 @@
       </if>
       <if test="entiretyrepairrightdown != null">
         #{entiretyrepairrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="plantingsystemselect != null">
+        #{plantingsystemselect,jdbcType=VARCHAR},
+      </if>
+      <if test="plantextureselect != null">
+        #{plantextureselect,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -1406,6 +1422,12 @@
       <if test="entiretyrepairrightdown != null">
         entiretyrepairrightdown = #{entiretyrepairrightdown,jdbcType=VARCHAR},
       </if>
+      <if test="plantingsystemselect != null">
+        plantingsystemselect = #{plantingsystemselect,jdbcType=VARCHAR},
+      </if>
+      <if test="plantextureselect != null">
+        plantextureselect = #{plantextureselect,jdbcType=VARCHAR},
+      </if>
     </trim>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -1528,7 +1550,9 @@
       entiretyrepairleftup = #{entiretyrepairleftup,jdbcType=VARCHAR},
       entiretyrepairrightup = #{entiretyrepairrightup,jdbcType=VARCHAR},
       entiretyrepairleftdown = #{entiretyrepairleftdown,jdbcType=VARCHAR},
-      entiretyrepairrightdown = #{entiretyrepairrightdown,jdbcType=VARCHAR}
+      entiretyrepairrightdown = #{entiretyrepairrightdown,jdbcType=VARCHAR},
+      plantingsystemselect = #{plantingsystemselect,jdbcType=VARCHAR},
+      plantextureselect = #{plantextureselect,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -1861,7 +1885,12 @@
       <if test="entiretyrepairrightdown != null">
         entiretyrepairrightdown = #{entiretyrepairrightdown,jdbcType=VARCHAR},
       </if>
-
+      <if test="plantingsystemselect != null">
+        plantingsystemselect = #{plantingsystemselect,jdbcType=VARCHAR},
+      </if>
+      <if test="plantextureselect != null">
+        plantextureselect = #{plantextureselect,jdbcType=VARCHAR},
+      </if>
     </trim>
     <if test="id != null">
      where id = #{id,jdbcType=VARCHAR}

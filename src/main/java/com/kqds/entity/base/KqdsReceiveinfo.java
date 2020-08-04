@@ -29,6 +29,96 @@ public class KqdsReceiveinfo {
 
 	private String devItem;
 
+	private String doctors;
+
+	private String mainSuit;
+
+	private String scheme;
+
+	private String price;
+
+	private String orderProject;
+
+	private String orderPlan;
+
+	private String follow;
+
+	private String failreasonMark;
+
+	private String othermark;
+
+	public String getDoctors() {
+		return doctors;
+	}
+
+	public void setDoctors(String doctors) {
+		this.doctors = doctors;
+	}
+
+	public String getMainSuit() {
+		return mainSuit;
+	}
+
+	public void setMainSuit(String mainSuit) {
+		this.mainSuit = mainSuit;
+	}
+
+	public String getScheme() {
+		return scheme;
+	}
+
+	public void setScheme(String scheme) {
+		this.scheme = scheme;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public String getOrderProject() {
+		return orderProject;
+	}
+
+	public void setOrderProject(String orderProject) {
+		this.orderProject = orderProject;
+	}
+
+	public String getOrderPlan() {
+		return orderPlan;
+	}
+
+	public void setOrderPlan(String orderPlan) {
+		this.orderPlan = orderPlan;
+	}
+
+	public String getFollow() {
+		return follow;
+	}
+
+	public void setFollow(String follow) {
+		this.follow = follow;
+	}
+
+	public String getFailreasonMark() {
+		return failreasonMark;
+	}
+
+	public void setFailreasonMark(String failreasonMark) {
+		this.failreasonMark = failreasonMark;
+	}
+
+	public String getOthermark() {
+		return othermark;
+	}
+
+	public void setOthermark(String othermark) {
+		this.othermark = othermark;
+	}
+
 	public String getSeqId() {
 		return seqId;
 	}

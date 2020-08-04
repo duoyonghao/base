@@ -690,6 +690,16 @@ function initTableList(){
           }
       },
       {
+          title: '客服',
+          field: 'kefuname',
+          align: 'center',
+          formatter: function(value, row, index) {
+              if(value){
+                  return '<span class="name">'+value+'</span>';
+              }
+          }
+      },
+      {
           title: '操作',
           field: ' ',
           align: 'center',
@@ -743,7 +753,7 @@ $("#askperson").change(function(){
 			var askpersonname = $("#askperson option[value='" + receive_askperson + "']").text();
 			var askpersonnamenow = $("#askperson option[value='" + $(this).val() + "']").text();
 			if(askpersonname == ""){
-				askpersonname = getPerUserNameBySeqIdTB(static_askperson);
+				askpersonname = getPerUserNameBySeqIdTB(receive_askperson);
 			}
 			msg = "该患者存在接诊咨询为：‘"+askpersonname+"’，确认选择：‘"+askpersonnamenow+"’ 为接诊咨询？"
 		}
@@ -809,34 +819,46 @@ function AuotSetFunc(){
 	   	//$("#askperson").val(onclickrowOobj.askperson);
 	   	//advisory = static_askperson;
 	//}else{//如果该患者没有第一咨询，但存在接诊咨询，取最新挂号的接诊咨询 赋值（可修改）
-		//查询是否存在接诊咨询
-		if(lastregInfo){
-			if(lastregInfo.askperson){
-				receive_askperson = lastregInfo.askperson;
-				$("#regdept").val(lastregInfo.regdept);
- 				$('#askperson').selectpicker('val', lastregInfo.askperson);
- 				$('#doctor').selectpicker('val', lastregInfo.doctor);
-			}
-			advisory = lastregInfo.askperson;
-		}
+    if(onclickrowOobj.kefu){
+        receive_askperson = onclickrowOobj.kefu;
+        $('#askperson').selectpicker('val',onclickrowOobj.kefu);
+        $("#askperson").attr("disabled","disabled");
+        if(lastregInfo){
+            $("#regdept").val(lastregInfo.regdept);
+            $('#doctor').selectpicker('val', lastregInfo.doctor);
+        }
+    }else{
+        //查询是否存在接诊咨询
+        if(lastregInfo){
+            if(lastregInfo.askperson){
+                receive_askperson = lastregInfo.askperson;
+                $("#regdept").val(lastregInfo.regdept);
+                $('#askperson').selectpicker('val', lastregInfo.askperson);
+                $('#doctor').selectpicker('val', lastregInfo.doctor);
+            }
+            advisory = lastregInfo.askperson;
+        }
+    }
 	//}
-		$("#askpersondept").val("");
-		if($("#askperson").val() != '' && $("#askperson").val() != null){
-			$.ajax({
-			    url:contextPath+'/YZPersonAct/selectDetail.act',
-			    type:'POST', //GET
-			    data:{
-			        seqId:advisory
-			    },
-			    dataType:'json',
-			    success:function(data){
-		 		    $("#askpersondept").val(data.retData.deptId);
-			    }
-			}) 
-		}
-		   
-	
-	
+    $("#askpersondept").val("");
+    if(onclickrowOobj.kefudeptid){
+        $("#askpersondept").val(onclickrowOobj.kefudeptid);
+        $("#askpersondept").attr("disabled","disabled");
+    }else{
+        if($("#askperson").val() != '' && $("#askperson").val() != null){
+            $.ajax({
+                url:contextPath+'/YZPersonAct/selectDetail.act',
+                type:'POST', //GET
+                data:{
+                    seqId:advisory
+                },
+                dataType:'json',
+                success:function(data){
+                    $("#askpersondept").val(data.retData.deptId);
+                }
+            })
+        }
+    }
 	/* if (onclickrowOobj.doctor) {
 	    $("#checkperson").val(onclickrowOobj.doctor);
 	    $('#checkpersonDesc').trigger("change"); // 触发change事件，调用changeAskPerson()方法，对医生字段进行赋值

@@ -144,6 +144,15 @@
             <table class="kqds_table">
                 <input type="hidden" name="seqId" id="seqId">
                 <input type="hidden" name="askstatus" id="askstatus">
+                <input type="hidden" name="doctors" id="doctors">
+                <input type="hidden" name="mainSuit" id="mainSuit">
+                <input type="hidden" name="scheme" id="scheme">
+                <input type="hidden" name="price" id="price">
+                <input type="hidden" name="orderProject" id="orderProject">
+                <input type="hidden" name="orderPlan" id="orderPlan">
+                <input type="hidden" name="follow" id="follow">
+                <input type="hidden" name="failreasonMark" id="failreasonMark">
+                <input type="hidden" name="othermark" id="othermark">
                 <tr>
                     <td style="width:10%;text-align:right;">客户姓名：</td>
                     <td style="width:23%;text-align:left;"><input type="text" name="username" id="username"
@@ -156,10 +165,12 @@
                                                                   id="createtime" disabled="disabled"></td>
                 </tr>
                 <tr>
-                    <td style="text-align:right;">情况备注：</td>
-                    <td style="text-align:left;" colspan="5"><textarea class="form-control" style="height:200px;"
-                                                                       name="detaildesc" id="detaildesc"
-                                                                       rows="12"></textarea></td>
+                    <td style="text-align:right;">
+                        <span id="goRemarkTemplate" class="kqdsSearchBtn" onclick="goRemarkTemplate()" style="cursor: pointer;">情况备注<span>
+                    </td>
+                    <td style="text-align:left;" colspan="5">
+                            <textarea class="form-control" style="height:200px;" name="detaildesc" id="detaildesc" rows="12" readonly="readonly"></textarea>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="3" style="text-align:left;">未成交原因：
@@ -229,7 +240,28 @@
             setHeight();
         });
     });
-
+    //模板
+    function goRemarkTemplate(){
+        var dateNow=getNowDay(new Date());
+        if(!onclickrowOobj2.seqId){
+            parent.layer.alert('请选择咨询记录!');
+            return false;
+        }
+        var createtime=onclickrowOobj2.createtime.substr(0,10);
+        if(dateNow!=createtime){
+            parent.layer.alert('咨询时间已过!');
+            return false;
+        }
+        parent.layer.open({
+            title:"添加情况备注模板",
+            type:2,
+            closeBtn:1,
+            content:contextPath + "/KQDS_UserDocumentAct/toTemplate.act",
+            area:['45%','70%'],
+            cancel: function(){
+            }
+        });
+    }
     function getlist(onclickrowOobj) {
         pageurl = pageurl + "?usercode=" + onclickrowOobj.usercode;
 
@@ -387,7 +419,6 @@
             });
 
     }
-
     function getStatus(regno) {
 
         var regObj = getRegObjBySeqId(regno);
@@ -441,8 +472,8 @@
             $("#askstatus").val(1);
         }
         var param = $('#form1').serialize();
-        var url = '<%=contextPath%>/KQDS_ReceiveInfoAct/insertOrUpdate.act?' + param;
-        $.axseSubmit(url, null,
+        var url = '<%=contextPath%>/KQDS_ReceiveInfoAct/insertOrUpdate.act';
+        $.axseSubmit(url, param,
             function () {
             },
             function (r) {

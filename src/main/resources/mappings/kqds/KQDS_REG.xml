@@ -913,6 +913,181 @@
 		where starttime like '%' + #{ordertime} + '%' and
 		usercode =#{usercode}
 	</select>
+    <select id="selectJzcxExportTable" parameterType="map" resultType="json">
+        select
+        r.seq_id,
+        a1.area_name as provincename,
+        a2.area_name as cityname,
+        a3.area_name as townname,
+        per6.USER_NAME as dy,
+        per5.USER_NAME as createuser,
+        r.createtime,
+        r.usercode,
+        r.username,
+        r.regway,
+        r.regsort as regsortvalue,
+        kcit2.dict_name as regsort,
+        kcit1.dict_name as recesort,
+        r.recesort as recesortvalue,
+        r.regmoney,dept.DEPT_NAME as regdept,
+        per2.USER_NAME as doctor,
+        per1.USER_NAME as askperson,
+        per7.USER_NAME as faskperson,
+        per8.USER_NAME as developername,
+        r.ifmedrecord,
+        r.ifcost,
+        r.status,
+        r.del,
+        r.cjstatus,
+        r.editreason,
+        u.age,
+        u.important,
+        u.invoice,
+        kcit3.dict_name as devchannel,
+        hzly.dict_name as nexttype,
+        per3.USER_NAME as jdr,
+        per4.USER_NAME as jddy,
+        kcit4.dict_name as failreason1,
+        kcit5.dict_name as devitemdesc,
+        u.phonenumber1,
+        u.sex,
+        u.iscreatelclj,
+        u.blcode,
+        kcit7.dict_name as slgj,
+        i.detaildesc,
+        (select sum(c.actualmoney) from KQDS_COSTORDER c where c.regno = r.SEQ_ID and c.status=2 ) as jf
+        from KQDS_REG r
+        LEFT JOIN
+        kqds_userdocument u on r.usercode = u.usercode
+        LEFT JOIN KQDS_RECEIVEINFO i on i.regno = r.SEQ_ID
+        LEFT JOIN SYS_DICT kcit1 on r.recesort = kcit1.seq_id
+        LEFT JOIN SYS_DICT kcit2 on r.regsort = kcit2.seq_id
+        LEFT JOIN SYS_DICT kcit4 on i.failreason1 = kcit4.seq_id
+        LEFT JOIN SYS_DICT kcit5 on i.dev_item = kcit5.seq_id
+        LEFT JOIN SYS_DEPT dept on r.regdept = dept.seq_id
+        LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = r.askperson
+        LEFT JOIN SYS_PERSON per7 on per7.SEQ_ID = u.askperson
+        LEFT JOIN SYS_PERSON per2 on per2.SEQ_ID = r.doctor
+        LEFT JOIN SYS_PERSON per3 on per3.SEQ_ID = u.createuser
+        LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID = u.guider
+        LEFT JOIN SYS_PERSON per5 on per5.SEQ_ID = r.createuser
+        LEFT JOIN SYS_PERSON per6 on per6.SEQ_ID = r.receiveno
+        LEFT JOIN SYS_PERSON per8 on per8.SEQ_ID = u.developer
+        LEFT JOIN SYS_DICT kcit3 on u.devchannel = kcit3.seq_id
+        LEFT JOIN SYS_DICT hzly on u.nexttype = hzly.seq_id
+        LEFT JOIN SYS_AREA a1 on u.province = a1.seq_id
+        LEFT JOIN SYS_AREA a2 on u.city = a2.seq_id
+        LEFT JOIN SYS_AREA a3 on u.town = a3.seq_id
+        left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from
+        KQDS_NET_ORDER group by usercode) b where a.usercode=b.usercode and
+        a.createtime=b.createtime ) n on n.usercode=r.usercode <!-- 确定唯一一条数据 -->
+        LEFT JOIN sys_dict kcit7 on n.accepttool = kcit7.SEQ_ID <!-- 添加查询受理工具信息 -->
+        where 1=1
+        <if test="devItem != null and devItem !='' ">
+            and i.dev_item = #{devItem}
+        </if>
+        <if test="recesort != null and recesort !='' ">
+            and r.recesort = #{recesort}
+        </if>
+        <if test="askperson != null and askperson !='' ">
+            and r.askperson = #{askperson}
+        </if>
+        <if test="regdept != null and regdept !='' ">
+            and r.regdept = #{regdept}
+        </if>
+        <if test="doctor != null and doctor !='' ">
+            and r.doctor = #{doctor}
+        </if>
+        <if test="starttime != null and starttime !='' ">
+            and r.createtime <![CDATA[ >= ]]>
+            #{starttime}
+        </if>
+        <if test="endtime != null and endtime !='' ">
+            and r.createtime <![CDATA[ <= ]]>
+            #{endtime}
+        </if>
+        <if test="regsort != null and regsort !='' ">
+            and r.regsort = #{regsort}
+        </if>
+        <if test="cjstatus != null and cjstatus !='' ">
+            and r.cjstatus = #{cjstatus}
+        </if>
+        <if test="gongju != null and gongju !='' ">
+            and kcit7.SEQ_ID =#{gongju} <!-- 根据受理工具类型筛选机 -->
+        </if>
+        <if test="ifmedrecord != null and ifmedrecord !='' ">
+            and r.ifmedrecord =#{ifmedrecord}
+        </if>
+        <if test="searchValue != null and searchValue !='' ">
+            and (u.usercode like '%' + #{searchValue} + '%'
+            or u.username like '%' + #{searchValue} + '%'
+            or ${p1}
+            or ${p2}
+            or u.pym like '%' + #{searchValue} + '%'
+            )
+        </if>
+        <if test="important != null and important !='' ">
+            and u.important = #{important}
+        </if>
+        <if test="devchannel != null and devchannel !='' ">
+            and u.devchannel = #{devchannel}
+        </if>
+        <if test="nexttype != null and nexttype !='' ">
+            and u.nexttype = #{nexttype}
+        </if>
+        <if test="ageSearch != null and ageSearch !='' ">
+            <if test='ageSearch =="10"'>
+                and u.age <![CDATA[ >= ]]>
+                '0' and u.age <![CDATA[ <= ]]>
+                '10'
+            </if>
+            <if test='ageSearch =="20"'>
+                and u.age <![CDATA[ >= ]]>
+                '10' and u.age <![CDATA[ <= ]]>
+                '20'
+            </if>
+            <if test='ageSearch =="30"'>
+                and u.age <![CDATA[ >= ]]>
+                '20' and u.age <![CDATA[ <= ]]>
+                '30'
+            </if>
+            <if test='ageSearch =="40"'>
+                and u.age <![CDATA[ >= ]]>
+                '30' and u.age <![CDATA[ <= ]]>
+                '40'
+            </if>
+            <if test='ageSearch =="50"'>
+                and u.age <![CDATA[ >= ]]>
+                '40' and u.age <![CDATA[ <= ]]>
+                '50'
+            </if>
+            <if test='ageSearch =="51"'>
+                and u.age <![CDATA[ >= ]]>
+                '50'
+            </if>
+        </if>
+        <if test="organization != null and organization !='' ">
+            and r.organization = #{organization}
+        </if>
+        <if test="visualstaff != null and visualstaff !='' ">
+            and (r.doctor in (${visualstaff}) or r.askperson in (${visualstaff}) or r.createuser in (${visualstaff})
+            <!--<if test="type != null and type !='' ">
+                or r.seq_id in (select regno from KQDS_COSTORDER_DETAIL where askperson in(${visualstaff}) or doctor in (${visualstaff}) or createuser in(${visualstaff}))
+                or r.seq_id
+                in (select regno from KQDS_TOOTH_DOC where createuser in(${visualstaff}))
+                or r.seq_id in (select regno from KQDS_MEDICALRECORD where createuser in(${visualstaff}))
+                or u.usercode
+                in (select usercode from KQDS_MEMBER_RECORD where askperson in (${visualstaff}))
+            </if>-->
+            )
+        </if>
+        <if test="sortName != null and sortName != '' ">
+            ORDER BY ${sortName} ${sortOrder}
+        </if>
+        <if test="sortName == null">
+            ORDER BY r.CreateTime desc
+        </if>
+    </select>
     <select id="selectJzcx" parameterType="map" resultType="json">
         select
         r.seq_id,

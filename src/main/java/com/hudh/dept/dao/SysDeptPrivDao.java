@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hudh.dept.entity.SysDeptPriv;
-import com.hudh.doctorpick.entity.GoodsDoctorPickIn;
 import com.kqds.dao.DaoSupport;
 import com.kqds.entity.sys.YZPerson;
 
@@ -23,12 +22,16 @@ public class SysDeptPrivDao {
 	 * <p>Title: findDeptNameByButtonName</p>  
 	 * <p>Description: </p>
 	 * @author lwg  
-	 * @date 2019年9月28日 
-	 * @param buttonName
+	 * @date 2019年9月28日
 	 * @return 查询部门名称
 	 * @throws Exception
 	 */
 	public List<JSONObject> findDeptNameByButtonName(Map<String,String> map) throws Exception {
+		if (!"" .equals(map.get("buttonname"))&&map.get("buttonname")!=null){
+			if(map.get("buttonname").indexOf("\'")==-1){
+				map.put("buttonname","\'"+map.get("buttonname")+"\'");
+			}
+		}
 		List<JSONObject> list=(List<JSONObject>) dao.findForList("SYS_DEPT_PRIV.findDeptNameByButtonName", map);
 		return list;
 	}
@@ -52,11 +55,16 @@ public class SysDeptPrivDao {
 	 * <p>Description: </p>
 	 * @author lwg  
 	 * @date 2019年9月29日 
-	 * @param buttonName
+	 * @param map
 	 * @return
 	 * @throws Exception
 	 */
 	public List<JSONObject> findPersonSeqIdByButtonName(Map<String,String> map) throws Exception {
+		if (!"" .equals(map.get("buttonName"))&&map.get("buttonName")!=null){
+			if(map.get("buttonName").indexOf("\'")==-1){
+				map.put("buttonName","\'"+map.get("buttonName")+"\'");
+			}
+		}
 		List<JSONObject> list=(List<JSONObject>) dao.findForList("SYS_DEPT_PRIV.findPersonSeqIdByButtonName", map);
 		return list;
 	}
@@ -106,7 +114,7 @@ public class SysDeptPrivDao {
 	 * <p>Description: </p>
 	 * @author lwg  
 	 * @date 2019年9月29日 
-	 * @param buttonSeqId
+	 * @param seqId
 	 * @throws Exception
 	 */
 	public void deleteSysDeptPriv(String seqId) throws Exception {
@@ -118,7 +126,7 @@ public class SysDeptPrivDao {
 	 * <p>Description: </p>
 	 * @author lwg  
 	 * @date 2019年10月4日 
-	 * @param deptId
+	 * @param map
 	 * @return
 	 * @throws Exception
 	 */

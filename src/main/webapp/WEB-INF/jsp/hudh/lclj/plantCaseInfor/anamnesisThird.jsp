@@ -1880,8 +1880,8 @@
 				$("#patient_idnum").text( r.idcardno); //身份证号码
 				$("#patient_birthday").text( r.birthday); //生日
 				$("#patient_tel").text( r.phonenumber1); //电话
-				$("#urgency_people").text( r.emergencyContact);  //紧急联系人
-				$("#urgency_phone").text( r.emergencyPhone);  //紧急联系人电话
+				$("#patient_emergency_contact").text( r.emergencycontact);  //紧急联系人
+				$("#emergency_contact_tel").text( r.emergencyphone);  //紧急联系人电话
 				$("#patient_address").text( r.provincename + r.cityname + r.townname + r.streetName); //地址
 				userseqid=r.seq_id;
 			}
@@ -2054,7 +2054,7 @@
             }
         }
         //修改表单：页面不禁用
-        if(form.seq_id){
+        if(form&&form.seq_id){
             $("input").removeAttr("disabled");
             $("input").css("cursor","pointer").css("pointer-events","auto");
             $("input[name='symptom']:checked").removeAttr("checked").trigger("click");
