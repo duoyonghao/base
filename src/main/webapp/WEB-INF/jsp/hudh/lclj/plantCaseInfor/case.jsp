@@ -1759,7 +1759,7 @@
                                 <ul class="loseTooth_option" style="margin-left: 10px;">
                                    <div style="display: inline-block;">
                                        <li>
-                                           <input name="guan" id="imaging" type="checkbox" value="单冠" onclick="danguan()"/>
+                                           <input name="repairPlanguan" id="imaging" type="checkbox" value="单冠"/>
                                            <label for="imaging">单冠</label>
                                        </li>
                                        <li style="width: 154px;">
@@ -1819,7 +1819,7 @@
                                    </div>
                                    <div>
                                        <li>
-                                           <input name="guan" id="lianguan" type="checkbox" value="联冠" /><label
+                                           <input name="repairPlanguan" id="lianguan" type="checkbox" value="联冠" /><label
                                                for="lianguan">联冠</label>
                                        <li style="width: 162px;">
                                            <label for="spreoperative">
@@ -2590,7 +2590,6 @@
             $("input[name='promise'][value='"+form.promise+"']").attr("checked",true);
             $("input[name='accord'][value='"+form.accord+"']").attr("checked",true);
             for(var key in form){
-                //console.log(key+"-------------"+form[key]);
                 $("#"+key).attr("value",form[key]);// 填框赋值
                 $("#requirerestor").text(form["requirerestor"]);//textarea赋值
                 $("#requirerestor").trigger("keyup");
@@ -2957,7 +2956,7 @@
         var url = contextPath + '/HUDH_LcljCaseAct/insert.act';
         var plantingsystemselect = JSON.stringify($("#plantingsystemselect").val()); //对应材质
         var plantextureselect = JSON.stringify($("#plantextureselect").val()); //对应材质
-        var item1 = $('input:checkbox[name=guan]:checked').val();
+        var item1 = $('input:checkbox[name=repairPlanguan]:checked').val();
         if(item1 == null){
             layer.alert("请选择单冠/联冠！");
             return;
@@ -2997,6 +2996,7 @@
             periost:$("#periost").val(),
             modus:modusPlan(),
             repair:repairPlan(),
+            repairPlanguan:repairPlanguan(),
             alternative:alternativePlan(),
             clinical:clinicalPlan(),
             pathtype:$("input[name='pathType']:checked").val(),
@@ -3175,6 +3175,17 @@
         return repair;
     }
 
+    //获取修复方式
+    function repairPlanguan() {
+        var obj = document.getElementsByName("repairPlanguan");
+        var repair = "";
+        for ( k in obj ) {
+            if(obj[k].checked)
+                repair = repair + obj[k].value + ';';
+        }
+        return repair;
+    }
+
     //获取替代方案
     function alternativePlan() {
         var obj = document.getElementsByName("alternative");
@@ -3242,6 +3253,7 @@
             periost:$("#periost").val(),
             modus:modusPlan(),
             repair:repairPlan(),
+            repairPlanguan:repairPlanguan(),
             alternative:alternativePlan(),
             clinical:clinicalPlan(),
             pathtype:$("input[name='pathType']:checked").val(),
