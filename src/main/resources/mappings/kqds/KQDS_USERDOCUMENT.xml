@@ -117,7 +117,7 @@
 		town, kefu, usersort,
 		openid,
 		bindstatus, pym,
-		integral, blcode, barcode,clipAddress,accepttool
+		integral, blcode, barcode,clipAddress,accepttool,emergencyContact,emergencyPhone
 		)
 		values (#{seqId,jdbcType=VARCHAR}, #{usercode,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
 		#{sex,jdbcType=VARCHAR},
@@ -141,7 +141,7 @@
 		#{town,jdbcType=VARCHAR}, #{kefu,jdbcType=VARCHAR}, #{usersort,jdbcType=VARCHAR},
 		#{openid,jdbcType=VARCHAR}, #{bindstatus,jdbcType=VARCHAR}, #{pym,jdbcType=VARCHAR},
 		#{integral,jdbcType=DECIMAL}, #{blcode,jdbcType=VARCHAR}, #{barcode,jdbcType=CLOB},
-		#{clipAddress,jdbcType=VARCHAR},#{accepttool,jdbcType=VARCHAR})
+		#{clipAddress,jdbcType=VARCHAR},#{accepttool,jdbcType=VARCHAR},#{emergencyContact,jdbcType=VARCHAR},#{emergencyPhone,jdbcType=VARCHAR})
 	</insert>
     <insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsUserdocument">
         insert into KQDS_UserDocument
@@ -329,6 +329,12 @@
             <if test="accepttool != null">
                 accepttool,
             </if>
+            <if test="emergencyContact != null">
+                emergencyContact,
+            </if>
+            <if test="emergencyPhone != null">
+                emergencyPhone,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="seqId != null">
@@ -513,6 +519,12 @@
             </if>
             <if test="accepttool != null">
                 #{accepttool,jdbcType=VARCHAR},
+            </if>
+            <if test="emergencyContact != null">
+                #{emergencyContact,jdbcType=VARCHAR},
+            </if>
+            <if test="emergencyPhone != null">
+                #{emergencyPhone,jdbcType=VARCHAR}
             </if>
         </trim>
     </insert>
@@ -705,6 +717,12 @@
             <if test="introduce != null">
                 introduce = #{introduce,jdbcType=VARCHAR},
             </if>
+            <if test="emergencyContact != null">
+                emergencyContact = #{emergencyContact,jdbcType=VARCHAR},
+            </if>
+            <if test="emergencyPhone != null">
+                emergencyPhone = #{emergencyPhone,jdbcType=VARCHAR}
+            </if>
         </set>
         where SEQ_ID = #{seqId,jdbcType=VARCHAR}
     </update>
@@ -772,6 +790,8 @@
 		blcode = #{blcode,jdbcType=VARCHAR},
 		barcode = #{barcode,jdbcType=CLOB},
 		clipAddress = #{clipAddress,jdbcType=CLOB}
+        emergencyContact = #{emergencyContact,jdbcType=VARCHAR},
+        emergencyPhone = #{emergencyPhone,jdbcType=VARCHAR}
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
 	</update>
     <update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsUserdocument">
@@ -837,6 +857,8 @@
 		integral = #{integral,jdbcType=DECIMAL},
 		blcode = #{blcode,jdbcType=VARCHAR},
 		clipAddress = #{clipAddress,jdbcType=VARCHAR},
+		emergencyContact = #{emergencyContact,jdbcType=VARCHAR},
+        emergencyPhone = #{emergencyPhone,jdbcType=VARCHAR}
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
 	</update>
 

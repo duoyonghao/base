@@ -6,7 +6,7 @@
         <id column="SEQ_ID" jdbcType="VARCHAR" property="seqId"/>
         <result column="createuser" jdbcType="VARCHAR" property="createuser"/>
         <result column="createtime" jdbcType="VARCHAR" property="createtime"/>
-        <result column="usercode" jdbcType="VARCHAR" property="usercode"/>
+        <result column="usercode" jdbcType="VARCHAR" property="usercselectDzQueryode"/>
         <result column="regway" jdbcType="VARCHAR" property="regway"/>
         <result column="regsort" jdbcType="VARCHAR" property="regsort"/>
         <result column="recesort" jdbcType="VARCHAR" property="recesort"/>
@@ -727,7 +727,9 @@
         us.age,
         us.remark,
         kcit4.dict_name as slgj, <!-- 添加查询受理工具信息 -->
-        kcit5.dict_name as sllx
+        kcit5.dict_name as sllx,
+        us.kefu,
+        per7.user_name as kefuname
         from KQDS_REG reg
         LEFT JOIN KQDS_UserDocument us on us.usercode = reg.usercode
         LEFT JOIN SYS_DEPT odept on odept.dept_code = reg.organization and odept.dept_parent = '0'
@@ -741,6 +743,7 @@
         LEFT JOIN SYS_PERSON per4 on reg.receiveno = per4.seq_id
         LEFT JOIN SYS_PERSON per5 on reg.repairdoctor = per5.seq_id
         LEFT JOIN SYS_PERSON per6 on us.CreateUser = per6.seq_id
+        left join sys_person per7 on us.kefu = per7.seq_id
         left join (select a.* from KQDS_NET_ORDER a,(select usercode,max(createtime) createtime from
         KQDS_NET_ORDER group by usercode) b where a.usercode=b.usercode and
         a.createtime=b.createtime ) n on n.usercode=reg.usercode <!-- 确定唯一一条数据 -->
