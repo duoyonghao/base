@@ -517,9 +517,14 @@ function initTable(status, type) {
 		            sortable: true,
 		            formatter: function(value, row, index) {
 		            	//console.log("value="+value+",row="+JSON.stringify(row)+",index="+index);
+						iconhtml = "";
 		            	 if (value != "" && value != null) {
-		                    return '<img class="iscreatelclj" onclick="skip(\'' + row.username + '\')" src= ' +contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
+                             iconhtml += '<img class="iscreatelclj" onclick="skip(\'' + row.username + '\')" src= ' +contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
 		                }
+						if (row.kefu) {
+							 iconhtml += '<img class="kefu" src= ' + contextPath + '/static/image/kqdsFront/tag/customerservice.jpg/>';
+						}
+						return iconhtml == "" ? "-" : iconhtml;
 		            }
 		        },
 		        {
@@ -687,7 +692,20 @@ function initTable(status, type) {
 		                    return '<span>-</span>';
 		                }
 		            }
-		        }
+		        },
+			{
+				title: '客服',
+				field: 'kefuname',
+				align: 'center',
+				sortable: true,
+				formatter: function(value, row, index) {
+					if (value) {
+						return "<span class='name' title='" + value + "'>" + value + "</span>";
+					} else {
+						return '<span>-</span>';
+					}
+				}
+			}
         ]
     }).on('click-row.bs.table',
     function(e, row, element) {

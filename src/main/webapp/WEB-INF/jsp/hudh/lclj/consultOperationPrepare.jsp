@@ -251,7 +251,7 @@
 							</ul>
 						</div> -->
 						<div class='tooth_texture' style="margin-bottom: 135px;">
-					    	<span><font class="mustIn">*</font>19、牙冠材质:</span>
+					    	<span>19、牙冠材质:</span>
 					        <div class="options">
 					            <div class='options_title'>
 					                <input id="texture_topo" type="checkbox" class='options_titleText'><label for="texture_topo">局部</label>
@@ -958,14 +958,14 @@
 			var imageological_examination = showImagelogic();
 			var consultation = showConsultation();
 			var abutment_station = abutmentStation(); //基台放置
-			var tooth_texture = toothTexture(); //牙冠材质
+			//var tooth_texture = toothTexture(); //牙冠材质
 			var remark = $("#remark").val();
 			var advisory=showAdvisory(); //会诊
 			var id = '<%=request.getAttribute("id")%>';
 			if(!consultation) {layer.alert('请勾选术前准备选项！');return;}
 			if(!imageological_examination) {layer.alert('请勾选影像学检查！');return;}
 			/* if(!abutment_station) {layer.alert('请勾选基台放置！');return;} */
-			if(!tooth_texture) {layer.alert('请勾选牙冠材质！');return;}
+			//if(!tooth_texture) {layer.alert('请勾选牙冠材质！');return;}
 			//创建手术
 			var param = {
 					abutment_station : abutment_station,

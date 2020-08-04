@@ -234,7 +234,24 @@
 							<input type="text" name="clipAddress" id="clipAddress" placeholder="身份证地址">
 						</td>
 					</tr>
-					
+					<tr>
+						<td>
+							<span class="comText">紧急联系人</span>
+						</td>
+						<td>
+							<div class="form-group">
+								<input type="text" name="emergencyContact" id="emergencyContact" placeholder="紧急联系人">
+							</div>
+						</td>
+						<td>
+							<span class="comText">紧急联系人电话</span>
+						</td>
+						<td>
+							<div class="form-group">
+								<input class="sel_short_inp_long" type="text" name="emergencyPhone" id="emergencyPhone" placeholder="请输入11位电话号码" maxlength="11">
+							</div>
+						</td>
+					</tr>
 					<!-- <tr>
 						<td>
 							<span class="impText">国家/地区*</span>

@@ -473,8 +473,8 @@
 				$("#patient_ID").text(r.idcardno);
 				$("#patient_bone").text(r.birthday);
 				$("#patient_phone").text(r.phonenumber1);
-//	 	             $("#patient_emergency_contact").attr("value", r.emergencyContact);
-//	 	             $("#emergency_contact_tel").attr("value", r.emergencyPhone);
+//	 	             $("#patient_emergency_contact").attr("value", r.emergencycontact);
+//	 	             $("#emergency_contact_tel").attr("value", r.emergencyphone);
 				$("#address").text(r.provincename + r.cityname + r.townname + r.streetName);
 				patient_seqid=r.seq_id;
 			}

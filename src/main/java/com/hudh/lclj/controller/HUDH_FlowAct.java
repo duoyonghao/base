@@ -959,12 +959,12 @@ public class HUDH_FlowAct {
                         //if (YZUtility.isNotNullOrEmpty(lcljOrderTrack.getRepair())) {
                             if(YZUtility.isNotNullOrEmpty(lcljOrderTrack.getKnowbook())){
                                 if(YZUtility.isNotNullOrEmpty(lcljOrderTrack.getImageologicalExamination())){
-                                    if(YZUtility.isNotNullOrEmpty(lcljOrderTrack.getToothTexture())){
+//                                    if(YZUtility.isNotNullOrEmpty(lcljOrderTrack.getToothTexture())){
                                         flowService.updateOrderTrackNodes(dataMap, flowCode, type, dentalJaw, lcljOrderTrack, request);
                                         YZUtility.DEAL_SUCCESS(null, null, response, logger);
-                                    }else{
-                                        throw new Exception("牙冠材质还没有选择，请选择后再进行提交！");
-                                    }
+//                                    }else{
+//                                        throw new Exception("牙冠材质还没有选择，请选择后再进行提交！");
+//                                    }
                                 }else{
                                     throw new Exception("影像学检查还没有选择，请选择后再进行提交！");
                                 }

@@ -300,8 +300,8 @@
 	            $("#patient_idNumber").attr("value", r.idcardno);
 	            $("#patient_date").attr("value", r.birthday);
 	            $("#patient_phone").attr("value", r.phonenumber1);
-	            $("#patient_instancyName").attr("value", r.emergencyContact);
-	            $("#patient_instancyPhone").attr("value", r.emergencyPhone);
+	            $("#patient_instancyName").attr("value", r.emergencycontact);
+	            $("#patient_instancyPhone").attr("value", r.emergencyphone);
 	            $("#patient_site").attr("value", r.provincename + r.cityname + r.townname + r.streetName);
 	            if (status == '1') {
 	                if (r.whether == '0') {
