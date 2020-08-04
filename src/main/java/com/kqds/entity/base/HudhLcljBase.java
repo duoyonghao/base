@@ -238,6 +238,8 @@ public class HudhLcljBase {
     //牙冠材质
     private String plantextureselect;
 
+    private String repairPlanguan;
+
     
     public String getOperationDoctorsignature() {
 		return operationDoctorsignature;
@@ -1183,5 +1185,13 @@ public class HudhLcljBase {
 
     public void setPlantextureselect(String plantextureselect) {
         this.plantextureselect = plantextureselect;
+    }
+
+    public String getRepairPlanguan() {
+        return repairPlanguan;
+    }
+
+    public void setRepairPlanguan(String repairPlanguan) {
+        this.repairPlanguan = repairPlanguan;
     }
 }
