@@ -798,8 +798,8 @@
                 $("#patient_ID").text(r.idcardno);
                 $("#patient_bone").text(r.birthday);
                 $("#patient_tel").text(r.phonenumber1);
-//	 	             $("#patient_emergency_contact").attr("value", r.emergencyContact);
-//	 	             $("#emergency_contact_tel").attr("value", r.emergencyPhone);
+                $("#patient_emergency_contact").text(r.emergencycontact);
+                $("#emergency_contact_tel").text(r.emergencyphone);
                 $("#patient_address").text(r.provincename + r.cityname + r.townname + r.streetName);
             }
         });
