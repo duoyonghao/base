@@ -1750,7 +1750,7 @@
         <div style="border:1px solid #b3b3b3;">
             <div class="row" style="margin-right:0;margin-left:0;border-bottom:1px solid #b3b3b3">
                 <div class="row" style="margin-right:0;margin-left:0;">
-                    <div style="height: 413px;">
+                    <div style="height: 489px;">
                         <div style="float: left;border-right: 1px solid #b3b3b3;width: 20%;height:100%;">
                             <span style="line-height: 400px;margin-left: 50px;">修复方式</span>
                         </div>
@@ -1821,7 +1821,7 @@
                                        <li>
                                            <input name="repair" id="lianguan" type="checkbox" value="联冠" /><label
                                                for="lianguan">联冠</label>
-                                       <li style="width: 154px;">
+                                       <li style="width: 162px;">
                                            <label for="spreoperative">
                                                <div id="diagnosis_continer" class="container-fluid">
                                                    <div class="row">
@@ -2595,15 +2595,17 @@
                 $("#requirerestor").text(form["requirerestor"]);//textarea赋值
                 $("#requirerestor").trigger("keyup");
                 $("#replaceBox").text(form["requirerestor"]);//textarea替换框赋值
-                if(form[key].indexOf(";")>0){
-                    var checkboxVal= form[key];//拼接多选框的值
-                    var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
-                    for(var i=0;i<checkboxValArr.length;i++){
-                        $("input[name="+key+"]").each(function(){
-                            if($(this).val()==checkboxValArr[i]){
-                                $(this).attr("checked","checked");
-                            }
-                        })
+                if(form[key]!=null&&form[key]!=''){
+                    if(form[key].indexOf(";")>0){
+                        var checkboxVal= form[key];//拼接多选框的值
+                        var checkboxValArr=checkboxVal.split(";");//将字符串转为数组
+                        for(var i=0;i<checkboxValArr.length;i++){
+                            $("input[name="+key+"]").each(function(){
+                                if($(this).val()==checkboxValArr[i]){
+                                    $(this).attr("checked","checked");
+                                }
+                            })
+                        }
                     }
                 }
                 if($("#"+key).find("option")){
@@ -2952,8 +2954,27 @@
     //保存方法
     function save(){
         var url = contextPath + '/HUDH_LcljCaseAct/insert.act';
-        var plantingsystemselect = JSON.stringify($("#plantingsystemselect").val()); //种植体系
-        var plantextureselect = JSON.stringify($("#plantextureselect").val()); //种植体系
+        var plantingsystemselect = JSON.stringify($("#plantingsystemselect").val()); //对应材质
+        var plantextureselect = JSON.stringify($("#plantextureselect").val()); //对应材质
+        var item1 = $('input:checkbox[name=repair]:checked').val();
+        if(item1 == null){
+            layer.alert("请选择修复方式！");
+            return;
+        }else{
+
+        }
+        if($("#imaging").is(':checked') == true){
+           if(!plantingsystemselect || plantingsystemselect=="null"){
+                layer.alert("请选择对应材质！");
+                return;
+            }
+        }
+        if($("#lianguan").is(':checked') == true){
+            if(!plantextureselect || plantextureselect=="null"){
+                layer.alert("请选择对应材质！");
+                return;
+            }
+        }
 
         var param = {
             usercode:$("#patient_num").text(),
