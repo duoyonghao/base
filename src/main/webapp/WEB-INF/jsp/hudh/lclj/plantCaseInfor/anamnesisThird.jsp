@@ -2847,12 +2847,14 @@
 		if($("#"+id).is(':checked')){
 			$("#"+id).parents(".toothMapItem").find(".toothMap").attr("onclick","showToothMap("+checkVal+")");
 			$("#"+id).parents(".toothMapItem").find(".toothTime").find("input").removeAttr("disabled").css("background-color","transparent").css("cursor","auto").css("pointer-events","auto");
+			$("#"+id).attr('checked',true);
 		}else{
 			$("#"+id).parents(".toothMapItem").find(".toothMap").removeAttr("onclick");
 			$("#"+id).parents(".toothMapItem").find(".toothMap").find(".num").each(function(i,obj){
 				$(this).parent("li").removeClass("current");
 			});
 			$("#"+id).parents(".toothMapItem").find(".toothTime").find("input").val("").attr("disabled","disabled").css("background-color","#c3c3c3").css("pointer-events","none");
+			$("#"+id).attr('checked',false);
 		}
 	}
 
