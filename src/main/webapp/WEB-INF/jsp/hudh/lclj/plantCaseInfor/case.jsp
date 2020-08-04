@@ -1759,7 +1759,7 @@
                                 <ul class="loseTooth_option" style="margin-left: 10px;">
                                    <div style="display: inline-block;">
                                        <li>
-                                           <input name="repair" id="imaging" type="checkbox" value="单冠" />
+                                           <input name="guan" id="imaging" type="checkbox" value="单冠" onclick="danguan()"/>
                                            <label for="imaging">单冠</label>
                                        </li>
                                        <li style="width: 154px;">
@@ -1819,7 +1819,7 @@
                                    </div>
                                    <div>
                                        <li>
-                                           <input name="repair" id="lianguan" type="checkbox" value="联冠" /><label
+                                           <input name="guan" id="lianguan" type="checkbox" value="联冠" /><label
                                                for="lianguan">联冠</label>
                                        <li style="width: 162px;">
                                            <label for="spreoperative">
@@ -2951,14 +2951,15 @@
         }
     }
 
+
     //保存方法
     function save(){
         var url = contextPath + '/HUDH_LcljCaseAct/insert.act';
         var plantingsystemselect = JSON.stringify($("#plantingsystemselect").val()); //对应材质
         var plantextureselect = JSON.stringify($("#plantextureselect").val()); //对应材质
-        var item1 = $('input:checkbox[name=repair]:checked').val();
+        var item1 = $('input:checkbox[name=guan]:checked').val();
         if(item1 == null){
-            layer.alert("请选择修复方式！");
+            layer.alert("请选择单冠/联冠！");
             return;
         }else{
 
