@@ -2536,7 +2536,6 @@
 
             dataType: "json",
             success: function (r) {
-                console.log(r,"----r")
                 $("#patient_time").text(r.cztime);
                 $("#patient_num").text(r.usercode);
                 $("#patient_name").text(r.username);
