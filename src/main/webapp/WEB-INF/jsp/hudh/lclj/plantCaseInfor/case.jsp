@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="<%=contextPath%>/static/css/kqdsFront/plugin/bootstrap-datetimepicker.css" />
     <link rel="stylesheet" type="text/css" href="<%=contextPath%>/static/css/kqdsFront/plugin/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="<%=contextPath%>/static/css/kqdsFront/plantCase/diagnosisProject.css" />
+    <link rel="stylesheet" type="text/css" href="<%=contextPath%>/static/css/admin/index/bower_components/select/bootstrap-select.css" />
 
     <script type="text/javascript" src="<%=contextPath%>/static/js/app/plugin/jquery.js"></script>
     <script type="text/Javascript" src="<%=contextPath%>/static/js/kqdsFront/kqds/kqds_system.js"></script>
@@ -28,6 +29,7 @@
     <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/bootstrap/bootstrap-datetimepicker.js"></script>
     <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/bootstrap/bootstrap-datetimepicker.zh-CN.js" charset="utf-8"></script>
     <script type="text/javascript" src="<%=contextPath%>/static/plugin/layer-v2.4/layer/layer.js"></script>
+    <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/plugins/select/bootstrap-select.js"></script>
 </head>
 <style type="text/css">
     input::-webkit-input-placeholder {
@@ -478,6 +480,28 @@
     .container-fluid{
         margin: 0!important;
         padding: 0!important;
+    }
+    /* 种植体系赋值 */
+    .plantingsystemselectText{
+        /* display: inline-block; */
+        display:none;
+        border-bottom: 1px solid black;
+        min-width: 100px;
+        height: 28px;
+        line-height: 28px;
+        font-size: 15px;
+        vertical-align: middle;
+        padding: 0px 8px;
+    }
+    .plantextureselectText{
+        display:none;
+        border-bottom: 1px solid black;
+        min-width: 100px;
+        height: 28px;
+        line-height: 28px;
+        font-size: 15px;
+        vertical-align: middle;
+        padding: 0px 8px;
     }
 </style>
 
@@ -1725,9 +1749,6 @@
         </div>
         <div style="border:1px solid #b3b3b3;">
             <div class="row" style="margin-right:0;margin-left:0;border-bottom:1px solid #b3b3b3">
-
-
-
                 <div class="row" style="margin-right:0;margin-left:0;">
                     <div style="height: 413px;">
                         <div style="float: left;border-right: 1px solid #b3b3b3;width: 20%;height:100%;">
@@ -1736,84 +1757,126 @@
                         <div style="width: 80%;float: right;">
                             <div style="margin-top: 10px;">
                                 <ul class="loseTooth_option" style="margin-left: 10px;">
-                                    <li>
-                                        <input name="repair" id="imaging" type="checkbox" value="单冠" /><label
-                                            for="imaging">单冠</label>
-                                    <li style="width: 154px;">
-                                        <label for="spreoperative">
-                                            <div id="diagnosis_continer" class="container-fluid">
-                                                <div class="row">
-                                                    <!-- 牙位图 -->
-                                                    <div class="zl_toothMapdiv">
-                                                        <ul class="tooth_map"
-                                                            style="width: 100%;height: 45px;margin-left: 1%;">
-                                                            <li>
-                                                                <input id="imagingleftup"
-                                                                       onblur="TextLengthCheck(this.id,10);"
-                                                                       class="tooth_input" type="text">
-                                                            </li>
-                                                            <li>
-                                                                <input id="imagingrightup"
-                                                                       onblur="TextLengthCheck(this.id,10);"
-                                                                       class="tooth_input" type="text">
-                                                            </li>
-                                                            <li>
-                                                                <input id="imagingleftdown"
-                                                                       onblur="TextLengthCheck(this.id,10);"
-                                                                       class="tooth_input" type="text">
-                                                            </li>
-                                                            <li>
-                                                                <input id="imagingrightdown"
-                                                                       onblur="TextLengthCheck(this.id,10);"
-                                                                       class="tooth_input" type="text">
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </li>
-                                    <li>对应材质</li>
-                                    </li>
-                                    <li>
-                                        <input name="repair" id="lianguan" type="checkbox" value="联冠" /><label
-                                            for="lianguan">联冠</label>
-                                    <li style="width: 154px;">
-                                        <label for="spreoperative">
-                                            <div id="diagnosis_continer" class="container-fluid">
-                                                <div class="row">
-                                                    <!-- 牙位图 -->
-                                                    <div class="zl_toothMapdiv">
-                                                        <ul class="tooth_map"
-                                                            style="width: 100%;height: 45px;margin-left: 1%;">
-                                                            <li>
-                                                                <input id="lianguanleftup"
-                                                                       onblur="TextLengthCheck(this.id,10);"
-                                                                       class="tooth_input" type="text">
-                                                            </li>
-                                                            <li>
-                                                                <input id="lianguanrightup"
-                                                                       onblur="TextLengthCheck(this.id,10);"
-                                                                       class="tooth_input" type="text">
-                                                            </li>
-                                                            <li>
-                                                                <input id="lianguanleftdown"
-                                                                       onblur="TextLengthCheck(this.id,10);"
-                                                                       class="tooth_input" type="text">
-                                                            </li>
-                                                            <li>
-                                                                <input id="lianguanrightdown"
-                                                                       onblur="TextLengthCheck(this.id,10);"
-                                                                       class="tooth_input" type="text">
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </li>
-                                    <li>对应材质</li>
-                                    </li>
+                                   <div style="display: inline-block;">
+                                       <li>
+                                           <input name="repair" id="imaging" type="checkbox" value="单冠" />
+                                           <label for="imaging">单冠</label>
+                                       </li>
+                                       <li style="width: 154px;">
+                                           <label for="spreoperative">
+                                               <div id="diagnosis_continer" class="container-fluid">
+                                                   <div class="row">
+                                                       <!-- 牙位图 -->
+                                                       <div class="zl_toothMapdiv">
+                                                           <ul class="tooth_map"
+                                                               style="width: 100%;height: 45px;margin-left: 1%;">
+                                                               <li>
+                                                                   <input id="imagingleftup"
+                                                                          onblur="TextLengthCheck(this.id,10);"
+                                                                          class="tooth_input" type="text">
+                                                               </li>
+                                                               <li>
+                                                                   <input id="imagingrightup"
+                                                                          onblur="TextLengthCheck(this.id,10);"
+                                                                          class="tooth_input" type="text">
+                                                               </li>
+                                                               <li>
+                                                                   <input id="imagingleftdown"
+                                                                          onblur="TextLengthCheck(this.id,10);"
+                                                                          class="tooth_input" type="text">
+                                                               </li>
+                                                               <li>
+                                                                   <input id="imagingrightdown"
+                                                                          onblur="TextLengthCheck(this.id,10);"
+                                                                          class="tooth_input" type="text">
+                                                               </li>
+                                                           </ul>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </label>
+                                       </li>
+                                       <li>
+                                           <font>对应材质</font><span class="plantingsystemselectText"></span>
+                                           <select id="plantingsystemselect" class="selectTag plantingsystemselect selectpicker" title="请选择" multiple>
+                                               <option value="局部-德国GEGO牙冠">局部-德国GEGO牙冠</option>
+                                               <option value="局部-氧化锆牙冠">局部-氧化锆牙冠</option>
+                                               <option value="局部-德国Weiland牙冠">局部-德国Weiland牙冠</option>
+                                               <option value="局部-泽康全瓷牙冠">局部-泽康全瓷牙冠</option>
+                                               <option value="局部-美国Lava牙冠">局部-美国Lava牙冠</option>
+                                               <option value="局部-瑞典Procera牙冠">局部-瑞典Procera牙冠</option>
+                                               <option value="局部-塑钢牙pvc">局部-塑钢牙pvc</option>
+                                               <option value="局部-纯钛基台一体冠">局部-纯钛基台一体冠</option>
+                                               <option value="半口-可摘型德国GEGO牙桥">半口-可摘型德国GEGO牙桥</option>
+                                               <option value="半口-可摘型维他灵牙桥">半口-可摘型维他灵牙桥</option>
+                                               <option value="半口-可摘型纯钛牙桥">半口-可摘型纯钛牙桥</option>
+                                               <option value="半口-固定版树脂牙桥">半口-固定版树脂牙桥</option>
+                                               <option value="半口-固定版氧化锆牙桥">半口-固定版氧化锆牙桥</option>
+                                               <option value="半口-塑钢牙pvc">半口-塑钢牙pvc</option>
+                                           </select>
+                                       </li>
+
+                                   </div>
+                                   <div>
+                                       <li>
+                                           <input name="repair" id="lianguan" type="checkbox" value="联冠" /><label
+                                               for="lianguan">联冠</label>
+                                       <li style="width: 154px;">
+                                           <label for="spreoperative">
+                                               <div id="diagnosis_continer" class="container-fluid">
+                                                   <div class="row">
+                                                       <!-- 牙位图 -->
+                                                       <div class="zl_toothMapdiv">
+                                                           <ul class="tooth_map"
+                                                               style="width: 100%;height: 45px;margin-left: 1%;">
+                                                               <li>
+                                                                   <input id="lianguanleftup"
+                                                                          onblur="TextLengthCheck(this.id,10);"
+                                                                          class="tooth_input" type="text">
+                                                               </li>
+                                                               <li>
+                                                                   <input id="lianguanrightup"
+                                                                          onblur="TextLengthCheck(this.id,10);"
+                                                                          class="tooth_input" type="text">
+                                                               </li>
+                                                               <li>
+                                                                   <input id="lianguanleftdown"
+                                                                          onblur="TextLengthCheck(this.id,10);"
+                                                                          class="tooth_input" type="text">
+                                                               </li>
+                                                               <li>
+                                                                   <input id="lianguanrightdown"
+                                                                          onblur="TextLengthCheck(this.id,10);"
+                                                                          class="tooth_input" type="text">
+                                                               </li>
+                                                           </ul>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </label>
+                                       </li>
+                                       <li>
+                                           <font>对应材质</font><span class="plantextureselectText"></span>
+
+                                           <select id="plantextureselect" class="selectTag plantextureselect selectpicker" title="请选择" multiple>
+                                               <option value="局部-德国GEGO牙冠">局部-德国GEGO牙冠</option>
+                                               <option value="局部-氧化锆牙冠">局部-氧化锆牙冠</option>
+                                               <option value="局部-德国Weiland牙冠">局部-德国Weiland牙冠</option>
+                                               <option value="局部-泽康全瓷牙冠">局部-泽康全瓷牙冠</option>
+                                               <option value="局部-美国Lava牙冠">局部-美国Lava牙冠</option>
+                                               <option value="局部-瑞典Procera牙冠">局部-瑞典Procera牙冠</option>
+                                               <option value="局部-塑钢牙pvc">局部-塑钢牙pvc</option>
+                                               <option value="局部-纯钛基台一体冠">局部-纯钛基台一体冠</option>
+                                               <option value="半口-可摘型德国GEGO牙桥">半口-可摘型德国GEGO牙桥</option>
+                                               <option value="半口-可摘型维他灵牙桥">半口-可摘型维他灵牙桥</option>
+                                               <option value="半口-可摘型纯钛牙桥">半口-可摘型纯钛牙桥</option>
+                                               <option value="半口-固定版树脂牙桥">半口-固定版树脂牙桥</option>
+                                               <option value="半口-固定版氧化锆牙桥">半口-固定版氧化锆牙桥</option>
+                                               <option value="半口-塑钢牙pvc">半口-塑钢牙pvc</option>
+                                           </select>
+                                       </li>
+                                       </li>
+                                   </div>
                                 </ul>
                             </div>
                             <div class="preoperative">
@@ -2034,7 +2097,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div id="others" class="one" style="margin-left: 10px;">
+                    <div id="others" class="one" style="margin-left: 30px;">
                         <div style="width: 100%;float: right;">
                             <ul class="loseTooth_option">
                                 <li>
@@ -2146,7 +2209,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div id="others" class="two" style="margin-left: 10px">
+                    <div id="others" class="two" style="margin-left: 30px">
 
                         <div style="width: 100%;float: right;">
                             <ul class="loseTooth_option">
@@ -2220,7 +2283,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div id="others" class="three" style="margin-left: 10px">
+                    <div id="others" class="three" style="margin-left: 30px">
 
                         <div style="width: 100%;float: right;">
                             <ul class="loseTooth_option">
@@ -2441,6 +2504,7 @@
             });
         }
         $('textarea[autoHeight]').autoHeight();
+        $('.selectpicker').selectpicker({});//初始化种植体系下拉框
         //时间选择
         $(".consent_time").datetimepicker({
             language: 'zh-CN',
@@ -2472,6 +2536,7 @@
 
             dataType: "json",
             success: function (r) {
+                console.log(r,"----r")
                 $("#patient_time").text(r.cztime);
                 $("#patient_num").text(r.usercode);
                 $("#patient_name").text(r.username);
@@ -2480,8 +2545,8 @@
                 $("#patient_idNumber").text(r.idcardno);
                 $("#patient_date").attr("value", r.birthday);
                 $("#patient_phone").text(r.phonenumber1);
-                $("#patient_instancyName").text(r.emergencyContact);
-                $("#patient_instancyPhone").text(r.emergencyPhone);
+                $("#patient_instancyName").text(r.emergencycontact);
+                $("#patient_instancyPhone").text(r.emergencyphone);
                 $("#patient_site").text(r.provincename + r.cityname + r.townname + r.streetName);
             }
         });
@@ -2526,7 +2591,7 @@
             $("input[name='promise'][value='"+form.promise+"']").attr("checked",true);
             $("input[name='accord'][value='"+form.accord+"']").attr("checked",true);
             for(var key in form){
-                //console.log(key+"-------------"+result[key]);
+                //console.log(key+"-------------"+form[key]);
                 $("#"+key).attr("value",form[key]);// 填框赋值
                 $("#requirerestor").text(form["requirerestor"]);//textarea赋值
                 $("#requirerestor").trigger("keyup");
@@ -2541,6 +2606,10 @@
                             }
                         })
                     }
+                }
+                if($("#"+key).find("option")){
+                    $("#"+key).selectpicker('val',form[key]);
+                    $("."+key+"Text").text(form[key]+form["plantingsystem"]);
                 }
             }
         }
@@ -2884,9 +2953,12 @@
     //保存方法
     function save(){
         var url = contextPath + '/HUDH_LcljCaseAct/insert.act';
+        var plantingsystemselect = JSON.stringify($("#plantingsystemselect").val()); //种植体系
+        var plantextureselect = JSON.stringify($("#plantextureselect").val()); //种植体系
+
         var param = {
             usercode:$("#patient_num").text(),
-            username:$("#patient_name").val(),
+            username:$("#patient_name").text(),
             lcljid:id,
             lcljnum:order_number,
             //treatmentparts1:$("#treatmentparts1").text(),
@@ -2996,7 +3068,9 @@
             operationDoctorsignature :signature,//手术医生签名
             repairDoctorsignature : repairSignature,//修复医生签名
             patientsignature : patientsignature,//患者签名
-            patientsignature1 : patientsignature1//患者签名
+            patientsignature1 : patientsignature1,//患者签名
+            plantingsystemselect : plantingsystemselect, //种植体系
+            plantextureselect:plantextureselect,//种植体系
         };
         $.ajax({
             type: "POST",
@@ -3128,6 +3202,8 @@
     //修改
     function update(){
         var url = contextPath + '/HUDH_LcljCaseAct/update.act';
+        var plantingsystemselect = JSON.stringify($("#plantingsystemselect").val()); //种植体系
+        var plantextureselect = JSON.stringify($("#plantextureselect").val()); //种植体系
         var param = {
             id:seqidFather,
             //treatmentparts1:$("#treatmentparts1").text(),
@@ -3237,7 +3313,9 @@
             operationDoctorsignature :signature,//手术医生签名
             repairDoctorsignature : repairSignature,//修复医生签名
             patientsignature : patientsignature,//患者签名
-            patientsignature1 : patientsignature1//患者签名
+            patientsignature1 : patientsignature1,//患者签名
+            plantingsystemselect : plantingsystemselect, //种植体系
+            plantextureselect:plantextureselect,//种植体系
         };
         $.ajax({
             type: "POST",
@@ -3323,14 +3401,30 @@
         if(!patienttime1one){
             $("#patienttime1").css('display', 'none');
         }
+
+
         $("#mode").css('display','inline-block');
         $(".opstall").css("height","100px");
+        $(".plantingsystemselect").css("display","none");
+        $(".plantextureselect").css("display","none");
+
+        $(".plantextureselectText").css("display","initial");
+
+
+
+        var plantingsystemselectval = $(".plantingsystemselectText").html()
+        var plantingsystemselectvallength = plantingsystemselectval.substring(0,plantingsystemselectval.length-9)
+        $(".plantingsystemselectText").html(plantingsystemselectvallength).css("display","initial");
+        var plantextureselectTexttval = $(".plantextureselectText").html()
+        var plantextureselectTextlength = plantextureselectTexttval.substring(0,plantextureselectTexttval.length-9)
+        $(".plantextureselectText").html(plantextureselectTextlength).css("display","initial");
+
         bdhtml=window.document.body.innerHTML;
         sprnstr="<!--startprint-->";
         eprnstr="<!--endprint-->";
         prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);
         prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
-        var htmlStyle="<style>#logoImg{widht:20%;}.before-preoperative{height:100%;}.before{height:377px;}.scheme{height:87px;}button{display:none;}textarea{height:50px!important;}span{font-size: 14px!important;}*{font-size: 12px;line-height: 16px;}#diagnosis_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.inputheight2{border: 1px solid transparent!important;}#consent_signature{width:100%!important;}.consent_updateBtn{display:none!important;}</style>";
+        var htmlStyle="<style>.plantingsystemselectText{font-size:12px;height:24px;line-height:24px;vertical-align:bottom;margin-bottom:5px;}.plantingsystemselectText{display:inline-block;}#logoImg{widht:20%;}.before-preoperative{height:100%;}.before{height:377px;}.scheme{height:87px;}button{display:none;}textarea{height:50px!important;}span{font-size: 14px!important;}*{font-size: 12px;line-height: 16px;}#diagnosis_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.inputheight2{border: 1px solid transparent!important;}#consent_signature{width:100%!important;}.consent_updateBtn{display:none!important;}</style>";
         window.document.body.innerHTML=prnhtml+htmlStyle;
         document.body.innerHTML=bdhtml; //恢复页面
         window.print();
