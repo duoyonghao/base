@@ -3236,6 +3236,25 @@
         var url = contextPath + '/HUDH_LcljCaseAct/update.act';
         var plantingsystemselect = JSON.stringify($("#plantingsystemselect").val()); //种植体系
         var plantextureselect = JSON.stringify($("#plantextureselect").val()); //种植体系
+        var item1 = $('input:checkbox[name=repairPlanguan]:checked').val();
+        if(item1 == null){
+            layer.alert("请选择单冠/联冠！");
+            return;
+        }else{
+
+        }
+        if($("#imaging").is(':checked') == true){
+            if(!plantingsystemselect || plantingsystemselect=="null"){
+                layer.alert("请选择对应材质！");
+                return;
+            }
+        }
+        if($("#lianguan").is(':checked') == true){
+            if(!plantextureselect || plantextureselect=="null"){
+                layer.alert("请选择对应材质！");
+                return;
+            }
+        }
         var param = {
             id:seqidFather,
             //treatmentparts1:$("#treatmentparts1").text(),
