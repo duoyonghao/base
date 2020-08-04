@@ -149,13 +149,13 @@ var onclickrowOobj = "";
 var parent_doc=$(window.parent.frames["tabIframe"].document);
 var parent_pre=parent_doc.find("#detaildesc");
 var parent_doctor=parent_doc.find("#doctors");//医生
-var parent_main_suit=parent_doc.find("#main_suit");//主诉
+var parent_main_suit=parent_doc.find("#mainSuit");//主诉
 var parent_scheme=parent_doc.find("#scheme");//方案
 var parent_price=parent_doc.find("#price");//报价
-var parent_order_project=parent_doc.find("#order_project");//预约金及今做项目
-var parent_order_plan=parent_doc.find("#order_plan");//预约时间及下次安排
+var parent_order_project=parent_doc.find("#orderProject");//预约金及今做项目
+var parent_order_plan=parent_doc.find("#orderPlan");//预约时间及下次安排
 var parent_follow=parent_doc.find("#follow");//后期跟进注意
-var parent_failreason_mark=parent_doc.find("#failreason_mark");//未成交原因备注
+var parent_failreason_mark=parent_doc.find("#failreasonMark");//未成交原因备注
 var parent_othermark=parent_doc.find("#othermark");//其他备注
 var doctorList;
 var tempData=window.parent.frames["tabIframe"].onclickrowOobj2;
@@ -167,20 +167,20 @@ $(function(){
     $("#username").val(onclickrowOobj.username);
     $('#doctor').selectpicker("refresh");
     initPersonSelectTemp("doctor",depttype);
-    // initTemp();//初始化当前模板信息
+    initTemp();//初始化当前模板信息
 })
-var doc=["4db6e6c8-b736-4ae3-a8ea-d5f667644a29","56ffc127-823d-4500-95cd-3f6fc8c31287"]
 function initTemp(){
     if(tempData.detaildesc!=""){
-        $('#doctor').selectpicker('val', doc);
-        // $('#main_suit').val(tempData.main_suit);
-        // $('#scheme').val(tempData.scheme);
-        // $('#price').val(tempData.price);
-        // $('#order_project').val(tempData.order_project);
-        // $('#order_plan').val(tempData.order_plan);
-        // $('#follow').val(tempData.follow);
-        // $('#failreason_mark').val(tempData.failreason_mark);
-        // $('#othermark').val(tempData.othermark);
+        var doctorsArr = tempData.doctors.split(',');
+        $('#doctor').selectpicker('val', doctorsArr);
+        $('#main_suit').val(tempData.mainSuit);
+        $('#scheme').val(tempData.scheme);
+        $('#price').val(tempData.price);
+        $('#order_project').val(tempData.orderProject);
+        $('#order_plan').val(tempData.orderPlan);
+        $('#follow').val(tempData.follow);
+        $('#failreason_mark').val(tempData.failreasonMark);
+        $('#othermark').val(tempData.otherMark);
     }
 }
 // console.log(JSON.stringify(tempData)+'----tempData');
@@ -196,7 +196,9 @@ function initPersonSelectTemp(id, depttype) {
                 $('#'+id).selectpicker('destroy');
                 for (var j = 0; j < list.length; j++) {
                     var optionStr = list[j];
-                    dict.append("<option value='" + optionStr.seqId + "'>" + optionStr.userName + "</option>");
+                    if(optionStr.deptName!="综合医生（咨询）组"&&optionStr.deptName!="客服部"){//单独去重deptName不同
+                        dict.append("<option value='" + optionStr.seqId + "'>" + optionStr.userName + "</option>");
+                    }
                 }
                 $("#"+id).selectpicker("refresh"); //select搜索初始化刷新
             }
@@ -205,7 +207,6 @@ function initPersonSelectTemp(id, depttype) {
             layer.alert('查询出错！' );
         });
 }
-
 // 查询userName值
 function initPersonSelectName(ids,datalist) {
     for (var i = 0; i < datalist.length; i++) {
@@ -222,11 +223,12 @@ function initPersonSelectName(ids,datalist) {
 }
 
 function submit(){
-    var doctors=$("#doctor").val();
-    if(doctors){
-        initPersonSelectName(doctors,doctorList);
+    var doctors=$("#doctor").val();//id
+    var doctorsName=$("#doctor").val();//模板name
+    if(doctorsName){
+        initPersonSelectName(doctorsName,doctorList);//转成姓名（模板）
     }else{
-        doctors=""
+        doctorsName="";
     }
     var main_suit=$("#main_suit").val();
     var scheme=$("#scheme").val();
@@ -237,15 +239,15 @@ function submit(){
     var failreason_mark=$("#failreason_mark").val();
     var othermark=$("#othermark").val();
     var template="";
-    template+="[医生]:"+doctors+"\n";
-    template+="[主诉]:"+main_suit+"\n";
-    template+="[方案]:"+scheme+"\n";
-    template+="[报价]:"+price+"\n";
-    template+="[预约金及今做项目]:"+order_project+"\n";
-    template+="[预约时间及下次安排]:"+order_plan+"\n";
-    template+="[后期跟进注意]:"+follow+"\n";
-    template+="[未成交原因备注]:"+failreason_mark+"\n";
-    template+="[其他备注]:"+othermark+"\n";
+    template+="【医生】:"+doctorsName+"\n";
+    template+="【主诉】:"+main_suit+"\n";
+    template+="【方案】:"+scheme+"\n";
+    template+="【报价】:"+price+"\n";
+    template+="【预约金及今做项目】:"+order_project+"\n";
+    template+="【预约时间及下次安排】:"+order_plan+"\n";
+    template+="【后期跟进注意】:"+follow+"\n";
+    template+="【未成交原因备注】:"+failreason_mark+"\n";
+    template+="【其他备注】:"+othermark+"\n";
     if(parent_pre.val()){
         parent_pre.val("");
     }
@@ -286,7 +288,7 @@ function submit(){
     parent_failreason_mark.val(failreason_mark);//添加未成交原因备注-hidden
     parent_othermark.val(othermark);//添加其他备注-hidden
     parent_pre.val(template);//添加模板--block
-    setTimeout(function () {
+    setTimeout(function () {//50毫秒后关闭当前页面
         parent.layer.close(index);
     },50);
 }
