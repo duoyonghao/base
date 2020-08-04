@@ -822,6 +822,7 @@ function AuotSetFunc(){
     if(onclickrowOobj.kefu){
         receive_askperson = onclickrowOobj.kefu;
         $('#askperson').selectpicker('val',onclickrowOobj.kefu);
+        $("#askperson").attr("disabled","disabled");
         if(lastregInfo){
             $("#regdept").val(lastregInfo.regdept);
             $('#doctor').selectpicker('val', lastregInfo.doctor);
@@ -842,6 +843,7 @@ function AuotSetFunc(){
     $("#askpersondept").val("");
     if(onclickrowOobj.kefudeptid){
         $("#askpersondept").val(onclickrowOobj.kefudeptid);
+        $("#askpersondept").attr("disabled","disabled");
     }else{
         if($("#askperson").val() != '' && $("#askperson").val() != null){
             $.ajax({
