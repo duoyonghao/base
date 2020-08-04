@@ -1181,14 +1181,19 @@ WHERE
         u.askperson,
         u.doctor,
         u.familyship,
+        u.kefu,
+        kefudept.seq_id as kefudeptid,
         per1.user_name as createusername,
         per2.user_name as askpersonname,
+        per3.user_name as kefuname,
         odept.dept_name as organizationname,
         odept.SEQ_ID as organizationId
         from KQDS_USERDOCUMENT u
         LEFT JOIN SYS_DEPT odept on odept.dept_code = u.organization and odept.dept_parent = '0'
         left join SYS_PERSON per1 on per1.seq_id = u.createuser
         left join sys_person per2 on per2.seq_id = u.askperson
+        left join sys_person per3 on per3.seq_id = u.kefu
+        left join SYS_DEPT kefudept on kefudept.seq_id = per3.dept_id
         where 1=1 and isdelete !=1
         <if test="searchValue != null and searchValue !='' ">
             and (u.usercode like '%' + #{searchValue} + '%'
