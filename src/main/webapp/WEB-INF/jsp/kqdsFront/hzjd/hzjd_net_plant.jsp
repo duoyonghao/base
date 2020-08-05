@@ -290,11 +290,11 @@
 				</td>
 				<td>
 					<div class="form-group">
-						<input class="sel_short_inp_long" type="text" name="emergencyPhone" id="emergencyPhone" placeholder="请输入11位电话号码" maxlength="11" oninput="value=value.replace(/[^\d]/g,'')>
+						<input class="sel_short_inp_long" type="text" name="emergencyPhone" id="emergencyPhone" placeholder="请输入11位电话号码" maxlength="11" oninput="value=value.replace(/[^\d]/g,'')">
 					</div>
 				</td>
 			</tr>
-			<!-- 
+			<!--
 			<tr>
 				<td>
 					<span class="impText">国家/地区*</span>
@@ -306,7 +306,7 @@
 						<select class="sel3" id="town" name="town"></select>
 					</div>
 				</td>
-			</tr> 
+			</tr>
 			-->
 			<tr>
 				<td>
