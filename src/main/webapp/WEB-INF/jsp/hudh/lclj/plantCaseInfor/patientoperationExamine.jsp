@@ -291,7 +291,7 @@
 						<td colspan="2"><span>拔牙牙位</span></td>
 						<td colspan="2"><span>种植牙位</span></td>
 						<td colspan="2" rowspan="2">辅助手术<input id="assist_operation" class="text_input2 assist_operation assistoperation" placeholder="" onblur="TextLengthCheck(this.id,10);props(this.id);" type="text"/></td>
-						<td colspan="2" rowspan="2">手术方式<input id="plant_system" class="text_input2 plant_system plantsystem" placeholder="" onblur="TextLengthCheck(this.id,10);props(this.id);" type="text"/></td>
+						<td colspan="2" rowspan="2">种植系统<input id="plant_system" class="text_input2 plant_system plantsystem" placeholder="" onblur="TextLengthCheck(this.id,10);props(this.id);" type="text"/></td>
 					</tr>
 					<tr>
 						<td colspan="2" class="tooth_height" style="height: 70px">
@@ -409,7 +409,7 @@
 						<td colspan="2"><span>拔牙牙位</span></td>
 						<td colspan="2"><span>种植牙位</span></td>
 						<td colspan="2" rowspan="2">辅助手术<input class="assist_operation assistoperation text_input2" placeholder="" onblur="TextLengthCheck(this.id,10);" type="text" disabled/></td>
-						<td colspan="2" rowspan="2">手术方式<input class="plant_system plantsystem text_input2" placeholder="" onblur="TextLengthCheck(this.id,10);" type="text" disabled/></td>
+						<td colspan="2" rowspan="2">种植系统<input class="plant_system plantsystem text_input2" placeholder="" onblur="TextLengthCheck(this.id,10);" type="text" disabled/></td>
 					</tr>
 					<tr class="reuseData">
 						<td colspan="2" class="tooth_height" style="height: 70px">
@@ -548,7 +548,7 @@
             }
         });
     }
-    // 		复用内容牙位及辅助手术手术方式
+    // 		复用内容牙位及辅助手术-种植系统
     function props(thi){
         var changetooth=$("."+thi).val();
         $(".reuseData").find("."+thi).val(changetooth);
