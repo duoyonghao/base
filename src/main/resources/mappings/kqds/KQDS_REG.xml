@@ -6,7 +6,7 @@
         <id column="SEQ_ID" jdbcType="VARCHAR" property="seqId"/>
         <result column="createuser" jdbcType="VARCHAR" property="createuser"/>
         <result column="createtime" jdbcType="VARCHAR" property="createtime"/>
-        <result column="usercode" jdbcType="VARCHAR" property="usercselectDzQueryode"/>
+        <result column="usercode" jdbcType="VARCHAR" property="usercode"/>
         <result column="regway" jdbcType="VARCHAR" property="regway"/>
         <result column="regsort" jdbcType="VARCHAR" property="regsort"/>
         <result column="recesort" jdbcType="VARCHAR" property="recesort"/>
