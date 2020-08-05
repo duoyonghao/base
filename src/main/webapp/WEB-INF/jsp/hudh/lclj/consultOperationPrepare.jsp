@@ -958,7 +958,7 @@
 			var imageological_examination = showImagelogic();
 			var consultation = showConsultation();
 			var abutment_station = abutmentStation(); //基台放置
-			//var tooth_texture = toothTexture(); //牙冠材质
+			var tooth_texture = toothTexture(); //牙冠材质
 			var remark = $("#remark").val();
 			var advisory=showAdvisory(); //会诊
 			var id = '<%=request.getAttribute("id")%>';
