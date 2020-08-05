@@ -29,6 +29,7 @@ import com.kqds.util.sys.YZUtility;
 import com.kqds.util.sys.chain.ChainUtil;
 
 import net.sf.json.JSONObject;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class KQDS_Ck_Goods_OutLogic extends BaseLogic {
@@ -89,6 +90,7 @@ public class KQDS_Ck_Goods_OutLogic extends BaseLogic {
 	}
 	
 	@SuppressWarnings("unchecked")
+	@Transactional(rollbackFor= Exception.class)
 	public void updateDetailByOutnum(YZPerson person, String menzhen, KqdsCkGoodsOut dp,
 			List<KqdsCkGoodsOutDetail> jList, List<JSONObject> numList) throws Exception {
 		List<KqdsCkGoodsOutDetail> kList=new ArrayList<KqdsCkGoodsOutDetail>();

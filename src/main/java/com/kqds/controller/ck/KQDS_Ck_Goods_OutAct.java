@@ -226,7 +226,7 @@ public class KQDS_Ck_Goods_OutAct {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/insertOrUpdate.act")
-	public String insertOrUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public synchronized String insertOrUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
 			YZPerson person = SessionUtil.getLoginPerson(request);
 			String menzhen = ChainUtil.getCurrentOrganization(request);

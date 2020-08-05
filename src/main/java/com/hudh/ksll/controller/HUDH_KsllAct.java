@@ -310,7 +310,7 @@ public class HUDH_KsllAct {
 	 * @throws Exception
 	 */
 	@RequestMapping("/ksllOutGoods.act")
-	public String ksllOutGoods(HttpServletRequest request,
+	public synchronized String ksllOutGoods(HttpServletRequest request,
 			HttpServletResponse response) throws Exception{
 		try {
 			ksllColorService.ksllOutGoods(request, response);
