@@ -843,7 +843,7 @@ function AuotSetFunc(){
     $("#askpersondept").val("");
     if(onclickrowOobj.kefudeptid){
         $("#askpersondept").val(onclickrowOobj.kefudeptid);
-        $("#askpersondept").attr("disabled","disabled");
+        $("#askpersondept").css("pointer-events","none");
     }else{
         if($("#askperson").val() != '' && $("#askperson").val() != null){
             $.ajax({
@@ -987,6 +987,12 @@ function submitReg(){
 	  $("#form input[name=usercode]").val(onclickrowOobj.usercode);
 	  $("#form input[name=username]").val(onclickrowOobj.username);
 	  var param = $('#form').serialize();
+	  if(param.indexOf("askperson=")==-1){
+          param+="&askperson="+$("#askperson").val();
+	  }
+	  if(param.indexOf("askpersondept=")==-1){
+		  param+="&askpersondept="+$("#askpersondept").val();
+	  }
 	  var url = '<%=contextPath%>/KQDS_REGAct/insertOrUpdate.act?' + param;
 	  var msg;
 	  $.axseSubmit(url, null,
