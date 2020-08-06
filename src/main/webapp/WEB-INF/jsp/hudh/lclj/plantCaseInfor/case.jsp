@@ -2957,7 +2957,8 @@
         var plantingsystemselect = JSON.stringify($("#plantingsystemselect").val()); //对应材质
         var plantextureselect = JSON.stringify($("#plantextureselect").val()); //对应材质
         var item1 = $('input:checkbox[name=repairPlanguan]:checked').val();
-        if(item1 == null){
+        //判断单冠联冠是否填写
+        /*if(item1 == null){
             layer.alert("请选择单冠/联冠！");
             return;
         }else{
@@ -2974,7 +2975,7 @@
                 layer.alert("请选择对应材质！");
                 return;
             }
-        }
+        }*/
 
         var param = {
             usercode:$("#patient_num").text(),
@@ -3237,7 +3238,8 @@
         var plantingsystemselect = JSON.stringify($("#plantingsystemselect").val()); //种植体系
         var plantextureselect = JSON.stringify($("#plantextureselect").val()); //种植体系
         var item1 = $('input:checkbox[name=repairPlanguan]:checked').val();
-        if(item1 == null){
+        //判断单冠联冠是否填写
+        /*if(item1 == null){
             layer.alert("请选择单冠/联冠！");
             return;
         }else{
@@ -3254,7 +3256,7 @@
                 layer.alert("请选择对应材质！");
                 return;
             }
-        }
+        }*/
         var param = {
             id:seqidFather,
             //treatmentparts1:$("#treatmentparts1").text(),
