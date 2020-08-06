@@ -239,7 +239,7 @@
                 #{jh,jdbcType=INTEGER},
             </if>
             <if test="usercode != null">
-                (SELECT createtime from KQDS_REG where recesort='20' and usercode=#{usercode,jdbcType=VARCHAR})
+                (SELECT createtime from KQDS_REG where recesort='20' and del!=1 and organization=#{organization,jdbcType=VARCHAR}  and usercode=#{usercode,jdbcType=VARCHAR})
             </if>
         </trim>
     </insert>

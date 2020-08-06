@@ -97,7 +97,7 @@
 <div id="container">
 	<!--查询条件-->
 	<div class="searchWrap">
-		<div class="cornerBox">查询条件</div>
+		<div class="cornerBox">查询条件 <a href="javascript:void(0);" class="kqdsSearchBtn hidden" id="scbb">生成报表</a></div>
             <div class="formBox">
             	<div class="kv">
 	            	<div class="kv">
@@ -201,6 +201,8 @@ var defaultindex = 0;
 var costno="";
 var costno1;   //获取费用单号
 var isdrugs1;
+var isClick = true;
+var menuid = "<%=menuid%>";
 var canEditCost = "<%=UserPrivUtil.getPrivValueByKey(UserPrivUtil.qxFlag9_canEditCost, request)%>"; //是否具备修改他人费用单的权限 0不可以 1 可以
 $(function(){
 	initHosSelectListNoCheck('organization');// 连锁门诊下拉框
@@ -255,19 +257,65 @@ $(function(){
 	});
 	gettabledata();
 	getlist();
+    getButtonAllCurPage(menuid);
 });
+$("#scbb").click(function(){
+    exportTable();
+});
+var loadIndex='';
+function download() {
+    layer.msg('数据导出中，请等待');
+    //loadIndex = layer.load(0, {shade: false});
+    isClick = false;
+}
+function disload() {
+    layer.close(loadIndex);
+    layer.msg('数据导出完毕');
+    isClick = true;
+}
 //jquery 导出excel 
 function exportTable(){
-	$("#BaseDatatable").table2excel({
-		exclude: ".noExl",//带noExlclass的行不会被输出到excel中
-		name: "Excel Document Name",
-		filename: "咨询基础数据统计表",
-		exclude_img: true,
-		exclude_links: true,
-		exclude_inputs: true
-	});
-//	var sheet =XLSX.utils.table_to_sheet($('#BaseDatatable')[0]);
-//	openDownloadDialog(sheet2blob(sheet), '咨询基础数据统计表.xlsx');
+    if(isClick) {
+        isClick = false;
+        // console.log("生成报表")
+        loadedData = [];
+        nowpage = 0;
+        var fieldArr = [];
+        var fieldnameArr = [];
+        $('#BaseDatatable thead tr th').each(function() {
+            var field = $(this).attr("data-field");
+            if (field != "") {
+                //fieldArr.push(field); //获取字段
+                fieldnameArr.push($(this).children()[0].innerText); //获取字段中文
+            }
+        });
+        var param = JsontoUrldata(queryParamsB());
+        var url = pageurl + "?flag=exportTable&fieldArr=[\"0\",\"usercode\",\"username\",\"askpersonname\",\"doctorname\",\"repairdoctorname\",\"yjjmoney\",\"ssmoney\",\"totalpay\"]" + "&fieldnameArr=" + JSON.stringify(fieldnameArr) + "&" + param;
+        download();
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);    // 也可用POST方式
+        xhr.responseType = "blob";
+        xhr.onload = function () {
+            if (this.status === 200) {
+                var blob = this.response;
+                // if (navigator.msSaveBlob == null) {
+                var a = document.createElement('a');
+                //var headerName = xhr.getResponseHeader("Content-disposition");
+                //var fileName = decodeURIComponent(headerName).substring(20);
+                a.download = "患者趋势";
+                a.href = URL.createObjectURL(blob);
+                $("body").append(a);    // 修复firefox中无法触发click
+                a.click();
+                URL.revokeObjectURL(a.href);
+                $(a).remove();
+                // } else {
+                //     navigator.msSaveBlob(blob, "信息查询");
+                // }
+            }
+            disload();
+        };
+        xhr.send();
+    }
 }
 /* 查询按钮 */
 $("#query").click(function(){
@@ -362,6 +410,34 @@ function switchingTime(){
 		$(".monthInput").css("display","none");
 		$(".yearInput").css("display","none");
 	}
+}
+function queryParamsB(params) {
+    if($("#time").val()=="年份"){
+        var temp = {
+			starttime:$(".yearInput .starttime").val(),
+            endtime:$(".yearInput .endtime").val(),
+            organization:$("#organization").val(),
+            czstarttime:$(".czstarttime").val(),
+            czendtime:$(".czendtime").val()
+        };
+    }else if($("#time").val()=="月份"){
+        var temp = {
+            starttime:$(".monthInput .starttime").val(),
+            endtime:$(".monthInput .endtime").val(),
+            organization:$("#organization").val(),
+            czstarttime:$(".czstarttime").val(),
+            czendtime:$(".czendtime").val()
+        };
+    }else{
+        var temp = {
+            starttime:$(".dayInput .starttime").val(),
+            endtime:$(".dayInput .endtime").val(),
+            organization:$("#organization").val(),
+            czstarttime:$(".czstarttime").val(),
+            czendtime:$(".czendtime").val()
+        };
+    }
+    return temp;
 }
 function queryParams(params) {
 	if($("#time").val()=="年份"){
@@ -1228,6 +1304,13 @@ function adjustTable() {
     setTableHeaderWidth("#tableFather");
     /*表格载入时，设置表头的宽度 */
     setTableHeaderWidth("#divkdxm");
+}
+function getButtonPower() {
+    for (var i = 0; i < listbutton.length; i++) {
+        if (listbutton[i].qxName == "scbb") {
+            $("#scbb").removeClass("hidden");
+        }
+    }
 }
 </script>
 </html>
