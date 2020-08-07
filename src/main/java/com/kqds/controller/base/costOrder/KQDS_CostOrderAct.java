@@ -142,7 +142,21 @@ public class KQDS_CostOrderAct {
             BootStrapPage bp = new BootStrapPage();
             // 封装参数到实体类
             BeanUtils.populate(bp, request.getParameterMap());
-            JSONObject object = logic.findCostOrderByUserdocument(map, bp);
+            // 导出参数
+            String flag = request.getParameter("flag") == null ? "" : request.getParameter("flag");
+            String fieldArr = request.getParameter("fieldArr") == null ? "" : request.getParameter("fieldArr");
+            String fieldnameArr = request.getParameter("fieldnameArr") == null ? "" : request.getParameter("fieldnameArr");
+            /*-------导出excel---------*/
+            if (flag != null && flag.equals("exportTable")) {
+                JSONObject object = logic.findCostOrderByUserdocument(flag,map, bp);
+                if (object != null ) {
+                    ExportBean bean = ExportTable.initExcel4RsWrite("费用趋势", fieldArr, fieldnameArr, response, request);
+                    bean = ExportTable.exportBootStrapTable2ExcelByResult(bean, (List<JSONObject>) object.get("rows"), "consumerTrends");
+                    ExportTable.writeExcel4DownLoad("费用趋势", bean.getWorkbook(), response);
+                }
+                return null;
+            }
+            JSONObject object = logic.findCostOrderByUserdocument(null,map, bp);
             YZUtility.RETURN_OBJ(object, response, logger);
         } catch (Exception ex) {
             YZUtility.DEAL_ERROR(ex.getMessage(), true, ex, response, logger);

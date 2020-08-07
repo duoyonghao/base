@@ -91,7 +91,6 @@ public class KQDS_CostOrderLogic extends BaseLogic {
 	/**
 	 * 根据患者编号，获取上一次开单信息
 	 * 
-	 * @param conn
 	 * @param usercode
 	 * @return
 	 * @throws SQLException
@@ -105,7 +104,6 @@ public class KQDS_CostOrderLogic extends BaseLogic {
 	/**
 	 * 验证改费用单是否是当天结账
 	 * 
-	 * @param conn
 	 * @param costno
 	 * @return
 	 * @throws Exception
@@ -118,7 +116,6 @@ public class KQDS_CostOrderLogic extends BaseLogic {
 	/**
 	 * 根据qfbh 和 项目编号 查询 当天最新的 记录的costno
 	 * 
-	 * @param conn
 	 * @param qfbh
 	 * @param itemno
 	 * @return
@@ -176,7 +173,6 @@ public class KQDS_CostOrderLogic extends BaseLogic {
 	/**
 	 * 费用列表 【查询所有，不做门诊条件过滤】
 	 * 
-	 * @param conn
 	 * @param table
 	 * @param map
 	 * @param visualstaff
@@ -195,7 +191,6 @@ public class KQDS_CostOrderLogic extends BaseLogic {
 	/**
 	 * 费用列表 【查询所有，不做门诊条件过滤】
 	 * 2019-08-23 lwg
-	 * @param conn
 	 * @param table
 	 * @param map
 	 * @param visualstaff
@@ -210,13 +205,10 @@ public class KQDS_CostOrderLogic extends BaseLogic {
 	/**
 	 * 已结账列表
 	 * 
-	 * @param conn
-	 * @param table
 	 * @param person
 	 * @param map
 	 * @param visualstaff
 	 * @param querytype
-	 * @param organization
 	 * @return
 	 * @throws Exception
 	 */
@@ -283,13 +275,10 @@ public class KQDS_CostOrderLogic extends BaseLogic {
 	/**
 	 * 已结账列表
 	 * 
-	 * @param conn
-	 * @param table
 	 * @param person
 	 * @param map
 	 * @param visualstaff
 	 * @param querytype
-	 * @param organization
 	 * @return
 	 * @throws Exception
 	 */
@@ -477,13 +466,7 @@ public class KQDS_CostOrderLogic extends BaseLogic {
 	/**
 	 * 已结账列表-首页工作量
 	 * 
-	 * @param conn
-	 * @param table
-	 * @param person
 	 * @param map
-	 * @param visualstaff
-	 * @param querytype
-	 * @param organization
 	 * @return
 	 * @throws Exception
 	 */
@@ -518,11 +501,8 @@ public class KQDS_CostOrderLogic extends BaseLogic {
 	/**
 	 * 患者总消费查询（首页工作量，报表中心欠费查询） 【查询所有，不做门诊条件过滤】
 	 * 
-	 * @param conn
-	 * @param table
 	 * @param person
 	 * @param map
-	 * @param visualstaff
 	 * @return
 	 * @throws Exception
 	 */
@@ -620,8 +600,6 @@ public class KQDS_CostOrderLogic extends BaseLogic {
 	/**
 	 * 查询欠费的患者 【排除 已经还款完成的患者】
 	 * 
-	 * @param conn
-	 * @param visualstaff
 	 * @return
 	 * @throws Exception
 	 */
@@ -642,7 +620,6 @@ public class KQDS_CostOrderLogic extends BaseLogic {
 	/**
 	 * 查询欠费的患者 【查询所有，不做门诊条件过滤】
 	 * 
-	 * @param conn
 	 * @param visualstaff
 	 * @return
 	 * @throws Exception
@@ -666,7 +643,6 @@ public class KQDS_CostOrderLogic extends BaseLogic {
 	 * 验证费用单是否能退
 	 * 
 	 * @param costno
-	 * @param dbConn
 	 * @return true 可以退 false 不能退
 	 * @throws Exception
 	 */
@@ -726,7 +702,6 @@ public class KQDS_CostOrderLogic extends BaseLogic {
 	 * 验证费用单退单积分情况
 	 * 
 	 * @param costno
-	 * @param dbConn
 	 * @return true 可以退 false 不能退
 	 * @throws Exception
 	 */
@@ -756,7 +731,6 @@ public class KQDS_CostOrderLogic extends BaseLogic {
 	 * 验证预交金费用单是否可以退
 	 * 
 	 * @param costno
-	 * @param dbConn
 	 * @return
 	 * @throws Exception
 	 */
@@ -1247,10 +1221,7 @@ public class KQDS_CostOrderLogic extends BaseLogic {
 	/**
 	 * 修改欠费
 	 * 
-	 * @param dbConn
-	 * @param person
 	 * @param costno
-	 * @param type
 	 *            0 新增费用单 1修改费用单
 	 * @param request
 	 * @throws Exception
@@ -1335,7 +1306,6 @@ public class KQDS_CostOrderLogic extends BaseLogic {
 	/**
 	 * 新增、修改费用单时，更新消费项目的相关信息
 	 * 
-	 * @param dbConn
 	 * @param detail
 	 * @param request
 	 * @return
@@ -1485,7 +1455,6 @@ public class KQDS_CostOrderLogic extends BaseLogic {
 	
 	/**
 	 * 获取当前待发的药品数量
-	 * @param noSendGrug
 	 * @param itemno
 	 * @return
 	 */
@@ -1598,7 +1567,7 @@ public class KQDS_CostOrderLogic extends BaseLogic {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public JSONObject findCostOrderByUserdocument(Map<String,String> map,BootStrapPage bp) throws Exception {
+	public JSONObject findCostOrderByUserdocument(String flag,Map<String,String> map,BootStrapPage bp) throws Exception {
 		List<JSONObject> list=new ArrayList<JSONObject>();
 		if(!YZUtility.isNullorEmpty(map.get("czstarttime"))){
 			map.put("czstarttime", map.get("czstarttime")+ ConstUtil.TIME_START);
@@ -1723,19 +1692,25 @@ public class KQDS_CostOrderLogic extends BaseLogic {
 				if(a==0){
 					jsonObject.put("paymoney","0");
 				}
-				Map<String,List<JSONObject>> map1= new HashMap<String,List<JSONObject>>();
-				List<JSONObject> list3=new ArrayList<JSONObject>();
-				list3.add(jsonObject);
-				map1.put("usercode", list3);
-				List<JSONObject> list4=new ArrayList<JSONObject>();
-				//费用情况
-				for (JSONObject json : list) {
-					if(jsonObject.getString("usercode").equals(json.getString("usercode"))){
-						list4.add(json);
+				if(flag!=null&& flag.equals("exportTable")){
+					jsonObject.put("yjjmoney",new BigDecimal(jsonObject.getString("paymoney")).subtract(new BigDecimal(jsonObject.getString("money"))));
+					jsonObject.put("ssmoney",new BigDecimal(jsonObject.getString("totalpay")).subtract(new BigDecimal(jsonObject.getString("paymoney")).subtract(new BigDecimal(jsonObject.getString("money")))));
+					list1.add(jsonObject);
+				}else{
+					Map<String,List<JSONObject>> map1= new HashMap<String,List<JSONObject>>();
+					List<JSONObject> list3=new ArrayList<JSONObject>();
+					list3.add(jsonObject);
+					map1.put("usercode", list3);
+					List<JSONObject> list4=new ArrayList<JSONObject>();
+					//费用情况
+					for (JSONObject json : list) {
+						if(jsonObject.getString("usercode").equals(json.getString("usercode"))){
+							list4.add(json);
+						}
 					}
+					map1.put("money", list4);
+					list1.add(map1);
 				}
-				map1.put("money", list4);
-				list1.add(map1);
 			}
 		}
 		jobj.put("total", pageInfo.getTotal());

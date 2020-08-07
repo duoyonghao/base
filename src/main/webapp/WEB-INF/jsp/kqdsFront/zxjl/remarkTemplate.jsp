@@ -140,7 +140,7 @@ textarea{
             </tr>
         </table>
     </form>
-    <button class="kqdsBtn" onclick="submit()">提交</button>
+    <button class="kqdsBtn" onclick="submit()">下一步</button>
 </div>
 </body>
 <script type="text/javascript" src="<%=contextPath%>/static/plugin/layer-v2.4/layer/layer.js"></script>

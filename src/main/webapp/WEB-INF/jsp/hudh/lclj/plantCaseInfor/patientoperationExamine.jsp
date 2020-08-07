@@ -446,7 +446,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td><span>会诊意见</span></td>
+						<td><span>备注</span></td>
 						<td colspan="11" style="height:100px"><textarea id="consultation_opinion" class="consultationopinion" onblur="TextLengthCheck(this.id,100);" placeholder="此框只能输100个字" type="text" rows="3" cols="50"></textarea></td>
 					</tr>
 					</tbody>
