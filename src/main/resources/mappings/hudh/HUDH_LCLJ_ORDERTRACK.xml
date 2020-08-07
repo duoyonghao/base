@@ -582,7 +582,7 @@
 	</update>
     <insert id="saveOperatingRecord" parameterType="com.hudh.lclj.entity.OperatingRecord">
 	insert into HUDH_LCLJ_OperatingRecord
-	(id,name,lcljId,crearteTime)values(#{id},#{lcljId},#{name},#{createTime})
+	(id,name,lcljId,crearteTime)values(#{id},#{name},#{lcljId},#{createTime})
 	</insert>
 
     <!-- 合并档案修改病历号 -->
