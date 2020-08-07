@@ -38,7 +38,7 @@
     <result column="oneBone" jdbcType="VARCHAR" property="onebone" />
     <result column="twoBone" jdbcType="VARCHAR" property="twobone" />
     <result column="threeBone" jdbcType="VARCHAR" property="threebone" />
-    <result column="fourBoue" jdbcType="VARCHAR" property="fourboue" />
+    <result column="fourBone" jdbcType="VARCHAR" property="fourBone" />
     <result column="anodontism" jdbcType="VARCHAR" property="anodontism" />
     <result column="teethDefect" jdbcType="VARCHAR" property="teethdefect" />
     <result column="dummy" jdbcType="VARCHAR" property="dummy" />
@@ -62,7 +62,7 @@
     distanceBetween, labialLine, gumTypes, undergo, periodontalCondition, mucosalSituation, 
     oneDu, twoDu, threeDu, dentitionDefect, defectDentition, saprodontia, residualCrown, pulpitis,
     teethTilted, nub, defectiveRepair, mouthApicitis, teethElongation, maxillarySinus, 
-    alveolar, genyantrum, boneMass, oneBone, twoBone, threeBone, fourBoue, anodontism, 
+    alveolar, genyantrum, boneMass, oneBone, twoBone, threeBone, fourBone, anodontism, 
     teethDefect, dummy, parodontopathy, residualRoot, residualRown, apicitis, other, createuser, createtime, organization,
     patienttime,doctortime,patient_signature,doctor_signature,others,status
   </sql>
@@ -79,7 +79,7 @@
       #{nub,jdbcType=VARCHAR}, #{defectiverepair,jdbcType=VARCHAR}, #{mouthapicitis,jdbcType=VARCHAR}, 
       #{teethelongation,jdbcType=VARCHAR}, #{maxillarysinus,jdbcType=VARCHAR}, #{alveolar,jdbcType=VARCHAR}, 
       #{genyantrum,jdbcType=VARCHAR}, #{bonemass,jdbcType=VARCHAR}, #{onebone,jdbcType=VARCHAR}, 
-      #{twobone,jdbcType=VARCHAR}, #{threebone,jdbcType=VARCHAR}, #{fourboue,jdbcType=VARCHAR}, 
+      #{twobone,jdbcType=VARCHAR}, #{threebone,jdbcType=VARCHAR}, #{fourBone,jdbcType=VARCHAR}, 
       #{anodontism,jdbcType=VARCHAR}, #{teethdefect,jdbcType=VARCHAR}, #{dummy,jdbcType=VARCHAR}, 
       #{parodontopathy,jdbcType=VARCHAR}, #{residualroot,jdbcType=VARCHAR}, #{residualrown,jdbcType=VARCHAR}, 
       #{apicitis,jdbcType=VARCHAR}, #{other,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR},
@@ -197,8 +197,8 @@
       <if test="threebone != null">
         threeBone,
       </if>
-      <if test="fourboue != null">
-        fourBoue,
+      <if test="fourBone != null">
+        fourBone,
       </if>
       <if test="anodontism != null">
         anodontism,
@@ -361,8 +361,8 @@
       <if test="threebone != null">
         #{threebone,jdbcType=VARCHAR},
       </if>
-      <if test="fourboue != null">
-        #{fourboue,jdbcType=VARCHAR},
+      <if test="fourBone != null">
+        #{fourBone,jdbcType=VARCHAR},
       </if>
       <if test="anodontism != null">
         #{anodontism,jdbcType=VARCHAR},
@@ -516,8 +516,8 @@
             <if test="threebone != null">
                 threeBone = #{threebone,jdbcType=VARCHAR},
             </if>
-            <if test="fourboue != null">
-                fourBoue = #{fourboue,jdbcType=VARCHAR},
+            <if test="fourBone != null">
+                fourBone = #{fourBone,jdbcType=VARCHAR},
             </if>
             <if test="anodontism != null">
                 anodontism = #{anodontism,jdbcType=VARCHAR},
