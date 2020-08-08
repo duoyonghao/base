@@ -239,6 +239,22 @@ public class HudhLcljBase {
     private String plantextureselect;
 
     private String repairPlanguan;
+    //牙位
+    private String twotoothextractionleftup;
+
+    private String twotoothextractionrightup;
+
+    private String twotoothextractionleftdown;
+
+    private String twotoothextractionrightdown;
+    //牙位
+    private String threetoothextractionleftup;
+
+    private String threetoothextractionrightup;
+
+    private String threetoothextractionleftdown;
+
+    private String threetoothextractionrightdown;
 
     
     public String getOperationDoctorsignature() {
@@ -1193,5 +1209,69 @@ public class HudhLcljBase {
 
     public void setRepairPlanguan(String repairPlanguan) {
         this.repairPlanguan = repairPlanguan;
+    }
+
+    public String getTwotoothextractionleftup() {
+        return twotoothextractionleftup;
+    }
+
+    public void setTwotoothextractionleftup(String twotoothextractionleftup) {
+        this.twotoothextractionleftup = twotoothextractionleftup;
+    }
+
+    public String getTwotoothextractionrightup() {
+        return twotoothextractionrightup;
+    }
+
+    public void setTwotoothextractionrightup(String twotoothextractionrightup) {
+        this.twotoothextractionrightup = twotoothextractionrightup;
+    }
+
+    public String getTwotoothextractionleftdown() {
+        return twotoothextractionleftdown;
+    }
+
+    public void setTwotoothextractionleftdown(String twotoothextractionleftdown) {
+        this.twotoothextractionleftdown = twotoothextractionleftdown;
+    }
+
+    public String getTwotoothextractionrightdown() {
+        return twotoothextractionrightdown;
+    }
+
+    public void setTwotoothextractionrightdown(String twotoothextractionrightdown) {
+        this.twotoothextractionrightdown = twotoothextractionrightdown;
+    }
+
+    public String getThreetoothextractionleftup() {
+        return threetoothextractionleftup;
+    }
+
+    public void setThreetoothextractionleftup(String threetoothextractionleftup) {
+        this.threetoothextractionleftup = threetoothextractionleftup;
+    }
+
+    public String getThreetoothextractionrightup() {
+        return threetoothextractionrightup;
+    }
+
+    public void setThreetoothextractionrightup(String threetoothextractionrightup) {
+        this.threetoothextractionrightup = threetoothextractionrightup;
+    }
+
+    public String getThreetoothextractionleftdown() {
+        return threetoothextractionleftdown;
+    }
+
+    public void setThreetoothextractionleftdown(String threetoothextractionleftdown) {
+        this.threetoothextractionleftdown = threetoothextractionleftdown;
+    }
+
+    public String getThreetoothextractionrightdown() {
+        return threetoothextractionrightdown;
+    }
+
+    public void setThreetoothextractionrightdown(String threetoothextractionrightdown) {
+        this.threetoothextractionrightdown = threetoothextractionrightdown;
     }
 }
