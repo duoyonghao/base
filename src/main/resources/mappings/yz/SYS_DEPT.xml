@@ -308,7 +308,7 @@
 
 	<select id="selectCountByMap" resultType="int">
 		select
-		count(1)
+		count(*)
 		from
 		<include refid="tableName"></include>
 		where 1=1
@@ -359,7 +359,7 @@
 
 	<select id="countByDeptCode" parameterType="json" resultType="int">
 		select
-		count(1)
+		count(*)
 		from
 		<include refid="tableName"></include>
 		p
@@ -373,7 +373,7 @@
 
 	<select id="countByDeptNameCurrHos" parameterType="json" resultType="int">
 		select
-		count(1)
+		count(*)
 		from
 		<include refid="tableName"></include>
 		p
@@ -449,7 +449,7 @@
 
 	<select id="IsHaveChild" parameterType="java.lang.String" resultType="int">
 		select
-		count(1)
+		count(*)
 		from
 		<include refid="tableName"></include>
 		p
@@ -459,7 +459,7 @@
 
 	<select id="IsHaveChildPerson" parameterType="java.lang.String" resultType="int">
 		select
-		count(1)
+		count(*)
 		from
 		SYS_PERSON
 		p
