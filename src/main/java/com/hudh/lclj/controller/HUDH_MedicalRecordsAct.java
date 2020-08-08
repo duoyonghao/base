@@ -311,6 +311,7 @@ public class HUDH_MedicalRecordsAct {
             dp.setCreateTime(YZUtility.getCurDateTimeStr());
             dp.setOrganization(organization);
             mlogic.insertFamiliar(dp);
+            YZUtility.DEAL_SUCCESS(null,"",response,logger);
         } catch (Exception e) {
             YZUtility.DEAL_ERROR("", false, e, response, logger);
         }
