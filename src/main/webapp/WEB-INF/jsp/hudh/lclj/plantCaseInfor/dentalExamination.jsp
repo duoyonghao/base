@@ -148,7 +148,7 @@
         text-align: center;
     }
     .content .colDefined .contentItem tr{
-        height: 30px;
+        height: 40px;
     }
     .content .colDefined .contentItem tr td input{
         width:20px;
@@ -177,16 +177,6 @@
         margin-bottom: 0px;
         margin-left:2%;
     }
-    /* 牙位图 */
-    .toothBitmap{
-        display:none;
-    }
-    .toothBitmap table tr{
-        height:20px;
-    }
-    .toothBitmap table tr>td{
-        text-align: center;
-    }
     .btnsYa{
         float: left;
         /* 	width: 14%; */
@@ -205,43 +195,11 @@
         border-radius: 5px;
         letter-spacing: 1px;
     }
-    /* 牙位图2 */
-    #toothBitmap ul{
-        overflow: hidden;
-    }
-    #toothBitmap ul li{
-        float: left;
-    }
     /* 牙位赋值框 */
     .toothNumInput {
         width: 90%!important;
         text-align: center!important;
         border: none!important;
-    }
-    /*.div_with{*/
-    /*    width:270px;*/
-    /*    height:35px;*/
-    /*    border:0px;*/
-    /*    overflow: hidden;*/
-    /*    word-wrap: break-word;*/
-    /*    word-break: normal;*/
-    /*    margin: auto;*/
-    /*}*/
-    /*.div_with2{*/
-    /*    width:170px;*/
-    /*    height:35px;*/
-    /*    border:0px;*/
-    /*    overflow: hidden;*/
-    /*    word-wrap: break-word;*/
-    /*    word-break: normal;*/
-    /*    margin: auto;*/
-    /*}*/
-    /*.div_with3{*/
-    /*    width:500px;*/
-    /*    margin: auto;*/
-    /*}*/
-    .checked_current{
-        border: 1px solid red;
     }
     .current_btn{
         margin-bottom:2px;
@@ -331,6 +289,9 @@
         margin: 0 auto;
     }
     @media print {
+        .content .colDefined .contentItem tr{
+            height:20px;
+        }
         .blockToothBox{
             display:block!important;
         }
@@ -350,34 +311,24 @@
             margin: 0px auto 10px !important;
         }
         .div_with{
-            width:270px;
-            height:35px;
-            border:0px;
-            overflow: hidden;
-            word-wrap: break-word;
-            word-break: normal;
+            width:270px!important;
             margin: auto;
         }
         .div_with2{
-            width:170px;
-            height:35px;
-            border:0px;
-            overflow: hidden;
-            word-wrap: break-word;
-            word-break: normal;
+            width:170px!important;
             margin: auto;
         }
         .div_with3{
             width:500px!important;
             margin: auto;
         }
-        .signature_time{
-            margin-top:80px
+        .problemitem{
+            font-size:10px;
+            font-weight:normal;
         }
-
     }
+    /*textarea牙位输入*/
     textarea{
-        /*border:1px solid red!important;*/
         resize:none;
         border: none;
         border-radius: 5px;
@@ -386,6 +337,39 @@
         width: 100%;
         text-align: center;
         outline:none;
+    }
+    /*input牙位输入*/
+    .tooth_map {
+        float: left;
+        display: inline-block;
+        width: 80%;
+        margin: 3px;
+    }
+    .tooth_map>li {
+        width: 49%;
+        height: 17.5px;
+        float: left;
+    }
+    .tooth_map>li>input {
+        border: 0px;
+        width: 90%;
+        margin-left: 5%;
+        height: 25px;
+        text-align: center;
+    }
+    .tooth_map>li:FIRST-CHILD {
+        border-bottom: 1px solid #2d2b2b;
+        border-right: 1px solid #2d2b2b;
+    }
+    .tooth_map>li:FIRST-CHILD+li {
+        border-bottom: 1px solid #2d2b2b;
+    }
+    .tooth_map>li:FIRST-CHILD+li+li {
+        border-right: 1px solid #2d2b2b;
+    }
+    .tooth_map input{
+        width:100%!important;
+        height:98%!important;
     }
 </style>
 <body>
@@ -547,12 +531,40 @@
                     <td  colspan="4" class="table_width">
                         <div class="div_with" sid="ysd1">
                             <textarea name="ysd1"  cols="2" placeholder="对应牙位"></textarea>
+                            <ul class="tooth_map" style="margin-left: 30px;">
+                                <li>
+                                    <input id="ysd1leftup" class="tooth_input" type="text">
+                                </li>
+                                <li>
+                                    <input id="ysd1rightup" class="tooth_input " type="text">
+                                </li>
+                                <li>
+                                    <input id="ysd1leftdown" class="tooth_input" type="text">
+                                </li>
+                                <li>
+                                    <input id="ysd1rightdown" class="tooth_input" type="text">
+                                </li>
+                            </ul>
                         </div>
                     </td>
                     <td  colspan="" class="problemitem table_width"><span class="" id="ysd2">Ⅱ°</span></td>
                     <td  colspan="4" class="table_width">
                         <div class="div_with" sid="ysd2">
                             <textarea name="ysd2"  cols="2" placeholder="对应牙位"></textarea>
+                            <ul class="tooth_map" style="margin-left: 30px;">
+                                <li>
+                                    <input id="ysd2leftup" class="tooth_input" type="text">
+                                </li>
+                                <li>
+                                    <input id="ysd2rightup" class="tooth_input" type="text">
+                                </li>
+                                <li>
+                                    <input id="ysd2leftdown" class="tooth_input" type="text">
+                                </li>
+                                <li>
+                                    <input id="ysd2rightdown" class="tooth_input" type="text">
+                                </li>
+                            </ul>
                         </div>
                     </td>
 
@@ -562,6 +574,20 @@
                     <td  colspan="4" class="table_width">
                         <div class="div_with placeholder" sid="ysd3">
                             <textarea name="ysd3"  cols="2" placeholder="对应牙位"></textarea>
+                            <ul class="tooth_map" style="margin-left: 30px;">
+                                <li>
+                                    <input id="ysd3leftup" class="tooth_input" type="text">
+                                </li>
+                                <li>
+                                    <input id="ysd3rightup" class="tooth_input" type="text">
+                                </li>
+                                <li>
+                                    <input id="ysd3leftdown" class="tooth_input" type="text">
+                                </li>
+                                <li>
+                                    <input id="ysd3rightdown" class="tooth_input" type="text">
+                                </li>
+                            </ul>
                         </div>
                     </td>
                     <td  colspan="" class="table_width"></td>
@@ -570,35 +596,29 @@
                 <tr>
                     <td  class="problemitem"><span style="margin-left:1% ">牙缺失（不作为诊断）</span></td>
                     <td  colspan="8" class="table_width">
-                        <div class="div_with3">
-                            <input id="toothDeficiency" name="toothDeficiency"  style="width:100%;border:none;height:30px;text-align: center" placeholder="对应牙位"></input>
+                        <div class="div_with3" sid="ysd">
+                            <textarea id="toothDeficiency" name="toothDeficiency"  cols="1" placeholder="对应牙位"></textarea>
+                            <ul class="tooth_map" style="margin-left: 30px;">
+                                <li>
+                                    <input id="ysdleftup" class="tooth_input" type="text">
+                                </li>
+                                <li>
+                                    <input id="ysdrightup" class="tooth_input" type="text">
+                                </li>
+                                <li>
+                                    <input id="ysdleftdown" class="tooth_input" type="text">
+                                </li>
+                                <li>
+                                    <input id="ysdrightdown" class="tooth_input" type="text">
+                                </li>
+                            </ul>
                         </div>
                     </td>
                 </tr>
             </table>
         </div>
     </div>
-    <div id="tooth" style="overflow:hidden;padding-left: 15%;display:none" >
-        <!-- 牙位图操作 -->
-        <div class="btnsYa" style="display:none">
-            <input type="button" id="toothLoose" class="nocurrent_btn" value="牙松动"/>
-            <input type="button" id="toothCondition" class="nocurrent_btn" value="口腔情况"/>
-            <input type="button" id="imageExamination" class="nocurrent_btn" value="影像学检查"/>
-            <input type="button" id="medicalCertificate" class="nocurrent_btn" value="诊断"/>
-        </div>
-        <!-- 牙位图 -->
-        <div class="row toothBox toothProBox"  id="toothLooseMap" style="min-width:600px;float:left;overflow:hidden;">
-            <ul class="upYa" >
-            </ul>
-            <div class="line">
-                <span class="left">右</span>
-                <span class="right">左</span>
-            </div>
-            <ul class="downYa">
-            </ul>
-        </div>
-    </div>
-    <div class="row toothBox blockToothBox" id="conditionToothBox" style="display:block;min-width:700px;width: 100%;overflow: hidden;margin-left: 10%;margin-top: 1px">
+    <div class="row toothBox blockToothBox" id="conditionToothBox" style="display:block;min-width:700px;width: 100%;overflow: hidden;margin:5px 0 0 10%;">
         <ul class="upYa" >
         </ul>
         <div class="line" style="left: -20%;width: 30%;">
@@ -624,6 +644,20 @@
                         <td class="table_width2">
                             <div class='div_with2 placeholder' sid="ycjjd">
                                 <textarea name='ycjjd'  cols='2' placeholder='对应牙位'></textarea>
+                                <ul class="tooth_map" style="margin-left: 20px;">
+                                    <li>
+                                        <input id="ycjjdleftup" class="tooth_input" type="text">
+                                    </li>
+                                    <li>
+                                        <input id="ycjjdrightup" class="tooth_input" type="text">
+                                    </li>
+                                    <li>
+                                        <input id="ycjjdleftdown" class="tooth_input" type="text">
+                                    </li>
+                                    <li>
+                                        <input id="ycjjdrightdown" class="tooth_input" type="text">
+                                    </li>
+                                </ul>
                             </div>
                         </td>
                         <td colspan="3" class="problemitem table_width3">
@@ -632,6 +666,20 @@
                         <td>
                             <div class='div_with2 placeholder' sid="jbd">
                                 <textarea name='jbd'  cols='2' placeholder='对应牙位'></textarea>
+                                <ul class="tooth_map" style="margin-left: 20px;">
+                                    <li>
+                                        <input id="jbdleftup" class="tooth_input" type="text">
+                                    </li>
+                                    <li>
+                                        <input id="jbdrightup" class="tooth_input" type="text">
+                                    </li>
+                                    <li>
+                                        <input id="jbdleftdown" class="tooth_input" type="text">
+                                    </li>
+                                    <li>
+                                        <input id="jbdrightdown" class="tooth_input" type="text">
+                                    </li>
+                                </ul>
                             </div>
                         </td>
                         <td colspan="3" class="problemitem table_width3">
@@ -642,6 +690,20 @@
                         <td class="table_width2">
                                 <div class='div_with2 placeholder' sid="ycjkd">
                                     <textarea name='ycjkd'  cols='2' placeholder='对应牙位'></textarea>
+                                    <ul class="tooth_map" style="margin-left: 20px;">
+                                        <li>
+                                            <input id="ycjkdleftup" class="tooth_input" type="text">
+                                        </li>
+                                        <li>
+                                            <input id="ycjkdrightup" class="tooth_input" type="text">
+                                        </li>
+                                        <li>
+                                            <input id="ycjkdleftdown" class="tooth_input" type="text">
+                                        </li>
+                                        <li>
+                                            <input id="ycjkdrightdown" class="tooth_input" type="text">
+                                        </li>
+                                    </ul>
                                 </div>
                         </td>
                         <td colspan="3" class="problemitem table_width3">
@@ -650,6 +712,20 @@
                         <td class="table_width2">
                             <div class='div_with2 placeholder' sid="ycsjg">
                                 <textarea name='ycsjg'  cols='2' placeholder='对应牙位'></textarea>
+                                <ul class="tooth_map" style="margin-left: 20px;">
+                                    <li>
+                                        <input id="ycsjgleftup" class="tooth_input" type="text">
+                                    </li>
+                                    <li>
+                                        <input id="ycsjgrightup" class="tooth_input" type="text">
+                                    </li>
+                                    <li>
+                                        <input id="ycsjgleftdown" class="tooth_input" type="text">
+                                    </li>
+                                    <li>
+                                        <input id="ycsjgrightdown" class="tooth_input" type="text">
+                                    </li>
+                                </ul>
                             </div>
                         </td>
                         <td colspan="2" class="problemitem table_width3">
@@ -715,7 +791,6 @@
     var signatureWidth='70%';
     var signatureHeight='65%';
     var form;
-    // var form=window.parent.getNewForm();
     $(function(){
         if (userAgent.match(/mobile/i)) {
             var mql = window.matchMedia('(orientation: portrait)');
@@ -750,13 +825,10 @@
         }
         getUser(usercode);//获取患者信息并赋值
         gettionData();//获取各板块问题详情
-        initToothMap("toothLooseMap");
-        initToothMap("toothConditionMap");
-        initToothMap("imageExaminationMap");
-        initToothMap("medicalCertificateMap");
         initBlockToothMap("conditionToothBox");
         pro("toothConditionBox",conditionData);
         pro("medicalCertificateBox",certificateData);
+        $("textarea").addClass("hidden");
         initData();//数据初始化
         //时间选择
         $(".consent_time").datetimepicker({
@@ -891,14 +963,14 @@
                 $(this).html("<span class='' id="+data[i].dictCode+">"+data[i].dictName+"</span>");
             })
             $("#"+obj).find("tbody tr").find("td:even").each(function(i,obj){
-                $(this).html("<div class='div_with placeholder' sid="+data[i].dictCode+"><textarea name="+data[i].dictCode+"  cols='2' placeholder='对应牙位'></textarea></div>");
+                $(this).html("<div class='div_with placeholder' sid="+data[i].dictCode+"><textarea name="+data[i].dictCode+"  cols='2' placeholder='对应牙位'></textarea><ul class='tooth_map' style='margin-left: 30px;'><li><input id='"+data[i].dictCode+"leftup' class='tooth_input' type='text'/></li><li><input id='"+data[i].dictCode+"rightup' class='tooth_input' type='text'/></li><li><input id='"+data[i].dictCode+"leftdown' class='tooth_input' type='text'/></li><li><input id='"+data[i].dictCode+"rightdown' class='tooth_input' type='text'/></li></ul></div>");
             })
         }else{
             $("#"+obj).find("tbody tr").find("td:odd").not("td:last").each(function(i,obj){
                 $(this).html("<span class='' id="+data[i].dictCode+">"+data[i].dictName+"</span>");
             })
             $("#"+obj).find("tbody tr").find("td:even").not("td:last").each(function(i,obj){
-                $(this).html("<div class='div_with placeholder' sid="+data[i].dictCode+"><textarea name="+data[i].dictCode+"  cols='2' placeholder='对应牙位'></textarea></div>");
+                $(this).html("<div class='div_with placeholder' sid="+data[i].dictCode+"><textarea name="+data[i].dictCode+"  cols='2' placeholder='对应牙位'></textarea><ul class='tooth_map' style='margin-left: 30px;'><li><input id='"+data[i].dictCode+"leftup' class='tooth_input' type='text'/></li><li><input id='"+data[i].dictCode+"rightup' class='tooth_input' type='text'/></li><li><input id='"+data[i].dictCode+"leftdown' class='tooth_input' type='text'/></li><li><input id='"+data[i].dictCode+"rightdown' class='tooth_input' type='text'/></li></ul></div>");
             })
         }
     }
@@ -954,7 +1026,7 @@
         }
         return inputSave;
     }
-    //牙松动牙位取值
+    //牙松动牙位取值textarea
     function saveToothLoose(){
         var toothLooseItem={};
         $(".toothLooseNextBox").nextAll().find("td:even").each(function(j,el){
@@ -967,7 +1039,18 @@
         })
         return toothLooseItem;
     }
-    //整体情况~诊断~影像学检查 =》牙位取值
+    function saveToothLooseInput(){
+        var toothLooseItem={};
+        $(".toothLooseNextBox").nextAll().find("td:odd").find("div ul li").each(function(j,el){
+                var item=$(el).find("input").attr("id");
+                if(item!=undefined){
+                    var itemInput=$("#"+item).val();
+                    toothLooseItem[item]=itemInput;
+                }
+        })
+        return toothLooseItem;
+    }
+    //整体情况~诊断~影像学检查 =》牙位取值textarea
     function saveTooth(obj){
         var ToothItem={};
         $("#"+obj).find("tr td:odd").each(function(j,el){
@@ -976,6 +1059,18 @@
             if(item!=undefined){
                 var checkedtoothStr=itemTooth.val(); //获取牙位
                 ToothItem[item]=checkedtoothStr;
+            }
+        })
+        return ToothItem;
+    }
+    //整体情况~诊断~影像学检查 =》牙位取值input
+    function saveToothInput(obj){
+        var ToothItem={};
+        $("#"+obj).find("tr td:even").find("div ul li").each(function(j,el){
+            var item=$(el).find("input").attr("id");
+            if(item!=undefined){
+                var itemInput=$("#"+item).val();
+                ToothItem[item]=itemInput;
             }
         })
         return ToothItem;
@@ -1067,7 +1162,7 @@
     function save() {
 // 	   基本信息seqid
         var patient_seqid = $("#patient_num").attr("seqid");
-// 	    口腔专科检查
+// 	   口腔专科检查
         var ismouthopening = $("#oralSpecialtyExamination").find("input[name='ismouthopening']:checked").val();//张口度ismouthopening
         var mouthopening = $("#mouthopening").val(); // 张口度mouth_openinput
         var arthrosis=inputCheckedSave("arthrosis");//颞下颌关节
@@ -1082,14 +1177,16 @@
         var periodontalcondition=inputCheckedSave("periodontalcondition");//牙周情况
         var mucosalsituation=inputCheckedSave("mucosalsituation"); //粘膜情况
 // 牙松动
-        var toothLoose=saveToothLoose();//牙位
+        var toothLoose=saveToothLoose();//牙位textarea
+        var anodontism=saveToothLooseInput();//牙缺失和牙松动的input十字架取值
 //牙缺失
-        var toothDeficiency=$("#toothDeficiency").val();//牙位
+        var toothDeficiency=$("#toothDeficiency").val();//牙位textarea
 // 整体口腔情况明细
-        var toothCondition=saveTooth("toothConditionBox");//牙位
-
+        var toothCondition=saveTooth("toothConditionBox");//牙位textarea
+        var toothConditionInput=saveToothInput("toothConditionBox");//牙位input 十字架
 // 影像学检查
-        var imageExamination=saveTooth("imageExaminationBox");//牙位
+        var imageExamination=saveTooth("imageExaminationBox");//牙位textarea
+        var imageExaminationInput=saveToothInput("imageExaminationBox");//牙位input 十字架
         var saprodontia = $("#saprodontia").val();//牙槽嵴顶距上颌窦底
         var residualcrown = $("#residualcrown").val();//距下牙槽神经管
         var basisnasi = $("#basisnasi").val();//距鼻底
@@ -1099,9 +1196,15 @@
         var nub = $("#imageExaminationBox").find("input[name='nub']:checked").val();//种植区域骨量是否正常
 // 诊断
         var medicalCertificate=saveTooth("medicalCertificateBox"); //牙位
+        var medicalCertificateInput=saveToothInput("medicalCertificateBox");//牙位input 十字架
         // //签字时间
         var patienttime = $("#patienttime").val();//患者签字时间
         var doctortime = $("#doctortime").val();//医生签字时间
+        anodontism=JSON.stringify(anodontism);
+        toothConditionInput=JSON.stringify(toothConditionInput);
+        imageExaminationInput=JSON.stringify(imageExaminationInput);
+        medicalCertificateInput=JSON.stringify(medicalCertificateInput);
+        // 以上是十字架传值
         toothLoose = JSON.stringify(toothLoose);
         toothCondition = JSON.stringify(toothCondition);
         imageExamination = JSON.stringify(imageExamination);
@@ -1126,24 +1229,28 @@
             periodontalcondition : periodontalcondition,
             mucosalsituation : mucosalsituation,
 // 牙松动
-            onedu : toothLoose,
+            onedu : toothLoose,//textarea
+            anodontism:anodontism,//牙松动和牙缺失input
 //牙缺失
-            onebone:toothDeficiency,//后台字段onebone
+            onebone:toothDeficiency,//牙缺失 后台字段onebone textarea
 // 整体口腔情况明细
-            dentitiondefect : toothCondition,
+            dentitiondefect : toothCondition,//textarea
+            twodu:toothConditionInput,//input
 // 影像学检查
-            defectdentition : imageExamination,
+            defectdentition : imageExamination,//textarea
+            threedu:imageExaminationInput,//input
             saprodontia : saprodontia,
             residualcrown : residualcrown,
-            twobone:basisnasi,//后台字段twobone
-            threebone:alveolarcrest,//后台字段threebone
+            twobone:basisnasi,//距鼻底 后台字段twobone
+            threebone:alveolarcrest,//牙槽嵴宽度 后台字段threebone
             pulpitis : pulpitis,
             teethtilted : teethtilted,
             nub : nub,
 // 诊断
             patientSignature :  patientsignature,
             doctorSignature :  signature,
-            defectiverepair : medicalCertificate,
+            defectiverepair : medicalCertificate,//诊断牙位texterea
+            fourbone:medicalCertificateInput,//诊断牙位input
             patientTime:patienttime,
             doctorTime:doctortime
         };
@@ -1170,7 +1277,7 @@
 
     //  修改方法
     function update() {
-// 	   基本信息seqid
+// 	    基本信息seqid
         var patient_seqid = $("#patient_num").attr("seqid");
 // 	    口腔专科检查
         var ismouthopening = $("#oralSpecialtyExamination").find("input[name='ismouthopening']:checked").val();//张口度ismouthopening
@@ -1187,15 +1294,16 @@
         var periodontalcondition=inputCheckedSave("periodontalcondition");//牙周情况
         var mucosalsituation=inputCheckedSave("mucosalsituation"); //粘膜情况
 // 牙松动
-        var toothLoose=saveToothLoose();//牙位
+        var toothLoose=saveToothLoose();//牙位textarea
+        var anodontism=saveToothLooseInput();//牙缺失和牙松动的input十字架取值
 //牙缺失
-        var toothDeficiency=$("#toothDeficiency").val();//牙位
-
+        var toothDeficiency=$("#toothDeficiency").val();//牙位textarea
 // 整体口腔情况明细
-        var toothCondition=saveTooth("toothConditionBox");//牙位
-
+        var toothCondition=saveTooth("toothConditionBox");//牙位textarea
+        var toothConditionInput=saveToothInput("toothConditionBox");//牙位input 十字架
 // 影像学检查
-        var imageExamination=saveTooth("imageExaminationBox");//牙位
+        var imageExamination=saveTooth("imageExaminationBox");//牙位textarea
+        var imageExaminationInput=saveToothInput("imageExaminationBox");//牙位input 十字架
         var saprodontia = $("#saprodontia").val();//牙槽嵴顶距上颌窦底
         var residualcrown = $("#residualcrown").val();//距下牙槽神经管
         var basisnasi = $("#basisnasi").val();//距鼻底
@@ -1205,9 +1313,15 @@
         var nub = $("#imageExaminationBox").find("input[name='nub']:checked").val();//种植区域骨量是否正常
 // 诊断
         var medicalCertificate=saveTooth("medicalCertificateBox"); //牙位
+        var medicalCertificateInput=saveToothInput("medicalCertificateBox");//牙位input 十字架
         // //签字时间
         var patienttime = $("#patienttime").val();//患者签字时间
         var doctortime = $("#doctortime").val();//医生签字时间
+        anodontism=JSON.stringify(anodontism);
+        toothConditionInput=JSON.stringify(toothConditionInput);
+        imageExaminationInput=JSON.stringify(imageExaminationInput);
+        medicalCertificateInput=JSON.stringify(medicalCertificateInput);
+        // 以上是十字架牙位传值
         toothLoose = JSON.stringify(toothLoose);
         toothCondition = JSON.stringify(toothCondition);
         imageExamination = JSON.stringify(imageExamination);
@@ -1233,24 +1347,28 @@
             periodontalcondition : periodontalcondition,
             mucosalsituation : mucosalsituation,
 // 牙松动
-            onedu : toothLoose,
+            onedu : toothLoose,//textarea
+            anodontism:anodontism,//牙松动和牙缺失input
 //牙缺失
-            onebone:toothDeficiency,//后台字段onebone
+            onebone:toothDeficiency,//牙缺失 后台字段onebone textarea
 // 整体口腔情况明细
-            dentitiondefect : toothCondition,
+            dentitiondefect : toothCondition,//textarea
+            twodu:toothConditionInput,//input
 // 影像学检查
-            defectdentition : imageExamination,
-            twobone:basisnasi,//后台字段twobone
-            threebone:alveolarcrest,//后台字段threebone
+            defectdentition : imageExamination,//textarea
+            threedu:imageExaminationInput,//input
             saprodontia : saprodontia,
             residualcrown : residualcrown,
+            twobone:basisnasi,//距鼻底 后台字段twobone
+            threebone:alveolarcrest,//牙槽嵴宽度 后台字段threebone
             pulpitis : pulpitis,
             teethtilted : teethtilted,
             nub : nub,
 // 诊断
             patientSignature :  patientsignature,
             doctorSignature :  signature,
-            defectiverepair : medicalCertificate,
+            defectiverepair : medicalCertificate,//诊断牙位texterea
+            fourbone:medicalCertificateInput,//诊断牙位input
             patientTime:patienttime,
             doctorTime:doctortime
         };
@@ -1268,19 +1386,36 @@
                         }
                     });
                 } else {
-                    layer.alert('修改失败'  );
+                    layer.alert('修改失败');
                 }
             },
             function() {
-                layer.alert('修改失败' );
+                layer.alert('修改失败');
             });
     }
+    // 时间区间
+    function isDuringDate(nowDate,end){
+        endTime=new Date(end);
+        curentDate=new Date(nowDate);
+        if(endTime<curentDate){
+            return true;
+        }
+        console.log(false);
+        return false;
+    }
+
     // 	返回数据赋值
     function initData(){
         if(form){
+            var breakTime=form.createtime;
+            var createTimes=new Date(breakTime);
+            var endTime=new Date("2020-08-08");
+            if(createTimes<endTime){
+                $(".tooth_map").addClass("hidden");
+                $("textarea").removeClass("hidden");
+                $(".signature_time").css("margin-top","80px");
+            }
             updataid=form.seqId;//获取更新修改id
-            // var res=result[0];
-            // updataid=res.seqId;//获取更新修改id
             if(form){
                 $("#consent_saveBtn").css("display","none");//隐藏保存按钮
                 $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
@@ -1302,7 +1437,7 @@
             // 其他
             $("#others").val(form["others"]);
             //牙缺失
-            $("#toothDeficiency").val(form["onebone"]);
+            $("#toothDeficiency").text(form["onebone"]);//textarea
             //距鼻底
             $("#basisnasi").val(form["twobone"]);
             //牙槽嵴宽度
@@ -1319,7 +1454,7 @@
                 })//复选框及单选框赋值
                 $("#"+i+"[type='text']").attr("value",form[i]);// 填框赋值
             }
-// 	 					牙位赋值start
+// 	 		牙位赋值start
             if(form[i]="onedu"){
                 var toothLoose=form.onedu;
                 var table_pro=$(".toothLooseNextBox").nextAll().find("td:even");
@@ -1377,9 +1512,33 @@
                     }
                 })
             }
+            // 十字架牙位
+            if(form[i]="anodontism"){//牙松动和牙缺失
+                var anodontism=form.anodontism;
+                for(var key in anodontism){
+                    $("#"+key).val(anodontism[key]);
+                }
+            }
+            if(form[i]="twodu"){//整体情况
+                var toothConditionInput=form.twodu;
+                for(var key in toothConditionInput){
+                    $("#"+key).val(toothConditionInput[key]);
+                }
+            }
+            if(form[i]="threedu"){
+                var imageExaminationInput=form.threedu;
+                for(var key in imageExaminationInput){
+                    $("#"+key).val(imageExaminationInput[key]);
+                }
+            }
+            if(form[i]="fourbone"){
+                var medicalCertificateInput=form.fourbone;
+                for(var key in medicalCertificateInput){
+                    $("#"+key).val(medicalCertificateInput[key]);
+                }
+            }
         }
         getButtonAllCurPage(menuid);
-
     }
     //修改按钮权限
     function getButtonPower() {
@@ -1399,19 +1558,27 @@
         $("input[type='radio']").each(function(i,obj){
             $(this).removeAttr("disabled");
         });
-
         bdhtml=window.document.body.innerHTML;
         sprnstr="<!--startprint-->";
         eprnstr="<!--endprint-->";
         prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);
         prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
-        var htmlStyle="<style>.level{disabled:false!important}button{display:none;}input{border:none;}.toothBitmap{display:none}#tooth{display:none}.content .colDefined .contentItem tr td input:not([type='text']){width:10px}.demand{font-size: 10px;font-weight: normal;}";
-        htmlStyle+=".content .colDefined .contentItem tr{height:20px}.problemitem{font-size:10px;font-weight:normal;}#toothConditionBoxMap2{font-size:10px!important}.placeholder:empty:before{content:' ';}.inputhidden{border: 1px solid transparent!important;}::-webkit-input-placeholder{color:transparent;}</style>"
+        var htmlStyle="<style>.level{disabled:false!important}button{display:none;}input{border:none;}.content .colDefined .contentItem tr td input:not([type='text']){width:10px}.demand{font-size: 10px;font-weight: normal;}";
+        htmlStyle+="#toothConditionBoxMap2{font-size:10px!important}.placeholder:empty:before{content:' ';}.inputhidden{border: 1px solid transparent!important;}::-webkit-input-placeholder{color:transparent;}</style>"
         window.document.body.innerHTML=prnhtml+htmlStyle;
         window.print();  //打印
         window.document.body.innerHTML=bdhtml; // 恢复页面
         window.location.reload();
     }
+// 字段备注新增内容
+//     onedu--牙位牙松动textarea
+//     twodu--牙位整体情况input十字架
+//     threedu--牙位影像学检查input十字架
+//     anodontism--牙位牙松动和牙缺失input十字架
+//     onebone--牙缺失textarea
+//     twobone--距鼻底
+//     threebone--牙槽嵴宽度
+//     fourbone--牙位诊断input十字架
 
 </script>
 </body>
