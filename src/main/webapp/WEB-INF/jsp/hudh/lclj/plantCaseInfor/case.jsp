@@ -1201,6 +1201,9 @@
                         <div style="width: 80%;float: right;">
                             <div class="" style="margin-left: 10px;">
                                 <ul class="loseTooth_option">
+                                    <li style="height: 50px;line-height: 50px;">
+                                        <label>第一次</label>
+                                    </li>
                                     <li style="width: 156px;height: 50px;">
                                         <label for="spreoperative">
                                             <div id="diagnosis_continer" class="container-fluid">
@@ -1236,6 +1239,88 @@
                                         </label>
                                     </li>
                                 </ul>
+
+                            </div>
+                            <div style="margin-left: 10px;">
+                                <ul class="loseTooth_option">
+                                    <li style="height: 50px;line-height: 50px;">
+                                        <label>第二次</label>
+                                    </li>
+                                    <li style="width: 154px;height: 50px;margin-right: 10px;">
+                                        <label for="spreoperative">
+                                            <div id="diagnosis_continer" class="container-fluid">
+                                                <div class="row">
+                                                    <!-- 牙位图 -->
+                                                    <div class="zl_toothMapdiv">
+                                                        <ul class="tooth_map"
+                                                            style="width: 100%;height: 50px;margin-left: 1%;">
+                                                            <li>
+                                                                <input id="twotoothextractionleftup"
+                                                                       onblur="TextLengthCheck(this.id,10);"
+                                                                       class="tooth_input" type="text">
+                                                            </li>
+                                                            <li>
+                                                                <input id="twotoothextractionrightup"
+                                                                       onblur="TextLengthCheck(this.id,10);"
+                                                                       class="tooth_input" type="text">
+                                                            </li>
+                                                            <li>
+                                                                <input id="twotoothextractionleftdown"
+                                                                       onblur="TextLengthCheck(this.id,10);"
+                                                                       class="tooth_input" type="text">
+                                                            </li>
+                                                            <li>
+                                                                <input id="twotoothextractionrightdown"
+                                                                       onblur="TextLengthCheck(this.id,10);"
+                                                                       class="tooth_input" type="text">
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul class="loseTooth_option">
+                                    <li style="height: 50px;line-height: 50px;">
+                                        <label>第三次</label>
+                                    </li>
+                                    <li style="width: 154px;height: 50px;margin-right: 10px;">
+                                        <label for="spreoperative">
+                                            <div id="diagnosis_continer" class="container-fluid">
+                                                <div class="row">
+                                                    <!-- 牙位图 -->
+                                                    <div class="zl_toothMapdiv">
+                                                        <ul class="tooth_map" style="width: 100%;height: 50px;margin-left: 1%;">
+                                                            <li>
+                                                                <input id="threetoothextractionleftup"
+                                                                       onblur="TextLengthCheck(this.id,10);"
+                                                                       class="tooth_input" type="text">
+                                                            </li>
+                                                            <li>
+                                                                <input id="threetoothextractionrightup"
+                                                                       onblur="TextLengthCheck(this.id,10);"
+                                                                       class="tooth_input" type="text">
+                                                            </li>
+                                                            <li>
+                                                                <input id="threetoothextractionleftdown"
+                                                                       onblur="TextLengthCheck(this.id,10);"
+                                                                       class="tooth_input" type="text">
+                                                            </li>
+                                                            <li>
+                                                                <input id="threetoothextractionrightdown"
+                                                                       onblur="TextLengthCheck(this.id,10);"
+                                                                       class="tooth_input" type="text">
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
 
@@ -1244,10 +1329,10 @@
                 <div class="row" style="margin-right:0;margin-left:0;border-top: 1px solid #b3b3b3">
                     <div style="height: 50px;" class="opstall">
                         <div style="float: left;border-right: 1px solid #b3b3b3;width: 20%;height: 100%;">
-                            <span class="titles">手术方式</span>
+                            <span class="titles">种植术</span>
                         </div>
                         <div style="width: 80%;float: right;">
-                            <ul class="loseTooth_option" id="mode" style="margin-left:10px;">
+                           <%-- <ul class="loseTooth_option" id="mode" style="margin-left:10px;">
                                 <li style="line-height: 50px;margin-right:10px;">
                                     <input name="modus" id="immediately" type="checkbox" value="即刻种植" /><label
                                         for="immediately">即刻种植 </label>
@@ -1266,7 +1351,7 @@
                                         for="minimally">微创种植</label>
                                 </li>
 
-                            </ul>
+                            </ul>--%>
                             <div style="margin-left: 10px;">
                                 <ul class="loseTooth_option">
                                     <li style="height: 50px;line-height: 50px;">
@@ -1351,7 +1436,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row"
+                <%--<div class="row"
                      style="margin-right:0;margin-left:0;border-bottom:1px solid #b3b3b3;border-top: 1px solid #b3b3b3;">
                     <div style="height: 50px;">
                         <div style="float: left;border-right: 1px solid #b3b3b3;width: 20%;height: 100%;">
@@ -1375,8 +1460,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="row" style="margin-right:0;margin-left:0;border-bottom:1px solid #b3b3b3">
+                </div>--%>
+                <div class="row" style="margin-right:0;margin-left:0;border-bottom:1px solid #b3b3b3;border-top: 1px solid #b3b3b3;">
                     <div style="height:150px;">
                         <div style="float: left;border-right: 1px solid #b3b3b3;width: 20%;height: 100%;">
                             <span class="" style="line-height: 150px;margin-left: 50px;">辅助手术</span>
@@ -2549,6 +2634,7 @@
                 $("#patient_site").text(r.provincename + r.cityname + r.townname + r.streetName);
             }
         });
+        console.log(form,"form")
         if(form){
             $("#consent_saveBtn").css("display","none");//隐藏保存按钮
             $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
@@ -2990,7 +3076,7 @@
             one:$("input[name='one']:checked").val(),
             preoperatives:preoperativesPlan(),
             bicon:biconPlan(),
-            abutment:abutmentPlan(),
+            //abutment:abutmentPlan(),
             paraoperative:paraoperativePlan(),
             bonemeal:$("#bonemeal").val(),
             ossein:$("#ossein").val(),
@@ -3014,6 +3100,14 @@
             extractionrightup:$("#extractionrightup").val(),
             extractionleftdown:$("#extractionleftdown").val(),
             extractionrightdown:$("#extractionrightdown").val(),
+            twotoothextractionleftup:$("#twotoothextractionleftup").val(),
+            twotoothextractionrightup:$("#twotoothextractionrightup").val(),
+            twotoothextractionleftdown:$("#twotoothextractionleftdown").val(),
+            twotoothextractionrightdown:$("#twotoothextractionrightdown").val(),
+            threetoothextractionleftup:$("#threetoothextractionleftup").val(),
+            threetoothextractionrightup:$("#threetoothextractionrightup").val(),
+            threetoothextractionleftdown:$("#threetoothextractionleftdown").val(),
+            threetoothextractionrightdown:$("#threetoothextractionrightdown").val(),
             dentiumleftup:$("#dentiumleftup").val(),
             dentiumrightup:$("#dentiumrightup").val(),
             dentiumleftdown:$("#dentiumleftdown").val(),
@@ -3134,7 +3228,7 @@
         return bicon;
     }
     //获取基台使用
-    function abutmentPlan() {
+   /* function abutmentPlan() {
         var obj = document.getElementsByName("abutment");
         var abutment = "";
         for ( k in obj ) {
@@ -3142,7 +3236,7 @@
                 abutment = abutment + obj[k].value + ';';
         }
         return abutment;
-    }
+    }*/
     //获取辅助手术
     function paraoperativePlan() {
         var obj = document.getElementsByName("paraoperative");
@@ -3154,7 +3248,7 @@
         return paraoperative;
     }
 
-    //获取手术方式
+    //获取种植术
     function modusPlan() {
         var obj = document.getElementsByName("modus");
         var modus = "";
@@ -3267,7 +3361,7 @@
             //one:$("input[name='one']:checked").val(),
             preoperatives:preoperativesPlan(),
             bicon:biconPlan(),
-            abutment:abutmentPlan(),
+            //abutment:abutmentPlan(),
             paraoperative:paraoperativePlan(),
             bonemeal:$("#bonemeal").val(),
             ossein:$("#ossein").val(),
@@ -3291,6 +3385,14 @@
             extractionrightup:$("#extractionrightup").val(),
             extractionleftdown:$("#extractionleftdown").val(),
             extractionrightdown:$("#extractionrightdown").val(),
+            twotoothextractionleftup:$("#twotoothextractionleftup").val(),
+            twotoothextractionrightup:$("#twotoothextractionrightup").val(),
+            twotoothextractionleftdown:$("#twotoothextractionleftdown").val(),
+            twotoothextractionrightdown:$("#twotoothextractionrightdown").val(),
+            threetoothextractionleftup:$("#threetoothextractionleftup").val(),
+            threetoothextractionrightup:$("#threetoothextractionrightup").val(),
+            threetoothextractionleftdown:$("#threetoothextractionleftdown").val(),
+            threetoothextractionrightdown:$("#threetoothextractionrightdown").val(),
             dentiumleftup:$("#dentiumleftup").val(),
             dentiumrightup:$("#dentiumrightup").val(),
             dentiumleftdown:$("#dentiumleftdown").val(),
