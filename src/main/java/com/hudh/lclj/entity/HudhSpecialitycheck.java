@@ -74,7 +74,7 @@ public class HudhSpecialitycheck {
 
     private String threebone;
 
-    private String fourBone;
+    private String fourbone;
 
     private String anodontism;
 
@@ -767,21 +767,21 @@ public class HudhSpecialitycheck {
 	}
 
 	/**  
-	  * @Title:  getfourBone <BR>  
+	  * @Title:  getfourbone <BR>  
 	  * @Description: please write your description <BR>  
 	  * @return: String <BR>  
 	  */
-	public String getfourBone() {
-		return fourBone;
+	public String getfourbone() {
+		return fourbone;
 	}
 
 	/**  
-	  * @Title:  setfourBone <BR>  
+	  * @Title:  setfourbone <BR>  
 	  * @Description: please write your description <BR>  
 	  * @return: String <BR>  
 	  */
-	public void setfourBone(String fourBone) {
-		this.fourBone = fourBone;
+	public void setfourbone(String fourbone) {
+		this.fourbone = fourbone;
 	}
 
 	/**  
@@ -1061,7 +1061,7 @@ public class HudhSpecialitycheck {
 				", onebone='" + onebone + '\'' +
 				", twobone='" + twobone + '\'' +
 				", threebone='" + threebone + '\'' +
-				", fourBone='" + fourBone + '\'' +
+				", fourbone='" + fourbone + '\'' +
 				", anodontism='" + anodontism + '\'' +
 				", teethdefect='" + teethdefect + '\'' +
 				", dummy='" + dummy + '\'' +
@@ -1102,7 +1102,7 @@ public class HudhSpecialitycheck {
 		result = prime * result + ((dentitiondefect == null) ? 0 : dentitiondefect.hashCode());
 		result = prime * result + ((distancebetween == null) ? 0 : distancebetween.hashCode());
 		result = prime * result + ((dummy == null) ? 0 : dummy.hashCode());
-		result = prime * result + ((fourBone == null) ? 0 : fourBone.hashCode());
+		result = prime * result + ((fourbone == null) ? 0 : fourbone.hashCode());
 		result = prime * result + ((genyantrum == null) ? 0 : genyantrum.hashCode());
 		result = prime * result + ((gumtypes == null) ? 0 : gumtypes.hashCode());
 		result = prime * result + ((horizontalcurve == null) ? 0 : horizontalcurve.hashCode());
@@ -1206,10 +1206,10 @@ public class HudhSpecialitycheck {
 				return false;
 		} else if (!dummy.equals(other.dummy))
 			return false;
-		if (fourBone == null) {
-			if (other.fourBone != null)
+		if (fourbone == null) {
+			if (other.fourbone != null)
 				return false;
-		} else if (!fourBone.equals(other.fourBone))
+		} else if (!fourbone.equals(other.fourbone))
 			return false;
 		if (genyantrum == null) {
 			if (other.genyantrum != null)

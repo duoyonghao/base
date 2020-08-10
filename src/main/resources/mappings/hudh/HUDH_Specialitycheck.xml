@@ -38,7 +38,7 @@
     <result column="oneBone" jdbcType="VARCHAR" property="onebone" />
     <result column="twoBone" jdbcType="VARCHAR" property="twobone" />
     <result column="threeBone" jdbcType="VARCHAR" property="threebone" />
-    <result column="fourBone" jdbcType="VARCHAR" property="fourBone" />
+    <result column="fourBone" jdbcType="VARCHAR" property="fourbone" />
     <result column="anodontism" jdbcType="VARCHAR" property="anodontism" />
     <result column="teethDefect" jdbcType="VARCHAR" property="teethdefect" />
     <result column="dummy" jdbcType="VARCHAR" property="dummy" />
@@ -79,7 +79,7 @@
       #{nub,jdbcType=VARCHAR}, #{defectiverepair,jdbcType=VARCHAR}, #{mouthapicitis,jdbcType=VARCHAR}, 
       #{teethelongation,jdbcType=VARCHAR}, #{maxillarysinus,jdbcType=VARCHAR}, #{alveolar,jdbcType=VARCHAR}, 
       #{genyantrum,jdbcType=VARCHAR}, #{bonemass,jdbcType=VARCHAR}, #{onebone,jdbcType=VARCHAR}, 
-      #{twobone,jdbcType=VARCHAR}, #{threebone,jdbcType=VARCHAR}, #{fourBone,jdbcType=VARCHAR}, 
+      #{twobone,jdbcType=VARCHAR}, #{threebone,jdbcType=VARCHAR}, #{fourbone,jdbcType=VARCHAR},
       #{anodontism,jdbcType=VARCHAR}, #{teethdefect,jdbcType=VARCHAR}, #{dummy,jdbcType=VARCHAR}, 
       #{parodontopathy,jdbcType=VARCHAR}, #{residualroot,jdbcType=VARCHAR}, #{residualrown,jdbcType=VARCHAR}, 
       #{apicitis,jdbcType=VARCHAR}, #{other,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR},
@@ -197,8 +197,8 @@
       <if test="threebone != null">
         threeBone,
       </if>
-      <if test="fourBone != null">
-        fourBone,
+      <if test="fourbone != null">
+          fourBone,
       </if>
       <if test="anodontism != null">
         anodontism,
@@ -361,8 +361,8 @@
       <if test="threebone != null">
         #{threebone,jdbcType=VARCHAR},
       </if>
-      <if test="fourBone != null">
-        #{fourBone,jdbcType=VARCHAR},
+      <if test="fourbone != null">
+        #{fourbone,jdbcType=VARCHAR},
       </if>
       <if test="anodontism != null">
         #{anodontism,jdbcType=VARCHAR},
@@ -516,8 +516,8 @@
             <if test="threebone != null">
                 threeBone = #{threebone,jdbcType=VARCHAR},
             </if>
-            <if test="fourBone != null">
-                fourBone = #{fourBone,jdbcType=VARCHAR},
+            <if test="fourbone != null">
+                fourBone = #{fourbone,jdbcType=VARCHAR},
             </if>
             <if test="anodontism != null">
                 anodontism = #{anodontism,jdbcType=VARCHAR},
