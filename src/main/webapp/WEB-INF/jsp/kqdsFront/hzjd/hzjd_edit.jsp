@@ -236,7 +236,7 @@
 					</tr>
 					<tr>
 						<td>
-							<span class="comText">紧急联系人</span>
+							<span class="comText" style="display: block;text-align: right;padding: 0 10px 0 5px;color: #FA6406;">紧急联系人*</span>
 						</td>
 						<td>
 							<div class="form-group">
@@ -244,7 +244,7 @@
 							</div>
 						</td>
 						<td>
-							<span class="comText">紧急联系人电话</span>
+							<span class="comText" style="display: block;text-align: right;padding: 0 10px 0 5px;color: #FA6406;">紧急联系人电话*</span>
 						</td>
 						<td>
 							<div class="form-group">
@@ -872,11 +872,24 @@ function submitu(){
 	//if (!flag) {
     //     return false;
     // } 
+	var emergencyContact = $("#emergencyContact").val();
+	if(!emergencyContact){
+		layer.alert('紧急联系人必须填写！' );
+		return false;
+	}
+
+	var emergencyPhone = $("#emergencyPhone").val();
+	if(!emergencyPhone){
+		layer.alert('紧急联系人电话必须填写！' );
+		return false;
+	}
+
 	var username = $("#username").val();
 	if(!username){
 		layer.alert('患者姓名必须填写！' );
 		return false;
 	}
+
 	var val = $('input:radio[name="sex"]:checked').val();
     if(val==null){
     	layer.alert("请选择性别！");
