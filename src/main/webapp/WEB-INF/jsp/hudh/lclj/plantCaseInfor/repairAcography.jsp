@@ -136,8 +136,8 @@
 							<td><span class="contentName">时间</span></td>
                             <td><span class="contentName">病程</span></td>
 							<td colspan="4"><span class="contentName">复查记录</span></td>
-							<td><span class="contentName">创建人</span></td>
-							<td><span class="contentName">操作</span></td>
+							<td class="creator"><span class="contentName">创建人</span></td>
+							<td class="operation"><span class="contentName">操作</span></td>
 						</tr>
 					</tbody>			
 				</table>
@@ -156,9 +156,9 @@
 	<script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/util.js"></script>
 	<script type="text/javascript">
 		var contextPath = "<%=contextPath%>";	
-  		var id= window.parent.consultSelectPatient.seqid;	//选中患者id
- 		var order_number= window.parent.consultSelectPatient.orderNumber;//选中患者order_number
-		var selectPatient= window.parent.consultSelectPatient;//选中患者 lutian
+  		var id= window.parent.patientObj.seqid;	//选中患者id
+ 		var order_number= window.parent.patientObj.orderNumber;//选中患者order_number
+		var selectPatient= window.parent.patientObj;//选中患者 lutian
 		var userseqid; //患者seqid
 		var menuid=window.parent.menuid;//左侧菜单id
 		$(function(){
@@ -180,8 +180,9 @@
 		    });
 			//console.log(JSON.stringify(selectPatient)+"----------selectPatient");
 			/* 初始化患者基本信息 */
-		    initPatientInfo(selectPatient.usercode);
-			
+		    //initPatientInfo(selectPatient.usercode);
+			initPatientInfo(selectPatient.blcode);
+
  		    init();//页面数据初始化
 			// 2019/7/24 lutian 禁止页面拖拽
 			document.ondragstart = function() {
@@ -217,11 +218,12 @@
 		function init() {
 			//console.log(selectPatient.usercode+"----------患者编号");
 			var param = {
-					blCode:selectPatient.usercode
+					//blCode:selectPatient.usercode
+					blCode:selectPatient.blcode
 				 };
 			var url = contextPath + '/HUDH_DzblAct/findDzblByBlcode.act';
 			 $.axseSubmit(url, param,function() {},function(data) {
-				 	//console.log(JSON.stringify(data)+"-----------data");
+				 //	console.log(JSON.stringify(data)+"-----------data");
 				 var initInfoHtml="";
 				 if(data.length>0){
 				     for(var i=0;i<data.length;i++){
@@ -229,8 +231,8 @@
                          initInfoHtml+='<td>'+data[i].createtime+'</td>';
                          initInfoHtml+='<td>'+data[i].bc+'</td>';
                          initInfoHtml+='<td colspan="4" style="text-align: left;padding: 10px;">'+data[i].detail+'</td>';
-                         initInfoHtml+='<td>'+data[i].username+'</td>';
-                         initInfoHtml+='<td><button id="consent_updateBtn" class="consent_updateBtn hidden" onclick="deleteInfo(this);">删除</button></td>';
+                         initInfoHtml+='<td class="creator">'+data[i].username+'</td>';
+                         initInfoHtml+='<td class="operation"><button id="consent_updateBtn" class="consent_updateBtn hidden" onclick="deleteInfo(this);">删除</button></td>';
                          initInfoHtml+='</tr>';
                      }
                      $("#tbody").append(initInfoHtml);
@@ -248,7 +250,9 @@
 		/* 打印本页面方法 */
 		function myPreviewAll(){
 			$(".consent_updateBtn").css("display","none");
-			$("#tbody").find("tr:last").remove();
+			$(".creator").attr("colspan","2");  //打印合并创建人
+			$(".operation").remove(); //删除操作列
+			//$("#tbody").find("tr:last").remove();
 			bdhtml=window.document.body.innerHTML;
 			sprnstr="<!--startprint-->";
 			eprnstr="<!--endprint-->";

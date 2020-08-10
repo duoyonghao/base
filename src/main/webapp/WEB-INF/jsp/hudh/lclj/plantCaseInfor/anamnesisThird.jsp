@@ -562,7 +562,7 @@
 				<li class="toothMapItem">
 					<input name="symptom" id="tooth_lose" type="checkbox" value="0" onclick="isToothChecked(this.id);"/><label for="tooth_lose">牙缺失</label>
 					<!-- 牙位图 -->
-					<div class="toothMap toothloseMap">
+					<div class="toothMap toothloseMap" style="display: none;">
 						<ul class="upYa">
 							<li class="leftUpTooth"><span class="yaIcon le8"></span><span class="num numle8 ToothBit_checkbox1" name="zzadultupYa1">8</span></li>
 							<li class="leftUpTooth"><span class="yaIcon le7"></span><span class="num numle7 ToothBit_checkbox1" name="zzadultupYa1">7</span></li>
@@ -613,7 +613,7 @@
 				<li class="toothMapItem">
 					<input name="symptom" id="tooth_less" type="checkbox" value="1" onclick="isToothChecked(this.id);"/><label for="tooth_less">牙松动</label>
 					<!-- 牙位图 -->
-					<div class="toothMap toothlessMap">
+					<div class="toothMap toothlessMap" style="display: none;">
 						<ul class="upYa">
 							<li class="leftUpTooth"><span class="yaIcon le8"></span><span class="num numle8 ToothBit_checkbox1" name="zzadultupYa1">8</span></li>
 							<li class="leftUpTooth"><span class="yaIcon le7"></span><span class="num numle7 ToothBit_checkbox1" name="zzadultupYa1">7</span></li>
@@ -664,7 +664,7 @@
 				<li class="toothMapItem">
 					<input name="symptom" id="tooth_decayed" type="checkbox" value="2" onclick="isToothChecked(this.id);"/><label for="tooth_decayed">龋齿</label>
 					<!-- 牙位图 -->
-					<div class="toothMap toothdecayedMap">
+					<div class="toothMap toothdecayedMap" style="display: none;">
 						<ul class="upYa">
 							<li class="leftUpTooth"><span class="yaIcon le8"></span><span class="num numle8 ToothBit_checkbox1" name="zzadultupYa1">8</span></li>
 							<li class="leftUpTooth"><span class="yaIcon le7"></span><span class="num numle7 ToothBit_checkbox1" name="zzadultupYa1">7</span></li>
@@ -715,7 +715,7 @@
 				<li class="toothMapItem">
 					<input name="symptom" id="tooth_snap" type="checkbox" value="3" onclick="isToothChecked(this.id);"/><label for="tooth_snap">牙折断</label>
 					<!-- 牙位图 -->
-					<div class="toothMap toothsnapMap">
+					<div class="toothMap toothsnapMap" style="display: none;">
 						<ul class="upYa">
 							<li class="leftUpTooth"><span class="yaIcon le8"></span><span class="num numle8 ToothBit_checkbox1" name="zzadultupYa1">8</span></li>
 							<li class="leftUpTooth"><span class="yaIcon le7"></span><span class="num numle7 ToothBit_checkbox1" name="zzadultupYa1">7</span></li>

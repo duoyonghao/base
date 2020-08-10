@@ -127,21 +127,26 @@
 		width: 135px !important;
 		height: 24px;
 	    background-color: transparent;
-	    border: 1px solid #c3c3c3 !important;
+		outline: none;
+		border-width: 0px;
+		border-bottom: 1px solid #000;
+		/*border: 1px solid #c3c3c3 !important;*/
 	    vertical-align: middle;
 	    -webkit-appearance: none;
 	    outline: none;
-	    text-align: left !important;
+	    /*text-align: left !important;*/
 	    font-weight: bold !important;
-	    text-align: left;
+	    text-align: center;
 	    padding-left: 5px;
 	    font-size: 15px !important;
+		margin: 15px 0px 0px 130px;
 	}
 	.infoText{
 		font-weight: bold;
 	}
 	label {
 		font-weight: normal;
+		margin-bottom: 0px;
 	}
 	textarea{
 		border: 1px solid red;
@@ -154,6 +159,10 @@
 		top: 35px;
 		width: 150px;
 		height: 45px;
+	}
+	input[name='localanesthesia']{
+		margin-right: 8px;
+		vertical-align: baseline;
 	}
 	@page{
 		size: auto;
@@ -188,7 +197,7 @@
 							<td><span>配台护士</span></td>
 							<td class="infoText"><font id="patient_nurse"></font></td>
 							<td colspan="2"><span>手术日期</span></td>	
-							<td colspan="2"><input id="operationdate" class="consent_time" type="text" placeholder="请选择日期"/></td>
+							<td colspan="2"><input id="operationdate" style="margin: 0px;" class="consent_time" type="text" placeholder="请选择日期"/></td>
 						</tr>
 						<tr>
 							<td><span>局麻药物</span></td>
@@ -200,19 +209,19 @@
 						<tr>
 							<td><span>操<br/>作<br/>记<br/>录</span></td>
 							<td colspan="11" class="infoText">
-								<textarea id="operatingrecord" class="form-control" style="width: 100%; height: 510px;overflow: auto;word-break: break-all; resize: none;"></textarea>
+								<textarea id="operatingrecord" class="form-control textarea" style="width: 100%; height: 510px;overflow: auto;word-break: break-all; resize: none;border:0px;"></textarea>
 							</td>							
 						</tr>
 						<tr>
 							<td><span>种<br/>植<br/>体<br/>条<br/>码 </span></td>
 							<td colspan="11" class="infoText">
-								<textarea id="implantbarcode" class="form-control" style="width: 100%; height: 130px ;overflow: auto;word-break: break-all; resize: none;"></textarea>
+								<textarea id="implantbarcode" class="form-control textarea" style="width: 100%; height: 130px ;overflow: auto;word-break: break-all; resize: none;border:0px;"></textarea>
 							</td>							
 						</tr>
 						<tr>
 							<td><span>骨<br/>粉<br/>骨<br/>膜<br/>条<br/>码</span></td>
 							<td colspan="11" class="infoText">
-								<textarea id="periostbarcode" class="form-control" style="width: 100%; height: 155px ;overflow: auto;word-break: break-all; resize: none;"></textarea>
+								<textarea id="periostbarcode" class="form-control textarea" style="width: 100%; height: 155px ;overflow: auto;word-break: break-all; resize: none;border:0px;"></textarea>
 							</td>								
 						</tr>	
 					</tbody>			
@@ -242,10 +251,10 @@
 	<script type="text/javascript">
 		var signature="";//医生签字字段
 		var doctorstatus=true;
-		var contextPath = "<%=contextPath%>";	
-  		var id= window.parent.consultSelectPatient.seqid;	//临床路径id
- 		var order_number= window.parent.consultSelectPatient.orderNumber;//临床路径编号
-		var selectPatient= window.parent.consultSelectPatient;//选中患者 lutian
+		var contextPath = "<%=contextPath%>";
+        var id= window.parent.patientObj.id;	//选中患者id
+        var order_number= window.parent.patientObj.orderNumber;//选中患者order_number
+        var selectPatient= window.parent.patientObj;//选中患者 lutian
 		var plantPhysician="<%=plantPhysician%>"; //种植医生 lutian
 		var clinicNurse="<%=clinicNurse%>"; //诊室护士 lutian
 		var userseqid; //患者seqid
@@ -274,7 +283,7 @@
 	            return false;
 	        };
 		    /* 初始化患者基本信息 */
-		    initPatientInfo(selectPatient.usercode);
+		    initPatientInfo(selectPatient.blcode);
 			$("#patient_plantdoctor").text(plantPhysician);  //手术医生
 			$("#patient_nurse").text(clinicNurse); //配台护士
 			init();//页面数据初始化
@@ -336,7 +345,8 @@
 						 $("#img").attr('src', signature);
 						 doctorstatus=false;
 					 }else{
-						 $("#img").attr('display', 'none');
+						 //$("#img").attr('display', 'none');
+						 $("#img").css('display', 'none');
 					 }
 	        		for(var key in data[0]){
 	        			$("#"+key+"[type='text']").attr("value",data[0][key]);
@@ -468,6 +478,10 @@
 		}				
 		/* 打印本页面方法 */
 		function myPreviewAll(){
+			$(".consent_time").removeAttr("placeholder");
+			$(".consent_time").css("border","0px");
+			$("textarea").css("font-weight","normal");
+			$("#img").css("border","0px");
 			bdhtml=window.document.body.innerHTML;
 			sprnstr="<!--startprint-->";
 			eprnstr="<!--endprint-->";

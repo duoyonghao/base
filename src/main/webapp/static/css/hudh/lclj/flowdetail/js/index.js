@@ -269,6 +269,7 @@ function getTabledataBySearch(url){
 
 //初始化流程
 var nodeLists;
+var lcljInfo;
 function initFlow(){
 	$.ajax({
 		url: apppath + "/HUDH_FlowAct/findOrderTrackInfo.act?orderNumber=" + orderNumber,
@@ -276,6 +277,7 @@ function initFlow(){
 		dataType:"json",
 		async:false,
 		success:function(result){
+			lcljInfo=result;  //存储整个临床路径信息对象
 			//console.log(JSON.stringify(result)+"----------整个页面返回数据");
 			//判断当前节点有无下一节点
 			//console.log(result.nodes);
@@ -786,6 +788,23 @@ var buttonFun = {
             $("#lclj_tj").attr("disabled",false).css("background","#00A6C0").css("cursor","pointer");
             $("#lclj_by").attr("disabled",false).css("background","#00A6C0").css("cursor","pointer");
         },
+		goRepairRecord:function(){
+			//修复治疗记录
+			layer.open({
+				title:"修复治疗记录",
+				type:2,
+				closeBtn:1,
+				shadeClose: false,
+				shade: 0.6,
+				content:contextPath + "/ZzblViewAct/toRepairAcographyInfor.act",
+				area:['90%','80%'],
+				cancel: function(){
+				},
+				end:function(){
+					//window.location.reload();//刷新本页面
+				}
+			});
+		},
 		goAssessor : function(thi){
 			var lcljss_Id=lcljId;
 			if(!lcljss_Id||lcljss_Id==""||lcljss_Id==null) {
