@@ -1204,7 +1204,7 @@
                                     <li style="height: 50px;line-height: 50px;">
                                         <label>第一次</label>
                                     </li>
-                                    <li style="width: 156px;height: 50px;">
+                                    <li style="width: 156px;height: 50px;margin-right: 30px;">
                                         <label for="spreoperative">
                                             <div id="diagnosis_continer" class="container-fluid">
                                                 <div class="row">
@@ -1246,7 +1246,7 @@
                                     <li style="height: 50px;line-height: 50px;">
                                         <label>第二次</label>
                                     </li>
-                                    <li style="width: 154px;height: 50px;margin-right: 10px;">
+                                    <li style="width: 154px;height: 50px;margin-right: 30px;">
                                         <label for="spreoperative">
                                             <div id="diagnosis_continer" class="container-fluid">
                                                 <div class="row">
@@ -1357,7 +1357,7 @@
                                     <li style="height: 50px;line-height: 50px;">
                                         <label>第一次种植</label>
                                     </li>
-                                    <li style="width: 154px;height: 50px;margin-right: 10px;">
+                                    <li style="width: 154px;height: 50px;">
                                         <label for="spreoperative">
                                             <div id="diagnosis_continer" class="container-fluid">
                                                 <div class="row">
