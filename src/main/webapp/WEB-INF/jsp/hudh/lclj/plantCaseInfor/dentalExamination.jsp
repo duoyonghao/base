@@ -1516,25 +1516,25 @@
             if(form[i]="anodontism"){//牙松动和牙缺失
                 var anodontism=form.anodontism;
                 for(var key in anodontism){
-                    $("#"+key).val(anodontism[key]);
+                    $("#"+key).attr("value",anodontism[key]);
                 }
             }
             if(form[i]="twodu"){//整体情况
                 var toothConditionInput=form.twodu;
                 for(var key in toothConditionInput){
-                    $("#"+key).val(toothConditionInput[key]);
+                    $("#"+key).attr("value",toothConditionInput[key]);
                 }
             }
             if(form[i]="threedu"){
                 var imageExaminationInput=form.threedu;
                 for(var key in imageExaminationInput){
-                    $("#"+key).val(imageExaminationInput[key]);
+                    $("#"+key).attr("value",imageExaminationInput[key]);
                 }
             }
             if(form[i]="fourbone"){
                 var medicalCertificateInput=form.fourbone;
                 for(var key in medicalCertificateInput){
-                    $("#"+key).val(medicalCertificateInput[key]);
+                    $("#"+key).attr("value",medicalCertificateInput[key]);
                 }
             }
         }
