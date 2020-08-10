@@ -384,6 +384,7 @@
 		</div>
 	</div>
 	<div id="buttom_info" style="background-color: #f5f5f5;">
+		<a href="javascript:void(0);"  class="blue_btn repairRecord" onclick = "buttonFun.goRepairRecord(this);" id="lclj_xfjl" >修复记录</a>
 		<a href="javascript:void(0);"  class="blue_btn hide" onclick = "buttonFun.additionalRecording(this);" id="lclj_additional" >补录</a>
 		<a href="javascript:void(0);"  class="blue_btn hide" onclick = "buttonFun.goAssessor(this);" id="lclj_check" >审核</a>
 		<a href="javascript:void(0);" class="blue_btn hide" onclick="buttonFun.electiveOperation(this);" id="lclj_yy">预约</a> 
@@ -405,7 +406,6 @@
 	var reloadVal="0";//用于子页面刷新标识
 	var menuid=window.parent.menuid;//左侧菜单id
 	$(function() {
-		
 		/* 针对ipad自适应  2020/05/04 */
 		var userAgent = navigator.userAgent; 
 		if (userAgent.indexOf("iPad") > -1){
@@ -456,7 +456,7 @@
 			content: contextPath +'/static/css/hudh/lclj/flowdetail/toothMap.jsp?index='+i
 		});
 	}
-	
+
 	/**
 	 *  设置按钮权限操作 
 	 */
@@ -471,6 +471,7 @@
 		/* 按钮 */
 		var btnList = '[';
         btnList	+= '{"qx":"lclj_additional","name":"补录"},'; // 最后一个不要逗号
+        btnList	+= '{"qx":"lclj_xfjl","name":"修复记录"},'; // 最后一个不要逗号
 		btnList	+= '{"qx":"lclj_check","name":"审核"},'; // 最后一个不要逗号
 		btnList += '{"qx":"lclj_yy","name":"预约"},';
 		btnList += '{"qx":"lclj_tj","name":"提交"},';

@@ -363,10 +363,10 @@
     var doctorstatus = true;
     var patientstatus = true;
     var contextPath = "<%=contextPath%>";
-    var id = window.parent.consultSelectPatient.seqid;	//选中患者临床id
-    var order_number = window.parent.consultSelectPatient.orderNumber;//选中患者order_number
-    var usercode = window.parent.consultSelectPatient.usercode;//选中患者usercode
-    var selectPatient = window.parent.consultSelectPatient;//选中患者
+    var id = window.parent.patientObj.id;	//选中患者临床id
+    var order_number = window.parent.patientObj.orderNumber;//选中患者order_number
+    var usercode = window.parent.patientObj.blcode;//选中患者usercode
+    var selectPatient = window.parent.patientObj;//选中患者
     $(function () {
         //console.log(JSON.stringify(selectPatient) + "-----------------selectPatient");
         //时间选择
@@ -473,7 +473,6 @@
 
     /* 页面赋值判断初始化 */
     function initZzblInfor() {
-        //console.log(id+"--------------查询id");
         var url = contextPath + '/HUDH_MedicalRecordsAct/findFamiliar.act';
         $.ajax({
             url: url,
@@ -553,7 +552,7 @@
             dataType: "json",
             data: param,
             success: function (result) {
-                console.log(JSON.stringify(result) + "----------------返回内容");
+                //console.log(JSON.stringify(result) + "----------------返回内容");
                 layer.alert("保存成功！", {
                     end: function () {
                         var frameindex = parent.layer.getFrameIndex(window.name);

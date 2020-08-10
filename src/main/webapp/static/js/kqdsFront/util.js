@@ -893,3 +893,76 @@ function initRepairProject(){
 }
 
 /**************************************************/
+
+/**新版电子病历：①种植牙术后注意事项②种植牙手术记录弹窗 lutian******************/
+//种植术后注意事项
+$(".postoperationItem").click(function(){
+	parent.layer.open({
+		title:"种植术后注意事项",
+		type:2,
+		closeBtn:1,
+		content:contextPath + "/ZzblViewAct/toPostoperativePrecautionsInfor.act",
+		area:['90%','80%'],
+		cancel: function(){
+		},
+		end:function(){
+			window.location.reload();//刷新本页面
+		}
+	});
+});
+//种植牙手术记录
+$(".operationRecord").click(function(){
+	var plant_physician,clinic_nurse; //种植医生，配台护士  lutian 2020/05/29
+	//查询手术医生，配台护士
+	$.ajax({
+		url: contextPath + "/HUDH_FlowAct/findLcljOrderTrsackById.act",
+		type:"POST",
+		dataType:"json",
+		async: false,
+		data:{
+			//"id":id
+			"id":lcljInfoObj.id
+		},
+		success:function(data){
+			//console.log(JSON.stringify(data)+"----------查询患者信息");
+			plant_physician=data.plant_physician; //种植医生
+			clinic_nurse=data.clinic_nurse; //配台护士
+		}
+	});
+	if(plant_physician=="" || clinic_nurse==""){
+		editLclj("该患者种植医师、修复医师、诊室护士未填写，是否进行编辑?");
+		return false;
+	}
+	parent.layer.open({
+		title:"种植牙手术记录",
+		type:2,
+		closeBtn:1,
+		content:contextPath + "/ZzblViewAct/toPlantOperationRecordInfor.act?plantPhysician="+plant_physician+"&&clinicNurse="+clinic_nurse,
+		area:['90%','80%'],
+		cancel: function(){
+		},
+		end:function(){
+			window.location.reload();//刷新本页面
+		}
+	});
+});
+function editLclj(hint){
+	var id=lcljInfoObj.id;
+	layer.confirm(hint,{
+		btn: ['确认', '取消'],
+		closeBtn:0
+	}, function (index) {
+		parent.layer.open({
+			type: 2,
+			title: '修改临床路径',
+			shadeClose: false,
+			shade: 0.6,
+			area: ['95%', '60%'],
+			content: contextPath+'/ClinicPathControllerAct/toEditLcljOpreation.act?id=' +id
+		});
+		layer.close(index);
+	}, function(index){
+		layer.close(index);
+	});
+}
+/**************************************************/

@@ -101,7 +101,7 @@
 <body>
 	<div>
 		<!-- 测试按钮 lutian 2020/05/29  -->
-		<div class="btnTest" style="display: block;">
+		<div class="btnTest" style="display: none;">
 			<button class="principleBtnGB">主诉改版</button>
 			<button class="operationRecord">种植牙手术记录</button>
 			<button class="repairRecord">修复治疗记录</button>
