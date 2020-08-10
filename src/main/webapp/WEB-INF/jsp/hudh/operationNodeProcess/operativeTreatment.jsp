@@ -98,7 +98,7 @@
 </style>
 </head>
 <body>
-	<div style="padding-left: 30px;border:1px solid red;">
+	<div style="padding-left: 30px;">
 		<table align="center">
 				<tbody>
 						<tr>
@@ -193,8 +193,7 @@
 											<!-- <li><label><input name="announcements" type="checkbox" value="13、交代注意事项" id="announcements"/>13、交代注意事项 </label></li> -->
 											<li><div class="preparation-ul">
 													<div><span style="font-weight: bold;margin-bottom: 5px;" class=""><i style="color: red;font-style: normal;">*</i>13、交代注意事项：</span></div>
-													<div><label><input name=intraoperativeMedication type="radio" value="半口、全口" /><font class="attention_wholehalf">1.半口、全口</font><font class="attention_topo">2.局部</font></label></div>
-													<div><label><input name="intraoperativeMedication" type="radio" value="局部" /><font class="postoperationItem">种植牙术后注意事项</font></label></div>
+													<div><label><input name="intraoperativeMedication" type="radio" value="1" /><font class="postoperationItem">种植牙术后注意事项</font></label></div>
 <%--												<div><label><input name=intraoperativeMedication type="radio" value="半口、全口" /><font class="attention_wholehalf">半口、全口</font></label></div>--%>
 <%--												<div><label><input name="intraoperativeMedication" type="radio" value="局部" /><font class="attention_topo">局部</font></label></div>--%>
 											</div></li>

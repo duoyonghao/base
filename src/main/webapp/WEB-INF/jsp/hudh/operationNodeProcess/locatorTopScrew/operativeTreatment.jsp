@@ -154,11 +154,18 @@
 											<!-- <li><label><input name="announcements" type="checkbox" value="13、交代注意事项" id="announcements"/>13、交代注意事项 </label></li> -->
 											<li><div class="preparation-ul">
 													<div><span style="font-weight: bold;margin-bottom: 5px;" class="">13、交代注意事项：</span></div>
-													<div><label><input name="announcements" type="checkbox" value="半口、全口" /><font class="attention_wholehalf">半口、全口</font></label></div>
-													<div><label><input name="announcements" type="checkbox" value="局部" /><font class="attention_topo">局部</font></label></div>
+													<div><label><input name="intraoperativeMedication" type="radio" value="1" /><font class="postoperationItem">种植牙术后注意事项</font></label></div>
+<%--													<div><label><input name="announcements" type="checkbox" value="半口、全口" /><font class="attention_wholehalf">半口、全口</font></label></div>--%>
+<%--													<div><label><input name="announcements" type="checkbox" value="局部" /><font class="attention_topo">局部</font></label></div>--%>
 											</div></li>
 											<li><label>14、预约下次来院时间：<input class="time_initialize time_select" name="next_hospital_time" type="text" value="" id="next_hospital_time" style="width: 105px;vertical-align: middle;"/></label></li> 
-											<li><label><input name="opration_record" type="checkbox" value="15、术者完成手术记录" id="opration_record"/><font class="operation_record">15、术者完成手术记录</font></label></li>
+											<li>
+												<label>15、<input name="opration_record" type="checkbox" value="15、术者完成手术记录" id="opration_record"/>
+<%--													<font class="operation_record">15、术者完成手术记录</font>--%>
+													<font class="operation_record">1.术者完成手术记录</font>
+													<font class="operationRecord">2.种植牙手术记录</font>
+												</label>
+											</li>
 										</ul>
 									</div>	
 								</td>
@@ -174,6 +181,7 @@
 			</table>
 	</div>
 </body>
+<script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/util.js"></script>
 <script type="text/javascript">
 var id = parent.seqId;
 var nodeSta = parent.nodeStas;
@@ -181,6 +189,7 @@ var contextPath = '<%=contextPath%>';
 var ordNumber = parent.ordNumber;
 var nodeId = parent.nodeId1;//获得点击节点的id
 var orderNumber = parent.ordNumber;
+var lcljInfoObj=parent.lcljInfo;  //整个临床路径信息
 $(function(){
 	/* $('#operation_time').datetimepicker({ 
 	    beforeShow:function(input) { 

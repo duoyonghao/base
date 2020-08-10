@@ -1122,7 +1122,7 @@
 		$(function(){
 			
 			/* 针对ipad自适应 */
-			var userAgent = navigator.userAgent; 
+			var userAgent = navigator.userAgent;
 			if (userAgent.indexOf("iPad") > -1){
 				$(".sexInfo").css("width","150px"); //年龄
 				$("input[name='symptom']").css("width","20px"); //牙齿选项

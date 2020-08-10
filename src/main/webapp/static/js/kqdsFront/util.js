@@ -926,13 +926,13 @@ $(".operationRecord").click(function(){
 		success:function(data){
 			//console.log(JSON.stringify(data)+"----------查询患者信息");
 			plant_physician=data.plant_physician; //种植医生
-			clinic_nurse=data.clinic_nurse; //配台护士
+			//clinic_nurse=data.clinic_nurse; //配台护士
 		}
 	});
-	if(plant_physician=="" || clinic_nurse==""){
-		editLclj("该患者种植医师、修复医师、诊室护士未填写，是否进行编辑?");
-		return false;
-	}
+	// if(plant_physician=="" || clinic_nurse==""){
+	// 	editLclj("该患者种植医师、修复医师、诊室护士未填写，是否进行编辑?");
+	// 	return false;
+	// }
 	parent.layer.open({
 		title:"种植牙手术记录",
 		type:2,
@@ -965,4 +965,55 @@ function editLclj(hint){
 		layer.close(index);
 	});
 }
+//种植牙术后注意事项选中
+var patientInitId="";  //术后注意事项查询id
+if(parent.lcljInfo){
+	patientInitId=parent.lcljInfo.id;
+}
+function initZzblInfor() {
+	//console.log(JSON.stringify(parent.lcljInfo)+"-----------util.js");
+	var url = contextPath + '/HUDH_MedicalRecordsAct/findFamiliar.act';
+	$.ajax({
+		url: url,
+		type: "POST",
+		dataType: "json",
+		data: {
+			id: patientInitId, //临床路径ID
+		},
+		success: function (result) {
+			//console.log(JSON.stringify(result) + "--------------添加成功后查询数据");
+			/* 判断是否已经填写过内容 */
+			if (result.seqId) {
+				if($(".postoperationItem")){
+					//$("input[name='intraoperativeMedication'][value='1']").attr("checked",true);
+					$("input[name='intraoperativeMedication']").attr("checked",true);
+				}
+			}
+		}
+	});
+}
+initZzblInfor();
+
+// 种植牙手术记录选项选中
+function init() {
+	var url = contextPath + '/HUDH_MedicalRecordsAct/selectRecord.act';
+	$.ajax({
+		url: url,
+		type: "POST",
+		dataType: "json",
+		data: {
+			lcljId:patientInitId
+		},
+		success: function (result) {
+			//console.log(JSON.stringify(result) + "--------------添加成功后查询数据");
+			/* 判断是否已经填写过内容 */
+			if(result.length>0){
+				if($("input[name='opration_record']")){
+					$("input[name='opration_record']").attr("checked",true);
+				}
+			}
+		}
+	});
+}
+init();
 /**************************************************/

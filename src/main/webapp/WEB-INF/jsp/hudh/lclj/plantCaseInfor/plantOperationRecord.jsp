@@ -168,6 +168,12 @@
 		size: auto;
 		margin: 0mm auto;
 	}
+	#patient_nurse{
+		margin: 0px;
+		width: 90%;
+		text-align: center;
+		outline: none;
+	}
 </style>
 <body style="padding: 0px 3%;">
 <!--startprint-->
@@ -195,7 +201,10 @@
 							<td><span>手术医生</span></td>
 							<td class="infoText"><font id="patient_plantdoctor"></font></td>
 							<td><span>配台护士</span></td>
-							<td class="infoText"><font id="patient_nurse"></font></td>
+							<td class="infoText">
+<%--								<font id="patient_nurse"></font>--%>
+								<input id="patient_nurse" type="text" placeholder="请输入护士"/>
+							</td>
 							<td colspan="2"><span>手术日期</span></td>	
 							<td colspan="2"><input id="operationdate" style="margin: 0px;" class="consent_time" type="text" placeholder="请选择日期"/></td>
 						</tr>
@@ -285,7 +294,7 @@
 		    /* 初始化患者基本信息 */
 		    initPatientInfo(selectPatient.blcode);
 			$("#patient_plantdoctor").text(plantPhysician);  //手术医生
-			$("#patient_nurse").text(clinicNurse); //配台护士
+			//$("#patient_nurse").text(clinicNurse); //配台护士
 			init();//页面数据初始化
 			//获取当前页面所有按钮
 			getButtonAllCurPage(menuid);
@@ -349,7 +358,8 @@
 						 $("#img").css('display', 'none');
 					 }
 	        		for(var key in data[0]){
-	        			$("#"+key+"[type='text']").attr("value",data[0][key]);
+						$("#patient_nurse").attr("value",data[0]['nurse']);
+						$("#"+key+"[type='text']").attr("value",data[0][key]);
 	        			$("#"+key).text(data[0][key]);
 	        			var anesthesia=data[0]["localanesthesia"];
 	        			if(anesthesia){
@@ -370,14 +380,19 @@
 			var patient_sex = $("#patient_sex").text();//患者性别
 			var patient_age = $("#patient_age").text();//患者年龄
 			var patient_plantdoctor = $("#patient_plantdoctor").text();//手术医生
-			var patient_nurse = $("#patient_nurse").text();//配台护士
+			var patient_nurse = $("#patient_nurse").val();//配台护士
 			var operationdate = $("#operationdate").val();//手术日期
 			var localanesthesia = $("input[name='localanesthesia']:checked").val();//局部麻物
 			var operatingrecord = $("#operatingrecord").val();//操作记录
 			var implantbarcode = $("#implantbarcode").val();//种植体条码
 			var periostbarcode = $("#periostbarcode").val();//骨粉骨膜条码
 			var doctortime = $("#doctortime").val();//医生签名
-			
+
+			if(!patient_nurse || patient_nurse==""){
+				layer.alert("请输入配台护士!");
+				return false;
+			}
+
 			var url = contextPath + '/HUDH_MedicalRecordsAct/insertRecord.act';
 	        var param = {
 	        		 lcljId :  id,
@@ -400,15 +415,18 @@
 	        
 	        //console.log(JSON.stringify(param)+"------------保存传参");
 	        $.axseSubmit(url, param,function() {},function(r) {
-	        	layer.alert("保存成功！", {
-		            end: function() {
-		            	//window.parent.location.reload(); //刷新父页面
-		            	//保存成功父页面选中该项
-		            	//window.parent.document.getElementById("ask_Previous").prev().attr("checked","checked");
-		                var frameindex = parent.layer.getFrameIndex(window.name);
-		                parent.layer.close(frameindex); //再执行关闭
-		            }
-		      	});
+	        	//console.log(r);
+	        	if(r.retState=='0'){
+					layer.alert("保存成功！", {
+						end: function() {
+							//window.parent.location.reload(); //刷新父页面
+							//保存成功父页面选中该项
+							//window.parent.document.getElementById("ask_Previous").prev().attr("checked","checked");
+							var frameindex = parent.layer.getFrameIndex(window.name);
+							parent.layer.close(frameindex); //再执行关闭
+						}
+					});
+				}
 	        },function(r){
 	        	layer.alert("保存失败！");
 		    }); 
@@ -421,14 +439,19 @@
 			var patient_sex = $("#patient_sex").text();//患者性别
 			var patient_age = $("#patient_age").text();//患者年龄
 			var patient_plantdoctor = $("#patient_plantdoctor").text();//手术医生
-			var patient_nurse = $("#patient_nurse").text();//配台护士
+			var patient_nurse = $("#patient_nurse").val();//配台护士
 			var operationdate = $("#operationdate").val();//手术日期
 			var localanesthesia = $("input[name='localanesthesia']:checked").val();//局部麻物
 			var operatingrecord = $("#operatingrecord").val();//操作记录
 			var implantbarcode = $("#implantbarcode").val();//种植体条码
 			var periostbarcode = $("#periostbarcode").val();//骨粉骨膜条码
 			var doctortime = $("#doctortime").val();//医生签名
-			
+
+			if(!patient_nurse || patient_nurse==""){
+				layer.alert("请输入配台护士!");
+				return false;
+			}
+
 			var url = contextPath + '/HUDH_MedicalRecordsAct/insertRecord.act';
 	        var param = {
 	        		 lcljId :  id,
@@ -480,6 +503,7 @@
 		function myPreviewAll(){
 			$(".consent_time").removeAttr("placeholder");
 			$(".consent_time").css("border","0px");
+			$("#patient_nurse").css("border","0px");
 			$("textarea").css("font-weight","normal");
 			$("#img").css("border","0px");
 			bdhtml=window.document.body.innerHTML;

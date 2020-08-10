@@ -193,11 +193,18 @@
 											</li>
 											<li><div class="preparation-ul">
 													<div><span style="font-weight: bold;margin-bottom: 5px;" class=""><i style="color: red;font-style: normal;">*</i>14、交代注意事项：</span></div>
-													<div><label><input name="announcements" type="radio" value="半口、全口" /><font class="attention_wholehalf">半口、全口</font></label></div>
-													<div><label><input name="announcements" type="radio" value="局部" /><font class="attention_topo">局部</font></label></div>
+													<div><label><input name="intraoperativeMedication" type="radio" value="1" /><font class="postoperationItem">种植牙术后注意事项</font></label></div>
+<%--													<div><label><input name="announcements" type="radio" value="半口、全口" /><font class="attention_wholehalf">半口、全口</font></label></div>--%>
+<%--													<div><label><input name="announcements" type="radio" value="局部" /><font class="attention_topo">局部</font></label></div>--%>
 											</div></li>
 											<li><label>15、预约下次来院时间：<input class="" onfocus="popup()" name="next_hospital_time" type="text" value="" id="next_hospital_time" style="width: 108px;vertical-align: middle;"/></label></li> 
-											<li><label><i style="color: red;font-style: normal;">*</i><input name="opration_record" type="checkbox" value="16、术者完成手术记录" id="opration_record"/><font class="operation_record">16、术者完成手术记录</font></label></li>
+											<li>
+												<label><i style="color: red;font-style: normal;">*</i>16、<input name="opration_record" type="checkbox" value="16、术者完成手术记录" id="opration_record"/>
+<%--													<font class="operation_record">16、术者完成手术记录</font>--%>
+													<font class="operation_record">1.术者完成手术记录</font>
+													<font class="operationRecord">2.种植牙手术记录</font>
+												</label>
+											</li>
 										</ul>
 									</div>	
 								</td>
@@ -215,6 +222,7 @@
 			</div>
 	</div>
 </body>
+<script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/util.js"></script>
 <script type="text/javascript">
 var id = parent.seqId;
 var nodeSta = parent.nodeStas;
@@ -226,6 +234,7 @@ var username = parent.patientObj.username; /*获取患者姓名 2019-7-25 */
 var usercode = parent.patientObj.blcode;   /*获取或者病历号	 2019-7-25 */
 var nodeid = parent.patientObj.nodeid;
 var orderNumber = parent.patientObj.orderNumber
+var lcljInfoObj=parent.lcljInfo;  //整个临床路径信息
 $(function(){
 	/* $('#operation_time').datetimepicker({ 
 	    beforeShow:function(input) { 
