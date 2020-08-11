@@ -1008,8 +1008,8 @@ function init() {
 			//console.log(JSON.stringify(result) + "--------------添加成功后查询数据");
 			/* 判断是否已经填写过内容 */
 			if(result.length>0){
-				if($("input[name='opration_record']")){
-					$("input[name='opration_record']").attr("checked",true);
+				if($("input[name='opration_record_new']")){
+					$("input[name='opration_record_new']").attr("checked",true);
 				}
 			}
 		}
