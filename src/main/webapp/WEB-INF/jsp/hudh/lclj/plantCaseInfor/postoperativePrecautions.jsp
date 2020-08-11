@@ -493,7 +493,8 @@
                     } else {
                         $("#img").attr('display', 'none');
                     }
-                    $("#patienttime").val(result.patientTime);
+                    //$("#patienttime").val(result.patientTime);
+                    $("#patienttime").attr("value",result.patientTime);
                     patientsignature = result.patientSignature;
                     if (patientsignature != "") {
                         $("#patientimg").attr('src', patientsignature);
@@ -501,7 +502,8 @@
                     } else {
                         $("#patientimg").attr('display', 'none');
                     }
-                    $("#doctortime").val(result.doctorTime);
+                    //$("#doctortime").val(result.doctorTime);
+                    $("#doctortime").attr("value",result.doctorTime);
                     $("input").attr("disabled", "disabled").css("background", "transparent");//查看信息的时候禁止在填写
                 }
             }
@@ -510,6 +512,7 @@
 
     /* 打印本页面方法 */
     function myPreviewAll() {
+        $(".consent_time").css("border","0px");
         LODOP = getLodop();
         LODOP.PRINT_INIT("人工种植牙知情同意书");
         LODOP.SET_PRINT_PAGESIZE(1, 2100, 2970, "A4");

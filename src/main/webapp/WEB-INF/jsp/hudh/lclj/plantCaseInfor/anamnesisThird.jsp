@@ -1870,14 +1870,15 @@
 			},
 			dataType: "json",
 			success: function (r) {
-				//console.log(JSON.stringify(r)+"----------查询患者信息");
+				console.log(JSON.stringify(r)+"----------查询患者信息");
 				//$("#first_time").attr("value", r.cztime); //首诊时间
 				$("#first_time").text(r.cztime); //首诊时间
 				$("#patient_num").text(r.usercode);//患者编号
 				$("#patient_name").text( r.username);//患者姓名
 				$("#patient_sex").text( r.sex);//患者性别
 				$("#patient_age").text( r.age);//患者年龄
-				$("#patient_idnum").text( r.idcardno); //身份证号码
+				//$("#patient_idnum").text( r.idcardno); //身份证号码
+				$("#patient_ID").text( r.idcardno); //身份证号码
 				$("#patient_birthday").text( r.birthday); //生日
 				$("#patient_tel").text( r.phonenumber1); //电话
 				$("#patient_emergency_contact").text( r.emergencycontact);  //紧急联系人
