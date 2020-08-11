@@ -1870,9 +1870,9 @@
 			},
 			dataType: "json",
 			success: function (r) {
-				console.log(JSON.stringify(r)+"----------查询患者信息");
+				//console.log(JSON.stringify(r)+"----------查询患者信息");
 				//$("#first_time").attr("value", r.cztime); //首诊时间
-				$("#first_time").text(r.cztime); //首诊时间
+				$("#patient_first_diagnose").text(r.cztime); //首诊时间
 				$("#patient_num").text(r.usercode);//患者编号
 				$("#patient_name").text( r.username);//患者姓名
 				$("#patient_sex").text( r.sex);//患者性别
