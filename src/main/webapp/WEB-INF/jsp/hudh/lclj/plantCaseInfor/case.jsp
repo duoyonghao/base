@@ -1069,7 +1069,7 @@
                             <ul class="loseTooth_option" style="display: inline-grid;">
                                 <li>
                                     <input name="bicon" id="Nobel-CC" type="checkbox" value="Nobel-CC " /><label
-                                        for="Nobel-CC">Nobel-CC </label>
+                                        for="Nobel-CC">Nobel </label>
                                 </li>
                                 <li>
                                     <label for="spreoperative">
