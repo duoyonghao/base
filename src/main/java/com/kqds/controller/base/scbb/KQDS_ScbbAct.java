@@ -1,6 +1,7 @@
 package com.kqds.controller.base.scbb;
 
 import java.math.BigDecimal;
+import java.rmi.ServerError;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -2280,9 +2282,10 @@ public class KQDS_ScbbAct {
 	/**
 	 * 患者来源汇总（实收金额）
 	 * 
-	 * @param list
-	 * @param doctorSeqId
-	 * @param regsort
+	 * @param skjeList
+	 * @param skjeYjjList
+	 * @param devchannel
+	 * @param nexttype
 	 * @return
 	 */
 	private String getssjeForHzly(List<JSONObject> skjeList, List<JSONObject> skjeYjjList, String devchannel, String nexttype) {
@@ -2319,9 +2322,10 @@ public class KQDS_ScbbAct {
 	/**
 	 * 患者来源汇总（收款金额）
 	 * 
-	 * @param list
-	 * @param doctorSeqId
-	 * @param regsort
+	 * @param skjeList
+	 * @param skjeYjjList
+	 * @param devchannel
+	 * @param nexttype
 	 * @return
 	 */
 	private String getskjeForHzly(List<JSONObject> skjeList, List<JSONObject> skjeYjjList, String devchannel, String nexttype) {
@@ -2385,9 +2389,9 @@ public class KQDS_ScbbAct {
 	/**
 	 * 网电工作量汇总（收款金额）
 	 * 
-	 * @param list
-	 * @param doctorSeqId
-	 * @param regsort
+	 * @param skjeList
+	 * @param skjeYjjList
+	 * @param perid
 	 * @return
 	 */
 	private String getskjeForWD(List<JSONObject> skjeList, List<JSONObject> skjeYjjList, String perid) {
@@ -2438,8 +2442,10 @@ public class KQDS_ScbbAct {
 	/**
 	 * 咨询汇总
 	 * 
-	 * @param list
-	 * @param doctorSeqId
+	 * @param skjeList
+	 * @param skjeYjjList
+	 * @param askPersonSeqid
+	 * @param regsort
 	 * @param regsort
 	 * @return
 	 */
@@ -2504,8 +2510,10 @@ public class KQDS_ScbbAct {
 	/**
 	 * 咨询汇总
 	 * 
-	 * @param list
-	 * @param doctorSeqId
+	 * @param skjeList
+	 * @param skjeYjjList
+	 * @param askPersonSeqid
+	 * @param regsort
 	 * @param regsort
 	 * @return
 	 */
@@ -2543,7 +2551,7 @@ public class KQDS_ScbbAct {
 	/**
 	 * 医生汇总
 	 * 
-	 * @param list
+	 * @param yysrList
 	 * @param doctorSeqId
 	 * @param regsort
 	 * @return
@@ -3616,6 +3624,85 @@ public class KQDS_ScbbAct {
 
 		return null;
 	}
+	@RequestMapping(value = "/getOrdertjDept.act")
+	public String getOrdertjDept(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		try {
+			String isyx = request.getParameter("isyx"); // 1 是营销 2是网电 3客服
+			String shouli=request.getParameter("shouli");
+			YZPerson person = SessionUtil.getLoginPerson(request);
+			String depttype = "";// 2 网电 3 营销 6客服，这里不能写成 String depttype = null;
+			// 因为后面的sql会使用这个变量值
+			String deptId = null;
+			String deptname = null;
+			if ("1".equals(isyx)) {// 营销查询
+				depttype = ConstUtil.DEPT_TYPE_3;
+			} else if ("2".equals(isyx)) {// 网电查询
+				depttype = ConstUtil.DEPT_TYPE_2;
+			} else if ("3".equals(isyx)) {// 客服查询
+				depttype = ConstUtil.DEPT_TYPE_6;
+			}
+			List<JSONObject> list=new ArrayList<>();
+			//读取登录人的登录信息
+			YZPriv priv = privLogic.findGeneral(person.getUserPriv());
+			if(priv.getAuthority() != null && !priv.getAuthority().equals("")){
+				if(priv.getAuthority().equals("2")){
+				}else if(priv.getAuthority().equals("3")){
+					shouli = "zz373";
+					YZDept department = deptLogic.findmarketing("2",depttype,shouli);
+					deptId = department.getSeqId();
+					deptname=department.getDeptName();
+				}else if(priv.getAuthority().equals("4")){
+					shouli = "zj634";
+					YZDept department = deptLogic.findmarketing("2",depttype,shouli);
+					deptId = department.getSeqId();
+					deptname=department.getDeptName();
+				}
+				JSONObject jsonObject=new JSONObject();
+				jsonObject.put("deptid",deptId);
+				jsonObject.put("deptname",deptname);
+				list.add(jsonObject);
+			}else{
+				//获取业务部门
+				List<JSONObject> dept = deptLogic.findMarket("2");
+				//登录人是否所属业务部门之中
+				//如果属于业务部门将业务部门ID赋予一个map中
+				for (JSONObject json : dept) {
+					if(!json.get("seqId").equals(person.getDeptId())){
+						if(shouli!=null && !shouli.equals("")){
+							YZDept department = deptLogic.findmarketing("2",depttype,shouli);
+							deptId = department.getSeqId();
+							deptname=department.getDeptName();
+						}else{
+								if(priv.getAuthority() != null && priv.getAuthority().equals("5")){
+									shouli = "service";
+									YZDept department = deptLogic.findmarketing("2",depttype,shouli);
+									deptId = department.getSeqId();
+									deptname=department.getDeptName();
+								}else{
+									shouli = "zz373";
+									YZDept department = deptLogic.findmarketing("2",depttype,shouli);
+									deptId = department.getSeqId();
+									deptname=department.getDeptName();
+								}
+						}
+					}else{
+						deptId = person.getDeptId();
+						deptname=person.getUserName();
+					}
+					JSONObject jsonObject=new JSONObject();
+					jsonObject.put("deptid",deptId);
+					jsonObject.put("deptname",deptname);
+					list.add(jsonObject);
+				}
+			}
+			list = list.stream().distinct().collect(Collectors.toList());
+			YZUtility.RETURN_LIST(list,response,logger);
+		}catch (Exception ex) {
+			YZUtility.DEAL_ERROR(null, false, ex, response, logger);
+		}
+		return null;
+	}
+
 
 	/**
 	 * 2019-08-15 lwg 
@@ -3634,12 +3721,16 @@ public class KQDS_ScbbAct {
 			String dztime1=request.getParameter("dztime1");
 			String dztime2=request.getParameter("dztime2");
 			String yewu =request.getParameter("yewu");
+			String yewuname =request.getParameter("yewuname");
 			String xiangmu=request.getParameter("xiangmu");
 			String shouli=request.getParameter("shouli");
 			String devchannel=request.getParameter("devchannel");
 			String isyx = request.getParameter("isyx"); // 1 是营销 2是网电 3客服
 			String nexttype = request.getParameter("nexttype");
 			String gongju = request.getParameter("gongju");
+			String deptid = request.getParameter("deptid");
+			String personid = request.getParameter("personid");
+			String personname = request.getParameter("personname");
 			
 			// 导出参数 
 			String flag = request.getParameter("flag") == null ? "" : request.getParameter("flag");
@@ -3698,63 +3789,74 @@ public class KQDS_ScbbAct {
 			} else if ("3".equals(isyx)) {// 客服查询
 				depttype = ConstUtil.DEPT_TYPE_6;
 			}
-			
+
+//			//读取登录人的登录信息
+//			YZPriv priv = privLogic.findGeneral(person.getUserPriv());
+//			if(priv.getAuthority() != null && !priv.getAuthority().equals("")){
+//				String dept = null;
+//				if(priv.getAuthority().equals("2")){
+//					listPerson = personLogic.findPersonalDetails(person.getUserId());
+//				}else if(priv.getAuthority().equals("3")){
+//					shouli = "zz373";
+//					YZDept department = deptLogic.findmarketing("2",depttype,shouli);
+//					dept = department.getSeqId();
+//					listPerson = personLogic.findVisualPersonnel(dept);
+//				}else if(priv.getAuthority().equals("4")){
+//					shouli = "zj634";
+//					YZDept department = deptLogic.findmarketing("2",depttype,shouli);
+//					dept = department.getSeqId();
+//					listPerson = personLogic.findVisualPersonnel(dept);
+//				}
+//			}else{
+//				//获取业务部门
+//				List<JSONObject> dept = deptLogic.findMarket("2");
+//
+//				 String deptId = null;
+//				//登录人是否所属业务部门之中
+//				//如果属于业务部门将业务部门ID赋予一个map中
+//				for (JSONObject json : dept) {
+//					if(!json.get("seqId").equals(person.getDeptId())){
+//						if(shouli!=null && !shouli.equals("")){
+//						YZDept department = deptLogic.findmarketing("2",depttype,shouli);
+//						deptId = department.getSeqId();
+//						}else{
+//								if(priv.getAuthority() != null && priv.getAuthority().equals("5")){
+//									shouli = "service";
+//									YZDept department = deptLogic.findmarketing("2",depttype,shouli);
+//									deptId = department.getSeqId();
+//								}else{
+//									shouli = "zz373";
+//									YZDept department = deptLogic.findmarketing("2",depttype,shouli);
+//									deptId = department.getSeqId();
+//								}
+//						}
+//					}else{
+//						deptId = person.getDeptId();
+//					}
+//				}
+//
+//				// 可见人员过滤
+//				//String visualstaff = SessionUtil.getVisualstaff(request);
+//				// 网电人员
+//				//List<JSONObject> listPerson = personLogic.getPersonListByDeptTypeAndVisual(deptId, visualstaff, ChainUtil.getCurrentOrganization(request));
+//				 listPerson = personLogic.findVisualPersonnel(deptId);
+//			}
 			//定义可见人员集合
-			List<JSONObject> listPerson = null;	
-			//读取登录人的登录信息
-			YZPriv priv = privLogic.findGeneral(person.getUserPriv());
-			if(priv.getAuthority() != null && !priv.getAuthority().equals("")){
-				String dept = null;
-				if(priv.getAuthority().equals("2")){
-					listPerson = personLogic.findPersonalDetails(person.getUserId());
-				}else if(priv.getAuthority().equals("3")){
-					shouli = "zz373";
-					YZDept department = deptLogic.findmarketing("2",depttype,shouli);
-					dept = department.getSeqId();
-					listPerson = personLogic.findVisualPersonnel(dept);
-				}else if(priv.getAuthority().equals("4")){
-					shouli = "zj634";
-					YZDept department = deptLogic.findmarketing("2",depttype,shouli);
-					dept = department.getSeqId();
-					listPerson = personLogic.findVisualPersonnel(dept);
-				}
-			}else{
-			//获取业务部门
-			List<JSONObject> dept = deptLogic.findMarket("2");
-			
-			 String deptId = null;
-			//登录人是否所属业务部门之中
-			//如果属于业务部门将业务部门ID赋予一个map中
-			for (JSONObject json : dept) {
-				if(!json.get("seqId").equals(person.getDeptId())){
-					if(shouli!=null && !shouli.equals("")){
-					YZDept department = deptLogic.findmarketing("2",depttype,shouli);
-					deptId = department.getSeqId();
-					}else{
-							if(priv.getAuthority() != null && priv.getAuthority().equals("5")){
-								shouli = "service";
-								YZDept department = deptLogic.findmarketing("2",depttype,shouli);
-								deptId = department.getSeqId();
-							}else{
-								shouli = "zz373";
-								YZDept department = deptLogic.findmarketing("2",depttype,shouli);
-								deptId = department.getSeqId();
-							}
-					}
-				}else{
-					deptId = person.getDeptId();
-				}
-			}
-			
-			// 可见人员过滤
-			//String visualstaff = SessionUtil.getVisualstaff(request);
-			// 网电人员
-			//List<JSONObject> listPerson = personLogic.getPersonListByDeptTypeAndVisual(deptId, visualstaff, ChainUtil.getCurrentOrganization(request));
-			 listPerson = personLogic.findVisualPersonnel(deptId);
-			}
-			if(map.get("yewu")!=null){
+			List<JSONObject> listPerson=new ArrayList<>();
+			if(!YZUtility.isNullorEmpty(personid)){
+				map.put("visualstaff", "\'"+personid+"\'");
+				JSONObject objper = new JSONObject();
+				objper.put("seqId",personid);
+				objper.put("userName",personname);
+				listPerson.add(objper);
+			}else if(map.get("yewu")!=null){
 				map.put("visualstaff", "\'"+map.get("yewu")+"\'");
-			}else{
+				JSONObject objper = new JSONObject();
+				objper.put("seqId",map.get("yewu"));
+				objper.put("userName",yewuname);
+				listPerson.add(objper);
+			} else{
+				listPerson = personLogic.findVisualPersonnel(deptid);
 				String personIds = personLogic.getPerIdsByPersonList(listPerson);
 				map.put("visualstaff", personIds);
 			}

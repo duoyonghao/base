@@ -30,6 +30,8 @@
 <!-- 数据表中数据的样式 -->
 <link rel="stylesheet" type="text/css" href="<%=contextPath%>/static/css/kqdsFront/tableData.css" />
 <link rel="stylesheet" type="text/css" href="<%=contextPath%>/static/css/kqdsFront/bootstrap-table-jumpto.css"/>
+<!-- select搜索筛选 -->
+<link rel="stylesheet" type="text/css" href="<%=contextPath%>/static/css/admin/index/bower_components/select/bootstrap-select.css" />
 <style type="text/css">
 	.a{
 		border-left: 1px solid #ddd;
@@ -184,7 +186,15 @@ input[type="text"]:focus, select:focus, textarea:focus {
 	    					<span>受理工具</span>
     						<select class="dict searchSelect" tig="SLGJ" id="gongju" title="请选择" data-live-search="true"></select>
 	    				</li>
-	    			<%} %>   			 		
+	    			<%} %>
+						<li>
+							<span>部门类别</span>
+							<select id="deptCategory" name="deptCategory" onchange="findDeptPerson(this.value)"></select>
+						</li>
+						<li id="per">
+							<span>人员</span>
+							<select id="personid" name="personid"  data-live-search="true" title=""></select>
+						</li>
 	    			</ul>
 	    		</section>
             </div>
@@ -231,6 +241,8 @@ input[type="text"]:focus, select:focus, textarea:focus {
 <script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/tableExport.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/util.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/bootstrap-table-jumpto.js"></script>
+<!-- select搜索筛选 -->
+<script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/plugins/select/bootstrap-select.js"></script>
 <script type="text/javascript">
 var contextPath = "<%=contextPath%>";
 var personPriv = "<%=person.getSeqId()%>";
@@ -251,6 +263,23 @@ $(function() {
     initDictSelectByClass('triggerChange');
     
     findcreateUser();
+
+    $.ajax({
+        url:contextPath+"/KQDS_ScbbAct/getOrdertjDept.act",    //请求的url地址
+        data:{isyx:isyx,shouli:$('#shouli').val()},
+        dataType:"json",   //返回格式为json
+        type:"post",   //请求方式
+        async: false,
+        success:function(data){
+            if (data.length>0){
+                for (var i = 0; i < data.length; i++) {
+                    $("#deptCategory").append("<option value ="+data[i].deptid+">"+data[i].deptname+"</option>")
+                }
+                findDeptPerson(data[0].deptid);
+			}
+        }
+    });
+
     
     //获取当前页面所有按钮
     //getButtonPowerByPriv(qxnameArr, func, menuid);
@@ -272,6 +301,24 @@ $(function() {
     OrderDetail();
     $('.searchSelect').selectpicker("refresh");//搜索初始化刷新2019.10.31--lutian
 });
+//查询部门人员
+function findDeptPerson(deptid){
+    $.ajax({
+        url:contextPath+"/YZPersonAct/findVisualPersonnel.act",    //请求的url地址
+        data:{deptId:deptid},
+        dataType:"json",   //返回格式为json
+        type:"post",   //请求方式
+        success:function(data){
+            //请求成功时处理
+            $("#personid").html("");
+            $("#personid").html("<option value=''>全部员工</option>");
+            for (var i = 0; i < data.length; i++) {
+                $("#personid").append("<option personname='"+data[i].userName+"' value ="+data[i].seqId+">"+data[i].userName+"</option>")
+            }
+            $('.searchSelect').selectpicker("refresh");//初始化刷新--2019-10-29 licc
+        }
+    });
+}
 function queryParams(params) {
     var temp = {
                 organization: $('#organization').val(),
@@ -285,8 +332,12 @@ function queryParams(params) {
         	    shouli: $('#shouli').val(),//受理类型
         	    gongju: $('#gongju').val(),//受理工具
         	    yewu: $('#yewuDesc').val(),//建档人
+        		yewuname: $('#yewuDesc').find("option:selected").attr("yewuname"),//建档人名称
         	    dztime1: $('#dztime1').val(),//到诊时间开始
         	    dztime2: $('#dztime2').val(),//到诊时间结束
+        		deptid:$('#deptCategory').val(),//部门id
+				personid:$('#personid').val(),//人员id
+        		personname:$('#personid').find("option:selected").attr("personname")//人员名称
     };
     
     temp.isyx = isyx; // 1 是营销  2是网电 3客服
@@ -536,6 +587,9 @@ function getButtonPower(){
 	var listbuttonArray = new Array();
 	for ( var i = 0; i < listbutton.length; i++) {
 		listbuttonArray[i] = listbutton[i].qxName;
+        if (listbutton[i].qxName=="sjbb_jdr"){
+            $("#per").hide();
+        }
 	}
 	/* 按钮 */
 	var btnList =  '[';
@@ -552,7 +606,9 @@ function getButtonPower(){
 			} else {//有权限的展示
 				$("#"+jsonbtnList[i].qx).removeClass("hide");
 			}
+
 		}
+
 }
 
 function findcreateUser(){
@@ -570,7 +626,7 @@ function findcreateUser(){
 	        $("#yewuDesc").html("<option value=''>请选择</option>");
 	       // $("#yewuDesc").append("<option value=''>请选择</option>");
 	        for (var i = 0; i < data.length; i++) {
-	        $("#yewuDesc").append("<option value ="+data[i].seqId+">"+data[i].userName+"</option>")
+	        $("#yewuDesc").append("<option yewuname='"+data[i].userName+"' value ="+data[i].seqId+">"+data[i].userName+"</option>")
 			}
 	        $("#yewuDesc").selectpicker("refresh");
 	    }
