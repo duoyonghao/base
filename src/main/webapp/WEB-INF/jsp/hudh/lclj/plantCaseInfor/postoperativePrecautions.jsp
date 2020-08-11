@@ -333,7 +333,7 @@
         <!-- 患者签名 -->
         <div class="signature_time">
             <div class="signature_box">
-                <span id="patientSignature" style="margin-top: 8px;">患者签名:</span>
+                <span id="patientSignature" style="margin-top: 8px;line-height: 50px;">患者签名:</span>
                 <img id="patientimg" style="width:156px;height:auto;"/>
             </div>
             <input id="patienttime" type="text" class="consent_time" readonly="readonly" placeholder="请选择日期"/>
@@ -491,7 +491,8 @@
                         $("#img").attr('src', signature);
                         doctorstatus = false;
                     } else {
-                        $("#img").attr('display', 'none');
+                        //$("#img").attr('display', 'none');
+                        $("#img").css('display', 'none');
                     }
                     //$("#patienttime").val(result.patientTime);
                     $("#patienttime").attr("value",result.patientTime);
@@ -500,7 +501,8 @@
                         $("#patientimg").attr('src', patientsignature);
                         patientstatus = false;
                     } else {
-                        $("#patientimg").attr('display', 'none');
+                        //$("#patientimg").attr('display', 'none');
+                        $("#patientimg").css('display', 'none');
                     }
                     //$("#doctortime").val(result.doctorTime);
                     $("#doctortime").attr("value",result.doctorTime);
