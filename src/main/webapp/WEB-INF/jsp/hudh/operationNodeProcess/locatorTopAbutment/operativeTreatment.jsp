@@ -206,8 +206,8 @@
 												<label><i style="color: red;font-style: normal;">*</i>16、
 <%--													<input name="opration_record" type="checkbox" value="16、术者完成手术记录" id="opration_record"/>--%>
 <%--													<font class="operation_record">16、术者完成手术记录</font>--%>
-													<font class="operation_record">1.术者完成手术记录</font>
-													<input name="opration_record_new" type="radio" value="2.种植牙手术记录" id="opration_record_new"/><font class="operationRecord">2.种植牙手术记录</font>
+													<font class="operation_record" style="display: none;">1.术者完成手术记录</font>
+													<input name="opration_record_new" type="radio" value="种植牙手术记录" id="opration_record_new"/><font class="operationRecord">种植牙手术记录</font>
 												</label>
 											</li>
 										</ul>

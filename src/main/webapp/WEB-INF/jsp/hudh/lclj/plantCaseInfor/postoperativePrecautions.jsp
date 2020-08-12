@@ -473,6 +473,7 @@
 
     /* 页面赋值判断初始化 */
     function initZzblInfor() {
+        //console.log("报错报错---------------------"+id);
         var url = contextPath + '/HUDH_MedicalRecordsAct/findFamiliar.act';
         $.ajax({
             url: url,

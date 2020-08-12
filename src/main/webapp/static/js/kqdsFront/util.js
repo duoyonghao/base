@@ -969,8 +969,10 @@ function editLclj(hint){
 var patientInitId="";  //术后注意事项查询id
 if(parent.lcljInfo){
 	patientInitId=parent.lcljInfo.id;
+	initAttentionNew();
+	initOperationNoteNew();
 }
-function initZzblInfor() {
+function initAttentionNew() {
 	//console.log(JSON.stringify(parent.lcljInfo)+"-----------util.js");
 	var url = contextPath + '/HUDH_MedicalRecordsAct/findFamiliar.act';
 	$.ajax({
@@ -992,10 +994,9 @@ function initZzblInfor() {
 		}
 	});
 }
-initZzblInfor();
 
 // 种植牙手术记录选项选中
-function init() {
+function initOperationNoteNew() {
 	var url = contextPath + '/HUDH_MedicalRecordsAct/selectRecord.act';
 	$.ajax({
 		url: url,
@@ -1015,5 +1016,4 @@ function init() {
 		}
 	});
 }
-init();
 /**************************************************/
