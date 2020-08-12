@@ -203,10 +203,11 @@
 											</div></li>
 											<li><label>16、预约下次来院时间：<input class="" onfocus="popup()" name="next_hospital_time" type="text" value="" id="next_hospital_time" style="width: 108px;vertical-align: middle;"/></label></li> 
 											<li>
-												<label><i style="color: red;font-style: normal;">*</i>17、<input name="opration_record" type="checkbox" value="16、术者完成手术记录" id="opration_record"/>
+												<label><i style="color: red;font-style: normal;">*</i>17、
+<%--													<input name="opration_record" type="checkbox" value="16、术者完成手术记录" id="opration_record"/>--%>
 <%--													<font class="operation_record">17、术者完成手术记录</font>--%>
 													<font class="operation_record">1.术者完成手术记录</font>
-													<font class="operationRecord">2.种植牙手术记录</font>
+													<input name="opration_record_new" type="radio" value="2.种植牙手术记录" id="opration_record_new"/><font class="operationRecord">2.种植牙手术记录</font>
 												</label>
 											</li>
 										</ul>

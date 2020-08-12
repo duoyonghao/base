@@ -199,9 +199,10 @@
 											</div></li>
 											<li><label>14、预约下次复查时间：<input class="time_initialize time_select" readonly="readonly" placeholder="请选择时间" name="next_hospital_time" type="text" value="" id="next_hospital_time" style="width: 105px;vertical-align: middle;"/></label></li> 
 											<li>
-												<label><i style="color: red;font-style: normal;">*</i>15、<input name="opration_record" type="checkbox" value="15、术者完成手术记录" id="opration_record"/>
+												<label><i style="color: red;font-style: normal;">*</i>15、
+<%--													<input name="opration_record" type="checkbox" value="15、术者完成手术记录" id="opration_record"/>--%>
 													<font class="operation_record">1.术者完成手术记录</font>
-													<font class="operationRecord">2.种植牙手术记录</font>
+													<input name="opration_record_new" type="radio" value="2.种植牙手术记录" id="opration_record_new"/><font class="operationRecord">2.种植牙手术记录</font>
 												</label>
 											</li>
 										</ul>
