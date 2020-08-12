@@ -172,15 +172,15 @@ input[type="text"]:focus, select:focus, textarea:focus {
 						</li> 
                     <%} %>   	               	
     					<li class="toggleTr">
-	    					<div class="blue_inp hide" id="sjbb_sllx">
+	    					<div class="blue_inp" id="sjbb_sllx">
 	    						<span>受理类型</span>
-    					 		<select class="dict" tig="SLLX" id="shouli" style="height: 26px;width: 110px;" onchange="findcreateUser()"></select>
+    					 		<select class="dict" tig="SLLX" id="shouli" style="height: 26px;width: 110px;" onchange="initDept()"></select>
 	    					</div>
 	    				</li>
-	    					            <%
+						<%
 					if(SysParaUtil.getSysValueByName(request, SysParaUtil.ZY_LYCK).indexOf(SessionUtil.getLoginPerson(request).getUserPriv()) == -1) {
 					%>
-					
+
 					<%}else{ %>
 	    				<li class="toggleTr">
 	    					<span>受理工具</span>
@@ -262,25 +262,12 @@ $(function() {
     // 咨询项目、受理类型、受理工具
     initDictSelectByClass('triggerChange');
     
-    findcreateUser();
+    //findcreateUser();
 
-    $.ajax({
-        url:contextPath+"/KQDS_ScbbAct/getOrdertjDept.act",    //请求的url地址
-        data:{isyx:isyx,shouli:$('#shouli').val()},
-        dataType:"json",   //返回格式为json
-        type:"post",   //请求方式
-        async: false,
-        success:function(data){
-            if (data.length>0){
-                for (var i = 0; i < data.length; i++) {
-                    $("#deptCategory").append("<option value ="+data[i].deptid+">"+data[i].deptname+"</option>")
-                }
-                findDeptPerson(data[0].deptid);
-			}
-        }
-    });
+	initDept();
 
-    
+	OrderDetail();
+
     //获取当前页面所有按钮
     //getButtonPowerByPriv(qxnameArr, func, menuid);
     getButtonAllCurPage(menuid);
@@ -298,14 +285,35 @@ $(function() {
     $("#jdtime1,#jdtime2").change(function() {
         timeCompartAndFz("jdtime1", "jdtime2");
     }); */
-    OrderDetail();
     $('.searchSelect').selectpicker("refresh");//搜索初始化刷新2019.10.31--lutian
 });
+
+//初始化部门
+function initDept(){
+	$.ajax({
+		url:contextPath+"/KQDS_ScbbAct/getOrdertjDept.act",    //请求的url地址
+		data:{isyx:isyx,shouli:$('#shouli').val()},
+		dataType:"json",   //返回格式为json
+		type:"post",   //请求方式
+		async:false,
+		success:function(data){
+			//console.log(JSON.stringify(data)+"--=====---=========--===");
+			if (data.length>0){
+				$("#deptCategory").html("");
+				for (var i = 0; i < data.length; i++) {
+					$("#deptCategory").append("<option value ="+data[i].seqId+">"+data[i].deptName+"</option>")
+				}
+				findDeptPerson(data[0].seqId);
+			}
+		}
+	});
+}
+
 //查询部门人员
-function findDeptPerson(deptid){
+function findDeptPerson(seqId){
     $.ajax({
         url:contextPath+"/YZPersonAct/findVisualPersonnel.act",    //请求的url地址
-        data:{deptId:deptid},
+        data:{deptId:seqId},
         dataType:"json",   //返回格式为json
         type:"post",   //请求方式
         success:function(data){
@@ -390,6 +398,7 @@ function OrderDetail() {
         paginationShowPageGo: true,
         onLoadSuccess: function(data) { //加载成功时执行
 			//解除查询按钮禁用 lutian
+            //console.log(JSON.stringify(data)+"-=-=-=-=-=-=-=-=-=-");
 			if(data){
 				$("#query").removeAttr("disabled").css("background-color","#00a6c0").css("border","1px solid #00a6c0").css("cursor","pointer").css("pointer-events","auto");
 				$("#query").text("查询");

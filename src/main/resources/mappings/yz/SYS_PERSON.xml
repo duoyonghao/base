@@ -914,7 +914,9 @@
 		FROM
 			sys_person
 		WHERE
-			DEPT_ID = #{deptId}
+			DEPT_ID in (${deptId})
+			AND IS_LEAVE != 1
+			AND NOT_LOGIN != 1
 	</select>
 	<!-- 根据用户Id获取个人信息 -->
 	<select id="findPersonalDetails" parameterType="map" resultType="json">
