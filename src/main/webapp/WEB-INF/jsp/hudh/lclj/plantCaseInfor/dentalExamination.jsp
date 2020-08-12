@@ -326,6 +326,10 @@
             font-size:10px;
             font-weight:normal;
         }
+        .tooth_map{
+            width: 98%!important;
+            margin-left: 5px!important;
+        }
     }
     /*textarea牙位输入*/
     textarea{
@@ -342,7 +346,7 @@
     .tooth_map {
         float: left;
         display: inline-block;
-        width: 80%;
+        width: 90%;
         margin: 3px;
     }
     .tooth_map>li {
@@ -1409,7 +1413,8 @@
         if(form){
             var breakTime=form.createtime;
             var createTimes=new Date(breakTime);
-            var endTime=new Date("2020-08-08");
+            // 此时间定为2020-08-13禁止修改
+            var endTime=new Date("2020-08-13");
             if(createTimes<endTime){
                 $(".tooth_map").addClass("hidden");
                 $("textarea").removeClass("hidden");
