@@ -1181,7 +1181,7 @@ public class YZPersonAct {
 	public String findVisualPersonnel(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String deptId = request.getParameter("deptId");
 		try {
-			List<JSONObject> findVisualPersonnel = personLogic.findVisualPersonnel(deptId);
+			List<JSONObject> findVisualPersonnel = personLogic.findVisualPersonnel("'"+deptId+"'");
 			YZUtility.RETURN_LIST(findVisualPersonnel, response, logger);
 		} catch (Exception e) {
 			// TODO: handle exception

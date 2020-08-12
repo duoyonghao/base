@@ -632,13 +632,13 @@ public class YZDeptLogic extends BaseLogic {
 	 * @throws Exception 
 	  * @dateTime:2019年8月2日 上午11:07:12
 	  */  
-	public YZDept findmarketing(String isyx,String depttype,String shouli) throws Exception {
+	public List<YZDept> findmarketing(String isyx,String depttype,String shouli) throws Exception {
 		// TODO Auto-generated method stub
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("isyx", isyx);
 		map.put("shouli", shouli);
 		map.put("depttype", depttype);
-		 return (YZDept)dao.findForObject(TableNameUtil.SYS_DEPT+".findmarketing", map);
+		 return (List<YZDept>)dao.findForList(TableNameUtil.SYS_DEPT+".findmarketing", map);
 	}
 	
 	/**
@@ -721,5 +721,9 @@ public class YZDeptLogic extends BaseLogic {
 		map.put("organization", organization);
 		JSONObject person = (JSONObject)dao.findForObject(TableNameUtil.SYS_PERSON+".getDeptSeqIdByUserSeqIdAndOrganization", map);
 		return person.getString("seq_id");
+	}
+
+	public YZDept selectByPrimaryKey(String seqId) throws Exception {
+		return (YZDept)dao.findForObject(TableNameUtil.SYS_DEPT+".selectByPrimaryKey",seqId);
 	}
 }
