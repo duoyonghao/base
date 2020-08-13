@@ -1430,8 +1430,8 @@
         if(form){
             var breakTime=form.createtime;
             var createTimes=new Date(breakTime);
-            // 此时间定为2020-08-13禁止修改
-            var endTime=new Date("2020-08-13");
+            // 此时间定为2020-08-14禁止修改
+            var endTime=new Date("2020-08-14");
             if(createTimes<endTime){
                 $(".tooth_map").addClass("hidden");
                 $("textarea").removeClass("hidden");
