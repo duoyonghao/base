@@ -7,7 +7,7 @@
 		<result column="explanation" jdbcType="VARCHAR" property="explanation" />
 		<result column="remark" jdbcType="VARCHAR" property="remark" />
 		<result column="creartuser" jdbcType="VARCHAR" property="creartuser" />
-		<result column="crearttime" jdbcType="VARCHAR" property="createTime" />
+		<result column="createtime" jdbcType="VARCHAR" property="crearttime" />
 		<result column="organization" jdbcType="VARCHAR" property="organization" />
 		<result column="status" jdbcType="VARCHAR" property="status" />
 	</resultMap>
@@ -20,7 +20,7 @@
 	<insert id="saveTemplate" parameterType="com.hudh.tjhf.entity.VisitTemplate">
 		insert into kqds_visit_managar (SEQ_ID, planName, explanation,remark,organization,visit_people,status,creartuser,createtime)values 
 		(#{SEQ_ID,jdbcType=VARCHAR}, #{planName,jdbcType=VARCHAR}, #{explanation,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR}, 
-		#{organization,jdbcType=CLOB}, #{visit_people,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{creartuser,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR})
+		#{organization,jdbcType=CLOB}, #{visit_people,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{creartuser,jdbcType=VARCHAR},#{crearttime,jdbcType=VARCHAR})
 	</insert>
 	<!--保存回访计划模板  -->
 	<insert id="saveTemplates" parameterType="java.util.List">
@@ -28,7 +28,7 @@
 		<foreach collection="VisitTemplatelist" item="record" index="index" separator=",">
 			<trim prefix=" (" suffix=")" suffixOverrides="," > 
 				(#{SEQ_ID,jdbcType=VARCHAR}, #{planName,jdbcType=VARCHAR}, #{explanation,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR}, 
-				#{organization,jdbcType=VARCHAR}, #{visit_people,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{creartuser,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR})
+				#{organization,jdbcType=VARCHAR}, #{visit_people,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{creartuser,jdbcType=VARCHAR},#{crearttime,jdbcType=VARCHAR})
 			</trim>
 		</foreach>
 	</insert>
@@ -55,7 +55,7 @@
 				 #{planName,jdbcType=VARCHAR}, #{explanation,jdbcType=VARCHAR},
 				 #{remark,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR},
 				 #{status,jdbcType=VARCHAR},#{creartuser,jdbcType=VARCHAR},
-				 #{creartTime,jdbcType=VARCHAR})
+				 #{crearttime,jdbcType=VARCHAR})
 		end
 		UPDATE kqds_visit_managar
 		SET planName=#{planName,jdbcType=VARCHAR},explanation=#{explanation,jdbcType=VARCHAR},hfdept=#{hfdept,jdbcType=VARCHAR}
