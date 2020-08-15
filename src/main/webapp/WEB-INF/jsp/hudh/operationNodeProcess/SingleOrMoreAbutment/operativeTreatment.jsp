@@ -195,7 +195,7 @@
 											<!-- <li><label><input name="announcements" type="checkbox" value="13、交代注意事项" id="announcements"/>13、交代注意事项 </label></li> -->
 											<li><div class="preparation-ul">
 													<div><span style="font-weight: bold;margin-bottom: 5px;" class=""><i style="color: red;font-style: normal;">*</i>13、交代注意事项：</span></div>
-													<div><label><input name="intraoperativeMedication" type="radio" value="1" /><font class="postoperationItem">种植牙术后注意事项</font></label></div>
+													<div><label><input name="intraoperativeMedication" disabled type="radio" value="1" /><font class="postoperationItem">种植牙术后注意事项</font></label></div>
 <%--													<div><label><input name=intraoperativeMedication type="radio" value="半口、全口" /><font class="attention_wholehalf">半口、全口</font></label></div>--%>
 <%--													<div><label><input name="intraoperativeMedication" type="radio" value="局部" /><font class="attention_topo">局部</font></label></div>--%>
 											</div></li>
@@ -205,7 +205,7 @@
 <%--													<input name="opration_record" type="checkbox" value="15、术者完成手术记录" id="opration_record"/>--%>
 <%--													<font class="operation_record">术者完成手术记录</font></label>--%>
 													<font class="operation_record" style="display: none;">1.术者完成手术记录</font>
-													<input name="opration_record_new" type="radio" value="种植牙手术记录" id="opration_record_new"/><font class="operationRecord">种植牙手术记录</font>
+													<input name="opration_record_new" type="radio" disabled value="种植牙手术记录" id="opration_record_new"/><font class="operationRecord">种植牙手术记录</font>
 											</li>
 										</ul>
 									</div>	

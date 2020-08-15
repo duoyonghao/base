@@ -880,7 +880,7 @@ var buttonFun = {
 			var repair_left_down = getSelectToothNumb($("#xiufu .downYa>li>span[name='zzadultdownYa1']")); //左下
 			var repair_right_up = getSelectToothNumb($("#xiufu .upYa>li>span[name='zzadultupYa2']")); //右上
 			var repair_right_down = getSelectToothNumb($("#xiufu .downYa>li>span[name='zzadultdownYa2']")); //右下
-			
+
 			//手术时间
 			var operation_time = $(window.frames["myiframe"].document).find("input[name='operation_time']").val();
 			if($(window.frames["myiframe"].document).find("input[name='operation_time']").length>0){
@@ -1660,6 +1660,14 @@ var buttonFun = {
 					}
 				}
 			}
+
+			//种植牙手术记录
+			var opration_record_new = $(window.frames["myiframe"].document).find("input[name='opration_record_new']:checked").val();
+			if(!opration_record_new){
+				layer.alert("请填写种植牙手术记录！");
+				return;
+			}
+
 			//植体是否松动左上
 			var extractionleftup_l = $(window.frames["myiframe"].document).find("input[name='extractionleftup_l']").val();
 			var extractionleftup_r = $(window.frames["myiframe"].document).find("input[name='extractionleftup_r']").val();
