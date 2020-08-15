@@ -431,10 +431,10 @@ function OrderDetail(parentId) {
 	            		return '<select style="width: 250px;" id="ph'+index+'">'+html+'</select>';
 	            	}else{
 	            		if(value){
-		                    var html='<option value='+ value[0].addnumber+'/'+value[0].ph +'/'+value[0].goodscode+ '/'+value[0].price+'  llnum='+value[0].llnum+ ' ph='+value[0].ph+'>' + value[0].ph+'/'+value[0].price+'/'+value[0].addnumber + '</option>';
+		                    var html='<option value='+ value[0].addnumber+'/'+value[0].ph +'/'+value[0].goodscode+ '/'+value[0].price+'  llnum='+value[0].llnum+'  index='+0+' phnum='+value[0].phnum+' ph='+value[0].ph+'>' + value[0].ph+'/'+value[0].price+'/'+value[0].addnumber + '</option>';
 		            		for (var j = 1; j < value.length; j++) {
 			                    var optionStr = value[j];
-		            			html+='<option value='+ optionStr.addnumber+'/'+optionStr.ph +'/'+optionStr.goodscode+ '/'+optionStr.price+' llnum='+optionStr.llnum+ ' ph='+optionStr.ph+'>' + optionStr.ph+'/'+optionStr.price+'/'+optionStr.addnumber + '</option>';
+		            			html+='<option value='+ optionStr.addnumber+'/'+optionStr.ph +'/'+optionStr.goodscode+ '/'+optionStr.price+' llnum='+optionStr.llnum+ ' phnum='+optionStr.phnum+'  index='+j+' ph='+optionStr.ph+'>' + optionStr.ph+'/'+optionStr.price+'/'+optionStr.addnumber + '</option>';
 		            		}
 			            	return '<select style="width: 250px;" onchange="selectAllPh(this,'+index+')" id="ph'+index+'">'+html+'</select>';
 		            	}
@@ -573,12 +573,13 @@ function OrderDetail(parentId) {
     }
 
     function selectAllPh(obj, tdindex) {
-        $("#outnum" + tdindex).html($(obj).find("option:selected").attr("outnum"));
-        $("#createtime" + tdindex).html($(obj).find("option:selected").attr("createtime"));
-        var outnum = $(obj).find("option:selected").attr("outnum");
+
+        $("#llnum" + tdindex).html($(obj).find("option:selected").attr("llnum"));
+        $("#phnum" + tdindex).html($(obj).find("option:selected").attr("phnum"));
+        var phnum = $(obj).find("option:selected").attr("phnum");
         var nums = $("#nums" + tdindex).val();
-        if (Number(nums) > Number(outnum)) {
-            $("#nums" + tdindex).val(outnum);
+        if (Number(nums) > Number(phnum)) {
+            $("#nums" + tdindex).val(phnum);
         }
     }
 
@@ -621,7 +622,7 @@ function OrderDetail(parentId) {
         //领料数量7
         newTr.insertCell().innerHTML = '<td><span id="llnum' + tdindex + '"></span></td>';
         //领料时间8
-        newTr.insertCell().innerHTML = '<td><span id="addtime' + tdindex + '"></span></td>';
+        //newTr.insertCell().innerHTML = '<td><span id="addtime' + tdindex + '"></span></td>';
         //批号及单价9
         newTr.insertCell().innerHTML = '<td><select style="width: 250px;" onchange="selectAllPh(this,' + tdindex + ')" id="ph' + tdindex + '"></select></td>';
         //附加说明10
@@ -650,18 +651,21 @@ function OrderDetail(parentId) {
         $("#goodsnorms" + tdindex).parent().attr("title", $("#goodsnorms" + index).html());
         $("#index" + tdindex).parent().css("display", "none");
         $("#index" + index).html(tdindex);
-        var ph = $("#ph" + index + " option:selected").text();
+        //var ph = $("#ph" + index + " option:selected").text();
         var phs = $("#ph" + index).html();
         var phss = phs.split("/option>");
+        var phorder=$("#ph" + index + " option:selected").attr("index");
         var phsss = '';
         for (var i = 0; i < phss.length; i++) {
-            if (phss[i] != '' && phss[i].indexOf(">" + ph + "<") == -1) {
+            if (phss[i] != '' && phss[i].indexOf("index=\"" + phorder+ "\"") == -1) {
                 phsss += phss[i] + "/option>";
             }
         }
         $("#ph" + tdindex).html(phsss);
         $("#thnums" + tdindex).html($("#ph" + tdindex + " option:selected").attr("llnum"));
-        $("#addtime" + tdindex).html($("#ph" + tdindex + " option:selected").attr("addtime"));
+        $("#phnum" + tdindex).html($("#ph" + tdindex + " option:selected").attr("phnum"));
+        $("#llnum" + tdindex).html($("#ph" + tdindex + " option:selected").attr("llnum"));
+        //$("#addtime" + tdindex).html($("#ph" + tdindex + " option:selected").attr("addtime"));
     }
 
     //删除行

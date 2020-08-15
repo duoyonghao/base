@@ -144,7 +144,7 @@
         text-align: center;
     }
     .table_width3{
-        width:30%;
+        width:13.5%;
         text-align: center;
     }
     .content .colDefined .contentItem tr{
@@ -326,6 +326,16 @@
             font-size:10px;
             font-weight:normal;
         }
+        .tooth_map{
+            width: 98%!important;
+            margin-left: 5px!important;
+        }
+        .table_width3{
+            width:12%;
+        }
+        #other{
+            font-size:10px!important;
+        }
     }
     /*textarea牙位输入*/
     textarea{
@@ -342,7 +352,7 @@
     .tooth_map {
         float: left;
         display: inline-block;
-        width: 80%;
+        width: 90%;
         margin: 3px;
     }
     .tooth_map>li {
@@ -644,7 +654,7 @@
                         <td class="table_width2">
                             <div class='div_with2 placeholder' sid="ycjjd">
                                 <textarea name='ycjjd'  cols='2' placeholder='对应牙位'></textarea>
-                                <ul class="tooth_map" style="margin-left: 20px;">
+                                <ul class="tooth_map" style="margin-left: 30px;">
                                     <li>
                                         <input id="ycjjdleftup" class="tooth_input" type="text">
                                     </li>
@@ -666,7 +676,7 @@
                         <td>
                             <div class='div_with2 placeholder' sid="jbd">
                                 <textarea name='jbd'  cols='2' placeholder='对应牙位'></textarea>
-                                <ul class="tooth_map" style="margin-left: 20px;">
+                                <ul class="tooth_map" style="margin-left: 30px;">
                                     <li>
                                         <input id="jbdleftup" class="tooth_input" type="text">
                                     </li>
@@ -690,7 +700,7 @@
                         <td class="table_width2">
                                 <div class='div_with2 placeholder' sid="ycjkd">
                                     <textarea name='ycjkd'  cols='2' placeholder='对应牙位'></textarea>
-                                    <ul class="tooth_map" style="margin-left: 20px;">
+                                    <ul class="tooth_map" style="margin-left: 30px;">
                                         <li>
                                             <input id="ycjkdleftup" class="tooth_input" type="text">
                                         </li>
@@ -712,7 +722,7 @@
                         <td class="table_width2">
                             <div class='div_with2 placeholder' sid="ycsjg">
                                 <textarea name='ycsjg'  cols='2' placeholder='对应牙位'></textarea>
-                                <ul class="tooth_map" style="margin-left: 20px;">
+                                <ul class="tooth_map" style="margin-left: 30px;">
                                     <li>
                                         <input id="ycsjgleftup" class="tooth_input" type="text">
                                     </li>
@@ -961,6 +971,9 @@
         if((data.length)%2 == 0){
             $("#"+obj).find("tbody tr").find("td:odd").each(function(i,obj){
                 $(this).html("<span class='' id="+data[i].dictCode+">"+data[i].dictName+"</span>");
+                if(data[i].dictCode=="qt213"){
+                    $(this).html("<input style='width:60%;font-size: 16px;text-align:center;border:none' id='other' value="+data[i].dictName+" onblur='TextLengthCheck(this.id,6);'>");
+                }
             })
             $("#"+obj).find("tbody tr").find("td:even").each(function(i,obj){
                 $(this).html("<div class='div_with placeholder' sid="+data[i].dictCode+"><textarea name="+data[i].dictCode+"  cols='2' placeholder='对应牙位'></textarea><ul class='tooth_map' style='margin-left: 30px;'><li><input id='"+data[i].dictCode+"leftup' class='tooth_input' type='text'/></li><li><input id='"+data[i].dictCode+"rightup' class='tooth_input' type='text'/></li><li><input id='"+data[i].dictCode+"leftdown' class='tooth_input' type='text'/></li><li><input id='"+data[i].dictCode+"rightdown' class='tooth_input' type='text'/></li></ul></div>");
@@ -968,6 +981,9 @@
         }else{
             $("#"+obj).find("tbody tr").find("td:odd").not("td:last").each(function(i,obj){
                 $(this).html("<span class='' id="+data[i].dictCode+">"+data[i].dictName+"</span>");
+                if(data[i].dictCode=="qt213"){
+                    $(this).html("<input style='width:60%;font-size: 16px;text-align:center;border:none' id='other' value="+data[i].dictName+" onblur='TextLengthCheck(this.id,6);'>");
+                }
             })
             $("#"+obj).find("tbody tr").find("td:even").not("td:last").each(function(i,obj){
                 $(this).html("<div class='div_with placeholder' sid="+data[i].dictCode+"><textarea name="+data[i].dictCode+"  cols='2' placeholder='对应牙位'></textarea><ul class='tooth_map' style='margin-left: 30px;'><li><input id='"+data[i].dictCode+"leftup' class='tooth_input' type='text'/></li><li><input id='"+data[i].dictCode+"rightup' class='tooth_input' type='text'/></li><li><input id='"+data[i].dictCode+"leftdown' class='tooth_input' type='text'/></li><li><input id='"+data[i].dictCode+"rightdown' class='tooth_input' type='text'/></li></ul></div>");
@@ -1197,6 +1213,7 @@
 // 诊断
         var medicalCertificate=saveTooth("medicalCertificateBox"); //牙位
         var medicalCertificateInput=saveToothInput("medicalCertificateBox");//牙位input 十字架
+        var other=$("#other").val();//诊断其他---输入
         // //签字时间
         var patienttime = $("#patienttime").val();//患者签字时间
         var doctortime = $("#doctortime").val();//医生签字时间
@@ -1247,10 +1264,11 @@
             teethtilted : teethtilted,
             nub : nub,
 // 诊断
-            patientSignature :  patientsignature,
-            doctorSignature :  signature,
             defectiverepair : medicalCertificate,//诊断牙位texterea
             fourbone:medicalCertificateInput,//诊断牙位input
+            other :other,
+            patientSignature :  patientsignature,
+            doctorSignature :  signature,
             patientTime:patienttime,
             doctorTime:doctortime
         };
@@ -1314,6 +1332,7 @@
 // 诊断
         var medicalCertificate=saveTooth("medicalCertificateBox"); //牙位
         var medicalCertificateInput=saveToothInput("medicalCertificateBox");//牙位input 十字架
+        var other=$("#other").val();//诊断其他---输入
         // //签字时间
         var patienttime = $("#patienttime").val();//患者签字时间
         var doctortime = $("#doctortime").val();//医生签字时间
@@ -1364,11 +1383,13 @@
             pulpitis : pulpitis,
             teethtilted : teethtilted,
             nub : nub,
+
 // 诊断
-            patientSignature :  patientsignature,
-            doctorSignature :  signature,
             defectiverepair : medicalCertificate,//诊断牙位texterea
             fourbone:medicalCertificateInput,//诊断牙位input
+            other :other,
+            patientSignature :  patientsignature,
+            doctorSignature :  signature,
             patientTime:patienttime,
             doctorTime:doctortime
         };
@@ -1409,7 +1430,8 @@
         if(form){
             var breakTime=form.createtime;
             var createTimes=new Date(breakTime);
-            var endTime=new Date("2020-08-08");
+            // 此时间定为2020-08-14禁止修改
+            var endTime=new Date("2020-08-14");
             if(createTimes<endTime){
                 $(".tooth_map").addClass("hidden");
                 $("textarea").removeClass("hidden");
@@ -1537,6 +1559,8 @@
                     $("#"+key).attr("value",medicalCertificateInput[key]);
                 }
             }
+            // 诊断其他
+            $("#other").attr("value",form["other"]);
         }
         getButtonAllCurPage(menuid);
     }

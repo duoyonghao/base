@@ -535,6 +535,11 @@ function editPrice(id,obj,index){
 function editPh(obj,index){
 	var k = obj.parentNode.parentNode.rowIndex;
 	var ph=$("#ph"+index).val();
+	if(ph.indexOf("/")!= -1||ph.indexOf("\\")!= -1){
+        layer.alert('批号请勿输入/或\\！');
+        $("#ph"+index).val("");
+        return false;
+	}
 	var goodsid=$("#goodsid"+index).html();
 	var inprice=$("#inprice"+index).val();
 	$("#table").find("tbody").find("tr").each(function(i,obj){

@@ -170,8 +170,8 @@ input[type="text"]:focus, select:focus, textarea:focus {
 								<option value="">请选择</option>
 							</select>
 						</li> 
-                    <%} %>   	               	
-    					<li class="toggleTr">
+                    <%} %>
+    					<li class="toggleTr hidden">
 	    					<div class="blue_inp" id="sjbb_sllx">
 	    						<span>受理类型</span>
     					 		<select class="dict" tig="SLLX" id="shouli" style="height: 26px;width: 110px;" onchange="initDept()"></select>

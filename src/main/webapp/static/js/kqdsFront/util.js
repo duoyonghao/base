@@ -108,7 +108,6 @@ function readonly() {
     $("textarea").attr("readonly", "readonly");
     $("select").attr("disabled", true);
 }
-
 //解析树 返回数据
 function ajaxDataFilter(treeId, parentNode, responseData) {
     var tree;

@@ -320,12 +320,19 @@ public class Kqds_PayCostLogic extends BaseLogic {
 					/**
 					 * 根据费用单号查询收费明细数据  2019-9-6  syp start
 					 */
-					List<KqdsCostorderDetail> list = dlogic.selectCostorderDetail(dp.getCostno());
-					for (KqdsCostorderDetail kqdsCostorderDetail : list) {
-						kqdsCostorderDetail.setKaifa("已治疗");
-						kqdsCostorderDetail.setZltime(YZUtility.getThirtyMinutesLater());
-						dlogic.updateCostorderDetailBySeqId(kqdsCostorderDetail);
-					}
+					//更改到setTypeMoney同时更改治疗数据
+//					List<KqdsCostorderDetail> list = dlogic.selectCostorderDetail(dp.getCostno());
+//					for (KqdsCostorderDetail kqdsCostorderDetail : list) {
+//						kqdsCostorderDetail.setKaifa("已治疗");
+//						kqdsCostorderDetail.setZltime(YZUtility.getThirtyMinutesLater());
+//						dlogic.updateCostorderDetailBySeqId(kqdsCostorderDetail);
+//					}
+					//更改为传一次costno更改治疗状态
+//					KqdsCostorderDetail kqdsCostorderDetail= new KqdsCostorderDetail();
+//					kqdsCostorderDetail.setKaifa("已治疗");
+//					kqdsCostorderDetail.setZltime(YZUtility.getThirtyMinutesLater());
+//					kqdsCostorderDetail.setCostno(dp.getCostno());
+//					dlogic.updateCostorderDetailByCostno(kqdsCostorderDetail);
 					/**
 					 * end
 					 */
@@ -379,19 +386,38 @@ public class Kqds_PayCostLogic extends BaseLogic {
 				 * 如果前台挂号分类为其他时，三大项设置为已成交，药品、预交金、检查项目为未成交  syp 2019-11-08 start
 				 */
 				List<KqdsTreatitem> listTreatitem = treatItemLogic.getTreatItemInfroList(Detaillist);//调用方法treatItemLogic中的方法，查询具体开单项目
+				//判断是否有检查项目，有则改变为1
+				int jyk=0;
+				if(listTreatitem.size()>0){
+					for (KqdsTreatitem kqdsTreatitem : listTreatitem) {
+						if(("jyk671").equals(kqdsTreatitem.getBasetype())){
+							jyk=1;
+							break;
+						}
+					}
+				}
+				//判断是否有预交金项目，有则改变为1
+				int yjj=0;
+				int istsxm=0;
+				for (KqdsCostorderDetail detail : Detaillist) {
+					if (1 == detail.getIsyjjitem()) {
+						yjj=1;
+					}
+					if (1 == detail.getIstsxm()) {
+						istsxm=1;
+					}
+				}
 				String regsort = reg.getRegsort();
 				if(regsort.equals("234")) {
 					if(cost.getIsdrugs() == 1) {//判断药品
 						cjStatus = 0;
-					} else if ((Detaillist.get(0).getIsyjjitem()) == 1) {//判断预交金
+					} else if (yjj== 1) {//判断预交金
 						cjStatus = 0;
-					} else if (Detaillist.size() == 8 && (listTreatitem.get(0).getBasetype()).equals("jyk671")) {//判断检查项目
+					} else if (jyk==1) {//判断检查项目
 						cjStatus = 0;
 					}
 				}
-				Integer istsxm = Detaillist.get(0).getIstsxm();
-				String baseType = listTreatitem.get(0).getBasetype();
-				if(istsxm == 1 && baseType.equals("jyk671")) {
+				if(istsxm == 1 && jyk==1) {
 					cjStatus = 0;//收银修改检查项目套餐单不做任何修改时保存再结账、成交状态判断
 				}
 				//如果开单有欠款结完账也为已成交（排除药品、检查项目、预交金）
@@ -401,7 +427,7 @@ public class Kqds_PayCostLogic extends BaseLogic {
 				String voidMoney = voidmoney.toString();
 				BigDecimal y2 = cost.getY2();
 				if(!arrearMoney.equals("0.000")) {
-					if(cost.getIsdrugs() == 1 || (Detaillist.get(0).getIsyjjitem()) == 1 || Detaillist.size() == 8) {
+					if(cost.getIsdrugs() == 1 || yjj== 1 || jyk==1) {
 						cjStatus = 0;
 					} else {
 						cjStatus = 1;
@@ -409,7 +435,7 @@ public class Kqds_PayCostLogic extends BaseLogic {
 				}
 				if(regsort.equals("234")) {
 					if(!arrearMoney.equals("0.000")) {
-						if(cost.getIsdrugs() == 1 || (Detaillist.get(0).getIsyjjitem()) == 1 || Detaillist.size() == 8) {
+						if(cost.getIsdrugs() == 1 || yjj == 1 || jyk==1) {
 							cjStatus = 0;
 						} else {
 							cjStatus = 1;
@@ -417,7 +443,7 @@ public class Kqds_PayCostLogic extends BaseLogic {
 					}
 				}
 				if(!voidMoney.equals("0.000")) {
-					if(cost.getIsdrugs() == 1 || (Detaillist.get(0).getIsyjjitem()) == 1 || Detaillist.size() == 8) {
+					if(cost.getIsdrugs() == 1 || yjj== 1 || jyk==1) {
 						cjStatus = 0;
 					} else {
 						cjStatus = 1;
@@ -425,7 +451,7 @@ public class Kqds_PayCostLogic extends BaseLogic {
 				}
 				if(regsort.equals("234")) {
 					if(!voidMoney.equals("0.000")) {
-						if(cost.getIsdrugs() == 1 || (Detaillist.get(0).getIsyjjitem()) == 1 || Detaillist.size() == 8) {
+						if(cost.getIsdrugs() == 1 || yjj== 1 || jyk==1) {
 							cjStatus = 0;
 						} else {
 							cjStatus = 1;
@@ -433,7 +459,7 @@ public class Kqds_PayCostLogic extends BaseLogic {
 					}
 				}
 				if((y2.compareTo(new BigDecimal(0))) == -1) {
-					if(cost.getIsdrugs() == 1 || (Detaillist.get(0).getIsyjjitem()) == 1 || Detaillist.size() == 8) {
+					if(cost.getIsdrugs() == 1 || yjj == 1 || jyk==1) {
 						cjStatus = 0;
 					} else {
 						cjStatus = 1;
@@ -441,7 +467,7 @@ public class Kqds_PayCostLogic extends BaseLogic {
 				}
 				if(regsort.equals("234")) {
 					if((y2.compareTo(new BigDecimal(0))) == -1) {
-						if(cost.getIsdrugs() == 1 || (Detaillist.get(0).getIsyjjitem()) == 1 || Detaillist.size() == 8) {
+						if(cost.getIsdrugs() == 1 || yjj == 1 || jyk==1) {
 							cjStatus = 0;
 						} else {
 							cjStatus = 1;
@@ -476,14 +502,14 @@ public class Kqds_PayCostLogic extends BaseLogic {
 				BigDecimal discountMoney = cost.getDiscountmoney();
 				String disMoney = discountMoney.toString();
 				if (cost.getIsdrugs() != 1) {//discountMoney还需要判断
-					if(!disMoney.equals("0.000") && !baseType.equals("jyk671")) {
+					if(!disMoney.equals("0.000") && jyk==0) {
 						logic.updateCostOrderCjstatus(cost.getSeqId());
 						reglogic.updateRegCjstatus(reg.getSeqId());
 					}
 				}
 				if(regsort.equals("234")) {
 					if (cost.getIsdrugs() != 1) {
-						if(!disMoney.equals("0.000") && !baseType.equals("jyk671")) {
+						if(!disMoney.equals("0.000") && jyk==0) {
 							logic.updateCostOrderCjstatus(cost.getSeqId());
 							reglogic.updateRegCjstatus(reg.getSeqId());
 						}
@@ -539,6 +565,7 @@ public class Kqds_PayCostLogic extends BaseLogic {
 					String costno=jsonObject.getString("costno");
 					map.put("costno", costno);
 					List<JSONObject> list1 = logicd.selectWithPageLzjlForLabel(TableNameUtil.KQDS_COSTORDER_DETAIL, map);
+					//判断项目是否包含种植体
 					for (JSONObject jsonObject2 : list1) {
 						if(jsonObject2.getString("itemname").endsWith("种植体")&&jsonObject2.getString("unit").equals("颗")){
 							//种植体项目添加到itemlist
@@ -858,121 +885,21 @@ public class Kqds_PayCostLogic extends BaseLogic {
 		String threeid=userDocumentlogic.selectLabelByUsercode(map);
 		userDocumentlogic.deleteLabelByUsercode(map);
 		kqdsHzLabellabeAndPatient kPatient = new kqdsHzLabellabeAndPatient();
-			String id = YZUtility.getUUID();
-			kPatient.setSeqId(id);
-			kPatient.setUserSeqId("");
-			kPatient.setUserId(usercode);
-			kPatient.setUserName(username);
-			kPatient.setLabelOneId(labelOneId);
-			kPatient.setLabelOneName(labelOneName);
-			kPatient.setLabelTwoId(parentId);
-			kPatient.setLabelTwoName(parentName);
-			kPatient.setLabelThreeId(labelId);
-			kPatient.setLabelThreeName(labelname);
-			kPatient.setCreateUser(person.getSeqId());
-			kPatient.setCreateTime(YZUtility.getCurDateTimeStr());
-			kPatient.setOrganization(ChainUtil.getCurrentOrganization(request));
-			userDocumentlogic.saveKpatient(kPatient);
-//		CacheUtil.openCache();
-//		//CacheUtil.queryVisitArticleStatistics(1);
-//		Set<String> c = CacheUtil.keys("labelQuery:*"+usercode+"*");
-//		String mm = (String) CacheUtil.getMapKey("label:name",usercode);
-//		String labelID="";
-//		String labelName="";
-//		for (String string : c) {
-//			Double time=CacheUtil.getZSetScore("label:key", string.substring(11, string.length()));
-//			
-//			if(string.contains(labelOneId)){
-//				if(string.contains(parentId)){
-//					if(threeid!=null&&!threeid.equals("")){
-//						String[] str=string.split(",");
-//						//遍历缓存的标签键
-//						for (String string2 : str) {
-//							if(string2.equals(threeid)){
-//								labelID+=labelId+",";
-//							}else{
-//								labelID+=string2+",";
-//							}
-//						}
-//					}
-//				}else{
-//					labelID=string+parentId+","+labelId+",";
-//				}
-//			}else{
-//				labelID=string+labelOneId+","+parentId+","+labelId+",";
-//			}
-//			if(!mm.contains(labelOneName)){
-//				labelName=mm+labelOneName+":"+parentName+":"+labelname+"。";
-//			}else{
-//				String[] str=mm.split("。");
-//				for (int i = 0; i < str.length; i++) {
-//					if(str[i].contains(labelOneName)){
-//						if(str[i].contains(parentName)){
-//							String[] str1=str[i].split(";");
-//							for (int j = 0; j < str1.length; i++) {
-//								if(str1[j].contains(labelOneName)){
-//									if(str1[j].contains(parentName)){
-//										if(j==str1.length-1){
-//											labelName+=labelOneName+":"+parentName+":"+labelname+"。";
-//										}else{
-//											labelName+=labelOneName+":"+parentName+":"+labelname+";";
-//										}
-//										
-//									}else{
-//										if(j==str1.length-1){
-//											labelName+=str1[j];
-//										}else{
-//											labelName+=str1[j]+";";
-//										}
-//									}
-//								}
-//							}
-//						}else{
-//							if(i==str.length-1){
-//								labelName+=parentName+":"+labelname+"。";
-//							}else{
-//								labelName+=parentName+":"+labelname+";";
-//							}
-//							
-//						}
-//					}else{
-//						labelName+=str[i]+"。";
-//					}
-//	//				if(str[i].contains(parentName)&&!mm.contains("消费项目(种植体品牌)")){
-//	//					labelName+=parentName+":"+labelname+"。";
-//	//				}else if(str[i].contains(parentName)&&!str[i].contains("消费项目(种植体品牌)")){
-//	//					labelName+=parentName+":"+labelname+";";
-//	//				}else if(str[i].contains(parentName)&&str[i].contains("消费项目(种植体品牌)")){
-//	//					labelName+=parentName+":"+labelname+"。";
-//	//				}else{
-//	//					labelName+=str[i]+";";
-//	//				}
-//				}
-//			}
-////			if(mm.contains(labelOneName)){
-////				if(mm.contains(parentName)){
-////					//遍历缓存的标签键
-////					
-////				}else{
-////					labelName=mm.substring(0, mm.length()-1)+";"+parentName+":"+labelname+"。";
-////				}
-////			}else{
-////				labelName=mm+labelOneName+":"+parentName+":"+labelname+"。";
-////			}
-//			Map<String,String> key=new HashMap<String,String>();
-//			key.put(labelID.substring(11, labelID.length()), usercode);
-//			Map<String,String> key1=new HashMap<String,String>();
-//			key1.put(usercode,labelName);
-//			CacheUtil.delMapKey("label:value", string.substring(11, string.length()));
-//			CacheUtil.delMapKey("label:name", usercode);
-//			CacheUtil.removeZSet("label:key", string.substring(11, string.length()));
-//			CacheUtil.del(string);
-//			CacheUtil.setMap("label:value", key);
-//			CacheUtil.setMap("label:name", key1);
-//			CacheUtil.addZSet("label:key",labelID.substring(11, labelID.length()),time);
-//			CacheUtil.set(labelID, usercode);
-//		}
-//		CacheUtil.close();
+		String id = YZUtility.getUUID();
+		kPatient.setSeqId(id);
+		kPatient.setUserSeqId("");
+		kPatient.setUserId(usercode);
+		kPatient.setUserName(username);
+		kPatient.setLabelOneId(labelOneId);
+		kPatient.setLabelOneName(labelOneName);
+		kPatient.setLabelTwoId(parentId);
+		kPatient.setLabelTwoName(parentName);
+		kPatient.setLabelThreeId(labelId);
+		kPatient.setLabelThreeName(labelname);
+		kPatient.setCreateUser(person.getSeqId());
+		kPatient.setCreateTime(YZUtility.getCurDateTimeStr());
+		kPatient.setOrganization(ChainUtil.getCurrentOrganization(request));
+		userDocumentlogic.saveKpatient(kPatient);
 		BcjlUtil.LogBcjlWithUserCode(BcjlUtil.MODIFY, BcjlUtil.KQDS_Hz_LabellabeAndPatient, kPatient, usercode, TableNameUtil.KQDS_Hz_LabellabeAndPatient, request);
 		return labelname;
 	}
@@ -1084,6 +1011,14 @@ public class Kqds_PayCostLogic extends BaseLogic {
 			YZPerson person, HttpServletRequest request) throws Exception {
 		BigDecimal zss = BigDecimal.ZERO; // 预交金赠送小计
 		BigDecimal sss = BigDecimal.ZERO; // 预交金本金小计
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("useflag", "0");
+		List<JSONObject> en = fkfsLogic.selectList(TableNameUtil.SYS_FKFS, map);
+		if(en.size()>0){
+			for (JSONObject jsonObject : en) {
+				map.put(jsonObject.getString("costfield"),jsonObject.getString("seq_id"));
+			}
+		}
 		for (int i = 0; i < typess.length; i++) {
 			// 付款金额
 			BigDecimal xfmoney = new BigDecimal(moneyss[i]);
@@ -1109,7 +1044,7 @@ public class Kqds_PayCostLogic extends BaseLogic {
 					continue;
 				}
 				if (KqdsBigDecimal.compareTo(xfmoney, BigDecimal.ZERO) == 1) {
-					if (typess[i].equals(fkfsLogic.selectSeqId4costfield("payyjj"))) {// 预交金，此时xfmoney=本金+赠送
+					if (typess[i].equals(map.get("payyjj"))) {// 预交金，此时xfmoney=本金+赠送
 						// 设置项目明细中缴费金额
 						if (KqdsBigDecimal.compareTo(xfmoney, paymoney) >= 0) { // 如果预交金>应付金额
 							xfmoney = xfmoney.subtract(paymoney); // 预交金付款金额 =
@@ -1121,140 +1056,142 @@ public class Kqds_PayCostLogic extends BaseLogic {
 							detail.setPayother2(zs); // 设置预交金赠送
 							sss = sss.add(pay);
 							zss = zss.add(zs);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						} else {// 如果预交金<应付金额
 							detail.setPayother2(zsall.subtract(zss));
 							detail.setPayyjj(ssall.subtract(sss));
 							xfmoney = xfmoney.subtract(xfmoney);
 							/** 此时 xfmoney 的值为 0 **/
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						}
 					}
-					if (typess[i].equals(fkfsLogic.selectSeqId4costfield("payyb"))) {
+					if (typess[i].equals(map.get("payyb"))) {
 						// 设置项目明细中缴费金额
 						if (KqdsBigDecimal.compareTo(xfmoney, paymoney) >= 0) {// 如果医保>应付金额
 							xfmoney = xfmoney.subtract(paymoney);
 							detail.setPayyb(paymoney);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						} else {// 如果预交金<应付金额
 							detail.setPayyb(xfmoney);
 							xfmoney = xfmoney.subtract(xfmoney);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						}
 					}
-					if (typess[i].equals(fkfsLogic.selectSeqId4costfield("payxj"))) {
+					if (typess[i].equals(map.get("payxj"))) {
 						// 设置项目明细中缴费金额
 						if (KqdsBigDecimal.compareTo(xfmoney, paymoney) >= 0) {
 							xfmoney = xfmoney.subtract(paymoney);
 							detail.setPayxj(paymoney);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						} else {// 如果预交金<应付金额
 							detail.setPayxj(xfmoney);
 							xfmoney = xfmoney.subtract(xfmoney);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						}
 					}
-					if (typess[i].equals(fkfsLogic.selectSeqId4costfield("paybank"))) {
+					if (typess[i].equals(map.get("paybank"))) {
 						// 设置项目明细中缴费金额
 						if (KqdsBigDecimal.compareTo(xfmoney, paymoney) >= 0) {
 							xfmoney = xfmoney.subtract(paymoney);
 							detail.setPaybank(paymoney);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						} else {// 如果预交金<应付金额
 							detail.setPaybank(xfmoney);
 							xfmoney = xfmoney.subtract(xfmoney);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						}
 					}
-					if (typess[i].equals(fkfsLogic.selectSeqId4costfield("paywx"))) {
+					if (typess[i].equals(map.get("paywx"))) {
 						// 设置项目明细中缴费金额
 						if (KqdsBigDecimal.compareTo(xfmoney, paymoney) >= 0) {
 							xfmoney = xfmoney.subtract(paymoney);
 							detail.setPaywx(paymoney);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						} else {// 如果预交金<应付金额
 							detail.setPaywx(xfmoney);
 							xfmoney = xfmoney.subtract(xfmoney);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						}
 					}
-					if (typess[i].equals(fkfsLogic.selectSeqId4costfield("payzfb"))) {
+					if (typess[i].equals(map.get("payzfb"))) {
 						// 设置项目明细中缴费金额
 						if (KqdsBigDecimal.compareTo(xfmoney, paymoney) >= 0) {
 							xfmoney = xfmoney.subtract(paymoney);
 							detail.setPayzfb(paymoney);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						} else {// 如果预交金<应付金额
 							detail.setPayzfb(xfmoney);
 							xfmoney = xfmoney.subtract(xfmoney);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						}
 					}
-					if (typess[i].equals(fkfsLogic.selectSeqId4costfield("paymmd"))) {
+					if (typess[i].equals(map.get("paymmd"))) {
 						// 设置项目明细中缴费金额
 						if (KqdsBigDecimal.compareTo(xfmoney, paymoney) >= 0) {
 							xfmoney = xfmoney.subtract(paymoney);
 							detail.setPaymmd(paymoney);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						} else {// 如果预交金<应付金额
 							detail.setPaymmd(xfmoney);
 							xfmoney = xfmoney.subtract(xfmoney);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						}
 					}
-					if (typess[i].equals(fkfsLogic.selectSeqId4costfield("paybdfq"))) {
+					if (typess[i].equals(map.get("paybdfq"))) {
 						// 设置项目明细中缴费金额
 						if (KqdsBigDecimal.compareTo(xfmoney, paymoney) >= 0) {
 							xfmoney = xfmoney.subtract(paymoney);
 							detail.setPaybdfq(paymoney);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						} else {// 如果预交金<应付金额
 							detail.setPaybdfq(xfmoney);
 							xfmoney = xfmoney.subtract(xfmoney);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						}
 					}
-					if (typess[i].equals(fkfsLogic.selectSeqId4costfield("payother1"))) {
+					if (typess[i].equals(map.get("payother1"))) {
 						// 其他
 						// 设置项目明细中缴费金额
 						if (KqdsBigDecimal.compareTo(xfmoney, paymoney) >= 0) {// 如果预交金>应付金额
 							xfmoney = xfmoney.subtract(paymoney);
 							detail.setPayother1(paymoney);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						} else {// 如果预交金<应付金额
 							detail.setPayother1(xfmoney);
 							xfmoney = xfmoney.subtract(xfmoney);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						}
 					}
-					if (typess[i].equals(fkfsLogic.selectSeqId4costfield("paydjq"))) {
+					if (typess[i].equals(map.get("paydjq"))) {
 						// 设置项目明细中缴费金额
 						if (KqdsBigDecimal.compareTo(xfmoney, paymoney) >= 0) {// 如果预交金>应付金额
 							xfmoney = xfmoney.subtract(paymoney);
 							detail.setPaydjq(paymoney);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						} else {// 如果预交金<应付金额
 							detail.setPaydjq(xfmoney);
 							xfmoney = xfmoney.subtract(xfmoney);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						}
 					}
-					if (typess[i].equals(fkfsLogic.selectSeqId4costfield("payintegral"))) {
+					if (typess[i].equals(map.get("payintegral"))) {
 						// 设置项目明细中缴费金额
 						if (KqdsBigDecimal.compareTo(xfmoney, paymoney) >= 0) {// 如果预交金>应付金额
 							xfmoney = xfmoney.subtract(paymoney);
 							detail.setPayintegral(paymoney);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						} else {
 							detail.setPayintegral(xfmoney);
 							xfmoney = xfmoney.subtract(xfmoney);
-							dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
+							//dao.updateSingleUUID(TableNameUtil.KQDS_COSTORDER_DETAIL, detail);
 						}
 					}
 				}
-
+				detail.setKaifa("已治疗");
+				detail.setZltime(YZUtility.getThirtyMinutesLater());
 			}
-
+			//批量修改费用明细
+			dlogic.batchUpdateCostorderDetailBySeqid(listDetail);
 		}
 	}
 
