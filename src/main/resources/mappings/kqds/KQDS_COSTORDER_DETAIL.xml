@@ -1926,6 +1926,73 @@
 		</trim>
 		where SEQ_ID = #{seqId}
 	</update>
+	<!-- 根据id更新收费明细数据-->
+	<update id="updateCostorderDetailByCostno" parameterType="com.kqds.entity.base.KqdsCostorderDetail">
+		UPDATE KQDS_COSTORDER_DETAIL
+		<trim prefix="SET" suffixOverrides=",">
+			<if test='null != kaifa and "" !=  kaifa'>
+				kaifa = #{kaifa,jdbcType=VARCHAR},
+			</if>
+			<if test='null != zltime and "" != zltime'>
+				zltime = #{zltime,jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where costno = #{costno}
+	</update>
+    <!-- 批量修改费用明细信息 -->
+	<update id="batchUpdateCostorderDetailBySeqid" parameterType="java.util.List">
+		<foreach collection="list" item="bean" index="index" open="" close="" separator=";">
+			update KQDS_COSTORDER_DETAIL
+			<set>
+				<if test="bean.payxj != null">
+					payxj = #{bean.payxj,jdbcType=DECIMAL},
+				</if>
+				<if test="bean.payyjj != null">
+					payyjj = #{bean.payyjj,jdbcType=DECIMAL},
+				</if>
+				<if test="bean.paybank != null">
+					paybank = #{bean.paybank,jdbcType=DECIMAL},
+				</if>
+				<if test="bean.payyb != null">
+					payyb = #{bean.payyb,jdbcType=DECIMAL},
+				</if>
+				<if test="bean.payother1 != null">
+					payother1 = #{bean.payother1,jdbcType=DECIMAL},
+				</if>
+				<if test="bean.payother2 != null">
+					payother2 = #{bean.payother2,jdbcType=DECIMAL},
+				</if>
+				<if test="bean.payother3 != null">
+					payother3 = #{bean.payother3,jdbcType=DECIMAL},
+				</if>
+				<if test="bean.payzfb != null">
+					payzfb = #{bean.payzfb,jdbcType=DECIMAL},
+				</if>
+				<if test="bean.paywx != null">
+					paywx = #{bean.paywx,jdbcType=DECIMAL},
+				</if>
+				<if test="bean.paymmd != null">
+					paymmd = #{bean.paymmd,jdbcType=DECIMAL},
+				</if>
+				<if test="bean.paybdfq != null">
+					paybdfq = #{bean.paybdfq,jdbcType=DECIMAL},
+				</if>
+				<if test="bean.paydjq != null">
+					paydjq = #{bean.paydjq,jdbcType=DECIMAL},
+				</if>
+				<if test="bean.payintegral != null">
+					payintegral = #{bean.payintegral,jdbcType=DECIMAL},
+				</if>
+				<if test='null != bean.kaifa and "" != bean.kaifa'>
+					kaifa = #{bean.kaifa,jdbcType=VARCHAR},
+				</if>
+				<if test='null != bean.zltime and "" != bean.zltime'>
+					zltime = #{bean.zltime,jdbcType=VARCHAR},
+				</if>
+			</set>
+			where SEQ_ID = #{bean.seqId,jdbcType=VARCHAR}
+		</foreach>
+	</update>
 	<select id="selectWithPage" parameterType="map" resultType="json">
 		<!-- select d.* from KQDS_COSTORDER_DETAIL d
 		left join kqds_costorder c on c.costno = d.costno -->

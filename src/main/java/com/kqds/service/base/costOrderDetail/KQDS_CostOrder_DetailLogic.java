@@ -41,7 +41,6 @@ public class KQDS_CostOrder_DetailLogic extends BaseLogic {
 	/**
 	 * 根据消费项目编号统计
 	 * 
-	 * @param conn
 	 * @param itemnos
 	 * @return
 	 * @throws Exception
@@ -88,7 +87,6 @@ public class KQDS_CostOrder_DetailLogic extends BaseLogic {
 	/**
 	 * 根据治疗项目表的basetype和nexttype字段，获取对应的描述
 	 * 
-	 * @param conn
 	 * @param itemNO
 	 * @param itemName
 	 * @return
@@ -1179,7 +1177,6 @@ public class KQDS_CostOrder_DetailLogic extends BaseLogic {
 	/**
 	 * 查询条件不需要再增加 Organization
 	 * 
-	 * @param conn
 	 * @param table
 	 * @param map
 	 * @param visualstaff
@@ -1196,10 +1193,8 @@ public class KQDS_CostOrder_DetailLogic extends BaseLogic {
 	/**
 	 * 【根据costno 进行查询，查询条件不需要再增加 Organization】
 	 * 
-	 * @param conn
 	 * @param table
 	 * @param map
-	 * @param type
 	 * @return
 	 * @throws Exception
 	 */
@@ -1217,7 +1212,6 @@ public class KQDS_CostOrder_DetailLogic extends BaseLogic {
 	/**
 	 * 查询欠费项目 【不做门诊条件过滤】
 	 * 
-	 * @param conn
 	 * @param table
 	 * @param map
 	 * @return
@@ -1233,7 +1227,6 @@ public class KQDS_CostOrder_DetailLogic extends BaseLogic {
 	/**
 	 * 根据欠费编号查询 该项目实际欠费情况 不做门诊条件过滤
 	 * 
-	 * @param conn
 	 * @param table
 	 * @param qfbh
 	 * @return
@@ -1255,7 +1248,6 @@ public class KQDS_CostOrder_DetailLogic extends BaseLogic {
 	/**
 	 * 结账后费用单号为空删除 不做门诊条件过滤
 	 * 
-	 * @param dbConn
 	 * @throws Exception
 	 */
 	public void deleteDetail(String usercode, HttpServletRequest request) throws Exception {
@@ -1265,7 +1257,6 @@ public class KQDS_CostOrder_DetailLogic extends BaseLogic {
 	/**
 	 * 科室权责业绩图表展示
 	 * 
-	 * @param conn
 	 * @param table
 	 * @param map
 	 * @param organization
@@ -1288,7 +1279,6 @@ public class KQDS_CostOrder_DetailLogic extends BaseLogic {
 	/**
 	 * 统计全院业绩情况 ---应收
 	 * 
-	 * @param conn
 	 * @param table
 	 * @param year
 	 * @param month
@@ -1325,7 +1315,6 @@ public class KQDS_CostOrder_DetailLogic extends BaseLogic {
 	/**
 	 * 统计全院业绩情况 ---实收
 	 * 
-	 * @param conn
 	 * @param table
 	 * @param year
 	 * @param month
@@ -1363,7 +1352,6 @@ public class KQDS_CostOrder_DetailLogic extends BaseLogic {
 	/**
 	 * 统计全院业绩情况 ---应收
 	 * 
-	 * @param conn
 	 * @param table
 	 * @param year
 	 * @param month
@@ -1390,7 +1378,6 @@ public class KQDS_CostOrder_DetailLogic extends BaseLogic {
 	/**
 	 * 统计全院业绩情况 ---实收
 	 * 
-	 * @param conn
 	 * @param table
 	 * @param year
 	 * @param month
@@ -1418,8 +1405,6 @@ public class KQDS_CostOrder_DetailLogic extends BaseLogic {
 	/**
 	 * 退费金额验证 【不做门诊条件过滤】
 	 * 
-	 * @param conn
-	 * @param table
 	 * @param usercode
 	 * @param itemno
 	 * @param qfbh
@@ -1457,8 +1442,6 @@ public class KQDS_CostOrder_DetailLogic extends BaseLogic {
 	/**
 	 * 退费金额验证 【不做门诊条件过滤】
 	 * 
-	 * @param conn
-	 * @param table
 	 * @param usercode
 	 * @param itemno
 	 * @param qfbh
@@ -1496,7 +1479,6 @@ public class KQDS_CostOrder_DetailLogic extends BaseLogic {
 	/**
 	 * 退费单赠送金额 【不做门诊条件过滤】
 	 * 
-	 * @param conn
 	 * @param table
 	 * @param costno
 	 * @return
@@ -1521,7 +1503,6 @@ public class KQDS_CostOrder_DetailLogic extends BaseLogic {
 	/**
 	 * 打印页面 【不做门诊条件过滤】
 	 * 
-	 * @param conn
 	 * @param table
 	 * @param costno
 	 * @return
@@ -1666,13 +1647,30 @@ public class KQDS_CostOrder_DetailLogic extends BaseLogic {
 	
 	/**
 	 * 根据id更新收费明细数据  2019-9-6  syp
-	 * @param seqId
+	 * @param dp
 	 * @throws Exception
 	 */
 	public void updateCostorderDetailBySeqId(KqdsCostorderDetail dp) throws Exception {
 		dao.update(TableNameUtil.KQDS_COSTORDER_DETAIL + ".updateCostorderDetailBySeqId", dp);
 	}
 
+	/**
+	 * 根据costno更新收费明细数据
+	 * @param dp
+	 * @throws Exception
+	 */
+	public void updateCostorderDetailByCostno(KqdsCostorderDetail dp) throws Exception {
+		dao.update(TableNameUtil.KQDS_COSTORDER_DETAIL + ".updateCostorderDetailByCostno", dp);
+	}
+
+	/**
+	 * 批量修改费用明细数据
+	 * @param dp
+	 * @throws Exception
+	 */
+	public void batchUpdateCostorderDetailBySeqid(List<KqdsCostorderDetail> dp) throws Exception {
+		dao.update(TableNameUtil.KQDS_COSTORDER_DETAIL + ".batchUpdateCostorderDetailBySeqid", dp);
+	}
 	/**   
 	  * @Title: findZperformance   
 	  * @Description: TODO(这里用一句话描述这个方法的作用)   
