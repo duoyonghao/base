@@ -1660,12 +1660,14 @@ var buttonFun = {
 					}
 				}
 			}
+            //种植牙手术记录
+            if(patientObj.nodename=="手术治疗" || patientObj.nodename=="手术治疗取模"){
 
-			//种植牙手术记录
-			var opration_record_new = $(window.frames["myiframe"].document).find("input[name='opration_record_new']:checked").val();
-			if(!opration_record_new){
-				layer.alert("请填写种植牙手术记录！");
-				return;
+                var opration_record_new = $(window.frames["myiframe"].document).find("input[name='opration_record_new']:checked").val();
+                if(!opration_record_new){
+                    layer.alert("请填写种植牙手术记录！");
+                    return;
+                }
 			}
 
 			//植体是否松动左上
