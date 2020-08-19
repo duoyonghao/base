@@ -476,6 +476,7 @@
         us.remark,
         us.familyship,
         us.iscreateLclj,
+        us.arrearage,
         us.contagion,
         reg.askpersondept,
         reg.jh

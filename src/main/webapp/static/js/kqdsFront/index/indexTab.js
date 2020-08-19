@@ -278,6 +278,9 @@ function hospitalOrderTable(type, tabId) {
                     if (row.contagion != "" && row.contagion != null && row.contagion == 1) {
                         iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/contagion.jpg/>';
                     }
+                    if (Number(row.arrearage)>0) {
+                        iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/arrearage.jpg/>';
+                    }
                     return iconhtml == "" ? "-" : iconhtml;
                 }
             },
@@ -546,6 +549,9 @@ function netOrderTable(type, tabId) {
                     }
                     if (row.contagion != "" && row.contagion != null && row.contagion == 1) {
                         iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/contagion.jpg/>';
+                    }
+                    if (Number(row.arrearage)>0) {
+                        iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/arrearage.jpg/>';
                     }
                     return iconhtml == "" ? "-" : iconhtml;
                 }
@@ -836,6 +842,9 @@ function getOrderlist(status, type, tabId) {
                     }
                     if (row.contagion != "" && row.contagion != null && row.contagion == 1) {
                         iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/contagion.jpg/>';
+                    }
+                    if (Number(row.arrearage)>0) {
+                        iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/arrearage.jpg/>';
                     }
                     return iconhtml == "" ? "-" : iconhtml;
                 }
@@ -1161,6 +1170,9 @@ function getPayOrderlist(type, tabId) {
                     }
                     if (row.contagion != "" && row.contagion != null && row.contagion == 1) {
                         iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/contagion.jpg/>';
+                    }
+                    if (Number(row.arrearage)>0) {
+                        iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/arrearage.jpg/>';
                     }
                     return iconhtml == "" ? "-" : iconhtml;
                 }
@@ -1638,6 +1650,9 @@ function initTable(status, type, recesort, tabId) {
                     }
                     if (row.contagion != "" && row.contagion != null && row.contagion == 1) {
                         iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/contagion.jpg/>';
+                    }
+                    if (Number(row.arrearage)>0) {
+                        iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/arrearage.jpg/>';
                     }
                     return iconhtml == "" ? "-" : iconhtml;
                 }
