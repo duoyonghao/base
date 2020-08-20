@@ -70,8 +70,14 @@ public class CheckSmsTxTask implements Job {
 		// organization = (String)
 		// map.get(key).getAttribute(SessionUtil.LOGIN_ORGANIZATION);
 		// }
-		String yyhouse = paraLogic.getParaValueByName(SysParaUtil.SMS_YYTX_BEFORE);
-		String srhouse = paraLogic.getParaValueByName(SysParaUtil.SMS_BIRTH_BEFORE);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("paraName",SysParaUtil.SMS_YYTX_BEFORE);
+		map.put("organization","");
+		String yyhouse = paraLogic.getParaValueByName(map);
+		Map<String, String> map1 = new HashMap<String, String>();
+		map1.put("paraName",SysParaUtil.SMS_BIRTH_BEFORE);
+		map1.put("organization","");
+		String srhouse = paraLogic.getParaValueByName(map1);
 
 		String organization = YZSysProps.getProp(SysParaUtil.ORGANIZATION);
 		// 获取当前小时

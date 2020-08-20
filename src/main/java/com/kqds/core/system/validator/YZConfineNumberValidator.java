@@ -12,13 +12,19 @@ import com.kqds.util.sys.log.SysLogUtil;
 import com.kqds.util.sys.spring.BeanUtil;
 import com.kqds.util.sys.sys.SysParaUtil;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class YZConfineNumberValidator implements YZLoginValidator {
 	public boolean isValid(HttpServletRequest request, YZPerson person) throws Exception {
 		YZParaLogic paraLogic = (YZParaLogic) BeanUtil.getBean("paraLogic");
 		YZOnlineLogic onlineLogic = (YZOnlineLogic) BeanUtil.getBean("onlineLogic");
 
 		// 允许最大端口数
-		String confineStr = paraLogic.getParaValueByName(SysParaUtil.YZ_CONFINE_NUMBER);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("paraName",SysParaUtil.YZ_CONFINE_NUMBER);
+		map.put("organization","");
+		String confineStr = paraLogic.getParaValueByName(map);
 		if (YZUtility.isNullorEmpty(confineStr)) {
 			throw new Exception("未配置端口数限制参数！");
 		}
