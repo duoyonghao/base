@@ -531,7 +531,7 @@
         var url = contextPath + '/HUDH_AddVisitAct/editability.act';
         $.axse(url, null,
             function (data) {
-                console.log(JSON.stringify(data) + "----");
+                //console.log(JSON.stringify(data) + "----");
                 if (!(data.valid)) {
                     $('#hfdept').attr("disabled", true);
                     $('#visitor').attr("disabled", true);
