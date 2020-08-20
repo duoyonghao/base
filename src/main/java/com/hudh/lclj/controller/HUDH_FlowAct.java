@@ -462,14 +462,33 @@ public class HUDH_FlowAct {
         String plant_physician = request.getParameter("plant_physician");
         String repair_physician = request.getParameter("repair_physician");
         String nodename = request.getParameter("nodename");
+        String nodestarttime = request.getParameter("nodestarttime");
+        String nodeendtime = request.getParameter("nodeendtime");
+        String surgerystarttime = request.getParameter("surgerystarttime");
+        String surgeryendtime = request.getParameter("surgeryendtime");
         String sortName = request.getParameter("sortName");
         String sortOrder = request.getParameter("sortOrder");
         // 可见人员过滤
         String visualstaff = SessionUtil.getVisualstaff(request);
         Map<String, String> map = new HashMap<>();
         JSONObject json = new JSONObject();
+        if (!YZUtility.isNullorEmpty(surgerystarttime)) {
+            map.put("surgerystarttime", surgerystarttime);
+        }
+        if (!YZUtility.isNullorEmpty(surgeryendtime)) {
+            map.put("surgeryendtime", surgeryendtime);
+        }
+        if(!YZUtility.isNullorEmpty(surgerystarttime)||!YZUtility.isNullorEmpty(surgeryendtime)){
+            map.put("nodeid", "Surtre");
+        }
         if (YZUtility.isNotNullOrEmpty(nodename)) {
             map.put("nodename", nodename);
+        }
+        if (!YZUtility.isNullorEmpty(nodestarttime)) {
+            map.put("nodestarttime", nodestarttime);
+        }
+        if (!YZUtility.isNullorEmpty(nodeendtime)) {
+            map.put("nodeendtime", nodeendtime);
         }
         if (YZUtility.isNotNullOrEmpty(visualstaff)) {
             map.put("querytype", visualstaff);

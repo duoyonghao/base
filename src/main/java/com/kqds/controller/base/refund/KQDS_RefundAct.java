@@ -643,8 +643,10 @@ public class KQDS_RefundAct {
 						BigDecimal agreeTk = new BigDecimal(objrefund.getString("tkmoney"));
 						BigDecimal aowTk = detail.getTkmoney();
 						BigDecimal tked = KqdsBigDecimal.add(agreeTk, aowTk);
-						if (KqdsBigDecimal.compareTo(ysf, tked) < 0) {
-							throw new Exception("该收费项目的退款金额大于缴费金额！");
+						if(KqdsBigDecimal.compareTo(tked, new BigDecimal("0")) == 1){
+							if (KqdsBigDecimal.compareTo(ysf, tked) < 0) {
+								throw new Exception("该收费项目的退款金额大于缴费金额！");
+							}
 						}
 					}
 

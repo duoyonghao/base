@@ -187,7 +187,7 @@ input[type="text"]:focus, select:focus, textarea:focus {
     						<select class="dict searchSelect" tig="SLGJ" id="gongju" title="请选择" data-live-search="true"></select>
 	    				</li>
 	    			<%} %>
-						<li>
+						<li id="dep">
 							<span>部门类别</span>
 							<select id="deptCategory" name="deptCategory" onchange="findDeptPerson(this.value)"></select>
 						</li>
@@ -246,6 +246,7 @@ input[type="text"]:focus, select:focus, textarea:focus {
 <script type="text/javascript">
 var contextPath = "<%=contextPath%>";
 var personPriv = "<%=person.getSeqId()%>";
+var personUsername = "<%=person.getUserName()%>";
 var userPriv = "<%=person.getUserPriv()%>";
 var frameindex = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 var pageurl = '<%=contextPath%>/KQDS_ScbbAct/getWdOrdertj.act';
@@ -261,8 +262,6 @@ $(function() {
     initHosSelectListNoCheckWithNull('organization', static_organization);
     // 咨询项目、受理类型、受理工具
     initDictSelectByClass('triggerChange');
-    
-    //findcreateUser();
 
 	initDept();
 
@@ -297,7 +296,7 @@ function initDept(){
 		type:"post",   //请求方式
 		async:false,
 		success:function(data){
-			//console.log(JSON.stringify(data)+"--=====---=========--===");
+			//console.log(JSON.stringify(data));
 			if (data.length>0){
 				$("#deptCategory").html("");
 				for (var i = 0; i < data.length; i++) {
@@ -347,7 +346,12 @@ function queryParams(params) {
 				personid:$('#personid').val(),//人员id
         		personname:$('#personid').find("option:selected").attr("personname")//人员名称
     };
-    
+    if (temp.deptid==null&&temp.personid==null){
+        $("#per").hide();
+        $("#dep").hide();
+        temp.personid=personPriv;
+        temp.personname=personUsername;
+	}
     temp.isyx = isyx; // 1 是营销  2是网电 3客服
     return temp;
 }
@@ -598,6 +602,7 @@ function getButtonPower(){
 		listbuttonArray[i] = listbutton[i].qxName;
         if (listbutton[i].qxName=="sjbb_jdr"){
             $("#per").hide();
+            findcreateUser();
         }
 	}
 	/* 按钮 */

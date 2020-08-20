@@ -656,10 +656,15 @@ function OrderDetail(parentId) {
         var phss = phs.split("/option>");
         var phorder=$("#ph" + index + " option:selected").attr("index");
         var phsss = '';
+        var a=0;
         for (var i = 0; i < phss.length; i++) {
             if (phss[i] != '' && phss[i].indexOf("index=\"" + phorder+ "\"") == -1) {
                 phsss += phss[i] + "/option>";
+                a+=1;
             }
+        }
+        if (a>1){
+            $("#add" + tdindex).removeAttr("disabled");
         }
         $("#ph" + tdindex).html(phsss);
         $("#thnums" + tdindex).html($("#ph" + tdindex + " option:selected").attr("llnum"));
@@ -722,8 +727,46 @@ function OrderDetail(parentId) {
                             layer.close(index);
                         });
                     } else {
-                        layer.alert('退货数量多于批号剩余数量！', {});
+                        layer.alert('退货数量多于批号剩余数量！');
                         $("#nums" + i).val(phnum);
+                        var nums1=0;
+                        var list = [];
+                        $('#dykdxm').find('tbody').each(function () {
+                            $(this).find('tr').each(function () {
+                                var paramDetail = {};
+                                $(this).find('td').each(function () {
+                                    if ($(this).index() == 6) {
+                                        //退货数量
+                                        paramDetail.nums = $(this).find("input").val();
+                                    } else if ($(this).index() == 1) {
+                                        //编号
+                                        var goodscode = $(this).find("span").html();
+                                        paramDetail.goodscode = goodscode;
+                                    }
+                                });
+                                list.push(paramDetail);
+                            });
+                        });
+                        for (var i = 0; i < list.length; i++){
+                            if (list[i].goodscode==goodscode){
+                                nums1+=Number(list[i].nums);
+                            }
+                        };
+                        if (Number(nums1) < Number(cknums)){
+                            layer.confirm("退货数量多于批号剩余数量,是否添加新的批号信息？", {
+                                btn: ['确认', '取消'],
+                                closeBtn: 0
+                            }, function (index) {
+                                $("#nums" + i).val(phnum);
+                                addDeatil(i);
+                                layer.close(index);
+                            }, function (index) {
+                                $("#nums" + i).val(phnum);
+                                layer.close(index);
+                            });
+                        }else{
+                            $("#add" + i).attr("disabled","disabled");
+                        }
                         return false;
                     }
                 }
