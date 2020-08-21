@@ -453,7 +453,7 @@ public class HUDH_AddVisitAct {
         try {
             YZPerson person = SessionUtil.getLoginPerson(request);
             Map<String, String> map = new HashMap<String, String>();
-            map.put("organization",person.getOrganization());
+            map.put("organization",ChainUtil.getCurrentOrganization(request));
             map.put("paraName",SysParaUtil.SYS_POSITION);
             String paraValueByName = yzLogic.getParaValueByName(map);
             if (paraValueByName != null && !paraValueByName.equals("")) {
