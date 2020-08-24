@@ -1590,6 +1590,7 @@ WHERE
         <if test="blcode != null and blcode !='' ">
             and blcode = #{blcode}
         </if>
+        and isdelete !=1
     </select>
     <update id="updateFlagBySeqIds1" parameterType="json">
 		update KQDS_MEMBER set username = #{username} where usercode = #{usercode}
