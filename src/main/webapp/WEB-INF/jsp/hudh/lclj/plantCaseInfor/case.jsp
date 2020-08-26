@@ -2634,7 +2634,7 @@
                 $("#patient_site").text(r.provincename + r.cityname + r.townname + r.streetName);
             }
         });
-        console.log(form,"form")
+        //console.log(form,"form")
         if(form){
             $("#consent_saveBtn").css("display","none");//隐藏保存按钮
             $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
@@ -3155,7 +3155,7 @@
             atonceleftup:$("#atonceleftup").val(),
             atoncerightup:$("#atoncerightup").val(),
             atonceleftdown:$("#atonceleftdown").val(),
-            atoncerightdown:$("#atonceleftdown").val(),
+            atoncerightdown:$("#atoncerightdown").val(),
             imagingleftup:$("#imagingleftup").val(),
             imagingrightup:$("#imagingrightup").val(),
             imagingleftdown:$("#imagingleftdown").val(),
@@ -3440,7 +3440,7 @@
             atonceleftup:$("#atonceleftup").val(),
             atoncerightup:$("#atoncerightup").val(),
             atonceleftdown:$("#atonceleftdown").val(),
-            atoncerightdown:$("#atonceleftdown").val(),
+            atoncerightdown:$("#atoncerightdown").val(),
             imagingleftup:$("#imagingleftup").val(),
             imagingrightup:$("#imagingrightup").val(),
             imagingleftdown:$("#imagingleftdown").val(),
