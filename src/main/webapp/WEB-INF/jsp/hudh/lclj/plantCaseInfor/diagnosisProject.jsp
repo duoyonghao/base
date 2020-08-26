@@ -134,7 +134,6 @@
             </div>
         </div>
 
-
         <div id="diagnosis_continer" class="container-fluid">
             <!-- 患者信息 -->
             <div class="row" style="border-top: 2px solid #776c6c;">
@@ -191,7 +190,7 @@
             <div class="backGauge">
                 <!-- 种植 -->
                 <div class="row">
-                    <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
+                    <div class="col-md-3 col-sm-3 col-xs-3 colDefined">
                         <!-- 牙位图 -->
                         <div class="zl_toothMapdiv">
                             <div class="toothExtraction" style="text-align: center;width: 97%;">拔牙</div>
@@ -215,7 +214,27 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
+                    <div class="col-md-3 col-sm-3 col-xs-3 colDefined">
+                        <!-- 牙位图 -->
+                        <div class="zl_toothMapdiv">
+                            <div class="toothExtraction" style="text-align: center;width: 97%;">二次拔牙</div>
+                            <ul class="tooth_map" style="width:80%;height:80px;margin-left: 10%;">
+                                <li>
+                                    <input id="secondextractionleftup" onblur="TextLengthCheck(this.id,10);" class="tooth_input" type="text">
+                                </li>
+                                <li>
+                                    <input id="secondextractionrightup" onblur="TextLengthCheck(this.id,10);" class="tooth_input" type="text">
+                                </li>
+                                <li>
+                                    <input id="secondextractionleftdown" onblur="TextLengthCheck(this.id,10);" class="tooth_input" type="text">
+                                </li>
+                                <li>
+                                    <input id="secondextractionrightdown" onblur="TextLengthCheck(this.id,10);" class="tooth_input" type="text">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-3 colDefined">
                         <!-- 牙位图 -->
                         <div class="zl_toothMapdiv">
                             <div class="toothExtraction">种植：
@@ -242,7 +261,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4 colDefined">
+                    <div class="col-md-3 col-sm-3 col-xs-3 colDefined">
                         <!-- 牙位图 -->
                         <div class="zl_toothMapdiv">
                             <div style="margin: 5px 0;text-align: center;width: 98%;">第二次</div>
@@ -631,12 +650,12 @@
                                             <div style="font-weight:600;line-height: 30px;">种植系统：</div>
                                         </div>
                                     </li>
-                                    <li style="width:16%;">
+                                    <li style="width:14%;">
                                         <!-- 选项框 -->
                                         <div class="zl_optiondiv">
                                             <input type="checkbox" value="NobelActive" name="implantsystem"
                                                    id="implantsystemA" style="vertical-align: text-bottom;"/>
-                                            <label for="implantsystemA">NobelActive</label>
+                                            <label for="implantsystemA">Nobel-Active</label>
                                         </div>
                                     </li>
                                     <li style="width:14%;">
@@ -655,14 +674,14 @@
                                             <label for="implantsystemC">camlog</label>
                                         </div>
                                     </li>
-                                    <li style="width:12%;">
-                                        <!-- 选项框 -->
-                                        <div class="zl_optiondiv">
-                                            <input type="checkbox" value="DT" name="implantsystem" id="implantsystemD"
-                                                   style="vertical-align: text-bottom;"/>
-                                            <label for="implantsystemD">DT</label>
-                                        </div>
-                                    </li>
+<%--                                    <li style="width:12%;">--%>
+<%--                                        <!-- 选项框 -->--%>
+<%--                                        <div class="zl_optiondiv">--%>
+<%--                                            <input type="checkbox" value="DT" name="implantsystem" id="implantsystemD"--%>
+<%--                                                   style="vertical-align: text-bottom;"/>--%>
+<%--                                            <label for="implantsystemD">DT</label>--%>
+<%--                                        </div>--%>
+<%--                                    </li>--%>
                                     <li style="width:14%;">
                                         <!-- 选项框 -->
                                         <div class="zl_optiondiv">
@@ -680,12 +699,34 @@
                                             <label for="implantsystemF">Nobel</label>
                                         </div>
                                     </li>
-                                    <li style="width:14%;">
+                                    <li style="width:12%;">
                                         <!-- 选项框 -->
                                         <div class="zl_optiondiv">
                                             <input type="checkbox" value="Zimmer" name="implantsystem"
                                                    id="implantsystemG" style="vertical-align: text-bottom;"/>
                                             <label for="implantsystemG">Zimmer</label>
+                                        </div>
+                                    </li>
+                                    <li style="width:12%;">
+                                        <!-- 选项框 -->
+                                        <div class="zl_optiondiv">
+                                            <input type="checkbox" value="Dentium" name="implantsystem" id="Dentium" style="vertical-align: text-bottom;"/>
+                                            <label for="Dentium">Dentium</label>
+                                        </div>
+                                    </li>
+                                    <li style="width:14%;">
+                                        <!-- 选项框 -->
+                                        <div class="zl_optiondiv">
+                                            <input type="checkbox" value="Pmc" name="implantsystem" id="Pmc" style="vertical-align: text-bottom;"/>
+                                            <label for="Pmc">Pmc</label>
+                                        </div>
+                                    </li>
+                                    <li style="width:18%;">
+                                        <!-- 选项框 -->
+                                        <div class="zl_optiondiv">
+                                            <input type="checkbox" value="其他" name="implantsystem" id="implantsystemothers" style="vertical-align: text-bottom;"/>
+                                            <label for="implantsystemothers">其他</label>
+                                            <input id="implantsystemotherstext" type="text">
                                         </div>
                                     </li>
                                 </ul>
@@ -1133,6 +1174,12 @@
         var PatientTime = $("#patienttime").val();//患者签名时间
         var doctorTime = $("#doctortime").val();//医生签名时间
 
+        var secondextractionleftup = $("#secondextractionleftup").val();
+        var secondextractionrightup = $("#secondextractionrightup").val();
+        var secondextractionleftdown = $("#secondextractionleftdown").val();
+        var secondextractionrightdown = $("#secondextractionrightdown").val();
+        var implantsystemotherstext = $("#implantsystemotherstext").val();
+
         var url = contextPath + '/HUDH_ZzblAct/updateZzblOprationById.act';
         var param = {
             id: caseId,
@@ -1174,7 +1221,12 @@
             patientsignature: patientsignature,//患者签名
             doctorSignature: signature,//医生签名
             PatientTime: PatientTime,//患者签名时间
-            doctorTime: doctorTime//医生签名时间
+            doctorTime: doctorTime,//医生签名时间
+            secondextractionleftup : secondextractionleftup,
+            secondextractionrightup : secondextractionrightup,
+            secondextractionleftdown : secondextractionleftdown,
+            secondextractionrightdown : secondextractionrightdown,
+            implantsystemotherstext : implantsystemotherstext
 
         };
         //console.log(JSON.stringify(param)+"-------hahahahah");
@@ -1233,6 +1285,13 @@
         /* var patientsignature = $("#patientsignature").val();//患者签名 */
         var PatientTime = $("#patienttime").val();//患者签名时间
         var doctorTime = $("#doctortime").val();//医生签名时间
+
+        var secondextractionleftup = $("#secondextractionleftup").val();
+        var secondextractionrightup = $("#secondextractionrightup").val();
+        var secondextractionleftdown = $("#secondextractionleftdown").val();
+        var secondextractionrightdown = $("#secondextractionrightdown").val();
+        var implantsystemotherstext = $("#implantsystemotherstext").val();
+
         var url = contextPath + '/HUDH_ZzblAct/save.act';
         var param = {
             id: id,
@@ -1274,7 +1333,12 @@
             patientsignature: patientsignature,//患者签名
             PatientTime: PatientTime,//患者签名时间
             doctorTime: doctorTime,//医生签名时间
-            doctorSignature: signature//医生签名
+            doctorSignature: signature,//医生签名
+            secondextractionleftup : secondextractionleftup,
+            secondextractionrightup : secondextractionrightup,
+            secondextractionleftdown : secondextractionleftdown,
+            secondextractionrightdown : secondextractionrightdown,
+            implantsystemotherstext : implantsystemotherstext
         };
         //console.log(JSON.stringify(param)+"-------hahahahah");
         $.axseSubmit(url, param, function () {
