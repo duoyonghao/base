@@ -120,6 +120,9 @@
             color: #434343;
             padding-top: 30px;
         }
+        .examine_continer .zl_multiple>ul{
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
@@ -320,7 +323,7 @@
                         <li style="width:14%;" class="zhonglei">
                             <!-- 选项框 -->
                             <div class="zl_optiondiv">
-                                <div style="font-weight:600;margin-top: 20px;">曾修复的种类：</div>
+                                <div style="font-weight:600;">曾修复的种类：</div>
                             </div>
                         </li>
                         <li style="width:16%;" class="zhonglei">
@@ -365,7 +368,7 @@
                         <li style="width:14%;">
                             <!-- 选项框 -->
                             <div class="zl_optiondiv">
-                                <div style="margin-top: 20px;font-weight:600;">牙周情况：</div>
+                                <div style="font-weight:600;">牙周情况：</div>
                             </div>
                         </li>
                         <li style="width:16%;">
@@ -558,68 +561,68 @@
             </div>
         </div>
         <!-- 牙齿缺失原因 -->
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12 colDefined tooth_deficiency">
-                <!-- 多选框 -->
-                <div class="zl_multiple">
-                    <!-- 选项 -->
-                    <ul style="height: 30px;">
-                        <li style="width:14%" class="yuanyin1">
-                            <!-- 选项框 -->
-                            <div class="zl_optiondiv">
-                                <div style="margin-top:5px;font-weight: 600;">牙齿缺失原因：</div>
-                            </div>
-                        </li>
-                        <li style="width:16%" class="yuanyin">
-                            <!-- 选项框 -->
-                            <div class="zl_optiondiv">
-                                <input name="reasonmissteeth" id="reasonmissteethA" value="先天缺失" type="checkbox"/>
-                                <label for="reasonmissteethA">先天缺失</label>
-                            </div>
-                        </li>
-                        <li style="width:14%" class="yuanyin">
-                            <!-- 选项框 -->
-                            <div class="zl_optiondiv">
-                                <input name="reasonmissteeth" id="reasonmissteethB" value="龋病" type="checkbox"/>
-                                <label for="reasonmissteethB">龋病</label>
-                            </div>
-                        </li>
-                        <li style="width:14%" class="yuanyin">
-                            <!-- 选项框 -->
-                            <div class="zl_optiondiv">
-                                <input name="reasonmissteeth" id="reasonmissteethC" value="牙周病" type="checkbox"/>
-                                <label for="reasonmissteethC">牙周病</label>
-                            </div>
-                        </li>
-                        <li style="width:14%" class="yuanyin">
-                            <!-- 选项框 -->
-                            <div class="zl_optiondiv">
-                                <input name="reasonmissteeth" id="reasonmissteethD" value="外伤" type="checkbox"/>
-                                <label for="reasonmissteethD">外伤</label>
-                            </div>
-                        </li>
-                        <li style="width:14%" class="yuanyin">
-                            <!-- 选项框 -->
-                            <div class="zl_optiondiv">
-                                <input name="reasonmissteeth" id="reasonmissteethE" value="其他" type="checkbox"/>
-                                <label for="reasonmissteethE">其他</label>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+<%--        <div class="row">--%>
+<%--            <div class="col-md-12 col-sm-12 col-xs-12 colDefined tooth_deficiency">--%>
+<%--                <!-- 多选框 -->--%>
+<%--                <div class="zl_multiple">--%>
+<%--                    <!-- 选项 -->--%>
+<%--                    <ul style="height: 30px;">--%>
+<%--                        <li style="width:14%" class="yuanyin1">--%>
+<%--                            <!-- 选项框 -->--%>
+<%--                            <div class="zl_optiondiv">--%>
+<%--                                <div style="margin-top:5px;font-weight: 600;">牙齿缺失原因：</div>--%>
+<%--                            </div>--%>
+<%--                        </li>--%>
+<%--                        <li style="width:16%" class="yuanyin">--%>
+<%--                            <!-- 选项框 -->--%>
+<%--                            <div class="zl_optiondiv">--%>
+<%--                                <input name="reasonmissteeth" id="reasonmissteethA" value="先天缺失" type="checkbox"/>--%>
+<%--                                <label for="reasonmissteethA">先天缺失</label>--%>
+<%--                            </div>--%>
+<%--                        </li>--%>
+<%--                        <li style="width:14%" class="yuanyin">--%>
+<%--                            <!-- 选项框 -->--%>
+<%--                            <div class="zl_optiondiv">--%>
+<%--                                <input name="reasonmissteeth" id="reasonmissteethB" value="龋病" type="checkbox"/>--%>
+<%--                                <label for="reasonmissteethB">龋病</label>--%>
+<%--                            </div>--%>
+<%--                        </li>--%>
+<%--                        <li style="width:14%" class="yuanyin">--%>
+<%--                            <!-- 选项框 -->--%>
+<%--                            <div class="zl_optiondiv">--%>
+<%--                                <input name="reasonmissteeth" id="reasonmissteethC" value="牙周病" type="checkbox"/>--%>
+<%--                                <label for="reasonmissteethC">牙周病</label>--%>
+<%--                            </div>--%>
+<%--                        </li>--%>
+<%--                        <li style="width:14%" class="yuanyin">--%>
+<%--                            <!-- 选项框 -->--%>
+<%--                            <div class="zl_optiondiv">--%>
+<%--                                <input name="reasonmissteeth" id="reasonmissteethD" value="外伤" type="checkbox"/>--%>
+<%--                                <label for="reasonmissteethD">外伤</label>--%>
+<%--                            </div>--%>
+<%--                        </li>--%>
+<%--                        <li style="width:14%" class="yuanyin">--%>
+<%--                            <!-- 选项框 -->--%>
+<%--                            <div class="zl_optiondiv">--%>
+<%--                                <input name="reasonmissteeth" id="reasonmissteethE" value="其他" type="checkbox"/>--%>
+<%--                                <label for="reasonmissteethE">其他</label>--%>
+<%--                            </div>--%>
+<%--                        </li>--%>
+<%--                    </ul>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
         <!-- 牙缺失的时间-->
-        <div class="row" style="background-color: #ddd;">
-            <div class="col-md-12 col-sm-12 col-xs-12 colDefined">
-                <div class="rpInfo_import" style="height: 30px;">
-                    <span style="font-weight: 600;">牙缺失的时间：</span>
-                    <input id="timemissteeth" type="text" class="consent_time inputheight2" readonly="readonly"
-                           placeholder="请选择日期" style="border:1px solid #b0adad;text-align: center;width:35%;"/>
-                </div>
-            </div>
+<%--        <div class="row" style="background-color: #ddd;">--%>
+<%--            <div class="col-md-12 col-sm-12 col-xs-12 colDefined">--%>
+<%--                <div class="rpInfo_import" style="height: 30px;">--%>
+<%--                    <span style="font-weight: 600;">牙缺失的时间：</span>--%>
+<%--                    <input id="timemissteeth" type="text" class="consent_time inputheight2" readonly="readonly"--%>
+<%--                           placeholder="请选择日期" style="border:1px solid #b0adad;text-align: center;width:35%;"/>--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
-        </div>
+<%--        </div>--%>
         <!-- 粘膜情况 -->
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12 colDefined">
@@ -792,20 +795,20 @@
                 <div class="zl_multiple">
                     <!-- <span>粘膜情况：</span> -->
                     <!-- 选项 -->
-                    <ul>
-                        <li style="width:15%">
+                    <ul style="padding: 5px 0px;">
+                        <li style="width:14%">
                             <!-- 选项框 -->
                             <div class="zl_optiondiv">
                                 <label style="line-height:25px;margin-left:20px;">诊断：</label>
                             </div>
                         </li>
-                        <li style="width:18%">
+                        <li style="width:16%">
                             <div class="zl_optiondiv">
                                 <input name="diagnosis" id="diagnosisA" value="牙缺失" type="checkbox"/>
-                                <label for="diagnosisA">牙缺失</label>
+                                <label for="diagnosisA">牙列缺失 牙列缺损 牙体缺损</label>
                             </div>
                         </li>
-                        <li style="width:18%">
+                        <li style="width:14%">
 
                             <!-- 选项框 -->
                             <div class="zl_optiondiv">
@@ -813,19 +816,28 @@
                                 <label for="diagnosisB">牙松动</label>
                             </div>
                         </li>
-                        <li style="width:18%">
+                        <li style="width:14%">
                             <!-- 选项框 -->
                             <div class="zl_optiondiv">
                                 <input name="diagnosis" id="diagnosisC" value="残根" type="checkbox"/>
                                 <label for="diagnosisC">残根</label>
                             </div>
                         </li>
-                        <li style="width:18%">
+                        <li style="width:14%">
                             <!-- 选项框 -->
                             <!-- 选项框 -->
                             <div class="zl_optiondiv">
                                 <input name="diagnosis" id="diagnosisD" value="牙周病" type="checkbox"/>
                                 <label for="diagnosisD">牙周病</label>
+                            </div>
+                        </li>
+                        <li style="width:18%">
+                            <!-- 选项框 -->
+                            <!-- 选项框 -->
+                            <div class="zl_optiondiv">
+                                <input name="diagnosis" id="diagnosisE" value="其他" type="checkbox"/>
+                                <label for="diagnosisE">其他</label>
+                                <input id="diagnosisothers" type="text">
                             </div>
                         </li>
                         <!-- <li style="width:28%;">
@@ -1200,7 +1212,7 @@
         var others = $("#others").val();//其他
         var doctor_signatory = $("#doctor_signatory").val();//医生签字
         var doctor_signatoryTime = $("#doctortime").val();//医生签字时间
-
+        var diagnosisothers = $("#diagnosisothers").val();//诊断其他输入
 
         var url = contextPath + '/HUDH_ZzblCheckAct/updateZzblOprationById.act';
         var param = {
@@ -1262,7 +1274,8 @@
             diagnosis: diagnosis, //诊断
             others: others, //其他
             doctor_signatory: doctor_signatory, //医生签字
-            doctor_signatoryTime: doctor_signatoryTime //医生签字时间
+            doctor_signatoryTime: doctor_signatoryTime, //医生签字时间
+            diagnosisothers : diagnosisothers //诊断其他输入
         };
         //console.log(JSON.stringify(param)+"------------检查及诊断修改参数");
 
@@ -1338,7 +1351,7 @@
         var others = $("#others").val();//其他
         var doctor_signatory = $("#doctor_signatory").val();//医生签字
         var doctor_signatoryTime = $("#doctortime").val();//医生签字时间
-
+        var diagnosisothers = $("#diagnosisothers").val();//诊断其他输入
 
         var url = contextPath + '/HUDH_ZzblCheckAct/save.act';
         var param = {
@@ -1399,7 +1412,8 @@
             diagnosis: diagnosis, //诊断
             others: others, //其他
             doctor_signatory: doctor_signatory, //医生签字
-            doctor_signatoryTime: doctor_signatoryTime //医生签字时间
+            doctor_signatoryTime: doctor_signatoryTime, //医生签字时间
+            diagnosisothers : diagnosisothers //诊断其他输入
         };
         //console.log(JSON.stringify(param)+"------------检查及诊断参数");
 
