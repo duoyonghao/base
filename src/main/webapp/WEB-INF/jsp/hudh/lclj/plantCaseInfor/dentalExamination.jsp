@@ -838,7 +838,10 @@
         initBlockToothMap("conditionToothBox");
         pro("toothConditionBox",conditionData);
         pro("medicalCertificateBox",certificateData);
-        $("textarea").addClass("hidden");
+       // $("textarea").addClass("hidden");
+        $(".div_with .tooth_map").addClass("hidden");
+        $(".div_with2 .tooth_map").addClass("hidden");
+        $(".div_with3 .tooth_map").addClass("hidden");
         initData();//数据初始化
         //时间选择
         $(".consent_time").datetimepicker({
@@ -1421,18 +1424,21 @@
         if(endTime<curentDate){
             return true;
         }
-        console.log(false);
+        //console.log(false);
         return false;
     }
 
     // 	返回数据赋值
     function initData(){
         if(form){
+            //console.log(JSON.stringify(form)+"---------------form");
             var breakTime=form.createtime;
             var createTimes=new Date(breakTime);
             // 此时间定为2020-08-14禁止修改
             var endTime=new Date("2020-08-14");
+            //var endTimeTwo=new Date("2020-08-25");
             if(createTimes<endTime){
+                //console.log("2020-08-25------------");
                 $(".tooth_map").addClass("hidden");
                 $("textarea").removeClass("hidden");
                 $(".signature_time").css("margin-top","80px");
@@ -1457,13 +1463,16 @@
                 $("#patientimg").attr('display', 'none');
             }
             // 其他
-            $("#others").val(form["others"]);
+            //$("#others").val(form["others"]);
+            $("#others").attr("value",form["others"]);
             //牙缺失
             $("#toothDeficiency").text(form["onebone"]);//textarea
             //距鼻底
-            $("#basisnasi").val(form["twobone"]);
+            //$("#basisnasi").val(form["twobone"]);
+            $("#basisnasi").attr("value",form["twobone"]);
             //牙槽嵴宽度
-            $("#alveolarcrest").val(form["threebone"]);
+            //$("#alveolarcrest").val(form["threebone"]);
+            $("#alveolarcrest").attr("value",form["threebone"]);
             for(var i in form){
                 $("input[name="+i+"]").each(function(){
                     var that=this;
