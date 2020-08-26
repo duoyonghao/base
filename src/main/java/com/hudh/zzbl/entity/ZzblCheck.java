@@ -77,7 +77,7 @@ public class ZzblCheck {
     private String sex; //患者性别
     private String age; //患者年龄
     private String status; //选中状态
-    
+	private String diagnosisothers;//诊断其他输入
 	/**  
 	  * @Title:  getStatus <BR>  
 	  * @Description: please write your description <BR>  
@@ -664,4 +664,11 @@ public class ZzblCheck {
 		this.organization = organization;
 	}
 
+	public String getDiagnosisothers() {
+		return diagnosisothers;
+	}
+
+	public void setDiagnosisothers(String diagnosisothers) {
+		this.diagnosisothers = diagnosisothers;
+	}
 }

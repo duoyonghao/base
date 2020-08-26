@@ -120,6 +120,12 @@ public class ZzblServiceImpl implements IZzblService {
 	    String doctorSignature = request.getParameter("doctorSignature");
 	    String patientsignature = request.getParameter("patientsignature");
 
+		String secondextractionleftup = request.getParameter("secondextractionleftup");
+		String secondextractionrightup = request.getParameter("secondextractionrightup");
+		String secondextractionleftdown = request.getParameter("secondextractionleftdown");
+		String secondextractionrightdown = request.getParameter("secondextractionrightdown");
+		String implantsystemotherstext = request.getParameter("implantsystemotherstext");
+
 	    dp.setModuloDesign(moduloDesign);
 	    dp.setImplantSystem(implantSystem);
 	    dp.setTreamentPlan(treamentPlan);
@@ -219,6 +225,11 @@ public class ZzblServiceImpl implements IZzblService {
 		dp.setStatus(status);
 		dp.setDoctorSignature(doctorSignature);
 		dp.setPatientsignature(patientsignature);
+		dp.setSecondextractionleftup(secondextractionleftup);
+		dp.setSecondextractionrightup(secondextractionrightup);
+		dp.setSecondextractionleftdown(secondextractionleftdown);
+		dp.setSecondextractionrightdown(secondextractionrightdown);
+		dp.setImplantsystemotherstext(implantsystemotherstext);
 		zzblDao.save(dp);
 		Map<String,String> map=new HashMap<String,String>();
 		map.put("form","diagnosis");
@@ -324,6 +335,12 @@ public class ZzblServiceImpl implements IZzblService {
 	    String status = request.getParameter("status");
 	    String doctorSignature = request.getParameter("doctorSignature");
 	    String patientsignature = request.getParameter("patientsignature");
+		String secondextractionleftup = request.getParameter("secondextractionleftup");
+		String secondextractionrightup = request.getParameter("secondextractionrightup");
+		String secondextractionleftdown = request.getParameter("secondextractionleftdown");
+		String secondextractionrightdown = request.getParameter("secondextractionrightdown");
+		String implantsystemotherstext = request.getParameter("implantsystemotherstext");
+
 	    dp.setModuloDesign(moduloDesign);
 	    dp.setImplantSystem(implantSystem);
 	    dp.setTreamentPlan(treamentPlan);
@@ -421,6 +438,11 @@ public class ZzblServiceImpl implements IZzblService {
 		dp.setStatus(status);
 		dp.setPatientsignature(patientsignature);
 		dp.setDoctorSignature(doctorSignature);
+		dp.setSecondextractionleftup(secondextractionleftup);
+		dp.setSecondextractionrightup(secondextractionrightup);
+		dp.setSecondextractionleftdown(secondextractionleftdown);
+		dp.setSecondextractionrightdown(secondextractionrightdown);
+		dp.setImplantsystemotherstext(implantsystemotherstext);
 		zzblDao.updateZzblOprationById(dp);
 	}
 

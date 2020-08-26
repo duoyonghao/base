@@ -95,6 +95,11 @@ public class ZzblOperation {
     private String doctorSignature;//医生签名
     private String patientsignature;//患者签名
     private String status;
+	private String secondextractionleftup;
+	private String secondextractionrightup;
+	private String secondextractionleftdown;
+	private String secondextractionrightdown;
+	private String implantsystemotherstext;
     
 	/**  
 	  * @Title:  getStatus <BR>  
@@ -860,4 +865,43 @@ public class ZzblOperation {
 		this.patientsignature = patientsignature;
 	}
 
+	public String getSecondextractionleftup() {
+		return secondextractionleftup;
+	}
+
+	public void setSecondextractionleftup(String secondextractionleftup) {
+		this.secondextractionleftup = secondextractionleftup;
+	}
+
+	public String getSecondextractionrightup() {
+		return secondextractionrightup;
+	}
+
+	public void setSecondextractionrightup(String secondextractionrightup) {
+		this.secondextractionrightup = secondextractionrightup;
+	}
+
+	public String getSecondextractionleftdown() {
+		return secondextractionleftdown;
+	}
+
+	public void setSecondextractionleftdown(String secondextractionleftdown) {
+		this.secondextractionleftdown = secondextractionleftdown;
+	}
+
+	public String getSecondextractionrightdown() {
+		return secondextractionrightdown;
+	}
+
+	public void setSecondextractionrightdown(String secondextractionrightdown) {
+		this.secondextractionrightdown = secondextractionrightdown;
+	}
+
+	public String getImplantsystemotherstext() {
+		return implantsystemotherstext;
+	}
+
+	public void setImplantsystemotherstext(String implantsystemotherstext) {
+		this.implantsystemotherstext = implantsystemotherstext;
+	}
 }

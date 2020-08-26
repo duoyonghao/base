@@ -73,6 +73,8 @@
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="VARCHAR" />
     <result column="age" property="age" jdbcType="VARCHAR" />
+    <result column="diagnosisothers" property="diagnosisothers" jdbcType="VARCHAR" />
+
   </resultMap>
   <sql id="Base_Column_List" >
     SEQ_ID, createtime, createuser, id, order_number, physical_assessment, consultation_opinion, 
@@ -88,7 +90,7 @@
     periodontal_lesion, diagnosis, others,organization, alveloarBoneResorptionLeftUp, alveloarBoneResorptionRightUp, 
     alveloarBoneResorptionLeftDown, alveloarBoneResorptionRightDown, periodontal_lesionLeftUp, periodontal_lesionRightUp,
     periodontal_lesionLeftDown, periodontal_lesionRightDown, doctor_signatory,doctorTime, remark, patientsignature, 
-    doctorsignature, moduloDesign, username, sex, age,status
+    doctorsignature, moduloDesign, username, sex, age,status,diagnosisothers
   </sql>
   <select id="findZzblOprationById" resultType="json" parameterType="java.lang.String" >
     select 
@@ -133,11 +135,10 @@
       fromNasalFloor, fromInferiorDentalNerve, 
       alveloarCrestWidths, alveloarBoneResorption,
       periodontal_lesion, diagnosis, others, 
-      organization
-      , alveloarBoneResorptionLeftUp, alveloarBoneResorptionRightUp, 
+      organization, alveloarBoneResorptionLeftUp, alveloarBoneResorptionRightUp,
     alveloarBoneResorptionLeftDown, alveloarBoneResorptionRightDown, periodontal_lesionLeftUp, periodontal_lesionRightUp,
     periodontal_lesionLeftDown, periodontal_lesionRightDown, doctor_signatory,doctorTime
-    , remark, patientsignature, doctorsignature, moduloDesign, username, sex, age,status)
+    , remark, patientsignature, doctorsignature, moduloDesign, username, sex, age,status,diagnosisothers)
     values (#{SEQ_ID,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, 
       #{id,jdbcType=VARCHAR}, #{order_number,jdbcType=VARCHAR}, #{physical_assessment,jdbcType=VARCHAR}, 
       #{consultation_opinion,jdbcType=VARCHAR}, #{stomatology_check,jdbcType=VARCHAR}, 
@@ -167,7 +168,7 @@
       #{doctor_signatory,jdbcType=VARCHAR},#{doctorTime,jdbcType=VARCHAR}
       ,#{remark,jdbcType=VARCHAR},#{patientsignature,jdbcType=VARCHAR},#{doctorsignature,jdbcType=VARCHAR},
       #{moduloDesign,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
-      #{sex,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR}
+      #{sex,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{diagnosisothers,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.hudh.zzbl.entity.ZzblCheck" >
@@ -329,6 +330,63 @@
       <if test="organization != null" >
         organization,
       </if>
+      <if test="alveloarBoneResorptionLeftUp != null" >
+        alveloarBoneResorptionLeftUp,
+      </if>
+      <if test="alveloarBoneResorptionRightUp != null" >
+        alveloarBoneResorptionRightUp,
+      </if>
+      <if test="alveloarBoneResorptionLeftDown != null" >
+        alveloarBoneResorptionLeftDown,
+      </if>
+      <if test="alveloarBoneResorptionRightDown != null" >
+        alveloarBoneResorptionRightDown,
+      </if>
+      <if test="periodontal_lesionLeftUp != null" >
+        periodontal_lesionLeftUp,
+      </if>
+      <if test="periodontal_lesionRightUp != null" >
+        periodontal_lesionRightUp,
+      </if>
+      <if test="periodontal_lesionLeftDown != null" >
+        periodontal_lesionLeftDown,
+      </if>
+      <if test="periodontal_lesionRightDown != null" >
+        periodontal_lesionRightDown,
+      </if>
+      <if test="doctor_signatory != null" >
+        doctor_signatory,
+      </if>
+      <if test="doctorTime != null" >
+        doctorTime,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="patientsignature != null" >
+        patientsignature,
+      </if>
+      <if test="doctorsignature != null" >
+        doctorsignature,
+      </if>
+      <if test="moduloDesign != null" >
+        moduloDesign,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="diagnosisothers != null" >
+        diagnosisothers,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="seqId != null" >
@@ -486,6 +544,63 @@
       </if>
       <if test="organization != null" >
         #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="alveloarBoneResorptionLeftUp != null" >
+        #{alveloarBoneResorptionLeftUp,jdbcType=VARCHAR},
+      </if>
+      <if test="alveloarBoneResorptionRightUp != null" >
+        #{alveloarBoneResorptionRightUp,jdbcType=VARCHAR},
+      </if>
+      <if test="alveloarBoneResorptionLeftDown != null" >
+        #{alveloarBoneResorptionLeftDown,jdbcType=VARCHAR},
+      </if>
+      <if test="alveloarBoneResorptionRightDown != null" >
+        #{alveloarBoneResorptionRightDown,jdbcType=VARCHAR},
+      </if>
+      <if test="periodontal_lesionLeftUp != null" >
+        #{periodontal_lesionLeftUp,jdbcType=VARCHAR},
+      </if>
+      <if test="periodontal_lesionRightUp != null" >
+        #{periodontal_lesionRightUp,jdbcType=VARCHAR},
+      </if>
+      <if test="periodontal_lesionLeftDown != null" >
+        #{periodontal_lesionLeftDown,jdbcType=VARCHAR},
+      </if>
+      <if test="periodontal_lesionRightDown != null" >
+        #{periodontal_lesionRightDown,jdbcType=VARCHAR},
+      </if>
+      <if test="doctor_signatory != null" >
+        #{doctor_signatory,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorTime != null" >
+        #{doctorTime,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="patientsignature != null" >
+        #{patientsignature,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorsignature != null" >
+        #{doctorsignature,jdbcType=VARCHAR},
+      </if>
+      <if test="moduloDesign != null" >
+        #{moduloDesign,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisothers != null" >
+        #{diagnosisothers,jdbcType=VARCHAR}
       </if>
     </trim>
   </insert>
@@ -659,6 +774,9 @@
       </if>
       <if test="doctor_signatory != null" >
         doctor_signatory = #{doctor_signatory,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisothers != null" >
+        diagnosisothers = #{diagnosisothers,jdbcType=VARCHAR},
       </if>
     </set>
     where SEQ_ID = #{SEQ_ID,jdbcType=VARCHAR}

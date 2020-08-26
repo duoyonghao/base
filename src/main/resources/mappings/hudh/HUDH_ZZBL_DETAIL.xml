@@ -94,6 +94,12 @@
     <result column="moduloDesign" property="moduloDesign" jdbcType="VARCHAR" />
     <result column="doctorSignature" property="doctorSignature" jdbcType="VARCHAR" />
     <result column="patientsignature" property="patientsignature" jdbcType="VARCHAR" />
+    <result column="secondextractionleftup" property="secondextractionleftup" jdbcType="VARCHAR" />
+    <result column="secondextractionrightup" property="secondextractionrightup" jdbcType="VARCHAR" />
+    <result column="secondextractionleftdown" property="secondextractionleftdown" jdbcType="VARCHAR" />
+    <result column="secondextractionrightdown" property="secondextractionrightdown" jdbcType="VARCHAR" />
+    <result column="implantsystemotherstext" property="implantsystemotherstext" jdbcType="VARCHAR" />
+
   </resultMap>
   <sql id="Base_Column_List" >
     SEQ_ID, createtime, createuser, id, order_number, physical_assessment, consultation_opinion, 
@@ -113,7 +119,9 @@
     smallParticle, boneCollagen, tianBo, membrane, collagenMembBig, collagenMembSmall, 
     titaniumMesh, repaireMethod, temporDentCondition, treatmentOtherOralLU, treatmentOtherOralLD, 
     treatmentOtherOralRU, treatmentOtherOralRD, organization, username, sex, age, patientTime, doctorTime, 
-    remark, implantSystem, treamentPlan, moduloDesign,status,doctorSignature,patientsignature
+    remark, implantSystem, treamentPlan, moduloDesign,status,doctorSignature,patientsignature,
+    secondextractionleftup,secondextractionrightup,secondextractionleftdown, secondextractionrightdown,
+    implantsystemotherstext
   </sql>
   <select id="findZzblOprationById" resultType="json" parameterType="java.lang.String" >
     select 
@@ -172,7 +180,8 @@
       treatmentOtherOralLU, treatmentOtherOralLD, 
       treatmentOtherOralRU, treatmentOtherOralRD, 
       organization, username, sex, age, patientTime, doctorTime, remark, implantSystem, treamentPlan, moduloDesign,status,
-      doctorSignature,patientsignature)
+      doctorSignature,patientsignature,secondextractionleftup,secondextractionrightup,secondextractionleftdown, secondextractionrightdown,
+    implantsystemotherstext)
     values (#{SEQ_ID,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, 
       #{id,jdbcType=VARCHAR}, #{order_number,jdbcType=VARCHAR}, #{physical_assessment,jdbcType=VARCHAR}, 
       #{consultation_opinion,jdbcType=VARCHAR}, #{stomatology_check,jdbcType=VARCHAR}, 
@@ -209,7 +218,8 @@
       #{organization,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
       #{sex,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, #{patientTime,jdbcType=VARCHAR}, #{doctorTime,jdbcType=VARCHAR}, 
       #{remark,jdbcType=VARCHAR}, #{implantSystem,jdbcType=VARCHAR}, #{treamentPlan,jdbcType=VARCHAR}, #{moduloDesign,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},
-      #{doctorSignature,jdbcType=VARCHAR},#{patientsignature,jdbcType=VARCHAR}
+      #{doctorSignature,jdbcType=VARCHAR},#{patientsignature,jdbcType=VARCHAR},#{secondextractionleftup,jdbcType=VARCHAR},#{secondextractionrightup,jdbcType=VARCHAR},
+      #{secondextractionleftdown,jdbcType=VARCHAR},#{secondextractionrightdown,jdbcType=VARCHAR},#{implantsystemotherstext,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.hudh.zzbl.entity.ZzblOperation" >
@@ -458,6 +468,57 @@
       <if test="organization != null" >
         organization,
       </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="patientTime != null" >
+        patientTime,
+      </if>
+      <if test="doctorTime != null" >
+        doctorTime,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="implantSystem != null" >
+        implantSystem,
+      </if>
+      <if test="treamentPlan != null" >
+        treamentPlan,
+      </if>
+      <if test="moduloDesign != null" >
+        moduloDesign,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="doctorSignature != null" >
+        doctorSignature,
+      </if>
+      <if test="patientsignature != null" >
+        patientsignature,
+      </if>
+      <if test="secondextractionleftup != null" >
+        secondextractionleftup,
+      </if>
+      <if test="secondextractionrightup != null" >
+        secondextractionrightup,
+      </if>
+      <if test="secondextractionleftdown != null" >
+        secondextractionleftdown,
+      </if>
+      <if test="secondextractionrightdown != null" >
+        secondextractionrightdown,
+      </if>
+      <if test="implantsystemotherstext != null" >
+        implantsystemotherstext,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="seqId != null" >
@@ -702,6 +763,58 @@
       </if>
       <if test="organization != null" >
         #{organization,jdbcType=VARCHAR},
+      </if>
+
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="patientTime != null" >
+        #{patientTime,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorTime != null" >
+        #{doctorTime,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="implantSystem != null" >
+        #{implantSystem,jdbcType=VARCHAR},
+      </if>
+      <if test="treamentPlan != null" >
+        #{treamentPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="moduloDesign != null" >
+        #{moduloDesign,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorSignature != null" >
+        #{doctorSignature,jdbcType=VARCHAR},
+      </if>
+      <if test="patientsignature != null" >
+        #{patientsignature,jdbcType=VARCHAR},
+      </if>
+      <if test="secondextractionleftup != null" >
+        #{secondextractionleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="secondextractionrightup != null" >
+        #{secondextractionrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="secondextractionleftdown != null" >
+        #{secondextractionleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="secondextractionrightdown != null" >
+        #{secondextractionrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="implantsystemotherstext != null" >
+        #{implantsystemotherstext,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -954,6 +1067,22 @@
       <if test="patientsignature != null" >
         patientsignature = #{patientsignature,jdbcType=VARCHAR},
       </if>
+
+      <if test="secondextractionleftup != null" >
+        secondextractionleftup = #{secondextractionleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="secondextractionrightup != null" >
+        secondextractionrightup = #{secondextractionrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="secondextractionleftdown != null" >
+        secondextractionleftdown = #{secondextractionleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="secondextractionrightdown != null" >
+        secondextractionrightdown = #{secondextractionrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="implantsystemotherstext != null" >
+        implantsystemotherstext = #{implantsystemotherstext,jdbcType=VARCHAR},
+      </if>
     </set>
     where SEQ_ID = #{SEQ_ID,jdbcType=VARCHAR}
   </update>
@@ -1038,7 +1167,12 @@
       treatmentOtherOralLD = #{treatmentotheroralld,jdbcType=VARCHAR},
       treatmentOtherOralRU = #{treatmentotheroralru,jdbcType=VARCHAR},
       treatmentOtherOralRD = #{treatmentotheroralrd,jdbcType=VARCHAR},
-      organization = #{organization,jdbcType=VARCHAR}
+      organization = #{organization,jdbcType=VARCHAR},
+      secondextractionleftup = #{secondextractionleftup,jdbcType=VARCHAR},
+      secondextractionrightup = #{secondextractionrightup,jdbcType=VARCHAR},
+      secondextractionleftdown = #{secondextractionleftdown,jdbcType=VARCHAR},
+      secondextractionrightdown = #{secondextractionrightdown,jdbcType=VARCHAR},
+      implantsystemotherstext = #{implantsystemotherstext,jdbcType=VARCHAR}
     where SEQ_ID = #{seqId,jdbcType=VARCHAR}
   </update>
   <!-- 更新 -->

@@ -92,6 +92,8 @@ public class ZzblCheckServiceImpl implements IZzblCheckService {
 		String username = request.getParameter("username");
 	    String sex = request.getParameter("sex");
 	    String age = request.getParameter("age");
+
+		String diagnosisothers = request.getParameter("diagnosisothers");
 	    dp.setAge(age);
 	    dp.setUsername(username);
 	    dp.setSex(sex);
@@ -157,6 +159,7 @@ public class ZzblCheckServiceImpl implements IZzblCheckService {
 		dp.setBonePowder(bonePowder);
 		dp.setDiagnosis(diagnosis);
 		dp.setOthers(others);
+		dp.setDiagnosisothers(diagnosisothers);
 		zzblCheckDao.insertZzblCheck(dp);
 		Map<String,String> map=new HashMap<String,String>();
 		map.put("form","examine");
@@ -232,6 +235,7 @@ public class ZzblCheckServiceImpl implements IZzblCheckService {
 		String periodontal_lesionLeftDown = request.getParameter("periodontal_lesionLeftDown");
 		String periodontal_lesionRightDown = request.getParameter("periodontal_lesionRightDown");
 		String doctor_signatory = request.getParameter("doctor_signatory");
+		String diagnosisothers = request.getParameter("diagnosisothers");
 		dp.setAlveloarBoneResorptionLeftUp(alveloarBoneResorptionLeftUp);
 		dp.setAlveloarBoneResorptionLeftDown(alveloarBoneResorptionLeftDown);
 		dp.setAlveloarBoneResorptionRightDown(alveloarBoneResorptionRightDown);
@@ -292,6 +296,7 @@ public class ZzblCheckServiceImpl implements IZzblCheckService {
 		dp.setBonePowder(bonePowder);
 		dp.setDiagnosis(diagnosis);
 		dp.setOthers(others);
+		dp.setDiagnosisothers(diagnosisothers);
 		zzblCheckDao.updateZzblOprationById(dp);
 	}
 
