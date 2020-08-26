@@ -231,7 +231,6 @@ public class Kqds_PayCostLogic extends BaseLogic {
 						throw new Exception("该费用单已过期，无法结账！");
 					}
 				}
-
 				if (!YZUtility.isNullorEmpty(seqId)) {
 					/** 存在seqId不为空的情况不？ **/
 					dao.updateSingleUUID(TableNameUtil.KQDS_PAYCOST, dp);
@@ -425,7 +424,7 @@ public class Kqds_PayCostLogic extends BaseLogic {
 				String arrearMoney = arrearmoney.toString();
 				BigDecimal voidmoney = cost.getVoidmoney();
 				String voidMoney = voidmoney.toString();
-				BigDecimal y2 = cost.getY2();
+				BigDecimal y2 = cost.getY2();// 欠费金额
 				if(!arrearMoney.equals("0.000")) {
 					if(cost.getIsdrugs() == 1 || yjj== 1 || jyk==1) {
 						cjStatus = 0;
@@ -530,6 +529,7 @@ public class Kqds_PayCostLogic extends BaseLogic {
 				// 实收金额计算
 				String ssje = userLogic.getSsje(dp.getUsercode());
 				u.setTotalpay(new BigDecimal(ssje));
+				u.setArrearage(KqdsBigDecimal.add(u.getArrearage(),y2));
 				userLogic.updateSingleUUID(TableNameUtil.KQDS_USERDOCUMENT, u);
 				// 判断 收费项目是否 还款结束 如果还款结束 设置status isqfreal 为0
 				editOrderDetail(Detaillist, request);

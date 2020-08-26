@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="/inc/classImport.jsp" %>
+<%@ include file="/WEB-INF/jsp/inc/taglib.jsp" %>
 <%
     String contextPath = request.getContextPath();
     if (contextPath.equals("")) {
@@ -58,7 +59,7 @@
     <link rel="stylesheet" type="text/css"
           href="<%=contextPath%>/static/css/admin/index/bower_components/select/bootstrap-select.css"/>
 
-    <script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/costOrder/add_cost.js"></script>
+    <script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/costOrder/add_cost.js?v=${version}"></script>
     <script type="text/javascript" src="<%=contextPath%>/static/js/app/plugin/jquery.js"></script>
     <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/bootstrap/bootstrap.js"></script>
     <script type="text/javascript"

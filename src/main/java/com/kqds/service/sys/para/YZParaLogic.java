@@ -1,6 +1,7 @@
 package com.kqds.service.sys.para;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,7 +27,7 @@ public class YZParaLogic extends BaseLogic {
 	/**
 	 * 查询一些登录时需要的系统参数
 	 * 
-	 * @param conn
+	 * @param 
 	 * @return
 	 * @throws Exception
 	 */
@@ -59,8 +60,8 @@ public class YZParaLogic extends BaseLogic {
 		return count;
 	}
 
-	public String getParaValueByName(String paraName) throws Exception {
-		List<JSONObject> list = (List<JSONObject>) dao.findForList(TableNameUtil.SYS_PARA + ".getParaValueByName", paraName);
+	public String getParaValueByName(Map<String, String> map) throws Exception {
+		List<JSONObject> list = (List<JSONObject>) dao.findForList(TableNameUtil.SYS_PARA + ".getParaValueByName", map);
 		if (list == null || list.size() == 0) {
 			return "";
 		} else {

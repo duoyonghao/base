@@ -311,7 +311,7 @@
                             </div>
                         </div>
                         <div class="kv">
-                            <label style="width:70px;">节点</label>
+                            <label style="width:35px;">节点</label>
                             <div class="kv-v">
                                   <select class="dict searchSelect" name="nodename" id="nodename" data-bv-notempty data-bv-notempty-message="节点" style="width: 100px;" data-live-search="true">
 										<option value="">- 请选择 -</option>
@@ -319,7 +319,7 @@
                             </div>
                         </div>
                         <div class="kv">
-                            <label style="width:70px;">跟踪方式</label>
+                            <label style="width:65px;">跟踪方式</label>
                             <div class="kv-v">
                                   <select class="dict searchSelect" name="ssType" id="ssType" data-bv-notempty data-bv-notempty-message="跟踪方式" style="width: 100px;" data-live-search="true">
 										<option value="">- 请选择 -</option>
@@ -340,21 +340,21 @@
                             </div>
                         </div> -->
                         <div class="kv">
-                            <label style="width:70px;">助理</label>
+                            <label style="width:35px;">助理</label>
                             <div class="kv-v">
                             	  <select id="counsellor" name="counsellor" class="dict searchSelect" data-bv-notempty data-bv-notempty-message="咨询师" style="width: 100px;" data-live-search="true" title="- 请选择  -"></select>
 <!--                                   <select class="dict" name="counsellor" id="counsellor" data-bv-notempty data-bv-notempty-message="咨询师" style="width: 100px;"></select> -->
                             </div>
                         </div>
                         <div class="kv">
-                            <label style="width:70px;">种植医师</label>
+                            <label style="width:65px;">种植医师</label>
                             <div class="kv-v">
                              <select id="plant_physician" name="plant_physician" class="dict searchSelect" data-bv-notempty data-bv-notempty-message="种植医师" style="width: 100px;" data-live-search="true" title="- 请选择  -"></select>
 <!--                                   <select class="dict" name="plant_physician" id="plant_physician" data-bv-notempty data-bv-notempty-message="种植医师" style="width: 100px;"></select> -->
                             </div> 
                         </div>
                         <div class="kv">
-                            <label style="width:70px;">修复医师</label>
+                            <label style="width:65px;">修复医师</label>
                             <div class="kv-v" style="margin-right: 10px;">
                               <select id="repair_physician" name="repair_physician" class="dict searchSelect" data-bv-notempty data-bv-notempty-message="修复医师" style="width: 100px;" data-live-search="true" title="- 请选择  -"></select>
 <!--                                   <select class="dict" name="repair_physician" id="repair_physician" data-bv-notempty data-bv-notempty-message="修复医师" style="width: 100px;"></select> -->
@@ -366,7 +366,20 @@
 	                        	<span>到</span>
 	                        		<input type="text"  placeholder="结束日期" id="endtime" readonly>
                         </div>
+                        <div class="kv units " id="lclj_nodetime" style="height: 33px;">
+                            <span>节点操作时间</span>
+                            <input type="text" placeholder="开始日期" id="nodestarttime" readonly>
+                            <span>到</span>
+                            <input type="text"  placeholder="结束日期" id="nodeendtime" readonly>
+                        </div>
+                        <div class="kv units " id="lclj_surgerytime" style="height: 33px;">
+                            <span>手术时间</span>
+                            <input type="text" placeholder="开始日期" id="surgerystarttime" readonly>
+                            <span>到</span>
+                            <input type="text"  placeholder="结束日期" id="surgeryendtime" readonly>
+                        </div>
                     </div>
+
                     <div style="border-top:1px solid #ddd;clear:both;padding-top:10px;padding-bottom:5px;padding-left:15px;">
                     	<!-- <a href="javascript:void(0);" class="kqdsCommonBtn" onclick="buttonFun.oprater(this);" id="oprate">创建临床路径</a>
                     	<a href="javascript:void(0);" class="kqdsCommonBtn" onclick="buttonFun.detail(this);" id="details">查看详情</a>
@@ -445,6 +458,12 @@ $(function() {
     //绑定两个时间选择框的chage时间
     $("#starttime,#endtime").change(function() {
         timeCompartAndFz("starttime", "endtime");
+    });
+    $("#nodestarttime,#nodeendtime").change(function() {
+        timeCompartAndFz("nodestarttime", "nodeendtime");
+    });
+    $("#surgerystarttime,#surgeryendtime").change(function() {
+        timeCompartAndFz("surgerystarttime", "surgeryendtime");
     });
 	 
 	reciveUsername();
@@ -770,7 +789,11 @@ function queryParams(params) {
     	counsellor : $('#counsellor').val(),
     	plant_physician : $('#plant_physician').val(),
     	repair_physician : $('#repair_physician').val(),
-    	nodename:$("#nodename").val()
+        nodestarttime:$("#nodestarttime").val(),
+        nodeendtime:$("#nodeendtime").val(),
+    	nodename:$("#nodename").val(),
+        surgerystarttime:$("#surgerystarttime").val(),
+        surgeryendtime:$("#surgeryendtime").val()
     };
     return temp;
 }
@@ -793,7 +816,11 @@ function queryParamsB(params) {
     	counsellor : $('#counsellor').val(),
     	plant_physician : $('#plant_physician').val(),
     	repair_physician : $('#repair_physician').val(),
-    	nodename:$("#nodename").val()
+        nodestarttime:$("#nodestarttime").val(),
+        nodeendtime:$("#nodeendtime").val(),
+    	nodename:$("#nodename").val(),
+        surgerystarttime:$("#surgerystarttime").val(),
+        surgeryendtime:$("#surgeryendtime").val()
     };
     return temp;
 }
@@ -1160,6 +1187,16 @@ function query() {
         layer.alert("请选择查询条件" );
         return false;
     }  */
+    var nodestarttime=$("#nodestarttime").val();
+    var nodeendtime=$("#nodeendtime").val();
+    var nodename=$("#nodename").val();
+    if (nodestarttime!='' || nodeendtime !=''){
+        if (nodename==''){
+            layer.alert("请选择节点后查询！" );
+            return false;
+        }
+    }
+
     $("#searchHzlclj").attr("disabled","disabled").css("background-color","#c3c3c3").css("border","1px solid #c3c3c3").css("pointer-events","none"); //禁用查询按钮 lutian
     $("#searchHzlclj").text("查询中");
     refresh();

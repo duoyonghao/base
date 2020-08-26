@@ -452,13 +452,18 @@ public class HUDH_AddVisitAct {
     public String editability(HttpServletRequest request, HttpServletResponse response) throws Exception {
         try {
             YZPerson person = SessionUtil.getLoginPerson(request);
-            String paraValueByName = yzLogic.getParaValueByName(SysParaUtil.SYS_POSITION);
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("organization",ChainUtil.getCurrentOrganization(request));
+            map.put("paraName",SysParaUtil.SYS_POSITION);
+            String paraValueByName = yzLogic.getParaValueByName(map);
             if (paraValueByName != null && !paraValueByName.equals("")) {
                 if (paraValueByName.contains(person.getUserPriv())) {
                     YZUtility.DEAL_SUCCESS_VALID(true, response);
                 } else {
                     YZUtility.DEAL_SUCCESS_VALID(false, response);
                 }
+            }else{
+                    YZUtility.DEAL_SUCCESS_VALID(false, response);
             }
         } catch (Exception e) {
             // TODO: handle exception

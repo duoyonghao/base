@@ -162,11 +162,7 @@ public class FlowServiceImpl implements IFlowService {
 	/**
 	 * 根据xml配置获取流程操作的所有节点信息
 	 * 
-	 * @param type
-	 *            跟踪类型
-	 * @param bone
-	 *            是否植骨
-	 * @param lcljOrderImplemen
+	 * @param lcljOrderTrack
 	 */
 	private void createOperateInfo(LcljOrderTrack lcljOrderTrack) {
 		List<LcljNode> operateList = new ArrayList<LcljNode>();
@@ -207,10 +203,9 @@ public class FlowServiceImpl implements IFlowService {
 	 * 根据管理端配置获取流程节点信息
 	 * 
 	 * @param type
-	 *            跟踪类型
-	 * @param bone
-	 *            是否植骨
-	 * @param lcljOrderImplemen
+	 * @param lcljOrderTrack
+	 * @param request
+	 * @param dentalJaw
 	 * @throws Exception 
 	 */
 	@SuppressWarnings("unchecked")

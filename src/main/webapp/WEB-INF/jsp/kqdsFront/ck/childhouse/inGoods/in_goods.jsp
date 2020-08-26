@@ -154,12 +154,18 @@
                		<div class="kv">
 						<label>入库方式：</label>
 						<div class="kv-v">
-							 <select  name="intype" id="intype">
-			                    	<option value="">请选择</option>
-			                    	<option value="2">换货入库</option>
-			                    	<option value="4">其他入库</option>
-			                    	<option value="9">二次入库</option>
-			                 </select>
+								 <select  name="intype" id="intype">
+									 <option value="">请选择</option>
+									 <option value="0">采购入库</option>
+									 <option value="2">换货入库</option>
+									 <option value="4">其他入库</option>
+								 </select>
+						</div>
+					</div>
+					<div class="kv">
+						<label>供应商：</label>
+						<div class="kv-v">
+							<select  name="supplier" id="supplier"></select>
 						</div>
 					</div>
 		            <div class="kv">
@@ -175,6 +181,12 @@
 						</div>
 					</div>
 					<div class="kv" >
+						<label>进货时间：</label>
+						<div class="kv-v">
+							<input type="text"  class="unitsDate2" name="stocktime" id="stocktime">
+						</div>
+					</div>
+					<div class="kv" style="margin-left: 10px">
 						<a href="javascript:void(0);" onclick="xzhw()" class="kqdsCommonBtn">选择商品</a>
 					</div>	
 					<div class="kv" >
@@ -510,6 +522,11 @@ function save() {
     var zhaiyao = $("#zhaiyao").val();
     var intype = $("#intype").val();
     var rktime = $("#rktime").val();
+	var stocktime = $("#stocktime").val();
+	if(!stocktime){
+		layer.alert('请选择进货时间' );
+		return false;
+	}
     if ($("#table tr").length < 2) {
         layer.alert('请选择入库商品' );
         return false;
@@ -517,7 +534,23 @@ function save() {
     if (intype == "" || intype == null) {
         layer.alert('请选择入库方式' );
         return false;
-    } 
+    }
+
+	if (intype == 4) {
+
+	} else if (intype == 2) {
+		if (supplier == "" || supplier == null) {
+			layer.alert('请选择供货商'  );
+			return false;
+		}
+
+	} else {
+		if (supplier == "" || supplier == null) {
+			layer.alert('请选择供货商'  );
+			return false;
+		}
+	}
+
    //循环获取表格中项目
    var flag= true;//验证入库商品中必填项单价 和 数量  true是填写  false存在未填写
    var flagDate= true;//验证入库商品中必填项有效期 和 批号  true是填写  false存在未填写
@@ -552,21 +585,22 @@ function save() {
 	               	var rkmoney = $(this).find("span").html();
                   	paramDetail.rkmoney = rkmoney;
               } else if ($(this).index() == 13) {
-                   //有效期
-               	paramDetail.yxdate = $(this).find("input").val();
-               	var yxdate = $(this).find("input").val();
-              } else if ($(this).index() == 14) {
-                   //批号
-                paramDetail.ph = $(this).find("input").val();
-                var ph = $(this).find("input").val();
-                if(ph == ""){
-                	flagDate = false;
-//                 	layer.alert('入库商品中存在批号未填写，请补充填写！', {
-                        
-//                     });
-               		return false;
-               	}
-              } else if ($(this).index() == 15) {
+				   //有效期
+				   paramDetail.yxdate = $(this).find("input").val();
+				   var yxdate = $(this).find("input").val();
+				   if(yxdate == ""){
+					   flagDate = false;
+					   return false;
+				   }
+			   } else if ($(this).index() == 14) {
+				   //批号
+				   paramDetail.ph = $(this).find("input").val();
+				   var ph = $(this).find("input").val();
+				   if(ph == ""){
+					   flagDate = false;
+					   return false;
+				   }
+			   } else if ($(this).index() == 15) {
                	   //注册证号
               	paramDetail.zczh = $(this).find("input").val();
               } else if ($(this).index() == 16) {
@@ -582,24 +616,24 @@ function save() {
            list.push(paramDetail);
        });
    });
-   if(!flag){
-   	   layer.alert('入库商品中存在数量、单价未填写，请补充填写！', {
-                
-          });
-          return false;
-   }
-   if(!flagDate){
-   	   layer.alert('入库商品中存在有效期、批号未填写，请补充填写！', {
-                
-          });
-          return false;
-   }
-   if(!flagStyle){
-   	   layer.alert('入库商品中存在数量、单价格式不正确！', {
-                
-          });
-          return false;
-   }
+	if(!flag){
+		layer.alert('入库商品中存在数量、单价未填写，请补充填写！', {
+
+		});
+		return false;
+	}
+	if(!flagDate){
+		layer.alert('入库商品中存在有效期、批号未填写，请补充填写！', {
+
+		});
+		return false;
+	}
+	if(!flagStyle){
+		layer.alert('入库商品中存在数量、单价格式不正确！', {
+
+		});
+		return false;
+	}
    //入库明细相关参数
    var data = JSON.stringify(list);
    data = encodeURIComponent(data); //编码 参数里有特殊符号时需要编码
@@ -612,6 +646,7 @@ function save() {
        inremark: $("#inremark").val(),
        rktime : rktime,
        zhaiyao: zhaiyao,
+	   stocktime : stocktime,
        type:"2"
    };
    var url = contextPath + '/KQDS_Ck_Goods_InAct/insertOrUpdate.act';

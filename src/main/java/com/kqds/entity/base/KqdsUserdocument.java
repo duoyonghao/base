@@ -156,6 +156,8 @@ public class KqdsUserdocument implements Serializable {
 
     private String contagion;//传染病
 
+    private BigDecimal arrearage;//欠款
+
     public String getContagion() {
         return contagion;
     }
@@ -815,5 +817,11 @@ public class KqdsUserdocument implements Serializable {
         this.emergencyPhone = emergencyPhone;
     }
 
+    public BigDecimal getArrearage() {
+        return arrearage;
+    }
 
+    public void setArrearage(BigDecimal arrearage) {
+        this.arrearage = arrearage;
+    }
 }

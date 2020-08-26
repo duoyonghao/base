@@ -643,6 +643,7 @@
         u.doorstatus zdoorstatus,
         u.iscreatelclj,
         u.contagion,
+        u.arrearage,
         u.familyship
         from KQDS_HOSPITAL_ORDER h
         left join KQDS_UserDocument u on u.usercode = h.usercode

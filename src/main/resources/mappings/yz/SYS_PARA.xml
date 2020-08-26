@@ -214,15 +214,17 @@
         </foreach>
     </delete>
 
-    <select id="getParaValueByName" parameterType="java.lang.String" resultType="json">
+    <select id="getParaValueByName" parameterType="map" resultType="json">
         select
         PARA_VALUE,PARA_NAME
         from
         <include refid="tableName"></include>
         p
         where 1=1
-        and
-        p.para_name = #{_parameter}
+        and p.para_name = #{paraName}
+        <if test="organization != null and organization != '' ">
+            and p.organization = #{organization}
+        </if>
     </select>
 
     <select id="getParaValueListByName" parameterType="java.lang.String" resultType="json">

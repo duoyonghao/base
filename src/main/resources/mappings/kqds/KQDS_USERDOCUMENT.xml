@@ -64,6 +64,7 @@
         <result column="invoice" jdbcType="INTEGER" property="invoice"/>
         <result column="clipAddress" jdbcType="VARCHAR" property="clipAddress"/>
         <result column="accepttool" jdbcType="VARCHAR" property="accepttool"/>
+        <result column="arrearage" jdbcType="VARCHAR" property="arrearage"/>
     </resultMap>
     <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.base.KqdsUserdocument">
         <result column="barcode" jdbcType="CLOB" property="barcode"/>
@@ -80,7 +81,7 @@
 		organization, medicalhistory, drugllergy, remark, experience, habit, email, type,
 		xueli, qq, doctor, important, nexttype, totalpay, developer, doorstatus, glr, glrremark,
 		xgr, xgtime, town, kefu, usersort, openid, bindstatus, pym, integral, blcode, familyship, area, hobby, activity, introduce,iscreateLclj,clipAddress,
-		area, hobby, activity, introduce, iscreateLclj,accepttool,headPic, photoDisplay,emergencyContact,emergencyPhone
+		area, hobby, activity, introduce, iscreateLclj,accepttool,headPic, photoDisplay,emergencyContact,emergencyPhone,arrearage
 	</sql>
     <sql id="Blob_Column_List">
 		barcode
@@ -117,7 +118,7 @@
 		town, kefu, usersort,
 		openid,
 		bindstatus, pym,
-		integral, blcode, barcode,clipAddress,accepttool,emergencyContact,emergencyPhone
+		integral, blcode, barcode,clipAddress,accepttool,emergencyContact,emergencyPhone,arrearage
 		)
 		values (#{seqId,jdbcType=VARCHAR}, #{usercode,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
 		#{sex,jdbcType=VARCHAR},
@@ -141,7 +142,8 @@
 		#{town,jdbcType=VARCHAR}, #{kefu,jdbcType=VARCHAR}, #{usersort,jdbcType=VARCHAR},
 		#{openid,jdbcType=VARCHAR}, #{bindstatus,jdbcType=VARCHAR}, #{pym,jdbcType=VARCHAR},
 		#{integral,jdbcType=DECIMAL}, #{blcode,jdbcType=VARCHAR}, #{barcode,jdbcType=CLOB},
-		#{clipAddress,jdbcType=VARCHAR},#{accepttool,jdbcType=VARCHAR},#{emergencyContact,jdbcType=VARCHAR},#{emergencyPhone,jdbcType=VARCHAR})
+		#{clipAddress,jdbcType=VARCHAR},#{accepttool,jdbcType=VARCHAR},#{emergencyContact,jdbcType=VARCHAR},
+		#{emergencyPhone,jdbcType=VARCHAR},#{arrearage,jdbcType=DECIMAL})
 	</insert>
     <insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsUserdocument">
         insert into KQDS_UserDocument
@@ -335,6 +337,9 @@
             <if test="emergencyPhone != null">
                 emergencyPhone,
             </if>
+            <if test="arrearage != null">
+                arrearage,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="seqId != null">
@@ -524,7 +529,10 @@
                 #{emergencyContact,jdbcType=VARCHAR},
             </if>
             <if test="emergencyPhone != null">
-                #{emergencyPhone,jdbcType=VARCHAR}
+                #{emergencyPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="arrearage != null">
+                #{arrearage,jdbcType=DECIMAL}
             </if>
         </trim>
     </insert>
@@ -721,7 +729,10 @@
                 emergencyContact = #{emergencyContact,jdbcType=VARCHAR},
             </if>
             <if test="emergencyPhone != null">
-                emergencyPhone = #{emergencyPhone,jdbcType=VARCHAR}
+                emergencyPhone = #{emergencyPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="arrearage != null">
+                arrearage = #{arrearage,jdbcType=DECIMAL}
             </if>
         </set>
         where SEQ_ID = #{seqId,jdbcType=VARCHAR}
@@ -730,8 +741,7 @@
 		update KQDS_UserDocument
 		set UserCode = #{usercode,jdbcType=VARCHAR},
 		UserName = #{username,jdbcType=VARCHAR},
-		Sex =
-		#{sex,jdbcType=VARCHAR},
+		Sex = #{sex,jdbcType=VARCHAR},
 		BirthDay = #{birthday,jdbcType=VARCHAR},
 		Age = #{age,jdbcType=INTEGER},
 		Profession = #{profession,jdbcType=VARCHAR},
@@ -744,18 +754,15 @@
 		PlateNumber = #{platenumber,jdbcType=VARCHAR},
 		CostLevel = #{costlevel,jdbcType=VARCHAR},
 		Dress = #{dress,jdbcType=VARCHAR},
-		FirstWord =
-		#{firstword,jdbcType=VARCHAR},
+		FirstWord = #{firstword,jdbcType=VARCHAR},
 		Province = #{province,jdbcType=VARCHAR},
 		City = #{city,jdbcType=VARCHAR},
 		Address = #{address,jdbcType=VARCHAR},
-		DevChannel =
-		#{devchannel,jdbcType=VARCHAR},
+		DevChannel = #{devchannel,jdbcType=VARCHAR},
 		CreateTime = #{createtime,jdbcType=VARCHAR},
 		CreateUser = #{createuser,jdbcType=VARCHAR},
 		AskPerson = #{askperson,jdbcType=VARCHAR},
-		isdelete =
-		#{isdelete,jdbcType=INTEGER},
+		isdelete = #{isdelete,jdbcType=INTEGER},
 		organization = #{organization,jdbcType=VARCHAR},
 		medicalhistory = #{medicalhistory,jdbcType=VARCHAR},
 		drugllergy = #{drugllergy,jdbcType=VARCHAR},
@@ -763,25 +770,21 @@
 		experience = #{experience,jdbcType=VARCHAR},
 		habit = #{habit,jdbcType=VARCHAR},
 		email = #{email,jdbcType=VARCHAR},
-		type =
-		#{type,jdbcType=INTEGER},
+		type = #{type,jdbcType=INTEGER},
 		xueli = #{xueli,jdbcType=VARCHAR},
 		qq = #{qq,jdbcType=VARCHAR},
 		doctor = #{doctor,jdbcType=VARCHAR},
 		important = #{important,jdbcType=VARCHAR},
-		nexttype =
-		#{nexttype,jdbcType=VARCHAR},
+		nexttype = #{nexttype,jdbcType=VARCHAR},
 		totalpay = #{totalpay,jdbcType=DECIMAL},
 		developer = #{developer,jdbcType=VARCHAR},
 		doorstatus = #{doorstatus,jdbcType=INTEGER},
-		glr =
-		#{glr,jdbcType=VARCHAR},
+		glr = #{glr,jdbcType=VARCHAR},
 		glrremark = #{glrremark,jdbcType=VARCHAR},
 		xgr = #{xgr,jdbcType=VARCHAR},
 		xgtime = #{xgtime,jdbcType=VARCHAR},
 		town = #{town,jdbcType=VARCHAR},
-		kefu =
-		#{kefu,jdbcType=VARCHAR},
+		kefu = #{kefu,jdbcType=VARCHAR},
 		usersort = #{usersort,jdbcType=VARCHAR},
 		openid = #{openid,jdbcType=VARCHAR},
 		bindstatus = #{bindstatus,jdbcType=VARCHAR},
@@ -791,15 +794,15 @@
 		barcode = #{barcode,jdbcType=CLOB},
 		clipAddress = #{clipAddress,jdbcType=CLOB}
         emergencyContact = #{emergencyContact,jdbcType=VARCHAR},
-        emergencyPhone = #{emergencyPhone,jdbcType=VARCHAR}
+        emergencyPhone = #{emergencyPhone,jdbcType=VARCHAR},
+        arrearage = #{arrearage,jdbcType=DECIMAL}
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
 	</update>
     <update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsUserdocument">
 		update KQDS_UserDocument
 		set UserCode = #{usercode,jdbcType=VARCHAR},
 		UserName = #{username,jdbcType=VARCHAR},
-		Sex =
-		#{sex,jdbcType=VARCHAR},
+		Sex = #{sex,jdbcType=VARCHAR},
 		BirthDay = #{birthday,jdbcType=VARCHAR},
 		Age = #{age,jdbcType=INTEGER},
 		Profession = #{profession,jdbcType=VARCHAR},
@@ -812,18 +815,15 @@
 		PlateNumber = #{platenumber,jdbcType=VARCHAR},
 		CostLevel = #{costlevel,jdbcType=VARCHAR},
 		Dress = #{dress,jdbcType=VARCHAR},
-		FirstWord =
-		#{firstword,jdbcType=VARCHAR},
+		FirstWord =	#{firstword,jdbcType=VARCHAR},
 		Province = #{province,jdbcType=VARCHAR},
 		City = #{city,jdbcType=VARCHAR},
 		Address = #{address,jdbcType=VARCHAR},
-		DevChannel =
-		#{devchannel,jdbcType=VARCHAR},
+		DevChannel = #{devchannel,jdbcType=VARCHAR},
 		CreateTime = #{createtime,jdbcType=VARCHAR},
 		CreateUser = #{createuser,jdbcType=VARCHAR},
 		AskPerson = #{askperson,jdbcType=VARCHAR},
-		isdelete =
-		#{isdelete,jdbcType=INTEGER},
+		isdelete = #{isdelete,jdbcType=INTEGER},
 		organization = #{organization,jdbcType=VARCHAR},
 		medicalhistory = #{medicalhistory,jdbcType=VARCHAR},
 		drugllergy = #{drugllergy,jdbcType=VARCHAR},
@@ -831,25 +831,21 @@
 		experience = #{experience,jdbcType=VARCHAR},
 		habit = #{habit,jdbcType=VARCHAR},
 		email = #{email,jdbcType=VARCHAR},
-		type =
-		#{type,jdbcType=INTEGER},
+		type = #{type,jdbcType=INTEGER},
 		xueli = #{xueli,jdbcType=VARCHAR},
 		qq = #{qq,jdbcType=VARCHAR},
 		doctor = #{doctor,jdbcType=VARCHAR},
 		important = #{important,jdbcType=VARCHAR},
-		nexttype =
-		#{nexttype,jdbcType=VARCHAR},
+		nexttype = #{nexttype,jdbcType=VARCHAR},
 		totalpay = #{totalpay,jdbcType=DECIMAL},
 		developer = #{developer,jdbcType=VARCHAR},
 		doorstatus = #{doorstatus,jdbcType=INTEGER},
-		glr =
-		#{glr,jdbcType=VARCHAR},
+		glr = #{glr,jdbcType=VARCHAR},
 		glrremark = #{glrremark,jdbcType=VARCHAR},
 		xgr = #{xgr,jdbcType=VARCHAR},
 		xgtime = #{xgtime,jdbcType=VARCHAR},
 		town = #{town,jdbcType=VARCHAR},
-		kefu =
-		#{kefu,jdbcType=VARCHAR},
+		kefu = #{kefu,jdbcType=VARCHAR},
 		usersort = #{usersort,jdbcType=VARCHAR},
 		openid = #{openid,jdbcType=VARCHAR},
 		bindstatus = #{bindstatus,jdbcType=VARCHAR},
@@ -858,7 +854,8 @@
 		blcode = #{blcode,jdbcType=VARCHAR},
 		clipAddress = #{clipAddress,jdbcType=VARCHAR},
 		emergencyContact = #{emergencyContact,jdbcType=VARCHAR},
-        emergencyPhone = #{emergencyPhone,jdbcType=VARCHAR}
+        emergencyPhone = #{emergencyPhone,jdbcType=VARCHAR},
+        arrearage = #{arrearage,jdbcType=DECIMAL}
 		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
 	</update>
 
@@ -1025,7 +1022,7 @@
 	u.xgr, u.xgtime, u.town, u.kefu, u.usersort, u.openid, u.bindstatus, u.pym, u.integral, u.blcode, u.familyship,
 	u.area, u.hobby, u.activity, u.introduce,u.iscreateLclj,u.clipAddress,
 	u.area, u.hobby, u.activity, u.introduce, u.iscreateLclj,u.accepttool,
-	u.headPic, u.photoDisplay,u.emergencyContact,u.emergencyPhone,u.barcode,
+	u.headPic, u.photoDisplay,u.emergencyContact,u.emergencyPhone,u.barcode,u.arrearage,
 	per1.user_name AS doctorname,
 	per2.user_name AS askpersonname,
 	per3.user_name AS developername,
@@ -1593,6 +1590,7 @@ WHERE
         <if test="blcode != null and blcode !='' ">
             and blcode = #{blcode}
         </if>
+        and isdelete !=1
     </select>
     <update id="updateFlagBySeqIds1" parameterType="json">
 		update KQDS_MEMBER set username = #{username} where usercode = #{usercode}

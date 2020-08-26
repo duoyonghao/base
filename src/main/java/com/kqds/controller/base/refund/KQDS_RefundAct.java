@@ -368,8 +368,8 @@ public class KQDS_RefundAct {
 				en.get(0).setTkuser(person.getSeqId());// 退款确认人
 				// 给申请人添加提示信息 已退款
 				PushUtil.saveTx4TuiFeiConfirm(en.get(0), person, request);
-				// 设置积分 实收金额
-				setIntegralMoney(newcostno, en.get(0).getUsercode(), refundid, person.getSeqId(), request);
+				// 设置积分 实收金额 患者欠费标识
+				setIntegralMoney(newcostno, en.get(0), refundid, person.getSeqId(), request);
 				// 记录日志
 				BcjlUtil.LogBcjlWithUserCode(BcjlUtil.CONFIRM_REFUND, BcjlUtil.KQDS_REFUND, en.get(0), en.get(0).getUsercode(), TableNameUtil.KQDS_REFUND, request);
 				
@@ -643,8 +643,10 @@ public class KQDS_RefundAct {
 						BigDecimal agreeTk = new BigDecimal(objrefund.getString("tkmoney"));
 						BigDecimal aowTk = detail.getTkmoney();
 						BigDecimal tked = KqdsBigDecimal.add(agreeTk, aowTk);
-						if (KqdsBigDecimal.compareTo(ysf, tked) < 0) {
-							throw new Exception("该收费项目的退款金额大于缴费金额！");
+						if(KqdsBigDecimal.compareTo(tked, new BigDecimal("0")) == 1){
+							if (KqdsBigDecimal.compareTo(ysf, tked) < 0) {
+								throw new Exception("该收费项目的退款金额大于缴费金额！");
+							}
 						}
 					}
 
@@ -798,15 +800,15 @@ public class KQDS_RefundAct {
 	 * 积分减少
 	 * 
 	 * @param costno
-	 * @param usercode
+	 * @param en
 	 * @param refundid
 	 * @param perId
 	 * @param request
 	 * @throws Exception
 	 */
-	private void setIntegralMoney(String costno, String usercode, String refundid, String perId, HttpServletRequest request) throws Exception {
+	private void setIntegralMoney(String costno, KqdsRefund en, String refundid, String perId, HttpServletRequest request) throws Exception {
 		Map<String, String> map2 = new HashMap<String, String>();
-		map2.put("usercode", usercode);
+		map2.put("usercode", en.getUsercode());
 		List<KqdsUserdocument> userlist = (List<KqdsUserdocument>) logic.loadList(TableNameUtil.KQDS_USERDOCUMENT, map2);
 		if (userlist == null) {
 			throw new Exception("患者不存在！");
@@ -821,6 +823,10 @@ public class KQDS_RefundAct {
 
 		// 实收金额
 		u.setTotalpay(u.getTotalpay().add(ssmoney));
+		//添加欠款金额
+		if(KqdsBigDecimal.compareTo(en.getActualmoney(),en.getTkze()) == 0){
+			u.setArrearage(KqdsBigDecimal.sub(u.getArrearage(),en.getArrearmoney()));
+		}
 		// 参数值大于0 积分功能正常
 		if (KqdsBigDecimal.compareTo(costIntegral, BigDecimal.ZERO) > 0) {
 			// 设置积分

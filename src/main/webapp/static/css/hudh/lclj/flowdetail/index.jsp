@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/inc/classImport.jsp"%>
+<%@ include file="/WEB-INF/jsp/inc/taglib.jsp" %>
 <%
 	String contextPath = request.getContextPath();
 	if (contextPath.equals("")) {
@@ -25,7 +26,7 @@
 <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../../../../js/hudh/commont.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/index.js?v=${version}"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/util.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/index/btnfuc.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/kqds/kqds_system.js"></script>

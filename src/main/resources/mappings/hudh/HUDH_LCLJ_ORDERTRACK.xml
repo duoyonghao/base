@@ -370,7 +370,14 @@
             LEFT JOIN HUDH_LCLJ_NODE_CONFIG b on a.flowCode=b.flowCode and a.nodeId=b.nodeId
             WHERE
             a.nodeStatus = '2'
-            and a.nodeName = #{nodename}) a
+            and a.nodeName = #{nodename}
+            <if test="nodestarttime != null and nodestarttime !='' ">
+                and a.createtime <![CDATA[ >= ]]> #{nodestarttime}
+            </if>
+            <if test="nodeendtime != null and nodeendtime !='' ">
+                and a.createtime <![CDATA[ <= ]]> #{nodeendtime}
+            </if>
+            ) a
             left JOIN
             (SELECT
             a.order_number,b.num
@@ -380,6 +387,19 @@
             WHERE
             a.nodeStatus = '1') b on a.order_number=b.order_number
             where a.num<![CDATA[ < ]]>b.num)
+        </if>
+        <if test="nodeid != null and nodeid !=''">
+            and a.order_number in (
+            select order_number from HUDH_LCLJ_OPERATION_NODE_INFOR
+            where
+            nodeId = #{nodeid,jdbcType=VARCHAR}
+            <if test="surgerystarttime != null or surgerystarttime !='' ">
+                and operation_time <![CDATA[ >= ]]> #{surgerystarttime}
+            </if>
+            <if test="surgeryendtime != null or surgeryendtime !='' ">
+                and operation_time <![CDATA[ <= ]]> #{surgeryendtime}
+            </if>
+            )
         </if>
         <if test="usercodeorname != null and usercodeorname !='' ">
             and (c.UserCode like '%' + #{usercodeorname} + '%'
