@@ -1404,7 +1404,7 @@
 	        		 doctor_signatoryTime :  doctor_signatoryTime, //医生签字时间
 					 diagnosisothers : diagnosisothers //诊断其他输入
 	        };
-	        console.log(JSON.stringify(param)+"------------检查及诊断参数");
+	        //console.log(JSON.stringify(param)+"------------检查及诊断参数");
 	       
 	        $.axseSubmit(url, param,function() {},function(r) {
 	        	layer.alert("保存成功！", {
