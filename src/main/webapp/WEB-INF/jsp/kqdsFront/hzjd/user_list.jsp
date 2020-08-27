@@ -267,6 +267,24 @@ function queryUser(requrl) {
              }
          }
      },
+	 {
+		 title: 'vip',
+		 field: 'vip',
+		 align: 'center',
+		 sortale: true,
+		 formatter: function(value, row, index) {
+			 if (value) {
+			     if(value ==1){
+                     return '<span class="label label-warning">vip</span>' ;
+				 }else{
+                     return "<span>-</span>" ;
+				 }
+
+			 } else {
+				 return "<span>-</span>";
+			 }
+		 }
+	 },
      {
          title: '缴费金额',
          field: 'totalcost',

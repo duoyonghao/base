@@ -1925,4 +1925,13 @@ public class KQDS_REGLogic extends BaseLogic {
         // TODO Auto-generated method stub
         return (JSONObject) dao.findForObject(TableNameUtil.KQDS_REG + ".selectUserdocumentByReg", seqid);
     }
+
+    public List<JSONObject> selectJzByUsercode( Map<String, String> map) throws Exception {
+        if(map.size()>0){
+            List<JSONObject> list = (List<JSONObject>) dao.findForList(TableNameUtil.KQDS_REG + ".selectJzByUsercode", map);
+            return list;
+        }else{
+            return null;
+        }
+    }
 }

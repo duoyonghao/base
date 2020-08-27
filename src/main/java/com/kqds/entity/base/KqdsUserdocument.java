@@ -158,6 +158,8 @@ public class KqdsUserdocument implements Serializable {
 
     private BigDecimal arrearage;//欠款
 
+    private int vip;//vip标识 1是介绍人 0是被介绍人
+
     public String getContagion() {
         return contagion;
     }
@@ -823,5 +825,13 @@ public class KqdsUserdocument implements Serializable {
 
     public void setArrearage(BigDecimal arrearage) {
         this.arrearage = arrearage;
+    }
+
+    public int getVip() {
+        return vip;
+    }
+
+    public void setVip(int vip) {
+        this.vip = vip;
     }
 }
