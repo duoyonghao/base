@@ -651,7 +651,7 @@
                                             <div style="font-weight:600;line-height: 30px;">种植系统：</div>
                                         </div>
                                     </li>
-                                    <li style="width:14%;">
+                                    <li style="width:16%;">
                                         <!-- 选项框 -->
                                         <div class="zl_optiondiv">
                                             <input type="checkbox" value="NobelActive" name="implantsystem"
@@ -715,14 +715,14 @@
                                             <label for="Dentium">Dentium</label>
                                         </div>
                                     </li>
-                                    <li style="width:14%;">
+                                    <li style="width:16%;">
                                         <!-- 选项框 -->
                                         <div class="zl_optiondiv">
                                             <input type="checkbox" value="Pmc" name="implantsystem" id="Pmc" style="vertical-align: text-bottom;"/>
                                             <label for="Pmc">Pmc</label>
                                         </div>
                                     </li>
-                                    <li style="width:18%;">
+                                    <li id="implantsystemotherDiv" style="width:20%;">
                                         <!-- 选项框 -->
                                         <div class="zl_optiondiv">
                                             <input type="checkbox" value="其他" name="implantsystem" id="implantsystemothers" style="vertical-align: text-bottom;"/>
@@ -747,7 +747,7 @@
             <div class="consent_remark">
                 <div id="consent_remark" class="overstriking" style="margin: 0 10px;"></div>
                 <textarea id="remark" rows="" cols="" autoHeight="true"
-                          style="border: 1px solid #ddd;margin:15px 10px 5px 10px;overflow-y: hidden;width:100%;"></textarea>
+                          style="border: 1px solid #ddd;margin:0px 10px 5px 10px;overflow-y: hidden;width:100%;"></textarea>
             </div>
             <pre id="replaceBox"></pre>
         </div>
@@ -1327,7 +1327,7 @@
         eprnstr = "<!--endprint-->";
         prnhtml = bdhtml.substr(bdhtml.indexOf(sprnstr) + 17);
         prnhtml = prnhtml.substring(0, prnhtml.indexOf(eprnstr));
-        var htmlStyle = "<style>button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}#diagnosis_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.one{margin-left: 42px!important;}.inputheight2{border: 1px solid transparent!important;}#consent_signature{width:100%!important;}	.consent_updateBtn{display:none!important;}.btns{display:none!important;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;top:17px!important;}#remark{font-size: 14px!important;line-height: 18px!important;}</style>";
+        var htmlStyle = "<style>button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}#diagnosis_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 15px !important;}.one{margin-left: 42px!important;}.inputheight2{border: 1px solid transparent!important;}#consent_signature{width:100%!important;}	.consent_updateBtn{display:none!important;}.btns{display:none!important;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;top:17px!important;}#remark{font-size: 14px!important;line-height: 18px!important;}#implantsystemotherDiv{width:40%!important;}</style>";
         window.document.body.innerHTML = prnhtml + htmlStyle;
         window.print();  //打印
         document.body.innerHTML = bdhtml; //恢复页面

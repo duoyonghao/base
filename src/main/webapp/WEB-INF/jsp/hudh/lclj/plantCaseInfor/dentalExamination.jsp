@@ -975,7 +975,7 @@
             $("#"+obj).find("tbody tr").find("td:odd").each(function(i,obj){
                 $(this).html("<span class='' id="+data[i].dictCode+">"+data[i].dictName+"</span>");
                 if(data[i].dictCode=="qt213"){
-                    $(this).html("<input style='width:60%;font-size: 16px;text-align:center;border:none' id='other' value="+data[i].dictName+" onblur='TextLengthCheck(this.id,6);'>");
+                    $(this).html("<span id='qt213' class='hidden'>其他</span><input style='width:60%;font-size: 16px;text-align:center;border:none' id='other' value="+data[i].dictName+" onblur='TextLengthCheck(this.id,6);'>");
                 }
             })
             $("#"+obj).find("tbody tr").find("td:even").each(function(i,obj){
@@ -985,7 +985,7 @@
             $("#"+obj).find("tbody tr").find("td:odd").not("td:last").each(function(i,obj){
                 $(this).html("<span class='' id="+data[i].dictCode+">"+data[i].dictName+"</span>");
                 if(data[i].dictCode=="qt213"){
-                    $(this).html("<input style='width:60%;font-size: 16px;text-align:center;border:none' id='other' value="+data[i].dictName+" onblur='TextLengthCheck(this.id,6);'>");
+                    $(this).html("<span id='qt213' class='hidden'>其他</span><input style='width:60%;font-size: 16px;text-align:center;border:none' id='other' value="+data[i].dictName+" onblur='TextLengthCheck(this.id,6);'>");
                 }
             })
             $("#"+obj).find("tbody tr").find("td:even").not("td:last").each(function(i,obj){
@@ -1275,6 +1275,7 @@
             patientTime:patienttime,
             doctorTime:doctortime
         };
+        //console.log(JSON.stringify(param)+"------------保存参数");
         var url = contextPath + '/HUDH_MedicalRecordsAct/installData.act';
         $.axseSubmit(url, param,
             function() {},
@@ -1396,6 +1397,7 @@
             patientTime:patienttime,
             doctorTime:doctortime
         };
+        //console.log(JSON.stringify(param)+"-----------修改param");
 // 	    return;
         var url = contextPath + '/HUDH_MedicalRecordsAct/installData.act';
         $.axseSubmit(url, param,
@@ -1431,14 +1433,12 @@
     // 	返回数据赋值
     function initData(){
         if(form){
-            //console.log(JSON.stringify(form)+"---------------form");
+            //console.log(JSON.stringify(form)+"---------------返回form数据");
             var breakTime=form.createtime;
             var createTimes=new Date(breakTime);
             // 此时间定为2020-08-14禁止修改
             var endTime=new Date("2020-08-14");
-            //var endTimeTwo=new Date("2020-08-25");
             if(createTimes<endTime){
-                //console.log("2020-08-25------------");
                 $(".tooth_map").addClass("hidden");
                 $("textarea").removeClass("hidden");
                 $(".signature_time").css("margin-top","80px");
