@@ -1425,7 +1425,7 @@ function initTable(status, type, recesort, tabId) {
     if (!recesort) {
         recesort = "";
     }
-    var pageurl = contextPath + '/KQDS_REGAct/selectDzlNopage.act?status=' + status + '&querytype=' + type + '&searchValue=' + $("#searchValue").val() + '&recesort=' + recesort;
+    var pageurl = contextPath + '/KQDS_REGAct/selectDzlNopage.act';
 
     var tableObj = $('#table').bootstrapTable('getOptions');
     if (tableObj.length == undefined) { // 如果length 存在，则说明是第一次加载，bootstrap table还没初始化
@@ -1446,6 +1446,10 @@ function initTable(status, type, recesort, tabId) {
             sortName: this.sortName,
             sortOrder: this.sortOrder,
             pageIndex: params.offset / params.limit + 1,
+            status:status,
+            querytype: type,
+            searchValue: $("#searchValue").val(),
+            recesort: recesort
         };
         return temp;
     }

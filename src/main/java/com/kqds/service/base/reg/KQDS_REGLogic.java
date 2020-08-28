@@ -353,7 +353,14 @@ public class KQDS_REGLogic extends BaseLogic {
                                     HttpServletRequest request, BootStrapPage bp) throws Exception {
         String sfpriv = SysParaUtil.getSysValueByName(request, SysParaUtil.PRIV_SHOUFEI_SEQID); // 获取收费角色
         Map<String, String> map = new HashMap<String, String>();
-        if (YZUtility.isNullorEmpty(querytype) || querytype.equals("null") || querytype.equals("undefined")) {
+        if("zx".equals(querytype)){
+            if (!YZUtility.isStrInArrayEach(person.getUserPriv(), sfpriv)) {
+                map.put("querytype", visualstaff);
+            }
+            if(status==5){
+                map.put("firstAskperson", person.getSeqId());
+            }
+        }else if (YZUtility.isNullorEmpty(querytype) || querytype.equals("null") || querytype.equals("undefined")) {
             if (!YZUtility.isStrInArrayEach(person.getUserPriv(), sfpriv)) {
                 map.put("querytype", visualstaff);
             }

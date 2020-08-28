@@ -507,6 +507,9 @@
             where reg.seq_id=regno and createuser in ( ${querytype}))
             or EXISTS (select usercode from KQDS_MEMBER_RECORD
             where us.usercode=usercode and askperson in (${querytype}))
+            <if test="firstAskperson != null and firstAskperson !='' ">
+                or us.askperson=#{firstAskperson}
+            </if>
             )
         </if>
         <if test="status != null and status !='' ">
