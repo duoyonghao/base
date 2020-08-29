@@ -1024,14 +1024,6 @@ public class HudhSpecialitycheck {
 		this.status = status;
 	}
 
-	public String getFourbone() {
-		return fourbone;
-	}
-
-	public void setFourbone(String fourbone) {
-		this.fourbone = fourbone;
-	}
-
 	public String getDiagnosis() {
 		return diagnosis;
 	}
