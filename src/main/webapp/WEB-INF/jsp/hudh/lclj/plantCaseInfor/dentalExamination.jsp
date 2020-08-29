@@ -753,8 +753,8 @@
             </table>
         </div>
     </div>
-<!-- 诊断 -->
-<div class="row content">
+        <!-- 诊断 -->
+        <div class="row content">
     <div class="col-md-12 col-sm-12 colDefined">
         <span class="smalltitle"><font>●</font>诊断</span>
         <table id="medicalCertificateBox" class="contentItem contentItem2" border="1" width="100%">
@@ -809,8 +809,8 @@
         </table>
     </div>
 </div>
-<!-- 手术签名 -->
-<div class="consent_signature">
+        <!-- 手术签名 -->
+        <div class="consent_signature">
     <!-- 患者签名 -->
     <div class="signature_time" style="float: left;display: none">
         <div class="signature_box">
@@ -828,14 +828,16 @@
         <input id="doctortime" type="text" class="doctortime consent_time inputhidden" readonly="readonly" placeholder="请选择日期"/>
     </div>
 </div>
-</div>
+    </div>
 <!--endprint-->
-<!-- 按钮 -->
-<div class="btns">
+    <!-- 按钮 -->
+    <div class="btns">
     <button id="consent_saveBtn" onclick="save()">保存</button>
     <button id="consent_updateBtn" style="display: none;" class="consent_updateBtn hidden" onclick="update()">修改表单</button>
     <button id="print_Btn" onclick="myPreviewAll()">打印本页内容</button>
 </div>
+</div>
+</body>
 <%--</body>--%>
 <script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/util.js"></script>
 <script language="javascript"  src="<%=contextPath%>/static/js/kqdsFront/LodopFuncs.js"></script>
@@ -1663,8 +1665,8 @@
         htmlStyle+="#toothConditionBoxMap2{font-size:10px!important}.placeholder:empty:before{content:' ';}.inputhidden{border: 1px solid transparent!important;}::-webkit-input-placeholder{color:transparent;}</style>"
         window.document.body.innerHTML=prnhtml+htmlStyle;
         window.print();  //打印
-        window.document.body.innerHTML=bdhtml; // 恢复页面
-        window.location.reload();
+        //window.document.body.innerHTML=bdhtml; // 恢复页面
+        //window.location.reload();
     }
 // 字段备注新增内容
 //     onedu--牙位牙松动textarea
@@ -1677,5 +1679,4 @@
 //     fourbone--牙位诊断input十字架
 
 </script>
-</body>
 </html>
