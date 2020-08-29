@@ -2395,4 +2395,58 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
     public JSONObject getrecord(String usercode) throws Exception {
         return (JSONObject) dao.findForObject(TableNameUtil.KQDS_USERDOCUMENT + ".getrecord", usercode);
     }
+
+    /**
+     * 查询患者vip为1的信息
+     * @param map
+     * @param bp
+     * @return
+     * @throws Exception
+     */
+    public JSONObject findIntroducer(String flag,Map<String,String> map,BootStrapPage bp) throws Exception {
+        if(!YZUtility.isNullorEmpty(map.get("starttime"))){
+            map.put("starttime", map.get("starttime")+ ConstUtil.TIME_START);
+        }
+        if(!YZUtility.isNullorEmpty(map.get("endtime"))){
+            map.put("endtime", map.get("endtime")+ ConstUtil.TIME_END);
+        }
+        // 分页插件
+        PageHelper.offsetPage(bp.getOffset(), bp.getLimit());
+        List<JSONObject> list = (List<JSONObject>) dao.findForList(TableNameUtil.KQDS_USERDOCUMENT + ".findIntroducer", map);
+        PageInfo<JSONObject> pageInfo = new PageInfo<JSONObject>(list);
+        JSONObject jobj = new JSONObject();
+        jobj.put("total", pageInfo.getTotal());
+        jobj.put("rows", list);
+        return jobj;
+    }
+
+    /**
+     * 查询介绍人名下患者
+     * @param map
+     * @param bp
+     * @return
+     * @throws Exception
+     */
+    public JSONObject findIntroducerDetail(Map<String,String> map,BootStrapPage bp) throws Exception {
+        if(YZUtility.isNotNullOrEmpty(map.get("introducer"))){
+            // 分页插件
+            PageHelper.offsetPage(bp.getOffset(), bp.getLimit());
+            List<JSONObject> list=new ArrayList<JSONObject>();
+            if("superior".equals(map.get("grade"))){
+                list = (List<JSONObject>) dao.findForList(TableNameUtil.KQDS_USERDOCUMENT + ".findIntroducerSuperior", map);
+            }else{
+                list = (List<JSONObject>) dao.findForList(TableNameUtil.KQDS_USERDOCUMENT + ".findIntroducerSubordinate", map);
+            }
+            PageInfo<JSONObject> pageInfo = new PageInfo<JSONObject>(list);
+            JSONObject jobj = new JSONObject();
+            jobj.put("total", pageInfo.getTotal());
+            jobj.put("rows", list);
+            return jobj;
+        }else{
+            JSONObject jobj = new JSONObject();
+            jobj.put("total", null);
+            jobj.put("rows", null);
+            return jobj;
+        }
+    }
 }

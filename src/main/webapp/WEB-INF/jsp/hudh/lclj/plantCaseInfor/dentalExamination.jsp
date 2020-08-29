@@ -838,7 +838,10 @@
         initBlockToothMap("conditionToothBox");
         pro("toothConditionBox",conditionData);
         pro("medicalCertificateBox",certificateData);
-        $("textarea").addClass("hidden");
+       // $("textarea").addClass("hidden");
+        $(".div_with .tooth_map").addClass("hidden");
+        $(".div_with2 .tooth_map").addClass("hidden");
+        $(".div_with3 .tooth_map").addClass("hidden");
         initData();//数据初始化
         //时间选择
         $(".consent_time").datetimepicker({
@@ -972,7 +975,7 @@
             $("#"+obj).find("tbody tr").find("td:odd").each(function(i,obj){
                 $(this).html("<span class='' id="+data[i].dictCode+">"+data[i].dictName+"</span>");
                 if(data[i].dictCode=="qt213"){
-                    $(this).html("<input style='width:60%;font-size: 16px;text-align:center;border:none' id='other' value="+data[i].dictName+" onblur='TextLengthCheck(this.id,6);'>");
+                    $(this).html("<span id='qt213' class='hidden'>其他</span><input style='width:60%;font-size: 16px;text-align:center;border:none' id='other' value="+data[i].dictName+" onblur='TextLengthCheck(this.id,6);'>");
                 }
             })
             $("#"+obj).find("tbody tr").find("td:even").each(function(i,obj){
@@ -982,7 +985,7 @@
             $("#"+obj).find("tbody tr").find("td:odd").not("td:last").each(function(i,obj){
                 $(this).html("<span class='' id="+data[i].dictCode+">"+data[i].dictName+"</span>");
                 if(data[i].dictCode=="qt213"){
-                    $(this).html("<input style='width:60%;font-size: 16px;text-align:center;border:none' id='other' value="+data[i].dictName+" onblur='TextLengthCheck(this.id,6);'>");
+                    $(this).html("<span id='qt213' class='hidden'>其他</span><input style='width:60%;font-size: 16px;text-align:center;border:none' id='other' value="+data[i].dictName+" onblur='TextLengthCheck(this.id,6);'>");
                 }
             })
             $("#"+obj).find("tbody tr").find("td:even").not("td:last").each(function(i,obj){
@@ -1272,6 +1275,7 @@
             patientTime:patienttime,
             doctorTime:doctortime
         };
+        //console.log(JSON.stringify(param)+"------------保存参数");
         var url = contextPath + '/HUDH_MedicalRecordsAct/installData.act';
         $.axseSubmit(url, param,
             function() {},
@@ -1393,6 +1397,7 @@
             patientTime:patienttime,
             doctorTime:doctortime
         };
+        //console.log(JSON.stringify(param)+"-----------修改param");
 // 	    return;
         var url = contextPath + '/HUDH_MedicalRecordsAct/installData.act';
         $.axseSubmit(url, param,
@@ -1421,13 +1426,14 @@
         if(endTime<curentDate){
             return true;
         }
-        console.log(false);
+        //console.log(false);
         return false;
     }
 
     // 	返回数据赋值
     function initData(){
         if(form){
+            //console.log(JSON.stringify(form)+"---------------返回form数据");
             var breakTime=form.createtime;
             var createTimes=new Date(breakTime);
             // 此时间定为2020-08-14禁止修改
@@ -1457,13 +1463,16 @@
                 $("#patientimg").attr('display', 'none');
             }
             // 其他
-            $("#others").val(form["others"]);
+            //$("#others").val(form["others"]);
+            $("#others").attr("value",form["others"]);
             //牙缺失
             $("#toothDeficiency").text(form["onebone"]);//textarea
             //距鼻底
-            $("#basisnasi").val(form["twobone"]);
+            //$("#basisnasi").val(form["twobone"]);
+            $("#basisnasi").attr("value",form["twobone"]);
             //牙槽嵴宽度
-            $("#alveolarcrest").val(form["threebone"]);
+            //$("#alveolarcrest").val(form["threebone"]);
+            $("#alveolarcrest").attr("value",form["threebone"]);
             for(var i in form){
                 $("input[name="+i+"]").each(function(){
                     var that=this;

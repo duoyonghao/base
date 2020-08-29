@@ -127,8 +127,10 @@
 							<div class="col-xs-12 col-sm-3 col-md-2 control-label clo-itsm hr2 text-left" style="width: auto;">
 								<div id="plant_system" title="事件编号" style="display: inline-block;margin-right: 70px;">种植系统：
 								</div>
+								<div id="patient_impression" title="事件编号" style="display: inline-block;margin-right: 70px;">患者印象：
+								</div>
 								<div id="crown_material" title="事件编号" style="display: inline-block;">牙冠材质：
-								</div> 
+								</div>
 							</div>
 						</div>
 					</div>

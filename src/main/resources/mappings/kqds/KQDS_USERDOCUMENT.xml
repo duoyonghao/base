@@ -65,6 +65,7 @@
         <result column="clipAddress" jdbcType="VARCHAR" property="clipAddress"/>
         <result column="accepttool" jdbcType="VARCHAR" property="accepttool"/>
         <result column="arrearage" jdbcType="VARCHAR" property="arrearage"/>
+        <result column="vip" jdbcType="INTEGER" property="vip"/>
     </resultMap>
     <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.base.KqdsUserdocument">
         <result column="barcode" jdbcType="CLOB" property="barcode"/>
@@ -81,7 +82,7 @@
 		organization, medicalhistory, drugllergy, remark, experience, habit, email, type,
 		xueli, qq, doctor, important, nexttype, totalpay, developer, doorstatus, glr, glrremark,
 		xgr, xgtime, town, kefu, usersort, openid, bindstatus, pym, integral, blcode, familyship, area, hobby, activity, introduce,iscreateLclj,clipAddress,
-		area, hobby, activity, introduce, iscreateLclj,accepttool,headPic, photoDisplay,emergencyContact,emergencyPhone,arrearage
+		area, hobby, activity, introduce, iscreateLclj,accepttool,headPic, photoDisplay,emergencyContact,emergencyPhone,arrearage,vip
 	</sql>
     <sql id="Blob_Column_List">
 		barcode
@@ -4158,5 +4159,42 @@ WHERE
 
     <select id="getrecord" parameterType="java.lang.String" resultType="json">
         SELECT contagion FROM KQDS_UserDocument WHERE usercode = #{usercode}
+    </select>
+
+    <select id="findIntroducer" parameterType="map" resultType="json">
+        SELECT UserCode, UserName, Sex, BirthDay, Age,PhoneNumber1,
+		PhoneNumber2
+        FROM KQDS_UserDocument
+        WHERE vip=1
+        AND organization=#{organization}
+        AND createtime <![CDATA[ >= ]]> #{starttime}
+        AND createtime <![CDATA[ <= ]]> #{endtime}
+        and isdelete=0
+        <if test="searchValue != null and searchValue !='' ">
+            and (usercode like '%' + #{searchValue} + '%'
+            or username like '%' + #{searchValue} + '%'
+            or PhoneNumber1 like '%' + #{searchValue} + '%'
+            or PhoneNumber2 like '%' + #{searchValue} + '%'
+            )
+        </if>
+        ORDER BY createtime DESC
+    </select>
+
+    <select id="findIntroducerSuperior" parameterType="map" resultType="json">
+        SELECT UserCode, UserName, Sex, BirthDay, Age,PhoneNumber1,
+        PhoneNumber2 FROM KQDS_UserDocument
+        where usercode in (SELECT introducer FROM KQDS_UserDocument WHERE usercode=#{introducer})
+        and isdelete=0
+        ORDER BY createtime DESC
+    </select>
+
+    <select id="findIntroducerSubordinate" parameterType="map" resultType="json">
+        SELECT UserCode, UserName, Sex, BirthDay, Age,PhoneNumber1,
+        PhoneNumber2
+        FROM KQDS_UserDocument
+        WHERE
+        introducer=#{introducer}
+        and isdelete=0
+        ORDER BY createtime DESC
     </select>
 </mapper>

@@ -734,33 +734,44 @@
 						</li>
 						<li style="width:16%">
 							<div class="zl_optiondiv">
-							<input name="diagnosis" id="diagnosisA" value="牙缺失" type="checkbox"/>
-								<label for="diagnosisA">牙列缺失 牙列缺损 牙体缺损</label>
+							<input name="diagnosis" id="diagnosisA" value="牙列缺失" type="checkbox"/>
+								<label for="diagnosisA">牙列缺失</label>
 							</div>
 						</li>
 						<li style="width:14%">
-								<!-- 选项框 -->
 							<div class="zl_optiondiv">
-							<input name="diagnosis" id="diagnosisB" value="牙松动" type="checkbox"/>
-								<label for="diagnosisB">牙松动</label>
+								<input name="diagnosis" id="diagnosisB" value="牙列缺损" type="checkbox"/>
+								<label for="diagnosisB">牙列缺损</label>
 							</div>
 						</li>
 						<li style="width:14%">
-							<!-- 选项框 -->
 							<div class="zl_optiondiv">
-							<input name="diagnosis" id="diagnosisC" value="残根" type="checkbox"/>
-								<label for="diagnosisC">残根</label>
+								<input name="diagnosis" id="diagnosisC" value="牙体缺损" type="checkbox"/>
+								<label for="diagnosisC">牙体缺损</label>
 							</div>
 						</li>
-						<li style="width:14%">
-							<!-- 选项框 -->
-							<!-- 选项框 -->
-							<div class="zl_optiondiv">
-							<input name="diagnosis" id="diagnosisD" value="牙周病" type="checkbox"/>
-								<label for="diagnosisD">牙周病</label>
-							</div>
-						</li>
-						<li style="width:18%">
+<%--						<li style="width:14%">--%>
+<%--								<!-- 选项框 -->--%>
+<%--							<div class="zl_optiondiv">--%>
+<%--							<input name="diagnosis" id="diagnosisB" value="牙松动" type="checkbox"/>--%>
+<%--								<label for="diagnosisB">牙松动</label>--%>
+<%--							</div>--%>
+<%--						</li>--%>
+<%--						<li style="width:14%">--%>
+<%--							<!-- 选项框 -->--%>
+<%--							<div class="zl_optiondiv">--%>
+<%--							<input name="diagnosis" id="diagnosisC" value="残根" type="checkbox"/>--%>
+<%--								<label for="diagnosisC">残根</label>--%>
+<%--							</div>--%>
+<%--						</li>--%>
+<%--						<li style="width:14%">--%>
+<%--							<!-- 选项框 -->--%>
+<%--							<div class="zl_optiondiv">--%>
+<%--							<input name="diagnosis" id="diagnosisD" value="牙周病" type="checkbox"/>--%>
+<%--								<label for="diagnosisD">牙周病</label>--%>
+<%--							</div>--%>
+<%--						</li>--%>
+						<li style="width:35%;">
 							<!-- 选项框 -->
 							<div class="zl_optiondiv">
 								<input name="diagnosis" id="diagnosisE" value="其他" type="checkbox"/>
@@ -788,7 +799,7 @@
 		<div class="row" style="margin-top: 27px;margin: 0;">
 			<div id="consent_remark_other" class="row" style="display: none">
 				<div style="margin-top:1%;margin-left: 20px;">
-					<span style="vertical-align: top;display: block;">其他:</span>
+					<span style="vertical-align: top;display: block;width:50px;">其他:</span>
 					<pre class="others" style="border: 1px solid #7e7b7b;width:95%;display: inline-block;margin-left: 30px;white-space: pre-wrap"></pre>
 				</div>
 			</div>
@@ -1484,7 +1495,7 @@
 			eprnstr="<!--endprint-->";
 			prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);
 			prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
-			var htmlStyle="<style>#others{.margintop{margin-top: -27px;}border-style: none;border-bottom: 1px solid #5b5b5b;}button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}.examine_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 10px !important;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}.btns{display:none!important;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;}::-webkit-input-placeholder{color:transparent;}</style>";
+			var htmlStyle="<style>#others{margin-top: -27px;border-style: none;border-bottom: 1px solid #5b5b5b;}button{display:none;}span{font-size: 12px!important;}*{font-size: 12px;line-height: 16px;}.examine_continer input[type='checkbox']{width:12px !important;height:12px !important;margin-top: 10px !important;}.inputheight2{border: 1px solid transparent!important;}.consent_updateBtn{display:none!important;}.btns{display:none!important;}#logoImg{text-align:left!important;width:20%!important;left:0%!important;}::-webkit-input-placeholder{color:transparent;}</style>";
 			window.document.body.innerHTML=prnhtml+htmlStyle;
 			wrappOtherPage();//打印另一个备注
 			window.print();  //打印

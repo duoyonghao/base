@@ -437,6 +437,20 @@ public class KQDS_UserDocumentAct {
     }
 
     /**
+     *跳转介绍人页面
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/toBbIntroducer.act")
+    public ModelAndView toBbIntroducer(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/kqdsFront/index/bbzx/bb_introducer.jsp");
+        return mv;
+    }
+
+    /**
      * 验证病历号是否已存在
      *
      * @param request
@@ -3579,4 +3593,85 @@ public class KQDS_UserDocumentAct {
         return null;
     }
 
+    /**
+     * 根据时间，模糊查，查询vip为1的患者
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/introducerStatistics.act")
+    public String introducerStatistics(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        try {
+            String organization = request.getParameter("organization");
+            String starttime = request.getParameter("starttime");
+            String endtime = request.getParameter("endtime");
+            String searchValue = request.getParameter("searchValue");
+            Map<String, String> map = new HashMap<String, String>();
+            if(!YZUtility.isNullorEmpty(organization)){
+                map.put("organization", organization);
+            }
+            if(!YZUtility.isNullorEmpty(starttime)){
+                map.put("starttime", starttime);
+            }
+            if(!YZUtility.isNullorEmpty(endtime)){
+                map.put("endtime", endtime);
+            }
+            if(!YZUtility.isNullorEmpty(searchValue)){
+                map.put("searchValue", searchValue);
+            }
+            BootStrapPage bp = new BootStrapPage();
+            // 封装参数到实体类
+            BeanUtils.populate(bp, request.getParameterMap());
+            // 导出参数
+            String flag = request.getParameter("flag") == null ? "" : request.getParameter("flag");
+            String fieldArr = request.getParameter("fieldArr") == null ? "" : request.getParameter("fieldArr");
+            String fieldnameArr = request.getParameter("fieldnameArr") == null ? "" : request.getParameter("fieldnameArr");
+            /*-------导出excel---------*/
+            if (flag != null && flag.equals("exportTable")) {
+                JSONObject object = logic.findIntroducer(flag,map, bp);
+                if (object != null ) {
+                    ExportBean bean = ExportTable.initExcel4RsWrite("费用趋势", fieldArr, fieldnameArr, response, request);
+                    bean = ExportTable.exportBootStrapTable2ExcelByResult(bean, (List<JSONObject>) object.get("rows"), "consumerTrends");
+                    ExportTable.writeExcel4DownLoad("费用趋势", bean.getWorkbook(), response);
+                }
+                return null;
+            }
+            JSONObject object = logic.findIntroducer(null,map, bp);
+            YZUtility.RETURN_OBJ(object, response, logger);
+        } catch (Exception ex) {
+            YZUtility.DEAL_ERROR(ex.getMessage(), true, ex, response, logger);
+        }
+        return null;
+    }
+
+    /**
+     * 根据患者编号和上下级标识查询编号名下的患者
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/introducerStatisticsDetail.act")
+    public String introducerStatisticsDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        try {
+            String usercode = request.getParameter("usercode");
+            String grade = request.getParameter("grade");
+            Map<String, String> map = new HashMap<String, String>();
+            if(!YZUtility.isNullorEmpty(usercode)){
+                map.put("introducer", usercode);
+            }
+            if(!YZUtility.isNullorEmpty(grade)){
+                map.put("grade", grade);
+            }
+            BootStrapPage bp = new BootStrapPage();
+            // 封装参数到实体类
+            BeanUtils.populate(bp, request.getParameterMap());
+            JSONObject object = logic.findIntroducerDetail(map, bp);
+            YZUtility.RETURN_OBJ(object, response, logger);
+        } catch (Exception ex) {
+            YZUtility.DEAL_ERROR(ex.getMessage(), true, ex, response, logger);
+        }
+        return null;
+    }
 }

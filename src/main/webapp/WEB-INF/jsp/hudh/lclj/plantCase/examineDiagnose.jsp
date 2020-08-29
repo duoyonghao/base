@@ -804,35 +804,44 @@
                         </li>
                         <li style="width:16%">
                             <div class="zl_optiondiv">
-                                <input name="diagnosis" id="diagnosisA" value="牙缺失" type="checkbox"/>
-                                <label for="diagnosisA">牙列缺失 牙列缺损 牙体缺损</label>
+                                <input name="diagnosis" id="diagnosisA" value="牙列缺失" type="checkbox"/>
+                                <label for="diagnosisA">牙列缺失</label>
                             </div>
                         </li>
                         <li style="width:14%">
-
-                            <!-- 选项框 -->
                             <div class="zl_optiondiv">
-                                <input name="diagnosis" id="diagnosisB" value="牙松动" type="checkbox"/>
-                                <label for="diagnosisB">牙松动</label>
+                                <input name="diagnosis" id="diagnosisB" value="牙列缺损" type="checkbox"/>
+                                <label for="diagnosisB">牙列缺损</label>
                             </div>
                         </li>
                         <li style="width:14%">
-                            <!-- 选项框 -->
                             <div class="zl_optiondiv">
-                                <input name="diagnosis" id="diagnosisC" value="残根" type="checkbox"/>
-                                <label for="diagnosisC">残根</label>
+                                <input name="diagnosis" id="diagnosisC" value="牙体缺损" type="checkbox"/>
+                                <label for="diagnosisC">牙体缺损</label>
                             </div>
                         </li>
-                        <li style="width:14%">
-                            <!-- 选项框 -->
-                            <!-- 选项框 -->
-                            <div class="zl_optiondiv">
-                                <input name="diagnosis" id="diagnosisD" value="牙周病" type="checkbox"/>
-                                <label for="diagnosisD">牙周病</label>
-                            </div>
-                        </li>
-                        <li style="width:18%">
-                            <!-- 选项框 -->
+                        <%--						<li style="width:14%">--%>
+                        <%--								<!-- 选项框 -->--%>
+                        <%--							<div class="zl_optiondiv">--%>
+                        <%--							<input name="diagnosis" id="diagnosisB" value="牙松动" type="checkbox"/>--%>
+                        <%--								<label for="diagnosisB">牙松动</label>--%>
+                        <%--							</div>--%>
+                        <%--						</li>--%>
+                        <%--						<li style="width:14%">--%>
+                        <%--							<!-- 选项框 -->--%>
+                        <%--							<div class="zl_optiondiv">--%>
+                        <%--							<input name="diagnosis" id="diagnosisC" value="残根" type="checkbox"/>--%>
+                        <%--								<label for="diagnosisC">残根</label>--%>
+                        <%--							</div>--%>
+                        <%--						</li>--%>
+                        <%--						<li style="width:14%">--%>
+                        <%--							<!-- 选项框 -->--%>
+                        <%--							<div class="zl_optiondiv">--%>
+                        <%--							<input name="diagnosis" id="diagnosisD" value="牙周病" type="checkbox"/>--%>
+                        <%--								<label for="diagnosisD">牙周病</label>--%>
+                        <%--							</div>--%>
+                        <%--						</li>--%>
+                        <li style="width:35%;">
                             <!-- 选项框 -->
                             <div class="zl_optiondiv">
                                 <input name="diagnosis" id="diagnosisE" value="其他" type="checkbox"/>
@@ -863,7 +872,7 @@
         <div class="row" style="margin-top: 10px;">
             <div id="consent_remark_other" class="row" style="display: none">
                 <div style="margin-top:1%;margin-left: 20px;">
-                    <span style="vertical-align: top;display: block;">其他:</span>
+                    <span style="vertical-align: top;display: block;width:50px;">其他:</span>
                     <pre class="others"
                          style="border: 1px solid #7e7b7b;width:95%;display: inline-block;margin-left: 30px;white-space: pre-wrap"></pre>
                 </div>
