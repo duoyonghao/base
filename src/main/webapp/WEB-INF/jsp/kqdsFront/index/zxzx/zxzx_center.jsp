@@ -112,7 +112,7 @@
                         <li onclick="getPayOrderlist();" id="zxjz_yjz" class="hide">已结账&nbsp;&nbsp;<span id="ydataCount"
                                                                                                          class="notRead">0</span>
                         </li>
-                        <li onclick="initTable(5);" id="zxjz_jrhz" class="hide">今日患者&nbsp;&nbsp;<span id="tdataCountj"
+                        <li onclick="initTable(5,'zx');" id="zxjz_jrhz" class="hide">今日患者&nbsp;&nbsp;<span id="tdataCountj"
                                                                                                       class="notRead">0</span>
                         </li>
                     </ul>

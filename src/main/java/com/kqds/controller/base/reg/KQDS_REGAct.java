@@ -1615,4 +1615,28 @@ public class KQDS_REGAct {
 
 		return null;
 	}
+
+    /**
+     * 根据患者编号查询接诊信息
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+	@RequestMapping(value = "/selectJzByUsercode.act")
+	public String selectJzByUsercode(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		try {
+			String usercode = request.getParameter("usercode");
+			Map<String, String> map = new HashMap<String, String>();
+			if (!YZUtility.isNullorEmpty(usercode)) {
+				map.put("usercode", usercode);
+			}
+			List<JSONObject> list = logic.selectJzByUsercode(map);
+			YZUtility.RETURN_LIST(list, response, logger);
+		} catch (Exception ex) {
+			YZUtility.DEAL_ERROR(null, false, ex, response, logger);
+		}
+
+		return null;
+	}
 }

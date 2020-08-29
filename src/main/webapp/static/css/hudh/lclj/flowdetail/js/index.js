@@ -355,7 +355,6 @@ function initFlow(){
 			else if(patientObj.type=="3"){type="All-on-x"};
 			$("#p_details").find("#patient_type").text(result.flowname/*type + (patientObj.bone=="是"?"植骨":"无植骨")*/);
 			$("#p_details").find("#patient_status").text(patientObj.ss_status);
-			
 			//患者详情页信息赋值
 			$("#blcode").html($("#blcode").html()+"<span class='patientInfoText'>"+patientObj.blcode+"</span>");
 			$("#hzname").html($("#hzname").html()+"<span class='patientInfoText'>"+patientObj.username+"</span>");
@@ -369,6 +368,7 @@ function initFlow(){
 			$("#customer_service").html($("#customer_service").html()+"<span class='patientInfoText'>"+patientObj.customer_service+"</span>");
 			$("#plant_system").html($("#plant_system").html()+"<span class='patientInfoText'>"+patientObj.plant_system+"</span>");
 			$("#crown_material").html($("#crown_material").html()+"<span class='patientInfoText'>"+patientObj.tooth_texture+"</span>");
+            $("#patient_impression").html($("#patient_impression").html()+"<span class='patientInfoText'>"+patientObj.userimpress+"</span>");
 			//console.log(JSON.stringify(patientObj)+"--------患者所有信息");
 			
 			//手术信息赋值

@@ -270,7 +270,9 @@ function OrderDetail(){
 				"   <td  style=\"text-align: center;\">"+obj.housename+"</td >"+
 				"   <td  style=\"text-align: center;\">"+obj.firsttype+"</td >"+
 				"   <td  style=\"text-align: center;\">"+obj.goodstypename+"</td >"+
-				"   <td  style=\"text-align: center;\">"+obj.yxdate+"</td >"+
+                "   <td  style=\"text-align: center;\">"+obj.addnumber+"</td >"+
+                "   <td  style=\"text-align: center;\">"+obj.addtime.substring(0,10) +"</td >"+
+				/*"   <td  style=\"text-align: center;\">"+obj.yxdate+"</td >"+*/
 				"   <td  style=\"text-align: center;\">"+obj.goodscode+"</td >"+
 				"   <td  style=\"text-align: center;\">"+obj.goodsname+"</td >"+
 				"   <td  style=\"text-align: center;\">"+obj.goodsnorms+"</td >"+

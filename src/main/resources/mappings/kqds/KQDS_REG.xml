@@ -507,6 +507,9 @@
             where reg.seq_id=regno and createuser in ( ${querytype}))
             or EXISTS (select usercode from KQDS_MEMBER_RECORD
             where us.usercode=usercode and askperson in (${querytype}))
+            <if test="firstAskperson != null and firstAskperson !='' ">
+                or us.askperson=#{firstAskperson}
+            </if>
             )
         </if>
         <if test="status != null and status !='' ">
@@ -3037,5 +3040,38 @@
         LEFT JOIN KQDS_USERDOCUMENT u on r.usercode = u.usercode
         where r.SEQ_ID = #{seqId,jdbcType=VARCHAR}
     </select>
-
+    <select id="selectJzByUsercode" parameterType="map" resultType="json">
+        select
+        r.usercode,
+        u.username,
+        r.regsort as regsortvalue,
+        dict2.dict_name as regsortname,
+        r.recesort as recesortvalue,
+        dict1.dict_name as recesortname,
+        dept.DEPT_NAME as regdept,
+        r.regdept as regdeptvalue,
+        r.doctor as doctorvalue,
+        per1.USER_NAME as doctorname,
+        r.askperson as askpersonvalue,
+        per2.USER_NAME as askpersonname,
+        u.askperson as firstaskperson,
+        per3.USER_NAME as firstaskpersonname,
+        u.kefu,
+        per4.USER_NAME as kefuname,
+        r.del,
+        r.cjstatus
+        from KQDS_REG r
+        LEFT JOIN kqds_userdocument u on r.usercode = u.usercode
+        LEFT JOIN SYS_DEPT dept on r.regdept = dept.seq_id
+        LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = r.doctor
+		LEFT JOIN SYS_PERSON per2 on per2.SEQ_ID = r.askperson
+		LEFT JOIN SYS_PERSON per3 on per3.SEQ_ID = u.askperson
+		LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID = u.kefu
+		LEFT JOIN SYS_DICT dict1 on dict1.SEQ_ID = r.recesort
+		LEFT JOIN SYS_DICT dict2 on dict2.SEQ_ID = r.regsort
+        where 1=1
+        and r.usercode =#{usercode}
+        and r.del=0
+        ORDER BY r.CreateTime desc
+    </select>
 </mapper>
