@@ -321,24 +321,13 @@ function initChukuNum(tdindex,goodsid){
                 for (var j = 0; j < list.length; j++) {
                     var optionStr = list[j];
                     if(list[j].yxdate=="/"){
-                        if(list[j].ph=="") {
-                            phObj.find(".ph").append(
-                                '<option value=' + optionStr.phnum + ' date="yxdate">请选择</option>'
-                            );
-                        }else{
-                            phObj.find(".ph").append(
-                                '<option value=' + optionStr.phnum + ' date="yxdate">' + optionStr.ph + '</option>'
-                            );
-						}
+						phObj.find(".ph").append(
+							'<option value=' + optionStr.phnum + ' date="yxdate">' + optionStr.ph + '</option>'
+						);
                     }else{
-						if(list[j].ph=="") {
-                            phObj.find(".ph").append(
-                                '<option value=' + optionStr.phnum + ' date=' + optionStr.yxdate + ' >请选择</option>');
-                        }else{
-                            phObj.find(".ph").append(
-                                '<option value='+ optionStr.phnum + ' date='+optionStr.yxdate+' >' + optionStr.ph + '</option>'
-                            );
-						}
+						phObj.find(".ph").append(
+							'<option value='+ optionStr.phnum + ' date='+optionStr.yxdate+' >' + optionStr.ph + '</option>'
+						);
 					}
                     if(j==0){
                     	phnum=optionStr.phnum; // 批号数量

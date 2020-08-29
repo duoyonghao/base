@@ -445,7 +445,7 @@ public class   KsllColorServiceImpl implements IKsllColorService {
 			List<KqdsCkGoodsOutDetail> cList=new ArrayList<KqdsCkGoodsOutDetail>();
 			List<KqdsCkGoodsInDetail> iList=new ArrayList<KqdsCkGoodsInDetail>();
 			for (KqdsCkGoodsOutDetail detail : jList) {
-				if(detail.getPh().equals("请选择")){
+				if(detail.getPh().equals("请选择")||"".equals(detail.getPh())){
 					kList.add(detail);
 				}else{
 					cList.add(detail);
