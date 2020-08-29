@@ -1335,7 +1335,7 @@
             doctorTime:doctortime,
             diagnosis:diagnosis
         };
-        console.log(JSON.stringify(param)+"------------保存参数");
+        //console.log(JSON.stringify(param)+"------------保存参数");
         var url = contextPath + '/HUDH_MedicalRecordsAct/installData.act';
         $.axseSubmit(url, param,
             function() {},
@@ -1460,7 +1460,7 @@
             doctorTime:doctortime,
             diagnosis:diagnosis
         };
-        console.log(JSON.stringify(param)+"-----------修改param");
+        //       console.log(JSON.stringify(param)+"-----------修改param");
 // 	    return;
         var url = contextPath + '/HUDH_MedicalRecordsAct/installData.act';
         $.axseSubmit(url, param,
