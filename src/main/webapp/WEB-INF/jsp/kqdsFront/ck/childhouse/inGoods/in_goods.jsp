@@ -326,7 +326,7 @@ function addDoodsDetail(detail){
      //有效期12+1
      tablehtml += '<td style="width:100px;"><input type="text" style="width:100%; text-align:center;" class="unitsDate" name="yxdate" id="yxdate"></td>';
      //批号13+1
-     tablehtml += '<td style="width:100px;"><input type="text" style="width:100%; text-align:center;" onfocus="this.select()" onkeyup="value=value.replace(/[^\\d]/g,\'\')"  onchange="editPh(this,'+tdindex+');" class="ph" name="ph" id="ph'+tdindex+'"></td>';
+     tablehtml += '<td style="width:100px;"><input type="text" style="width:100%; text-align:center;" onfocus="this.select()" onkeyup="this.value=this.value.replace(/[^\\w_]/g,\'\');"  onchange="editPh(this,'+tdindex+');" class="ph" name="ph" id="ph'+tdindex+'"></td>';
      //注册证号14+1
      tablehtml += '<td style="width:100px;"><input type="text" style="width:100%; text-align:center;" onfocus="this.select()" name="zczh" value="'+zczh[i]+'" id="zczh'+tdindex+'"></td>';
      //产地15+1
