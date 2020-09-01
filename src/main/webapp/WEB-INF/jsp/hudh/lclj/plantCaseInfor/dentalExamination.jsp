@@ -381,6 +381,14 @@
         width:100%!important;
         height:98%!important;
     }
+    .zl_optiondiv{
+        display: inline-block;
+        width: auto;
+        min-width: 18%;
+    }
+    .zl_optiondiv>label{
+        font-weight: bold;
+    }
 </style>
 <body>
 <!--startprint-->
@@ -745,16 +753,64 @@
             </table>
         </div>
     </div>
-<!-- 诊断 -->
-<div class="row content">
+        <!-- 诊断 -->
+        <div class="row content">
     <div class="col-md-12 col-sm-12 colDefined">
         <span class="smalltitle"><font>●</font>诊断</span>
         <table id="medicalCertificateBox" class="contentItem contentItem2" border="1" width="100%">
+            <tr id="">
+<%--                <td style='text-align:center'>--%>
+<%--                    <div class='div_with placeholder' sid="yqs69">--%>
+<%--                        <textarea name="yqs69"  cols='2' placeholder='对应牙位'></textarea>--%>
+<%--                        <ul class='tooth_map' style='margin-left: 30px;'>--%>
+<%--                            <li><input id='yqs69leftup' class='tooth_input' type='text'/></li>--%>
+<%--                            <li><input id='yqs69rightup' class='tooth_input' type='text'/></li>--%>
+<%--                            <li><input id='yqs69leftdown' class='tooth_input' type='text'/></li>--%>
+<%--                            <li><input id='yqs69rightdown' class='tooth_input' type='text'/></li>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
+<%--                </td>--%>
+                <td class='problemitem table_width2' id="diagnosisCheckbox">
+<%--                    <span id='yqs69' class='hidden'>诊断</span>--%>
+                    <div class="zl_optiondiv">
+                        <input name="diagnosis" id="diagnosisA" value="0" type="checkbox"/>
+                        <label for="diagnosisA">牙列缺失</label>
+                    </div>
+                    <div class="zl_optiondiv">
+                        <input name="diagnosis" id="diagnosisB" value="1" type="checkbox"/>
+                        <label for="diagnosisB">牙列缺损</label>
+                    </div>
+                    <div class="zl_optiondiv">
+                        <input name="diagnosis" id="diagnosisC" value="2" type="checkbox"/>
+                        <label for="diagnosisC">牙体缺损</label>
+                    </div>
+                    <div class="zl_optiondiv" style="min-width:35%;">
+                        <input name="diagnosis" id="diagnosisD" value="3" type="checkbox"/>
+                        <label for="diagnosisD">其他</label>
+                        <input style='width:60%;font-size: 16px;text-align:center;border:none;border-bottom:1px solid black;' id='other' value="" onblur='TextLengthCheck(this.id,20);'>
+                    </div>
+                </td>
+                <%--<td style='text-align:center'>
+                    <div class='div_with placeholder' sid="qt213">
+                        <textarea name="qt213"  cols='2' placeholder='对应牙位'></textarea>
+                        <ul class='tooth_map' style='margin-left: 30px;'>
+                            <li><input id='qt213leftup' class='tooth_input' type='text'/></li>
+                            <li><input id='qt213rightup' class='tooth_input' type='text'/></li>
+                            <li><input id='qt213leftdown' class='tooth_input' type='text'/></li>
+                            <li><input id='qt213rightdown' class='tooth_input' type='text'/></li>
+                        </ul>
+                    </div>
+                </td>
+                <td class='problemitem table_width2'>
+                    <span id='qt213' class=''>其他</span>
+                    <input style='width:60%;font-size: 16px;text-align:center;border:none' id='other' value="" onblur='TextLengthCheck(this.id,6);'>
+                </td>--%>
+            </tr>
         </table>
     </div>
 </div>
-<!-- 手术签名 -->
-<div class="consent_signature">
+        <!-- 手术签名 -->
+        <div class="consent_signature">
     <!-- 患者签名 -->
     <div class="signature_time" style="float: left;display: none">
         <div class="signature_box">
@@ -772,14 +828,16 @@
         <input id="doctortime" type="text" class="doctortime consent_time inputhidden" readonly="readonly" placeholder="请选择日期"/>
     </div>
 </div>
-</div>
+    </div>
 <!--endprint-->
-<!-- 按钮 -->
-<div class="btns">
+    <!-- 按钮 -->
+    <div class="btns">
     <button id="consent_saveBtn" onclick="save()">保存</button>
     <button id="consent_updateBtn" style="display: none;" class="consent_updateBtn hidden" onclick="update()">修改表单</button>
     <button id="print_Btn" onclick="myPreviewAll()">打印本页内容</button>
 </div>
+</div>
+</body>
 <%--</body>--%>
 <script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/util.js"></script>
 <script language="javascript"  src="<%=contextPath%>/static/js/kqdsFront/LodopFuncs.js"></script>
@@ -837,7 +895,7 @@
         gettionData();//获取各板块问题详情
         initBlockToothMap("conditionToothBox");
         pro("toothConditionBox",conditionData);
-        pro("medicalCertificateBox",certificateData);
+        //pro("medicalCertificateBox",certificateData);
        // $("textarea").addClass("hidden");
         $(".div_with .tooth_map").addClass("hidden");
         $(".div_with2 .tooth_map").addClass("hidden");
@@ -950,6 +1008,7 @@
         var url = contextPath + "/YZDictAct/getDiseaseByCode.act?id=bqfl67&code=zdqk594";
         $.axse(url, null,
             function(data) {
+            //console.log(JSON.stringify(data)+"-----------各项目问题数据");
                 // a=2;
                 conditionData=data.conditionData;
                 certificateData=data.certificateData;
@@ -1229,6 +1288,8 @@
         toothCondition = JSON.stringify(toothCondition);
         imageExamination = JSON.stringify(imageExamination);
         medicalCertificate = JSON.stringify(medicalCertificate);
+
+        var diagnosis=inputCheckedSave("diagnosis"); //诊断牙齿情况
         var param = {
 //	     	    基本信息
             lcljId:idlclj,
@@ -1273,7 +1334,8 @@
             patientSignature :  patientsignature,
             doctorSignature :  signature,
             patientTime:patienttime,
-            doctorTime:doctortime
+            doctorTime:doctortime,
+            diagnosis:diagnosis
         };
         //console.log(JSON.stringify(param)+"------------保存参数");
         var url = contextPath + '/HUDH_MedicalRecordsAct/installData.act';
@@ -1349,6 +1411,8 @@
         toothCondition = JSON.stringify(toothCondition);
         imageExamination = JSON.stringify(imageExamination);
         medicalCertificate = JSON.stringify(medicalCertificate);
+
+        var diagnosis=inputCheckedSave("diagnosis"); //诊断牙齿情况
         var param = {
             seqId:updataid,
 //	     	    基本信息
@@ -1395,9 +1459,10 @@
             patientSignature :  patientsignature,
             doctorSignature :  signature,
             patientTime:patienttime,
-            doctorTime:doctortime
+            doctorTime:doctortime,
+            diagnosis:diagnosis
         };
-        //console.log(JSON.stringify(param)+"-----------修改param");
+        //       console.log(JSON.stringify(param)+"-----------修改param");
 // 	    return;
         var url = contextPath + '/HUDH_MedicalRecordsAct/installData.act';
         $.axseSubmit(url, param,
@@ -1600,8 +1665,8 @@
         htmlStyle+="#toothConditionBoxMap2{font-size:10px!important}.placeholder:empty:before{content:' ';}.inputhidden{border: 1px solid transparent!important;}::-webkit-input-placeholder{color:transparent;}</style>"
         window.document.body.innerHTML=prnhtml+htmlStyle;
         window.print();  //打印
-        window.document.body.innerHTML=bdhtml; // 恢复页面
-        window.location.reload();
+        //window.document.body.innerHTML=bdhtml; // 恢复页面
+        //window.location.reload();
     }
 // 字段备注新增内容
 //     onedu--牙位牙松动textarea
@@ -1614,5 +1679,4 @@
 //     fourbone--牙位诊断input十字架
 
 </script>
-</body>
 </html>

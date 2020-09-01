@@ -110,6 +110,8 @@ public class HudhSpecialitycheck {
 
 	private String status;
 
+	private String diagnosis;//诊断牙齿情况
+
 	public String getOthers() {
 		return others;
 	}
@@ -1020,6 +1022,14 @@ public class HudhSpecialitycheck {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getDiagnosis() {
+		return diagnosis;
+	}
+
+	public void setDiagnosis(String diagnosis) {
+		this.diagnosis = diagnosis;
 	}
 
 	@Override

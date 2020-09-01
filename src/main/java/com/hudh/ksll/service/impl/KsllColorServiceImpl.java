@@ -445,7 +445,7 @@ public class   KsllColorServiceImpl implements IKsllColorService {
 			List<KqdsCkGoodsOutDetail> cList=new ArrayList<KqdsCkGoodsOutDetail>();
 			List<KqdsCkGoodsInDetail> iList=new ArrayList<KqdsCkGoodsInDetail>();
 			for (KqdsCkGoodsOutDetail detail : jList) {
-				if(detail.getPh().equals("请选择")){
+				if(detail.getPh().equals("请选择")||"".equals(detail.getPh())){
 					kList.add(detail);
 				}else{
 					cList.add(detail);
@@ -617,10 +617,10 @@ public class   KsllColorServiceImpl implements IKsllColorService {
 					BigDecimal goodsprice = null;
 					if (goods.getNum() == 0) {// 出库后，库存为0
 						goodsprice = BigDecimal.ZERO;
-						goods.setKcmoney(BigDecimal.ZERO);
+						goods.setKcmoneys(BigDecimal.ZERO);
 					} else {
 						if(kcmoney != null){
-							goodsprice = kcmoney.divide(new BigDecimal(goods.getNums()), 3, RoundingMode.HALF_EVEN).setScale(3, BigDecimal.ROUND_HALF_DOWN);
+							goodsprice = kcmoney.divide(new BigDecimal(goods.getNum()), 3, RoundingMode.HALF_EVEN).setScale(3, BigDecimal.ROUND_HALF_DOWN);
 						}
 					}
 					goods.setNum(syNum);

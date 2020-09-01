@@ -56,6 +56,7 @@
     <result column="doctor_signature" jdbcType="VARCHAR" property="doctorSignature" />
     <result column="others" jdbcType="VARCHAR" property="others" />
     <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="diagnosis" jdbcType="VARCHAR" property="diagnosis" />
   </resultMap>
   <sql id="Base_Column_List">   
 	SEQ_ID,lcljId, lcljNum, userId, IsmouthOpening, mouthOpening, arthrosis, occludingRelation, verticalCurve, horizontalCurve, 
@@ -64,7 +65,7 @@
     teethTilted, nub, defectiveRepair, mouthApicitis, teethElongation, maxillarySinus, 
     alveolar, genyantrum, boneMass, oneBone, twoBone, threeBone, fourBone, anodontism, 
     teethDefect, dummy, parodontopathy, residualRoot, residualRown, apicitis, other, createuser, createtime, organization,
-    patienttime,doctortime,patient_signature,doctor_signature,others,status
+    patienttime,doctortime,patient_signature,doctor_signature,others,status,diagnosis
   </sql>
   <insert id="insert" parameterType="com.hudh.lclj.entity.HudhSpecialitycheck">
     insert into HUDH_SpecialityCheck (<include refid="Base_Column_List" />)
@@ -84,7 +85,8 @@
       #{parodontopathy,jdbcType=VARCHAR}, #{residualroot,jdbcType=VARCHAR}, #{residualrown,jdbcType=VARCHAR}, 
       #{apicitis,jdbcType=VARCHAR}, #{other,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR},
       #{createtime,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, #{patientTime,jdbcType=VARCHAR}, #{doctorTime,jdbcType=VARCHAR},
-      #{patientSignature,jdbcType=VARCHAR}, #{doctorSignature,jdbcType=VARCHAR}, #{others,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+      #{patientSignature,jdbcType=VARCHAR}, #{doctorSignature,jdbcType=VARCHAR}, #{others,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+      #{diagnosis,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hudh.lclj.entity.HudhSpecialitycheck">
     insert into HUDH_SpecialityCheck
@@ -251,6 +253,9 @@
         <if test="organization != null">
             organization,
         </if>
+        <if test="diagnosis != null">
+            diagnosis,
+        </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test=" seqId != null">
@@ -413,7 +418,10 @@
             #{createtime,jdbcType=VARCHAR},
         </if>
         <if test="organization != null">
-            #{organization,jdbcType=VARCHAR}
+            #{organization,jdbcType=VARCHAR},
+        </if>
+        <if test="diagnosis != null">
+            #{diagnosis,jdbcType=VARCHAR},
         </if>
     </trim>
   </insert>
@@ -556,10 +564,13 @@
                 doctor_signature=#{doctorSignature,jdbcType=VARCHAR},
             </if>
             <if test="others != null">
-                others=#{others,jdbcType=VARCHAR}
+                others=#{others,jdbcType=VARCHAR},
             </if>
             <if test="status != null">
-                status=#{status,jdbcType=VARCHAR}
+                status=#{status,jdbcType=VARCHAR},
+            </if>
+            <if test="diagnosis != null">
+                diagnosis=#{diagnosis,jdbcType=VARCHAR},
             </if>
         </trim>
    	  WHERE SEQ_ID = #{seqId,jdbcType=VARCHAR}

@@ -320,16 +320,15 @@ function initChukuNum(tdindex,goodsid){
                 var inprice;
                 for (var j = 0; j < list.length; j++) {
                     var optionStr = list[j];
-                    //console.log(optionStr,+"444"); ' inprice='+optionStr.inprice+
                     if(list[j].yxdate=="/"){
-                    	phObj.find(".ph").append(
-            					'<option value='+ optionStr.phnum + ' date="yxdate">' + optionStr.ph + '</option>' 
-            			);
+						phObj.find(".ph").append(
+							'<option value=' + optionStr.phnum + ' date="yxdate">' + optionStr.ph + '</option>'
+						);
                     }else{
-                    	phObj.find(".ph").append(
-            					'<option value='+ optionStr.phnum + ' date='+optionStr.yxdate+' >' + optionStr.ph + '</option>' 
-            			);
-                    }
+						phObj.find(".ph").append(
+							'<option value='+ optionStr.phnum + ' date='+optionStr.yxdate+' >' + optionStr.ph + '</option>'
+						);
+					}
                     if(j==0){
                     	phnum=optionStr.phnum; // 批号数量
                     	//inprice=optionStr.inprice;
