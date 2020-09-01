@@ -621,6 +621,17 @@ function static_btnfucDeal(name, requrl, isParentOpen) {
             });
             break;
         }
+        case 'hzjd_ylzx': {
+            layer.open({
+                type: 2,
+                title: '创建档案',
+                shadeClose: false,
+                shade: 0.6,
+                area: ['65%', '85%'],
+                content: contextPath + '/KQDS_UserDocumentAct/toHzjd_zxzl.act'
+            });
+            break;
+        }
         case 'zxzx_zdkf': {
             setKeFu();
             break;
