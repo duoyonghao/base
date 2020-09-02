@@ -664,7 +664,7 @@ $(function() {
         }]
     }).on('click-row.bs.table',
     function(e, row, element) {
-        $(".caseContiner").css("display","none");
+        $(".caseContiner").css("display","none");//术前核查块跟随患者的变化隐藏展示
         $('.success').removeClass('success'); //去除之前选中的行的，选中样式
         $(element).addClass('success'); //添加当前选中的 success样式用于区别
         var index = $('#table').find('tr.success').data('index'); //获得选中的行
