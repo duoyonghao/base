@@ -506,13 +506,11 @@
     var updataid;
     $(function(){
 		if(window.parent.onclickrowOobj){
-			console.log("临床对象1+-"+window.parent.onclickrowOobj);
 			id= window.parent.onclickrowOobj.seqid;
 			order_number= window.parent.onclickrowOobj.orderNumber;
 			patient_usercode = window.parent.onclickrowOobj.usercode;
 			patientInformation=window.parent.onclickrowOobj;
 		}else{
-			console.log("临床对象+-"+window.parent.patientObj);
 			id= window.parent.patientObj.id;
 			order_number= window.parent.patientObj.orderNumber;
 			patient_usercode = window.parent.patientObj.blcode;
