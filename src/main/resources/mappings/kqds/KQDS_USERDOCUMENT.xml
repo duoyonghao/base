@@ -1349,7 +1349,7 @@ WHERE
         p.USER_NAME as kefuname,
         reg.createtime as regcreatetime
         from KQDS_USERDOCUMENT as u
-        left join (select createtime,usercode from KQDS_REG where recesort = '20') reg on reg.usercode=u.usercode
+        left join (select createtime,usercode from KQDS_REG where recesort = '20' AND del!=1) reg on reg.usercode=u.usercode
         left join sys_person p on p.seq_id = u.kefu
         where 1=1
         and u.organization = #{organization}
@@ -4012,7 +4012,7 @@ WHERE
         <!-- select a.* from KQDS_REG a,(select usercode,max(createtime) createtime from
 		KQDS_REG group by usercode) b where a.usercode=b.usercode and
 		a.createtime=b.createtime -->
-        select createtime,usercode from KQDS_REG where recesort = '20') reg on reg.usercode=u.usercode
+        select createtime,usercode from KQDS_REG where recesort = '20' and del!=1) reg on reg.usercode=u.usercode
         left join SYS_DICT okdi1 on okdi1.seq_id = u.devchannel
         left join SYS_DICT hztype on hztype.seq_id = u.nexttype
         left join SYS_PERSON per1 on per1.seq_id = u.doctor
