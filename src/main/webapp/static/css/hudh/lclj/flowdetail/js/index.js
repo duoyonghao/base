@@ -969,7 +969,7 @@ var buttonFun = {
 				}
 			}
 			//术前核查
-			var preoperative_verification = $(window.frames["myiframe"].document).find("input[name='preoperative_verification']:checked").val();
+			/*var preoperative_verification = $(window.frames["myiframe"].document).find("input[name='preoperative_verification']:checked").val();
 			if($(window.frames["myiframe"].document).find("input[name='preoperative_verification']").length>0){
 				if(!preoperative_verification) {
 					var preoperative_verificationIndex=$(window.frames["myiframe"].document).find("input[name='preoperative_verification']").parent().text().indexOf("*")+1;
@@ -979,7 +979,7 @@ var buttonFun = {
 						return;
 					}
 				}
-			}
+			}*/
 			//麻醉方式
 			var anesthesiaMethod = a();
 			var anesthesiaMethodTag= $(window.frames["myiframe"].document).find("input[name='anesthesiaMethod']");

@@ -290,14 +290,35 @@
 		var signature="";
 		var doctorstatus=true;
 		var contextPath = "<%=contextPath%>";
-		var id= window.parent.patientObj.id;	//选中患者id
-		var order_number= window.parent.patientObj.orderNumber;//选中患者order_number
+		var id;
+		var order_number;
+		var username;
+		var sex;
+		var age;
+		//var id= window.parent.patientObj.id;	//选中患者id
+		//var order_number= window.parent.patientObj.orderNumber;//选中患者order_number
 		var menuid=window.parent.menuid;//左侧菜单id
 		$(function(){
 			var userAgent = navigator.userAgent; 
 		    if (userAgent.indexOf("iPad") > -1){
 		     	$("#print_Btn").hide();//移动端打印按钮隐藏
 		    }
+
+			if(window.parent.onclickrowOobj){
+				console.log("临床对象3+-"+JSON.stringify(window.parent.onclickrowOobj));
+				id= window.parent.onclickrowOobj.seqid;
+				order_number= window.parent.onclickrowOobj.orderNumber;
+				username= window.parent.onclickrowOobj.username;
+				sex= window.parent.onclickrowOobj.sex;
+				age= window.parent.onclickrowOobj.age;
+			}else{
+				id= window.parent.patientObj.id;
+				order_number= window.parent.patientObj.order_number;
+				username= window.parent.patientObj.username;
+				sex= window.parent.patientObj.sex;
+				age= window.parent.patientObj.age;
+			}
+
 			//时间选择
 		    $("#signaturetime").datetimepicker({
 		    	language:  'zh-CN',  
@@ -316,9 +337,9 @@
 		    });	
 		    
 		    //患者姓名、年龄、性别赋值
-			$("#patient_name").attr("value",window.parent.patientObj.username);
-			$("#patient_sex").attr("value",window.parent.patientObj.sex);
-			$("#patient_age").attr("value",window.parent.patientObj.age);
+			$("#patient_name").attr("value",username);
+			$("#patient_sex").attr("value",sex);
+			$("#patient_age").attr("value",age);
 			
 			initZzblInfor();/* 页面赋值判断初始化 */
 			// 2019/7/24 lutian 禁止页面拖拽
