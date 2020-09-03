@@ -493,14 +493,29 @@
     var nursestatus1=true;
     var nursestatus2=true;
     var contextPath = "<%=contextPath%>";
-    var patientInformation=window.parent.patientObj;//患者信息
-    var id=patientInformation.id;	//选中患者id
-    var order_number= patientInformation.orderNumber; //选中患者order_number
-    var patient_usercode= patientInformation.blcode;//选中患者usercode
+	var patientInformation;
+	var id;
+	var order_number;
+	var patient_usercode;
+    //var patientInformation=window.parent.patientObj;//患者信息
+    //var id=patientInformation.id;	//选中患者id
+    //var order_number= patientInformation.orderNumber; //选中患者order_number
+    //var patient_usercode= patientInformation.blcode;//选中患者usercode
     var patient_seqid;
     var menuid=window.parent.menuid;//左侧菜单id
     var updataid;
     $(function(){
+		if(window.parent.onclickrowOobj){
+			id= window.parent.onclickrowOobj.seqid;
+			order_number= window.parent.onclickrowOobj.orderNumber;
+			patient_usercode = window.parent.onclickrowOobj.usercode;
+			patientInformation=window.parent.onclickrowOobj;
+		}else{
+			id= window.parent.patientObj.id;
+			order_number= window.parent.patientObj.orderNumber;
+			patient_usercode = window.parent.patientObj.blcode;
+			patientInformation=window.parent.patientObj;
+		}
         //时间选择
         $(".consent_time").datetimepicker({
             language:  'zh-CN',

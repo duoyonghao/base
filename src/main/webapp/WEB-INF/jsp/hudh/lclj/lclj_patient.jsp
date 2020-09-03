@@ -393,6 +393,18 @@
                     	<a href="javascript:void(0);" class="kqdsCommonBtn hide" onclick="buttonFun.electiveOperation(this);" id="lclj_tjyy">添加预约</a>
                     	<a href="javascript:void(0);" class="kqdsCommonBtn hide" onclick="buttonFun.visit(this);" id=lclj_tjhf>添加回访</a>
                     	<a href="javascript:void(0);" class="kqdsCommonBtn hide" onclick="buttonFun.prescribe(this);" id="lclj_sqcmdyh">术前取模定咬合</a>
+                        <div class="hcd" style="display: inline-block; position: relative">
+                            <label>
+                            <font class="kqdsCommonBtn hide" onclick="showHiddenCase(this);" id = "lclj_sqhc">术前核查</font>
+                            </label>
+                            <div class="caseContiner" style="display:none;width: 171%;top: 28px;left:0">
+                                <button class="btnStyle" onclick="toggleOperationCase(this)" style="">切换旧版</button>
+                                <div class="zlCases" style="text-align: center;padding: 10px;">
+                                    <font class="operation_examine_patients" style="font-size: 16px;font-weight: bolder;cursor: pointer;">术前核查单（新）</font>
+                                    <font class="operation_examine" style="display:none;font-size: 16px;font-weight: bolder;cursor: pointer;">术前核查（旧）</font>
+                                </div>
+                            </div>
+                        </div>
                     	<a href="javascript:void(0);" class="kqdsCommonBtn hide" onclick="buttonFun.deleteLclj(this);" id="lclj_sc">删除</a>
                     	<a href="javascript:void(0);" class="kqdsCommonBtn hide" onclick="buttonFun.editLclj(this);" id="lclj_edit">编辑</a>
                     	<a href="javascript:void(0);" class="kqdsCommonBtn hide" onclick="buttonFun.scbbLclj(this);" id="lclj_scbb">生成报表</a>
@@ -652,6 +664,7 @@ $(function() {
         }]
     }).on('click-row.bs.table',
     function(e, row, element) {
+        $(".caseContiner").css("display","none");//术前核查块跟随患者的变化隐藏展示
         $('.success').removeClass('success'); //去除之前选中的行的，选中样式
         $(element).addClass('success'); //添加当前选中的 success样式用于区别
         var index = $('#table').find('tr.success').data('index'); //获得选中的行
@@ -1180,6 +1193,69 @@ $('#clean').on('click',
 	     $('.searchSelect').selectpicker("refresh");//初始化刷新--2019.10.28--licc
 });
 
+//术前核查
+$(".operation_examine").click(function(){
+    if(!onclickrowOobj) {
+        layer.alert("请选择数据");return;
+    }
+    layer.open({
+        title:"种植牙术前安全核查单",
+        type:2,
+        closeBtn:1,
+        content:contextPath + "/ZzblViewAct/toOperationExamineInfor.act",
+        area:userAgent.indexOf("iPad") > -1 ?['100%','95%'] : ['80%','80%'],
+        cancel: function(){
+            /* console.log("点击了右上角关闭按钮！"); */
+        }
+    });
+});
+var userAgent = navigator.userAgent;
+//术前核查（新）
+$(".operation_examine_patients").click(function(){
+    if(!onclickrowOobj) {
+        layer.alert("请选择数据");return;
+    }
+    layer.open({
+        title:"新种植牙术前安全核查单（医患）",
+        type:2,
+        closeBtn:1,
+        content:contextPath + "/ZzblViewAct/toPatientOperationExamineInfor.act",
+        area:userAgent.indexOf("iPad") > -1 ?['100%','95%'] : ['80%','80%'],
+        cancel: function(){
+            /* console.log("点击了右上角关闭按钮！"); */
+        }
+    });
+});
+
+//点击选项显示隐藏病历列表  father:父布局 li的class
+function showHiddenCase(thi){
+    var showVal = $(thi).parents(".hcd").find(".caseContiner").css("display");
+    if(showVal=="none"){
+        //先隐藏所有
+        $(".caseContiner").each(function(i,obj){
+            $(this).css("display","none");
+        });
+        $(thi).parents(".hcd").find(".caseContiner").css("display","block");
+    }else{
+        $(thi).parents(".hcd").find(".caseContiner").css("display","none");
+    }
+    var e=window.event || arguments.callee.caller.arguments[0];
+    e.preventDefault();
+    e.stopPropagation() ;
+}
+
+function toggleOperationCase(th){
+    var versionNow = $(th).text();
+    if(versionNow=="切换旧版"){
+        $(th).text("切换新版");
+        $(".operation_examine").css("display","block").prev().css("display","none");
+    }else{
+        $(th).text("切换旧版");
+        $(".operation_examine_patients").css("display","block").next().css("display","none");
+    }
+
+}
+
 //查询
 function query() {
     /* var usercodeorname = $("#usercodeorname").val();
@@ -1310,6 +1386,7 @@ function getButtonPower(){
 		btnList	+= '{"qx":"lclj_sc","name":"删除"},';
 		btnList	+= '{"qx":"lclj_tjyy","name":"添加预约"},'; // 最后一个不要逗号
 		btnList	+= '{"qx":"lclj_sqcmdyh","name":"术前取模定咬合"},'; // 最后一个不要逗号
+    btnList	+= '{"qx":"lclj_sqhc","name":"术前核查"},'; // 最后一个不要逗号
 		btnList	+= '{"qx":"lclj_edit","name":"编辑"},'; // 最后一个不要逗号
 		btnList	+= '{"qx":"lclj_cjsj","name":"创建时间"},'; // 最后一个不要逗号
 		btnList	+= '{"qx":"lclj_scbb","name":"生成报表"},'; // 最后一个不要逗号
@@ -1339,9 +1416,6 @@ function reciveUsername(){
 	if(userId!="null"&&userId != "" && userId != null){
 		$("#userId").val(userId)
 	}
-	
-	//console.log("cc="+userId+username);
-	
 }
 </script>
 </html>
