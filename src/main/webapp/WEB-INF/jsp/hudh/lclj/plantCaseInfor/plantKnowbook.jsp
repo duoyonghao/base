@@ -315,6 +315,8 @@
 			<option value="德国Camlog种植体">德国Camlog种植体</option>
 			<option value="瑞典Nobel-PMC">瑞典Nobel</option>
 			<option value="美国Zimmer">美国Zimmer</option>
+			<option value="意大利B&B种植体">意大利B&B种植体</option>
+			<option value="美国ET种植体">美国ET种植体</option>
 		</select>
 		<!-- <span onblur="importTextLengthCheck(this.id,50);" id="plantingsystem" class="textAuto_element span" contenteditable="true"></span> --><font class="top">、<!-- 型号</font><span onblur="importTextLengthCheck(this.id,50);" id="modelnumber" class="textAuto_element span" contenteditable="true"> --></span><font class="top">首次种植牙位为</font>
 		<ul class="tooth_map">

@@ -290,6 +290,8 @@
 					    				<option value="德国ICX种植体">德国ICX种植体</option>
 					    				<option value="瑞典Nobel-Replace种植体">瑞典Nobel-Replace种植体</option>
 					    				<option value="瑞典Nobel-Active种植体">瑞典Nobel-Active种植体</option>
+										<option value="意大利B&B种植体">意大利B&B种植体</option>
+										<option value="美国ET种植体">美国ET种植体</option>
 									</select>
 								</td>
 								

@@ -715,6 +715,20 @@
                                             <label for="Dentium">Dentium</label>
                                         </div>
                                     </li>
+<%--                                    <li style="width:12%;">--%>
+<%--                                        <!-- 选项框 -->--%>
+<%--                                        <div class="zl_optiondiv">--%>
+<%--                                            <input type="checkbox" value="B&B" name="implantsystem" id="BB" style="vertical-align: text-bottom;"/>--%>
+<%--                                            <label for="Dentium">B&B</label>--%>
+<%--                                        </div>--%>
+<%--                                    </li>--%>
+<%--                                    <li style="width:12%;">--%>
+<%--                                        <!-- 选项框 -->--%>
+<%--                                        <div class="zl_optiondiv">--%>
+<%--                                            <input type="checkbox" value="ET" name="implantsystem" id="ET" style="vertical-align: text-bottom;"/>--%>
+<%--                                            <label for="Dentium">ET</label>--%>
+<%--                                        </div>--%>
+<%--                                    </li>--%>
                                     <li style="width:16%;">
                                         <!-- 选项框 -->
                                         <div class="zl_optiondiv">
