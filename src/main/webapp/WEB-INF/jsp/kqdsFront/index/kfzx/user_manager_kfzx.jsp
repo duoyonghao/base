@@ -1314,7 +1314,7 @@
                     var a = document.createElement('a');
                     //var headerName = xhr.getResponseHeader("Content-disposition");
                     //var fileName = decodeURIComponent(headerName).substring(20);
-                    a.download = "入库明细";
+                    a.download = "客户管理";
                     a.href = URL.createObjectURL(blob);
                     $("body").append(a);    // 修复firefox中无法触发click
                     a.click();
