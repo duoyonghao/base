@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>电子病历内容</title>
+    
+    <script type="text/javascript" src="../../../css/hudh/lclj/flowdetail/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../js/hudh/commont.js"></script>
+</head>
+<body>
+    <div id="detail" class="flag" style="width:99%;min-height:230px;height:auto;border:1px;border-color: red;background-color: #f5f5f5" contenteditable="true">
+    </div>
+</body>
+<script type="text/javascript">
+	var apppath = apppath();
+	var blId = getQueryString("blId");
+	$(function() {
+		if(blId) {
+			$.ajax({
+				url: apppath + '/HUDH_DzblAct/findDzblTemplateById.act',
+				type:"POST",
+				dataType:"json",
+				data : {"blId":blId},
+				success:function(result){
+					if(result.id) {
+						$("#detail").html(result.detail);
+					}
+				}
+			});
+		}
+	});
+		
+	//获取url准考证参数
+	function getQueryString(name) { 
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+	var r = window.location.search.substr(1).match(reg); 
+	if (r != null) return unescape(r[2]); return null; 
+	} 
+	var ticket = getQueryString(ticket);
+</script>
+</html>

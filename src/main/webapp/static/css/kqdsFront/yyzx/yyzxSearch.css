@@ -1,0 +1,134 @@
+@CHARSET "UTF-8";
+.container{
+	padding:5px 5px 0 5px;
+	height:100%;
+	width:100%;
+}
+a{
+	text-decoration:none;
+	color:#333;
+}
+a:hover{
+	text-decoration:none;
+}
+
+.tableLayout{/*table布局 */
+	border-collapse:separate;
+	font-size:13px;
+	
+}
+.tableLayout tr{/*行高 用来调整行与行之间的距离 */
+	height:30px;
+}
+input[type="text"]:focus,select:focus,textarea:focus{
+   box-shadow: 0 0 8px rgb(49, 165, 247);
+   border-color:transparent;
+}
+input[type="text"],select{
+	width:120px;
+	color:#333;
+	font-size:12px;
+}
+input[readonly],select:disabled{
+	cursor:not-allowed;
+}
+input[readonly]:focus,select[disabled]:focus,textarea[readonly]{
+	box-shadow:none;
+	border-color:#ddd;
+	cursor:not-allowed;
+}
+input[readonly]:focus,
+input[disabled]:focus,
+select[disabled]:focus,
+select[disabled]:focus{
+    box-shadow: none;
+    border-color:#ddd;
+}
+input[readonly],input[disabled],select[disabled],select[disabled]{/*只读的input*/
+	background:rgba(246, 246, 246, 0.42);
+	cursor:not-allowed;
+	color:#777;
+}
+select{
+	cursor:pointer;
+	color:#333;
+}
+.queryDiv{	/*查询条件的父元素  */
+	position:relative;
+	border:1px solid #ddd;
+	border-radius:5px;
+	border-bottom:none;
+}
+.queryDiv:after{
+	content:"";
+	display:block;
+	clear:both;
+}
+.queryText{/*查询条件字样  */
+	color:#fff;
+	background:#00A6C0;
+	display:inline-block;
+	height:16px;
+	line-height:16px;
+	padding:0 10px;
+	font-size:13px;
+}
+.queryTitle{
+    height: 30px;
+    padding: 5px 0 5px 15px;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+    color:#333;
+    font-size:14px;
+   	margin-bottom:5px;
+}
+.commonText{/*增加paddingleft 拉开每个数据项之间的间距*/
+	display:block;
+	margin-left:25px;
+	text-align:right;
+	
+}
+/* .operatebtnDiv{查询区右侧 的 "清除" "查询" 按钮
+	position:absolute;
+	top:20px;
+	right:10px;
+} */
+/* 本页面 所有按钮的基础样式 */
+.aBtn{
+	display:inline-block;
+	box-sizing:border-box;
+	height:26px;
+	line-height:26px;
+	background:#fff;
+	color:#00A6C0;
+	outline:none;
+	padding:0 15px;
+	border:1px solid #0054B5;
+	border-radius:3px;
+	margin-right:3px;
+	text-decoration:none;
+	cursor:pointer;
+	text-align:center;
+}
+.search{
+	cursor:pointer;
+	color:#fff;
+	background:#0E7CC9;
+}
+.aBtn:hover{
+	cursor:pointer;
+	color:#fff;
+	background:#0E7CC9;
+}
+.operateDiv{/*条件选择区父元素  */
+	
+}
+.operateConditionDiv{/* 左侧条件table区 */
+	float:left;
+	
+}
+.operatebtnDiv{/* 右侧按钮区  "清除" "查询" 按钮 */
+	float:right;
+	text-align:right;
+	margin-right:10px;
+}

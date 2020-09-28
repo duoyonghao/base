@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_KSLL_COLLOR_DETAIL_PH">
+	<resultMap id="CollorDetailMap" type="com.hudh.ksll.entity.KsllCollorDetailPh">
+		<id column="seq_id" jdbcType="VARCHAR" property="seqId" />
+		<result column="parentid" jdbcType="VARCHAR" property="parentid" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="ph" jdbcType="VARCHAR" property="ph" />
+		<result column="phnum" jdbcType="INTEGER" property="phnum" />
+		<result column="addnumber" jdbcType="VARCHAR" property="addnumber" />
+		<result column="addtime" jdbcType="VARCHAR" property="addtime" />
+		<result column="price" jdbcType="DECIMAL" property="price"/>
+		<result column="nums" jdbcType="INTEGER" property="nums" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		seq_id,parentid,ph,phnum,createtime,addnumber,price,addtime,nums
+	</sql>
+	
+	<insert id="insertSelective" parameterType="java.util.List">
+		insert into HUDH_KSLL_COLLOR_DETAIL_PH (seq_id,parentid,ph,phnum,createtime,addnumber,price,addtime,nums)
+		values (#{seqId,jdbcType=VARCHAR}, #{parentid,jdbcType=VARCHAR}, #{ph,jdbcType=VARCHAR},
+		#{phnum,jdbcType=INTEGER},#{createtime,jdbcType=VARCHAR},#{addnumber,jdbcType=VARCHAR},
+		#{price,jdbcType=DECIMAL},#{addtime,jdbcType=VARCHAR},#{nums,jdbcType=INTEGER})
+	</insert>
+	<select id="selectAllByParentid" parameterType="java.lang.String" resultType="json">
+		select 
+		seq_id,
+		parentid,
+		ph,
+		phnum,
+		createtime,
+		addnumber 
+		from 
+		HUDH_KSLL_COLLOR_DETAIL_PH 
+		where parentid=#{parentid}
+	</select>
+	<!-- 查询批号单价 -->
+	<select id="findDetailPhPriceByGoodscode" parameterType="java.util.Map" resultType="com.hudh.ksll.entity.KsllCollorDetailPh">
+	  	select p.ph,p.phnum,p.seq_id,p.price from HUDH_KSLL_COLLOR c 
+	  	left join HUDH_KSLL_COLLOR_DETAIL d on c.id=d.parentid
+	  	left join HUDH_KSLL_COLLOR_DETAIL_PH p on p.parentid=d.id
+	  	where 1=1
+	  	<if test="goodscode!=null and goodscode != ''">
+		and d.goodscode=#{goodscode}
+	  	</if>
+	  	<if test="deptpart !=null and deptpart != ''">
+	  	and c.deptpart=#{deptpart}
+	  	</if>
+	  	<if test="ph !=null and ph != ''">
+	  	and p.ph=#{ph}
+	  	</if>
+	  	<if test="price !=null and price != ''">
+	  	and p.price=#{price}
+	  	</if>
+	  	<if test="addnumber !=null and addnumber != ''">
+	  	and p.addnumber=#{addnumber}
+	  	</if>
+	  	and p.phnum <![CDATA[ > ]]> 0
+	  	<if test="time != null and time != ''">
+	  	order by p.createtime ${time}
+	  	</if>
+	  	<if test="time == null or time == ''">
+	  	order by p.createtime asc
+	  	</if>
+  	</select>
+  	<!-- 根据id减少批号数量 -->
+  	<update id="updateDetailPhnumBySeqid" parameterType="com.hudh.ksll.entity.KsllCollorDetailPh">
+  		update HUDH_KSLL_COLLOR_DETAIL_PH set 
+  		<if test="nums !=null and nums != ''">
+  		phnum=phnum-#{nums} 
+  		</if>
+  		<if test="phnum !=null and phnum != ''">
+  		phnum=phnum-#{phnum} 
+  		</if>
+  		where seq_id=#{seqId}
+  	</update>
+  	<!-- 根据id查询明细 -->
+  	<select id="findDetailPhBySeqid" parameterType="java.util.Map" resultType="com.hudh.ksll.entity.KsllCollorDetailPh">
+  	select seq_id,parentid,ph,phnum,createtime,addnumber,price,addtime,nums
+  	from HUDH_KSLL_COLLOR_DETAIL_PH 
+  	where seq_id in (${seqid}) 
+  	order by createtime desc
+  	</select>
+  	<!-- 根据id增加批号数量 -->
+  	<update id="updateDetailAddPhnumBySeqid" parameterType="com.hudh.ksll.entity.KsllCollorDetailPh">
+  		update HUDH_KSLL_COLLOR_DETAIL_PH set 
+  		<if test="phnum !=null and phnum != ''">
+  		phnum=#{phnum} 
+  		</if>
+  		where seq_id=#{seqId}
+  	</update>
+</mapper>

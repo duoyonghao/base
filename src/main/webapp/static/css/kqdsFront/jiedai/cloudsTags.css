@@ -1,0 +1,7 @@
+/*公共样式*/
+.infoHd{padding: 0 20px;line-height:30px;font-family:"Microsoft YaHei";font-size:14px;color: #FFFFFF;background: #0e7cc9;}
+
+.aBtn{display: inline-block;margin-right:10px;padding: 0 20px;height: 28px;line-height: 28px;border: solid 1px #0e7cc7;border-radius:15px;color: #0e7cc7;}
+.aBtn:hover{color: #fff;background: #117cca;text-decoration: none;}
+.search{color: #fff;background: #117cca;text-decoration: none;}
+.buttonBar{margin: 10px 0;text-align: center;}

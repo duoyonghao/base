@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_GOOGS_DOCTOR_PICK_IN" >
+  <resultMap id="BaseResultMap" type="com.hudh.doctorpick.entity.GoodsDoctorPickIn" >
+    <id column="SEQ_ID" property="seqId" jdbcType="VARCHAR" />
+    <result column="supplier" property="supplier" jdbcType="VARCHAR" />
+    <result column="incode" property="incode" jdbcType="VARCHAR" />
+    <result column="inremark" property="inremark" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="pick_person" property="pickPerson" jdbcType="VARCHAR" />
+    <result column="userdocument" property="userdocument" jdbcType="VARCHAR" />
+    <result column="organization" property="organization" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="rktime" property="rktime" jdbcType="VARCHAR" />
+    <result column="stocktime" property="stocktime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SEQ_ID, supplier, incode, inremark, summary, pick_person, userdocument, organization, 
+    createtime, creator, rktime, stocktime
+  </sql>
+  <select id="findAllGoodsDoctorPickBySeqId" resultType="json" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from HUDH_GOOGS_DOCTOR_PICK_IN
+    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </select>
+  <select id="findGoodsDoctorPickByIncode" resultType="json" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from HUDH_GOOGS_DOCTOR_PICK_IN
+    where incode = #{incode,jdbcType=VARCHAR}
+  </select>
+  <select id="findAllGoodsDoctorPick" resultType="json" parameterType="map">
+    <!-- 
+    select 
+    <include refid="Base_Column_List" />
+    from HUDH_GOOGS_DOCTOR_PICK_IN -->
+    SELECT 
+	a.createtime,
+	a.creator,
+	a.incode,
+	a.inremark,
+	a.organization,
+	a.pick_person,
+	a.rktime,
+	a.SEQ_ID,
+	a.stocktime,
+	a.summary,
+	a.supplier,
+	a.userdocument,
+	b.USER_NAME,
+	c.suppliername
+	FROM HUDH_GOOGS_DOCTOR_PICK_IN a
+	LEFT JOIN SYS_PERSON b ON a.creator = b.seq_id
+	LEFT JOIN KQDS_CK_SUPPLIER c ON c.SEQ_ID = a.supplier
+	where 1=1
+	<if test='id != null and id != ""'>
+        	and a.id = #{id,jdbcType=VARCHAR}
+    </if>
+	<if test='starttime != null and starttime != ""'>
+			and a.rktime <![CDATA[ >= ]]>
+			#{starttime}
+	</if>
+	<if test='endtime != null and endtime != ""'>
+			and a.rktime <![CDATA[ <= ]]>
+			#{endtime}
+	</if>
+    <if test='intype != null and intype != ""'>
+        	and a.intype = #{intype,jdbcType=VARCHAR}
+    </if>
+    <if test='supplier != null and supplier != ""'>
+        	and a.supplier = #{supplier,jdbcType=VARCHAR}
+    </if>
+    <if test='incode != null and incode != ""'>
+        	and a.incode =#{incode,jdbcType=VARCHAR}
+    </if>
+    <if test='accurateIncode != null and accurateIncode != ""'>
+        	and a.incode = #{accurateIncode,jdbcType=VARCHAR}
+    </if>
+    <if test='stockstarttime != null and stockstarttime != ""'>
+			and a.stocktime <![CDATA[ >= ]]>
+			#{stockstarttime}
+	</if>
+	<if test='stockendtime != null and stockendtime != ""'>
+			and a.stocktime <![CDATA[ >= ]]>
+			#{stockendtime}
+	</if>
+	<if test='checkStatus != null and checkStatus != ""'>
+			and a.check_status = #{checkStatus,jdbcType=INTEGER}
+	</if>
+	<if test="querytype != null and querytype !='' ">
+		and a.creator in (${querytype})
+	</if> 
+  </select>
+  <delete id="deleteGoodsDoctorPickByIncode" parameterType="String">
+    delete from HUDH_GOOGS_DOCTOR_PICK_IN
+    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hudh.doctorpick.entity.GoodsDoctorPickIn" >
+    insert into HUDH_GOOGS_DOCTOR_PICK_IN 
+    (SEQ_ID, supplier, incode, 
+      inremark, summary, pick_person, 
+      userdocument, organization, createtime, 
+      creator, rktime, stocktime)
+    values 
+    (#{seqId,jdbcType=VARCHAR}, #{supplier,jdbcType=VARCHAR}, #{incode,jdbcType=VARCHAR}, 
+      #{inremark,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{pickPerson,jdbcType=VARCHAR}, 
+      #{userdocument,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, 
+      #{creator,jdbcType=VARCHAR},#{rktime,jdbcType=VARCHAR},#{stocktime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hudh.doctorpick.entity.GoodsDoctorPickIn" >
+    insert into HUDH_GOOGS_DOCTOR_PICK_IN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="seqId != null" >
+        SEQ_ID,
+      </if>
+      <if test="supplier != null" >
+        supplier,
+      </if>
+      <if test="incode != null" >
+        incode,
+      </if>
+      <if test="inremark != null" >
+        inremark,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="pickPerson != null" >
+        pick_person,
+      </if>
+      <if test="userdocument != null" >
+        userdocument,
+      </if>
+      <if test="organization != null" >
+        organization,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="rktime != null" >
+        rktime,
+      </if>
+      <if test="stocktime != null" >
+        stocktime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="seqId != null" >
+        #{seqId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplier != null" >
+        #{supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="incode != null" >
+        #{incode,jdbcType=VARCHAR},
+      </if>
+      <if test="inremark != null" >
+        #{inremark,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="pickPerson != null" >
+        #{pickPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="userdocument != null" >
+        #{userdocument,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null" >
+        #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="rktime != null" >
+        #{rktime,jdbcType=VARCHAR},
+      </if>
+      <if test="stocktime != null" >
+        #{stocktime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hudh.doctorpick.entity.GoodsDoctorPickIn" >
+    update HUDH_GOOGS_DOCTOR_PICK_IN
+    <set>
+      <if test="supplier != null" >
+        supplier = #{supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="incode != null" >
+        incode = #{incode,jdbcType=VARCHAR},
+      </if>
+      <if test="inremark != null" >
+        inremark = #{inremark,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="pickPerson != null" >
+        pick_person = #{pickPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="userdocument != null" >
+        userdocument = #{userdocument,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null" >
+        organization = #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="rktime != null" >
+        rktime = #{rktime,jdbcType=VARCHAR},
+      </if>
+      <if test="stocktime != null" >
+        stocktime = #{stocktime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateGoodsDoctorPickBySeqId" parameterType="String" >
+    update HUDH_GOOGS_DOCTOR_PICK_IN
+    set supplier = #{supplier,jdbcType=VARCHAR},
+      incode = #{incode,jdbcType=VARCHAR},
+      inremark = #{inremark,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      pick_person = #{pickPerson,jdbcType=VARCHAR},
+      userdocument = #{userdocument,jdbcType=VARCHAR},
+      organization = #{organization,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      rktime = #{rktime,jdbcType=VARCHAR},
+      stocktime = #{stocktime,jdbcType=VARCHAR}
+    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </update>
+</mapper>

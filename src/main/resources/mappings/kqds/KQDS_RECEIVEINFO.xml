@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_RECEIVEINFO">
+
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsReceiveinfo">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="deptno" jdbcType="VARCHAR" property="deptno" />
+		<result column="regno" jdbcType="VARCHAR" property="regno" />
+		<result column="recesort" jdbcType="VARCHAR" property="recesort" />
+		<result column="askperson" jdbcType="VARCHAR" property="askperson" />
+		<result column="detaildesc" jdbcType="VARCHAR" property="detaildesc" />
+		<result column="failreason1" jdbcType="VARCHAR" property="failreason1" />
+		<result column="askstatus" jdbcType="INTEGER" property="askstatus" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="DEV_ITEM" jdbcType="VARCHAR" property="devItem" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, createuser, createtime, usercode, username, deptno, regno, recesort, askperson,
+		detaildesc, failreason1, askstatus, organization, DEV_ITEM
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_RECEIVEINFO
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_RECEIVEINFO
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsReceiveinfo">
+		insert into KQDS_RECEIVEINFO (SEQ_ID, createuser, createtime,
+		usercode, username, deptno,
+		regno, recesort, askperson,
+		detaildesc,
+		failreason1, askstatus,
+		organization, DEV_ITEM)
+		values (#{seqId,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{usercode,jdbcType=VARCHAR},
+		#{username,jdbcType=VARCHAR}, #{deptno,jdbcType=VARCHAR},
+		#{regno,jdbcType=VARCHAR}, #{recesort,jdbcType=VARCHAR}, #{askperson,jdbcType=VARCHAR},
+		#{detaildesc,jdbcType=VARCHAR},
+		#{failreason1,jdbcType=VARCHAR}, #{askstatus,jdbcType=INTEGER},
+		#{organization,jdbcType=VARCHAR}, #{devItem,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsReceiveinfo">
+		insert into KQDS_RECEIVEINFO
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="usercode != null">
+				usercode,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="deptno != null">
+				deptno,
+			</if>
+			<if test="regno != null">
+				regno,
+			</if>
+			<if test="recesort != null">
+				recesort,
+			</if>
+			<if test="askperson != null">
+				askperson,
+			</if>
+			<if test="detaildesc != null">
+				detaildesc,
+			</if>
+			<if test="failreason1 != null">
+				failreason1,
+			</if>
+			<if test="askstatus != null">
+				askstatus,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="devItem != null">
+				DEV_ITEM,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="deptno != null">
+				#{deptno,jdbcType=VARCHAR},
+			</if>
+			<if test="regno != null">
+				#{regno,jdbcType=VARCHAR},
+			</if>
+			<if test="recesort != null">
+				#{recesort,jdbcType=VARCHAR},
+			</if>
+			<if test="askperson != null">
+				#{askperson,jdbcType=VARCHAR},
+			</if>
+			<if test="detaildesc != null">
+				#{detaildesc,jdbcType=VARCHAR},
+			</if>
+			<if test="failreason1 != null">
+				#{failreason1,jdbcType=VARCHAR},
+			</if>
+			<if test="askstatus != null">
+				#{askstatus,jdbcType=INTEGER},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="devItem != null">
+				#{devItem,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsReceiveinfo">
+		update KQDS_RECEIVEINFO
+		<set>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				usercode = #{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="deptno != null">
+				deptno = #{deptno,jdbcType=VARCHAR},
+			</if>
+			<if test="regno != null">
+				regno = #{regno,jdbcType=VARCHAR},
+			</if>
+			<if test="recesort != null">
+				recesort = #{recesort,jdbcType=VARCHAR},
+			</if>
+			<if test="askperson != null">
+				askperson = #{askperson,jdbcType=VARCHAR},
+			</if>
+			<if test="detaildesc != null">
+				detaildesc = #{detaildesc,jdbcType=VARCHAR},
+			</if>
+			<if test="failreason1 != null">
+				failreason1 = #{failreason1,jdbcType=VARCHAR},
+			</if>
+			<if test="askstatus != null">
+				askstatus = #{askstatus,jdbcType=INTEGER},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="devItem != null">
+				DEV_ITEM = #{devItem,jdbcType=VARCHAR},
+			</if>
+			<if test="doctors != null">
+				doctors = #{doctors,jdbcType=VARCHAR},
+			</if>
+			<if test="mainSuit != null">
+				main_suit = #{mainSuit,jdbcType=VARCHAR},
+			</if>
+			<if test="scheme != null">
+				scheme = #{scheme,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=VARCHAR},
+			</if>
+			<if test="orderProject != null">
+				order_project = #{orderProject,jdbcType=VARCHAR},
+			</if>
+			<if test="orderPlan != null">
+				order_plan = #{orderPlan,jdbcType=VARCHAR},
+			</if>
+			<if test="follow != null">
+				follow = #{follow,jdbcType=VARCHAR},
+			</if>
+			<if test="failreasonMark != null">
+				failreason_mark = #{failreasonMark,jdbcType=VARCHAR},
+			</if>
+			<if test="othermark != null">
+				other_mark = #{othermark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsReceiveinfo">
+		update KQDS_RECEIVEINFO
+		set createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		usercode =
+		#{usercode,jdbcType=VARCHAR},
+		username = #{username,jdbcType=VARCHAR},
+		deptno = #{deptno,jdbcType=VARCHAR},
+		regno = #{regno,jdbcType=VARCHAR},
+		recesort =
+		#{recesort,jdbcType=VARCHAR},
+		askperson = #{askperson,jdbcType=VARCHAR},
+		detaildesc = #{detaildesc,jdbcType=VARCHAR},
+		failreason1 = #{failreason1,jdbcType=VARCHAR},
+		askstatus =
+		#{askstatus,jdbcType=INTEGER},
+		organization = #{organization,jdbcType=VARCHAR},
+		DEV_ITEM = #{devItem,jdbcType=VARCHAR},
+		doctors = #{doctors,jdbcType=VARCHAR},
+		main_suit = #{mainSuit,jdbcType=VARCHAR},
+		scheme = #{scheme,jdbcType=VARCHAR},
+		price = #{price,jdbcType=VARCHAR},
+		order_project = #{orderProject,jdbcType=VARCHAR},
+		order_plan = #{orderPlan,jdbcType=VARCHAR},
+		follow = #{follow,jdbcType=VARCHAR},
+		failreason_mark = #{failreasonMark,jdbcType=VARCHAR},
+		other_mark = #{othermark,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_RECEIVEINFO
+	</sql>
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsReceiveinfo">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="noSelectWithPage" parameterType="map" resultType="json">
+		select
+		receive.seq_id,
+		receive.createtime,
+		receive.askstatus,
+		receive.regno,
+		receive.username,
+		receive.recesort,
+		receive.askperson,
+		receive.deptno,
+		receive.detaildesc,
+		receive.failreason1,
+		receive.dev_Item,
+		receive.doctors,
+		receive.main_suit,
+		receive.scheme,
+		receive.price,
+		receive.order_project,
+		receive.order_plan,
+		receive.follow,
+		receive.failreason_mark,
+		receive.other_mark,
+		kcit1.dict_name as recesortname,
+		kcit2.dict_name as failreason1name,
+		kcit3.dict_name as devItemname,
+		odept2.dept_name as deptnoname,
+		per1.user_name as askpersonname,
+		odept.dept_name as
+		organizationname
+		from KQDS_RECEIVEINFO receive
+		LEFT JOIN SYS_DEPT odept on odept.dept_code = receive.organization and
+		odept.dept_parent = '0'
+		LEFT JOIN SYS_DEPT odept2 on odept2.seq_id = receive.deptno
+		LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = receive.askperson
+		LEFT JOIN SYS_DICT kcit1 on
+		receive.recesort = kcit1.seq_id
+		LEFT JOIN SYS_DICT kcit2 on receive.failreason1 = kcit2.seq_id
+		LEFT JOIN SYS_DICT kcit3 on receive.dev_Item = kcit3.seq_id
+		where 1=1
+		<if test="organization != null and organization !='' ">
+			and receive.organization = #{organization}
+		</if>
+		<if test="usercode != null and usercode !='' ">
+			and receive.usercode = #{usercode}
+		</if>
+		<if test="regno != null and regno !='' ">
+			and receive.regno = #{regno}
+		</if>
+		ORDER BY receive.CreateTime desc
+	</select>
+	<select id="countReceiveByRegNo" parameterType="java.lang.String" resultType="int">
+		select count(1) from KQDS_RECEIVEINFO where regno = #{_parameter} and askstatus = 1
+	</select>
+	<select id="getNoUsercode" parameterType="java.lang.String" resultType="json">
+		select seq_id from KQDS_RECEIVEINFO where 1=1
+		and usercode in (${_parameter})
+	</select>
+	<delete id="deleteByrecno" parameterType="java.lang.String">
+		delete from KQDS_RECEIVEINFO_CONTENT
+		where receiveid = #{receiveid,jdbcType=VARCHAR}
+	</delete>
+	<select id="selectNameByRegno" parameterType="java.util.Map" resultType="json">
+		select 
+		i.regno,
+		kcit4.dict_name as failreason1,
+		kcit5.dict_name as devitemdesc
+		from KQDS_RECEIVEINFO i
+		LEFT JOIN SYS_DICT kcit4 on i.failreason1 = kcit4.seq_id
+		LEFT JOIN SYS_DICT kcit5 on i.dev_item = kcit5.seq_id
+		where i.regno in (${seqid})
+	</select>
+	<insert id="batchSaveReceiveinfo" parameterType="java.util.List">
+		insert into KQDS_RECEIVEINFO (SEQ_ID, createuser, createtime,
+		usercode, username, deptno,
+		regno, recesort, askperson,
+		detaildesc,
+		failreason1, askstatus,
+		organization, DEV_ITEM)
+		values (#{seqId,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{usercode,jdbcType=VARCHAR},
+		#{username,jdbcType=VARCHAR}, #{deptno,jdbcType=VARCHAR},
+		#{regno,jdbcType=VARCHAR}, #{recesort,jdbcType=VARCHAR}, #{askperson,jdbcType=VARCHAR},
+		#{detaildesc,jdbcType=VARCHAR},
+		#{failreason1,jdbcType=VARCHAR}, #{askstatus,jdbcType=INTEGER},
+		#{organization,jdbcType=VARCHAR}, #{devItem,jdbcType=VARCHAR})
+	</insert>
+
+</mapper>

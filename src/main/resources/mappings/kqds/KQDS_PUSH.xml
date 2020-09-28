@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_PUSH">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsPush">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="content" jdbcType="VARCHAR" property="content" />
+		<result column="createTime" jdbcType="VARCHAR" property="createtime" />
+		<result column="reciveuser" jdbcType="VARCHAR" property="reciveuser" />
+		<result column="notifyType" jdbcType="VARCHAR" property="notifytype" />
+		<result column="pcPushed" jdbcType="VARCHAR" property="pcpushed" />
+		<result column="pcpushedTime" jdbcType="VARCHAR" property="pcpushedtime" />
+		<result column="appPushed" jdbcType="VARCHAR" property="apppushed" />
+		<result column="appPushedTime" jdbcType="VARCHAR" property="apppushedtime" />
+		<result column="entityId" jdbcType="VARCHAR" property="entityid" />
+		<result column="remindURL" jdbcType="VARCHAR" property="remindurl" />
+		<result column="pcPushReaded" jdbcType="VARCHAR" property="pcpushreaded" />
+		<result column="pcPushReadedTime" jdbcType="VARCHAR" property="pcpushreadedtime" />
+		<result column="isNowPush" jdbcType="VARCHAR" property="isnowpush" />
+		<result column="targetPushTime" jdbcType="VARCHAR" property="targetpushtime" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, content, createTime, reciveuser, notifyType, pcPushed, pcpushedTime, appPushed,
+		appPushedTime, entityId, remindURL, pcPushReaded, pcPushReadedTime, isNowPush,
+		targetPushTime,
+		organization
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_PUSH
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_PUSH
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsPush">
+		insert into KQDS_PUSH (SEQ_ID, content, createTime,
+		reciveuser, notifyType, pcPushed,
+		pcpushedTime, appPushed, appPushedTime,
+		entityId,
+		remindURL, pcPushReaded,
+		pcPushReadedTime, isNowPush, targetPushTime,
+		organization)
+		values (#{seqId,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{reciveuser,jdbcType=VARCHAR}, #{notifytype,jdbcType=VARCHAR}, #{pcpushed,jdbcType=VARCHAR},
+		#{pcpushedtime,jdbcType=VARCHAR}, #{apppushed,jdbcType=VARCHAR},
+		#{apppushedtime,jdbcType=VARCHAR},
+		#{entityid,jdbcType=VARCHAR}, #{remindurl,jdbcType=VARCHAR}, #{pcpushreaded,jdbcType=VARCHAR},
+		#{pcpushreadedtime,jdbcType=VARCHAR},
+		#{isnowpush,jdbcType=VARCHAR}, #{targetpushtime,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsPush">
+		insert into KQDS_PUSH
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="createtime != null">
+				createTime,
+			</if>
+			<if test="reciveuser != null">
+				reciveuser,
+			</if>
+			<if test="notifytype != null">
+				notifyType,
+			</if>
+			<if test="pcpushed != null">
+				pcPushed,
+			</if>
+			<if test="pcpushedtime != null">
+				pcpushedTime,
+			</if>
+			<if test="apppushed != null">
+				appPushed,
+			</if>
+			<if test="apppushedtime != null">
+				appPushedTime,
+			</if>
+			<if test="entityid != null">
+				entityId,
+			</if>
+			<if test="remindurl != null">
+				remindURL,
+			</if>
+			<if test="pcpushreaded != null">
+				pcPushReaded,
+			</if>
+			<if test="pcpushreadedtime != null">
+				pcPushReadedTime,
+			</if>
+			<if test="isnowpush != null">
+				isNowPush,
+			</if>
+			<if test="targetpushtime != null">
+				targetPushTime,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="reciveuser != null">
+				#{reciveuser,jdbcType=VARCHAR},
+			</if>
+			<if test="notifytype != null">
+				#{notifytype,jdbcType=VARCHAR},
+			</if>
+			<if test="pcpushed != null">
+				#{pcpushed,jdbcType=VARCHAR},
+			</if>
+			<if test="pcpushedtime != null">
+				#{pcpushedtime,jdbcType=VARCHAR},
+			</if>
+			<if test="apppushed != null">
+				#{apppushed,jdbcType=VARCHAR},
+			</if>
+			<if test="apppushedtime != null">
+				#{apppushedtime,jdbcType=VARCHAR},
+			</if>
+			<if test="entityid != null">
+				#{entityid,jdbcType=VARCHAR},
+			</if>
+			<if test="remindurl != null">
+				#{remindurl,jdbcType=VARCHAR},
+			</if>
+			<if test="pcpushreaded != null">
+				#{pcpushreaded,jdbcType=VARCHAR},
+			</if>
+			<if test="pcpushreadedtime != null">
+				#{pcpushreadedtime,jdbcType=VARCHAR},
+			</if>
+			<if test="isnowpush != null">
+				#{isnowpush,jdbcType=VARCHAR},
+			</if>
+			<if test="targetpushtime != null">
+				#{targetpushtime,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsPush">
+		update KQDS_PUSH
+		<set>
+			<if test="content != null">
+				content = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createTime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="reciveuser != null">
+				reciveuser = #{reciveuser,jdbcType=VARCHAR},
+			</if>
+			<if test="notifytype != null">
+				notifyType = #{notifytype,jdbcType=VARCHAR},
+			</if>
+			<if test="pcpushed != null">
+				pcPushed = #{pcpushed,jdbcType=VARCHAR},
+			</if>
+			<if test="pcpushedtime != null">
+				pcpushedTime = #{pcpushedtime,jdbcType=VARCHAR},
+			</if>
+			<if test="apppushed != null">
+				appPushed = #{apppushed,jdbcType=VARCHAR},
+			</if>
+			<if test="apppushedtime != null">
+				appPushedTime = #{apppushedtime,jdbcType=VARCHAR},
+			</if>
+			<if test="entityid != null">
+				entityId = #{entityid,jdbcType=VARCHAR},
+			</if>
+			<if test="remindurl != null">
+				remindURL = #{remindurl,jdbcType=VARCHAR},
+			</if>
+			<if test="pcpushreaded != null">
+				pcPushReaded = #{pcpushreaded,jdbcType=VARCHAR},
+			</if>
+			<if test="pcpushreadedtime != null">
+				pcPushReadedTime = #{pcpushreadedtime,jdbcType=VARCHAR},
+			</if>
+			<if test="isnowpush != null">
+				isNowPush = #{isnowpush,jdbcType=VARCHAR},
+			</if>
+			<if test="targetpushtime != null">
+				targetPushTime = #{targetpushtime,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsPush">
+		update KQDS_PUSH
+		set content = #{content,jdbcType=VARCHAR},
+		createTime = #{createtime,jdbcType=VARCHAR},
+		reciveuser =
+		#{reciveuser,jdbcType=VARCHAR},
+		notifyType = #{notifytype,jdbcType=VARCHAR},
+		pcPushed = #{pcpushed,jdbcType=VARCHAR},
+		pcpushedTime = #{pcpushedtime,jdbcType=VARCHAR},
+		appPushed =
+		#{apppushed,jdbcType=VARCHAR},
+		appPushedTime = #{apppushedtime,jdbcType=VARCHAR},
+		entityId = #{entityid,jdbcType=VARCHAR},
+		remindURL = #{remindurl,jdbcType=VARCHAR},
+		pcPushReaded =
+		#{pcpushreaded,jdbcType=VARCHAR},
+		pcPushReadedTime = #{pcpushreadedtime,jdbcType=VARCHAR},
+		isNowPush = #{isnowpush,jdbcType=VARCHAR},
+		targetPushTime =
+		#{targetpushtime,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_PUSH
+	</sql>
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsPush">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+
+	<select id="selectWithPage" parameterType="map" resultType="json">
+		select tc.* from KQDS_PUSH tc
+		where 1=1
+		<if test="notifytype != null and notifytype !='' ">
+			and tc.notifytype like '%' + #{notifytype} + '%'
+		</if>
+		<if test="pcpushed != null and pcpushed !='' ">
+			and tc.pcpushed = #{pcpushed}
+		</if>
+		<if test="pcpushreaded != null and pcpushreaded !='' ">
+			and tc.pcpushreaded = #{pcpushreaded}
+		</if>
+		<if test="iscs != null and iscs !='' ">
+			<if test='iscs == "1"'>
+				and tc.notifytype like '%超时%'
+			</if>
+			<if test='iscs != "1"'>
+				and tc.notifytype not like '%超时%'
+			</if>
+		</if>
+		and tc.reciveuser = #{reciveuser}
+		ORDER BY tc.createtime desc
+	</select>
+	<select id="selectPageNum" parameterType="java.lang.String" resultType="int">
+		select count(1) from KQDS_PUSH where reciveuser = #{_parameter} and pcPushReaded = 0
+	</select>
+	<select id="selectNoPageWithUserId" parameterType="java.lang.String" resultType="json">
+		<bind name="temp_dbType" value="${system_dbType}" />
+		<if test="temp_dbType == 0">
+			select
+		</if>
+		<if test="temp_dbType == 1">
+			select top 5
+		</if>
+		m.seq_id,m.pcpushed,m.remindurl,m.notifytype,m.content,m.createtime,m.isnowpush,m.targetpushtime from KQDS_PUSH m
+		where 1=1 AND m.reciveuser=#{_parameter} and m.pcPushReaded = 0
+		<if test="temp_dbType == 0">
+			ORDER BY m.createTime desc limit 0,5
+		</if>
+		<if test="temp_dbType == 1">
+			ORDER BY m.createTime desc
+		</if>
+	</select>
+	<select id="getPushListPage" parameterType="map" resultType="json">
+		<bind name="temp_dbType" value="${system_dbType}" />
+		<if test="temp_dbType == 0">
+			select n.* from KQDS_PUSH n where 1=1
+		</if>
+		<if test="temp_dbType == 1">
+			select top ${num1} * from
+			(select row_number() over(order by n.createtime desc) as rownumber,select n.* from KQDS_PUSH n
+			where 1=1
+		</if>
+		<if test="reciveuser != null and reciveuser !='' ">
+			and n.reciveuser = #{reciveuser}
+		</if>
+		<if test="pcpushreaded != null and pcpushreaded !='' ">
+			and n.pcpushreaded = #{pcpushreaded}
+		</if>
+		<if test="temp_dbType == 0">
+			order by n.createtime desc limit ${num1},${num2}
+		</if>
+		<if test="temp_dbType == 1">
+			order by n.createtime desc ) as u1 where 1=1 and rownumber > ${num2}
+		</if>
+	</select>
+	<select id="pushNoread" parameterType="map" resultType="int">
+		select count(1) from kqds_push n where 1=1 and n.pcpushreaded = '0' and n.reciveuser = '1'
+	</select>
+	<select id="pushIsread" parameterType="map" resultType="int">
+		select count(1) from kqds_push n where 1=1 and n.reciveuser = '1' and n.pcpushreaded ='1'
+	</select>
+	<select id="getSysListPage" parameterType="map" resultType="json">
+		<bind name="temp_dbType" value="${system_dbType}" />
+		<if test="temp_dbType == 0">
+			select p.user_name as createusername,n.* from KQDS_BCJL n
+			LEFT JOIN SYS_PERSON p on p.SEQ_ID = n.createuser
+			where 1=1 and bcmc = '系统用户'
+		</if>
+		<if test="temp_dbType == 1">
+			select top ${num1} * from
+			(select row_number() over(order by n.createtime desc) as rownumber,p.user_name as createusername,n.* from KQDS_BCJL n
+			LEFT JOIN SYS_PERSON p
+			on p.SEQ_ID = n.createuser
+			where 1=1 and bcmc = '系统用户'
+		</if>
+		<if test="createuser != null and createuser !='' ">
+			and n.createuser = #{createuser}
+		</if>
+		<if test="temp_dbType == 0">
+			order by n.createtime desc limit ${num1},${num2}
+		</if>
+		<if test="temp_dbType == 1">
+			order by n.createtime desc ) as u1 where 1=1 and rownumber > ${num2}
+		</if>
+	</select>
+	<update id="updatePcpushreaded" parameterType="KqdsPush">
+		update kqds_push set pcpushreaded = 1 where seq_id in (${_parameter})
+	</update>
+	<delete id="deleteVistPushInfo" parameterType="java.util.Map">
+		DELETE from kqds_push where reciveuser = #{reciveuser} and remindurl =  <![CDATA['/kqdsFront/visit/visit_list.jsp?usercode=]]>${usercode}'
+	</delete>
+	<update id="updateReadStatus" parameterType="map">
+		update KQDS_PUSH set pcpushreaded = 1,pcpushed = 1,pcpushreadedtime = #{pcpushreadedtime}
+		where 1=1
+		<if test="seqId != null and seqId !='' ">
+		and seq_id in (${seqId})
+		</if>
+		<if test="reciveuser != null and reciveuser !=''">
+		and reciveuser=#{reciveuser}
+		and pcpushreaded = 0
+		</if>
+	</update>
+	<update id="updatePushStatus" parameterType="map">
+		update KQDS_PUSH set pcpushed = 1,pcpushedtime = #{pcpushedtime}
+		where 1=1
+		<if test="seqId != null and seqId !='' ">
+		and seq_id in (${seqId})
+		</if>
+	</update>
+	<!-- 推送五条未读数据 -->
+	<select id="selectTop5ByTime" parameterType="java.util.Map" resultType="json">
+		select TOP 5 p.* from KQDS_PUSH p 
+		left join sys_person s on s.seq_id=p.reciveuser
+		where s.USER_ID=#{userId} 
+		and p.createtime <![CDATA[ >= ]]> #{starttime}
+		and p.createtime <![CDATA[ <= ]]> #{endtime}
+		and p.pcPushReaded=0
+		order by p.createtime desc
+	</select>
+	<!-- 查询当天推送的回访提醒数据 -->
+	<select id="selectPushSeqid" parameterType="java.util.Map" resultType="String">
+		select SEQ_ID from KQDS_PUSH
+		where reciveuser=#{reciveuser}
+		and notifyType=#{notifyType}
+		and organization=#{organization}
+		and createtime <![CDATA[ >= ]]> #{starttime}
+		and createtime <![CDATA[ <= ]]> #{endtime} 
+	</select>
+</mapper>

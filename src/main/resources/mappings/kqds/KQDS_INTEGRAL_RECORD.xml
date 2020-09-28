@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_INTEGRAL_RECORD">
+
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsIntegralRecord">
+		<id column="seq_id" jdbcType="VARCHAR" property="seqId" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="jfmoney" jdbcType="DECIMAL" property="jfmoney" />
+		<result column="jftype" jdbcType="VARCHAR" property="jftype" />
+		<result column="syjfmoney" jdbcType="DECIMAL" property="syjfmoney" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		seq_id, usercode, jfmoney, jftype, syjfmoney, createtime, organization, remark, createuser
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_INTEGRAL_RECORD
+		where seq_id = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_INTEGRAL_RECORD
+		where seq_id = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsIntegralRecord">
+		insert into KQDS_INTEGRAL_RECORD (seq_id, usercode, jfmoney,
+		jftype, syjfmoney, createtime,
+		organization, remark, createuser
+		)
+		values
+		(#{seqId,jdbcType=VARCHAR}, #{usercode,jdbcType=VARCHAR}, #{jfmoney,jdbcType=DECIMAL},
+		#{jftype,jdbcType=VARCHAR}, #{syjfmoney,jdbcType=DECIMAL}, #{createtime,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsIntegralRecord">
+		insert into KQDS_INTEGRAL_RECORD
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				seq_id,
+			</if>
+			<if test="usercode != null">
+				usercode,
+			</if>
+			<if test="jfmoney != null">
+				jfmoney,
+			</if>
+			<if test="jftype != null">
+				jftype,
+			</if>
+			<if test="syjfmoney != null">
+				syjfmoney,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="jfmoney != null">
+				#{jfmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="jftype != null">
+				#{jftype,jdbcType=VARCHAR},
+			</if>
+			<if test="syjfmoney != null">
+				#{syjfmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsIntegralRecord">
+		update KQDS_INTEGRAL_RECORD
+		<set>
+			<if test="usercode != null">
+				usercode = #{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="jfmoney != null">
+				jfmoney = #{jfmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="jftype != null">
+				jftype = #{jftype,jdbcType=VARCHAR},
+			</if>
+			<if test="syjfmoney != null">
+				syjfmoney = #{syjfmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where seq_id = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsIntegralRecord">
+		update KQDS_INTEGRAL_RECORD
+		set usercode = #{usercode,jdbcType=VARCHAR},
+		jfmoney = #{jfmoney,jdbcType=DECIMAL},
+		jftype =
+		#{jftype,jdbcType=VARCHAR},
+		syjfmoney = #{syjfmoney,jdbcType=DECIMAL},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR},
+		remark =
+		#{remark,jdbcType=VARCHAR},
+		createuser = #{createuser,jdbcType=VARCHAR}
+		where seq_id = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_INTEGRAL_RECORD
+	</sql>
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsIntegralRecord">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+
+	<select id="selectWithPage" parameterType="map" resultType="json">
+		select
+		tc.seq_id,
+		tc.usercode,
+		u.username,
+		tc.jfmoney,
+		dict.dict_name as jftype,
+		tc.syjfmoney,
+		tc.createtime,
+		p.user_name as createusername,
+		tc.remark,
+		dept.DEPT_NAME as organization
+		from
+		KQDS_INTEGRAL_RECORD tc
+		LEFT JOIN KQDS_USERDOCUMENT u on tc.usercode = u.usercode
+		LEFT JOIN SYS_PERSON p on p.seq_id = tc.createuser
+		LEFT JOIN SYS_DICT dict on dict.seq_id =
+		tc.jftype
+		LEFT JOIN SYS_DEPT dept on tc.organization = dept.dept_code and dept.dept_parent = '0'
+		where 1=1
+		<if test="fzsj != null and fzsj !='' ">
+			and tc.createtime <![CDATA[ >= ]]>
+			#{fzsj}
+		</if>
+		<if test="fzsj2 != null and fzsj2 !='' ">
+			and tc.createtime <![CDATA[ <= ]]>
+			#{fzsj2}
+		</if>
+		<if test="usercodeorname != null and usercodeorname !='' ">
+			and (u.usercode like '%' + #{usercodeorname} + '%'
+			or u.username like '%' + #{usercodeorname} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{usercodeorname} + '%'
+			)
+		</if>
+		and tc.organization = #{organization}
+		ORDER BY tc.createtime
+	</select>
+
+</mapper>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_MACHINING_REPAIRTYPE">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsMachiningRepairType">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="toothId" jdbcType="VARCHAR" property="toothId" />
+		<result column="typeOne" jdbcType="VARCHAR" property="typeOne" />
+		<result column="typeOneName" jdbcType="VARCHAR" property="typeOneName" />
+		<result column="typeSecond" jdbcType="VARCHAR" property="typeSecond" />
+		<result column="typeSecondName" jdbcType="VARCHAR" property="typeSecondName" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, toothId, typeOne, typeOneName, typeSecond, typeSecondName, 
+		createuser, createtime, organization,remark
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultType="json">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_MACHINING_REPAIRTYPE
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByParentKey" parameterType="java.lang.String" resultType="json">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_MACHINING_REPAIRTYPE
+		where toothId = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="map">
+		delete from KQDS_MACHINING_REPAIRTYPE
+		where toothId = #{toothId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsMachiningRepairType">
+		insert into KQDS_MACHINING_REPAIRTYPE (SEQ_ID, toothId, typeOne, typeOneName,
+		typeSecond, typeSecondName, createuser, createtime, organization, remark)
+		values
+		(#{seqId,jdbcType=VARCHAR}, #{toothId,jdbcType=VARCHAR}, #{typeOne,jdbcType=VARCHAR},
+		#{typeOneName,jdbcType=VARCHAR}, #{typeSecond,jdbcType=INTEGER}, #{typeSecondName,jdbcType=INTEGER},
+		 #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR},
+		  #{remark,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsMachiningRepairType">
+		insert into KQDS_MACHINING_REPAIRTYPE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="toothId != null">
+				toothId,
+			</if>
+			<if test="typeOne != null">
+				typeOne,
+			</if>
+			<if test="typeOneName != null">
+				typeOneName,
+			</if>
+			<if test="typeSecond != null">
+				typeSecond,
+			</if>
+			<if test="typeSecondName != null">
+				typeSecondName,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="toothId != null">
+				#{toothId,jdbcType=VARCHAR},
+			</if>
+			<if test="typeOne != null">
+				#{typeOne,jdbcType=VARCHAR},
+			</if>
+			<if test="typeOneName != null">
+				#{typeOneName,jdbcType=VARCHAR},
+			</if>
+			<if test="typeSecond != null">
+				#{typeSecond,jdbcType=INTEGER},
+			</if>
+			<if test="typeSecondName != null">
+				#{typeSecondName,jdbcType=INTEGER},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsMachiningRepairType">
+		update KQDS_MACHINING_REPAIRTYPE
+		<set>
+			<if test="toothId != null">
+				toothId = #{toothId,jdbcType=VARCHAR},
+			</if>
+			<if test="typeOne != null">
+				typeOne = #{typeOne,jdbcType=VARCHAR},
+			</if>
+			<if test="typeOneName != null">
+				typeOneName = #{typeOneName,jdbcType=VARCHAR},
+			</if>
+			<if test="typeSecond != null">
+				typeSecond = #{typeSecond,jdbcType=INTEGER},
+			</if>
+			<if test="typeSecondName != null">
+				typeSecondName = #{typeSecondName,jdbcType=INTEGER},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR}
+			</if>
+		</set>
+		where seq_id = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsMachiningRepairType">
+		update KQDS_MACHINING_REPAIRTYPE
+		set toothId = #{toothId,jdbcType=VARCHAR},
+		typeOne = #{typeOne,jdbcType=VARCHAR},
+		typeOneName = #{typeOneName,jdbcType=VARCHAR},
+		typeSecond = #{typeSecond,jdbcType=INTEGER},
+		typeSecondName = #{typeSecondName,jdbcType=INTEGER},
+		createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR}
+		where seq_id = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_MACHINING_REPAIRTYPE
+	</sql>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="com.kqds.entity.base.KqdsMachiningRepairType">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+</mapper>

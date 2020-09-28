@@ -1,0 +1,104 @@
+image: openjdk:8-jdk
+
+stages:
+  - build
+  - test
+  - production
+
+build:
+  stage: build
+  script:
+    - chmod u+x ./mvnw
+    - ./mvnw compile
+    - ./mvnw war:exploded
+  artifacts:
+    paths:
+      - target/base
+  only:
+    refs:
+      - master
+      - dev
+      - master-xzm
+      - future
+      - debug
+  tags:
+    - package
+
+
+deploy-test:
+  stage: test
+  variables:
+    tomcat_dir: D:\java_doc\apache-tomcat-8.0.36
+    service_name: Tomcat8
+  script:
+    - echo -n "stop tomcat server..."
+    - Stop-Service ${service_name}
+    - echo -n "backup old artifacts..."
+    - if (-not (Test-Path ${tomcat_dir}\backups)) {New-Item -itemType directory -path ${tomcat_dir} -name backups}
+    - if (Test-Path ${tomcat_dir}\webapps\base) {Move-Item ${tomcat_dir}\webapps\base ${tomcat_dir}\backups\base-$CI_JOB_ID}
+    - echo -n "copy new artifacts..."
+    - cp -r target\base ${tomcat_dir}\webapps
+    - mv ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.example ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.properties
+    - echo -n "start tomcat server..."
+    - Start-Service ${service_name}
+  when: manual
+  tags:
+    - test
+  environment:
+    name: test
+
+deploy-production-east:
+  stage: production
+  variables:
+    tomcat_dir: D:\tomcat\apache-tomcat-8.0.36
+    service_name: Tomcat8
+  script:
+    - echo -n "stop tomcat server..."
+    - Stop-Service ${service_name}
+    - echo -n "backup old artifacts..."
+    - if (-not (Test-Path ${tomcat_dir}\backups)) {New-Item -itemType directory -path ${tomcat_dir} -name backups}
+    - if (Test-Path ${tomcat_dir}\webapps\base) {Move-Item ${tomcat_dir}\webapps\base ${tomcat_dir}\backups\base-$CI_JOB_ID}
+    - echo -n "copy new artifacts..."
+    - cp -r target\base ${tomcat_dir}\webapps
+    - mv ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.example.production.east ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.properties
+    - echo -n "start tomcat server..."
+    - Start-Service ${service_name}
+  dependencies:
+    - build
+    - deploy-test
+  when: manual
+  tags:
+    - production
+  only:
+    refs:
+      - master
+  environment:
+    name: production
+
+deploy-production-west:
+  stage: production
+  variables:
+    tomcat_dir: D:\tomcat-XZM\apache-tomcat-8.0.36
+    service_name: Tomcat8
+  script:
+    - echo -n "stop tomcat server..."
+    - Stop-Service ${service_name}
+    - echo -n "backup old artifacts..."
+    - if (-not (Test-Path ${tomcat_dir}\backups)) {New-Item -itemType directory -path ${tomcat_dir} -name backups}
+    - if (Test-Path ${tomcat_dir}\webapps\base) {Move-Item ${tomcat_dir}\webapps\base ${tomcat_dir}\backups\base-$CI_JOB_ID}
+    - echo -n "copy new artifacts..."
+    - cp -r target\base ${tomcat_dir}\webapps
+    - mv ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.example.production.west ${tomcat_dir}\webapps\base\WEB-INF\classes\config\dbparam.properties
+    - echo -n "start tomcat server..."
+    - Start-Service ${service_name}
+  dependencies:
+    - build
+    - deploy-test
+  when: manual
+  tags:
+    - production
+  only:
+    refs:
+      - master-xzm
+  environment:
+    name: production-xzm

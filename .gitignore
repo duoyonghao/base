@@ -1,0 +1,8 @@
+.idea/
+target/
+.svn
+.git
+.settings
+.externalToolBuilders
+*.iml
+dbparam.properties

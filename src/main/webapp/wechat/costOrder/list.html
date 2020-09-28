@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta name="viewport" content="width=device-width,initial-scale=1,mininum-scale=1,maximum-scale=1,user-scalable=no" charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="../../static/css/wechat/weui.css"/>
+<link rel="stylesheet" href="../../static/css/wechat/jquery-weui.min.css"/>
+<link rel="stylesheet" href="../../static/css/wechat/kqdsWeixin.css"/>
+</head>
+<body>
+<div class="kqds-header">
+	<h2 class="titleText">
+		<img src="../../static/image/kqdsFront/wechat/images/back.png" onclick="jump('../userCenter.html')"/>
+		<!-- <i class="icon icon-leftArrow" onclick="jump('../userCenter.html')"></i> -->
+		<span class="titleTextFont">消费列表</span>
+	</h2>
+</div>
+<div class="kqds-content" style="padding-bottom: 20px;">
+	<div class="kqds-costdetaillist"></div>
+	<div class="weui-loadmore">
+		<i class="weui-loading"></i> <span class="weui-loadmore__tips">正在加载</span>
+	</div>
+</div>
+<script type="text/javascript" src="../../static/js/wechat/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="../../static/plugin/layer-v2.4/layer/layer.js"></script>
+<script type="text/javascript" src="../../static/js/wechat/jquery-weui.js"></script>
+<script type="text/javascript" src="../../static/js/kqdsFront/util.js"></script>
+<script type="text/javascript" src="../../static/js/wechat/kqds_wechat.js?version=1.7"></script>
+<script type="text/javascript" src="../../static/js/wechat/kqds_order.js"></script>
+<script type="text/javascript">
+var page_offset = 0;
+var page_limit = 5;
+var page_total = 0;
+$(function() {
+    getPageList();
+
+    $(".weui-loadmore").hide();
+    $(document.body).infinite(10).on("infinite",
+    function() {
+        $(".weui-loadmore").show();
+        getPageList();
+        $(".weui-loadmore").hide();
+    });
+});
+
+function getPageList() {
+    var pageParam = {
+        offset: page_offset * page_limit,
+        limit: page_limit
+    };
+    var url = wxCostOrderObj.selectPage + "&usercode=" + wxObj.usercode;
+
+    if (page_total > 0 && (page_limit * (page_offset - 1)) >= page_total) {
+        /** 已经加载完成则不请求后台  **/
+        return false;
+    }
+    var returnData = getDataFromServer(url, pageParam);
+    if (returnData.retState == 0) {
+        $.each(returnData.rows,
+        function(index) {
+            var html = initCell(returnData.rows[index]);
+            $(".kqds-costdetaillist").append(html);
+        });
+
+        /** 页数累加 **/
+        page_total = returnData.total;
+        page_offset++;
+    } else {
+        layer.alert('操作失败！', {
+        });
+        return false;
+    }
+}
+
+function initCell(info) {
+    var cell = '';
+    cell += '<div class="weui-form-preview" onclick="detail(\'' + info.seqId + '\');" >';
+    cell += '  <div class="weui-form-preview__hd">';
+    cell += '  		<label class="weui-form-preview__label">付款金额</label>';
+    cell += '  		<em class="weui-form-preview__value">' + info.actualmoney + '</em>';
+    cell += '  </div>';
+    cell += '  <div class="weui-form-preview__bd">';
+    cell += '   	<div class="weui-form-preview__item">';
+    cell += '   		<label class="weui-form-preview__label">消费时间</label>';
+    cell += '   		<span class="weui-form-preview__value">' + info.createtime + '</span>';
+    cell += '  		</div>';
+    cell += '   	<div class="weui-form-preview__item">';
+    cell += '   		<label class="weui-form-preview__label">消费门诊</label>';
+    cell += '   		<span class="weui-form-preview__value">' + info.organizationname + '</span>';
+    cell += '  		</div>';
+    cell += '   	<div class="weui-form-preview__item">';
+    cell += '   		<label class="weui-form-preview__label">接诊医生</label>';
+    cell += '   		<span class="weui-form-preview__value">' + info.doctorname + '</span>';
+    cell += '  		</div>';
+    cell += '   	<div class="weui-form-preview__item">';
+    cell += '   		<label style="color:crimson" class="weui-form-preview__label">欠费金额</label>';
+    cell += '   		<span style="color:crimson" class="weui-form-preview__value">' + info.y2 + '</span>';
+    cell += '  		</div>';
+    cell += ' </div>';
+    cell += '</div>';
+
+    return cell;
+}
+function detail(seqId) {
+    jump('detail.html?costno=' + seqId);
+}
+</script>
+</body>
+</html>

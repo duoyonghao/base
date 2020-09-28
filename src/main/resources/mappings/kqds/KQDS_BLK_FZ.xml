@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_BLK_FZ">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsBlkFz">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="blkid" jdbcType="VARCHAR" property="blkid" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.base.KqdsBlkFz">
+		<result column="fzzs" jdbcType="CLOB" property="fzzs" />
+		<result column="fzjc" jdbcType="CLOB" property="fzjc" />
+		<result column="fzcl" jdbcType="CLOB" property="fzcl" />
+		<result column="fzremark" jdbcType="CLOB" property="fzremark" />
+		<result column="fzjyjg" jdbcType="CLOB" property="fzjyjg" />
+		<result column="fzyz" jdbcType="CLOB" property="fzyz" />
+		<result column="fzzlfa" jdbcType="CLOB" property="fzzlfa" />
+		<result column="fzzd" jdbcType="CLOB" property="fzzd" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, blkid, organization, createtime, createuser
+	</sql>
+	<sql id="Blob_Column_List">
+		fzzs, fzjc, fzcl, fzremark, fzjyjg, fzyz, fzzlfa, fzzd
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from KQDS_BLK_FZ
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_BLK_FZ
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsBlkFz">
+		insert into KQDS_BLK_FZ (SEQ_ID, blkid, organization,
+		createtime, createuser, fzzs,
+		fzjc, fzcl, fzremark, fzjyjg,
+		fzyz, fzzlfa, fzzd)
+		values
+		(#{seqId,jdbcType=VARCHAR}, #{blkid,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR},
+		#{createtime,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{fzzs,jdbcType=CLOB},
+		#{fzjc,jdbcType=CLOB}, #{fzcl,jdbcType=CLOB}, #{fzremark,jdbcType=CLOB}, #{fzjyjg,jdbcType=CLOB},
+		#{fzyz,jdbcType=CLOB}, #{fzzlfa,jdbcType=CLOB}, #{fzzd,jdbcType=CLOB})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsBlkFz">
+		insert into KQDS_BLK_FZ
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="blkid != null">
+				blkid,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="fzzs != null">
+				fzzs,
+			</if>
+			<if test="fzjc != null">
+				fzjc,
+			</if>
+			<if test="fzcl != null">
+				fzcl,
+			</if>
+			<if test="fzremark != null">
+				fzremark,
+			</if>
+			<if test="fzjyjg != null">
+				fzjyjg,
+			</if>
+			<if test="fzyz != null">
+				fzyz,
+			</if>
+			<if test="fzzlfa != null">
+				fzzlfa,
+			</if>
+			<if test="fzzd != null">
+				fzzd,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="blkid != null">
+				#{blkid,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="fzzs != null">
+				#{fzzs,jdbcType=CLOB},
+			</if>
+			<if test="fzjc != null">
+				#{fzjc,jdbcType=CLOB},
+			</if>
+			<if test="fzcl != null">
+				#{fzcl,jdbcType=CLOB},
+			</if>
+			<if test="fzremark != null">
+				#{fzremark,jdbcType=CLOB},
+			</if>
+			<if test="fzjyjg != null">
+				#{fzjyjg,jdbcType=CLOB},
+			</if>
+			<if test="fzyz != null">
+				#{fzyz,jdbcType=CLOB},
+			</if>
+			<if test="fzzlfa != null">
+				#{fzzlfa,jdbcType=CLOB},
+			</if>
+			<if test="fzzd != null">
+				#{fzzd,jdbcType=CLOB},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsBlkFz">
+		update KQDS_BLK_FZ
+		<set>
+			<if test="blkid != null">
+				blkid = #{blkid,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="fzzs != null">
+				fzzs = #{fzzs,jdbcType=CLOB},
+			</if>
+			<if test="fzjc != null">
+				fzjc = #{fzjc,jdbcType=CLOB},
+			</if>
+			<if test="fzcl != null">
+				fzcl = #{fzcl,jdbcType=CLOB},
+			</if>
+			<if test="fzremark != null">
+				fzremark = #{fzremark,jdbcType=CLOB},
+			</if>
+			<if test="fzjyjg != null">
+				fzjyjg = #{fzjyjg,jdbcType=CLOB},
+			</if>
+			<if test="fzyz != null">
+				fzyz = #{fzyz,jdbcType=CLOB},
+			</if>
+			<if test="fzzlfa != null">
+				fzzlfa = #{fzzlfa,jdbcType=CLOB},
+			</if>
+			<if test="fzzd != null">
+				fzzd = #{fzzd,jdbcType=CLOB},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.kqds.entity.base.KqdsBlkFz">
+		update KQDS_BLK_FZ
+		set blkid = #{blkid,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR},
+		createtime =
+		#{createtime,jdbcType=VARCHAR},
+		createuser = #{createuser,jdbcType=VARCHAR},
+		fzzs = #{fzzs,jdbcType=CLOB},
+		fzjc = #{fzjc,jdbcType=CLOB},
+		fzcl = #{fzcl,jdbcType=CLOB},
+		fzremark =
+		#{fzremark,jdbcType=CLOB},
+		fzjyjg = #{fzjyjg,jdbcType=CLOB},
+		fzyz = #{fzyz,jdbcType=CLOB},
+		fzzlfa = #{fzzlfa,jdbcType=CLOB},
+		fzzd = #{fzzd,jdbcType=CLOB}
+		where SEQ_ID =
+		#{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsBlkFz">
+		update KQDS_BLK_FZ
+		set blkid = #{blkid,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR},
+		createtime =
+		#{createtime,jdbcType=VARCHAR},
+		createuser = #{createuser,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<!--#################################### 上面为 auto create ################################# -->
+
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_BLK_FZ
+	</sql>
+	<select id="selectCountByMap" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsBlkFz">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+</mapper>

@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_CK_GOODS_IN">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsCkGoodsIn">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="supplier" jdbcType="VARCHAR" property="supplier" />
+		<result column="inhouse" jdbcType="VARCHAR" property="inhouse" />
+		<result column="incode" jdbcType="VARCHAR" property="incode" />
+		<result column="inremark" jdbcType="VARCHAR" property="inremark" />
+		<result column="zhaiyao" jdbcType="VARCHAR" property="zhaiyao" />
+		<result column="auditor" jdbcType="VARCHAR" property="auditor" />
+		<result column="shtime" jdbcType="VARCHAR" property="shtime" />
+		<result column="rkr" jdbcType="VARCHAR" property="rkr" />
+		<result column="rktime" jdbcType="VARCHAR" property="rktime" />
+		<result column="instatus" jdbcType="INTEGER" property="instatus" />
+		<result column="intype" jdbcType="INTEGER" property="intype" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="check_status" jdbcType="VARCHAR" property="check_status" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="modifiyId" jdbcType="VARCHAR" property="modifiyId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, supplier, inhouse, incode, inremark, zhaiyao, auditor, shtime, rkr, rktime,
+		instatus, intype, organization, createuser, createtime, check_status, status, modifiyId
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_CK_GOODS_IN
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_CK_GOODS_IN
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsCkGoodsIn">
+		insert into KQDS_CK_GOODS_IN (SEQ_ID, supplier, inhouse,
+		incode, inremark, zhaiyao,
+		auditor, shtime, rkr,
+		rktime, instatus, intype,
+		organization, createuser, createtime, check_status, status, modifiyId
+		)
+		values (#{seqId,jdbcType=VARCHAR}, #{supplier,jdbcType=VARCHAR}, #{inhouse,jdbcType=VARCHAR},
+		#{incode,jdbcType=VARCHAR},
+		#{inremark,jdbcType=VARCHAR}, #{zhaiyao,jdbcType=VARCHAR},
+		#{auditor,jdbcType=VARCHAR}, #{shtime,jdbcType=VARCHAR}, #{rkr,jdbcType=VARCHAR},
+		#{rktime,jdbcType=VARCHAR},
+		#{instatus,jdbcType=INTEGER}, #{intype,jdbcType=INTEGER},
+		#{organization,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{check_status,jdbcType=VARCHAR},
+		#{status,jdbcType=INTEGER},#{modifiyId,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsCkGoodsIn">
+		insert into KQDS_CK_GOODS_IN
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="supplier != null">
+				supplier,
+			</if>
+			<if test="inhouse != null">
+				inhouse,
+			</if>
+			<if test="incode != null">
+				incode,
+			</if>
+			<if test="inremark != null">
+				inremark,
+			</if>
+			<if test="zhaiyao != null">
+				zhaiyao,
+			</if>
+			<if test="auditor != null">
+				auditor,
+			</if>
+			<if test="shtime != null">
+				shtime,
+			</if>
+			<if test="rkr != null">
+				rkr,
+			</if>
+			<if test="rktime != null">
+				rktime,
+			</if>
+			<if test="stocktime != null">
+				stocktime,
+			</if>
+			<if test="instatus != null">
+				instatus,
+			</if>
+			<if test="intype != null">
+				intype,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="check_status != null">
+				check_status,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="modifiyId != null">
+				modifiyId,
+			</if>
+			<if test="type != null">
+				type
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="supplier != null">
+				#{supplier,jdbcType=VARCHAR},
+			</if>
+			<if test="inhouse != null">
+				#{inhouse,jdbcType=VARCHAR},
+			</if>
+			<if test="incode != null">
+				#{incode,jdbcType=VARCHAR},
+			</if>
+			<if test="inremark != null">
+				#{inremark,jdbcType=VARCHAR},
+			</if>
+			<if test="zhaiyao != null">
+				#{zhaiyao,jdbcType=VARCHAR},
+			</if>
+			<if test="auditor != null">
+				#{auditor,jdbcType=VARCHAR},
+			</if>
+			<if test="shtime != null">
+				#{shtime,jdbcType=VARCHAR},
+			</if>
+			<if test="rkr != null">
+				#{rkr,jdbcType=VARCHAR},
+			</if>
+			<if test="rktime != null">
+				#{rktime,jdbcType=VARCHAR},
+			</if>
+			<if test="stocktime != null">
+				#{stocktime,jdbcType=VARCHAR},
+			</if>
+			<if test="instatus != null">
+				#{instatus,jdbcType=INTEGER},
+			</if>
+			<if test="intype != null">
+				#{intype,jdbcType=INTEGER},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="check_status != null">
+				#{check_status,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="modifiyId != null">
+				#{modifiyId,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsCkGoodsIn">
+		update KQDS_CK_GOODS_IN
+		<set>
+			<if test="supplier != null">
+				supplier = #{supplier,jdbcType=VARCHAR},
+			</if>
+			<if test="inhouse != null">
+				inhouse = #{inhouse,jdbcType=VARCHAR},
+			</if>
+			<if test="incode != null">
+				incode = #{incode,jdbcType=VARCHAR},
+			</if>
+			<if test="inremark != null">
+				inremark = #{inremark,jdbcType=VARCHAR},
+			</if>
+			<if test="zhaiyao != null">
+				zhaiyao = #{zhaiyao,jdbcType=VARCHAR},
+			</if>
+			<if test="auditor != null">
+				auditor = #{auditor,jdbcType=VARCHAR},
+			</if>
+			<if test="shtime != null">
+				shtime = #{shtime,jdbcType=VARCHAR},
+			</if>
+			<if test="rkr != null">
+				rkr = #{rkr,jdbcType=VARCHAR},
+			</if>
+			<if test="rktime != null">
+				rktime = #{rktime,jdbcType=VARCHAR},
+			</if>
+			<if test="instatus != null">
+				instatus = #{instatus,jdbcType=INTEGER},
+			</if>
+			<if test="intype != null">
+				intype = #{intype,jdbcType=INTEGER},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsCkGoodsIn">
+		update KQDS_CK_GOODS_IN
+		set supplier = #{supplier,jdbcType=VARCHAR},
+		inhouse = #{inhouse,jdbcType=VARCHAR},
+		incode =
+		#{incode,jdbcType=VARCHAR},
+		inremark = #{inremark,jdbcType=VARCHAR},
+		zhaiyao = #{zhaiyao,jdbcType=VARCHAR},
+		auditor = #{auditor,jdbcType=VARCHAR},
+		shtime =
+		#{shtime,jdbcType=VARCHAR},
+		rkr = #{rkr,jdbcType=VARCHAR},
+		rktime = #{rktime,jdbcType=VARCHAR},
+		instatus = #{instatus,jdbcType=INTEGER},
+		intype = #{intype,jdbcType=INTEGER},
+		organization = #{organization,jdbcType=VARCHAR},
+		createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_CK_GOODS_IN
+	</sql>
+
+	<select id="selectCountByMap" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsCkGoodsIn">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<!--期初入库数量 -->
+	<select id="rkNumsWithOneTime" parameterType="json" resultType="json">
+		select sum(gind.innum) rknums from KQDS_CK_GOODS_IN_DETAIL gind
+		left join KQDS_CK_GOODS_IN gin on gin.incode = gind.incode
+		where 1=1
+		and gind.goodsuuid = #{goodsuuid}
+		<if test="sshouse != null and sshouse != ''">
+			and gin.inhouse = #{sshouse}
+		</if>
+		<if test="starttime != null and starttime != ''">
+			and gind.createtime <![CDATA[ < ]]>
+			#{starttime}
+		</if>
+		and gind.organization = #{organization}
+	</select>
+	<!--期初入库金额 -->
+	<select id="rkMoneyWithOneTime" parameterType="json" resultType="json">
+		select sum(gind.rkmoney) rkmoney from KQDS_CK_GOODS_IN_DETAIL gind
+		left join KQDS_CK_GOODS_IN gin on gin.incode = gind.incode
+		where 1=1
+		and gind.goodsuuid= #{goodsuuid}
+		<if test="sshouse != null and sshouse != ''">
+			and gin.inhouse = #{sshouse}
+		</if>
+		<if test="starttime != null and starttime != ''">
+			and gind.createtime <![CDATA[ < ]]>
+			#{starttime}
+		</if>
+		and gind.organization = #{organization}
+	</select>
+	<!--期内入库数量 -->
+	<select id="rknums" parameterType="json" resultType="json">
+		select sum(gind.innum) rknums from KQDS_CK_GOODS_IN_DETAIL gind
+		left join KQDS_CK_GOODS_IN gin on gin.incode = gind.incode
+		where 1=1
+		and gind.goodsuuid = #{goodsuuid}
+		<if test="sshouse != null and sshouse != ''">
+			and gin.inhouse = #{sshouse}
+		</if>
+		<if test="starttime != null and starttime != ''">
+			and gind.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime != ''">
+			and gind.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		and gind.organization = #{organization}
+	</select>
+	<!--期内入库数量 -->
+	<select id="rkmoney" parameterType="json" resultType="json">
+		select sum(gind.rkmoney) rkmoney from KQDS_CK_GOODS_IN_DETAIL gind
+		left join KQDS_CK_GOODS_IN gin on gin.incode = gind.incode
+		where 1=1
+		and gind.goodsuuid = #{goodsuuid}
+		<if test="sshouse != null and sshouse != ''">
+			and gin.inhouse = #{sshouse}
+		</if>
+		<if test="starttime != null and starttime != ''">
+			and gind.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime != ''">
+			and gind.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		and gind.organization = #{organization}
+	</select>
+	<select id="getOneByDetailid" parameterType="map" resultType="json">
+		select goodsuuid,SUM(d.innum) as nums,convert(varchar,convert(decimal(18,3),sum(d.rkmoney))) as rkmoney from KQDS_CK_GOODS_IN_DETAIL d
+		LEFT JOIN KQDS_CK_GOODS_IN ckin on ckin.incode = d.incode
+		where 1=1  
+		<if test="sshouse != null and sshouse !='' ">
+			and ckin.inhouse=#{sshouse}
+		</if>
+		<if test="jztime != null and jztime !='' ">
+		and ckin.shtime <![CDATA[ <= ]]> #{jztime}
+		</if>
+		<if test="qstime != null and qstime !='' ">
+		and ckin.shtime <![CDATA[ >= ]]> #{qstime}
+		</if>
+		GROUP BY d.goodsuuid HAVING d.goodsuuid= #{goodsdetailid}
+	</select>
+	<!--入库查询 -->
+	<select id="inSearchList" parameterType="map" resultType="json">
+		SELECT
+		gin.seq_id,
+		gin.incode,
+		gin.intype,
+		gin.intype AS intypecode,
+		gys.suppliername AS suppliername,
+		gin.supplier,
+		ghouse.housename AS housename,
+		gin.inhouse,
+		gin.inremark,
+		gin.zhaiyao,
+		gin.rktime,
+		gin.stocktime,
+		p3.user_name AS createuser,
+		gin.createtime
+		FROM KQDS_CK_GOODS_IN gin
+		LEFT JOIN KQDS_CK_HOUSE ghouse ON ghouse.seq_id = gin.inhouse
+		LEFT JOIN KQDS_CK_SUPPLIER gys ON gys.seq_id = gin.supplier
+		LEFT JOIN SYS_PERSON p3 ON p3.seq_id = gin.createuser
+		where 1=1
+		<if test="starttime != null and starttime !='' ">
+			and gin.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and gin.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		
+		<if test="stock_starttime != null and stock_starttime !='' ">
+			and gin.stocktime <![CDATA[ >= ]]>
+			#{stock_starttime}
+		</if> 
+		<if test="stock_endtime != null and stock_endtime !='' ">
+			and gin.stocktime <![CDATA[ <= ]]>
+			#{stock_endtime}
+		</if>
+		
+		<if test="intype != null and intype !='' ">
+			and gin.intype = #{intype}
+		</if>
+		<if test="supplier != null and supplier !='' ">
+			and gin.supplier = #{supplier}
+		</if>
+		<if test="inhouse != null and inhouse !='' ">
+			and gin.inhouse = #{inhouse}
+		</if>
+		<if test="organization != null and organization !='' ">
+			and gin.organization = #{organization}
+		</if>
+		<if test="incode != null and incode !='' ">
+			and gin.incode like '%' + #{incode} + '%'
+		</if>
+		<if test="check_status != null and check_status !='' ">
+			and gin.check_status = #{check_status}
+		</if>
+		<if test="type != null and type !='' ">
+			and gin.type = #{type}
+		</if>
+		order by gin.createtime desc
+	</select>
+	<select id="countBySupplier" parameterType="json" resultType="int">
+		select count(1) from KQDS_CK_GOODS_IN
+		where supplier =#{supplier}
+		and organization = #{organization}
+	</select>
+	<select id="timeOrder" parameterType="java.lang.String" resultType="json">
+		select gind.SEQ_ID,
+			gind.goodsuuid, 
+			<!-- convert(varchar,gind.inprice) as inprice, -->
+			convert(varchar,convert(decimal(18,3),gind.inprice)) as inprice, 
+			<!-- gind.inprice, -->
+			gind.innum,
+			gind.yxdate,
+			gind.incode,
+			gind.organization,
+			gind.createuser,
+			gind.createtime,
+			<!-- convert(varchar,gind.rkmoney) as rkmoney, -->
+			convert(varchar,convert(decimal(18,3),gind.rkmoney)) as rkmoney, 
+			<!-- gind.rkmoney, -->
+			gin.supplier,
+			gin.inhouse,
+			gin.auditor,
+			gin.shtime,
+			gin.rkr,
+			gin.stocktime
+ 		from 
+			KQDS_CK_GOODS_IN_DETAIL gind
+			LEFT JOIN KQDS_CK_GOODS_IN gin 
+			on gind.incode = gin.incode
+		where gind.goodsuuid=#{goodsuuid} 
+		and gind.type = #{type}
+		and gind.auditStatus=1
+		order by gind.createtime asc
+	</select>
+	
+	<select id="timeOrderByPh" parameterType="java.util.Map" resultType="json">
+		select gind.SEQ_ID,
+			gind.goodsuuid, 
+			convert(varchar,convert(decimal(18,3),gind.inprice)) as inprice, 
+			gind.innum,
+			gind.phnum,
+			gind.yxdate,
+			gind.incode,
+			gind.organization,
+			gind.createuser,
+			gind.createtime,
+			convert(varchar,convert(decimal(18,3),gind.rkmoney)) as rkmoney, 
+			gin.supplier,
+			gin.inhouse,
+			gin.auditor,
+			gin.shtime,
+			gin.rkr,
+			gin.stocktime
+ 		from 
+			KQDS_CK_GOODS_IN_DETAIL gind
+			LEFT JOIN KQDS_CK_GOODS_IN gin 
+			on gind.incode = gin.incode
+		where gind.goodsuuid=#{goodsuuid} and gind.ph=#{ph} and gind.phnum<![CDATA[ > ]]>0 and gind.auditStatus=1
+		order by gind.createtime asc
+	</select>
+	<select id="goodsInSelectList" parameterType="map" resultType="json">
+		SELECT
+		gin.seq_id,
+		gin.incode,
+		gin.intype,
+		gin.intype AS intypecode,
+		gys.suppliername AS suppliername,
+		gin.supplier,
+		ghouse.housename AS housename,
+		gin.inhouse,
+		gin.inremark,
+		gin.zhaiyao,
+		gin.rktime,
+		gin.stocktime,
+		p3.user_name AS createuser,
+		gin.createtime
+		FROM
+			KQDS_CK_GOODS_IN gin
+		LEFT JOIN KQDS_CK_HOUSE ghouse ON ghouse.seq_id = gin.inhouse
+		LEFT JOIN KQDS_CK_SUPPLIER gys ON gys.seq_id = gin.supplier
+		LEFT JOIN SYS_PERSON p3 ON p3.seq_id = gin.createuser
+		where 1=1
+		<if test="starttime != null and starttime !='' ">
+			and gin.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and gin.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		
+		<if test="stock_starttime != null and stock_starttime !='' ">
+			and gin.stocktime <![CDATA[ >= ]]>
+			#{stock_starttime}
+		</if>
+		<if test="stock_endtime != null and stock_endtime !='' ">
+			and gin.stocktime <![CDATA[ <= ]]>
+			#{stock_endtime}
+		</if>
+		
+		<if test="intype != null and intype !='' ">
+			and gin.intype = #{intype}
+		</if>
+		<if test="supplier != null and supplier !='' ">
+			and gin.supplier = #{supplier}
+		</if> 
+		<if test="inhouse != null and inhouse !='' ">
+			and gin.inhouse = #{inhouse}
+		</if>
+		<if test="organization != null and organization !='' ">
+			and gin.organization = #{organization}
+		</if>
+		<if test="incode != null and incode !='' ">
+			and gin.incode like '%' + #{incode} + '%'
+		</if>
+		<if test="check_status != null and check_status !='' ">
+			and gin.check_status = #{check_status}
+		</if>
+		<if test="status != null and status !='' ">
+			and gin.status = #{status}
+		</if>
+		<if test="type != null and type !='' ">
+			and gin.type = #{type}
+		</if>
+		order by gin.createtime desc
+	</select>
+	
+	<update id="updateCheckStatus" parameterType="String">
+		update KQDS_CK_GOODS_IN set check_status = 1
+		where SEQ_ID=#{goodsinid,jdbcType=VARCHAR}
+	</update>
+	
+	<select id="findCkGoodsInById" parameterType="String" resultType="com.kqds.entity.base.KqdsCkGoodsIn">
+		select inhouse from KQDS_CK_GOODS_IN where SEQ_ID = #{id}
+	</select>
+	
+	<update id="deleteGoodsInById" parameterType="String">
+		update KQDS_CK_GOODS_IN set status = 1
+		where SEQ_ID=#{seq_id,jdbcType=VARCHAR}
+	</update>
+</mapper>

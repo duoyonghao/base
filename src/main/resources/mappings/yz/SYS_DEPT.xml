@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="SYS_DEPT">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.sys.YZDept">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="DEPT_NAME" jdbcType="VARCHAR" property="deptName" />
+		<result column="TEL_NO" jdbcType="VARCHAR" property="telNo" />
+		<result column="FAX_NO" jdbcType="VARCHAR" property="faxNo" />
+		<result column="DEPT_NO" jdbcType="VARCHAR" property="deptNo" />
+		<result column="DEPT_PARENT" jdbcType="VARCHAR" property="deptParent" />
+		<result column="DEPT_CODE" jdbcType="VARCHAR" property="deptCode" />
+		<result column="DEPT_TYPE" jdbcType="VARCHAR" property="deptType" />
+		<result column="DEPT_BYNAME" jdbcType="VARCHAR" property="deptByname" />
+		<result column="PRINT_NAME" jdbcType="VARCHAR" property="printName" />
+		<result column="ORGFLAG" jdbcType="INTEGER" property="orgflag" />
+		<result column="DEPT_ADDRESS" jdbcType="VARCHAR" property="deptAddress" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="ismore" jdbcType="VARCHAR" property="ismore" />
+		<result column="dept_type_other" jdbcType="VARCHAR" property="dept_type_other" />
+		<result column="iskefu" jdbcType="VARCHAR" property="iskefu" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.sys.YZDept">
+		<result column="MANAGER" jdbcType="CLOB" property="manager" />
+		<result column="LEADER1" jdbcType="CLOB" property="leader1" />
+		<result column="LEADER2" jdbcType="CLOB" property="leader2" />
+		<result column="DEPT_FUNC" jdbcType="CLOB" property="deptFunc" />
+		<result column="isvisit" jdbcType="CLOB" property="isvisit" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, DEPT_NAME, TEL_NO, FAX_NO, DEPT_NO, DEPT_PARENT, DEPT_CODE, DEPT_TYPE, DEPT_BYNAME,
+		PRINT_NAME, ORGFLAG, DEPT_ADDRESS, createtime, createuser, ismore,dept_type_other,iskefu
+	</sql>
+	<sql id="Blob_Column_List">
+		MANAGER, LEADER1, LEADER2, DEPT_FUNC,isvisit
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from sys_dept
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from sys_dept
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.sys.YZDept">
+		insert into sys_dept (SEQ_ID, DEPT_NAME, TEL_NO,
+		FAX_NO, DEPT_NO, DEPT_PARENT,
+		DEPT_CODE, DEPT_TYPE, DEPT_BYNAME,
+		PRINT_NAME, ORGFLAG,
+		DEPT_ADDRESS,
+		createtime, createuser, MANAGER,
+		LEADER1, LEADER2, DEPT_FUNC)
+		values (#{seqId,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, #{telNo,jdbcType=VARCHAR},
+		#{faxNo,jdbcType=VARCHAR}, #{deptNo,jdbcType=VARCHAR}, #{deptParent,jdbcType=VARCHAR},
+		#{deptCode,jdbcType=VARCHAR}, #{deptType,jdbcType=VARCHAR}, #{deptByname,jdbcType=VARCHAR},
+		#{printName,jdbcType=VARCHAR}, #{orgflag,jdbcType=INTEGER}, #{deptAddress,jdbcType=VARCHAR},
+		#{createtime,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR},
+		#{manager,jdbcType=CLOB},
+		#{leader1,jdbcType=CLOB}, #{leader2,jdbcType=CLOB}, #{deptFunc,jdbcType=CLOB})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.sys.YZDept">
+		insert into sys_dept
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="deptName != null">
+				DEPT_NAME,
+			</if>
+			<if test="telNo != null">
+				TEL_NO,
+			</if>
+			<if test="faxNo != null">
+				FAX_NO,
+			</if>
+			<if test="deptNo != null">
+				DEPT_NO,
+			</if>
+			<if test="deptParent != null">
+				DEPT_PARENT,
+			</if>
+			<if test="deptCode != null">
+				DEPT_CODE,
+			</if>
+			<if test="deptType != null">
+				DEPT_TYPE,
+			</if>
+			<if test="deptByname != null">
+				DEPT_BYNAME,
+			</if>
+			<if test="printName != null">
+				PRINT_NAME,
+			</if>
+			<if test="orgflag != null">
+				ORGFLAG,
+			</if>
+			<if test="deptAddress != null">
+				DEPT_ADDRESS,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="manager != null">
+				MANAGER,
+			</if>
+			<if test="leader1 != null">
+				LEADER1,
+			</if>
+			<if test="leader2 != null">
+				LEADER2,
+			</if>
+			<if test="deptFunc != null">
+				DEPT_FUNC,
+			</if>
+			<if test="isvisit != null">
+				isvisit,
+			</if>
+			<if test="iskefu != null">
+				iskefu,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="deptName != null">
+				#{deptName,jdbcType=VARCHAR},
+			</if>
+			<if test="telNo != null">
+				#{telNo,jdbcType=VARCHAR},
+			</if>
+			<if test="faxNo != null">
+				#{faxNo,jdbcType=VARCHAR},
+			</if>
+			<if test="deptNo != null">
+				#{deptNo,jdbcType=VARCHAR},
+			</if>
+			<if test="deptParent != null">
+				#{deptParent,jdbcType=VARCHAR},
+			</if>
+			<if test="deptCode != null">
+				#{deptCode,jdbcType=VARCHAR},
+			</if>
+			<if test="deptType != null">
+				#{deptType,jdbcType=VARCHAR},
+			</if>
+			<if test="deptByname != null">
+				#{deptByname,jdbcType=VARCHAR},
+			</if>
+			<if test="printName != null">
+				#{printName,jdbcType=VARCHAR},
+			</if>
+			<if test="orgflag != null">
+				#{orgflag,jdbcType=INTEGER},
+			</if>
+			<if test="deptAddress != null">
+				#{deptAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="manager != null">
+				#{manager,jdbcType=CLOB},
+			</if>
+			<if test="leader1 != null">
+				#{leader1,jdbcType=CLOB},
+			</if>
+			<if test="leader2 != null">
+				#{leader2,jdbcType=CLOB},
+			</if>
+			<if test="deptFunc != null">
+				#{deptFunc,jdbcType=CLOB},
+			</if>
+			<if test="isvisit != null">
+				#{isvisit,jdbcType=CLOB},
+			</if>
+			<if test="iskefu != null">
+				#{iskefu,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.sys.YZDept">
+		update sys_dept
+		<set>
+			<if test="deptName != null">
+				DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+			</if>
+			<if test="telNo != null">
+				TEL_NO = #{telNo,jdbcType=VARCHAR},
+			</if>
+			<if test="faxNo != null">
+				FAX_NO = #{faxNo,jdbcType=VARCHAR},
+			</if>
+			<if test="deptNo != null">
+				DEPT_NO = #{deptNo,jdbcType=VARCHAR},
+			</if>
+			<if test="deptParent != null">
+				DEPT_PARENT = #{deptParent,jdbcType=VARCHAR},
+			</if>
+			<if test="deptCode != null">
+				DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+			</if>
+			<if test="deptType != null">
+				DEPT_TYPE = #{deptType,jdbcType=VARCHAR},
+			</if>
+			<if test="deptByname != null">
+				DEPT_BYNAME = #{deptByname,jdbcType=VARCHAR},
+			</if>
+			<if test="printName != null">
+				PRINT_NAME = #{printName,jdbcType=VARCHAR},
+			</if>
+			<if test="orgflag != null">
+				ORGFLAG = #{orgflag,jdbcType=INTEGER},
+			</if>
+			<if test="deptAddress != null">
+				DEPT_ADDRESS = #{deptAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="manager != null">
+				MANAGER = #{manager,jdbcType=CLOB},
+			</if>
+			<if test="leader1 != null">
+				LEADER1 = #{leader1,jdbcType=CLOB},
+			</if>
+			<if test="leader2 != null">
+				LEADER2 = #{leader2,jdbcType=CLOB},
+			</if>
+			<if test="deptFunc != null">
+				DEPT_FUNC = #{deptFunc,jdbcType=CLOB},
+			</if>
+			<if test="isvisit != null">
+				isvisit = #{isvisit,jdbcType=CLOB},
+			</if>
+			<if test="iskefu != null">
+				iskefu = #{iskefu,jdbcType=CLOB},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.kqds.entity.sys.YZDept">
+		update sys_dept
+		set DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+		TEL_NO = #{telNo,jdbcType=VARCHAR},
+		FAX_NO =
+		#{faxNo,jdbcType=VARCHAR},
+		DEPT_NO = #{deptNo,jdbcType=VARCHAR},
+		DEPT_PARENT = #{deptParent,jdbcType=VARCHAR},
+		DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+		DEPT_TYPE =
+		#{deptType,jdbcType=VARCHAR},
+		DEPT_BYNAME = #{deptByname,jdbcType=VARCHAR},
+		PRINT_NAME = #{printName,jdbcType=VARCHAR},
+		ORGFLAG = #{orgflag,jdbcType=INTEGER},
+		DEPT_ADDRESS =
+		#{deptAddress,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		createuser = #{createuser,jdbcType=VARCHAR},
+		MANAGER = #{manager,jdbcType=CLOB},
+		LEADER1 =
+		#{leader1,jdbcType=CLOB},
+		LEADER2 = #{leader2,jdbcType=CLOB},
+		DEPT_FUNC = #{deptFunc,jdbcType=CLOB},
+		isvisit = #{isvisit,jdbcType=VARCHAR},
+		iskefu=#{iskefu,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.sys.YZDept">
+		update sys_dept
+		set DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+		TEL_NO = #{telNo,jdbcType=VARCHAR},
+		FAX_NO =
+		#{faxNo,jdbcType=VARCHAR},
+		DEPT_NO = #{deptNo,jdbcType=VARCHAR},
+		DEPT_PARENT = #{deptParent,jdbcType=VARCHAR},
+		DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+		DEPT_TYPE =
+		#{deptType,jdbcType=VARCHAR},
+		DEPT_BYNAME = #{deptByname,jdbcType=VARCHAR},
+		PRINT_NAME = #{printName,jdbcType=VARCHAR},
+		ORGFLAG = #{orgflag,jdbcType=INTEGER},
+		DEPT_ADDRESS =
+		#{deptAddress,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		createuser = #{createuser,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<!--#################################### auto create ################################# -->
+
+	<!--表名 -->
+	<sql id="tableName">
+		SYS_DEPT
+	</sql>
+
+	<select id="selectCountByMap" resultType="int">
+		select
+		count(*)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" resultType="YZDept">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+
+	<select id="getAllDeptIds" resultType="json">
+		select
+		seq_id
+		from
+		<include refid="tableName"></include>
+		p
+	</select>
+
+	<select id="getCurrHosDeptIds" resultType="json">
+		select
+		seq_id
+		from
+		<include refid="tableName"></include>
+		p
+		where dept_code = #{organization}
+	</select>
+
+	<delete id="deleteBySeqIds">
+		delete from
+		<include refid="tableName"></include>
+		where SEQ_ID in
+		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<select id="countByDeptCode" parameterType="json" resultType="int">
+		select
+		count(*)
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and dept_parent = '0'
+		and dept_code = #{deptCode}
+		<if test="seqId != null and seqId != ''">
+			and seq_id != #{seqId}
+		</if>
+	</select>
+
+	<select id="countByDeptNameCurrHos" parameterType="json" resultType="int">
+		select
+		count(*)
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and dept_name = #{deptName}
+		and dept_code = #{deptCode}
+		<if test="seqId != null and seqId != ''">
+			and seq_id != #{seqId}
+		</if>
+	</select>
+	<select id="getDeptListBySeqIds" resultType="YZDept">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+
+
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and seq_id in
+		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<select id="getSubDeptListBySeqId" parameterType="json" resultType="YZDept">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and DEPT_PARENT = #{deptParent}
+		<if test="organization != null and organization != ''">
+			and dept_code != #{organization}
+		</if>
+		order by DEPT_NO ASC , DEPT_NAME asc
+	</select>
+
+	<select id="getSubOrgDeptListBySeqId" parameterType="json" resultType="YZDept">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and DEPT_PARENT = #{deptParent}
+		<if test="organization != null and organization != ''">
+			and DEPT_CODE = #{organization}
+		</if>
+		<choose>
+			<!--  <when test="deptParent != '0'"> -->
+			<when test='deptParent != "0"'>
+				<if test="depttype != null and depttype != ''">
+					AND dept_type in
+					<foreach collection="deptTypeList" separator="," index="index" open="(" close=")" item="item">
+						#{item}
+					</foreach>
+				</if>
+			</when>
+			<otherwise>
+				AND orgflag = 1
+			</otherwise>
+		</choose>
+		order by DEPT_NO ASC , DEPT_NAME asc
+	</select>
+
+	<select id="IsHaveChild" parameterType="java.lang.String" resultType="int">
+		select
+		count(*)
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and DEPT_PARENT = #{_parameter}
+	</select>
+
+	<select id="IsHaveChildPerson" parameterType="java.lang.String" resultType="int">
+		select
+		count(*)
+		from
+		SYS_PERSON
+		p
+		where 1=1
+		and DEPT_ID = #{_parameter}
+	</select>
+
+	<select id="getSelectDeptTreeJson" parameterType="json" resultType="json">
+		select
+		SEQ_ID , DEPT_NAME
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and DEPT_PARENT = #{deptParent}
+		<!-- <if test="organization = null and organization != ''">
+			and DEPT_CODE = #{organization}
+		</if> -->
+		<!-- 添加过滤条件、只查询医生 start syp -->
+		<if test="organization != null and organization != ''">
+			and DEPT_CODE = #{organization}
+		</if>
+		<if test="deptType != null and deptType != ''">
+			and dept_type = #{deptType}
+		</if>
+		<!-- end -->
+		order by DEPT_NO ASC , DEPT_NAME asc
+	</select>
+	
+	<select id="getSelectDeptTreeJsonPaiban" parameterType="json" resultType="json">
+		select
+		SEQ_ID , DEPT_NAME
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and DEPT_PARENT = #{deptParent}
+		<!-- <if test="organization = null and organization != ''">
+			and DEPT_CODE = #{organization}
+		</if> -->
+		<!-- 添加过滤条件、只查询医生 start syp -->
+		<if test="organization != null and organization != ''">
+			and DEPT_CODE = #{organization}
+		</if>
+		<if test="deptType != null and deptType != ''">
+			and dept_type = #{deptType}
+		</if>
+		<!-- end -->
+		order by DEPT_NO ASC , DEPT_NAME asc
+	</select>
+
+	<select id="getTopDeptName" parameterType="java.lang.String" resultType="json">
+		select
+		DEPT_NAME
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and dept_code = #{deptcode}
+		and dept_parent = '0'
+	</select>
+
+	<select id="getDeptListByDeptType" parameterType="json" resultType="json">
+		select
+		SEQ_ID
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		<if test="organization != null and organization != ''">
+			and DEPT_CODE = #{organization}
+		</if>
+		and DEPT_TYPE like ''+#{deptType}+'%' or dept_type_other like ''+#{deptType}+'%'
+	</select>
+
+	<select id="getAllDeptByOrganization" parameterType="java.util.Map" resultType="YZDept">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		<if test="organization != null and organization != ''">
+		and DEPT_CODE = #{organization}
+		</if>
+		and dept_parent != '0'
+		order by dept_no
+	</select>
+
+	<select id="getDeptNamesBySeqIds" resultType="json">
+		select
+		DEPT_NAME
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and seq_id in
+		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<select id="getTopDeptByCode" parameterType="java.lang.String" resultType="YZDept">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and dept_code = #{_parameter}
+		and dept_parent = '0'
+	</select>
+
+	<select id="getDeptByTypeAndName" parameterType="json" resultType="YZDept">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and d.DEPT_TYPE like #{deptType}+'%'
+		and dept_name = #{deptName}
+	</select>
+
+	<select id="getHosList" parameterType="java.lang.String" resultType="YZDept">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and DEPT_PARENT = '0' and ORGFLAG = 1
+		<if test="value != null and value != ''">
+			and DEPT_CODE = #{_parameter}
+		</if>
+		order by createtime asc
+	</select>
+
+	<!-- select top 必须以这个开头，支持mysql 和 sql server -->
+	<select id="getMaxDeptNO" parameterType="json" resultType="json">
+		select top 1
+		dept_no
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and dept_code = #{organization}
+		and dept_parent != '0'
+		order by dept_no desc
+	</select>
+
+
+	<select id="getDeptSeqIdByTypeAndOrg" resultType="json">
+		select
+		seq_id
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and dept_code = #{organization}
+		and dept_type in
+		<foreach item="item" index="index" collection="typeList" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<select id="getOneByNameAndCode" parameterType="json" resultType="json">
+		select
+		seq_id
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and dept_name = #{deptName}
+		and dept_code = #{deptCode}
+		<if test="seqId != null and seqId != ''">
+			and seq_id != #{seqId}
+		</if>
+	</select>
+
+<!-- 查询业务部门 -->
+<select id="findMarket" parameterType="map" resultType="json" >
+	SELECT
+	*
+	FROM
+		sys_dept
+	WHERE
+		marketing = #{marketing}
+</select>
+<!-- 区分业务部门 -->
+<select id="findmarketing" parameterType="map" resultType="com.kqds.entity.sys.YZDept" >
+	SELECT
+	*
+	FROM
+		sys_dept
+	WHERE 1=1
+	AND DEPT_TYPE = #{depttype}
+	AND	genre= #{shouli}
+	AND	marketing = #{isyx}
+	<if test="organization != null and organization !='' ">
+	and DEPT_CODE = #{organization}
+	</if>
+</select>
+	<!-- 根据部门类别查询部门-->
+<select id="findDeptByDeptType" parameterType="java.util.Map" resultType="json" >
+	SELECT
+	SEQ_ID as id,DEPT_NAME as deptName
+	FROM
+		sys_dept
+	WHERE 1=1
+	AND DEPT_TYPE = #{deptType}
+	AND DEPT_CODE=#{organization}
+	ORDER BY
+	DEPT_NO ASC,
+	DEPT_NAME ASC
+</select>
+	<!-- 查询所有部门-->
+<select id="findAllDeptByDeptType" parameterType="java.util.Map" resultType="json" >
+	SELECT
+	SEQ_ID as id,DEPT_NAME as deptName
+	FROM
+		sys_dept
+	WHERE 1=1
+	AND DEPT_PARENT in (select SEQ_ID FROM sys_dept where DEPT_PARENT='0')
+	AND DEPT_CODE=#{organization}
+	ORDER BY
+	DEPT_NO ASC,
+	DEPT_NAME ASC
+</select>
+
+<!-- 根据登录人查询所在部门 syp -->
+<select id="findDeptNameBySeqId" parameterType="String" resultType="json">
+	select 
+		<include refid="Base_Column_List" /> 
+	from 
+		SYS_DEPT 
+	where SEQ_ID = #{seqId}
+</select>
+
+<select id="findDeptList" parameterType="java.util.Map" resultType="json">
+	SELECT 
+		<include refid="Base_Column_List" /> 
+	from 
+		SYS_DEPT 
+	WHERE 
+		isvisit = '1'
+	<if test="organization != null and organization !='' ">
+		and DEPT_CODE=#{organization}
+	</if>
+</select>
+<select id="findDeptListAll" resultType="json">
+	SELECT 
+		<include refid="Base_Column_List" /> 
+	from 
+		SYS_DEPT 
+	WHERE
+	 dept_code = #{organization}
+</select>
+
+<select id="getSelectOrganization" resultType="json">
+	SELECT 
+		<include refid="Base_Column_List" /> 
+	from 
+		SYS_DEPT 
+	WHERE
+	 ORGFLAG = '1'
+</select>
+<select id="getSelectByseqId" parameterType="map" resultType="json">
+	SELECT 
+		<include refid="Base_Column_List" /> 
+	from 
+		SYS_DEPT 
+	WHERE
+	   SEQ_ID IN(${s})
+</select>
+</mapper>

@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_CHUFANG_DETAIL">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsChufangDetail">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="regno" jdbcType="VARCHAR" property="regno" />
+		<result column="costno" jdbcType="VARCHAR" property="costno" />
+		<result column="chufangno" jdbcType="VARCHAR" property="chufangno" />
+		<result column="itemno" jdbcType="VARCHAR" property="itemno" />
+		<result column="itemname" jdbcType="VARCHAR" property="itemname" />
+		<result column="unit" jdbcType="VARCHAR" property="unit" />
+		<result column="num" jdbcType="VARCHAR" property="num" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="cfusage" jdbcType="VARCHAR" property="cfusage" />
+		<result column="cfuselevel" jdbcType="VARCHAR" property="cfuselevel" />
+		<result column="cfusemethod" jdbcType="VARCHAR" property="cfusemethod" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, createuser, createtime, usercode, regno, costno,
+		chufangno, itemno, itemname,
+		unit, num, remark, cfusage, cfuselevel,
+		cfusemethod, organization
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_CHUFANG_DETAIL
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		KQDS_CHUFANG_DETAIL
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsChufangDetail">
+		insert into
+		KQDS_CHUFANG_DETAIL (SEQ_ID, createuser, createtime,
+		usercode, regno,
+		costno,
+		chufangno, itemno, itemname,
+		unit, num, remark,
+		cfusage,
+		cfuselevel, cfusemethod,
+		organization)
+		values
+		(#{seqId,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR},
+		#{createtime,jdbcType=VARCHAR},
+		#{usercode,jdbcType=VARCHAR},
+		#{regno,jdbcType=VARCHAR}, #{costno,jdbcType=VARCHAR},
+		#{chufangno,jdbcType=VARCHAR}, #{itemno,jdbcType=VARCHAR},
+		#{itemname,jdbcType=VARCHAR},
+		#{unit,jdbcType=VARCHAR},
+		#{num,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+		#{cfusage,jdbcType=VARCHAR}, #{cfuselevel,jdbcType=VARCHAR},
+		#{cfusemethod,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsChufangDetail">
+		insert into KQDS_CHUFANG_DETAIL
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="usercode != null">
+				usercode,
+			</if>
+			<if test="regno != null">
+				regno,
+			</if>
+			<if test="costno != null">
+				costno,
+			</if>
+			<if test="chufangno != null">
+				chufangno,
+			</if>
+			<if test="itemno != null">
+				itemno,
+			</if>
+			<if test="itemname != null">
+				itemname,
+			</if>
+			<if test="unit != null">
+				unit,
+			</if>
+			<if test="num != null">
+				num,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="cfusage != null">
+				cfusage,
+			</if>
+			<if test="cfuselevel != null">
+				cfuselevel,
+			</if>
+			<if test="cfusemethod != null">
+				cfusemethod,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="regno != null">
+				#{regno,jdbcType=VARCHAR},
+			</if>
+			<if test="costno != null">
+				#{costno,jdbcType=VARCHAR},
+			</if>
+			<if test="chufangno != null">
+				#{chufangno,jdbcType=VARCHAR},
+			</if>
+			<if test="itemno != null">
+				#{itemno,jdbcType=VARCHAR},
+			</if>
+			<if test="itemname != null">
+				#{itemname,jdbcType=VARCHAR},
+			</if>
+			<if test="unit != null">
+				#{unit,jdbcType=VARCHAR},
+			</if>
+			<if test="num != null">
+				#{num,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="cfusage != null">
+				#{cfusage,jdbcType=VARCHAR},
+			</if>
+			<if test="cfuselevel != null">
+				#{cfuselevel,jdbcType=VARCHAR},
+			</if>
+			<if test="cfusemethod != null">
+				#{cfusemethod,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsChufangDetail">
+		update KQDS_CHUFANG_DETAIL
+		<set>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				usercode = #{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="regno != null">
+				regno = #{regno,jdbcType=VARCHAR},
+			</if>
+			<if test="costno != null">
+				costno = #{costno,jdbcType=VARCHAR},
+			</if>
+			<if test="chufangno != null">
+				chufangno = #{chufangno,jdbcType=VARCHAR},
+			</if>
+			<if test="itemno != null">
+				itemno = #{itemno,jdbcType=VARCHAR},
+			</if>
+			<if test="itemname != null">
+				itemname = #{itemname,jdbcType=VARCHAR},
+			</if>
+			<if test="unit != null">
+				unit = #{unit,jdbcType=VARCHAR},
+			</if>
+			<if test="num != null">
+				num = #{num,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="cfusage != null">
+				cfusage = #{cfusage,jdbcType=VARCHAR},
+			</if>
+			<if test="cfuselevel != null">
+				cfuselevel = #{cfuselevel,jdbcType=VARCHAR},
+			</if>
+			<if test="cfusemethod != null">
+				cfusemethod = #{cfusemethod,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsChufangDetail">
+		update
+		KQDS_CHUFANG_DETAIL
+		set createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		usercode =
+		#{usercode,jdbcType=VARCHAR},
+		regno = #{regno,jdbcType=VARCHAR},
+		costno
+		= #{costno,jdbcType=VARCHAR},
+		chufangno =
+		#{chufangno,jdbcType=VARCHAR},
+		itemno =
+		#{itemno,jdbcType=VARCHAR},
+		itemname = #{itemname,jdbcType=VARCHAR},
+		unit =
+		#{unit,jdbcType=VARCHAR},
+		num = #{num,jdbcType=VARCHAR},
+		remark =
+		#{remark,jdbcType=VARCHAR},
+		cfusage =
+		#{cfusage,jdbcType=VARCHAR},
+		cfuselevel = #{cfuselevel,jdbcType=VARCHAR},
+		cfusemethod =
+		#{cfusemethod,jdbcType=VARCHAR},
+		organization =
+		#{organization,jdbcType=VARCHAR}
+		where SEQ_ID
+		=
+		#{seqId,jdbcType=VARCHAR}
+	</update>
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_CHUFANG_DETAIL
+	</sql>
+	
+	<!-- ###########同步修改处方明细表的数据（数量）################ -->
+	<update id="updateChuFangDetail" parameterType="com.kqds.entity.base.KqdsChufangDetail">
+		update
+		KQDS_CHUFANG_DETAIL
+		set 
+		num = #{num,jdbcType=VARCHAR}
+		where 1=1
+		and itemno = #{itemno}
+	</update>
+	
+	<select id="selectCountByMap" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+	
+	<select id="selectBeanListByMap" parameterType="map" resultType="json">
+		<!-- select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include> -->
+		SELECT
+		a.SEQ_ID,
+	    a.createuser, 
+	    a.createtime, 
+	    a.usercode, 
+	    a.regno, 
+	    a.costno,
+	  	a.chufangno, 
+	    a.itemno, 
+	    a.itemname,
+		a.unit, 
+	    a.num, 
+	    a.remark,
+	    a.cfusage, 
+	    a.cfuselevel,
+		a.cfusemethod, 
+	    b.unitprice AS unitpri,
+	    b.unitprice as jine,
+	    c.pharm_spec 
+		FROM 
+		KQDS_CHUFANG_DETAIL a 
+		LEFT JOIN KQDS_TREATITEM b ON a.itemno = b.treatitemno
+		LEFT JOIN HUDH_YKZZ_DRUGS c ON a.itemno = c.order_no
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="searchChuFang" parameterType="map" resultType="json">
+		select
+		m.seq_id,
+		m.usercode,
+		m.createtime,
+		m.itemname,
+		m.cfuselevel,
+		kcit1.dict_name as cfusagename,
+		kcit2.dict_name as cfusemethodname,
+		cf.seq_id as cfno,
+		userd.username,
+		userd.phonenumber1,
+		d.dept_name as
+		regdept,
+		d.dept_name docdept,
+		p.user_name as createuser,
+		reg.regsort
+		from
+		KQDS_CHUFANG_DETAIL m
+		LEFT JOIN KQDS_REG reg on m.RegNo=reg.SEQ_ID
+		LEFT
+		JOIN
+		SYS_PERSON p on p.SEQ_ID=m.createuser
+		LEFT JOIN KQDS_UserDocument
+		userd on m.usercode=userd.usercode
+		LEFT JOIN SYS_DEPT d on
+		p.DEPT_ID=d.SEQ_ID
+		LEFT JOIN SYS_DICT kcit1 on
+		m.cfusage
+		= kcit1.seq_id
+		LEFT JOIN SYS_DICT kcit2 on m.cfusemethod = kcit2.seq_id
+		LEFT JOIN
+		KQDS_CHUFANG cf on m.chufangno=cf.SEQ_ID
+		where 1=1
+		<if test="starttime != null and starttime !='' ">
+			and m.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and m.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="searchvalue != null and searchvalue !='' ">
+			and (userd.usercode like '%' + #{searchvalue} + '%'
+			or
+			userd.username like '%' + #{searchvalue} + '%'
+			or ${p1}
+			or ${p2}
+			or
+			userd.pym like '%' + #{searchvalue} + '%'
+			or
+			userd.Address like '%' +
+			#{searchvalue} + '%'
+			)
+		</if>
+		<if test="regdept != null and regdept !='' ">
+			and d.SEQ_ID =#{regdept}
+		</if>
+		<if test="usercode != null and usercode !='' ">
+			and m.usercode =#{usercode}
+		</if>
+		<if test="createuser != null and createuser !='' ">
+			and m.createuser =#{createuser}
+		</if>
+		<if test="visualstaff != null and visualstaff !='' ">
+			and m.createuser in (${visualstaff})
+		</if>
+		<if test="organization != null and organization !='' ">
+			and m.organization = #{organization}
+		</if>
+		and cf.status = 0
+		<if test="sortName !=null and sortName != '' ">
+			ORDER BY ${sortName} ${sortOrder}
+		</if>
+		<if test="sortName == null ">
+			ORDER BY m.CreateTime desc
+		</if>
+	</select>
+	
+	<!-- 添加查询药品处方方法 -->
+	<select id="findChuFangInfor" parameterType="map" resultType="json">
+		SELECT
+		a.SEQ_ID,
+	    a.createuser, 
+	    a.createtime, 
+	    a.usercode, 
+	    a.regno, 
+	    a.costno,
+		a.chufangno, 
+	    a.itemno, 
+	    a.itemname,
+		a.unit, 
+	    a.num, 
+	    a.remark,
+	    a.cfusage, 
+	    a.cfuselevel,
+		a.cfusemethod, 
+	    b.unitprice,
+	    b.paymoney
+		FROM 
+		KQDS_CHUFANG_DETAIL a 
+		LEFT JOIN KQDS_COSTORDER_DETAIL b ON a.itemno = b.itemno
+		WHERE 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+	
+	<select id="findChuFangDetailByUsercodes" parameterType="String" resultType="json">
+		select 
+		SEQ_ID,createuser,createtime,usercode,regno,costno,chufangno,itemno,itemname,unit,num,remark,cfusage,cfuselevel,cfusemethod,organization
+		 from KQDS_CHUFANG_DETAIL where usercode in (${_parameter})
+	</select>
+</mapper>

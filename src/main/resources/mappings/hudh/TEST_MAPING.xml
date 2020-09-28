@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="TEST_MAPING">
+
+	<!--表名 -->
+	<sql id="tableName">
+		sys_person
+	</sql>
+	
+	
+	<select id="getPersonListBySeqIds" resultType="json">
+		select
+		p.SEQ_ID, p.USER_ID, p.USER_NAME, p.PASSWORD, p.USER_PRIV, p.DEPT_ID, p.USER_NO, p.NOT_LOGIN, p.IS_LEAVE,
+		p.createtime, p.createuser, p.sex, p.LAST_VISIT_TIME, p.MY_STATUS,
+		p.recordaccount,
+		p.RECORDPWD,p.DEPT_ID_OTHER, p.USER_PRIV_OTHER
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and p.SEQ_ID in
+		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+
+</mapper>

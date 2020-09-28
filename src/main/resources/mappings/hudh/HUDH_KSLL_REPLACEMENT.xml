@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_KSLL_REPLACEMENT">
+	<resultMap id="CollorMap" type="com.hudh.ksll.entity.KsllReplaceMent">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="deptpart" jdbcType="VARCHAR" property="deptpart" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="creator" jdbcType="VARCHAR" property="creator" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="sshouse" jdbcType="VARCHAR" property="sshouse" />
+		<result column="type" jdbcType="INTEGER" property="type" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, deptpart, remark ,creator, status,createtime , organization,sshouse,type
+	</sql>
+	
+	<insert id="insertReplacement" parameterType="com.hudh.ykzz.entity.YkzzDrugsIn">
+		insert into HUDH_KSLL_REPLACEMENT (id, deptpart, remark ,creator, status,createtime , organization,sshouse,type,floor)
+		values (#{id,jdbcType=VARCHAR}, #{deptpart,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR},#{creator,jdbcType=VARCHAR},#{status,jdbcType=INTEGER},
+		#{createtime,jdbcType=VARCHAR},#{organization,jdbcType=VARCHAR},#{sshouse,jdbcType=VARCHAR},#{type,jdbcType=INTEGER},#{floor,jdbcType=INTEGER})
+	</insert>
+	
+	<select id="findAllReplacement" resultType="json">
+		select a.id, 
+		a.deptpart,
+		b.deptname as deptpartname, 
+		a.remark ,a.creator,
+		p.user_name as creatorname,
+		a.status,a.createtime , 
+		a.organization,a.sshouse,type
+		from HUDH_KSLL_REPLACEMENT a
+		left join sys_person p on p.seq_id = a.creator
+		left join kqds_ck_dept b on b.seq_id = a.deptpart where 1=1
+		<if test='id != null and id != ""'>
+        	and a.id = #{id,jdbcType=VARCHAR}
+      	</if>
+		<if test='starttime != null and starttime != ""'>
+			and a.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test='endtime != null and endtime != ""'>
+			and a.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test='deptpart != null and deptpart != ""'>
+			and a.deptpart = #{deptpart}
+		</if>
+		<if test='status != null and status != ""'>
+			and a.status = #{status}
+		</if>
+		<if test='creatorname != null and creatorname != ""'>
+			and p.user_name = #{creatorname}
+		</if>
+		<if test='organization != null and organization != ""'>
+			and a.organization = #{organization}
+		</if>
+		<if test='type != null and type != ""'>
+			and a.type = #{type}
+		</if>
+		<if test='floor != null and floor != ""'>
+			and a.floor = #{floor}
+		</if>
+	</select>
+	
+	<update id="updateReplacementStatus">
+		update HUDH_KSLL_REPLACEMENT set status = #{status,jdbcType=VARCHAR}
+		where id=#{id,jdbcType=VARCHAR}
+	</update>
+	
+	<update id="batchUpdateCKGoodsByPrimaryId" parameterType="java.util.List" >
+    update KQDS_CK_GOODS
+    <set>
+      <if test="nums != null" >
+        nums = #{nums,jdbcType=INTEGER},
+      </if>
+      <if test="kcmoney != null" >
+        kcmoney = #{kcmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsprice !=null">
+      	goodsprice=#{goodsprice,jdbcType=DECIMAL}
+      </if>
+    </set>
+    where seq_Id = #{seqId,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="findReplacementById" resultType="com.hudh.ksll.entity.KsllReplaceMent">
+		select id, deptpart, remark ,creator, status,createtime , organization,sshouse from HUDH_KSLL_REPLACEMENT where id = #{id,jdbcType=VARCHAR}
+	</select>
+</mapper>

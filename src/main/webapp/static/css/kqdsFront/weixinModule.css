@@ -1,0 +1,43 @@
+@CHARSET "UTF-8";
+.main{
+	margin-left:20px;
+}
+.tableBox{
+	border:none;
+}
+.listWrap .listHd{
+	box-sizing: border-box;
+    color: #373737;
+    font-family: "Microsoft YaHei";
+    height: 46px;
+    position: relative;
+    background:#fff;
+}
+.listWrap .listHd .title{
+	font-size: 20px;
+    height: 20px;
+    line-height: 20px;
+    float: left;
+    display: block;
+    margin-top: 16px;
+}
+@font-face
+{
+    font-family: FontAwesome;
+    src: url('../fonts/fontawesome-webfont.ttf'),
+    url('../fonts/fontawesome-webfont.eot'); /* IE9 */
+}
+.weixinIcon{
+	font-family: 'FontAwesome';
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 15px;
+    text-align: center;
+    margin-right:0;
+    cursor:pointer;
+    float: right;
+}
+.icon-weixin:before{
+	content:'\f1d7';
+}

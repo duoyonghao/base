@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_MEDICALRECORD_ZHONGZHI2">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsMedicalrecordZhongzhi2">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="meid" jdbcType="VARCHAR" property="meid" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="others" jdbcType="VARCHAR" property="others" />
+		<result column="surgical_record" jdbcType="VARCHAR" property="surgicalRecord" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.base.KqdsMedicalrecordZhongzhi2">
+		<result column="preoperative_examination" jdbcType="CLOB" property="preoperativeExamination" />
+		<result column="teeth_condition" jdbcType="CLOB" property="teethCondition" />
+		<result column="implantgum_condition" jdbcType="CLOB" property="implantgumCondition" />
+		<result column="implant_exposure" jdbcType="CLOB" property="implantExposure" />
+		<result column="xray_examination" jdbcType="CLOB" property="xrayExamination" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, organization, meid, usercode, others, surgical_record, remark, createuser,
+		createtime
+	</sql>
+	<sql id="Blob_Column_List">
+		preoperative_examination, teeth_condition, implantgum_condition, implant_exposure,
+		xray_examination
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from KQDS_MEDICALRECORD_ZHONGZHI2
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_MEDICALRECORD_ZHONGZHI2
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsMedicalrecordZhongzhi2">
+		insert into KQDS_MEDICALRECORD_ZHONGZHI2 (SEQ_ID, organization, meid,
+		usercode, others, surgical_record,
+		remark, createuser, createtime,
+		preoperative_examination, teeth_condition, implantgum_condition,
+		implant_exposure, xray_examination)
+		values (#{seqId,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR},
+		#{meid,jdbcType=VARCHAR},
+		#{usercode,jdbcType=VARCHAR}, #{others,jdbcType=VARCHAR}, #{surgicalRecord,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR},
+		#{createtime,jdbcType=VARCHAR},
+		#{preoperativeExamination,jdbcType=CLOB}, #{teethCondition,jdbcType=CLOB}, #{implantgumCondition,jdbcType=CLOB},
+		#{implantExposure,jdbcType=CLOB},
+		#{xrayExamination,jdbcType=CLOB})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsMedicalrecordZhongzhi2">
+		insert into KQDS_MEDICALRECORD_ZHONGZHI2
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="meid != null">
+				meid,
+			</if>
+			<if test="usercode != null">
+				usercode,
+			</if>
+			<if test="others != null">
+				others,
+			</if>
+			<if test="surgicalRecord != null">
+				surgical_record,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="preoperativeExamination != null">
+				preoperative_examination,
+			</if>
+			<if test="teethCondition != null">
+				teeth_condition,
+			</if>
+			<if test="implantgumCondition != null">
+				implantgum_condition,
+			</if>
+			<if test="implantExposure != null">
+				implant_exposure,
+			</if>
+			<if test="xrayExamination != null">
+				xray_examination,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="meid != null">
+				#{meid,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="others != null">
+				#{others,jdbcType=VARCHAR},
+			</if>
+			<if test="surgicalRecord != null">
+				#{surgicalRecord,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="preoperativeExamination != null">
+				#{preoperativeExamination,jdbcType=CLOB},
+			</if>
+			<if test="teethCondition != null">
+				#{teethCondition,jdbcType=CLOB},
+			</if>
+			<if test="implantgumCondition != null">
+				#{implantgumCondition,jdbcType=CLOB},
+			</if>
+			<if test="implantExposure != null">
+				#{implantExposure,jdbcType=CLOB},
+			</if>
+			<if test="xrayExamination != null">
+				#{xrayExamination,jdbcType=CLOB},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsMedicalrecordZhongzhi2">
+		update KQDS_MEDICALRECORD_ZHONGZHI2
+		<set>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="meid != null">
+				meid = #{meid,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				usercode = #{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="others != null">
+				others = #{others,jdbcType=VARCHAR},
+			</if>
+			<if test="surgicalRecord != null">
+				surgical_record = #{surgicalRecord,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="preoperativeExamination != null">
+				preoperative_examination = #{preoperativeExamination,jdbcType=CLOB},
+			</if>
+			<if test="teethCondition != null">
+				teeth_condition = #{teethCondition,jdbcType=CLOB},
+			</if>
+			<if test="implantgumCondition != null">
+				implantgum_condition = #{implantgumCondition,jdbcType=CLOB},
+			</if>
+			<if test="implantExposure != null">
+				implant_exposure = #{implantExposure,jdbcType=CLOB},
+			</if>
+			<if test="xrayExamination != null">
+				xray_examination = #{xrayExamination,jdbcType=CLOB},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.kqds.entity.base.KqdsMedicalrecordZhongzhi2">
+		update KQDS_MEDICALRECORD_ZHONGZHI2
+		set organization = #{organization,jdbcType=VARCHAR},
+		meid =
+		#{meid,jdbcType=VARCHAR},
+		usercode = #{usercode,jdbcType=VARCHAR},
+		others = #{others,jdbcType=VARCHAR},
+		surgical_record = #{surgicalRecord,jdbcType=VARCHAR},
+		remark =
+		#{remark,jdbcType=VARCHAR},
+		createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		preoperative_examination =
+		#{preoperativeExamination,jdbcType=CLOB},
+		teeth_condition = #{teethCondition,jdbcType=CLOB},
+		implantgum_condition = #{implantgumCondition,jdbcType=CLOB},
+		implant_exposure =
+		#{implantExposure,jdbcType=CLOB},
+		xray_examination = #{xrayExamination,jdbcType=CLOB}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsMedicalrecordZhongzhi2">
+		update KQDS_MEDICALRECORD_ZHONGZHI2
+		set organization = #{organization,jdbcType=VARCHAR},
+		meid = #{meid,jdbcType=VARCHAR},
+		usercode = #{usercode,jdbcType=VARCHAR},
+		others = #{others,jdbcType=VARCHAR},
+		surgical_record = #{surgicalRecord,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		createuser =
+		#{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<!--#################################### auto create ################################# -->
+
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_MEDICALRECORD_ZHONGZHI2
+	</sql>
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsMedicalrecordZhongzhi2">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+</mapper>

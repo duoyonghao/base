@@ -1,0 +1,160 @@
+@CHARSET "UTF-8";
+
+.containerDiv{
+	padding:10px;
+}
+div:after{
+	content:"";
+	display:block;
+	clear:both;
+}
+a:hover{
+	color:#333;
+}
+i{
+	font-style:normal;
+}
+i.orange{
+	color:#FF6100;
+}
+input[type="text"]:focus,select:focus,textarea:focus{
+   box-shadow: 0 0 8px rgb(49, 165, 247);
+   border-color:transparent;
+}
+input[type="text"],select{
+	width:140px;
+	color:#333;
+}
+input[readonly],select:disabled{
+	cursor:not-allowed;
+}
+input[readonly]:focus,select:focus{
+	box-shadow:none;
+	 border-color:#ddd;
+}
+select{
+	cursor:pointer;
+}
+.commonText{/*增加paddingleft 拉开每个数据项之间的间距*/
+	display:inline-block;
+	text-align:right;
+	position:relative;
+	padding-right:5px;
+}
+
+.btnGroup{/* 提交按钮父元素 */
+	text-align:center;
+	padding-top:20px;
+}
+.aBtn{/* 按钮 */
+	display:inline-block;
+	color:#fff;
+	background:#428BCA;
+	height:28px;
+	line-height:28px;
+	border-radius:6px;
+	text-align:center;
+	padding:0 15px;
+	border:1px solid #00A6C0;
+	margin:0 10px;
+	font-size:13px;
+}
+.search{
+	color:#fff;
+	background:#00A6C0;
+}
+.aBtn:hover{
+	cursor:pointer;
+	color:#fff;
+	background:#3071A9;
+}
+input[type="text"].longInp{/* 占满父元素input */
+	width:100%;
+}
+
+
+								/* leftLayoutDiv左侧Div */
+.leftLayoutDiv{
+	width:20%;
+	float:left;	
+}
+ul.ztree{
+	margin-top:0;
+}
+.leftLayoutDiv span.spanTitle{
+	display:block;
+	padding:0 10px;
+	color:#fff;
+	background:#00A6C0;
+	height:28px;
+	line-height:28px;
+}	
+								/* rightLayoutDiv右侧Div */
+.rightLayoutDiv{
+	width:80%;
+	float:right;
+}
+.rightLayoutDiv header{
+	padding:0 10px;
+}
+.rightLayoutDiv header span.commonText{
+	font-size:13px;
+}
+.rightLayoutDiv>header span:nth-child(3){
+	padding-left:15px;
+}
+.rightLayoutDiv section{
+	padding:10px;
+}
+a{
+	color:#333;
+	text-decoration:none;
+}
+a:hover{
+	text-decoration:none;
+}
+.tableDiv{
+	border:1px solid #ddd;
+	/* overflow:hidden; */	
+}
+.table-striped tbody tr:nth-child(odd){
+	background:#fff;
+}
+.table-striped tbody tr:hover{
+	background:#f5f5f5;
+}
+.tableDiv table{	/* tabie数据的高度  = fixedTableHeader+ fixedTableBody的高度  */
+	width:100%;
+}
+.tableDiv table>thead{
+	background:#00A6C0;color:white;
+}
+.fixedTableHeader{/* 首行固定表格的th */
+	height:30px;
+	overflow:hidden;
+	box-sizing:border-box;
+}
+.fixedTableBody{	/* 首行固定表格的td  table数据表的高度设置 */  
+	height:320px;
+	overflow:auto;
+	box-sizing:border-box;
+}
+.fixedTableBody table{
+	margin-top:-30px;
+}
+.fixedTableBody table input[type="number"]{
+	padding-left:12px;
+	border:1px solid #eee;
+}
+
+.fixedTableBody table input[type="number"]:focus{
+	box-shadow: 0 0 8px rgb(49, 165, 247);
+   	border-color:transparent;
+}
+footer{
+	padding-left:10px;	
+}
+footer .commonText{
+	font-size:16px;
+}
+

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HUDH_operationNote">
+	  <resultMap id="BaseResultMap" type="com.hudh.lclj.entity.HudhOperationNote">
+	  	<result column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+	    <result column=" userId" jdbcType="VARCHAR" property="userid" />
+	    <result column="lcljId" jdbcType="VARCHAR" property="lcljId" />
+	    <result column="lcljNum" jdbcType="VARCHAR" property="lcljNum" />
+	    <result column="plantdoctor" jdbcType="VARCHAR" property="plantdoctor" />
+	    <result column=" nurse" jdbcType="VARCHAR" property="nurse" />
+	    <result column="operationdate" jdbcType="VARCHAR" property="operationdate" />
+	    <result column="localanesthesia" jdbcType="VARCHAR" property="localanesthesia" />
+	    <result column="operatingrecord" jdbcType="VARCHAR" property="operatingrecord" />
+	    <result column="implantbarcode" jdbcType="VARCHAR" property="implantbarcode" />
+	    <result column="periostbarcode" jdbcType="VARCHAR" property="periostbarcode" />
+	    <result column="doctorname" jdbcType="VARCHAR" property="doctorname" />
+	    <result column="doctortime" jdbcType="VARCHAR" property="doctortime" />
+	    <result column="createuser" jdbcType="VARCHAR" property="createuser" />
+    	<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+    	<result column="organization" jdbcType="VARCHAR" property="organization" />
+	  </resultMap>
+	  <sql id="Base_Column_List">   
+		SEQ_ID, userId, lcljId, lcljNum, plantdoctor, nurse, operationdate, localanesthesia, 
+		operatingrecord, implantbarcode, periostbarcode, doctorname, doctortime, createuser, createtime, organization
+	  </sql>
+	  <insert id="insertRecord" parameterType="com.hudh.lclj.entity.HudhOperationNote">
+	  insert into HUDH_operationNote
+	  (<include refid="Base_Column_List" />)
+	  values(#{seqId,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{lcljId,jdbcType=VARCHAR}, 
+	  #{lcljNum,jdbcType=VARCHAR}, #{plantdoctor,jdbcType=VARCHAR}, #{nurse,jdbcType=VARCHAR}, 
+	  #{operationdate,jdbcType=VARCHAR}, #{localanesthesia,jdbcType=VARCHAR}, #{operatingrecord,jdbcType=VARCHAR}, 
+	  #{implantbarcode,jdbcType=VARCHAR}, #{periostbarcode,jdbcType=VARCHAR},#{doctorname,jdbcType=VARCHAR}, #{doctortime,jdbcType=VARCHAR},
+	  #{createuser,jdbcType=VARCHAR},#{createtime,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR})
+	  </insert>
+	  
+	  <update id="updateRecord" parameterType="com.hudh.lclj.entity.HudhOperationNote">
+	  update 
+	  	HUDH_operationNote 
+	  set
+	  plantdoctor = #{plantdoctor, jdbcType=VARCHAR},
+	  nurse = #{nurse, jdbcType=VARCHAR},
+	  operationdate = #{operationdate, jdbcType=VARCHAR},
+	  localanesthesia = #{localanesthesia, jdbcType=VARCHAR},
+	  operatingrecord = #{operatingrecord, jdbcType=VARCHAR},
+	  implantbarcode = #{implantbarcode, jdbcType=VARCHAR},
+	  periostbarcode = #{periostbarcode, jdbcType=VARCHAR},
+	  doctorname = #{doctorname, jdbcType=VARCHAR},
+	  doctortime = #{doctortime, jdbcType=VARCHAR}
+	  where SEQ_ID = #{seqId, jdbcType=VARCHAR}
+	  </update>
+	  <select id="selectRecord" parameterType="map" resultType="json">
+	  select 
+	  	<include refid="Base_Column_List" />
+	  from HUDH_operationNote
+	  where lcljId = #{lcljId, jdbcType=VARCHAR}
+	  </select>
+  </mapper>

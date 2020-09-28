@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<LCLJNODES>
+	<!-- 单颗及多颗无植骨 START limit单位/天-->  
+	<SingleOrMultiNoBone>
+		<Node num="1">
+			<name>术前检查</name>
+			<limit>0</limit>	
+		</Node>
+		<Node num="2">
+			<name>手术治疗</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="3">
+			<name>第一次复查，拆线</name>
+			<limit>14</limit>
+		</Node>
+		<Node  num="4">
+			<name>第二次复查，观察伤口愈合及术区清洁情况</name>
+			<limit>40</limit>	
+		</Node>
+		<Node num="5">
+			<name>二期</name>
+			<limit>90</limit>
+		</Node>
+		<Node  num="6">
+			<name>取模定咬合</name>
+			<limit>90</limit>	
+		</Node>
+		<Node  num="7">
+			<name>试戴</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="8">
+			<name>戴牙（最终修复）</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="9">
+			<name>复查</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="10">
+			<name>结束</name>
+			<limit>0</limit>	
+		</Node>
+ 	</SingleOrMultiNoBone>
+ 	<!-- 单颗及多颗无植骨 END -->
+ 	
+ 	<!-- 单颗及多颗植骨 START-->  
+	<SingleOrMultiBone>
+		<Node num="1">
+			<name>术前检查</name>
+			<limit>0</limit>	
+		</Node>
+		<Node num="2">
+			<name>手术治疗</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="3">
+			<name>第一次复查，拆线</name>
+			<limit>14</limit>
+		</Node>
+		<Node  num="4">
+			<name>第二次复查，观察伤口愈合及术区清洁情况</name>
+			<limit>40</limit>	
+		</Node>
+		<Node  num="5">
+			<name>第三次复查,观察伤口愈合及术区清洁情况</name>
+			<limit>90</limit>	
+		</Node>
+		<Node num="6">
+			<name>二期</name>
+			<limit>180</limit>
+		</Node>
+		<Node  num="7">
+			<name>取模定咬合</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="8">
+			<name>试戴</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="9">
+			<name>戴牙（最终修复）</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="10">
+			<name>复查</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="11">
+			<name>结束</name>
+			<limit>0</limit>	
+		</Node>
+ 	</SingleOrMultiBone>
+ 	<!-- 单颗及多颗植骨 END --> 
+ 	
+ 	<!-- Locator无植骨 START-->  
+	<LocatorNoBone>
+		<Node num="1">
+			<name>术前检查</name>
+			<limit>0</limit>	
+		</Node>
+		<Node num="2">
+			<name>术前取模定咬合制作过渡牙</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="3">
+			<name>手术治疗</name>
+			<limit>0</limit>
+		</Node>
+		<Node  num="4">
+			<name>戴过渡牙时间</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="5">
+			<name>第一次复查（拆线）</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="6">
+			<name>第二次复查</name>
+			<limit>0</limit>	
+		</Node>
+		<Node num="7">
+			<name>二期</name>
+			<limit>90</limit>
+		</Node>
+		<Node  num="8">
+			<name>取模定咬合</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="9">
+			<name>试戴</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="10">
+			<name>二次取模</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="11">
+			<name>再次试戴</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="12">
+			<name>最终戴牙</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="13">
+			<name>复查</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="14">
+			<name>结束</name>
+			<limit>0</limit>	
+		</Node>
+ 	</LocatorNoBone>
+ 	<!-- Locator无植骨 END --> 
+ 	
+ 	<!-- Locator植骨 START-->  
+	<LocatorBone>
+		<Node num="1">
+			<name>术前检查</name>
+			<limit>0</limit>	
+		</Node>
+		<Node num="2">
+			<name>术前取模定咬合制作过渡牙</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="3">
+			<name>手术治疗</name>
+			<limit>0</limit>
+		</Node>
+		<Node  num="4">
+			<name>戴过渡牙</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="5">
+			<name>第一次复查（拆线）</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="6">
+			<name>第二次复查</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="7">
+			<name>第三次复查</name>
+			<limit>0</limit>	
+		</Node>
+		<Node num="8">
+			<name>二期</name>
+			<limit>180</limit>
+		</Node>
+		<Node  num="9">
+			<name>取模定咬合</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="10">
+			<name>试戴</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="11">
+			<name>二次取模</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="12">
+			<name>再次试戴</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="13">
+			<name>最终戴牙</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="14">
+			<name>复查</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="15">
+			<name>结束</name>
+			<limit>0</limit>	
+		</Node>
+ 	</LocatorBone>
+ 	<!-- Locator植骨 END -->
+ 	
+ 	<!-- All-on-x无植骨 START-->  
+	<AllonxNoBone>
+		<Node num="1">
+			<name>术前检查</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="2">
+			<name>术前取模定咬合</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="3">
+			<name>手术治疗</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="4">
+			<name>术后当天取模定咬合</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="5">
+			<name>试戴</name>
+			<limit>2</limit>	
+		</Node>
+		<Node  num="6">
+			<name>戴过渡牙</name>
+			<limit>2</limit>	
+		</Node>
+		<Node  num="7">
+			<name>第一次复查，拆线</name>
+			<limit>10</limit>	
+		</Node>
+		<Node  num="8">
+			<name>第二次复查，观察伤口愈合及术区清洁情况</name>
+			<limit>60</limit>	
+		</Node>
+		<Node  num="9">
+			<name>取模定咬合</name>
+			<limit>120</limit>	
+		</Node>
+		<Node  num="10">
+			<name>取模定咬合后试戴</name>
+			<limit>21</limit>	
+		</Node>
+		<Node  num="11">
+			<name>戴牙</name>
+			<limit>30</limit>	
+		</Node>
+		<Node  num="12">
+			<name>复查调合</name>
+			<limit>7</limit>	
+		</Node>
+		<Node  num="13">
+			<name>树脂封口</name>
+			<limit>30</limit>	
+		</Node>
+		<Node  num="14">
+			<name>复查</name>
+			<limit>90</limit>	
+		</Node>
+		<Node  num="15">
+			<name>结束</name>
+			<limit>0</limit>	
+		</Node>
+	</AllonxNoBone>
+ 	<!-- All-on-x无植骨 END-->
+ 	
+ 	<!-- All-on-x植骨 START-->  
+	<AllonxBone>
+		<Node num="1">
+			<name>术前检查</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="2">
+			<name>术前取模定咬合</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="3">
+			<name>手术治疗</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="4">
+			<name>术后当天取模定咬合</name>
+			<limit>0</limit>	
+		</Node>
+		<Node  num="5">
+			<name>试戴</name>
+			<limit>2</limit>	
+		</Node>
+		<Node  num="6">
+			<name>戴过渡牙</name>
+			<limit>2</limit>	
+		</Node>
+		<Node  num="7">
+			<name>第一次复查，拆线</name>
+			<limit>10</limit>	
+		</Node>
+		<Node  num="8">
+			<name>第二次复查，观察伤口愈合及术区清洁情况</name>
+			<limit>60</limit>	
+		</Node>
+		<Node  num="9">
+			<name>取模定咬合</name>
+			<limit>180</limit>	
+		</Node>
+		<Node  num="10">
+			<name>取模定咬合后试戴</name>
+			<limit>21</limit>	
+		</Node>
+		<Node  num="12">
+			<name>戴牙</name>
+			<limit>30</limit>	
+		</Node>
+		<Node  num="12">
+			<name>复查调合</name>
+			<limit>7</limit>	
+		</Node>
+		<Node  num="13">
+			<name>树脂封口</name>
+			<limit>30</limit>	
+		</Node>
+		<Node  num="14">
+			<name>复查</name>
+			<limit>90</limit>	
+		</Node>
+		<Node  num="15">
+			<name>结束</name>
+			<limit>0</limit>	
+		</Node>
+	</AllonxBone>
+ 	<!-- All-on-x植骨 END-->    
+</LCLJNODES> 

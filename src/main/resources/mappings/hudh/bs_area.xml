@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="bs_area">
+	<resultMap type="com.hudh.area.entity.Area" id="BaseResultMap">
+		<id column="AREA_ID" jdbcType="INTEGER" property="areaId"/>
+		<result column="AREA_CODE" jdbcType="VARCHAR" property="areaCode"/>
+		<result column="CITY_CODE" jdbcType="VARCHAR" property="cityCode"/>
+		<result column="AREA_NAME" jdbcType="VARCHAR" property="areaName"/>
+		<result column="SHORT_NAME" jdbcType="VARCHAR" property="shortName"/>
+		<result column="LNG" jdbcType="VARCHAR" property="lng"/>
+		<result column="LAT" jdbcType="VARCHAR" property="lat"/>
+		<result column="SORT" jdbcType="INTEGER" property="sort"/>
+		<result column="GMT_CREATE" jdbcType="VARCHAR" property="gmyCreate"/>
+		<result column="GMT_MODIFIED" jdbcType="VARCHAR" property="gmtModified"/>
+		<result column="MEMO" jdbcType="VARCHAR" property="memo"/>
+		<result column="DATA_STATE" jdbcType="INTEGER" property="dataState"/>
+		<result column="TENANT_CODE" jdbcType="VARCHAR" property="tenantCode"/>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		AREA_ID, AREA_CODE, CITY_CODE, AREA_NAME, SHORT_NAME, LNG, LAT, SORT, GMT_CREATE, GMT_MODIFIED, MEMO, DATA_STATE, TENANT_CODE
+	</sql>
+	
+	<select id="findAreaByCityCode" parameterType="String" resultType="json">
+		SELECT 
+		<include refid="Base_Column_List" /> 
+		FROM bs_area 
+		WHERE CITY_CODE = #{cityCode} ORDER BY AREA_ID;
+	</select>
+	<select id="findAreaByAreaCode" parameterType="String" resultType="json">
+		SELECT 
+		<include refid="Base_Column_List" /> 
+		FROM bs_area 
+		WHERE AREA_CODE = #{areaCode}
+	</select>
+</mapper>

@@ -1,0 +1,1987 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_CK_GOODS_DETAIL">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsCkGoodsDetail">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="goodsname" jdbcType="VARCHAR" property="goodsname" />
+		<result column="goodscode" jdbcType="VARCHAR" property="goodscode" />
+		<result column="goodstype" jdbcType="VARCHAR" property="goodstype" />
+		<result column="goodsnorms" jdbcType="VARCHAR" property="goodsnorms" />
+		<result column="goodsunit" jdbcType="VARCHAR" property="goodsunit" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="sortno" jdbcType="INTEGER" property="sortno" />
+		<result column="kuwei" jdbcType="VARCHAR" property="kuwei" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="minnums" jdbcType="INTEGER" property="minnums" />
+		<result column="mingj" jdbcType="INTEGER" property="mingj" />
+		<result column="maxnums" jdbcType="INTEGER" property="maxnums" />
+		<result column="maxgj" jdbcType="INTEGER" property="maxgj" />
+		<result column="pym" jdbcType="VARCHAR" property="pym" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, goodsname, goodscode, goodstype, goodsnorms, goodsunit, organization, createuser,
+		createtime, sortno, kuwei, remark, minnums, mingj, maxnums, maxgj, pym
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_CK_GOODS_DETAIL
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_CK_GOODS_DETAIL
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsCkGoodsDetail">
+		insert into KQDS_CK_GOODS_DETAIL (SEQ_ID, goodsname, goodscode,
+		goodstype, goodsnorms, goodsunit,
+		organization, createuser, createtime,
+		sortno, kuwei, remark,
+		minnums, mingj, maxnums,
+		maxgj, pym)
+		values (#{seqId,jdbcType=VARCHAR}, #{goodsname,jdbcType=VARCHAR}, #{goodscode,jdbcType=VARCHAR},
+		#{goodstype,jdbcType=VARCHAR}, #{goodsnorms,jdbcType=VARCHAR}, #{goodsunit,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR},
+		#{createtime,jdbcType=VARCHAR},
+		#{sortno,jdbcType=INTEGER}, #{kuwei,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+		#{minnums,jdbcType=INTEGER}, #{mingj,jdbcType=INTEGER},
+		#{maxnums,jdbcType=INTEGER},
+		#{maxgj,jdbcType=INTEGER}, #{pym,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsCkGoodsDetail">
+		insert into KQDS_CK_GOODS_DETAIL
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="goodsname != null">
+				goodsname,
+			</if>
+			<if test="goodscode != null">
+				goodscode,
+			</if>
+			<if test="goodstype != null">
+				goodstype,
+			</if>
+			<if test="goodsnorms != null">
+				goodsnorms,
+			</if>
+			<if test="goodsunit != null">
+				goodsunit,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="sortno != null">
+				sortno,
+			</if>
+			<if test="kuwei != null">
+				kuwei,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="minnums != null">
+				minnums,
+			</if>
+			<if test="mingj != null">
+				mingj,
+			</if>
+			<if test="maxnums != null">
+				maxnums,
+			</if>
+			<if test="maxgj != null">
+				maxgj,
+			</if>
+			<if test="pym != null">
+				pym,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsname != null">
+				#{goodsname,jdbcType=VARCHAR},
+			</if>
+			<if test="goodscode != null">
+				#{goodscode,jdbcType=VARCHAR},
+			</if>
+			<if test="goodstype != null">
+				#{goodstype,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsnorms != null">
+				#{goodsnorms,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsunit != null">
+				#{goodsunit,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="sortno != null">
+				#{sortno,jdbcType=INTEGER},
+			</if>
+			<if test="kuwei != null">
+				#{kuwei,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="minnums != null">
+				#{minnums,jdbcType=INTEGER},
+			</if>
+			<if test="mingj != null">
+				#{mingj,jdbcType=INTEGER},
+			</if>
+			<if test="maxnums != null">
+				#{maxnums,jdbcType=INTEGER},
+			</if>
+			<if test="maxgj != null">
+				#{maxgj,jdbcType=INTEGER},
+			</if>
+			<if test="pym != null">
+				#{pym,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsCkGoodsDetail">
+		update KQDS_CK_GOODS_DETAIL
+		<set>
+			<if test="goodsname != null">
+				goodsname = #{goodsname,jdbcType=VARCHAR},
+			</if>
+			<if test="goodscode != null">
+				goodscode = #{goodscode,jdbcType=VARCHAR},
+			</if>
+			<if test="goodstype != null">
+				goodstype = #{goodstype,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsnorms != null">
+				goodsnorms = #{goodsnorms,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsunit != null">
+				goodsunit = #{goodsunit,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="sortno != null">
+				sortno = #{sortno,jdbcType=INTEGER},
+			</if>
+			<if test="kuwei != null">
+				kuwei = #{kuwei,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="minnums != null">
+				minnums = #{minnums,jdbcType=INTEGER},
+			</if>
+			<if test="mingj != null">
+				mingj = #{mingj,jdbcType=INTEGER},
+			</if>
+			<if test="maxnums != null">
+				maxnums = #{maxnums,jdbcType=INTEGER},
+			</if>
+			<if test="maxgj != null">
+				maxgj = #{maxgj,jdbcType=INTEGER},
+			</if>
+			<if test="pym != null">
+				pym = #{pym,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR}
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsCkGoodsDetail">
+		update KQDS_CK_GOODS_DETAIL
+		set goodsname = #{goodsname,jdbcType=VARCHAR},
+		goodscode = #{goodscode,jdbcType=VARCHAR},
+		goodstype =
+		#{goodstype,jdbcType=VARCHAR},
+		goodsnorms = #{goodsnorms,jdbcType=VARCHAR},
+		goodsunit = #{goodsunit,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR},
+		createuser =
+		#{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		sortno = #{sortno,jdbcType=INTEGER},
+		kuwei = #{kuwei,jdbcType=VARCHAR},
+		remark =
+		#{remark,jdbcType=VARCHAR},
+		minnums = #{minnums,jdbcType=INTEGER},
+		mingj = #{mingj,jdbcType=INTEGER},
+		maxnums = #{maxnums,jdbcType=INTEGER},
+		maxgj = #{maxgj,jdbcType=INTEGER},
+		pym =
+		#{pym,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_CK_GOODS_DETAIL
+	</sql>
+
+	<select id="selectCountByMap" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsCkGoodsDetail">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<!--收发存查询(区分仓库) -->
+	<select id="selectListSfc" parameterType="map" resultType="json">
+		select
+		detail.seq_id,
+		detail.goodsname,
+		detail.goodscode,
+		detail.goodstype,
+		detail.kuwei,
+		tf.goodstype as firsttype,
+		t.goodstype as goodstypename,
+		detail.goodsnorms,
+		g.sshouse,
+		g.numsexport,
+		g.goodspriceexport,
+		h.housename as sshousename,
+		detail.goodsunit,
+		${selectGoodsprice} as goodsprice
+		from KQDS_Ck_Goods_Detail detail
+		left join KQDS_CK_GOODS g on
+		detail.seq_id = g.goodsdetailid
+		left join KQDS_CK_GOODS_TYPE t on t.seq_id = detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		left join KQDS_CK_HOUSE h on
+		h.seq_id = g.sshouse
+		where 1=1
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%' "
+			or detail.pym like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		order by detail.createtime desc
+	</select>
+	<!--收发存查询(不区分仓库) -->
+	<select id="selectNoHouseListSfc" parameterType="map" resultType="json">
+		select
+		detail.seq_id,
+		detail.goodsname,
+		detail.goodscode,
+		detail.goodstype,
+		detail.kuwei,
+		tf.goodstype as firsttype,
+		t.goodstype as goodstypename,
+		detail.goodsnorms,
+		g.numsexport,
+		g.goodspriceexport,
+		${selectKcmoney} as kcmoney,
+		g.nums,
+		detail.goodsunit
+		from KQDS_Ck_Goods_Detail detail
+		left join (select goodsdetailid,SUM(nums) as nums,sum(kcmoney) as
+		kcmoney,SUM(numsexport) as numsexport,sum(goodspriceexport) as goodspriceexport from
+		KQDS_CK_GOODS GROUP BY goodsdetailid) g on detail.seq_id = g.goodsdetailid
+		left join
+		KQDS_CK_GOODS_TYPE t on t.seq_id = detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID
+		= t.perid
+		where 1=1
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.pym like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		order by detail.createtime desc
+	</select>
+	<select id="countByGoodsCode" parameterType="KqdsCkGoodsDetail" resultType="int">
+		select count(1) from KQDS_CK_GOODS_DETAIL
+		where goodscode =#{goodscode}
+		and organization = #{organization}
+		<if test="seqId != null">
+			and seq_id != #{seqId}
+		</if>
+	</select>
+	<!--商品列表(无拼音码) -->
+	<select id="selectNoPymList" parameterType="map" resultType="json">
+		select
+		*
+		from KQDS_Ck_Goods_Detail
+		where 1=1 and (pym is null or pym='')
+	</select>
+	
+	<select id="selectListNum" parameterType="map" resultType="json">
+		select
+		sum(g.kcmoney) as kcmoney,
+		sum(g.nums) as nums
+		from KQDS_Ck_Goods_Detail detail
+		left join KQDS_CK_GOODS g on detail.seq_id = g.goodsdetailid
+		left join KQDS_CK_GOODS_TYPE t on t.seq_id = detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		left join KQDS_CK_HOUSE h on h.seq_id = g.sshouse
+		left join SYS_PERSON p on p.seq_id = detail.createuser
+		<!-- 添加左连接联查返回商品的单价，结存金额 -->
+		where 1=1
+		<if test="queryInput != null and queryInput !='' ">
+			and ( detail.goodsname like '%' + #{queryInput} + '%'
+			or detail.goodscode like '%' + #{queryInput} + '%'
+			or detail.goodsnorms like '%' + #{queryInput} + '%'
+			or detail.pym like '%' + #{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and detail.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID = #{goodstype} )
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.goodsnorms like '%' + #{goodsname} + '%'
+			or detail.pym
+			like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and g.goodsdetailid = #{goodsuuid}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and tf.seq_id = #{basetype}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and t.seq_id = #{nexttype}
+		</if>
+	</select>
+	<select id="selectListNumS" parameterType="map" resultType="json">
+		select
+		sum(g.kcmoney) as kcmoney,
+		sum(g.nums) as nums
+		from KQDS_Ck_Goods_Detail detail
+		LEFT JOIN KQDS_CK_GOODS_IN b on (select top 1 incode from KQDS_CK_GOODS_IN_DETAIL a where a.goodsuuid = detail.seq_id) = b.incode
+		LEFT JOIN KQDS_CK_SUPPLIER c on b.supplier = c.SEQ_ID
+		left join KQDS_CK_GOODS g on detail.seq_id = g.goodsdetailid
+		left join KQDS_CK_GOODS_TYPE t on t.seq_id = detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		left join KQDS_CK_HOUSE h on h.seq_id = g.sshouse
+		left join SYS_PERSON p on p.seq_id = detail.createuser
+		<!-- 添加左连接联查返回商品的单价，结存金额 -->
+		where 1=1
+		<if test="queryInput != null and queryInput !='' ">
+			and ( detail.goodsname like '%' + #{queryInput} + '%'
+			or detail.goodscode like '%' + #{queryInput} + '%'
+			or detail.goodsnorms like '%' + #{queryInput} + '%'
+			or detail.pym like '%' + #{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and detail.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID = #{goodstype} )
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.goodsnorms like '%' + #{goodsname} + '%'
+			or detail.pym
+			like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and g.goodsdetailid = #{goodsuuid}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and tf.seq_id = #{basetype}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and t.seq_id = #{nexttype}
+		</if>
+		and b.supplier=#{supplier}
+	</select>
+	<select id="selectListS" parameterType="map" resultType="json">
+		select
+		DISTINCT
+		b.supplier,
+		c.suppliername,
+		detail.seq_id,
+		g.seq_id as gseq_id,
+		detail.goodsname,
+		detail.goodscode,
+		detail.goodstype,
+		tf.goodstype as firsttype,
+		t.goodstype as goodstypename,
+		detail.goodsnorms,
+		g.sshouse,
+		h.housename as sshousename,
+		detail.goodsunit,
+		${selectGoodsprice} as goodsprice,
+		${selectKcmoney} as kcmoney,
+		g.nums as nums,
+		g.numsexport,
+		detail.sortno,
+		detail.organization,
+		p.user_name as
+		createusername,
+		detail.kuwei,
+		detail.remark,
+		detail.createuser,
+		detail.createtime,
+		detail.pym
+		from KQDS_Ck_Goods_Detail detail
+		LEFT JOIN KQDS_CK_GOODS_IN b on (select top 1 incode from KQDS_CK_GOODS_IN_DETAIL a where a.goodsuuid = detail.seq_id) = b.incode
+		LEFT JOIN KQDS_CK_SUPPLIER c on b.supplier = c.SEQ_ID
+		left join KQDS_CK_GOODS g on detail.seq_id = g.goodsdetailid
+		left join KQDS_CK_GOODS_TYPE t on t.seq_id = detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		left join KQDS_CK_HOUSE h on h.seq_id = g.sshouse
+		left join SYS_PERSON p on p.seq_id = detail.createuser
+		<!-- 添加左连接联查返回商品的单价，结存金额 -->
+		where 1=1
+		<if test="queryInput != null and queryInput !='' ">
+			and ( detail.goodsname like '%' + #{queryInput} + '%'
+			or detail.goodscode like '%' + #{queryInput} + '%'
+			or detail.goodsnorms like '%' + #{queryInput} + '%'
+			or detail.pym like '%' + #{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and detail.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID = #{goodstype} )
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.goodsnorms like '%' + #{goodsname} + '%'
+			or detail.pym
+			like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and g.goodsdetailid = #{goodsuuid}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and tf.seq_id = #{basetype}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and t.seq_id = #{nexttype}
+		</if>
+		and b.supplier=#{supplier}
+		order by g.nums desc
+	</select>
+	<!--商品列表(区分仓库：仓库首页面调用，当前库存页面,选择商品 调用) 
+	2019.07.10 lwg 修改
+	-->
+	<select id="selectList" parameterType="map" resultType="json">
+		select
+		detail.seq_id,
+		g.seq_id as gseq_id,
+		detail.goodsname,
+		detail.goodscode,
+		detail.goodstype,
+		tf.seq_id AS firsttypeId,
+		tf.goodstype as firsttype,
+		t.goodstype as goodstypename,
+		detail.goodsnorms,
+		g.sshouse,
+		h.housename as sshousename,
+		detail.goodsunit,
+		<!-- ${selectGoodsprice} as goodsprice, -->
+		${selectKcmoney} as kcmoney,
+		g.nums as nums,
+		g.numsexport,
+		detail.sortno,
+		detail.organization,
+		p.user_name as
+		createusername,
+		detail.kuwei,
+		detail.remark,
+		detail.createuser,
+		detail.createtime,
+		detail.pym,
+		j.yxdate
+		from KQDS_Ck_Goods_Detail detail
+		left join KQDS_CK_GOODS g on detail.seq_id = g.goodsdetailid
+		left join KQDS_CK_GOODS_TYPE t on t.seq_id = detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		left join KQDS_CK_HOUSE h on h.seq_id = g.sshouse
+		left join SYS_PERSON p on p.seq_id = detail.createuser
+		LEFT JOIN (SELECT MIN(yxdate) as yxdate,goodsuuid FROM KQDS_CK_GOODS_IN_DETAIL where auditStatus<![CDATA[ > ]]>0 and phnum<![CDATA[ > ]]>0 and yxdate != '' and ph !='' GROUP BY goodsuuid) j on  j.goodsuuid=detail.seq_id
+		<!-- 添加左连接联查返回商品的单价，结存金额 -->
+		where 1=1
+		AND detail.status != '1'
+		<if test="queryInput != null and queryInput !='' ">
+			and ( detail.goodsname like '%' + #{queryInput} + '%'
+			or detail.goodscode like '%' + #{queryInput} + '%'
+			or detail.goodsnorms like '%' + #{queryInput} + '%'
+			or detail.pym like '%' + #{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and detail.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID = #{goodstype} )
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.goodsnorms like '%' + #{goodsname} + '%'
+			or detail.pym
+			like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and g.goodsdetailid = #{goodsuuid}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and tf.seq_id = #{basetype}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and t.seq_id = #{nexttype}
+		</if>
+		order by g.nums desc
+	</select>
+	<!-- 二楼仓库用 -->
+	<select id="selectList2" parameterType="map" resultType="json">
+		select
+		detail.seq_id,
+		g.seq_id as gseq_id,
+		detail.goodsname,
+		detail.goodscode,
+		detail.goodstype,
+		tf.seq_id AS firsttypeId,
+		tf.goodstype as firsttype,
+		t.goodstype as goodstypename,
+		detail.goodsnorms,
+		g.sshouse,
+		h.housename as sshousename,
+		detail.goodsunit,
+		<!-- ${selectGoodsprice} as goodsprice, -->
+		${selectKcmoney} as kcmoney,
+		g.num as num,
+		g.numsexport,
+		detail.sortno,
+		detail.organization,
+		p.user_name as
+		createusername,
+		detail.kuwei,
+		detail.remark,
+		detail.createuser,
+		detail.createtime,
+		detail.pym,
+		j.yxdate
+		from KQDS_Ck_Goods_Detail detail
+		left join KQDS_CK_GOODS g on detail.seq_id = g.goodsdetailid
+		left join KQDS_CK_GOODS_TYPE t on t.seq_id = detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		left join KQDS_CK_HOUSE h on h.seq_id = g.sshouse
+		left join SYS_PERSON p on p.seq_id = detail.createuser
+		LEFT JOIN (SELECT MIN(yxdate) as yxdate,goodsuuid FROM KQDS_CK_GOODS_IN_DETAIL where auditStatus<![CDATA[ > ]]>0 and phnum<![CDATA[ > ]]>0 and yxdate != '' and ph !='' GROUP BY goodsuuid) j on  j.goodsuuid=detail.seq_id
+		<!-- 添加左连接联查返回商品的单价，结存金额 -->
+		where 1=1
+		<if test="queryInput != null and queryInput !='' ">
+			and ( detail.goodsname like '%' + #{queryInput} + '%'
+			or detail.goodscode like '%' + #{queryInput} + '%'
+			or detail.goodsnorms like '%' + #{queryInput} + '%'
+			or detail.pym like '%' + #{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and detail.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID = #{goodstype} )
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.goodsnorms like '%' + #{goodsname} + '%'
+			or detail.pym
+			like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and g.goodsdetailid = #{goodsuuid}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and tf.seq_id = #{basetype}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and t.seq_id = #{nexttype}
+		</if>
+		order by g.nums desc
+	</select>
+	
+	<!--商品列表(不区分仓库：仓库首页面调用，当前库存页面,选择商品 调用)
+	根据仓库seqid查询所有信息
+	 -->
+	 <!--2019.7.7 lwg 增加根据goods  id查询-->
+	<select id="selectListByKey" parameterType="String" resultType="json">
+		select
+		detail.seq_id,
+		g.seq_id as gseq_id,
+		detail.goodsname,
+		detail.goodscode,
+		detail.goodstype,
+		tf.goodstype as firsttype,
+		t.goodstype as goodstypename,
+		detail.goodsnorms,
+		g.sshouse,
+		h.housename as sshousename,
+		detail.goodsunit,
+		convert(varchar,convert(decimal(18,3),g.goodsprice)) as goodsprice,
+		convert(varchar,convert(decimal(18,3),g.kcmoney)) as kcmoney,
+		g.nums as nums,
+		g.numsexport,
+		detail.sortno,
+		detail.organization,
+		p.user_name as
+		createusername,
+		detail.kuwei,
+		detail.remark,
+		detail.createuser,
+		detail.createtime,
+		detail.pym
+		from KQDS_Ck_Goods_Detail detail
+		left join KQDS_CK_GOODS g on detail.seq_id = g.goodsdetailid
+		left join KQDS_CK_GOODS_TYPE t on t.seq_id = detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		left join KQDS_CK_HOUSE h on h.seq_id = g.sshouse
+		left join SYS_PERSON p on p.seq_id = detail.createuser
+		 <!-- 添加左连接联查返回商品的单价，结存金额 -->
+		where 1=1
+		and g.seq_id = #{seqid}
+		
+	</select>
+	<!--商品列表(不区分仓库：仓库首页面调用，当前库存页面,选择商品 调用)
+	根据仓库seqid查询所有信息
+	 -->
+	 <!--2019.7.7 lwg 增加根据goodsDetail id查询-->
+	<select id="selectListByDetailKey" parameterType="String" resultType="json">
+		select
+		detail.seq_id,
+		g.seq_id as gseq_id,
+		detail.goodsname,
+		detail.goodscode,
+		detail.goodstype,
+		tf.goodstype as firsttype,
+		t.goodstype as goodstypename,
+		detail.goodsnorms,
+		g.sshouse,
+		h.housename as sshousename,
+		detail.goodsunit,
+		convert(varchar,convert(decimal(18,3),g.goodsprice)) as goodsprice,
+		convert(varchar,convert(decimal(18,3),g.kcmoney)) as kcmoney,
+		g.nums as nums,
+		g.numsexport,
+		detail.sortno,
+		detail.organization,
+		p.user_name as
+		createusername,
+		detail.kuwei,
+		detail.remark,
+		detail.createuser,
+		detail.createtime,
+		detail.pym
+		from KQDS_Ck_Goods_Detail detail
+		left join KQDS_CK_GOODS g on detail.seq_id = g.goodsdetailid
+		left join KQDS_CK_GOODS_TYPE t on t.seq_id = detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		left join KQDS_CK_HOUSE h on h.seq_id = g.sshouse
+		left join SYS_PERSON p on p.seq_id = detail.createuser
+		 <!-- 添加左连接联查返回商品的单价，结存金额 -->
+		where 1=1
+		and detail.seq_id = #{seqid}
+		
+	</select>
+	<!--商品列表(不区分仓库：仓库首页面调用，当前库存页面,选择商品 调用) -->
+	<select id="selectNoHouseListNumS" parameterType="map" resultType="json">
+		select
+		sum(g.kcmoney) as kcmoney,
+		sum(g.nums) as nums
+		from KQDS_Ck_Goods_Detail detail
+		LEFT JOIN KQDS_CK_GOODS_IN b on (select top 1 incode from KQDS_CK_GOODS_IN_DETAIL a where a.goodsuuid = detail.seq_id) = b.incode
+		LEFT JOIN KQDS_CK_SUPPLIER c on b.supplier = c.SEQ_ID
+		left join (select goodsdetailid,SUM(nums) as nums,sum(kcmoney) as kcmoney from KQDS_CK_GOODS GROUP BY goodsdetailid) g on detail.seq_id = g.goodsdetailid
+		left join
+		KQDS_CK_GOODS_TYPE t on t.seq_id = detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		left join sys_person p on p.seq_id = detail.createuser
+		where 1=1
+		<if test="queryInput != null and queryInput !='' ">
+			and ( detail.goodsname like '%' + #{queryInput} + '%'
+			or detail.goodscode like '%' + #{queryInput} + '%'
+			or detail.goodsnorms like '%' + #{queryInput} + '%'
+			or
+			detail.pym like '%' + #{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and detail.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID = #{goodstype})
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.goodsnorms like '%' + #{goodsname} + '%'
+			or detail.pym
+			like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and g.goodsdetailid = #{goodsuuid}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and tf.seq_id = #{basetype}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and t.seq_id = #{nexttype}
+		</if>
+		and b.supplier=#{supplier}
+	</select>
+	
+	<!--商品列表(不区分仓库：仓库首页面调用，当前库存页面,选择商品 调用) -->
+	<select id="selectNoHouseListNum" parameterType="map" resultType="json">
+		select
+		sum(g.kcmoney) as kcmoney,
+		sum(g.nums) as nums
+		from KQDS_Ck_Goods_Detail detail
+		left join (select goodsdetailid,SUM(nums) as nums,sum(kcmoney) as kcmoney from KQDS_CK_GOODS GROUP BY goodsdetailid) g on detail.seq_id = g.goodsdetailid
+		left join
+		KQDS_CK_GOODS_TYPE t on t.seq_id = detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		left join sys_person p on p.seq_id = detail.createuser
+		where 1=1
+		<if test="queryInput != null and queryInput !='' ">
+			and ( detail.goodsname like '%' + #{queryInput} + '%'
+			or detail.goodscode like '%' + #{queryInput} + '%'
+			or detail.goodsnorms like '%' + #{queryInput} + '%'
+			or
+			detail.pym like '%' + #{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and detail.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID = #{goodstype})
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.goodsnorms like '%' + #{goodsname} + '%'
+			or detail.pym
+			like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and g.goodsdetailid = #{goodsuuid}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and tf.seq_id = #{basetype}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and t.seq_id = #{nexttype}
+		</if>
+	</select>
+	
+	<!--商品列表(不区分仓库：仓库首页面调用，当前库存页面,选择商品 调用) -->
+	<select id="selectNoHouseListS" parameterType="map" resultType="json">
+		select DISTINCT
+		b.supplier,
+		c.suppliername,
+		detail.seq_id,
+		detail.goodsname,
+		detail.goodscode,
+		detail.goodstype,
+		tf.goodstype as firsttype,
+		t.goodstype as goodstypename,
+		detail.goodsnorms,
+		detail.goodsunit,
+		${selectKcmoney}
+		as kcmoney,
+		g.nums as nums,
+		detail.sortno,
+		detail.organization,
+		p.user_name as createusername,
+		detail.kuwei,
+		detail.remark,
+		detail.createuser,
+		detail.createtime,
+		detail.pym
+		from KQDS_Ck_Goods_Detail detail
+		LEFT JOIN KQDS_CK_GOODS_IN b on (select top 1 incode from KQDS_CK_GOODS_IN_DETAIL a where a.goodsuuid = detail.seq_id) = b.incode
+		LEFT JOIN KQDS_CK_SUPPLIER c on b.supplier = c.SEQ_ID
+		left join (select goodsdetailid,SUM(nums) as nums,sum(kcmoney) as kcmoney from KQDS_CK_GOODS GROUP BY goodsdetailid) g on detail.seq_id = g.goodsdetailid
+		left join
+		KQDS_CK_GOODS_TYPE t on t.seq_id = detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		left join sys_person p on p.seq_id = detail.createuser
+		where 1=1
+		<if test="queryInput != null and queryInput !='' ">
+			and ( detail.goodsname like '%' + #{queryInput} + '%'
+			or detail.goodscode like '%' + #{queryInput} + '%'
+			or detail.goodsnorms like '%' + #{queryInput} + '%'
+			or
+			detail.pym like '%' + #{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and detail.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID = #{goodstype})
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.goodsnorms like '%' + #{goodsname} + '%'
+			or detail.pym
+			like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and g.goodsdetailid = #{goodsuuid}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and tf.seq_id = #{basetype}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and t.seq_id = #{nexttype}
+		</if>
+		and b.supplier=#{supplier}
+		order by g.nums desc
+	</select>
+	
+	<!--商品列表(不区分仓库：仓库首页面调用，当前库存页面,选择商品 调用) -->
+	<select id="selectNoHouseList" parameterType="map" resultType="json">
+		select
+		detail.seq_id,
+		detail.goodsname,
+		detail.goodscode,
+		detail.goodstype,
+		h.housename as sshousename,
+		g1.sshouse,
+		tf.seq_id AS firsttypeId,
+		tf.goodstype as firsttype,
+		t.goodstype as goodstypename,
+		detail.goodsnorms,
+		detail.goodsunit,
+		${selectKcmoney} as kcmoney,
+		g.nums as nums,
+		detail.sortno,
+		detail.organization,
+		p.user_name as createusername,
+		detail.kuwei,
+		detail.remark,
+		detail.createuser,
+		detail.createtime,
+		detail.pym,
+		j.yxdate
+		from KQDS_Ck_Goods_Detail detail
+		left join KQDS_CK_GOODS g1 on detail.seq_id = g1.goodsdetailid
+		left join (select goodsdetailid,SUM(nums) as nums,sum(kcmoney) as kcmoney from KQDS_CK_GOODS GROUP BY goodsdetailid) g on detail.seq_id = g.goodsdetailid
+		left join KQDS_CK_GOODS_TYPE t on t.seq_id = detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		LEFT JOIN KQDS_CK_HOUSE h ON h.SEQ_ID = g1.sshouse
+		left join sys_person p on p.seq_id = detail.createuser
+		LEFT JOIN (SELECT MIN(yxdate) as yxdate,goodsuuid FROM KQDS_CK_GOODS_IN_DETAIL where auditStatus<![CDATA[ > ]]>0 and phnum<![CDATA[ > ]]>0 and ph !='' and yxdate != '' GROUP BY goodsuuid) j on  j.goodsuuid=detail.seq_id
+		where 1=1
+		and detail.status != '1'
+		<if test="queryInput != null and queryInput !='' ">
+			and ( detail.goodsname like '%' + #{queryInput} + '%'
+			or detail.goodscode like '%' + #{queryInput} + '%'
+			or detail.goodsnorms like '%' + #{queryInput} + '%'
+			or
+			detail.pym like '%' + #{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and detail.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID = #{goodstype})
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.goodsnorms like '%' + #{goodsname} + '%'
+			or detail.pym
+			like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and g.goodsdetailid = #{goodsuuid}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and tf.seq_id = #{basetype}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and t.seq_id = #{nexttype}
+		</if>
+		order by g.nums desc
+	</select>
+	
+	
+	<!--商品列表(不区分仓库：仓库首页面调用，当前库存页面,选择商品 调用) -->
+	<select id="selectNoHouseLists" parameterType="map" resultType="json">
+		select
+		detail.seq_id,
+		detail.goodsname,
+		detail.goodscode,
+		detail.goodstype,
+		h.housename as sshousename,
+		g1.sshouse,
+		tf.seq_id AS firsttypeId,
+		tf.goodstype as firsttype,
+		t.goodstype as goodstypename,
+		detail.goodsnorms,
+		detail.goodsunit,
+		${selectKcmoney} as kcmoney,
+		g.num as nums,
+		detail.sortno,
+		detail.organization,
+		p.user_name as createusername,
+		detail.kuwei,
+		detail.remark,
+		detail.createuser,
+		detail.createtime,
+		detail.pym,
+		j.yxdate
+		from KQDS_Ck_Goods_Detail detail
+		left join KQDS_CK_GOODS g1 on detail.seq_id = g1.goodsdetailid
+		left join (select goodsdetailid,SUM(nums) as nums,sum(kcmoney) as kcmoney from KQDS_CK_GOODS GROUP BY goodsdetailid) g on detail.seq_id = g.goodsdetailid
+		left join KQDS_CK_GOODS_TYPE t on t.seq_id = detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		LEFT JOIN KQDS_CK_HOUSE h ON h.SEQ_ID = g1.sshouse
+		left join sys_person p on p.seq_id = detail.createuser
+		LEFT JOIN (SELECT MIN(yxdate) as yxdate,goodsuuid FROM KQDS_CK_GOODS_IN_DETAIL where auditStatus<![CDATA[ > ]]>0 and phnum<![CDATA[ > ]]>0 and ph !='' and yxdate != '' GROUP BY goodsuuid) j on  j.goodsuuid=detail.seq_id
+		where 1=1
+		<if test="queryInput != null and queryInput !='' ">
+			and ( detail.goodsname like '%' + #{queryInput} + '%'
+			or detail.goodscode like '%' + #{queryInput} + '%'
+			or detail.goodsnorms like '%' + #{queryInput} + '%'
+			or
+			detail.pym like '%' + #{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and detail.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID = #{goodstype})
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.goodsnorms like '%' + #{goodsname} + '%'
+			or detail.pym
+			like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and g.goodsdetailid = #{goodsuuid}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and tf.seq_id = #{basetype}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and t.seq_id = #{nexttype}
+		</if>
+		order by g.nums desc
+	</select>
+	
+	<!--商品列表(区分仓库：仓库首页面调用，当前库存页面,选择商品 调用) -->
+	<select id="selectListOrdertimeSeqid" parameterType="map" resultType="json">
+		select
+		SUm(g.numsexport) as numsexport,
+		SUM(d.innum) as innums,
+		sum(d.rkmoney) as rkmoney,
+		SUM(out.outnum) as outnums,
+		sum(out.ckmoney)as ckmoney
+		from KQDS_Ck_Goods_Detail detail
+		left join KQDS_CK_GOODS_IN_DETAIL d on d.goodsuuid= detail.seq_id
+		LEFT JOIN KQDS_CK_GOODS_IN ckin on ckin.incode = d.incode
+		left join KQDS_CK_GOODS_OUT_DETAIL out on out.goodsuuid=detail.seq_id
+		LEFT JOIN KQDS_CK_GOODS_OUT ckin1 on ckin1.outcode = out.outcode
+		left join KQDS_CK_GOODS g on detail.seq_id = g.goodsdetailid
+		left join KQDS_CK_GOODS_TYPE t on t.seq_id =
+		detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		left join KQDS_CK_HOUSE h on h.seq_id = g.sshouse
+		left join SYS_PERSON p on p.seq_id = detail.createuser
+		where
+		1=1
+		<if test="queryInput != null and queryInput !='' ">
+			and ( detail.goodsname like '%' + #{queryInput} + '%'
+			or detail.goodscode like '%' + #{queryInput} + '%'
+			or detail.goodsnorms like '%' + #{queryInput} + '%'
+			or
+			detail.pym like '%' + #{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and detail.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID =#{goodstype})
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.goodsnorms like '%' + #{goodsname} + '%'
+			or detail.pym
+			like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and g.goodsdetailid = #{goodsuuid}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and tf.seq_id = #{basetype}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and t.seq_id = #{nexttype}
+		</if>
+		and ckin.inhouse=#{sshouse}
+		and ckin.shtime <![CDATA[ <= ]]>#{jztime}
+		and ckin1.outhouse=#{sshouse}
+		and ckin1.shtime <![CDATA[ <= ]]>#{jztime}
+	</select>
+	<!--商品列表(区分仓库：仓库首页面调用，当前库存页面,选择商品 调用) -->
+	<select id="selectListOrdertimeSeqidS" parameterType="map" resultType="json">
+		select
+		SUm(g.numsexport) as numsexport,
+		SUM(d.innum) as innums,
+		sum(d.rkmoney) as rkmoney,
+		SUM(out.outnum) as outnums,
+		sum(out.ckmoney)as ckmoney
+		from KQDS_Ck_Goods_Detail detail
+		LEFT JOIN KQDS_CK_GOODS_IN b on (select top 1 incode from KQDS_CK_GOODS_IN_DETAIL a where a.goodsuuid = detail.seq_id) = b.incode
+		LEFT JOIN KQDS_CK_SUPPLIER c on b.supplier = c.SEQ_ID
+		left join KQDS_CK_GOODS_IN_DETAIL d on d.goodsuuid= detail.seq_id
+		LEFT JOIN KQDS_CK_GOODS_IN ckin on ckin.incode = d.incode
+		left join KQDS_CK_GOODS_OUT_DETAIL out on out.goodsuuid=detail.seq_id
+		LEFT JOIN KQDS_CK_GOODS_OUT ckin1 on ckin1.outcode = out.outcode
+		left join KQDS_CK_GOODS g on detail.seq_id = g.goodsdetailid
+		left join KQDS_CK_GOODS_TYPE t on t.seq_id =
+		detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		left join KQDS_CK_HOUSE h on h.seq_id = g.sshouse
+		left join SYS_PERSON p on p.seq_id = detail.createuser
+		where
+		1=1
+		<if test="queryInput != null and queryInput !='' ">
+			and ( detail.goodsname like '%' + #{queryInput} + '%'
+			or detail.goodscode like '%' + #{queryInput} + '%'
+			or detail.goodsnorms like '%' + #{queryInput} + '%'
+			or
+			detail.pym like '%' + #{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and detail.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID =#{goodstype})
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.goodsnorms like '%' + #{goodsname} + '%'
+			or detail.pym
+			like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and g.goodsdetailid = #{goodsuuid}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and tf.seq_id = #{basetype}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and t.seq_id = #{nexttype}
+		</if>
+		and ckin.inhouse=#{sshouse}
+		and ckin.shtime <![CDATA[ <= ]]>#{jztime}
+		and ckin1.outhouse=#{sshouse}
+		and ckin1.shtime <![CDATA[ <= ]]>#{jztime}
+		and b.supplier=#{supplier}
+	</select>
+	<!--商品列表(区分仓库：仓库首页面调用，当前库存页面,选择商品 调用) -->
+	<select id="selectListOrdertime" parameterType="map" resultType="json">
+		select
+		detail.seq_id,
+		g.seq_id as gseq_id,
+		detail.goodsname,
+		detail.goodscode,
+		detail.goodstype,
+		tf.goodstype as firsttype,
+		t.goodstype as goodstypename,
+		detail.goodsnorms,
+		g.sshouse,
+		h.housename as sshousename,
+		detail.goodsunit,
+		${selectKcmoney} as kcmoney,
+		g.numsexport,
+		detail.sortno,
+		detail.organization,
+		p.user_name as createusername,
+		detail.kuwei,
+		detail.remark,
+		detail.createuser,
+		detail.createtime
+		from KQDS_Ck_Goods_Detail detail
+		LEFT JOIN KQDS_CK_GOODS_IN b ON 
+		(select top 1 a.incode from KQDS_CK_GOODS_IN_DETAIL a where a.goodsuuid = detail.seq_id 
+		<if test="jztime != null and jztime !='' ">
+		and a.createtime <![CDATA[ <= ]]>  #{jztime}
+		</if>
+		<if test="qstime != null and qstime !='' ">
+		and a.createtime <![CDATA[ >= ]]>  #{qstime}
+		</if>
+		order by a.createtime desc
+		) = b.incode
+		left join KQDS_CK_GOODS g on detail.seq_id = g.goodsdetailid
+		left join KQDS_CK_GOODS_TYPE t on t.seq_id =
+		detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		left join KQDS_CK_HOUSE h on h.seq_id = g.sshouse
+		left join SYS_PERSON p on p.seq_id = detail.createuser
+		where
+		1=1
+		AND detail.status != '1'
+		<if test="queryInput != null and queryInput !='' ">
+			and ( detail.goodsname like '%' + #{queryInput} + '%'
+			or detail.goodscode like '%' + #{queryInput} + '%'
+			or detail.goodsnorms like '%' + #{queryInput} + '%'
+			or
+			detail.pym like '%' + #{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and detail.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID =#{goodstype})
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.goodsnorms like '%' + #{goodsname} + '%'
+			or detail.pym
+			like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and g.goodsdetailid = #{goodsuuid}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and tf.seq_id = #{basetype}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and t.seq_id = #{nexttype}
+		</if>
+		<if test="jztime != null and jztime !='' ">
+			and b.shtime <![CDATA[ <= ]]>  #{jztime}
+		</if>
+		<if test="qstime != null and qstime !='' ">
+			and b.shtime <![CDATA[ >= ]]>  #{qstime}
+		</if>
+		order by g.nums desc
+	</select>
+	<!--商品列表(区分仓库：仓库首页面调用，当前库存页面,选择商品 调用) -->
+	<select id="selectListOrdertimeS" parameterType="map" resultType="json">
+		select
+		DISTINCT
+		b.supplier,
+		c.suppliername,
+		detail.seq_id,
+		g.seq_id as gseq_id,
+		detail.goodsname,
+		detail.goodscode,
+		detail.goodstype,
+		tf.goodstype as firsttype,
+		t.goodstype as goodstypename,
+		detail.goodsnorms,
+		g.sshouse,
+		h.housename as sshousename,
+		detail.goodsunit,
+		${selectKcmoney} as kcmoney,
+		g.numsexport,
+		detail.sortno,
+		detail.organization,
+		p.user_name as createusername,
+		detail.kuwei,
+		detail.remark,
+		detail.createuser,
+		detail.createtime
+		from KQDS_Ck_Goods_Detail detail
+		LEFT JOIN KQDS_CK_GOODS_IN b ON 
+		(select top 1 a.incode from KQDS_CK_GOODS_IN_DETAIL a where a.goodsuuid = detail.seq_id 
+		<if test="jztime != null and jztime !='' ">
+		and a.createtime <![CDATA[ <= ]]>  #{jztime}
+		</if>
+		<if test="qstime != null and qstime !='' ">
+		and a.createtime <![CDATA[ >= ]]>  #{qstime}
+		</if>
+		order by a.createtime desc
+		) = b.incode
+		LEFT JOIN KQDS_CK_SUPPLIER c ON b.supplier = c.SEQ_ID
+		left join KQDS_CK_GOODS g on detail.seq_id = g.goodsdetailid
+		left join KQDS_CK_GOODS_TYPE t on t.seq_id =
+		detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		left join KQDS_CK_HOUSE h on h.seq_id = g.sshouse
+		left join SYS_PERSON p on p.seq_id = detail.createuser
+		where
+		1=1
+		and detail.status != '1'
+		<if test="queryInput != null and queryInput !='' ">
+			and ( detail.goodsname like '%' + #{queryInput} + '%'
+			or detail.goodscode like '%' + #{queryInput} + '%'
+			or detail.goodsnorms like '%' + #{queryInput} + '%'
+			or
+			detail.pym like '%' + #{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and detail.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID =#{goodstype})
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.goodsnorms like '%' + #{goodsname} + '%'
+			or detail.pym
+			like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and g.goodsdetailid = #{goodsuuid}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and tf.seq_id = #{basetype}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and t.seq_id = #{nexttype}
+		</if>
+		<if test="jztime != null and jztime !='' ">
+			and b.shtime <![CDATA[ <= ]]>  #{jztime}
+		</if>
+		<if test="qstime != null and qstime !='' ">
+			and b.shtime <![CDATA[ >= ]]>  #{qstime}
+		</if>
+		AND b.supplier=#{supplier}
+		order by g.nums desc
+	</select>
+	<!--商品列表(区分仓库：仓库首页面调用，当前库存页面,选择商品 调用) -->
+	<select id="selectNoHouseListOrdertimeSeqid" parameterType="map" resultType="json">
+		select
+		sum(g.nums) as numsexport,
+		SUM(d.innum) as innums,
+		sum(d.rkmoney) as rkmoney,
+		SUM(out.outnum) as outnums,
+		sum(out.ckmoney)as ckmoney
+		from KQDS_Ck_Goods_Detail detail
+		left join KQDS_CK_GOODS_IN_DETAIL d on d.goodsuuid= detail.seq_id
+		LEFT JOIN KQDS_CK_GOODS_IN ckin on ckin.incode = d.incode
+		left join KQDS_CK_GOODS_OUT_DETAIL out on out.goodsuuid=detail.seq_id
+		LEFT JOIN KQDS_CK_GOODS_OUT ckin1 on ckin1.outcode = out.outcode
+		left join (select goodsdetailid,SUM(numsexport) as nums,sum(goodspriceexport) as kcmoney from KQDS_CK_GOODS GROUP BY goodsdetailid) g on detail.seq_id = g.goodsdetailid
+		left join
+		KQDS_CK_GOODS_TYPE t on t.seq_id = detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		left join sys_person p on p.seq_id = detail.createuser
+		where 1=1
+		<if test="queryInput != null and queryInput !='' ">
+			and ( detail.goodsname like '%' + #{queryInput} + '%'
+			or detail.goodscode like '%' + #{queryInput} + '%'
+			or detail.goodsnorms like '%' + #{queryInput} + '%'
+			or
+			detail.pym like '%' + #{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and detail.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID = #{goodstype})
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.goodsnorms like '%' + #{goodsname} + '%'
+			or detail.pym
+			like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and g.goodsdetailid = #{goodsuuid}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and tf.seq_id = #{basetype}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and t.seq_id = #{nexttype}
+		</if>
+		and ckin.shtime <![CDATA[ <= ]]>#{jztime}
+		and ckin1.shtime <![CDATA[ <= ]]>#{jztime}
+	</select>
+	<select id="selectNoHouseListOrdertimeSeqidS" parameterType="map" resultType="json">
+		select
+		sum(g.nums) as numsexport,
+		SUM(d.innum) as innums,
+		sum(d.rkmoney) as rkmoney,
+		SUM(out.outnum) as outnums,
+		sum(out.ckmoney)as ckmoney
+		from KQDS_Ck_Goods_Detail detail
+		LEFT JOIN KQDS_CK_GOODS_IN b on (select top 1 incode from KQDS_CK_GOODS_IN_DETAIL a where a.goodsuuid = detail.seq_id) = b.incode
+		LEFT JOIN KQDS_CK_SUPPLIER c on b.supplier = c.SEQ_ID
+		left join KQDS_CK_GOODS_IN_DETAIL d on d.goodsuuid= detail.seq_id
+		LEFT JOIN KQDS_CK_GOODS_IN ckin on ckin.incode = d.incode
+		left join KQDS_CK_GOODS_OUT_DETAIL out on out.goodsuuid=detail.seq_id
+		LEFT JOIN KQDS_CK_GOODS_OUT ckin1 on ckin1.outcode = out.outcode
+		left join (select goodsdetailid,SUM(numsexport) as nums,sum(goodspriceexport) as kcmoney from KQDS_CK_GOODS GROUP BY goodsdetailid) g on detail.seq_id = g.goodsdetailid
+		left join
+		KQDS_CK_GOODS_TYPE t on t.seq_id = detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		left join sys_person p on p.seq_id = detail.createuser
+		where 1=1
+		<if test="queryInput != null and queryInput !='' ">
+			and ( detail.goodsname like '%' + #{queryInput} + '%'
+			or detail.goodscode like '%' + #{queryInput} + '%'
+			or detail.goodsnorms like '%' + #{queryInput} + '%'
+			or
+			detail.pym like '%' + #{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and detail.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID = #{goodstype})
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.goodsnorms like '%' + #{goodsname} + '%'
+			or detail.pym
+			like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and g.goodsdetailid = #{goodsuuid}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and tf.seq_id = #{basetype}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and t.seq_id = #{nexttype}
+		</if>
+		and ckin.shtime <![CDATA[ <= ]]>#{jztime}
+		and ckin1.shtime <![CDATA[ <= ]]>#{jztime}
+		and b.supplier=#{supplier}
+	</select>
+	<!--商品列表(区分仓库：仓库首页面调用，当前库存页面,选择商品 调用) -->
+	<select id="selectNoHouseListOrdertime" parameterType="map" resultType="json">
+		select
+		detail.seq_id,
+		detail.goodsname,
+		detail.goodscode,
+		detail.goodstype,
+		tf.goodstype as firsttype,
+		t.goodstype as goodstypename,
+		detail.goodsnorms,
+		detail.goodsunit,
+		${selectKcmoney}
+		as kcmoney,
+		g.nums,
+		detail.sortno,
+		detail.organization,
+		p.user_name as createusername,
+		detail.kuwei,
+		detail.remark,
+		detail.createuser,
+		detail.createtime
+		from KQDS_Ck_Goods_Detail detail
+		LEFT JOIN KQDS_CK_GOODS_IN b ON 
+		(select top 1 a.incode from KQDS_CK_GOODS_IN_DETAIL a where a.goodsuuid = detail.seq_id 
+		<if test="jztime != null and jztime !='' ">
+		and a.createtime <![CDATA[ <= ]]>  #{jztime}
+		</if>
+		<if test="qstime != null and qstime !='' ">
+		and a.createtime <![CDATA[ >= ]]>  #{qstime}
+		</if>
+		order by a.createtime desc
+		) = b.incode
+		left join (select goodsdetailid,SUM(numsexport) as nums,sum(goodspriceexport) as kcmoney from KQDS_CK_GOODS GROUP BY goodsdetailid) g on detail.seq_id = g.goodsdetailid
+		left join
+		KQDS_CK_GOODS_TYPE t on t.seq_id = detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		left join sys_person p on p.seq_id = detail.createuser
+		where 1=1
+		and detail.status != '1'
+		<if test="queryInput != null and queryInput !='' ">
+			and ( detail.goodsname like '%' + #{queryInput} + '%'
+			or detail.goodscode like '%' + #{queryInput} + '%'
+			or detail.goodsnorms like '%' + #{queryInput} + '%'
+			or
+			detail.pym like '%' + #{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and detail.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID = #{goodstype})
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.goodsnorms like '%' + #{goodsname} + '%'
+			or detail.pym
+			like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and g.goodsdetailid = #{goodsuuid}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and tf.seq_id = #{basetype}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and t.seq_id = #{nexttype}
+		</if>
+		<if test="jztime != null and jztime !='' ">
+			and b.shtime <![CDATA[ <= ]]>  #{jztime}
+		</if>
+		<if test="qstime != null and qstime !='' ">
+			and b.shtime <![CDATA[ >= ]]>  #{qstime}
+		</if>
+		order by g.nums desc
+	</select>
+	<!--商品列表(区分仓库：仓库首页面调用，当前库存页面,选择商品 调用) -->
+	<select id="selectNoHouseListOrdertimeS" parameterType="map" resultType="json">
+		select
+		DISTINCT
+		b.supplier,
+		c.suppliername,
+		detail.seq_id,
+		detail.goodsname,
+		detail.goodscode,
+		detail.goodstype,
+		tf.goodstype as firsttype,
+		t.goodstype as goodstypename,
+		detail.goodsnorms,
+		detail.goodsunit,
+		${selectKcmoney}
+		as kcmoney,
+		g.nums,
+		detail.sortno,
+		detail.organization,
+		p.user_name as createusername,
+		detail.kuwei,
+		detail.remark,
+		detail.createuser,
+		detail.createtime
+		from KQDS_Ck_Goods_Detail detail
+		LEFT JOIN KQDS_CK_GOODS_IN b ON 
+		(select top 1 a.incode from KQDS_CK_GOODS_IN_DETAIL a where a.goodsuuid = detail.seq_id 
+		<if test="jztime != null and jztime !='' ">
+		and a.createtime <![CDATA[ <= ]]>  #{jztime}
+		</if>
+		<if test="qstime != null and qstime !='' ">
+		and a.createtime <![CDATA[ >= ]]>  #{qstime}
+		</if>
+		order by a.createtime desc
+		) = b.incode
+		LEFT JOIN KQDS_CK_SUPPLIER c ON b.supplier = c.SEQ_ID
+		left join (select goodsdetailid,SUM(numsexport) as nums,sum(goodspriceexport) as kcmoney from KQDS_CK_GOODS GROUP BY goodsdetailid) g on detail.seq_id = g.goodsdetailid
+		left join
+		KQDS_CK_GOODS_TYPE t on t.seq_id = detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		left join sys_person p on p.seq_id = detail.createuser
+		where 1=1 
+		and detail.status != '1'
+		<if test="queryInput != null and queryInput !='' ">
+			and ( detail.goodsname like '%' + #{queryInput} + '%'
+			or detail.goodscode like '%' + #{queryInput} + '%'
+			or detail.goodsnorms like '%' + #{queryInput} + '%'
+			or
+			detail.pym like '%' + #{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and detail.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID = #{goodstype})
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.goodsnorms like '%' + #{goodsname} + '%'
+			or detail.pym
+			like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and g.goodsdetailid = #{goodsuuid}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and tf.seq_id = #{basetype}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and t.seq_id = #{nexttype}
+		</if>
+		<if test="jztime != null and jztime !='' ">
+			and b.shtime <![CDATA[ <= ]]>  #{jztime}
+		</if>
+		<if test="qstime != null and qstime !='' ">
+			and b.shtime <![CDATA[ >= ]]>  #{qstime}
+		</if>
+		AND b.supplier=#{supplier}
+		order by g.nums desc
+	</select>
+	<select id="selectSizeByTypeno" parameterType="map" resultType="int">
+		select count(1) from KQDS_Ck_Goods_Detail where 1=1
+		<if test="goodstype != null and goodstype !='' ">
+			and goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID = #{goodstype} )
+		</if>
+		<if test="organization != null and organization !='' ">
+			and organization = #{organization}
+		</if>
+	</select>
+	<!--商品列表(区分仓库：仓库首页面调用，当前库存页面,选择商品 调用) -->
+	<select id="selectGoodsDetailList" parameterType="map" resultType="json">
+		select tf.goodstype firsttype,t.goodstype,goodscode,goodsname,goodsnorms,goodsunit,minnums,mingj,maxnums,maxgj,detail.organization,detail.remark
+		from KQDS_CK_GOODS_DETAIL detail
+		LEFT JOIN KQDS_CK_GOODS_TYPE t on t.SEQ_ID = detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		where 1=1
+		<if test="queryInput != null and queryInput !='' ">
+			and ( detail.goodsname like '%' + #{queryInput} + '%'
+			or detail.goodscode like '%' + #{queryInput} + '%'
+			or detail.goodsnorms like '%' + #{queryInput} + '%'
+			or
+			detail.pym like '%' + #{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and detail.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID = #{goodstype} )
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.goodsnorms like '%' + #{goodsname} + '%'
+			or detail.pym
+			like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and g.goodsdetailid = #{goodsuuid}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and tf.seq_id = #{basetype}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and t.seq_id = #{nexttype}
+		</if>
+		order by order by g.nums desc
+	</select>
+	<!--库存报警查询(不区分仓库) -->
+	<select id="selectGoodsGjNoHousseList" parameterType="map" resultType="json">
+		select tf.goodstype firsttype,t.goodstype,goodscode,goodsname,goodsnorms,goodsunit,nums,minnums,mingj,maxnums,maxgj,d.organization
+		from KQDS_CK_GOODS_DETAIL d
+		LEFT JOIN (select
+		goodsdetailid,SUM(nums) as nums from KQDS_CK_GOODS GROUP BY goodsdetailid) g on d.SEQ_ID = g.goodsdetailid
+		LEFT JOIN KQDS_CK_GOODS_TYPE t on t.SEQ_ID = d.goodstype
+		LEFT JOIN
+		KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		where 1=1
+		<if test="gjtype != null and gjtype !='' ">
+			<if test='gjtype = "min"'>
+				and g.nums <![CDATA[ < ]]>
+				d.minnums and d.mingj = 1
+			</if>
+			<if test='gjtype = "max"'>
+				and g.nums <![CDATA[ > ]]>
+				d.maxnums and d.maxgj = 1
+			</if>
+		</if>
+		<if test="!(gjtype != null and gjtype !='')">
+			and ((g.nums <![CDATA[ < ]]>
+			d.minnums and d.mingj = 1) or (g.nums <![CDATA[ > ]]>
+			d.maxnums and d.maxgj = 1))
+		</if>
+		<if test="queryInput != null and queryInput !='' ">
+			and ( d.goodsname like '%' + #{queryInput} + '%'
+			or d.goodscode like '%' + #{queryInput} + '%'
+			or d.goodsnorms like '%' + #{queryInput} + '%'
+			or d.pym like '%' +
+			#{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and d.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID = #{goodstype})
+		</if>
+		<if test="organization != null and organization !='' ">
+			and d.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and d.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( d.goodsname like '%' + #{goodsname} + '%'
+			or d.goodscode like '%' + #{goodsname} + '%'
+			or d.goodsnorms like '%' + #{goodsname} + '%'
+			or d.pym like '%' +
+			#{goodsname}+ '%')
+		</if>
+	</select>
+	<!--库存报警查询(区分仓库) -->
+	<select id="selectGoodsGjList" parameterType="map" resultType="json">
+		select h.housename,tf.goodstype firsttype,t.goodstype,goodscode,goodsname,goodsnorms,goodsunit,nums,minnums,mingj,maxnums,maxgj,d.organization
+		from KQDS_CK_GOODS g
+		LEFT JOIN
+		KQDS_CK_GOODS_DETAIL d on d.SEQ_ID = g.goodsdetailid
+		LEFT JOIN KQDS_CK_HOUSE h on h.SEQ_ID = g.sshouse
+		LEFT JOIN KQDS_CK_GOODS_TYPE t on t.SEQ_ID = d.goodstype
+		LEFT JOIN
+		KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		where 1=1
+		<if test="gjtype != null and gjtype !='' ">
+			<if test='gjtype = "min"'>
+				and g.nums <![CDATA[ < ]]>
+				d.minnums and d.mingj = 1
+			</if>
+			<if test='gjtype = "max"'>
+				and g.nums <![CDATA[ > ]]>
+				d.maxnums and d.maxgj = 1
+			</if>
+		</if>
+		<if test="!(gjtype != null and gjtype !='') ">
+			and ((g.nums <![CDATA[ < ]]>
+			d.minnums and d.mingj = 1) or (g.nums <![CDATA[ > ]]>
+			d.maxnums and d.maxgj = 1))
+		</if>
+		<if test="queryInput != null and queryInput !=''">
+			and ( d.goodsname like '%' + #{queryInput} + '%'
+			or d.goodscode like '%' + #{queryInput} + '%'
+			or d.goodsnorms like '%' + #{queryInput} + '%'
+			or d.pym like '%' +
+			#{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and d.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID = #{goodstype})
+		</if>
+		<if test="organization != null and organization !='' ">
+			and d.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and d.seq_id = #{goodsuuid}
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( d.goodsname like '%' + #{goodsname} + '%'
+			or d.goodscode like '%' + #{goodsname} + '%'
+			or d.goodsnorms like '%' + #{goodsname} + '%'
+			or d.pym like '%' +
+			#{goodsname}+ '%')
+		</if>
+	</select>
+	
+	<!-- 根据入库表查询对应商品入库时选的厂家-库房入库同一种商品每次入库厂家是一致的 -->
+	<select id="selectGoodSupplierByInGoods" resultType="json" parameterType="map">
+		<!-- select distinct a.goodsuuid,b.supplier,c.suppliername,a.createtime from KQDS_CK_GOODS_IN_DETAIL a 
+			LEFT JOIN KQDS_CK_GOODS_IN b on a.incode = b.incode
+			LEFT JOIN KQDS_CK_SUPPLIER c on b.supplier = c.SEQ_ID
+			where a.goodsuuid IN (${goodsuuid})
+		ORDER BY a.createtime asc -->
+		SELECT b.goodsuuid,b.supplier,b.suppliername from (
+			SELECT 
+				a.goodsuuid,
+				b.supplier,
+				c.suppliername,
+				MAX(a.createtime) createtime
+			FROM
+				KQDS_CK_GOODS_IN_DETAIL a
+			LEFT JOIN KQDS_CK_GOODS_IN b ON a.incode = b.incode
+			LEFT JOIN KQDS_CK_SUPPLIER c ON b.supplier = c.SEQ_ID
+			WHERE a.goodsuuid IN (${goodsuuid})
+			GROUP BY a.goodsuuid,
+				b.supplier,
+				c.suppliername
+			) b ORDER BY b.createtime ASC 
+	</select>
+	<!-- 根据入库表goodsuuid查询对应商品入库时选的厂家-库房入库同一种商品每次入库厂家是一致的 -->
+	<select id="selectGoodSupplierByInGoodsuuid" parameterType="String" resultType="json">
+		select distinct a.goodsuuid,b.supplier,c.suppliername from KQDS_CK_GOODS_IN_DETAIL a 
+			LEFT JOIN KQDS_CK_GOODS_IN b on a.incode = b.incode
+			LEFT JOIN KQDS_CK_SUPPLIER c on b.supplier = c.SEQ_ID
+			where a.goodsuuid=#{goodsuuid}
+	</select>
+	<select id="findGoodsDetailByGoodscode" parameterType="String" resultType="json">
+		select * from KQDS_CK_GOODS_DETAIL where goodscode = #{goodscode}
+	</select>
+	
+	<select id="findCkGoodsDetailBySeqid" parameterType="String" resultType="com.kqds.entity.base.KqdsCkGoodsDetail">
+		select SEQ_ID, goodsname, goodscode, goodsnorms, goodsunit
+		from KQDS_CK_GOODS_DETAIL 
+		where seq_id=#{seqId}
+	</select>
+	
+	<select id="getNumber" parameterType="map" resultType="json">
+		SELECT
+			MAX (d.goodscode) AS goodscode
+		FROM
+			kqds_ck_goods_detail d
+		LEFT JOIN KQDS_CK_GOODS g ON g.goodsdetailid = d.SEQ_ID
+		WHERE
+			1 = 1
+			AND g.sshouse = #{ id }
+	</select>
+	
+	<update id="updateDetail" parameterType="map">
+		UPDATE KQDS_CK_GOODS_DETAIL SET
+			<if test="goodscode != null and goodscode != ''">
+				goodscode = #{goodscode},
+			</if>
+			<if test="goodstype != null and goodstype != ''">
+				goodstype = #{goodstype}
+			</if>
+		WHERE 1=1
+			<if test="seqId != null and seqId != ''">
+				AND SEQ_ID = #{seqId}
+			</if>
+	</update>
+	<update id="batchUpdateGoodsCode" parameterType="java.util.List">
+		UPDATE KQDS_CK_GOODS_DETAIL set
+			<if test="goodscode != null and goodscode != ''">
+				goodscode = #{goodscode,jdbcType=VARCHAR}
+			</if> 
+		WHERE 1=1
+		<if test="seqId != null and seqId != ''">
+			AND SEQ_ID = #{seqId}
+		</if>
+	</update>
+	<!--二楼仓库用 -->
+	<select id="selectNoHouseList2" parameterType="map" resultType="json">
+		select
+		detail.seq_id,
+		detail.goodsname,
+		detail.goodscode,
+		detail.goodstype,
+		h.housename as sshousename,
+		g1.sshouse,
+		tf.seq_id AS firsttypeId,
+		tf.goodstype as firsttype,
+		t.goodstype as goodstypename,
+		detail.goodsnorms,
+		detail.goodsunit,
+		${selectKcmoney} as kcmoney,
+		g.num as nums,
+		detail.sortno,
+		detail.organization,
+		p.user_name as createusername,
+		detail.kuwei,
+		detail.remark,
+		detail.createuser,
+		detail.createtime,
+		detail.pym,
+		j.yxdate
+		from KQDS_Ck_Goods_Detail detail
+		left join KQDS_CK_GOODS g1 on detail.seq_id = g1.goodsdetailid
+		left join (select goodsdetailid,SUM(num) as num,sum(kcmoneys) as kcmoneys from KQDS_CK_GOODS GROUP BY goodsdetailid) g on detail.seq_id = g.goodsdetailid
+		left join KQDS_CK_GOODS_TYPE t on t.seq_id = detail.goodstype
+		LEFT JOIN KQDS_CK_GOODS_TYPE tf on tf.SEQ_ID = t.perid
+		LEFT JOIN KQDS_CK_HOUSE h ON h.SEQ_ID = g1.sshouse
+		left join sys_person p on p.seq_id = detail.createuser
+		LEFT JOIN (SELECT MIN(yxdate) as yxdate,goodsuuid FROM KQDS_CK_GOODS_IN_DETAIL where auditStatus<![CDATA[ > ]]>0 and phnum<![CDATA[ > ]]>0 and ph !='' and yxdate != '' GROUP BY goodsuuid) j on  j.goodsuuid=detail.seq_id
+		where 1=1
+		<if test="queryInput != null and queryInput !='' ">
+			and ( detail.goodsname like '%' + #{queryInput} + '%'
+			or detail.goodscode like '%' + #{queryInput} + '%'
+			or detail.goodsnorms like '%' + #{queryInput} + '%'
+			or
+			detail.pym like '%' + #{queryInput}+ '%')
+		</if>
+		<if test="goodstype != null and goodstype !='' ">
+			and detail.goodstype in ( SELECT seq_id from KQDS_CK_GOODS_TYPE where perid = #{goodstype} or SEQ_ID = #{goodstype})
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and detail.seq_id = #{goodsuuid}
+		</if>
+		<if test="goodsname != null and goodsname !='' ">
+			and ( detail.goodsname like '%' + #{goodsname} + '%'
+			or detail.goodscode like '%' + #{goodsname} + '%'
+			or detail.goodsnorms like '%' + #{goodsname} + '%'
+			or detail.pym
+			like '%' + #{goodsname}+ '%')
+		</if>
+		<if test="sshouse != null and sshouse !='' ">
+			and g.sshouse = #{sshouse}
+		</if>
+		<if test="goodsuuid != null and goodsuuid !='' ">
+			and g.goodsdetailid = #{goodsuuid}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			and tf.seq_id = #{basetype}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and t.seq_id = #{nexttype}
+		</if>
+		order by g.num desc
+	</select>
+	
+</mapper>

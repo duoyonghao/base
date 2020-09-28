@@ -1,0 +1,1092 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_LCLJ_OPERATION_NODE_INFOR" >
+  <resultMap id="BaseResultMap" type="com.hudh.lclj.entity.OperationNodeInfor" >
+    <id column="SEQ_ID" property="seqId" jdbcType="VARCHAR" />
+    <result column="clinicalpathwayid" property="clinicalpathwayid" jdbcType="VARCHAR" />
+    <result column="operation_time" property="operation_time" jdbcType="VARCHAR" />
+    <result column="preoperation_one_houres" property="preoperation_one_houres" jdbcType="VARCHAR" />
+    <result column="preoperative_verification" property="preoperative_verification" jdbcType="VARCHAR" />
+    <result column="assist_operation" property="assist_operation" jdbcType="VARCHAR" />
+    <result column="postoperation_user_deugs" property="postoperation_user_deugs" jdbcType="VARCHAR" />
+    <result column="collutory" property="collutory" jdbcType="VARCHAR" />
+    <result column="abutment_station" property="abutment_station" jdbcType="VARCHAR" />
+    <result column="healing_cap_station" property="healing_cap_station" jdbcType="VARCHAR" />
+    <result column="opration_record" property="opration_record" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="announcements" property="announcements" jdbcType="VARCHAR" />
+    <result column="small_teeth" property="small_teeth" jdbcType="VARCHAR" />
+    <result column="antimicrobial_use" property="antimicrobial_use" jdbcType="VARCHAR" />
+    <result column="review_time" property="review_time" jdbcType="VARCHAR" />
+    <result column="observe_wound" property="observe_wound" jdbcType="VARCHAR" />
+    <result column="check_wound" property="check_wound" jdbcType="VARCHAR" />
+    <result column="is_stitches" property="is_stitches" jdbcType="VARCHAR" />
+    <result column="next_hospital_time" property="next_hospital_time" jdbcType="VARCHAR" />
+    <result column="complete_case_record" property="complete_case_record" jdbcType="VARCHAR" />
+    <result column="panoramic_view_piece" property="panoramic_view_piece" jdbcType="VARCHAR" />
+    <result column="check_surgical_healing" property="check_surgical_healing" jdbcType="VARCHAR" />
+    <result column="twoOperationAttention" property="twoOperationAttention" jdbcType="VARCHAR" />
+    <result column="twoOperationTime" property="twoOperationTime" jdbcType="VARCHAR" />
+    <result column="checkPlantSituation" property="checkPlantSituation" jdbcType="VARCHAR" />
+    <result column="checkPlantBoneCombine" property="checkPlantBoneCombine" jdbcType="VARCHAR" />
+    <result column="completeTwoOperatio" property="completeTwoOperatio" jdbcType="VARCHAR" />
+    <result column="twoDateStitchesTime" property="twoDateStitchesTime" jdbcType="VARCHAR" />
+    <result column="transfer" property="transfer" jdbcType="VARCHAR" />
+    <result column="ismodule" property="ismodule" jdbcType="VARCHAR" />
+    <result column="basalCrowns" property="basalCrowns" jdbcType="VARCHAR" />
+    <result column="colorimetric" property="colorimetric" jdbcType="VARCHAR" />
+    <result column="localBridge" property="localBridge" jdbcType="VARCHAR" />
+    <result column="try_in" property="try_in" jdbcType="VARCHAR" />
+    <result column="wearTooth" property="wearTooth" jdbcType="VARCHAR" />
+    <result column="isphotograph" property="isphotograph" jdbcType="VARCHAR" />
+    <result column="askAboutUsage" property="askAboutUsage" jdbcType="VARCHAR" />
+    <result column="checkOcclusion" property="checkOcclusion" jdbcType="VARCHAR" />
+    <result column="createuser" property="createuser" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="VARCHAR" />
+    <result column="organization" property="organization" jdbcType="VARCHAR" />
+    <result column="visit_time" property="visit_time" jdbcType="VARCHAR" />
+    <result column="connectingBridge" property="connectingBridge" jdbcType="VARCHAR" />
+    
+    <result column="confirmOcclusalRelationship" property="confirmOcclusalRelationship" jdbcType="VARCHAR" />
+    <result column="makeTransitionDenture" property="makeTransitionDenture" jdbcType="VARCHAR" />
+    <result column="tryInTransitionDenture" property="tryInTransitionDenture" jdbcType="VARCHAR" />
+    <result column="postoperativeModulus" property="postoperativeModulus" jdbcType="VARCHAR" />
+    <result column="doctorWrittenRecords" property="doctorWrittenRecords" jdbcType="VARCHAR" />
+    <result column="modulusToMakePersonalizedTrays" property="modulusToMakePersonalizedTrays" jdbcType="VARCHAR" />
+    <result column="jawrelationRecord" property="jawrelationRecord" jdbcType="VARCHAR" />
+    <result column="tryBaseStationInnerCrown" property="tryBaseStationInnerCrown" jdbcType="VARCHAR" />
+    <result column="ectolophUse" property="ectolophUse" jdbcType="VARCHAR" />
+    <result column="toTryAgain" property="toTryAgain" jdbcType="VARCHAR" />
+    <result column="temper" property="temper" jdbcType="VARCHAR" />
+    <result column="resinSealing" property="resinSealing" jdbcType="VARCHAR" />
+    <result column="secondGetModulus" property="secondGetModulus" jdbcType="VARCHAR" />
+    <result column="checkCavityCleanSitu" property="checkCavityCleanSitu" jdbcType="VARCHAR" />
+    <result column="checkWearToothSitu" property="checkWearToothSitu" jdbcType="VARCHAR" />
+    <result column="satisfactionPatients" property="satisfactionPatients" jdbcType="VARCHAR" />
+    <result column="tryHolderOrBasalCrowns" property="tryHolderOrBasalCrowns" jdbcType="VARCHAR" />
+    <result column="accord" property="accord" jdbcType="VARCHAR" />
+    <result column="askUserSituation" property="askUserSituation" jdbcType="VARCHAR" />
+    <result column="order_number" property="order_number" jdbcType="VARCHAR" />
+    <result column="nodeId" property="nodeId" jdbcType="VARCHAR" />
+    <result column="anesthesiaMethod" property="anesthesiaMethod" jdbcType="VARCHAR" />
+    <result column="nostitches" property="nostitches" jdbcType="VARCHAR" />
+    <result column="intraoperativeMedication" property="intraoperativeMedication" jdbcType="VARCHAR" />
+    <result column="enterLclj" property="enterLclj" jdbcType="VARCHAR" />
+    
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+    <result column="finish_norm_first" property="finish_norm_first" jdbcType="VARCHAR" />
+    <result column="finish_norm_second" property="finish_norm_second" jdbcType="VARCHAR" />
+    <result column="finish_norm_third" property="finish_norm_third" jdbcType="VARCHAR" />
+    <result column="finish_norm_fourth" property="finish_norm_fourth" jdbcType="VARCHAR" />
+    <result column="finish_norm_fifth" property="finish_norm_fifth" jdbcType="VARCHAR" />
+    <result column="before_Modulo_bite" property="before_Modulo_bite" jdbcType="VARCHAR" />
+    <result column="after_Modulo_bite" property="after_Modulo_bite" jdbcType="VARCHAR" />
+    <result column="fixation_tooth_bridge" property="fixation_tooth_bridge" jdbcType="VARCHAR" />
+    <result column="decision_bite" property="decision_bite" jdbcType="VARCHAR" />
+    <result column="upper_frame" property="upper_frame" jdbcType="VARCHAR" />
+    <result column="is_loose" property="is_loose" jdbcType="VARCHAR" />
+    <result column="health_education" property="health_education" jdbcType="VARCHAR" />
+    <result column="neonychium" property="neonychium" jdbcType="VARCHAR" />
+    <result column="clean_toothbridge" property="clean_toothbridge" jdbcType="VARCHAR" />
+    <result column="outside_bone_grafting" property="outside_bone_grafting" jdbcType="VARCHAR" />
+    <result column="nodeName" property="nodeName" jdbcType="VARCHAR" />
+    <result column="wearTeeth" property="wearTeeth" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SEQ_ID, clinicalpathwayid, operation_time, preoperation_one_houres, preoperative_verification, assist_operation, postoperation_user_deugs
+	, collutory, abutment_station, healing_cap_station, opration_record, remark, announcements, small_teeth, antimicrobial_use
+	, review_time, observe_wound, check_wound, is_stitches, next_hospital_time, complete_case_record, panoramic_view_piece, check_surgical_healing
+	, twoOperationAttention, twoOperationTime, checkPlantSituation, checkPlantBoneCombine, completeTwoOperation, twoDateStitchesTime, transfer
+	, ismodule, basalCrowns, colorimetric, localBridge, try_in, wearTooth, isphotograph, askAboutUsage, checkOcclusion, createuser, createtime
+	, organization, visit_time, connectingBridge, confirmOcclusalRelationship, makeTransitionDenture, tryInTransitionDenture, postoperativeModulus
+	, doctorWrittenRecords, modulusToMakePersonalizedTrays, jawrelationRecord, tryBaseStationInnerCrown, ectolophUse, toTryAgain, temper
+	, resinSealing, secondGetModulus, checkCavityCleanSitu, checkWearToothSitu, satisfactionPatients, tryHolderOrBasalCrowns, accord, askUserSituation
+	, order_number, nodeId, anesthesiaMethod, nostitches, intraoperativeMedication, enterLclj, operator, finish_norm_first,finish_norm_second
+	, finish_norm_third, finish_norm_fourth, finish_norm_fifth, before_Modulo_bite, after_Modulo_bite, fixation_tooth_bridge, decision_bite
+	, upper_frame, is_loose, health_education, neonychium, clean_toothbridge, outside_bone_grafting,extractionleftup_l,extractionleftup_r,
+	extractionleftdown_l,extractionleftdown_r,extractionleftup1_l,extractionleftup1_r,extractionleftdown1_l,extractionleftdown1_r, nodeName, wearTeeth
+  </sql>
+  <update id="updateOperationNodeInforByOrderNumberAndNodeId" parameterType="com.hudh.lclj.entity.OperationNodeInfor">
+  	UPDATE HUDH_LCLJ_OPERATION_NODE_INFOR
+		<trim prefix="SET" suffixOverrides=",">
+			<if test='null != clinicalpathwayid and "" !=  clinicalpathwayid'>
+				clinicalpathwayid=#{clinicalpathwayid,jdbcType=VARCHAR},
+			</if>
+			<if test='null != operation_time and "" !=  operation_time'>
+				operation_time=#{operation_time,jdbcType=VARCHAR},
+			</if>
+			<if test='null != preoperation_one_houres and "" !=  preoperation_one_houres'>
+				preoperation_one_houres=#{preoperation_one_houres,jdbcType=VARCHAR},
+			</if>
+			<if test='null != preoperative_verification and "" !=  preoperative_verification'>
+				preoperative_verification=#{preoperative_verification,jdbcType=VARCHAR},
+			</if>
+			<if test='null != assist_operation and "" !=  assist_operation'>
+				assist_operation=#{assist_operation,jdbcType=VARCHAR},
+			</if>
+			<if test='null != postoperation_user_deugs and "" !=  postoperation_user_deugs'>
+				postoperation_user_deugs=#{postoperation_user_deugs,jdbcType=VARCHAR},
+			</if>
+			<if test='null != collutory and "" !=  collutory'>
+				collutory=#{collutory,jdbcType=VARCHAR},
+			</if>
+			<if test='null != abutment_station and "" !=  abutment_station'>
+				abutment_station=#{abutment_station,jdbcType=VARCHAR},
+			</if>
+			<if test='null != healing_cap_station and "" !=  healing_cap_station'>
+				healing_cap_station=#{healing_cap_station,jdbcType=VARCHAR},
+			</if>
+			<if test='null != opration_record and "" !=  opration_record'>
+				opration_record=#{opration_record,jdbcType=VARCHAR},
+			</if>
+			<if test='null != remark and "" !=  remark'>
+				remark=#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test='null != announcements and "" !=  announcements'>
+				announcements=#{announcements,jdbcType=VARCHAR},
+			</if>
+			<if test='null != small_teeth and "" !=  small_teeth'>
+				small_teeth=#{small_teeth,jdbcType=VARCHAR},
+			</if>
+			<if test='null != antimicrobial_use and "" !=  antimicrobial_use'>
+				antimicrobial_use=#{antimicrobial_use,jdbcType=VARCHAR},
+			</if>
+			<if test='null != review_time and "" !=  review_time'>
+				review_time=#{review_time,jdbcType=VARCHAR},
+			</if>
+			<if test='null != observe_wound and "" !=  observe_wound'>
+				observe_wound=#{observe_wound,jdbcType=VARCHAR},
+			</if>
+			<if test='null != check_wound and "" !=  check_wound'>
+				check_wound=#{check_wound,jdbcType=VARCHAR},
+			</if>
+			<if test='null != is_stitches and "" !=  is_stitches'>
+				is_stitches=#{is_stitches,jdbcType=VARCHAR},
+			</if>
+			<if test='null != next_hospital_time and "" !=  next_hospital_time'>
+				next_hospital_time=#{next_hospital_time,jdbcType=VARCHAR},
+			</if>
+			<if test='null != complete_case_record and "" !=  complete_case_record'>
+				complete_case_record=#{complete_case_record,jdbcType=VARCHAR},
+			</if>
+			<if test='null != panoramic_view_piece and "" !=  panoramic_view_piece'>
+				panoramic_view_piece=#{panoramic_view_piece,jdbcType=VARCHAR},
+			</if>
+			<if test='null != check_surgical_healing and "" !=  check_surgical_healing'>
+				check_surgical_healing=#{check_surgical_healing,jdbcType=VARCHAR},
+			</if>
+			<if test='null != twoOperationAttention and "" !=  twoOperationAttention'>
+				twoOperationAttention=#{twoOperationAttention,jdbcType=VARCHAR},
+			</if>
+			<if test='null != twoOperationTime and "" !=  twoOperationTime'>
+				twoOperationTime=#{twoOperationTime  	,jdbcType=VARCHAR},
+			</if>
+			<if test='null != checkPlantSituation and "" !=  checkPlantSituation'>
+				checkPlantSituation=#{checkPlantSituation,jdbcType=VARCHAR},
+			</if>
+			<if test='null != checkPlantBoneCombine and "" !=  checkPlantBoneCombine'>
+				checkPlantBoneCombine=#{checkPlantBoneCombine,jdbcType=VARCHAR},
+			</if>
+			<if test='null != completeTwoOperation and "" !=  completeTwoOperation'>
+				completeTwoOperation=#{completeTwoOperation,jdbcType=VARCHAR},
+			</if>
+			<if test='null != twoDateStitchesTime and "" !=  twoDateStitchesTime'>
+				twoDateStitchesTime=#{twoDateStitchesTime,jdbcType=VARCHAR},
+			</if>
+			<if test='null != transfer and "" !=  transfer'>
+				transfer=#{transfer,jdbcType=VARCHAR},
+			</if>
+			<if test='null != ismodule and "" !=  ismodule'>
+				ismodule=#{ismodule,jdbcType=VARCHAR},
+			</if>
+			<if test='null != basalCrowns and "" !=  basalCrowns'>
+				basalCrowns=#{basalCrowns,jdbcType=VARCHAR},
+			</if>
+			<if test='null != colorimetric and "" !=  colorimetric'>
+				colorimetric=#{colorimetric,jdbcType=VARCHAR},
+			</if>
+			<if test='null != localBridge and "" !=  localBridge'>
+				localBridge=#{localBridge,jdbcType=VARCHAR},
+			</if>
+			<if test='null != try_in and "" !=  try_in'>
+				try_in=#{try_in,jdbcType=VARCHAR},
+			</if>
+			<if test='null != wearTooth and "" !=  wearTooth'>
+				wearTooth=#{wearTooth,jdbcType=VARCHAR},
+			</if>
+			<if test='null != isphotograph and "" !=  isphotograph'>
+				isphotograph=#{isphotograph,jdbcType=VARCHAR},
+			</if>
+			<if test='null != askAboutUsage and "" !=  askAboutUsage'>
+				askAboutUsage=#{askAboutUsage,jdbcType=VARCHAR},
+			</if>
+			<if test='null != checkOcclusion and "" !=  checkOcclusion'>
+				checkOcclusion=#{checkOcclusion,jdbcType=VARCHAR},
+			</if>
+			<if test='null != createuser and "" !=  createuser'>
+				createuser=#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test='null != createtime and "" !=  createtime'>
+				createtime=#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test='null != organization and "" !=  organization'>
+				organization=#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test='null != visit_time and "" !=  visit_time'>
+				visit_time=#{visit_time,jdbcType=VARCHAR},
+			</if>
+			<if test='null != connectingBridge and "" !=  connectingBridge'>
+				connectingBridge=#{connectingBridge,jdbcType=VARCHAR},
+			</if>
+			<if test='null != confirmOcclusalRelationship and "" !=  confirmOcclusalRelationship'>
+				confirmOcclusalRelationship=#{confirmOcclusalRelationship,jdbcType=VARCHAR},
+			</if>
+			<if test='null != makeTransitionDenture and "" !=  makeTransitionDenture'>
+				makeTransitionDenture=#{makeTransitionDenture,jdbcType=VARCHAR},
+			</if>
+			<if test='null != tryInTransitionDenture and "" !=  tryInTransitionDenture'>
+				tryInTransitionDenture=#{tryInTransitionDenture,jdbcType=VARCHAR},
+			</if>
+			<if test='null != postoperativeModulus and "" !=  postoperativeModulus'>
+				postoperativeModulus=#{postoperativeModulus,jdbcType=VARCHAR},
+			</if>
+			<if test='null != doctorWrittenRecords and "" !=  doctorWrittenRecords'>
+				doctorWrittenRecords=#{doctorWrittenRecords,jdbcType=VARCHAR},
+			</if>
+			<if test='null != modulusToMakePersonalizedTrays and "" !=  modulusToMakePersonalizedTrays'>
+				modulusToMakePersonalizedTrays=#{modulusToMakePersonalizedTrays,jdbcType=VARCHAR},
+			</if>
+			<if test='null != jawrelationRecord and "" !=  jawrelationRecord'>
+				jawrelationRecord=#{jawrelationRecord,jdbcType=VARCHAR},
+			</if>
+			<if test='null != tryBaseStationInnerCrown and "" !=  tryBaseStationInnerCrown'>
+				tryBaseStationInnerCrown=#{tryBaseStationInnerCrown,jdbcType=VARCHAR},
+			</if>
+			<if test='null != ectolophUse and "" !=  ectolophUse'>
+				ectolophUse=#{ectolophUse,jdbcType=VARCHAR},
+			</if>
+			<if test='null != toTryAgain and "" !=  toTryAgain'>
+				toTryAgain=#{toTryAgain,jdbcType=VARCHAR},
+			</if>
+			<if test='null != temper and "" !=  temper'>
+				temper=#{temper,jdbcType=VARCHAR},
+			</if>
+			<if test='null != resinSealing and "" !=  resinSealing'>
+				resinSealing=#{resinSealing,jdbcType=VARCHAR},
+			</if>
+			<if test='null != secondGetModulus and "" !=  secondGetModulus'>
+				secondGetModulus=#{secondGetModulus,jdbcType=VARCHAR},
+			</if>
+			<if test='null != checkCavityCleanSitu and "" !=  checkCavityCleanSitu'>
+				checkCavityCleanSitu=#{checkCavityCleanSitu,jdbcType=VARCHAR},
+			</if>
+			<if test='null != checkWearToothSitu and "" !=  checkWearToothSitu'>
+				checkWearToothSitu=#{checkWearToothSitu,jdbcType=VARCHAR},
+			</if>
+			<if test='null != satisfactionPatients and "" !=  satisfactionPatients'>
+				satisfactionPatients=#{satisfactionPatients,jdbcType=VARCHAR},
+			</if>
+			<if test='null != tryHolderOrBasalCrowns and "" !=  tryHolderOrBasalCrowns'>
+				tryHolderOrBasalCrowns=#{tryHolderOrBasalCrowns,jdbcType=VARCHAR},
+			</if>
+			<if test='null != accord and "" !=  accord'>
+				accord=#{accord,jdbcType=VARCHAR},
+			</if>
+			<if test='null != askUserSituation and "" !=  askUserSituation'>
+				askUserSituation=#{askUserSituation,jdbcType=VARCHAR},
+			</if>
+			<if test='null != order_number and "" !=  order_number'>
+				order_number=#{order_number,jdbcType=VARCHAR},
+			</if>
+			<if test='null != nodeId and "" !=  nodeId'>
+				nodeId=#{nodeId,jdbcType=VARCHAR},
+			</if>
+			<if test='null != anesthesiaMethod and "" !=  anesthesiaMethod'>
+				anesthesiaMethod=#{anesthesiaMethod,jdbcType=VARCHAR},
+			</if>
+			<if test='null != nostitches and "" !=  nostitches'>
+				nostitches=#{nostitches,jdbcType=VARCHAR},
+			</if>
+			<if test='null != intraoperativeMedication and "" !=  intraoperativeMedication'>
+				intraoperativeMedication=#{intraoperativeMedication,jdbcType=VARCHAR},
+			</if>
+			<if test='null != enterLclj and "" !=  enterLclj'>
+				enterLclj=#{enterLclj,jdbcType=VARCHAR},
+			</if>
+			
+			<!-- 添加字段 -->
+			<if test='null != operator and "" !=  operator'>
+				operator=#{operator,jdbcType=VARCHAR},
+			</if>
+			<if test='null != finish_norm_first and "" !=  finish_norm_first'>
+				finish_norm_first=#{finish_norm_first,jdbcType=VARCHAR},
+			</if>
+			<if test='null != finish_norm_second and "" !=  finish_norm_second'>
+				finish_norm_second=#{finish_norm_second,jdbcType=VARCHAR},
+			</if>
+			<if test='null != finish_norm_third and "" !=  finish_norm_third'>
+				finish_norm_third=#{finish_norm_third,jdbcType=VARCHAR},
+			</if>
+			<if test='null != finish_norm_fourth and "" !=  finish_norm_fourth'>
+				finish_norm_fourth=#{finish_norm_fourth,jdbcType=VARCHAR},
+			</if>
+			<if test='null != finish_norm_fifth and "" !=  finish_norm_fifth'>
+				finish_norm_fifth=#{finish_norm_fifth,jdbcType=VARCHAR},
+			</if>
+			<if test='null != before_Modulo_bite and "" !=  before_Modulo_bite'>
+				before_Modulo_bite=#{before_Modulo_bite,jdbcType=VARCHAR},
+			</if>
+			<if test='null != after_Modulo_bite and "" !=  after_Modulo_bite'>
+				after_Modulo_bite=#{after_Modulo_bite,jdbcType=VARCHAR},
+			</if>
+			<if test='null != fixation_tooth_bridge and "" !=  fixation_tooth_bridge'>
+				fixation_tooth_bridge=#{fixation_tooth_bridge,jdbcType=VARCHAR},
+			</if>
+			<if test='null != decision_bite and "" !=  decision_bite'>
+				decision_bite=#{decision_bite,jdbcType=VARCHAR},
+			</if>
+			<if test='null != upper_frame and "" !=  upper_frame'>
+				upper_frame=#{upper_frame,jdbcType=VARCHAR},
+			</if>
+			<if test='null != is_loose and "" !=  is_loose'>
+				is_loose=#{is_loose,jdbcType=VARCHAR},
+			</if>
+			<if test='null != health_education and "" !=  health_education'>
+				health_education=#{health_education,jdbcType=VARCHAR},
+			</if>
+			<if test='null != neonychium and "" !=  neonychium'>
+				neonychium=#{neonychium,jdbcType=VARCHAR},
+			</if>
+			<if test='null != clean_toothbridge and "" !=  clean_toothbridge'>
+				clean_toothbridge=#{clean_toothbridge,jdbcType=VARCHAR},
+			</if>
+			<if test='null != outside_bone_grafting and "" !=  outside_bone_grafting'>
+				outside_bone_grafting=#{outside_bone_grafting,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	where order_number = #{order_number} and nodeId = #{nodeId}
+  </update>
+  <select id="selectOperationNodeInforById" resultType="json" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from HUDH_LCLJ_OPERATION_NODE_INFOR
+    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectOperationNodeInforByOrdernumberAndNodeId" resultType="json" parameterType="map">
+  	<!-- select 
+    <include refid="Base_Column_List" />
+    from HUDH_LCLJ_OPERATION_NODE_INFOR
+    where order_number = #{orderNumber,jdbcType=VARCHAR} and nodeId = #{nodeId,jdbcType=VARCHAR}
+    AND createtime = (select max(createtime) from HUDH_LCLJ_OPERATION_NODE_INFOR) -->
+    select TOP 1 a.* from HUDH_LCLJ_OPERATION_NODE_INFOR a,(select order_number,nodeId,max(createtime) createtime from
+	HUDH_LCLJ_OPERATION_NODE_INFOR group by order_number,nodeId) b where a.nodeId = b.nodeId and
+	a.createtime = b.createtime AND b.order_number = #{orderNumber,jdbcType=VARCHAR} AND a.nodeId = #{nodeId,jdbcType=VARCHAR} 
+	ORDER BY a.createtime DESC
+  </select>
+  <select id="selectOperationNodeInforAll" resultType="json">
+  	select 
+    <include refid="Base_Column_List" />
+    from HUDH_LCLJ_OPERATION_NODE_INFOR
+  </select>
+  <select id="findOperationNodeInforByCancelTimeHospital" parameterType="map" resultType="json">
+  	select 
+  	<include refid="Base_Column_List" /> 
+  	from HUDH_LCLJ_OPERATION_NODE_INFOR
+  	where 1=1
+  	<if test="order_number != null and order_number !='' ">
+  		and order_number = #{order_number}
+  	</if>
+  	<if test="next_hospital_time != null and next_hospital_time !='' ">
+  		and next_hospital_time = #{next_hospital_time}
+  	</if>
+  	<!-- <if test="visit_time != null and visit_time !='' ">
+  		or visit_time = #{visit_time}
+  	</if> -->
+  	 <!-- order_number = #{order_number} and next_hospital_time = #{next_hospital_time} or visit_time = #{visit_time} -->
+  </select>
+  <delete id="deleteOperationNodeInforById" parameterType="java.lang.String" >
+    delete from HUDH_LCLJ_OPERATION_NODE_INFOR
+    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertOperationNodeInfor" parameterType="com.hudh.lclj.entity.OperationNodeInfor">
+    insert into HUDH_LCLJ_OPERATION_NODE_INFOR (SEQ_ID, clinicalpathwayid, operation_time, 
+      preoperation_one_houres, preoperative_verification, assist_operation, postoperation_user_deugs, collutory
+	, abutment_station, healing_cap_station, opration_record, remark, announcements, small_teeth, antimicrobial_use
+	, review_time, observe_wound, check_wound, is_stitches, next_hospital_time, complete_case_record, panoramic_view_piece
+	, check_surgical_healing, twoOperationAttention, twoOperationTime, checkPlantSituation, checkPlantBoneCombine
+	, completeTwoOperation, twoDateStitchesTime, transfer, ismodule, basalCrowns, colorimetric, localBridge, try_in
+	, wearTooth, isphotograph, askAboutUsage, checkOcclusion, createuser, createtime, organization, visit_time
+	, connectingBridge, confirmOcclusalRelationship, makeTransitionDenture, tryInTransitionDenture, postoperativeModulus
+	, doctorWrittenRecords, modulusToMakePersonalizedTrays, jawrelationRecord, tryBaseStationInnerCrown, ectolophUse
+	, toTryAgain, temper, resinSealing, secondGetModulus, checkCavityCleanSitu, checkWearToothSitu, satisfactionPatients
+	, tryHolderOrBasalCrowns, accord, askUserSituation, order_number, nodeId, anesthesiaMethod, nostitches, intraoperativeMedication,enterLclj
+	, operator, finish_norm_first,finish_norm_second
+	, finish_norm_third, finish_norm_fourth, finish_norm_fifth, before_Modulo_bite, after_Modulo_bite, fixation_tooth_bridge, decision_bite
+	, upper_frame, is_loose, health_education, neonychium, clean_toothbridge, outside_bone_grafting,extractionleftup_l,extractionleftup_r,
+	extractionleftdown_l,extractionleftdown_r,extractionleftup1_l,extractionleftup1_r,extractionleftdown1_l,extractionleftdown1_r, nodeName, wearTeeth)
+    values (#{seqId,jdbcType=VARCHAR}, #{clinicalpathwayid,jdbcType=VARCHAR}, #{operation_time,jdbcType=VARCHAR}, #{preoperation_one_houres,jdbcType=VARCHAR},
+    #{preoperative_verification,jdbcType=VARCHAR}, #{assist_operation,jdbcType=VARCHAR}, #{postoperation_user_deugs,jdbcType=VARCHAR}, 
+    #{collutory,jdbcType=VARCHAR}, #{abutment_station,jdbcType=VARCHAR}, #{healing_cap_station,jdbcType=VARCHAR}, #{opration_record,jdbcType=VARCHAR},
+    #{remark,jdbcType=VARCHAR}, #{announcements,jdbcType=VARCHAR}, #{small_teeth,jdbcType=VARCHAR}, #{antimicrobial_use,jdbcType=VARCHAR}, 
+    #{review_time,jdbcType=VARCHAR}, #{observe_wound,jdbcType=VARCHAR}, #{check_wound,jdbcType=VARCHAR}, #{is_stitches,jdbcType=VARCHAR},
+    #{next_hospital_time,jdbcType=VARCHAR}, #{complete_case_record,jdbcType=VARCHAR}, #{panoramic_view_piece,jdbcType=VARCHAR}, #{check_surgical_healing,jdbcType=VARCHAR}, 
+    #{twoOperationAttention,jdbcType=VARCHAR}, #{twoOperationTime,jdbcType=VARCHAR}, #{checkPlantSituation,jdbcType=VARCHAR}, #{checkPlantBoneCombine,jdbcType=VARCHAR},
+    #{completeTwoOperation,jdbcType=VARCHAR}, #{twoDateStitchesTime,jdbcType=VARCHAR}, 
+    #{transfer,jdbcType=VARCHAR}, #{ismodule,jdbcType=VARCHAR}, #{basalCrowns,jdbcType=VARCHAR}, #{colorimetric,jdbcType=VARCHAR},
+    #{localBridge,jdbcType=VARCHAR}, #{try_in,jdbcType=VARCHAR}, #{wearTooth,jdbcType=VARCHAR}, #{isphotograph,jdbcType=VARCHAR}, 
+    #{askAboutUsage,jdbcType=VARCHAR}, #{checkOcclusion,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, 
+    #{organization,jdbcType=VARCHAR}, #{visit_time,jdbcType=VARCHAR}, #{connectingBridge,jdbcType=VARCHAR},
+    #{confirmOcclusalRelationship,jdbcType=VARCHAR}, #{makeTransitionDenture,jdbcType=VARCHAR}, #{tryInTransitionDenture,jdbcType=VARCHAR},
+    #{postoperativeModulus,jdbcType=VARCHAR}, #{doctorWrittenRecords,jdbcType=VARCHAR}, #{modulusToMakePersonalizedTrays,jdbcType=VARCHAR},
+    #{jawrelationRecord,jdbcType=VARCHAR}, #{tryBaseStationInnerCrown,jdbcType=VARCHAR}, #{ectolophUse,jdbcType=VARCHAR}, #{toTryAgain,jdbcType=VARCHAR},
+    #{temper,jdbcType=VARCHAR},#{resinSealing,jdbcType=VARCHAR},#{secondGetModulus,jdbcType=VARCHAR},
+    #{checkCavityCleanSitu,jdbcType=VARCHAR},#{checkWearToothSitu,jdbcType=VARCHAR},#{satisfactionPatients,jdbcType=VARCHAR},
+    #{tryHolderOrBasalCrowns,jdbcType=VARCHAR},#{accord,jdbcType=VARCHAR},#{askUserSituation,jdbcType=VARCHAR},#{order_number,jdbcType=VARCHAR},
+    #{nodeId,jdbcType=VARCHAR},#{anesthesiaMethod,jdbcType=VARCHAR},#{nostitches,jdbcType=VARCHAR},#{intraoperativeMedication,jdbcType=VARCHAR},
+    #{enterLclj,jdbcType=VARCHAR}, 
+    #{operator,jdbcType=VARCHAR},#{finish_norm_first,jdbcType=VARCHAR},#{finish_norm_second,jdbcType=VARCHAR},#{finish_norm_third,jdbcType=VARCHAR},#{finish_norm_fourth,jdbcType=VARCHAR},
+    #{finish_norm_fifth,jdbcType=VARCHAR},#{before_Modulo_bite,jdbcType=VARCHAR},#{after_Modulo_bite,jdbcType=VARCHAR},#{fixation_tooth_bridge,jdbcType=VARCHAR},#{decision_bite,jdbcType=VARCHAR},
+    #{upper_frame,jdbcType=VARCHAR},#{is_loose,jdbcType=VARCHAR},#{health_education,jdbcType=VARCHAR},#{neonychium,jdbcType=VARCHAR},#{clean_toothbridge,jdbcType=VARCHAR},
+    #{outside_bone_grafting,jdbcType=VARCHAR},#{extractionleftup_l,jdbcType=VARCHAR},#{extractionleftup_r,jdbcType=VARCHAR},#{extractionleftdown_l,jdbcType=VARCHAR},#{extractionleftdown_r,jdbcType=VARCHAR},
+    #{extractionleftup1_l,jdbcType=VARCHAR},#{extractionleftup1_r,jdbcType=VARCHAR},#{extractionleftdown1_l,jdbcType=VARCHAR},#{extractionleftdown1_r,jdbcType=VARCHAR},#{nodeName,jdbcType=VARCHAR},#{wearTeeth,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hudh.lclj.entity.OperationNodeInfor" >
+    insert into HUDH_LCLJ_OPERATION_NODE_INFOR
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="seqId != null" >
+        SEQ_ID,
+      </if>
+      <if test="clinicalpathwayid != null" >
+        clinicalpathwayid,
+      </if>
+      <if test="operation_time != null" >
+        operation_time,      
+      </if>
+      <if test="preoperation_one_houres != null" >
+        preoperation_one_houres,
+      </if>
+      <if test="preoperative_verification != null" >
+        preoperative_verification,
+      </if>
+      <if test="assist_operation != null" >
+        assist_operation,
+      </if>
+      <if test="postoperation_user_deugs != null" >
+        postoperation_user_deugs,
+      </if>
+      <if test="collutory != null" >
+        collutory,
+      </if>
+      <if test="abutment_station != null" >
+        abutment_station,
+      </if>
+      <if test="healing_cap_station != null" >
+        healing_cap_station,
+      </if>
+      <if test="opration_record != null" >
+        opration_record,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="announcements != null" >
+        announcements,
+      </if>
+      <if test="small_teeth != null" >
+        small_teeth,
+      </if>
+      <if test="antimicrobial_use != null" >
+        antimicrobial_use,
+      </if>
+      <if test="review_time != null" >
+        review_time,
+      </if>
+      <if test="observe_wound != null" >
+        observe_wound,
+      </if>
+      <if test="check_wound != null" >
+        check_wound,
+      </if>
+      <if test="is_stitches != null" >
+        is_stitches,
+      </if>
+      <if test="next_hospital_time != null" >
+        next_hospital_time,
+      </if>
+      <if test="complete_case_record != null" >
+        complete_case_record,
+      </if>
+      <if test="panoramic_view_piece != null" >
+        panoramic_view_piece,
+      </if>
+      <if test="check_surgical_healing != null" >
+        check_surgical_healing,
+      </if>
+      <if test="twoOperationAttention != null" >
+        twoOperationAttention,
+      </if>
+      <if test="twoOperationTime != null" >
+        twoOperationTime,
+      </if>
+      <if test="checkPlantSituation != null" >
+        checkPlantSituation,
+      </if>
+      <if test="checkPlantBoneCombine != null" >
+        checkPlantBoneCombine,
+      </if>
+      <if test="completeTwoOperation != null" >
+        completeTwoOperation,
+      </if>
+      <if test="twoDateStitchesTime != null" >
+        twoDateStitchesTime,
+      </if>
+      <if test="transfer != null" >
+        transfer,
+      </if>
+      <if test="ismodule != null" >
+        ismodule,
+      </if>
+      <if test="basalCrowns != null" >
+        basalCrowns,
+      </if>
+      <if test="colorimetric != null" >
+        colorimetric,
+      </if>
+      <if test="localBridge != null" >
+        localBridge,
+      </if>
+      <if test="try_in != null" >
+        try_in,
+      </if>
+      <if test="wearTooth != null" >
+        wearTooth,
+      </if>
+      <if test="isphotograph != null" >
+        isphotograph,
+      </if>
+      <if test="askAboutUsage != null" >
+        askAboutUsage,
+      </if>
+      <if test="checkOcclusion != null" >
+        checkOcclusion,
+      </if>
+      <if test="createuser != null" >
+        createuser,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="organization != null" >
+        organization,
+      </if>
+      <if test="visit_time != null" >
+        visit_time,
+      </if>
+      <if test="connectingBridge != null" >
+        connectingBridge,
+      </if>
+      
+      <if test="confirmOcclusalRelationship != null" >
+        confirmOcclusalRelationship,
+      </if>
+      <if test="makeTransitionDenture != null" >
+        makeTransitionDenture,
+      </if>
+      <if test="tryInTransitionDenture != null" >
+        tryInTransitionDenture,
+      </if>
+      <if test="postoperativeModulus != null" >
+        postoperativeModulus,
+      </if>
+      <if test="doctorWrittenRecords != null" >
+        doctorWrittenRecords,
+      </if>
+      <if test="modulusToMakePersonalizedTrays != null" >
+        modulusToMakePersonalizedTrays,
+      </if>
+      <if test="jawrelationRecord != null" >
+        jawrelationRecord,
+      </if>
+      <if test="tryBaseStationInnerCrown != null" >
+        tryBaseStationInnerCrown,
+      </if>
+      <if test="ectolophUse != null" >
+        ectolophUse,
+      </if>
+      <if test="toTryAgain != null" >
+        toTryAgain,
+      </if>
+      <if test="temper != null" >
+        temper,
+      </if>
+      <if test="resinSealing != null" >
+        resinSealing,
+      </if>
+      <if test="secondGetModulus != null" >
+        secondGetModulus,
+      </if>
+      <if test="tryHolderOrBasalCrowns != null" >
+        tryHolderOrBasalCrowns,
+      </if>
+      <if test="accord != null" >
+        accord,
+      </if>
+      <if test="askUserSituation != null" >
+        askUserSituation,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="seqId != null" >
+        #{seqId,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicalpathwayid != null" >
+        #{clinicalpathwayid,jdbcType=VARCHAR},
+      </if>
+      <if test="operation_time != null" >
+        #{operation_time,jdbcType=VARCHAR},
+      </if>
+      <if test="preoperation_one_houres != null" >
+        #{preoperation_one_houres,jdbcType=VARCHAR},
+      </if>
+      <if test="preoperative_verification != null" >
+        #{preoperative_verification,jdbcType=VARCHAR},
+      </if>
+      <if test="assist_operation != null" >
+        #{assist_operation,jdbcType=VARCHAR},
+      </if>
+      <if test="postoperation_user_deugs != null" >
+        #{postoperation_user_deugs,jdbcType=VARCHAR},
+      </if>
+      <if test="collutory != null" >
+        #{collutory,jdbcType=VARCHAR},
+      </if>
+      <if test="abutment_station != null" >
+        #{abutment_station,jdbcType=VARCHAR},
+      </if>
+      <if test="healing_cap_station != null" >
+        #{healing_cap_station,jdbcType=VARCHAR},
+      </if>
+      <if test="opration_record != null" >
+        #{opration_record,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="announcements != null" >
+        #{announcements,jdbcType=VARCHAR},
+      </if>
+      <if test="small_teeth != null" >
+        #{small_teeth,jdbcType=VARCHAR},
+      </if>
+      <if test="antimicrobial_use != null" >
+        #{antimicrobial_use,jdbcType=VARCHAR},
+      </if>
+      <if test="review_time != null" >
+        #{review_time,jdbcType=VARCHAR},
+      </if>
+      <if test="observe_wound != null" >
+        #{observe_wound,jdbcType=VARCHAR},
+      </if>
+      <if test="check_wound != null" >
+        #{check_wound,jdbcType=VARCHAR},
+      </if>
+      <if test="is_stitches != null" >
+        #{is_stitches,jdbcType=VARCHAR},
+      </if>
+      <if test="next_hospital_time != null" >
+        #{next_hospital_time,jdbcType=VARCHAR},
+      </if>
+      <if test="complete_case_record != null" >
+        #{complete_case_record,jdbcType=VARCHAR},
+      </if>
+      <if test="panoramic_view_piece != null" >
+        #{panoramic_view_piece,jdbcType=VARCHAR},
+      </if>
+      <if test="check_surgical_healing != null" >
+        #{check_surgical_healing,jdbcType=VARCHAR},
+      </if>
+      <if test="twoOperationAttention != null" >
+        #{twoOperationAttention,jdbcType=VARCHAR},
+      </if>
+      <if test="twoOperationTime != null" >
+        #{twoOperationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="checkPlantSituation != null" >
+        #{checkPlantSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="checkPlantBoneCombine != null" >
+        #{checkPlantBoneCombine,jdbcType=VARCHAR},
+      </if>
+      <if test="completeTwoOperatio != null" >
+        #{completeTwoOperatio,jdbcType=VARCHAR},
+      </if>
+      <if test="twoDateStitchesTime != null" >
+        #{twoDateStitchesTime,jdbcType=VARCHAR},
+      </if>
+      <if test="transfer != null" >
+        #{transfer,jdbcType=VARCHAR},
+      </if>
+      <if test="ismodule != null" >
+        #{ismodule,jdbcType=VARCHAR},
+      </if>
+      <if test="basalCrowns != null" >
+        #{basalCrowns,jdbcType=VARCHAR},
+      </if>
+      <if test="colorimetric != null" >
+        #{colorimetric,jdbcType=VARCHAR},
+      </if>
+      <if test="localBridge != null" >
+        #{localBridge,jdbcType=VARCHAR},
+      </if>
+      <if test="try_in != null" >
+        #{try_in,jdbcType=VARCHAR},
+      </if>
+      <if test="wearTooth != null" >
+        #{wearTooth,jdbcType=VARCHAR},
+      </if>
+      <if test="isphotograph != null" >
+        #{isphotograph,jdbcType=VARCHAR},
+      </if>
+      <if test="askAboutUsage != null" >
+        #{askAboutUsage,jdbcType=VARCHAR},
+      </if>
+      <if test="checkOcclusion != null" >
+        #{checkOcclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null" >
+        #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="visit_time != null" >
+        #{visit_time,jdbcType=VARCHAR},
+      </if>
+      <if test="connectingBridge != null" >
+        #{connectingBridge,jdbcType=VARCHAR},
+      </if>
+      
+      <if test="confirmOcclusalRelationship != null" >
+        #{confirmOcclusalRelationship,jdbcType=VARCHAR},
+      </if>
+      <if test="makeTransitionDenture != null" >
+        #{makeTransitionDenture,jdbcType=VARCHAR},
+      </if>
+      <if test="tryInTransitionDenture != null" >
+        #{tryInTransitionDenture,jdbcType=VARCHAR},
+      </if>
+      <if test="postoperativeModulus != null" >
+        #{postoperativeModulus,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorWrittenRecords != null" >
+        #{doctorWrittenRecords,jdbcType=VARCHAR},
+      </if>
+      <if test="modulusToMakePersonalizedTrays != null" >
+        #{modulusToMakePersonalizedTrays,jdbcType=VARCHAR},
+      </if>
+      <if test="jawrelationRecord != null" >
+        #{jawrelationRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="tryBaseStationInnerCrown != null" >
+        #{tryBaseStationInnerCrown,jdbcType=VARCHAR},
+      </if>
+      <if test="ectolophUse != null" >
+        #{ectolophUse,jdbcType=VARCHAR},
+      </if>
+      <if test="toTryAgain != null" >
+        #{toTryAgain,jdbcType=VARCHAR},
+      </if>
+      <if test="temper != null" >
+        #{temper,jdbcType=VARCHAR},
+      </if>
+      <if test="resinSealing != null" >
+        #{resinSealing,jdbcType=VARCHAR},
+      </if>
+      <if test="secondGetModulus != null" >
+        #{secondGetModulus,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCavityCleanSitu != null" >
+        #{checkCavityCleanSitu,jdbcType=VARCHAR},
+      </if>
+      <if test="tryHolderOrBasalCrowns != null" >
+        #{tryHolderOrBasalCrowns,jdbcType=VARCHAR},
+      </if>
+      <if test="accord != null" >
+        #{accord,jdbcType=VARCHAR},
+      </if>
+      <if test="askUserSituation != null" >
+        #{askUserSituation,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateOperationNodeInforById" parameterType="com.hudh.lclj.entity.OperationNodeInfor" >
+    update HUDH_LCLJ_OPERATION_NODE_INFOR
+    <set >
+      <if test="clinicalpathwayid != null" >
+        clinicalpathwayid,
+      </if>
+      <if test="operation_time != null" >
+        operation_time,      
+      </if>
+      <if test="preoperation_one_houres != null" >
+        preoperation_one_houres,
+      </if>
+      <if test="preoperative_verification != null" >
+        preoperative_verification,
+      </if>
+      <if test="assist_operation != null" >
+        assist_operation,
+      </if>
+      <if test="postoperation_user_deugs != null" >
+        postoperation_user_deugs,
+      </if>
+      <if test="collutory != null" >
+        collutory,
+      </if>
+      <if test="abutment_station != null" >
+        abutment_station,
+      </if>
+      <if test="healing_cap_station != null" >
+        healing_cap_station,
+      </if>
+      <if test="opration_record != null" >
+        opration_record,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="announcements != null" >
+        announcements,
+      </if>
+      <if test="small_teeth != null" >
+        small_teeth,
+      </if>
+      <if test="antimicrobial_use != null" >
+        antimicrobial_use,
+      </if>
+      <if test="review_time != null" >
+        review_time,
+      </if>
+      <if test="observe_wound != null" >
+        observe_wound,
+      </if>
+      <if test="check_wound != null" >
+        check_wound,
+      </if>
+      <if test="is_stitches != null" >
+        is_stitches,
+      </if>
+      <if test="next_hospital_time != null" >
+        next_hospital_time,
+      </if>
+      <if test="complete_case_record != null" >
+        complete_case_record,
+      </if>
+      <if test="panoramic_view_piece != null" >
+        panoramic_view_piece,
+      </if>
+      <if test="check_surgical_healing != null" >
+        check_surgical_healing,
+      </if>
+      <if test="twoOperationAttention != null" >
+        twoOperationAttention,
+      </if>
+      <if test="twoOperationTime != null" >
+        twoOperationTime,
+      </if>
+      <if test="checkPlantSituation != null" >
+        checkPlantSituation,
+      </if>
+      <if test="checkPlantBoneCombine != null" >
+        checkPlantBoneCombine,
+      </if>
+      <if test="completeTwoOperation != null" >
+        completeTwoOperation,
+      </if>
+      <if test="twoDateStitchesTime != null" >
+        twoDateStitchesTime,
+      </if>
+      <if test="transfer != null" >
+        transfer,
+      </if>
+      <if test="ismodule != null" >
+        ismodule,
+      </if>
+      <if test="basalCrowns != null" >
+        basalCrowns,
+      </if>
+      <if test="colorimetric != null" >
+        colorimetric,
+      </if>
+      <if test="localBridge != null" >
+        localBridge,
+      </if>
+      <if test="try_in != null" >
+        try_in,
+      </if>
+      <if test="wearTooth != null" >
+        wearTooth,
+      </if>
+      <if test="isphotograph != null" >
+        isphotograph,
+      </if>
+      <if test="askAboutUsage != null" >
+        askAboutUsage,
+      </if>
+      <if test="checkOcclusion != null" >
+        checkOcclusion,
+      </if>
+      <if test="createuser != null" >
+        createuser,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="organization != null" >
+        organization,
+      </if>
+      <if test="visit_time != null" >
+        visit_time,
+      </if>
+      <if test="connectingBridge != null" >
+        connectingBridge,
+      </if>
+      <if test="confirmOcclusalRelationship != null" >
+        confirmOcclusalRelationship,
+      </if>
+      <if test="makeTransitionDenture != null" >
+        makeTransitionDenture,
+      </if>
+      <if test="tryInTransitionDenture != null" >
+        tryInTransitionDenture,
+      </if>
+      <if test="postoperativeModulus != null" >
+        postoperativeModulus,
+      </if>
+      <if test="doctorWrittenRecords != null" >
+        doctorWrittenRecords,
+      </if>
+      <if test="modulusToMakePersonalizedTrays != null" >
+        modulusToMakePersonalizedTrays,
+      </if>
+      <if test="jawrelationRecord != null" >
+        jawrelationRecord,
+      </if>
+      <if test="tryBaseStationInnerCrown != null" >
+        tryBaseStationInnerCrown,
+      </if>
+      <if test="ectolophUse != null" >
+        ectolophUse,
+      </if>
+      <if test="toTryAgain != null" >
+        toTryAgain,
+      </if>
+      <if test="temper != null" >
+        temper,
+      </if>
+      <if test="resinSealing != null" >
+        resinSealing,
+      </if>
+      <if test="secondGetModulus != null" >
+        secondGetModulus,
+      </if>
+      <if test="checkCavityCleanSitu != null" >
+        checkCavityCleanSitu,
+      </if>
+      <if test="checkWearToothSitu != null" >
+        checkWearToothSitu,
+      </if>
+      <if test="satisfactionPatients != null" >
+        satisfactionPatients,
+      </if>
+      <if test="tryHolderOrBasalCrowns != null" >
+        tryHolderOrBasalCrowns,
+      </if>
+      <if test="accord != null" >
+        accord,
+      </if>
+      <if test="askUserSituation != null" >
+        askUserSituation,
+      </if>
+    </set>
+    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hudh.lclj.entity.OperationNodeInfor" >
+    update HUDH_LCLJ_OPERATION_NODE_INFOR
+      set clinicalpathwayid = #{clinicalpathwayid,jdbcType=VARCHAR},
+      operation_time = #{operation_time,jdbcType=VARCHAR},
+      preoperation_one_houres = #{preoperation_one_houres,jdbcType=VARCHAR},
+      preoperative_verification = #{preoperative_verification,jdbcType=VARCHAR},
+      assist_operation = #{assist_operation,jdbcType=VARCHAR},
+      postoperation_user_deugs = #{postoperation_user_deugs,jdbcType=VARCHAR},
+      collutory = #{collutory,jdbcType=VARCHAR},
+      abutment_station = #{abutment_station,jdbcType=VARCHAR},
+      healing_cap_station = #{healing_cap_station,jdbcType=VARCHAR},
+      opration_record = #{opration_record,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      announcements = #{announcements,jdbcType=VARCHAR},
+      small_teeth = #{small_teeth,jdbcType=VARCHAR},
+      antimicrobial_use = #{antimicrobial_use,jdbcType=VARCHAR},
+      review_time = #{review_time,jdbcType=VARCHAR},
+      observe_wound = #{observe_wound,jdbcType=VARCHAR},
+      check_wound = #{check_wound,jdbcType=VARCHAR},
+      is_stitches = #{is_stitches,jdbcType=VARCHAR},
+      next_hospital_time = #{next_hospital_time,jdbcType=VARCHAR},
+      complete_case_record = #{complete_case_record,jdbcType=VARCHAR},
+      panoramic_view_piece = #{panoramic_view_piece,jdbcType=VARCHAR},
+      check_surgical_healing = #{check_surgical_healing,jdbcType=VARCHAR},
+      twoOperationAttention = #{twoOperationAttention,jdbcType=VARCHAR},
+      twoOperationTime = #{twoOperationTime,jdbcType=VARCHAR},
+      checkPlantSituation = #{checkPlantSituation,jdbcType=VARCHAR},
+      checkPlantBoneCombine = #{checkPlantBoneCombine,jdbcType=VARCHAR},
+      completeTwoOperation = #{completeTwoOperation,jdbcType=VARCHAR},
+      twoDateStitchesTime = #{twoDateStitchesTime,jdbcType=VARCHAR},
+      transfer = #{transfer,jdbcType=VARCHAR},
+      ismodule = #{ismodule,jdbcType=VARCHAR},
+      basalCrowns = #{basalCrowns,jdbcType=VARCHAR},
+      colorimetric = #{colorimetric,jdbcType=VARCHAR},
+      localBridge = #{localBridge,jdbcType=VARCHAR},
+      try_in = #{try_in,jdbcType=VARCHAR},
+      wearTooth = #{wearTooth,jdbcType=VARCHAR},
+      isphotograph = #{isphotograph,jdbcType=VARCHAR},
+      askAboutUsage = #{askAboutUsage,jdbcType=VARCHAR},
+      checkOcclusion= #{checkOcclusion,jdbcType=VARCHAR},
+      createuser = #{createuser,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=VARCHAR},
+      organization = #{organization,jdbcType=VARCHAR},
+      visit_time = #{visit_time,jdbcType=VARCHAR},
+      connectingBridge = #{connectingBridge,jdbcType=VARCHAR},
+      confirmOcclusalRelationship = #{confirmOcclusalRelationship,jdbcType=VARCHAR},
+      makeTransitionDenture = #{makeTransitionDenture,jdbcType=VARCHAR},
+      tryInTransitionDenture = #{tryInTransitionDenture,jdbcType=VARCHAR},
+      postoperativeModulus = #{postoperativeModulus,jdbcType=VARCHAR},
+      doctorWrittenRecords = #{doctorWrittenRecords,jdbcType=VARCHAR},
+      modulusToMakePersonalizedTrays = #{modulusToMakePersonalizedTrays,jdbcType=VARCHAR},
+      jawrelationRecord = #{jawrelationRecord,jdbcType=VARCHAR},
+      tryBaseStationInnerCrown = #{tryBaseStationInnerCrown,jdbcType=VARCHAR},
+      ectolophUse = #{ectolophUse,jdbcType=VARCHAR},
+      toTryAgain = #{toTryAgain,jdbcType=VARCHAR},
+      temper = #{temper,jdbcType=VARCHAR},
+      resinSealing = #{resinSealing,jdbcType=VARCHAR},
+      secondGetModulus = #{secondGetModulus,jdbcType=VARCHAR},
+      checkCavityCleanSitu = #{checkCavityCleanSitu,jdbcType=VARCHAR},
+      checkWearToothSitu = #{checkWearToothSitu,jdbcType=VARCHAR},
+      satisfactionPatients = #{satisfactionPatients,jdbcType=VARCHAR},
+      tryHolderOrBasalCrowns = #{tryHolderOrBasalCrowns,jdbcType=VARCHAR},
+      accord = #{accord,jdbcType=VARCHAR},
+      askUserSituation = #{askUserSituation,jdbcType=VARCHAR}
+    where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateOrderTimeHospital" parameterType="map">
+  	update HUDH_LCLJ_OPERATION_NODE_INFOR set next_hospital_time = #{orderTime},review_time =  #{orderTime}
+  	where order_number = #{order_number} and nodeId = #{nodeId}
+  </update>
+  
+  <update id="cancelTimeHospital" parameterType="map">
+  	update HUDH_LCLJ_OPERATION_NODE_INFOR set next_hospital_time = '' ,review_time =  ''
+  	where order_number = #{order_number} and nodeId = #{nodeId}
+  </update>
+</mapper>

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_GIVEITEM">
+
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsGiveitem">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="itemno" jdbcType="VARCHAR" property="itemno" />
+		<result column="itemname" jdbcType="VARCHAR" property="itemname" />
+		<result column="unit" jdbcType="VARCHAR" property="unit" />
+		<result column="unitprice" jdbcType="VARCHAR" property="unitprice" />
+		<result column="sortno" jdbcType="INTEGER" property="sortno" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="useflag" jdbcType="INTEGER" property="useflag" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, createuser, createtime, itemno, itemname, unit, unitprice, sortno, organization,
+		useflag
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_GIVEITEM
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_GIVEITEM
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsGiveitem">
+		insert into KQDS_GIVEITEM (SEQ_ID, createuser, createtime,
+		itemno, itemname, unit,
+		unitprice, sortno, organization,
+		useflag)
+		values
+		(#{seqId,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{itemno,jdbcType=VARCHAR}, #{itemname,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR},
+		#{unitprice,jdbcType=VARCHAR}, #{sortno,jdbcType=INTEGER}, #{organization,jdbcType=VARCHAR},
+		#{useflag,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsGiveitem">
+		insert into KQDS_GIVEITEM
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="itemno != null">
+				itemno,
+			</if>
+			<if test="itemname != null">
+				itemname,
+			</if>
+			<if test="unit != null">
+				unit,
+			</if>
+			<if test="unitprice != null">
+				unitprice,
+			</if>
+			<if test="sortno != null">
+				sortno,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="useflag != null">
+				useflag,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="itemno != null">
+				#{itemno,jdbcType=VARCHAR},
+			</if>
+			<if test="itemname != null">
+				#{itemname,jdbcType=VARCHAR},
+			</if>
+			<if test="unit != null">
+				#{unit,jdbcType=VARCHAR},
+			</if>
+			<if test="unitprice != null">
+				#{unitprice,jdbcType=VARCHAR},
+			</if>
+			<if test="sortno != null">
+				#{sortno,jdbcType=INTEGER},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="useflag != null">
+				#{useflag,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsGiveitem">
+		update KQDS_GIVEITEM
+		<set>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="itemno != null">
+				itemno = #{itemno,jdbcType=VARCHAR},
+			</if>
+			<if test="itemname != null">
+				itemname = #{itemname,jdbcType=VARCHAR},
+			</if>
+			<if test="unit != null">
+				unit = #{unit,jdbcType=VARCHAR},
+			</if>
+			<if test="unitprice != null">
+				unitprice = #{unitprice,jdbcType=VARCHAR},
+			</if>
+			<if test="sortno != null">
+				sortno = #{sortno,jdbcType=INTEGER},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="useflag != null">
+				useflag = #{useflag,jdbcType=INTEGER},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsGiveitem">
+		update KQDS_GIVEITEM
+		set createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		itemno =
+		#{itemno,jdbcType=VARCHAR},
+		itemname = #{itemname,jdbcType=VARCHAR},
+		unit = #{unit,jdbcType=VARCHAR},
+		unitprice = #{unitprice,jdbcType=VARCHAR},
+		sortno = #{sortno,jdbcType=INTEGER},
+		organization = #{organization,jdbcType=VARCHAR},
+		useflag = #{useflag,jdbcType=INTEGER}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_GIVEITEM
+	</sql>
+
+	<select id="selectCountByMap" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsGiveitem">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectWithPage" parameterType="map" resultType="json">
+		select
+		tc.seq_id,
+		tc.useflag,
+		tc.createtime,
+		p.user_name as createuser,
+		tc.itemname,
+		tc.unit,
+		tc.unitprice,
+		tc.sortno,
+		tc.itemno
+		jlname
+		from KQDS_GIVEITEM tc
+		LEFT JOIN SYS_PERSON p on
+		tc.createuser = p.seq_id
+		where 1=1
+		<if test="itemno != null and itemno !='' ">
+			and tc.itemno like '%' + #{itemno} + '%'
+		</if>
+
+		<if test="itemname != null and itemname !='' ">
+			and tc.itemname like '%' +#{itemname}+ '%'
+		</if>
+		and tc.organization = #{organization}
+		ORDER BY tc.sortno asc
+	</select>
+	<select id="getAllGiveItem" parameterType="java.lang.String" resultType="json">
+		select seq_id,itemno,itemname from KQDS_GIVEITEM where 1=1
+		<if test="organization != null">
+			and organization = #{_parameter}
+		</if>
+	</select>
+	<select id="getGiveItemList" parameterType="java.lang.String" resultType="json">
+		select seq_id,itemname from KQDS_GIVEITEM where 1=1 and useflag = 0
+		and (organization =
+		#{_parameter} or organization = '')
+		ORDER BY sortno asc
+	</select>
+	<select id="getCountByItemnos" parameterType="java.lang.String" resultType="int">
+		select count(1) from KQDS_GIVEITEM where itemno in (${_parameter})
+	</select>
+	<select id="getItemObjBySeqIds" parameterType="java.lang.String" resultType="json">
+		select seq_id,itemname from KQDS_GIVEITEM where seq_id in (${_parameter})
+	</select>
+
+</mapper>

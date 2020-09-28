@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_CK_SUPPLIER">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsCkSupplier">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="suppliercode" jdbcType="VARCHAR" property="suppliercode" />
+		<result column="suppliername" jdbcType="VARCHAR" property="suppliername" />
+		<result column="sortno" jdbcType="INTEGER" property="sortno" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, suppliercode, suppliername, sortno, createuser, createtime, organization
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_CK_SUPPLIER
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_CK_SUPPLIER
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsCkSupplier">
+		insert into KQDS_CK_SUPPLIER (SEQ_ID, suppliercode, suppliername,
+		sortno, createuser, createtime,
+		organization)
+		values
+		(#{seqId,jdbcType=VARCHAR}, #{suppliercode,jdbcType=VARCHAR}, #{suppliername,jdbcType=VARCHAR},
+		#{sortno,jdbcType=INTEGER}, #{createuser,jdbcType=VARCHAR},
+		#{createtime,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsCkSupplier">
+		insert into KQDS_CK_SUPPLIER
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="suppliercode != null">
+				suppliercode,
+			</if>
+			<if test="suppliername != null">
+				suppliername,
+			</if>
+			<if test="sortno != null">
+				sortno,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="suppliercode != null">
+				#{suppliercode,jdbcType=VARCHAR},
+			</if>
+			<if test="suppliername != null">
+				#{suppliername,jdbcType=VARCHAR},
+			</if>
+			<if test="sortno != null">
+				#{sortno,jdbcType=INTEGER},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsCkSupplier">
+		update KQDS_CK_SUPPLIER
+		<set>
+			<if test="suppliercode != null">
+				suppliercode = #{suppliercode,jdbcType=VARCHAR},
+			</if>
+			<if test="suppliername != null">
+				suppliername = #{suppliername,jdbcType=VARCHAR},
+			</if>
+			<if test="sortno != null">
+				sortno = #{sortno,jdbcType=INTEGER},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsCkSupplier">
+		update KQDS_CK_SUPPLIER
+		set suppliercode = #{suppliercode,jdbcType=VARCHAR},
+		suppliername = #{suppliername,jdbcType=VARCHAR},
+		sortno = #{sortno,jdbcType=INTEGER},
+		createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR}
+		where
+		SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_CK_SUPPLIER
+	</sql>
+
+	<select id="selectCountByMap" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsCkSupplier">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+
+
+	<select id="selectList" parameterType="map" resultType="json">
+		select
+		s.seq_id,
+		s.suppliercode,
+		s.suppliername,
+		s.sortno,
+		p.user_name as createuser,
+		s.createtime,
+		s.organization
+		from KQDS_CK_SUPPLIER s
+		LEFT JOIN SYS_PERSON p on p.seq_id =
+		s.createuser
+		where 1=1
+		<if test="organization != null and organization !='' ">
+			and s.organization = #{organization}
+		</if>
+		<if test="suppliername != null and suppliername !='' ">
+			and s.suppliername = #{suppliername}
+		</if>
+		<if test="suppliercode != null and suppliercode !='' ">
+			and s.suppliercode = #{suppliercode}
+		</if>
+		order by s.sortno
+	</select>
+	<select id="countBySupplierCode" parameterType="KqdsCkSupplier" resultType="int">
+		select count(1) from KQDS_CK_SUPPLIER
+		where 1=1
+		<if test="suppliercode != null">
+			and suppliercode = #{suppliercode}
+		</if>
+		<if test="organization != null">
+			and organization = #{organization}
+		</if>
+		<if test="seqId != null">
+			and seq_Id != #{seqId}
+		</if>
+	</select>
+
+</mapper>

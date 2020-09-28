@@ -1,0 +1,70 @@
+@CHARSET "UTF-8";
+	/* 选择按钮 */
+	.aBtn{display: inline-block;margin-right:0px;padding: 0 15px;margin:0 5px;height: 28px;line-height: 28px;border: solid 1px #0e7cc7;border-radius:15px;color: #0e7cc7;}
+	.search{color: #fff;background: #117cca;text-decoration: none;}
+	.aBtn:hover{color: #fff;background: #117cca;text-decoration: none;}
+	/*顶部详情  */
+	.biliHistory .tableHd{
+		padding: 0 10px;
+		line-height:30px;
+		font-family:"Microsoft YaHei";
+		font-size: 14px;
+	    color: #777;
+	    font-weight: bold;
+		background: #fff ;
+		border-bottom:1px solid #ddd;
+		margin-bottom:3px;	
+	}
+	/*整体布局  */
+	.infoBd{padding:0 0 10px;font-size: 12px;}/*表格两边间距与底部横线  */
+	.formBox{overflow: hidden;padding: 10px 0;margin-bottom:10px;width:800px;margin:0 auto;}/*页面搜索条件居中  */
+	.kqds_table{
+		width:90%;
+		align:center;
+		margin-left: auto;
+		margin-right: auto;
+	}
+		
+	.kqds_table  td { 
+		color: #666;
+		padding: 3px 2px 5px 2px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		font-weight: normal;
+		line-height: 28px;
+	}
+		
+	.kqds_table  select { 
+		height: 28px;
+		width:130px;
+		border: solid 1px #e5e5e5;
+		border-radius: 3px;
+	}
+	
+	input[type=text],.kv .kv-v input[type=text]{padding:0 10px;width:130px;height: 28px;line-height: 28px;border: solid 1px #e5e5e5;border-radius: 3px;-webkit-transition: all .3s;transition: all .3s;}
+	.searchWrap .btnBar > .aBtn {
+	    width: 70px;
+	}
+	
+	.fixedFatherDiv{
+		border:1px solid #ddd;
+		overflow:hidden;
+		border-radius:5px;
+	}
+	.fixedHeaderDiv{
+		/* padding-right:15px; */
+		background:#00A6C0;
+		position:relative;
+		z-index:2;
+		
+	}
+	.fixedBodyDiv{
+		height:320px;
+		overflow-y:scroll;
+		margin-top:-31px;
+		
+	}
+	.buttonGroup{
+		text-align:center;
+	}

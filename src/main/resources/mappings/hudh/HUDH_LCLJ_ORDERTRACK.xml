@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_LCLJ_ORDERTRACK">
+
+    <resultMap id="LcljOrderTrackResultMap" type="com.hudh.lclj.entity.LcljOrderTrack">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="tooth" jdbcType="VARCHAR" property="tooth"/>
+        <result column="createtime" jdbcType="VARCHAR" property="createtime"/>
+        <result column="order_number" jdbcType="VARCHAR" property="orderNumber"/>
+        <result column="ss_time" jdbcType="VARCHAR" property="ssTime"/>
+        <result column="flow_link" jdbcType="VARCHAR" property="flowLink"/>
+        <result column="ss_status" jdbcType="VARCHAR" property="ssStatus"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="bone" jdbcType="VARCHAR" property="bone"/>
+        <result column="ss_stu" jdbcType="VARCHAR" property="ssStu"/>
+        <result column="shgc_stu" jdbcType="VARCHAR" property="shgcStu"/>
+        <result column="dy_stu" jdbcType="VARCHAR" property="dyStu"/>
+
+        <result column="blcode" jdbcType="VARCHAR" property="blcode"/>
+        <result column="left_up" jdbcType="VARCHAR" property="leftUp"/>
+        <result column="left_down" jdbcType="VARCHAR" property="leftDown"/>
+        <result column="right_up" jdbcType="VARCHAR" property="rightUp"/>
+        <result column="right_down" jdbcType="VARCHAR" property="rightDown"/>
+        <result column="nodes" jdbcType="CLOB" property="nodes"/>
+        <result column="last_time" jdbcType="VARCHAR" property="lastTime"/>
+        <result column="creatorid" jdbcType="VARCHAR" property="creatorid"/>
+        <result column="creatorname" jdbcType="VARCHAR" property="creatorname"/>
+
+        <result column="counsellor" jdbcType="VARCHAR" property="counsellor"/>
+        <result column="plant_physician" jdbcType="VARCHAR" property="plantPhysician"/>
+        <result column="repair_physician" jdbcType="VARCHAR" property="repairPphysician"/>
+        <result column="clinic_nurse" jdbcType="VARCHAR" property="clinicNurse"/>
+        <result column="customer_service" jdbcType="VARCHAR" property="customerService"/>
+        <result column="plant_system" jdbcType="VARCHAR" property="plantSystem"/>
+        <result column="crown_material" jdbcType="VARCHAR" property="crownMaterial"/>
+        <result column="imageological_examination" jdbcType="VARCHAR" property="imageologicalExamination"/>
+        <result column="consultation" jdbcType="VARCHAR" property="consultation"/>
+        <result column="advisory" jdbcType="VARCHAR" property="advisory"/>
+        <result column="repair_left_up" jdbcType="VARCHAR" property="repairLeftUp"/>
+        <result column="repair_left_down" jdbcType="VARCHAR" property="repairLeftDown"/>
+        <result column="repair_right_up" jdbcType="VARCHAR" property="repairRightUp"/>
+        <result column="repair_right_down" jdbcType="VARCHAR" property="repairRightDown"/>
+        <result column="repair_tooth_total" jdbcType="VARCHAR" property="repairToothTotal"/>
+        <result column="isobsolete" jdbcType="VARCHAR" property="isobsolete"/>
+        <result column="modeoperation" jdbcType="INTEGER" property="modeoperation"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="flowcode" jdbcType="VARCHAR" property="flowcode"/>
+        <result column="dentalJaw" jdbcType="VARCHAR" property="dentalJaw"/>
+        <result column="articleType" jdbcType="VARCHAR" property="articleType"/>
+        <result column="abutment_station" jdbcType="VARCHAR" property="abutment_station"/>
+        <result column="tooth_texture" jdbcType="VARCHAR" property="tooth_texture"/>
+        <result column="tooth_texture" jdbcType="VARCHAR" property="toothTexture"/>
+        <result column="userdocument_id" jdbcType="VARCHAR" property="userdocument_id"/>
+        <result column="anamnesis" jdbcType="VARCHAR" property="anamnesis"/>
+        <result column="examine" jdbcType="VARCHAR" property="examine"/>
+        <result column="diagnosis" jdbcType="VARCHAR" property="diagnosis"/>
+        <result column="repair" jdbcType="VARCHAR" property="repair"/>
+        <result column="knowbook" jdbcType="VARCHAR" property="knowbook"/>
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+		id, tooth, createtime, order_number, ss_time, flow_link, ss_status, type, bone , ss_stu, shgc_stu, dy_stu, blcode, left_up, left_down, right_up, right_down, nodes ,last_time ,creatorid,creatorname,
+		counsellor, plant_physician, repair_physician, clinic_nurse, customer_service, plant_system, crown_material, imageological_examination, consultation, advisory, repair_left_up, repair_left_down,
+		repair_right_up, repair_right_down, repair_tooth_total, isobsolete ,modeoperation ,remark,flowcode,dentalJaw, articleType, abutment_station, tooth_texture, userdocument_id,anamnesis,
+        examine,diagnosis,repair,knowbook
+	</sql>
+
+    <insert id="insertLcljOrderTrack" parameterType="com.hudh.lclj.entity.LcljOrderTrack">
+        insert into HUDH_LCLJ_ORDERTRACK (
+        <include refid="Base_Column_List"/>
+        <!-- id, tooth, createtime, order_number, ss_time, flow_link, ss_status, type, bone , ss_stu, shgc_stu, dy_stu, blcode, left_up, left_down, right_up, right_down, nodes ,last_time ,creatorid,creatorname,
+        cats, plant_physician, repair_physician, clinic_nurse, customer_service, plant_system, crown_material, imageological_examination, consultation, advisory, repair_left_up, repair_left_down,
+        repair_right_up, repair_right_down-->
+        )
+        values (#{id,jdbcType=VARCHAR}, #{tooth,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+        #{orderNumber,jdbcType=VARCHAR}, #{ssTime,jdbcType=VARCHAR}, #{flowLink,jdbcType=VARCHAR},
+        #{ssStatus,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR},#{bone,jdbcType=VARCHAR},
+        #{ssStu,jdbcType=VARCHAR},#{shgcStu,jdbcType=VARCHAR},#{dyStu,jdbcType=VARCHAR},
+        #{blcode,jdbcType=VARCHAR},#{leftUp,jdbcType=VARCHAR},#{leftDown,jdbcType=VARCHAR},
+        #{rightUp,jdbcType=VARCHAR},#{rightDown,jdbcType=VARCHAR},#{nodes,jdbcType=VARCHAR},
+        #{lastTime,jdbcType=VARCHAR},#{creatorid,jdbcType=VARCHAR},#{creatorname,jdbcType=VARCHAR},
+        #{counsellor,jdbcType=VARCHAR},#{plantPhysician,jdbcType=VARCHAR},#{repairPphysician,jdbcType=VARCHAR},
+        #{clinicNurse,jdbcType=VARCHAR},#{customerService,jdbcType=VARCHAR},#{plantSystem,jdbcType=VARCHAR},
+        #{crownMaterial,jdbcType=VARCHAR},#{imageologicalExamination,jdbcType=VARCHAR},#{consultation,jdbcType=VARCHAR},
+        #{advisory,jdbcType=VARCHAR},#{repairLeftUp,jdbcType=VARCHAR},#{repairLeftDown,jdbcType=VARCHAR},
+        #{repairRightUp,jdbcType=VARCHAR},#{repairRightDown,jdbcType=VARCHAR},#{repairToothTotal,jdbcType=VARCHAR},#{isobsolete,jdbcType=VARCHAR},
+        #{modeoperation,jdbcType=INTEGER},#{remark,jdbcType=VARCHAR}
+        ,#{flowcode,jdbcType=VARCHAR},#{dentalJaw,jdbcType=VARCHAR},#{articleType,jdbcType=VARCHAR}
+        ,#{abutment_station,jdbcType=VARCHAR},#{tooth_texture,jdbcType=VARCHAR},#{userdocument_id,jdbcType=VARCHAR},
+        '','','','','')
+    </insert>
+    <!-- 手术节点牙位修改I Old -->
+    <!-- <update id="updateOrderTrack">
+        UPDATE HUDH_LCLJ_ORDERTRACK
+        <trim prefix="SET" suffixOverrides=",">
+            <if test='null != nextNode and "" !=  nextNode'>
+                flow_link=#{nextNode,jdbcType=VARCHAR},
+            </if>
+            <if test='null != lastTime and "" != lastTime'>
+                last_time=#{lastTime,jdbcType=VARCHAR},
+            </if>
+            <if test='null != nodes and "" != nodes'>
+                nodes=#{nodes,jdbcType=VARCHAR},
+            </if>
+            <if test='null != flowStatus and "" != flowStatus'>
+                ss_status=#{flowStatus,jdbcType=VARCHAR},
+            </if>
+            <if test='null != imageological_examination and "" != imageological_examination'>
+                imageological_examination=#{imageological_examination,jdbcType=VARCHAR},
+            </if>
+            <if test='null != tooth and "" != tooth'>
+                tooth=#{tooth,jdbcType=VARCHAR},
+            </if>
+            <if test='null != leftUp and "" != leftUp'>
+                left_up=#{leftUp,jdbcType=VARCHAR},
+            </if>
+            <if test='null != leftDown and "" != leftDown'>
+                left_down=#{leftDown,jdbcType=VARCHAR},
+            </if>
+            <if test='null != rightUp and "" != rightUp'>
+                right_up=#{rightUp,jdbcType=VARCHAR},
+            </if>
+            <if test='null != rightDown and "" != rightDown'>
+                right_down=#{rightDown,jdbcType=VARCHAR},
+            </if>
+            <if test='null != repairLeftUp and "" != repairLeftUp'>
+                repair_left_up=#{repairLeftUp,jdbcType=VARCHAR},
+            </if>
+            <if test='null != repairLeftDown and "" != repairLeftDown'>
+                repair_left_down=#{repairLeftDown,jdbcType=VARCHAR},
+            </if>
+            <if test='null != repairRightUp and "" != repairRightUp'>
+                repair_right_up=#{repairRightUp,jdbcType=VARCHAR},
+            </if>
+            <if test='null != repairRightDown and "" != repairRightDown'>
+                repair_right_down=#{repairRightDown,jdbcType=VARCHAR},
+            </if>
+            <if test='null != repairToothTotal and "" != repairToothTotal'>
+                repair_tooth_total=#{repairToothTotal,jdbcType=VARCHAR},
+            </if>
+        </trim>
+        where order_number = #{orderNumber}
+    </update> -->
+
+    <!-- 手术节点牙位修改II -->
+    <update id="updateOrderTrack">
+        UPDATE HUDH_LCLJ_ORDERTRACK
+        <trim prefix="SET" suffixOverrides=",">
+            <if test='null != nextNode and "" !=  nextNode'>
+                flow_link=#{nextNode,jdbcType=VARCHAR},
+            </if>
+            <if test='null != lastTime and "" != lastTime'>
+                last_time=#{lastTime,jdbcType=VARCHAR},
+            </if>
+            <if test='null != nodes and "" != nodes'>
+                nodes=#{nodes,jdbcType=VARCHAR},
+            </if>
+            <if test='null != flowStatus and "" != flowStatus'>
+                ss_status=#{flowStatus,jdbcType=VARCHAR},
+            </if>
+            <if test='null != imageological_examination and "" != imageological_examination'>
+                imageological_examination=#{imageological_examination,jdbcType=VARCHAR},
+            </if>
+            <if test='null != tooth and "" != tooth'>
+                tooth=#{tooth,jdbcType=VARCHAR},
+            </if>
+            left_up=#{leftUp,jdbcType=VARCHAR},
+            left_down=#{leftDown,jdbcType=VARCHAR},
+            right_up=#{rightUp,jdbcType=VARCHAR},
+            right_down=#{rightDown,jdbcType=VARCHAR},
+            repair_left_up=#{repairLeftUp,jdbcType=VARCHAR},
+            repair_left_down=#{repairLeftDown,jdbcType=VARCHAR},
+            repair_right_up=#{repairRightUp,jdbcType=VARCHAR},
+            repair_right_down=#{repairRightDown,jdbcType=VARCHAR},
+            <if test='null != repairToothTotal and "" != repairToothTotal'>
+                repair_tooth_total=#{repairToothTotal,jdbcType=VARCHAR},
+            </if>
+        </trim>
+        where order_number = #{orderNumber}
+    </update>
+
+    <update id="updateOrderTrackNodes" parameterType="com.hudh.lclj.entity.LcljOrderTrack">
+        UPDATE HUDH_LCLJ_ORDERTRACK
+        <trim prefix="SET" suffixOverrides=",">
+            <if test='null != nodes and "" !=  nodes'>
+                nodes=#{nodes,jdbcType=VARCHAR},
+            </if>
+            <if test='null != plantSystem and "" != plantSystem'>
+                plant_system=#{plantSystem,jdbcType=VARCHAR},
+            </if>
+            <if test='null != crownMaterial and "" != crownMaterial'>
+                crown_material=#{crownMaterial,jdbcType=VARCHAR},
+            </if>
+            <if test='null != flowcode and "" != flowcode'>
+                flowcode=#{flowcode,jdbcType=VARCHAR},
+            </if>
+            <if test='null != type and "" != type'>
+                type=#{type,jdbcType=VARCHAR},
+            </if>
+            <if test='null != dentalJaw and "" != dentalJaw'>
+                dentalJaw=#{dentalJaw,jdbcType=VARCHAR},
+            </if>
+            <if test='null != articleType and "" != articleType'>
+                articleType=#{articleType,jdbcType=VARCHAR},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <select id="findNextOrderNumber" resultMap="LcljOrderTrackResultMap">
+        select TOP(1)
+        <include refid="Base_Column_List"/>
+        FROM HUDH_LCLJ_ORDERTRACK ORDER BY order_number DESC
+    </select>
+
+    <select id="findLcljOrderTrackAndHzInfo" resultType="json">
+		SELECT
+		A.*,
+		B.USERNAME,
+		B.SEX,
+		B.PHONENUMBER1,
+		B.AGE,
+		C.NODEID,
+		C.NODENAME,
+		C.FLOWINFO,
+		C.nodeId,
+		C.viewUrl,
+		C.dataId,
+		C.NODESTATUS,
+		C.FLOWSTATUS,
+		D.flowname,
+		B.UserImpress
+		FROM HUDH_LCLJ_ORDERTRACK A 
+		LEFT JOIN KQDS_USERDOCUMENT B ON A.BLCODE=B.USERCODE 
+		LEFT JOIN HUDH_LCLJ_WORKLIST C ON C.ORDER_NUMBER=A.ORDER_NUMBER AND C.NODESTATUS=1
+		LEFT JOIN HUDH_LCLJ_FLOW_CONFIG D ON D.flowcode = A.flowcode
+		WHERE A.ORDER_NUMBER=#{orderNumber}
+	</select>
+
+    <select id="findLcljOrderTrsackByOrderNumber" resultType="json">
+        select
+        o.id,
+        o.tooth,
+        o.createtime,
+        o.order_number,
+        o.ss_time,
+        o.flow_link,
+        o.ss_status,
+        o.type,
+        o.bone,
+        o.ss_stu,
+        o.shgc_stu,
+        o.dy_stu,
+        o.blcode,
+        o.left_up,
+        o.left_down,
+        o.right_up,
+        o.right_down,
+        o.nodes,
+        o.last_time,
+        o.creatorid,
+        o.creatorname,
+        o.counsellor,
+        o.plant_physician,
+        o.repair_physician,
+        o.clinic_nurse,
+        o.customer_service,
+        o.plant_system,
+        o.crown_material,
+        o.imageological_examination,
+        o.consultation,
+        o.advisory,
+        o.repair_left_up,
+        o.repair_left_down,
+        o.repair_right_up,
+        o.repair_right_down,
+        o.repair_tooth_total,
+        o.isobsolete,
+        o.modeoperation,
+        o.remark,
+        o.flowcode,
+        o.dentalJaw,
+        o.articleType,
+        o.abutment_station,
+        o.tooth_texture,
+        o.userdocument_id,
+        o.anamnesis,
+        o.examine,
+        o.diagnosis,
+        o.repair,
+        o.knowbook,
+        u.UserImpress
+        from HUDH_LCLJ_ORDERTRACK o
+        LEFT JOIN KQDS_USERDOCUMENT u ON o.blcode=u.usercode
+        where o.order_number = #{orderNumber} ORDER BY
+        o.CREATETIME DESC
+    </select>
+
+    <select id="findLcljOrderTrsackById" resultType="json">
+		select 
+		a.id,
+		a.tooth, 
+		a.createtime, 
+		a.order_number, 
+		a.ss_time, 
+		a.flow_link,
+		a.ss_status, 
+		a.type,
+		a.bone , 
+		a.ss_stu, 
+		a.shgc_stu, 
+		a.dy_stu,
+		a.left_up, 
+		a.left_down, 
+		a.right_up, 
+		a.right_down,
+		b.ss,
+		b.shgc,
+		b.dy,
+		a.counsellor, 
+		a.plant_physician, 
+		a.repair_physician, 
+		a.clinic_nurse, 
+		a.customer_service, 
+		a.plant_system, 
+		a.crown_material,
+		a.tooth_texture, 
+		a.imageological_examination, 
+		a.consultation, 
+		a.advisory,
+		a.repair_left_up, 
+		a.repair_left_down,
+		a.repair_right_up, 
+		a.repair_right_down, 
+		a.repair_tooth_total,
+		a.nodes,
+		a.abutment_station,
+		a.remark,
+		a.anamnesis,
+		a.examine,
+		a.diagnosis,
+		a.repair,
+		a.knowbook,
+		u.UserImpress
+		from HUDH_LCLJ_ORDERTRACK a 
+		left join HUDH_LCLJ_ORDERIMPLEMEN b on a.id=b.parentid
+		LEFT JOIN KQDS_USERDOCUMENT u ON a.blcode=u.usercode
+		where a.id=#{id,jdbcType=VARCHAR}
+	</select>
+
+    <update id="updateOperateStatus">
+        update HUDH_LCLJ_ORDERTRACK
+        set ss_status = '已完成'
+        <!-- where order_number = #{orderNumber} -->
+    </update>
+
+    <update id="updateOperationFlowStatus" parameterType="java.util.Map">
+        update HUDH_LCLJ_ORDERTRACK
+        <set>
+            <if test='flag=="ss" '>
+                ss_stu = '已完成'
+            </if>
+            <if test='flag=="shgc" '>
+                shgc_stu = '已完成'
+            </if>
+            <if test='flag=="dy" '>
+                dy_stu = '已完成'
+            </if>
+        </set>
+        where id=#{orderNumber,jdbcType=VARCHAR}
+    </update>
+
+    <select id="findToohthNum" resultType="json">
+		select
+		a.total_tooth,b.tooth
+		from HUDH_LCLJ_ORDER a, HUDH_LCLJ_ORDERTRACK b
+		where a.order_number=b.order_number and b.order_number = #{orderNumber}
+	</select>
+
+    <select id="findOrderTrackInforByOrderNumber" parameterType="map" resultType="json">
+        SELECT
+        a.id as seqId,
+        a.sstime,
+        c.UserName,
+        c.sex,
+        c.age,
+        c.UserCode,
+        c.PhoneNumber1,
+        a.flow_link,
+        a.tooth,
+        a.type,
+        a.bone,
+        a.ss_status,
+        a.creatorname,
+        a.order_number,
+        a.createtime,
+        a.plant_physician,
+        a.repair_physician,
+        a.counsellor,
+        s.SEQ_ID,
+        b.SEQ_ID as id1,
+        d.SEQ_ID as id2,
+        e.id as workListId,
+        e.order_number as orderNumber,
+        e.nodeName,
+        e.flowStatus,
+        f.flowname,
+        c.UserImpress
+        FROM HUDH_LCLJ_ORDERTRACK a
+        LEFT JOIN KQDS_UserDocument c ON a.blcode = c.UserCode
+        LEFT JOIN sys_person s ON s.USER_ID = a.repair_physician
+        LEFT JOIN sys_person b ON b.USER_ID = a.plant_physician
+        LEFT JOIN sys_person d ON d.USER_ID = a.counsellor
+        LEFT JOIN HUDH_LCLJ_WORKLIST e ON e.order_number = a.order_number AND e.nodeStatus = '1'
+        LEFT JOIN HUDH_LCLJ_FLOW_CONFIG f ON f.flowcode = a.flowcode <!-- 查询具体路径名称 -->
+        WHERE 1=1
+        and isobsolete = 0 <!-- 过滤作废的数据 -->
+        <if test="nodename != null and nodename !=''">
+            and e.order_number in (SELECT a.order_number from (
+            SELECT
+            a.order_number,b.num
+            FROM
+            HUDH_LCLJ_WORKLIST a
+            LEFT JOIN HUDH_LCLJ_NODE_CONFIG b on a.flowCode=b.flowCode and a.nodeId=b.nodeId
+            WHERE
+            a.nodeStatus = '2'
+            and a.nodeName = #{nodename}
+            <if test="nodestarttime != null and nodestarttime !='' ">
+                and a.createtime <![CDATA[ >= ]]> #{nodestarttime}
+            </if>
+            <if test="nodeendtime != null and nodeendtime !='' ">
+                and a.createtime <![CDATA[ <= ]]> #{nodeendtime}
+            </if>
+            ) a
+            left JOIN
+            (SELECT
+            a.order_number,b.num
+            FROM
+            HUDH_LCLJ_WORKLIST a
+            LEFT JOIN HUDH_LCLJ_NODE_CONFIG b on a.flowCode=b.flowCode and a.nodeId=b.nodeId
+            WHERE
+            a.nodeStatus = '1') b on a.order_number=b.order_number
+            where a.num<![CDATA[ < ]]>b.num)
+        </if>
+        <if test="nodeid != null and nodeid !=''">
+            and a.order_number in (
+            select order_number from HUDH_LCLJ_OPERATION_NODE_INFOR
+            where
+            nodeId = #{nodeid,jdbcType=VARCHAR}
+            <if test="surgerystarttime != null or surgerystarttime !='' ">
+                and operation_time <![CDATA[ >= ]]> #{surgerystarttime}
+            </if>
+            <if test="surgeryendtime != null or surgeryendtime !='' ">
+                and operation_time <![CDATA[ <= ]]> #{surgeryendtime}
+            </if>
+            )
+        </if>
+        <if test="usercodeorname != null and usercodeorname !='' ">
+            and (c.UserCode like '%' + #{usercodeorname} + '%'
+            or c.UserName like '%' + #{usercodeorname} + '%'
+            or c.PhoneNumber1 like '%' + #{usercodeorname} + '%'
+            )
+        </if>
+        <if test="username != null and username !='' ">
+            and c.username = #{username}
+        </if>
+        /*医务部专用 2020/6/18*/
+        <if test="paraValue != mull and paraValue != '' ">
+            and e.nodeName != '术前准备'
+        </if>
+        <if test="userId != null and userId !='' ">
+            and c.UserCode = #{userId}
+        </if>
+        <if test="starttime != null and starttime !='' ">
+            and a.createtime <![CDATA[ >= ]]> #{starttime}
+        </if>
+        <if test="endtime != null and endtime !='' ">
+            and a.createtime <![CDATA[ <= ]]> #{endtime}
+        </if>
+        <if test="phonenumber != null and phonenumber !='' ">
+            and c.phonenumber1 = #{phonenumber}
+        </if>
+        <if test="ssType != null and ssType !='' ">
+            and a.type = #{ssType}
+        </if>
+        <if test="isBone != null and isBone !='' ">
+            and a.bone = #{isBone}
+        </if>
+        <if test="counsellor != null and counsellor !='' ">
+            and a.counsellor = #{counsellor}
+        </if>
+        <if test="plant_physician != null and plant_physician !='' ">
+            and a.plant_physician = #{plant_physician}
+        </if>
+        <if test="repair_physician != null and repair_physician !='' ">
+            and a.repair_physician = #{repair_physician}
+        </if>
+        <if test="sort != null and sort != ''">
+            order by c.UserCode asc
+        </if>
+        <if test="querytype != null or querytype !='' ">
+            and ( s.SEQ_ID in (${querytype}) or b.SEQ_ID in (${querytype}) or d.SEQ_ID in (${querytype}) )
+        </if>
+        <if test="sortName != null and sortName != '' ">
+            ORDER BY ${sortName} ${sortOrder}
+        </if>
+        <if test="sortName == null">
+            order by a.createtime desc
+        </if>
+    </select>
+
+    <select id="findOrderTrackInforByConditionQuery" parameterType="map" resultType="json">
+        SELECT
+        c.UserName,
+        c.UserCode,
+        c.PhoneNumber1,
+        a.flow_link,
+        a.tooth,
+        a.type,
+        a.bone,
+        a.ss_status,
+        a.creatorname,
+        a.order_number,
+        a.createtime,
+        c.UserImpress
+        FROM HUDH_LCLJ_ORDERTRACK a
+        LEFT JOIN KQDS_UserDocument c on a.blcode = c.UserCode
+        WHERE 1=1
+        <if test="usercodeorname != null and usercodeorname !=''">
+            and (c.usercode like '%' + #{usercodeorname} + '%' or c.username like '%' + #{usercodeorname} + '%')
+        </if>
+    </select>
+
+    <update id="updateOrderTrackById">
+        UPDATE HUDH_LCLJ_ORDERTRACK
+        <trim prefix="SET" suffixOverrides=",">
+            <if test='null != sstime and "" !=  sstime'>
+                sstime=#{sstime,jdbcType=VARCHAR},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteOrderTrackInforById" parameterType="String">
+		delete from HUDH_LCLJ_ORDERTRACK
+    	where id = #{id,jdbcType=VARCHAR} 
+	</delete>
+
+    <select id="findOrderTrackInforById" resultType="com.hudh.lclj.entity.LcljOrderTrack">
+		select * from HUDH_LCLJ_ORDERTRACK where id = #{id,jdbcType=VARCHAR}
+	</select>
+
+    <select id="findLcljOrderTrsackByseqId" parameterType="String" resultType="com.hudh.lclj.entity.LcljOrderTrack">
+		select * from HUDH_LCLJ_ORDERTRACK where id = #{id,jdbcType=VARCHAR}
+	</select>
+
+    <insert id="changeLcljOrderTrackBoneStatus" parameterType="com.hudh.lclj.entity.LcljOrderTrack">
+        insert into HUDH_LCLJ_ORDERTRACK (
+        <include refid="Base_Column_List"/>
+        )
+        values (#{id,jdbcType=VARCHAR}, #{tooth,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+        #{orderNumber,jdbcType=VARCHAR}, #{ssTime,jdbcType=VARCHAR}, #{flowLink,jdbcType=VARCHAR},
+        #{ssStatus,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR},#{bone,jdbcType=VARCHAR},
+        #{ssStu,jdbcType=VARCHAR},#{shgcStu,jdbcType=VARCHAR},#{dyStu,jdbcType=VARCHAR},
+        #{blcode,jdbcType=VARCHAR},#{leftUp,jdbcType=VARCHAR},#{leftDown,jdbcType=VARCHAR},
+        #{rightUp,jdbcType=VARCHAR},#{rightDown,jdbcType=VARCHAR},#{nodes,jdbcType=VARCHAR},
+        #{lastTime,jdbcType=VARCHAR},#{creatorid,jdbcType=VARCHAR},#{creatorname,jdbcType=VARCHAR},
+        #{counsellor,jdbcType=VARCHAR},#{plantPhysician,jdbcType=VARCHAR},#{repairPphysician,jdbcType=VARCHAR},
+        #{clinicNurse,jdbcType=VARCHAR},#{customerService,jdbcType=VARCHAR},#{plantSystem,jdbcType=VARCHAR},
+        #{crownMaterial,jdbcType=VARCHAR},#{imageologicalExamination,jdbcType=VARCHAR},#{consultation,jdbcType=VARCHAR},
+        #{advisory,jdbcType=VARCHAR},#{repairLeftUp,jdbcType=VARCHAR},#{repairLeftDown,jdbcType=VARCHAR},
+        #{repairRightUp,jdbcType=VARCHAR},#{repairRightDown,jdbcType=VARCHAR},#{repairToothTotal,jdbcType=VARCHAR},#{isobsolete,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateLcljOrderTrackIsobsolete" parameterType="String">
+		update HUDH_LCLJ_ORDERTRACK
+		set isobsolete = '1'
+		where id=#{id,jdbcType=VARCHAR}
+	</update>
+
+    <update id="updateLcljOrderTrackById" parameterType="com.hudh.lclj.entity.LcljOrderTrack">
+        UPDATE HUDH_LCLJ_ORDERTRACK
+        <trim prefix="SET" suffixOverrides=",">
+            <if test='null != counsellor and "" !=  counsellor'>
+                counsellor=#{counsellor,jdbcType=VARCHAR},
+            </if>
+            <if test='null != plantPhysician and "" != plantPhysician'>
+                plant_physician=#{plantPhysician,jdbcType=VARCHAR},
+            </if>
+            <if test='null != repairPphysician and "" != repairPphysician'>
+                repair_physician=#{repairPphysician,jdbcType=VARCHAR},
+            </if>
+            <if test='null != clinicNurse and "" != clinicNurse'>
+                clinic_nurse=#{clinicNurse,jdbcType=VARCHAR},
+            </if>
+            <if test='null != customerService and "" != customerService'>
+                customer_service=#{customerService,jdbcType=VARCHAR},
+            </if>
+            <if test='null != imageologicalExamination and "" != imageologicalExamination'>
+                imageological_examination=#{imageologicalExamination,jdbcType=VARCHAR},
+            </if>
+            <if test='null != consultation and "" != consultation'>
+                consultation=#{consultation,jdbcType=VARCHAR},
+            </if>
+            <if test='null != remark and "" != remark'>
+                remark=#{remark,jdbcType=VARCHAR},
+            </if>
+            <if test='null != abutment_station and "" != abutment_station'>
+                abutment_station=#{abutment_station,jdbcType=VARCHAR},
+            </if>
+            <if test='null != tooth_texture and "" != tooth_texture'>
+                tooth_texture=#{tooth_texture,jdbcType=VARCHAR},
+            </if>
+            <if test='null != advisory and "" != advisory'>
+                advisory=#{advisory,jdbcType=VARCHAR},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <!-- 批量导入数据 -->
+    <insert id="batchSaveLclj" parameterType="java.util.List">
+        insert into HUDH_LCLJ_ORDERTRACK
+        (<include refid="Base_Column_List"/>)
+        values
+        (#{id,jdbcType=VARCHAR}, #{tooth,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+        #{orderNumber,jdbcType=VARCHAR}, #{ssTime,jdbcType=VARCHAR}, #{flowLink,jdbcType=VARCHAR},
+        #{ssStatus,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR},#{bone,jdbcType=VARCHAR},
+        #{ssStu,jdbcType=VARCHAR},#{shgcStu,jdbcType=VARCHAR},#{dyStu,jdbcType=VARCHAR},
+        #{blcode,jdbcType=VARCHAR},#{leftUp,jdbcType=VARCHAR},#{leftDown,jdbcType=VARCHAR},
+        #{rightUp,jdbcType=VARCHAR},#{rightDown,jdbcType=VARCHAR},#{nodes,jdbcType=VARCHAR},
+        #{lastTime,jdbcType=VARCHAR},#{creatorid,jdbcType=VARCHAR},#{creatorname,jdbcType=VARCHAR},
+        #{counsellor,jdbcType=VARCHAR},#{plantPhysician,jdbcType=VARCHAR},#{repairPphysician,jdbcType=VARCHAR},
+        #{clinicNurse,jdbcType=VARCHAR},#{customerService,jdbcType=VARCHAR},#{plantSystem,jdbcType=VARCHAR},
+        #{crownMaterial,jdbcType=VARCHAR},#{imageologicalExamination,jdbcType=VARCHAR},#{consultation,jdbcType=VARCHAR},
+        #{advisory,jdbcType=VARCHAR},#{repairLeftUp,jdbcType=VARCHAR},#{repairLeftDown,jdbcType=VARCHAR},
+        #{repairRightUp,jdbcType=VARCHAR},#{repairRightDown,jdbcType=VARCHAR},#{repairToothTotal,jdbcType=VARCHAR},
+        #{isobsolete,jdbcType=VARCHAR},#{modeoperation,jdbcType=INTEGER},#{remark,jdbcType=VARCHAR},
+        #{flowcode,jdbcType=VARCHAR},#{dentalJaw,jdbcType=VARCHAR},#{articleType,jdbcType=VARCHAR},
+        #{abutment_station,jdbcType=VARCHAR},#{tooth_texture,jdbcType=VARCHAR},#{userdocument_id,jdbcType=VARCHAR}
+        )
+    </insert>
+    <!-- 临床路径牙位编辑 -->
+    <update id="editToothBit" parameterType="com.hudh.lclj.entity.LcljOrderTrack">
+	 UPDATE 
+		HUDH_LCLJ_ORDERTRACK
+	 SET	 
+	 	left_up= #{leftUp,jdbcType=VARCHAR}, 
+	 	left_down= #{leftDown,jdbcType=VARCHAR},	 
+	 	right_up= #{rightUp,jdbcType=VARCHAR},
+	 	right_down= #{rightDown,jdbcType=VARCHAR},
+	 	repair_left_up= #{repairLeftUp,jdbcType=VARCHAR},
+	 	repair_left_down= #{repairLeftDown,jdbcType=VARCHAR},
+	 	repair_right_up= #{repairRightUp,jdbcType=VARCHAR},
+	 	repair_right_down = #{repairRightDown,jdbcType=VARCHAR}	
+	 WHERE id = #{id,jdbcType=VARCHAR}	
+	</update>
+    <insert id="saveOperatingRecord" parameterType="com.hudh.lclj.entity.OperatingRecord">
+	insert into HUDH_LCLJ_OperatingRecord
+	(id,name,lcljId,crearteTime)values(#{id},#{name},#{lcljId},#{createTime})
+	</insert>
+
+    <!-- 合并档案修改病历号 -->
+    <update id="mergeMessage" parameterType="map">
+		UPDATE HUDH_LCLJ_ORDERTRACK
+		SET blcode = #{usercode2}
+		WHERE
+			blcode = #{usercode1}
+	</update>
+    <select id="findPatientInformation" parameterType="String" resultType="json">
+		select 
+		u.*,
+		reg.createtime as cztime,
+		a1.area_name as provincename,
+		a2.area_name as cityname,
+		a3.area_name as townname,
+		p.PROVINCE_NAME,
+		c.CITY_NAME,
+		a.AREA_NAME,
+		s.STREET_NAME
+		from KQDS_USERDOCUMENT as u
+		LEFT JOIN SYS_AREA a1 on u.province = a1.seq_id
+		LEFT JOIN SYS_AREA a2 on u.city = a2.seq_id
+		LEFT JOIN SYS_AREA a3 on u.town = a3.seq_id
+		left join bs_province p on p.PROVINCE_CODE = u.province
+		left join bs_city c on c.CITY_CODE = u.city
+		left join bs_area a on a.AREA_CODE = u.area
+		left join bs_street s on s.STREET_CODE = u.town
+		left join (select createtime,usercode from KQDS_REG where recesort = '20') reg on reg.usercode=u.usercode
+		where u.usercode=#{_parameter}
+	</select>
+    <!-- 修改多选表单的选中标识字段 -->
+    <update id="updateFormStatus" parameterType="map">
+        update HUDH_LCLJ_ORDERTRACK set ${form}=#{status} where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 修改同意书的选中标识字段，向后拼接 ，分割 -->
+    <update id="updateFormBookStatus" parameterType="map">
+        update HUDH_LCLJ_ORDERTRACK set knowbook=(knowbook+#{status}) where id = #{id,jdbcType=VARCHAR}
+    </update>
+</mapper>

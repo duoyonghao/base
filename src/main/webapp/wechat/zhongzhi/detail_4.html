@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta name="viewport" content="width=device-width,initial-scale=1,mininum-scale=1,maximum-scale=1,user-scalable=no" charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="../../static/css/wechat/weui.css"/>
+<link rel="stylesheet" href="../../static/css/wechat/jquery-weui.min.css"/>
+<link rel="stylesheet" href="../../static/css/wechat/kqdsWeixin.css"/>
+<style>
+	.kqds-binglidetail .weui-form-preview__label {
+	    width: 8em;
+	    text-align: left;
+	    /* margin-right: 0; */
+	}
+	.weui-form-preview__label {
+	    float: left;
+	    margin-right: 1em;
+	    min-width: 4em;
+	    color: #999999;
+	   	text-align: left; 
+	    text-align-last: left; 
+	}
+	.weui-form-preview__bd {
+	    padding: 10px 15px;
+	    font-size: .9em;
+	    text-align: left;
+	    color: #999999;
+	    line-height: 2;
+	}
+	.weui-form-preview__item {
+	    overflow: hidden;
+	    border-bottom: 1px solid #ddd;
+	}
+</style>
+</head>
+<body>
+<div class="kqds-header">
+	<h2 class="titleText">
+		<i class="icon icon-leftArrow" onclick="jump('list.html')"></i> 
+		<span class="titleTextFont">病历详情</span>
+	</h2>
+</div>
+<div class="kqds-content">
+	<div class="kqds-binglidetail">
+		<div class="weui-form-preview"></div>
+	</div>
+</div>
+<script type="text/javascript" src="../../static/js/wechat/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="../../static/plugin/layer-v2.4/layer/layer.js"></script>
+<script type="text/javascript" src="../../static/js/wechat/jquery-weui.js"></script>
+<script type="text/javascript" src="../../static/js/kqdsFront/util.js"></script>
+<script type="text/javascript" src="../../static/js/wechat/kqds_wechat.js?version=1.7"></script>
+<script type="text/javascript" src="../../static/js/wechat/kqds_order.js"></script>
+<script>
+var orderinfo = null;
+$(function() {
+    var seqId = $.getUrlVar('seqId');
+    var mtype = $.getUrlVar('mtype');
+    var url = wxBingLiObj.selectDetail + "&meid=" + seqId + "&mtype=" + mtype;
+    var rtData = getDataFromServer(url);
+    if (rtData.retState == 0) {
+        var html = initDetail(rtData.data);
+        $(".weui-form-preview").append(html);
+    }
+});
+function initDetail(info) {
+    var detail = '';
+    detail += '<div class="weui-form-preview__bd">';
+    
+    
+    detail += getcontent(info.preoperativeExamination, "术前检查： ");
+    
+    detail += getcontent(info.teethCondition, "邻牙情况：");
+    
+    detail += getcontent(info.implantgumCondition, "种植区牙龈情况： ");
+    
+    detail += getcontent(info.implantExposure, "种植体暴露：");
+    
+    detail += getcontent(info.xrayExamination, "种植体X体线检查：");
+    
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">其他： </label>';
+    detail += '  		<span class="weui-form-preview__value">' + info.others + '</span>';
+    detail += '  </div>';
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">手术记录： </label>';
+    detail += '  		<span class="weui-form-preview__value">' + info.surgicalRecord + '</span>';
+    detail += '  </div>';
+    
+    detail += '  <div class="weui-form-preview__item">';
+    detail += '  		<label class="weui-form-preview__label">备注：</label>';
+    detail += '  		<span class="weui-form-preview__value">' + info.remark + '</span>';
+    detail += '  </div>';
+    
+    return detail;
+}
+</script>
+</body>
+</html>

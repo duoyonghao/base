@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_MACHININGREPAIRWAY">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsMachiningRepairWay">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="worksheetId" jdbcType="VARCHAR" property="worksheetId" />
+		<result column="upleftTooth" jdbcType="VARCHAR" property="upleftTooth" />
+		<result column="leftLowerTooth" jdbcType="VARCHAR" property="leftLowerTooth" />
+		<result column="upperRightTooth" jdbcType="VARCHAR" property="upperRightTooth" />
+		<result column="lowRightTooth" jdbcType="VARCHAR" property="lowRightTooth" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, worksheetId, upleftTooth, leftLowerTooth, upperRightTooth, lowRightTooth, 
+		createuser, createtime, organization,remark
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultType="json">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_MACHININGREPAIRWAY
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByParentKey" parameterType="java.lang.String" resultType="json">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_MACHININGREPAIRWAY
+		where worksheetId = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="map">
+		delete from KQDS_MACHININGREPAIRWAY
+		where worksheetId = #{worksheetId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsMachiningRepairWay">
+		insert into KQDS_MACHININGREPAIRWAY (SEQ_ID, worksheetId, upleftTooth, leftLowerTooth,
+		upperRightTooth, lowRightTooth, createuser, createtime, organization, remark)
+		values
+		(#{seqId,jdbcType=VARCHAR}, #{worksheetId,jdbcType=VARCHAR}, #{upleftTooth,jdbcType=VARCHAR},
+		#{leftLowerTooth,jdbcType=VARCHAR}, #{upperRightTooth,jdbcType=INTEGER}, #{lowRightTooth,jdbcType=INTEGER},
+		 #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR},
+		  #{remark,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsMachiningRepairWay">
+		insert into KQDS_MACHININGREPAIRWAY
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="worksheetId != null">
+				worksheetId,
+			</if>
+			<if test="upleftTooth != null">
+				upleftTooth,
+			</if>
+			<if test="leftLowerTooth != null">
+				leftLowerTooth,
+			</if>
+			<if test="upperRightTooth != null">
+				upperRightTooth,
+			</if>
+			<if test="lowRightTooth != null">
+				lowRightTooth,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="worksheetId != null">
+				#{worksheetId,jdbcType=VARCHAR},
+			</if>
+			<if test="upleftTooth != null">
+				#{upleftTooth,jdbcType=VARCHAR},
+			</if>
+			<if test="leftLowerTooth != null">
+				#{leftLowerTooth,jdbcType=VARCHAR},
+			</if>
+			<if test="upperRightTooth != null">
+				#{upperRightTooth,jdbcType=INTEGER},
+			</if>
+			<if test="lowRightTooth != null">
+				#{lowRightTooth,jdbcType=INTEGER},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsMachiningRepairWay">
+		update KQDS_MACHININGREPAIRWAY
+		<set>
+			<if test="worksheetId != null">
+				worksheetId = #{worksheetId,jdbcType=VARCHAR},
+			</if>
+			<if test="upleftTooth != null">
+				upleftTooth = #{upleftTooth,jdbcType=VARCHAR},
+			</if>
+			<if test="leftLowerTooth != null">
+				leftLowerTooth = #{leftLowerTooth,jdbcType=VARCHAR},
+			</if>
+			<if test="upperRightTooth != null">
+				upperRightTooth = #{upperRightTooth,jdbcType=INTEGER},
+			</if>
+			<if test="lowRightTooth != null">
+				lowRightTooth = #{lowRightTooth,jdbcType=INTEGER},
+			</if>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR}
+			</if>
+		</set>
+		where seq_id = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsMachiningRepairWay">
+		update KQDS_MACHININGREPAIRWAY
+		set worksheetId = #{worksheetId,jdbcType=VARCHAR},
+		upleftTooth = #{upleftTooth,jdbcType=VARCHAR},
+		leftLowerTooth = #{leftLowerTooth,jdbcType=VARCHAR},
+		upperRightTooth = #{upperRightTooth,jdbcType=INTEGER},
+		lowRightTooth = #{lowRightTooth,jdbcType=INTEGER},
+		createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR}
+		where seq_id = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_MACHININGREPAIRWAY
+	</sql>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="com.kqds.entity.base.KqdsMachiningRepairWay">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+</mapper>

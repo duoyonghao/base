@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HUDH_LCLJ_ORDER">
+	
+	<!-- <select id="getPersonListBySeqIds" resultType="json">
+		select
+		p.SEQ_ID, p.USER_ID, p.USER_NAME, p.PASSWORD, p.USER_PRIV, p.DEPT_ID, p.USER_NO, p.NOT_LOGIN, p.IS_LEAVE,
+		p.createtime, p.createuser, p.sex, p.LAST_VISIT_TIME, p.MY_STATUS,
+		p.recordaccount,
+		p.RECORDPWD,p.DEPT_ID_OTHER, p.USER_PRIV_OTHER
+		from
+		<include refid="tableName"></include>
+		p
+		where 1=1
+		and p.SEQ_ID in
+		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select> -->
+	
+	<resultMap id="LcljOrderResultMap" type="com.hudh.lclj.entity.LcljOrder">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+		<result column="tota_tooth" jdbcType="VARCHAR" property="totalTooth" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="blcode" jdbcType="VARCHAR" property="blcode" />
+		<result column="remain_tooth" jdbcType="VARCHAR" property="remainTooth" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, order_number, total_tooth,blcode, status, remain_tooth,createtime
+	</sql>
+	
+	<insert id="insertLcljOrder" parameterType="com.hudh.lclj.entity.LcljOrder">
+		insert into HUDH_LCLJ_ORDER (id, order_number, total_tooth,blcode, status, remain_tooth,createtime)
+		values (#{id,jdbcType=VARCHAR}, #{orderNumber,jdbcType=VARCHAR}, #{totalTooth,jdbcType=VARCHAR},
+		#{blcode,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{remainTooth,jdbcType=VARCHAR},#{createtime,jdbcType=INTEGER})
+	</insert>
+
+	<select id="findLcljOrderByBlcode" resultType="json">
+		select
+		<include refid="Base_Column_List" /> 
+		from HUDH_LCLJ_ORDER where blcode = #{blCode}
+	</select>
+	
+	<select id="findLcljOrderByBlcodeAndStu" resultType="json">
+		select
+		<include refid="Base_Column_List" /> 
+		from HUDH_LCLJ_ORDER where blcode = #{blCode} and status=#{status}
+	</select>
+	
+	<select id="findLcljOrderByOrderNumber" resultMap="LcljOrderResultMap">
+		select
+		<include refid="Base_Column_List" /> 
+		from HUDH_LCLJ_ORDER where order_number = #{orderNumber}
+	</select>
+	
+	<select id="findNextOrderNumber" resultMap="LcljOrderResultMap">
+		select TOP(1) 
+		<include refid="Base_Column_List" /> 
+		from HUDH_LCLJ_ORDER ORDER BY order_number DESC
+	</select>
+	
+	<select id="findHasOrder" resultType="int">
+		select count(id) from HUDH_LCLJ_ORDER where blcode=#{blcode} and status=#{status}
+	</select>
+	
+	<update id="updateRemaintooth">
+		UPDATE HUDH_LCLJ_ORDER SET remain_tooth=remain_tooth-#{ssTooth,jdbcType=DECIMAL} WHERE order_number=#{orderNumber,jdbcType=VARCHAR};
+	</update>
+	
+	<update id="updateOrderStatus">
+		UPDATE HUDH_LCLJ_ORDER SET status='已完成'
+	</update>
+	
+</mapper>

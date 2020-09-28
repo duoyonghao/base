@@ -1,0 +1,2133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_MEMBER_RECORD">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsMemberRecord">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="cardno" jdbcType="VARCHAR" property="cardno" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="content" jdbcType="VARCHAR" property="content" />
+		<result column="cmoney" jdbcType="DECIMAL" property="cmoney" />
+		<result column="cgivemoney" jdbcType="DECIMAL" property="cgivemoney" />
+		<result column="ctotal" jdbcType="DECIMAL" property="ctotal" />
+		<result column="ymoney" jdbcType="DECIMAL" property="ymoney" />
+		<result column="ygivemoney" jdbcType="DECIMAL" property="ygivemoney" />
+		<result column="ytotal" jdbcType="DECIMAL" property="ytotal" />
+		<result column="tfremark" jdbcType="VARCHAR" property="tfremark" />
+		<result column="xjmoney" jdbcType="DECIMAL" property="xjmoney" />
+		<result column="yhkmoney" jdbcType="DECIMAL" property="yhkmoney" />
+		<result column="qtmoney" jdbcType="DECIMAL" property="qtmoney" />
+		<result column="zzmoney" jdbcType="DECIMAL" property="zzmoney" />
+		<result column="zzgivemoney" jdbcType="DECIMAL" property="zzgivemoney" />
+		<result column="zfbmoney" jdbcType="DECIMAL" property="zfbmoney" />
+		<result column="wxmoney" jdbcType="DECIMAL" property="wxmoney" />
+		<result column="szrusercode" jdbcType="VARCHAR" property="szrusercode" />
+		<result column="szrusername" jdbcType="VARCHAR" property="szrusername" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="szcardno" jdbcType="VARCHAR" property="szcardno" />
+		<result column="mmdmoney" jdbcType="DECIMAL" property="mmdmoney" />
+		<result column="bdfqmoney" jdbcType="DECIMAL" property="bdfqmoney" />
+		<result column="askperson" jdbcType="VARCHAR" property="askperson" />
+		<result column="regsort" jdbcType="VARCHAR" property="regsort" />
+		<result column="costno" jdbcType="VARCHAR" property="costno" />
+		<result column="doctor" jdbcType="VARCHAR" property="doctor" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, createuser, createtime, usercode, username, cardno, type, content, cmoney,
+		cgivemoney, ctotal, ymoney, ygivemoney, ytotal, tfremark, xjmoney, yhkmoney, qtmoney,
+		zzmoney, zzgivemoney, zfbmoney, wxmoney, szrusercode, szrusername, organization,
+		szcardno, mmdmoney, bdfqmoney, askperson, regsort, costno,doctor
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_MEMBER_RECORD
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_MEMBER_RECORD
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsMemberRecord">
+		insert into KQDS_MEMBER_RECORD (SEQ_ID, createuser, createtime,
+		usercode, username, cardno,
+		type, content, cmoney,
+		cgivemoney, ctotal,ymoney,
+		ygivemoney, ytotal, tfremark,
+		xjmoney, yhkmoney, qtmoney,
+		zzmoney, zzgivemoney, zfbmoney,
+		wxmoney, szrusercode, szrusername,
+		organization, szcardno, mmdmoney,
+		bdfqmoney,askperson, regsort,costno)
+		values (#{seqId,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{usercode,jdbcType=VARCHAR},
+		#{username,jdbcType=VARCHAR}, #{cardno,jdbcType=VARCHAR},
+		#{type,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{cmoney,jdbcType=DECIMAL},
+		#{cgivemoney,jdbcType=DECIMAL},
+		#{ctotal,jdbcType=DECIMAL}, #{ymoney,jdbcType=DECIMAL},
+		#{ygivemoney,jdbcType=DECIMAL}, #{ytotal,jdbcType=DECIMAL}, #{tfremark,jdbcType=VARCHAR},
+		#{xjmoney,jdbcType=DECIMAL},
+		#{yhkmoney,jdbcType=DECIMAL}, #{qtmoney,jdbcType=DECIMAL},
+		#{zzmoney,jdbcType=DECIMAL}, #{zzgivemoney,jdbcType=DECIMAL}, #{zfbmoney,jdbcType=DECIMAL},
+		#{wxmoney,jdbcType=DECIMAL},
+		#{szrusercode,jdbcType=VARCHAR}, #{szrusername,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR}, #{szcardno,jdbcType=VARCHAR}, #{mmdmoney,jdbcType=DECIMAL},
+		#{bdfqmoney,jdbcType=DECIMAL}, #{askperson,jdbcType=VARCHAR}, #{regsort,jdbcType=VARCHAR},
+		#{costno,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsMemberRecord">
+		insert into KQDS_MEMBER_RECORD
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="usercode != null">
+				usercode,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="cardno != null">
+				cardno,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="cmoney != null">
+				cmoney,
+			</if>
+			<if test="cgivemoney != null">
+				cgivemoney,
+			</if>
+			<if test="ctotal != null">
+				ctotal,
+			</if>
+			<if test="ymoney != null">
+				ymoney,
+			</if>
+			<if test="ygivemoney != null">
+				ygivemoney,
+			</if>
+			<if test="ytotal != null">
+				ytotal,
+			</if>
+			<if test="tfremark != null">
+				tfremark,
+			</if>
+			<if test="xjmoney != null">
+				xjmoney,
+			</if>
+			<if test="yhkmoney != null">
+				yhkmoney,
+			</if>
+			<if test="qtmoney != null">
+				qtmoney,
+			</if>
+			<if test="zzmoney != null">
+				zzmoney,
+			</if>
+			<if test="zzgivemoney != null">
+				zzgivemoney,
+			</if>
+			<if test="zfbmoney != null">
+				zfbmoney,
+			</if>
+			<if test="wxmoney != null">
+				wxmoney,
+			</if>
+			<if test="szrusercode != null">
+				szrusercode,
+			</if>
+			<if test="szrusername != null">
+				szrusername,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="szcardno != null">
+				szcardno,
+			</if>
+			<if test="mmdmoney != null">
+				mmdmoney,
+			</if>
+			<if test="bdfqmoney != null">
+				bdfqmoney,
+			</if>
+			<if test="askperson != null">
+				askperson,
+			</if>
+			<if test="regsort != null">
+				regsort,
+			</if>
+			<if test="costno != null">
+				costno,
+			</if>
+			<if test="doctor != null">
+				doctor,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="cardno != null">
+				#{cardno,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="cmoney != null">
+				#{cmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="cgivemoney != null">
+				#{cgivemoney,jdbcType=DECIMAL},
+			</if>
+			<if test="ctotal != null">
+				#{ctotal,jdbcType=DECIMAL},
+			</if>
+			<if test="ymoney != null">
+				#{ymoney,jdbcType=DECIMAL},
+			</if>
+			<if test="ygivemoney != null">
+				#{ygivemoney,jdbcType=DECIMAL},
+			</if>
+			<if test="ytotal != null">
+				#{ytotal,jdbcType=DECIMAL},
+			</if>
+			<if test="tfremark != null">
+				#{tfremark,jdbcType=VARCHAR},
+			</if>
+			<if test="xjmoney != null">
+				#{xjmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="yhkmoney != null">
+				#{yhkmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="qtmoney != null">
+				#{qtmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="zzmoney != null">
+				#{zzmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="zzgivemoney != null">
+				#{zzgivemoney,jdbcType=DECIMAL},
+			</if>
+			<if test="zfbmoney != null">
+				#{zfbmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="wxmoney != null">
+				#{wxmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="szrusercode != null">
+				#{szrusercode,jdbcType=VARCHAR},
+			</if>
+			<if test="szrusername != null">
+				#{szrusername,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="szcardno != null">
+				#{szcardno,jdbcType=VARCHAR},
+			</if>
+			<if test="mmdmoney != null">
+				#{mmdmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="bdfqmoney != null">
+				#{bdfqmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="askperson != null">
+				#{askperson,jdbcType=VARCHAR},
+			</if>
+			<if test="regsort != null">
+				#{regsort,jdbcType=VARCHAR},
+			</if>
+			<if test="costno != null">
+				#{costno,jdbcType=VARCHAR},
+			</if>
+			<if test="doctor != null">
+				#{doctor,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsMemberRecord">
+		update KQDS_MEMBER_RECORD
+		<set>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				usercode = #{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="cardno != null">
+				cardno = #{cardno,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="cmoney != null">
+				cmoney = #{cmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="cgivemoney != null">
+				cgivemoney = #{cgivemoney,jdbcType=DECIMAL},
+			</if>
+			<if test="ctotal != null">
+				ctotal = #{ctotal,jdbcType=DECIMAL},
+			</if>
+			<if test="ymoney != null">
+				ymoney = #{ymoney,jdbcType=DECIMAL},
+			</if>
+			<if test="ygivemoney != null">
+				ygivemoney = #{ygivemoney,jdbcType=DECIMAL},
+			</if>
+			<if test="ytotal != null">
+				ytotal = #{ytotal,jdbcType=DECIMAL},
+			</if>
+			<if test="tfremark != null">
+				tfremark = #{tfremark,jdbcType=VARCHAR},
+			</if>
+			<if test="xjmoney != null">
+				xjmoney = #{xjmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="yhkmoney != null">
+				yhkmoney = #{yhkmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="qtmoney != null">
+				qtmoney = #{qtmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="zzmoney != null">
+				zzmoney = #{zzmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="zzgivemoney != null">
+				zzgivemoney = #{zzgivemoney,jdbcType=DECIMAL},
+			</if>
+			<if test="zfbmoney != null">
+				zfbmoney = #{zfbmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="wxmoney != null">
+				wxmoney = #{wxmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="szrusercode != null">
+				szrusercode = #{szrusercode,jdbcType=VARCHAR},
+			</if>
+			<if test="szrusername != null">
+				szrusername = #{szrusername,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="szcardno != null">
+				szcardno = #{szcardno,jdbcType=VARCHAR},
+			</if>
+			<if test="mmdmoney != null">
+				mmdmoney = #{mmdmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="bdfqmoney != null">
+				bdfqmoney = #{bdfqmoney,jdbcType=DECIMAL},
+			</if>
+			<if test="askperson != null">
+				askperson = #{askperson,jdbcType=VARCHAR},
+			</if>
+			<if test="regsort != null">
+				regsort = #{regsort,jdbcType=VARCHAR},
+			</if>
+			<if test="costno != null">
+				costno = #{costno,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsMemberRecord">
+		update KQDS_MEMBER_RECORD
+		set createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		usercode= #{usercode,jdbcType=VARCHAR},
+		username = #{username,jdbcType=VARCHAR},
+		cardno = #{cardno,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR},
+		content = #{content,jdbcType=VARCHAR},
+		cmoney = #{cmoney,jdbcType=DECIMAL},
+		cgivemoney = #{cgivemoney,jdbcType=DECIMAL},
+		ctotal = #{ctotal,jdbcType=DECIMAL},
+		ymoney = #{ymoney,jdbcType=DECIMAL},
+		ygivemoney =#{ygivemoney,jdbcType=DECIMAL},
+		ytotal = #{ytotal,jdbcType=DECIMAL},
+		tfremark = #{tfremark,jdbcType=VARCHAR},
+		xjmoney = #{xjmoney,jdbcType=DECIMAL},
+		yhkmoney =#{yhkmoney,jdbcType=DECIMAL},
+		qtmoney = #{qtmoney,jdbcType=DECIMAL},
+		zzmoney = #{zzmoney,jdbcType=DECIMAL},
+		zzgivemoney = #{zzgivemoney,jdbcType=DECIMAL},
+		zfbmoney =#{zfbmoney,jdbcType=DECIMAL},
+		wxmoney = #{wxmoney,jdbcType=DECIMAL},
+		szrusercode = #{szrusercode,jdbcType=VARCHAR},
+		szrusername = #{szrusername,jdbcType=VARCHAR},
+		organization =#{organization,jdbcType=VARCHAR},
+		szcardno = #{szcardno,jdbcType=VARCHAR},
+		mmdmoney = #{mmdmoney,jdbcType=DECIMAL},
+		bdfqmoney = #{bdfqmoney,jdbcType=DECIMAL},
+		askperson =#{askperson,jdbcType=VARCHAR},
+		regsort = #{regsort,jdbcType=VARCHAR},
+		costno = #{costno,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_MEMBER_RECORD
+	</sql>
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsMemberRecord">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+	<!-- 查询预交金退款 -->
+	<select id="selectListRefund" parameterType="map" resultType="json">
+		SELECT
+		kmr.usercode,
+		kmr.username,
+		kmr.cmoney as actualmoney,
+		kmr.cmoney as totalcost,
+		kmr.cmoney as shouldmoney,
+		kmr.createtime,
+		kmr.createtime as sftime,
+		kmr.tfremark as remark,
+		dept.dept_name as organizationname,
+		kcit2.dict_name as regsort,
+		u2.username as introducer,
+		hzly.dict_name as nexttype,
+		kcit3.dict_name as devchannel,
+		per4.USER_NAME as createuser,
+		per4.USER_NAME as sfuser,
+		per5.USER_NAME as jduser,
+		per6.USER_NAME as developer,
+		per7.USER_NAME as jddy,
+		per8.USER_NAME as doctorname,
+		per12.USER_NAME as faskperson,
+		p.USER_NAME as askperson,
+		u.CreateTime as jdtime,
+		u.PhoneNumber1,
+		u.blcode,
+		u.familyship,
+		u.iscreateLclj
+		FROM KQDS_MEMBER_RECORD kmr
+		LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID = kmr.createuser
+		LEFT JOIN KQDS_UserDocument u on kmr.usercode=u.UserCode
+		LEFT JOIN SYS_PERSON per5 on per5.SEQ_ID = u.createuser
+		LEFT JOIN SYS_PERSON per6 on per6.SEQ_ID = u.developer
+		LEFT JOIN SYS_PERSON per7 on per7.SEQ_ID = u.guider
+		LEFT JOIN SYS_PERSON per8 on per8.SEQ_ID = kmr.doctor
+		LEFT JOIN SYS_PERSON per12 on per12.SEQ_ID = u.askperson
+		LEFT JOIN SYS_DICT kcit3 on u.devchannel = kcit3.seq_id
+		LEFT JOIN SYS_DICT hzly on u.nexttype =hzly.seq_id
+		LEFT JOIN KQDS_UserDocument u2 on u2.usercode = u.introducer
+		LEFT JOIN sys_person p on kmr.askperson=p.SEQ_ID
+		LEFT JOIN SYS_DICT kcit2 on kmr.regsort = kcit2.seq_id
+		LEFT JOIN SYS_DEPT dept on dept.DEPT_CODE=kmr.organization and dept.dept_parent = '0' 
+		WHERE kmr.type = '退费'
+		<if test="starttime != null and starttime !='' ">
+			and kmr.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and kmr.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="queryinput != null and queryinput !='' ">
+			and (u.usercode like '%' + #{queryinput} + '%'
+			or u.username like '%' + #{queryinput} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{queryinput} + '%'
+			)
+		</if>
+		<if test="askperson != null and askperson !='' ">
+			and kmr.askperson = #{askperson}
+		</if>
+		<if test="createuser != null and createuser !='' ">
+			and u.createuser =#{createuser}
+		</if>
+		<if test="devchannel != null and devchannel !='' ">
+			and u.devchannel =#{devchannel}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and u.nexttype =#{nexttype}
+		</if>
+		<if test="regsort != null and regsort !='' ">
+			and kmr.regsort =#{regsort}
+		</if>
+		<if test="remark != null and remark !='' ">
+			and kmr.tfremark =like '%' + #{remark} + '%'
+		</if>
+		<if test="searchValue != null and searchValue !='' ">
+			and (u.usercode like '%' + #{searchValue} + '%'
+			or u.username like '%' + #{searchValue} + '%'
+			or ${p1}
+			or ${p1}
+			or u.pym like '%' + #{searchValue} + '%'
+			)
+		</if>
+		<if test="usercode != null and usercode !='' ">
+			and kmr.usercode =#{usercode}
+		</if>
+		<if test="visualstaff != null and visualstaff !='' ">
+			and (kmr.createuser in (${visualstaff})or u.createuser in (${visualstaff}))
+		</if>
+		<if test="organization != null and organization !='' ">
+			and kmr.organization = #{organization}
+		</if>
+		<if test="sortName != null and sortName != ''">
+		ORDER BY ${sortName} ${sortOrder}
+		</if>
+		<if test="sortName == null ">
+		ORDER BY kmr.createtime desc
+		</if>
+	</select>
+	<select id="selectListRefundNum" parameterType="map" resultType="json">
+		SELECT
+		sum(kmr.cmoney) as cmoney
+		FROM KQDS_MEMBER_RECORD kmr
+		LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID = kmr.createuser
+		LEFT JOIN KQDS_UserDocument u on kmr.usercode=u.UserCode
+		LEFT JOIN SYS_PERSON per5 on per5.SEQ_ID = u.createuser
+		LEFT JOIN SYS_PERSON per6 on per6.SEQ_ID = u.developer
+		LEFT JOIN SYS_PERSON per7 on per7.SEQ_ID = u.guider
+		LEFT JOIN SYS_PERSON per12 on per12.SEQ_ID = u.askperson
+		LEFT JOIN SYS_DICT kcit3 on u.devchannel = kcit3.seq_id
+		LEFT JOIN SYS_DICT hzly on u.nexttype =hzly.seq_id
+		LEFT JOIN KQDS_UserDocument u2 on u2.usercode = u.introducer
+		LEFT JOIN sys_person p on kmr.askperson=p.SEQ_ID
+		LEFT JOIN SYS_DICT kcit2 on kmr.regsort = kcit2.seq_id
+		LEFT JOIN SYS_DEPT dept on dept.DEPT_CODE=kmr.organization and dept.dept_parent = '0' 
+		WHERE kmr.type = '退费'
+		<if test="starttime != null and starttime !='' ">
+			and kmr.createtime <![CDATA[ >= ]]>#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and kmr.createtime <![CDATA[ <= ]]>#{endtime}
+		</if>
+		<if test="queryinput != null and queryinput !='' ">
+			and (u.usercode like '%' + #{queryinput} + '%'
+			or u.username like '%' + #{queryinput} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{queryinput} + '%'
+			)
+		</if>
+		<if test="askperson != null and askperson !='' ">
+			and kmr.askperson = #{askperson}
+		</if>
+		<if test="createuser != null and createuser !='' ">
+			and u.createuser =#{createuser}
+		</if>
+		<if test="devchannel != null and devchannel !='' ">
+			and u.devchannel =#{devchannel}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and u.nexttype =#{nexttype}
+		</if>
+		<if test="regsort != null and regsort !='' ">
+			and kmr.regsort =#{regsort}
+		</if>
+		<if test="remark != null and remark !='' ">
+			and kmr.tfremark =like '%' + #{remark} + '%'
+		</if>
+		<if test="searchValue != null and searchValue !='' ">
+			and (u.usercode like '%' + #{searchValue} + '%'
+			or u.username like '%' + #{searchValue} + '%'
+			or ${p1}
+			or ${p1}
+			or u.pym like '%' + #{searchValue} + '%'
+			)
+		</if>
+		<if test="usercode != null and usercode !='' ">
+			and kmr.usercode =#{usercode}
+		</if>
+		<if test="visualstaff != null and visualstaff !='' ">
+			and (kmr.createuser in (${visualstaff})or u.createuser in (${visualstaff}))
+		</if>
+		<if test="organization != null and organization !='' ">
+			and kmr.organization = #{organization}
+		</if>
+	</select>
+	<select id="selectList" parameterType="map" resultType="json">
+		select
+		p2.USER_NAME as faskPerson,
+		p5.USER_NAME as askPerson,
+		rec.seq_id,
+		rec.usercode,
+		rec.username,
+		rec.szrusercode,
+		rec.szrusername,
+		rec.cardno,
+		rec.type,
+		rec.xjmoney,
+		rec.yhkmoney,
+		rec.qtmoney,
+		rec.zfbmoney,
+		rec.wxmoney,
+		rec.cmoney,
+		rec.cgivemoney,
+		rec.ctotal,
+		rec.ymoney,
+		rec.ygivemoney,
+		rec.ytotal,
+		rec.createuser,
+		rec.createtime,
+		rec.zzmoney,
+		rec.zzgivemoney,
+		p3.user_name as jdr,
+		p4.user_name as kfr,
+		p6.user_name as czr,
+		kcit3.dict_name as devchannel,
+		hzly.dict_name as nexttype,
+		rec.tfremark
+		from KQDS_MEMBER_RECORD rec
+		LEFT JOIN KQDS_UserDocument u on u.usercode = rec.usercode
+		LEFT JOIN SYS_PERSON p2 on u.AskPerson = p2.seq_id
+		LEFT JOIN SYS_PERSON p3 on p3.seq_id = u.createuser
+		LEFT JOIN SYS_PERSON p4 on p4.seq_id = u.developer
+		LEFT JOIN SYS_PERSON p5 on p5.seq_id = rec.AskPerson
+		LEFT JOIN SYS_PERSON p6 on p6.seq_id = rec.createuser
+		LEFT JOIN SYS_DICT kcit3 on u.devchannel =kcit3.seq_id
+		LEFT JOIN SYS_DICT hzly on u.nexttype = hzly.seq_id
+		where 1=1
+		<if test="nosz != null and nosz !='' ">
+			and rec.type !='受赠'
+		</if>
+		<if test="cardno != null and cardno !='' ">
+			and rec.cardno = #{cardno}
+		</if>
+		<if test="memberno != null and memberno !='' ">
+			and rec.memberno = #{memberno}
+		</if>
+		order by rec.createtime desc
+	</select>
+	<select id="selectListForCzjl" parameterType="map" resultType="json">
+		select
+		p2.USER_NAME as faskPerson,
+		p5.USER_NAME as askPerson,
+		rec.seq_id,
+		rec.usercode,
+		rec.username,
+		rec.szrusercode,
+		rec.szrusername,
+		rec.cardno,
+		rec.type,
+		rec.xjmoney,
+		rec.yhkmoney,
+		rec.qtmoney,
+		rec.zfbmoney,
+		rec.wxmoney,
+		rec.cmoney,
+		rec.cgivemoney,
+		rec.ctotal,
+		rec.ymoney,
+		rec.ygivemoney,
+		rec.ytotal,
+		rec.createuser,
+		rec.createtime,
+		rec.zzmoney,
+		rec.zzgivemoney,
+		p3.user_name as jdr,
+		p4.user_name as kfr,
+		p6.user_name as czr,
+		kcit3.dict_name as devchannel,
+		hzly.dict_name as nexttype,
+		rec.tfremark
+		from KQDS_MEMBER_RECORD rec
+		LEFT JOIN KQDS_UserDocument u on u.usercode = rec.usercode
+		LEFT JOIN SYS_PERSON p2 on u.AskPerson = p2.seq_id
+		LEFT JOIN SYS_PERSON p3 on p3.seq_id = u.createuser
+		LEFT JOIN SYS_PERSON p4 on p4.seq_id = u.developer
+		LEFT JOIN SYS_PERSON p5 on p5.seq_id = rec.AskPerson
+		LEFT JOIN SYS_PERSON p6 on p6.seq_id = rec.createuser
+		LEFT JOIN SYS_DICT kcit3 on u.devchannel = kcit3.seq_id
+		LEFT JOIN SYS_DICT hzly on u.nexttype = hzly.seq_id
+		where 1=1
+		<if test="nosz != null and nosz !='' ">
+			and rec.type ='受赠'
+		</if>
+		<if test="cardno != null and cardno !='' ">
+			and rec.cardno = #{cardno}
+		</if>
+		<if test="memberno != null and memberno !='' ">
+			and rec.memberno = #{memberno}
+		</if>
+		order by rec.createtime desc
+	</select>
+	<select id="selectListOrder" parameterType="map" resultType="json">
+		select
+		p2.user_name as faskperson,
+		rec.seq_id,
+		rec.usercode,
+		kcit1.dict_name as recesort,
+		kcit2.dict_name as regsort,
+		rec.username,
+		rec.szrusercode,
+		rec.szrusername,
+		rec.cardno,
+		rec.content,
+		rec.type,
+		rec.xjmoney,
+		rec.yhkmoney,
+		rec.qtmoney,
+		rec.zfbmoney,
+		rec.wxmoney,
+		rec.bdfqmoney,
+		rec.mmdmoney,
+		rec.cmoney,
+		rec.cgivemoney,
+		rec.ctotal,
+		rec.ymoney,
+		rec.ygivemoney,
+		rec.ytotal,
+		kcit5.dict_name as accepttype,
+		kcit6.dict_name as accepttool,
+		dept.DEPT_NAME as organization,
+		p.user_name as cjr,
+		rec.createtime,
+		rec.zzmoney,
+		rec.zzgivemoney,
+		p3.user_name as jduser,
+		p4.user_name as kfr,
+		p8.user_name as askperson,
+		p5.user_name as sfr,
+		per7.USER_NAME as jddy,
+		u2.username as jsr,
+		kcit3.dict_name as devchannel,
+		hzly.dict_name as nexttype,
+		u.phonenumber1,
+		u.createtime as jdtime,
+		u.blcode,
+		p9.USER_NAME as doctor,
+		p6.USER_NAME as doctorname,
+		dept2.DEPT_NAME as regdept,
+		rec.tfremark
+		from KQDS_MEMBER_RECORD rec
+		LEFT JOIN KQDS_UserDocument u on u.usercode = rec.usercode
+		LEFT JOIN KQDS_UserDocument u2 on u2.usercode = u.introducer
+		LEFT JOIN SYS_PERSON p on p.seq_id = u.createuser
+		LEFT JOIN SYS_PERSON p2 on u.AskPerson = p2.seq_id
+		LEFT JOIN SYS_PERSON p3 on p3.seq_id = u.createuser
+		LEFT JOIN SYS_PERSON p4 on p4.seq_id = u.developer
+		LEFT JOIN SYS_PERSON p5 on p5.seq_id = rec.createuser
+		LEFT JOIN SYS_PERSON p6 on p6.seq_id = rec.doctor
+		LEFT JOIN SYS_PERSON per7 on per7.SEQ_ID = u.guider
+		LEFT JOIN SYS_PERSON p8 on p8.SEQ_ID = rec.askperson
+		LEFT JOIN SYS_DICT kcit3 on u.devchannel = kcit3.seq_id
+		LEFT JOIN SYS_DICT hzly on u.nexttype = hzly.seq_id
+		left join (	SELECT 	c.accepttype,c.accepttool,c.usercode FROM (
+	SELECT
+				a.accepttype,a.accepttool,a.usercode
+			FROM
+				KQDS_NET_ORDER a,
+				(
+					SELECT
+						usercode,
+						MAX (createtime) createtime
+					FROM
+						KQDS_NET_ORDER
+					GROUP BY
+						usercode
+				) b
+			WHERE
+				a.usercode = b.usercode
+			AND a.createtime = b.createtime) c GROUP BY c.accepttype,c.accepttool,c.usercode) n on n.usercode=rec.usercode
+		LEFT JOIN SYS_DICT kcit5 on n.accepttype = kcit5.seq_id
+		LEFT JOIN SYS_DICT kcit6 on n.accepttool = kcit6.seq_id
+		LEFT JOIN SYS_DEPT dept on rec.organization = dept.dept_code and dept.dept_parent = '0'
+		LEFT JOIN KQDS_COSTORDER cost on cost.costno = rec.costno
+		LEFT JOIN KQDS_REG reg on reg.seq_id = cost.regno
+		LEFT JOIN SYS_PERSON p9 on p9.SEQ_ID = cost.doctor
+		LEFT JOIN SYS_DEPT dept2 on dept2.seq_id = reg.regdept
+		LEFT JOIN SYS_DICT kcit1 on reg.recesort = kcit1.seq_id
+		LEFT JOIN SYS_DICT kcit2 on reg.regsort = kcit2.seq_id
+		where 1=1 and rec.type!='缴费' and rec.type !='转赠' and rec.type !='受赠'
+		<if test="starttime != null and starttime !='' ">
+			and rec.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and rec.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			<if test='basetype != "预交金"'>
+				and 1!=1
+			</if>
+			<if test='basetype == "预交金"'>
+				and 1=1
+			</if>
+		</if>
+		<if test="doctor != null and doctor !='' ">
+			and cost.doctor = #{doctor}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and rec.type = #{nexttype}
+		</if>
+		<if test="queryinput != null and queryinput !='' ">
+			and (u.usercode like '%' + #{queryinput} + '%'
+			or u.username like '%' + #{queryinput} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{queryinput} + '%'
+			)
+		</if>
+		<if test="askperson != null and askperson !='' ">
+			and rec.askperson = #{askperson}
+		</if>
+		<if test="createuser != null and createuser !='' ">
+			and u.createuser = #{createuser}
+		</if>
+		<if test="usercodes != null and usercodes !='' ">
+			and u.usercode in (${usercodes})
+		</if>
+		<if test="introducer != null and introducer !='' ">
+			and u.introducer = #{introducer}
+		</if>
+		<if test="kfr != null and kfr !='' ">
+			and u.developer = #{kfr}
+		</if>
+		<if test="devchannel != null and devchannel !='' ">
+			and u.devchannel = #{devchannel}
+		</if>
+		<if test="nexttype1 != null and nexttype1 !='' ">
+			and u.nexttype = #{nexttype1}
+		</if>
+		<if test="shouli != null and shouli !='' ">
+			and n.accepttype = #{shouli}
+		</if>
+		<if test="gongju != null and gongju !='' ">
+			and n.accepttool = #{gongju}
+		</if>
+		<if test="remark != null and remark !='' ">
+			and rec.content like '%' + #{remark} + '%'
+		</if>
+		<if test="organization != null and organization !='' ">
+			and rec.organization = #{organization}
+		</if>
+		<if test="persontype != null and persontype !='' ">
+			<if test='persontype == "0"'>
+				and (
+				rec.askperson in (${visualstaff})
+				or u.createuser in (${visualstaff})
+				)
+			</if>
+			<if test='persontype == "1"'>
+				and (
+				rec.askperson in (${visualstaff})
+				)
+			</if>
+			<if test='persontype == "2"'>
+				and (
+				u.createuser in (${visualstaff})
+				)
+				and (
+				u.createuser in (${visualstaffwd})
+				)
+			</if>
+			<if test='persontype == "3"'>
+				and (
+				u.createuser in (${visualstaff})
+				)
+				and (
+				u.createuser in (${visualstaffwd})
+				)
+			</if>
+		</if>
+		<if test="sortName1 != null and sortName1 != '' ">
+		ORDER BY ${sortName1} ${sortOrder}
+		</if>
+		<if test="sortName1 == null or sortName1 == ''">
+		ORDER BY rec.createtime desc
+		</if>
+	</select>
+	<select id="selectCountListOrder" parameterType="map" resultType="int">
+		select count(1)
+		from KQDS_MEMBER_RECORD rec
+		LEFT JOIN KQDS_UserDocument u on u.usercode = rec.usercode
+		left join (SELECT 	c.accepttype,c.accepttool,c.usercode FROM (
+	SELECT
+				a.accepttype,a.accepttool,a.usercode
+			FROM
+				KQDS_NET_ORDER a,
+				(
+					SELECT
+						usercode,
+						MAX (createtime) createtime
+					FROM
+						KQDS_NET_ORDER
+					GROUP BY
+						usercode
+				) b
+			WHERE
+				a.usercode = b.usercode
+			AND a.createtime = b.createtime) c GROUP BY c.accepttype,c.accepttool,c.usercode) n on n.usercode=rec.usercode
+		where 1=1 and rec.type !='缴费' and
+		rec.type !='转赠' and rec.type !='受赠'
+		<if test="starttime != null and starttime !='' ">
+			and rec.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and rec.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			<if test='basetype != "预交金"'>
+				and 1!=1
+			</if>
+			<if test='basetype == "预交金"'>
+				and 1=1
+			</if>
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and rec.nexttype = #{nexttype}
+		</if>
+		<if test="queryinput != null and queryinput !='' ">
+			and (u.usercode like '%' + #{queryinput} + '%'
+			or u.username like '%' + #{queryinput} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{queryinput} + '%'
+			)
+		</if>
+		<if test="askperson != null and askperson !='' ">
+			and rec.askperson = #{askperson}
+		</if>
+		<if test="createuser != null and createuser !='' ">
+			and u.createuser = #{createuser}
+		</if>
+		<if test="usercodes != null and usercodes !='' ">
+			and u.usercode in (${usercodes})
+		</if>
+		<if test="introducer != null and introducer !='' ">
+			and u.introducer = #{introducer}
+		</if>
+		<if test="kfr != null and kfr !='' ">
+			and u.developer = #{kfr}
+		</if>
+		<if test="devchannel != null and devchannel !='' ">
+			and u.devchannel = #{devchannel}
+		</if>
+		<if test="nexttype1 != null and nexttype1 !='' ">
+			and u.nexttype = #{nexttype1}
+		</if>
+		<if test="shouli != null and shouli !='' ">
+			and n.accepttype = #{shouli}
+		</if>
+		<if test="gongju != null and gongju !='' ">
+			and n.accepttool = #{gongju}
+		</if>
+		<if test="remark != null and remark !='' ">
+			and rec.content like '%' + #{remark} + '%'
+		</if>
+		<if test="organization != null and organization !='' ">
+			and rec.organization = #{organization}
+		</if>
+		<if test="persontype != null and persontype !='' ">
+			<if test='persontype == "0"'>
+				and (
+				rec.askperson in (${visualstaff})
+				or u.createuser in (${visualstaff})
+				)
+			</if>
+			<if test='persontype == "1"'>
+				and (
+				rec.askperson in (${visualstaff})
+				)
+			</if>
+			<if test='persontype == "2"'>
+				and (
+				u.createuser in (${visualstaff})
+				)
+				and (
+				u.createuser in (${visualstaffwd})
+				)
+			</if>
+			<if test='persontype == "3"'>
+				and (
+				u.createuser in (${visualstaff})
+				)
+				and (
+				u.createuser in (${visualstaffwd})
+				)
+			</if>
+		</if>
+	</select>
+	<select id="getTotalNumFields" parameterType="map" resultType="json">
+		select
+		sum(rec.cmoney) as cmoney,
+		sum(rec.xjmoney) as xjmoney,
+		sum(rec.yhkmoney) as yhkmoney,
+		sum(rec.wxmoney) as wxmoney,
+		sum(rec.zfbmoney) as zfbmoney,
+		sum(rec.mmdmoney) as mmdmoney,
+		sum(rec.bdfqmoney) as bdfqmoney,
+		sum(rec.qtmoney) as qtmoney
+		from KQDS_MEMBER_RECORD rec
+		LEFT JOIN KQDS_UserDocument u on u.usercode = rec.usercode
+		left join (SELECT 	c.accepttype,c.accepttool,c.usercode FROM (
+	SELECT
+				a.accepttype,a.accepttool,a.usercode
+			FROM
+				KQDS_NET_ORDER a,
+				(
+					SELECT
+						usercode,
+						MAX (createtime) createtime
+					FROM
+						KQDS_NET_ORDER
+					GROUP BY
+						usercode
+				) b
+			WHERE
+				a.usercode = b.usercode
+			AND a.createtime = b.createtime) c GROUP BY c.accepttype,c.accepttool,c.usercode) n on
+		n.usercode=rec.usercode
+		where 1=1 and rec.type !='缴费' and rec.type !='转赠' and rec.type !='受赠'
+		<if test="starttime != null and starttime !='' ">
+			and rec.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and rec.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="basetype != null and basetype !='' ">
+			<if test='basetype != "预交金"'>
+				and 1!=1
+			</if>
+			<if test='basetype == "预交金"'>
+				and 1=1
+			</if>
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and rec.nexttype = #{nexttype}
+		</if>
+		<if test="queryinput != null and queryinput !='' ">
+			and (u.usercode like '%' + #{queryinput} + '%'
+			or u.username like '%' + #{queryinput} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{queryinput} + '%'
+			)
+		</if>
+		<if test="askperson != null and askperson !='' ">
+			and rec.askperson = #{askperson}
+		</if>
+		<if test="createuser != null and createuser !='' ">
+			and u.createuser = #{createuser}
+		</if>
+		<if test="usercodes != null and usercodes !='' ">
+			and u.usercode in (${usercodes})
+		</if>
+		<if test="introducer != null and introducer !='' ">
+			and u.introducer = #{introducer}
+		</if>
+		<if test="kfr != null and kfr !='' ">
+			and u.developer = #{kfr}
+		</if>
+		<if test="devchannel != null and devchannel !='' ">
+			and u.devchannel = #{devchannel}
+		</if>
+		<if test="nexttype1 != null and nexttype1 !='' ">
+			and u.nexttype = #{nexttype1}
+		</if>
+		<if test="shouli != null and shouli !='' ">
+			and n.accepttype = #{shouli}
+		</if>
+		<if test="gongju != null and gongju !='' ">
+			and n.accepttool = #{gongju}
+		</if>
+		<if test="remark != null and remark !='' ">
+			and rec.content like '%' + #{remark} + '%'
+		</if>
+		<if test="organization != null and organization !='' ">
+			and rec.organization = #{organization}
+		</if>
+		<if test="persontype != null and persontype !='' ">
+			<if test='persontype == "0"'>
+				and (
+				rec.askperson in (${visualstaff})
+				or u.createuser in (${visualstaff})
+				)
+			</if>
+			<if test='persontype == "1"'>
+				and (
+				rec.askperson in (${visualstaff})
+				)
+			</if>
+			<if test='persontype == "2"'>
+				and (
+				u.createuser in (${visualstaff})
+				)
+				and (
+				u.createuser in (${visualstaffwd})
+				)
+			</if>
+			<if test='persontype == "3"'>
+				and (
+				u.createuser in (${visualstaff})
+				)
+				and (
+				u.createuser in (${visualstaffwd})
+				)
+			</if>
+		</if>
+	</select>
+	<select id="selectListByType" parameterType="map" resultType="json">
+		select
+		p2.USER_NAME as faskPerson,
+		p5.USER_NAME as askPerson,
+		p6.USER_NAME as doctorname,
+		r.cardno,
+		r.szcardno,
+		r.xjmoney,
+		r.yhkmoney,
+		r.qtmoney,
+		r.zfbmoney,
+		r.wxmoney,
+		r.mmdmoney,
+		r.bdfqmoney,
+		r.seq_id,
+		p.user_name as createuser,
+		r.createtime,
+		r.usercode,
+		r.username,
+		r.szrusercode,
+		r.szrusername,
+		r.cardno,
+		r.type,
+		r.cmoney,
+		r.cgivemoney,
+		r.ctotal,
+		r.ymoney,
+		r.ygivemoney,
+		r.ytotal,
+		r.tfremark,
+		r.zzmoney,
+		r.zzgivemoney,
+		r.organization,
+		p3.user_id as jdr,
+		p4.user_id as kfr,
+		kcit3.dict_name as devchannel,
+		hzly.dict_name as nexttype
+		from KQDS_MEMBER_RECORD r
+		LEFT JOIN SYS_PERSON p on r.createuser = p.seq_id
+		LEFT JOIN KQDS_UserDocument u on u.usercode = r.usercode
+		LEFT JOIN SYS_PERSON p2 on u.AskPerson = p2.seq_id
+		LEFT JOIN SYS_PERSON p5 on r.AskPerson = p5.seq_id
+		LEFT JOIN SYS_PERSON p6 on r.doctor = p6.seq_id
+		LEFT JOIN SYS_DICT kcit3 on u.devchannel = kcit3.seq_id
+		LEFT JOIN SYS_DICT hzly on u.nexttype = hzly.seq_id
+		LEFT JOIN SYS_PERSON p3 on p3.seq_id = u.createuser
+		LEFT JOIN SYS_PERSON p4 on p4.seq_id = u.developer
+		where 1=1
+		and r.organization = #{organization}
+		<if test="queryinput != null and queryinput !='' ">
+			and (r.usercode like '%' + #{queryinput} + '%'
+			or u.username like '%' + #{queryinput} + '%'
+			or u.pym like '%' + #{queryinput} + '%'
+			or r.cardno like '%' + #{queryinput}
+			+ '%'
+			or r.szrusercode like '%' + #{queryinput} + '%'
+			or r.szrusername like '%' + #{queryinput} + '%'
+			or r.szcardno like '%' + #{queryinput} + '%'
+			)
+		</if>
+		<if test="type != null and type !='' ">
+			and r.type = #{type}
+		</if>
+		<if test="starttime != null and starttime !='' ">
+			and r.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and r.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="sqstatus != null and sqstatus !='' ">
+			and r.sqstatus = #{sqstatus}
+		</if>
+		and (
+		u.askperson in (${visualstaff})
+		or u.createuser in (${visualstaff})
+		or u.usercode in(
+		SELECT usercode from KQDS_REG where askperson in (${visualstaff})
+		)
+		)
+		order by r.createtime
+	</select>
+	<select id="printSfxm" parameterType="map" resultType="json">
+		SELECT
+		sum(xjmoney) as xj,
+		sum(yhkmoney) as bank,
+		sum(wxmoney) as wx,
+		sum(zfbmoney) as zfb,
+		sum(mmdmoney) as mmd,
+		sum(bdfqmoney) as bdfq,
+		sum(qtmoney) as other1
+		FROM ${tablename}
+		where seq_id =#{seqId}
+	</select>
+	<select id="yjjTuidan" parameterType="map" resultType="int">
+		select count(1) from KQDS_MEMBER_RECORD where 1=1
+		and (type = '缴费' or type = '转赠' or type = '退费')
+		and cardno = #{cardno}
+		and createtime >= '' + #{datetime} + ''
+	</select>
+	<select id="getYysrYjjList" parameterType="map" resultType="json">
+		select u.createuser,nexttype,devchannel,detail.askperson,regsort,
+		sum(detail.cmoney)as cmoney
+		from KQDS_Member_Record detail
+		left join KQDS_UserDocument u on u.usercode =
+		detail.usercode
+		where 1=1 and detail.type !='缴费' and detail.type !='转赠' and detail.type !='受赠'
+		<if test="personIds4Query != null and personIds4Query !='' ">
+			and detail.askperson in(${personIds4Query})
+		</if>
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="starttime != null and starttime !='' ">
+			and detail.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and detail.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="wdperson != null and wdperson !='' ">
+			and u.createuser = #{wdperson}
+		</if>
+		<if test="askperson != null and askperson !='' ">
+			and detail.askperson = #{askperson}
+		</if>
+		<if test="regsort != null and regsort !='' ">
+			and detail.regsort = #{regsort}
+		</if>
+		<if test="devchannel != null and devchannel !='' ">
+			and u.devchannel =#{devchannel}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and u.nexttype =#{nexttype}
+		</if>
+		<if test="usercodes != null and usercodes !='' ">
+			and u.usercode in(#{usercodes})
+		</if>
+		GROUP BY regsort,detail.askperson,devchannel,nexttype,u.createuser
+	</select>
+	<!-- 查询天员工数据的业绩 -->
+	<select id='findAllCmoneyByDay' parameterType="java.util.Map" resultType="json">	
+			SELECT
+				SUM (r.cmoney) AS cmoney,
+				r.askperson AS askperson,
+				r.type AS type
+			FROM
+				KQDS_MEMBER_RECORD r
+			WHERE
+				1 = 1
+			AND r.type != '缴费'
+			AND r.type != '转赠'
+			AND r.type != '受赠'
+			AND DAY (r.createtime) <![CDATA[ >= ]]> #{startday}
+			AND DAY (r.createtime) <![CDATA[ <= ]]> #{endday}
+			<if test="years!='' and years!=null">
+			AND ${years}
+			</if>
+			<if test="months !='' and months !=null">
+			AND ${months}
+			</if>
+			AND r.organization = #{organization}
+			<if test="askperson !=null and askperson !=''">
+			AND (${askperson})
+			</if>
+			GROUP BY
+				r.askperson,r.type
+			ORDER BY
+				r.askperson ASC	
+	</select>
+	<!-- 查询月员工数据的业绩 -->
+	<select id='findAllCmoneyByMonth' parameterType="java.util.Map" resultType="json">	
+			SELECT
+				SUM (r.cmoney) AS cmoney,
+				r.askperson AS askperson,
+				r.type AS type
+			FROM
+				KQDS_MEMBER_RECORD r
+			WHERE
+				1 = 1
+			AND r.type != '缴费'
+			AND r.type != '转赠'
+			AND r.type != '受赠'
+			AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+			AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
+			<if test="years!='' and years!=null">
+			AND ${years}
+			</if>
+			AND r.organization = #{organization}
+			<if test="askperson !=null and askperson !=''">
+			AND (${askperson})
+			</if>
+			GROUP BY
+				r.askperson,r.type
+			ORDER BY
+				r.askperson ASC	
+	</select>
+	<!-- 查询年员工数据的业绩 -->
+	<select id='findAllCmoneyByYear' parameterType="java.util.Map" resultType="json">	
+			SELECT
+			SUM (r.cmoney) AS cmoney,
+			r.askperson AS askperson,
+			r.type AS type
+			FROM
+				KQDS_MEMBER_RECORD r
+			WHERE
+				1 = 1
+			AND r.type != '缴费'
+			AND r.type != '转赠'
+			AND r.type != '受赠' 
+			and YEAR (r.createtime) <![CDATA[ >= ]]> #{startyear}
+			AND YEAR (r.createtime) <![CDATA[ <= ]]> #{endyear}
+			AND r.organization = #{organization}
+			<if test="askperson !=null and askperson !=''">
+			AND (${askperson})
+			</if>
+			GROUP BY r.askperson,r.type
+			ORDER BY
+				r.askperson ASC	
+	</select>
+	<!-- 查询天员工数据的业绩 -->
+	<select id='findCmoneyByDay' parameterType="java.util.Map" resultType="json">	
+			SELECT
+				MONTH(r.createtime) 月,
+				DAY (r.createtime) 日,
+				SUM (r.cmoney) AS cmoney,
+				r.type AS type
+			FROM
+				KQDS_MEMBER_RECORD r
+			WHERE
+				1 = 1
+			AND r.type != '缴费'
+			AND r.type != '转赠'
+			AND r.type != '受赠'
+			AND DAY (r.createtime) <![CDATA[ >= ]]> #{startday}
+			AND DAY (r.createtime) <![CDATA[ <= ]]> #{endday}
+			<if test="years!='' and years!=null">
+			AND ${years}
+			</if>
+			<if test="months !='' and months !=null">
+			AND ${months}
+			</if>
+			AND r.organization = #{organization}
+			<if test="visualstaff!=null and visualstaff!=''">
+			AND r.askperson in (${visualstaff})
+			</if>
+			GROUP BY
+				MONTH(r.createtime),
+				DAY (r.createtime),
+				r.type
+			ORDER BY
+				DAY (r.createtime) ASC
+	</select>
+	<!-- 查询月员工数据的业绩 -->
+	<select id='findCmoneyByMonth' parameterType="java.util.Map" resultType="json">	
+			SELECT
+				YEAR (r.createtime) 年,
+				MONTH(r.createtime) 月,
+				SUM (r.cmoney) AS cmoney,
+				r.type AS type
+			FROM
+				KQDS_MEMBER_RECORD r
+			WHERE
+				1 = 1
+			AND r.type != '缴费'
+			AND r.type != '转赠'
+			AND r.type != '受赠'
+			AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+			AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
+			<if test="years!='' and years!=null">
+			AND ${years}
+			</if>
+			AND r.organization = #{organization}
+			<if test="visualstaff!=null and visualstaff!=''">
+			AND r.askperson in (${visualstaff})
+			</if>
+			GROUP BY
+				YEAR (r.createtime),
+				MONTH(r.createtime),
+				r.type
+			ORDER BY
+				MONTH(r.createtime) ASC	
+	</select>
+	<!-- 查询年员工数据的业绩 -->
+	<select id='findCmoneyByYear' parameterType="java.util.Map" resultType="json">	
+			SELECT
+			YEAR (r.createtime) 年,
+			SUM (r.cmoney) AS cmoney,
+			r.type AS type
+			FROM
+				KQDS_MEMBER_RECORD r
+			WHERE
+				1 = 1
+			AND r.type != '缴费'
+			AND r.type != '转赠'
+			AND r.type != '受赠' 
+			and YEAR (r.createtime) <![CDATA[ >= ]]> #{startyear}
+			AND YEAR (r.createtime) <![CDATA[ <= ]]> #{endyear}
+			AND r.organization = #{organization}
+			<if test="visualstaff!=null and visualstaff!=''">
+			AND r.askperson in (${visualstaff})
+			</if>
+			GROUP BY
+				YEAR (r.createtime),
+				r.type
+			ORDER BY
+				YEAR (r.createtime) ASC	
+	</select>
+	<!-- 查询开发人预交金 -->
+	<select id="getYysrYjjList2" parameterType="map" resultType="json">
+	SELECT isnull(sum(a.cmoney),0) as cmoney,c.user_name,c.seq_id from sys_person c 
+		LEFT JOIN (SELECT
+			SUM(rec.cmoney) as cmoney,
+			p.user_name AS us,
+			p.seq_id as seq
+		FROM
+			KQDS_MEMBER_RECORD rec
+		LEFT JOIN KQDS_UserDocument u ON u.usercode = rec.usercode
+		LEFT JOIN SYS_PERSON p ON p.seq_id =u.developer
+		LEFT JOIN (
+			SELECT 	c.accepttype,c.accepttool,c.usercode,c.createtime,c.askitem FROM (
+	SELECT
+				a.accepttype,a.accepttool,a.usercode,a.createtime,a.askitem
+			FROM
+				KQDS_NET_ORDER a,
+				(
+					SELECT
+						usercode,
+						MAX (createtime) createtime
+					FROM
+						KQDS_NET_ORDER
+					GROUP BY
+						usercode
+				) b
+			WHERE
+				a.usercode = b.usercode
+			AND a.createtime = b.createtime) c 
+			GROUP BY c.accepttype,
+			c.accepttool,
+			c.usercode,
+			c.createtime,c.askitem
+		) n ON n.usercode = rec.usercode
+		
+		LEFT JOIN KQDS_COSTORDER cost ON cost.costno = rec.costno
+		LEFT JOIN KQDS_REG reg ON reg.seq_id = cost.regno
+		WHERE
+			1 = 1
+		AND rec.type != '缴费'
+		AND rec.type != '转赠'
+		AND rec.type != '受赠'
+		<if test="jdtime1!=null and jdtime1=='' and jdtime2 !=null and jdtime2 !='' or yytime1!=null and yytime1!='' and yytime2!=null and yytime2 !=''">
+		and reg.recesort='20'
+		</if>
+		<if test="dztime1 != null and dztime1 != '' ">
+		AND rec.createtime <![CDATA[ >= ]]> #{dztime1}
+		</if>
+		<if test="dztime2 !=null and dztime2 !=''">
+		AND rec.createtime <![CDATA[ <= ]]> #{dztime2} 
+		</if>
+		<if test="deptId != null and deptId != '' ">
+		and p.dept_id IN (#{deptId})
+		</if> 
+		<if test="visualstaff != null and visualstaff !='' ">
+		and u.developer IN (${visualstaff})
+		</if>
+		<if test="organization2 != null and organization2 !='' ">
+			and rec.organization = #{organization2}
+		</if>
+		<if test="devchannel != null and devchannel != '' ">
+			and u.devchannel=#{devchannel}
+		</if>
+		<if test="nexttype !=null and nexttype !='' ">
+		and u.nexttype=#{nexttype}
+		</if>
+		<if test="cjstatus != null and cjstatus !='' ">
+		and reg.cjstatus=#{cjstatus}		
+		</if>
+		<if test="accepttype != null and accepttype !='' ">
+		and n.accepttype=#{accepttype}
+		</if>
+		<if test="accepttool !=null and accepttool !='' ">
+		and reg.accepttool=#{accepttool}
+		</if>
+		<if test="jdtime1 != null and jdtime1 != '' ">
+		and u.createtime <![CDATA[ >= ]]> #{jdtime1}
+		</if>
+		<if test="jdtime2 !=null and jdtime2 !=''">
+		and u.createtime <![CDATA[ <= ]]> #{jdtime2} 
+		</if>
+		<if test="yytime1 != null and yytime1 != '' ">
+		and n.createtime <![CDATA[ >= ]]> #{yytime1}
+		</if>
+		<if test="yytime2 !=null and yytime2 !=''">
+		and n.createtime <![CDATA[ <= ]]> #{yytime2} 
+		</if>
+		<if test="askitem != null and askitem != '' ">
+		and n.askitem=#{askitem}
+		</if>
+		GROUP BY p.user_name,p.seq_id
+		<if test="askitem != null and askitem != '' ">
+		,n.askitem
+		</if>
+		) as a on a.seq=c.seq_id
+		where 1=1
+		<if test="deptId != null and deptId != '' ">
+		and c.dept_id IN (#{deptId})
+		</if> 
+		<if test="visualstaff != null and visualstaff !='' ">
+		and c.seq_id IN (${visualstaff})
+		</if>
+		GROUP BY c.user_name,c.seq_id
+		
+	</select>
+	<!-- 查询预交金 -->
+	<select id="getYysrYjjList1" parameterType="map" resultType="json">
+	SELECT isnull(sum(a.cmoney),0) as cmoney,c.user_name,c.seq_id from sys_person c 
+		LEFT JOIN (SELECT
+			SUM(rec.cmoney) as cmoney,
+			p.user_name AS us,
+			p.seq_id as seq,
+			u.developer AS developer
+		FROM
+			KQDS_MEMBER_RECORD rec
+		LEFT JOIN KQDS_UserDocument u ON u.usercode = rec.usercode
+		LEFT JOIN SYS_PERSON p ON p.seq_id = u.createuser
+		LEFT JOIN KQDS_COSTORDER cost ON cost.costno = rec.costno
+		LEFT JOIN KQDS_REG reg ON reg.seq_id = cost.regno
+		WHERE
+			1 = 1
+		AND rec.type != '缴费'
+		AND rec.type != '转赠'
+		AND rec.type != '受赠'
+		<if test="jdtime1!=null and jdtime1=='' and jdtime2 !=null and jdtime2 !='' or yytime1!=null and yytime1!='' and yytime2!=null and yytime2 !=''">
+		and reg.recesort='20'
+		</if>
+		<if test="dztime1 != null and dztime1 != '' ">
+		AND rec.createtime <![CDATA[ >= ]]> #{dztime1}
+		</if>
+		<if test="dztime2 !=null and dztime2 !=''">
+		AND rec.createtime <![CDATA[ <= ]]> #{dztime2} 
+		</if>
+		<if test="deptId != null and deptId != '' ">
+		and p.dept_id IN (#{deptId})
+		</if> 
+		<if test="visualstaff != null and visualstaff !='' ">
+		and u.createuser IN (${visualstaff})
+		</if>
+		<if test="organization2 != null and organization2 !='' ">
+			and rec.organization = #{organization2}
+		</if>
+		<if test="devchannel != null and devchannel != '' ">
+			and u.devchannel=#{devchannel}
+		</if>
+		<if test="nexttype !=null and nexttype !='' ">
+		and u.nexttype=#{nexttype}
+		</if>
+		<if test="cjstatus != null and cjstatus !='' ">
+		and reg.cjstatus=#{cjstatus}		
+		</if>
+		<if test="accepttype != null and accepttype !='' ">
+		and n.accepttype=#{accepttype}
+		</if>
+		<if test="accepttool !=null and accepttool !='' ">
+		and reg.accepttool=#{accepttool}
+		</if>
+		<if test="jdtime1 != null and jdtime1 != '' ">
+		and u.createtime <![CDATA[ >= ]]> #{jdtime1}
+		</if>
+		<if test="jdtime2 !=null and jdtime2 !=''">
+		and u.createtime <![CDATA[ <= ]]> #{jdtime2} 
+		</if>
+		<if test="yytime1 != null and yytime1 != '' ">
+		and n.createtime <![CDATA[ >= ]]> #{yytime1}
+		</if>
+		<if test="yytime2 !=null and yytime2 !=''">
+		and n.createtime <![CDATA[ <= ]]> #{yytime2} 
+		</if>
+		<if test="askitem != null and askitem != '' ">
+		and n.askitem=#{askitem}
+		</if>
+		GROUP BY p.user_name,p.seq_id,u.developer
+		<if test="askitem != null and askitem != '' ">
+		,n.askitem
+		</if>
+		) as a on a.seq=c.seq_id
+		where 1=1
+		and a.developer =''
+		<if test="deptId != null and deptId != '' ">
+		and c.dept_id IN (#{deptId})
+		</if> 
+		<if test="visualstaff != null and visualstaff !='' ">
+		and c.seq_id IN (${visualstaff})
+		</if>
+		GROUP BY c.user_name,c.seq_id
+		
+	</select>
+	<select id="getYysrYjj" parameterType="map" resultType="json">
+		select
+		sum(detail.cmoney)as cmoney
+		from KQDS_Member_Record detail
+		left join KQDS_UserDocument u on u.usercode = detail.usercode
+		where 1=1 and detail.type !='缴费' and detail.type
+		!='转赠' and detail.type !='受赠'
+		<if test="organization != null and organization !='' ">
+			and detail.organization = #{organization}
+		</if>
+		<if test="starttime != null and starttime !='' ">
+			and detail.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and detail.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="wdperson != null and wdperson !='' ">
+			and u.createuser = #{wdperson}
+		</if>
+		<if test="askperson != null and askperson !='' ">
+			and detail.askperson = #{askperson}
+		</if>
+		<if test="regsort != null and regsort !='' ">
+			and detail.regsort = #{regsort}
+		</if>
+		<if test="devchannel != null and devchannel !='' ">
+			and u.devchannel =#{devchannel}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and u.nexttype =#{nexttype}
+		</if>
+		<if test="usercodes != null and usercodes !='' ">
+			and u.usercode in(#{usercodes})
+		</if>
+	</select>
+	<select id="getQcje" parameterType="map" resultType="json">
+		select
+		${moneysql}
+		FROM KQDS_MEMBER_RECORD dd
+		where createtime <![CDATA[ <= ]]>
+		#{starttime}
+		<if test="organization != null and organization !='' ">
+			and organization = #{organization}
+		</if>
+	</select>
+	<select id="getCaozuoje" parameterType="map" resultType="json">
+		select
+		${moneysql}
+		FROM KQDS_MEMBER_RECORD dd
+		where type = #{type}
+		<if test="organization != null and organization !='' ">
+			and organization = #{organization}
+		</if>
+		<if test="starttime != null and starttime !='' ">
+			and createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+	</select>
+	<select id="getQmje" parameterType="map" resultType="json">
+		select
+		${moneysql}
+		FROM KQDS_MEMBER_RECORD dd
+		where createtime <![CDATA[ <= ]]>
+		#{endtime}
+		<if test="organization != null and organization !='' ">
+			and organization = #{organization}
+		</if>
+	</select>
+	<select id="getSkMoneyYjj" parameterType="map" resultType="json">
+		select
+		${moneysql}
+		FROM KQDS_Member_Record rec
+		left join KQDS_UserDocument u on u.usercode = rec.usercode
+		where 1=1 and rec.type !='缴费' and rec.type !='转赠' and rec.type !='受赠'
+		<if test="starttime != null and starttime !='' ">
+			and rec.createtime<![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and rec.createtime<![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="organization != null and organization !='' ">
+			and rec.organization=#{organization}
+		</if>
+		<if test="visualstaff != null and visualstaff !='' ">
+			and ( rec.askperson in (${visualstaff})
+			or u.createuser in (${visualstaff})
+			or rec.createuser in (${visualstaff})
+			)
+		</if>
+	</select>
+	<select id="getSkMoneyYjj2" parameterType="map" resultType="json">
+		select
+		${moneysql}
+		FROM KQDS_Member_Record rec
+		left join KQDS_UserDocument u on u.usercode = rec.usercode
+		where 1=1 and rec.type !='缴费' and rec.type !='转赠' and rec.type !='受赠'
+		<if test="sftime != null and sftime !='' ">
+			and ${sftime}
+		</if>
+		<if test="organization != null and organization !='' ">
+			and rec.organization=#{organization}
+		</if>
+		<if test="visualstaff != null and visualstaff !='' ">
+			and ( rec.askperson in (${visualstaff})
+			or u.createuser in (${visualstaff})
+			or rec.createuser in (${visualstaff})
+			)
+		</if>
+	</select>
+	<select id="checkuser" parameterType="java.lang.String" resultType="int">
+		select count(1) from KQDS_MEMBER_RECORD where (usercode = #{_parameter} or szrusercode = #{_parameter})
+	</select>
+	<!-- 查询医生的预交金业绩 -->
+	<select id="selectDoctorSituationPrepayMoney" parameterType="map" resultType="json">
+		SELECT
+			kcit2.dict_name AS regsortname,
+			reg.regsort as regsort,
+			SUM(rec.cmoney) as cmoney,
+			p9.USER_NAME AS name,
+			p9.SEQ_ID as seqid
+		FROM
+		KQDS_MEMBER_RECORD rec
+		LEFT JOIN SYS_DEPT dept ON rec.organization = dept.dept_code
+		AND dept.dept_parent = '0'
+		LEFT JOIN KQDS_COSTORDER cost ON cost.costno = rec.costno
+		LEFT JOIN KQDS_REG reg ON reg.seq_id = cost.regno
+		LEFT JOIN SYS_PERSON p9 ON p9.SEQ_ID = reg.doctor
+		LEFT JOIN SYS_DEPT dept2 ON dept2.seq_id = reg.regdept
+		LEFT JOIN SYS_DICT kcit2 ON reg.regsort = kcit2.seq_id
+		WHERE 1 = 1
+		AND rec.type != '缴费'
+		AND rec.type != '转赠'
+		AND rec.type != '受赠' 
+		AND rec.createtime <![CDATA[ >= ]]> #{starttime}
+		and rec.createtime <![CDATA[ <= ]]> #{endtime}
+		and rec.organization = #{organization}
+		and reg.doctor in (${doctor})
+		GROUP BY 
+		kcit2.dict_name,
+		p9.USER_NAME,
+		p9.SEQ_ID,
+		reg.regsort
+		order by p9.SEQ_ID asc
+	</select>
+	
+	<!-- <select id="findAcceptingGold" parameterType="map" resultType="json">
+		SELECT
+			yeares,
+			monthes,
+			SUM (money) AS money
+		FROM
+			(
+				SELECT
+					YEAR (r.createtime) AS yeares,
+					MONTH (r.createtime) AS monthes,
+					SUM (r.cmoney) AS money
+				FROM
+					KQDS_MEMBER_RECORD r
+				WHERE
+					1 = 1
+				<if test="years!='' and years!=null">
+					and (${years})
+				</if>
+				AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+				AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
+				AND r.organization = #{organization}
+				<if test="askperson !=null and askperson !=''">
+					AND r.askperson IN (${askperson})
+				</if>
+					GROUP BY
+					r.createtime,
+					r.cmoney) AS cost 
+		GROUP BY 
+			yeares,monthes
+	</select> -->
+	
+	<!-- 查询月数据 -->
+	<select id="findAcceptingGold" parameterType="map" resultType="json">
+		SELECT
+			yeares,
+			monthes,
+			SUM (money) AS money
+		FROM
+			(SELECT
+					YEAR (r.createtime) AS yeares,
+					MONTH (r.createtime) AS monthes,
+					SUM (r.cmoney) AS money
+				FROM
+					KQDS_MEMBER_RECORD r
+				WHERE
+					1 = 1
+					AND r.type != '缴费'
+					AND r.type != '转赠'
+					AND r.type != '受赠'
+					AND MONTH (r.createtime) <![CDATA[ >= ]]> #{startmonth}
+					AND MONTH (r.createtime) <![CDATA[ <= ]]> #{endmonth}
+					<if test="years!='' and years!=null">
+					AND ${years}
+					</if>
+					AND r.organization = #{organization}
+					<if test="askperson !=null and askperson !=''">
+					AND r.askperson IN (${askperson})
+					</if>
+					GROUP BY
+							r.createtime,
+							r.cmoney) AS cost 
+		GROUP BY 
+			yeares,
+			monthes
+	</select>
+	
+	<select id="findTotalRefundPrepayByMonth" parameterType="map" resultType="json">
+		SELECT 
+			YEAR(createtime) 年, 
+			MONTH(createtime) 月, 
+			SUM(cmoney) as totalMoney 
+		FROM KQDS_MEMBER_RECORD
+		WHERE type = '退费'
+		and MONTH (createtime) <![CDATA[ >= ]]> #{startmonth}
+		and MONTH (createtime) <![CDATA[ <= ]]> #{endmonth} 
+		<if test="years!='' and years!=null">
+			and (${years})
+		</if>
+		<if test="askperson !=null and askperson !=''">
+			AND askperson in (${askperson})
+		</if>
+		AND organization = #{organization}
+		GROUP BY
+			YEAR (createtime),
+			MONTH (createtime)
+		ORDER BY
+			MONTH (createtime) ASC
+	</select>
+	<select id="selectUsercodeByVisualstaff" parameterType="map" resultType="json">
+		select DISTINCT d.usercode 
+		from KQDS_MEMBER_RECORD d
+		LEFT JOIN KQDS_COSTORDER c on c.costno =d.costno
+		LEFT JOIN KQDS_USERDOCUMENT u on u.usercode =d.usercode  
+		LEFT JOIN KQDS_RECEIVEINFO i on i.regno = c.regno
+		LEFT JOIN KQDS_REG r on r.SEQ_ID=c.regno
+		where 1=1 
+		<if test="devItem != null and devItem !='' ">
+			and i.dev_item = #{devItem}
+		</if>
+		<if test="recesort != null and recesort !='' ">
+			and r.recesort = #{recesort}
+		</if>
+		<if test="askperson != null and askperson !='' ">
+			and r.askperson = #{askperson}
+		</if>
+		<if test="regdept != null and regdept !='' ">
+			and r.regdept = #{regdept}
+		</if>
+		<if test="doctor != null and doctor !='' ">
+			and r.doctor = #{doctor}
+		</if>
+		<if test="starttime != null and starttime !='' ">
+			and r.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and r.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="regsort != null and regsort !='' ">
+			and r.regsort = #{regsort}
+		</if>
+		<if test="cjstatus != null and cjstatus !='' ">
+			and r.cjstatus = #{cjstatus}
+		</if>
+		<if test="gongju != null and gongju !='' ">
+			and kcit7.SEQ_ID =#{gongju} <!-- 根据受理工具类型筛选机 -->
+		</if>
+		<if test="ifmedrecord != null and ifmedrecord !='' ">
+			and r.ifmedrecord =#{ifmedrecord}
+		</if>
+		<if test="searchValue != null and searchValue !='' ">
+			and (u.usercode like '%' + #{searchValue} + '%'
+			or u.username like '%' + #{searchValue} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{searchValue} + '%'
+			)
+		</if>
+		<if test="firstaskperson != null and firstaskperson !='' ">
+		and u.askperson =#{firstaskperson}
+		</if>
+		<if test="usercode != null and usercode !='' ">
+		and u.usercode =#{usercode}
+		</if>
+		<if test="useqid != null and useqid !='' ">
+		and u.seq_id =#{useqid}
+		</if>
+		<if test="important != null and important !='' ">
+			and u.important = #{important}
+		</if>
+		<if test="devchannel != null and devchannel !='' ">
+			and u.devchannel = #{devchannel}
+		</if>
+		<if test="nexttype != null and nexttype !='' ">
+			and u.nexttype = #{nexttype}
+		</if>
+		<if test="ageSearch != null and ageSearch !='' ">
+			<if test='ageSearch =="10"'>
+				and u.age <![CDATA[ >= ]]>
+				'0' and u.age <![CDATA[ <= ]]>
+				'10'
+			</if>
+			<if test='ageSearch =="20"'>
+				and u.age <![CDATA[ >= ]]>
+				'10' and u.age <![CDATA[ <= ]]>
+				'20'
+			</if>
+			<if test='ageSearch =="30"'>
+				and u.age <![CDATA[ >= ]]>
+				'20' and u.age <![CDATA[ <= ]]>
+				'30'
+			</if>
+			<if test='ageSearch =="40"'>
+				and u.age <![CDATA[ >= ]]>
+				'30' and u.age <![CDATA[ <= ]]>
+				'40'
+			</if>
+			<if test='ageSearch =="50"'>
+				and u.age <![CDATA[ >= ]]>
+				'40' and u.age <![CDATA[ <= ]]>
+				'50'
+			</if>
+			<if test='ageSearch =="51"'>
+				and u.age <![CDATA[ >= ]]>
+				'50'
+			</if>
+		</if>
+		<if test="organization != null and organization !='' ">
+			and r.organization = #{organization}
+		</if>
+		<if test="visualstaff != null and visualstaff !='' ">
+			and d.askperson in (${visualstaff})
+		</if>
+		
+	</select>
+	<select id="selectNoPageBySfmx" parameterType="map" resultType="json">
+		select
+			kcit2.dict_name AS regsort,
+			dept.DEPT_NAME AS organization,
+			per1.USER_NAME AS kduser,
+			per1.USER_NAME AS sfuser,
+			per6.USER_NAME AS developer,
+			u2.username AS introducer,
+			u.PhoneNumber1,
+			kcit3.dict_name AS devchannel,
+			per7.USER_NAME AS jddy,
+			hzly.dict_name AS nexttype,
+			u.CreateTime jdtime,
+			per3.USER_NAME AS jduser,
+			per5.USER_NAME AS doctor,
+			per10.USER_NAME AS faskperson,
+			u.type,
+			u.blcode,
+			per4.USER_NAME AS askperson,
+			rec.createtime as sftime,
+			rec.createtime as kdtime,
+			rec.cmoney as subtotal,
+			rec.cmoney as paymoney,
+			rec.usercode,
+			rec.username,
+			rec.tfremark as remark
+		FROM
+			KQDS_MEMBER_RECORD rec
+		LEFT JOIN KQDS_UserDocument u ON rec.usercode = u.UserCode
+		LEFT JOIN SYS_PERSON per1 ON per1.SEQ_ID = rec.createuser
+		LEFT JOIN SYS_PERSON per3 ON per3.SEQ_ID = u.CreateUser
+		LEFT JOIN SYS_PERSON per4 ON per4.SEQ_ID = rec.askperson
+		LEFT JOIN SYS_PERSON per5 ON per5.SEQ_ID = rec.doctor
+		LEFT JOIN SYS_PERSON per6 ON per6.SEQ_ID = u.developer
+		LEFT JOIN SYS_PERSON per7 ON per7.SEQ_ID = u.guider
+		LEFT JOIN SYS_PERSON per10 ON per10.SEQ_ID = u.askperson
+		LEFT JOIN KQDS_UserDocument u2 ON u2.usercode = u.introducer
+		LEFT JOIN SYS_DICT kcit2 ON rec.regsort = kcit2.seq_id
+		LEFT JOIN SYS_DICT kcit3 ON u.devchannel = kcit3.seq_id
+		LEFT JOIN SYS_DICT hzly ON u.nexttype = hzly.seq_id
+		LEFT JOIN SYS_DEPT dept ON rec.organization = dept.dept_code AND dept.dept_parent = '0'
+		where rec.type='退费'
+		<if test="starttime != null and starttime !='' ">
+			and rec.createtime<![CDATA[ >= ]]>#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and rec.createtime<![CDATA[ <= ]]>#{endtime}
+		</if>
+		<if test="queryinput != null and queryinput !='' ">
+			and (u.usercode like '%' + #{queryinput} + '%'
+			or u.username like '%' + #{queryinput} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{queryinput} + '%')
+		</if>
+		<if test="askperson != null and askperson !='' ">
+			and rec.askperson = #{askperson}
+		</if>
+		
+		<if test="createuser != null and createuser !='' ">
+			and u.createuser = #{createuser}
+		</if>
+		<if test="devchannel != null and devchannel !='' ">
+			and u.devchannel = #{devchannel}
+		</if>
+		<if test="nexttype1 != null and nexttype1 !='' ">
+			and u.nexttype = #{nexttype1}
+		</if>
+		<if test="regsort != null and regsort !='' ">
+			and rec.regsort = #{regsort}
+		</if>
+		<if test="remark != null and remark !='' ">
+			and rec.remark like'%'+#{remark}+'%'
+		</if>
+		<if test="organization != null and organization !='' ">
+			and rec.organization = #{organization}
+		</if>
+		<if test="visualstaff != null and visualstaff !='' ">
+			and (
+			rec.createuser in (${visualstaff})
+			or rec.askperson in (${visualstaff})
+			or u.createuser in (${visualstaff})
+			)
+		</if>
+		<if test="sortName != null and sortName != ''">
+		ORDER BY ${sortName} ${sortOrder}
+		</if>
+		<if test="sortName == null">
+		ORDER BY rec.createtime desc
+		</if>
+	</select>
+	<select id="selectNoPageBySfmxNum" parameterType="map" resultType="json">
+		select
+			sum(rec.cmoney) as cmoney
+		FROM
+			KQDS_MEMBER_RECORD rec
+		LEFT JOIN KQDS_UserDocument u ON rec.usercode = u.UserCode
+		LEFT JOIN SYS_PERSON per1 ON per1.SEQ_ID = rec.createuser
+		LEFT JOIN SYS_PERSON per3 ON per3.SEQ_ID = u.CreateUser
+		LEFT JOIN SYS_PERSON per4 ON per4.SEQ_ID = rec.askperson
+		LEFT JOIN SYS_PERSON per6 ON per6.SEQ_ID = u.developer
+		LEFT JOIN SYS_PERSON per7 ON per7.SEQ_ID = u.guider
+		LEFT JOIN SYS_PERSON per10 ON per10.SEQ_ID = u.askperson
+		LEFT JOIN KQDS_UserDocument u2 ON u2.usercode = u.introducer
+		LEFT JOIN SYS_DICT kcit2 ON rec.regsort = kcit2.seq_id
+		LEFT JOIN SYS_DICT kcit3 ON u.devchannel = kcit3.seq_id
+		LEFT JOIN SYS_DICT hzly ON u.nexttype = hzly.seq_id
+		LEFT JOIN SYS_DEPT dept ON rec.organization = dept.dept_code AND dept.dept_parent = '0'
+		where rec.type='退费'
+		<if test="starttime != null and starttime !='' ">
+			and rec.createtime<![CDATA[ >= ]]>#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and rec.createtime<![CDATA[ <= ]]>#{endtime}
+		</if>
+		<if test="queryinput != null and queryinput !='' ">
+			and (u.usercode like '%' + #{queryinput} + '%'
+			or u.username like '%' + #{queryinput} + '%'
+			or ${p1}
+			or ${p2}
+			or u.pym like '%' + #{queryinput} + '%')
+		</if>
+		<if test="askperson != null and askperson !='' ">
+			and rec.askperson = #{askperson}
+		</if>
+		
+		<if test="createuser != null and createuser !='' ">
+			and u.createuser = #{createuser}
+		</if>
+		<if test="devchannel != null and devchannel !='' ">
+			and u.devchannel = #{devchannel}
+		</if>
+		<if test="nexttype1 != null and nexttype1 !='' ">
+			and u.nexttype = #{nexttype1}
+		</if>
+		<if test="regsort != null and regsort !='' ">
+			and rec.regsort = #{regsort}
+		</if>
+		<if test="remark != null and remark !='' ">
+			and rec.remark like'%'+#{remark}+'%'
+		</if>
+		<if test="organization != null and organization !='' ">
+			and rec.organization = #{organization}
+		</if>
+		<if test="visualstaff != null and visualstaff !='' ">
+			and (
+			rec.createuser in (${visualstaff})
+			or rec.askperson in (${visualstaff})
+			or u.createuser in (${visualstaff})
+			)
+		</if>
+	</select>
+</mapper>

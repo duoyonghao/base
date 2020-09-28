@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SYS_FIRSTLOG">
+	<resultMap id="BaseResultMap" type="com.kqds.entity.sys.QueryFirstLog">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+		<result column="TIME" jdbcType="TIMESTAMP" property="time" />
+		<result column="IP" jdbcType="VARCHAR" property="ip" />
+		<result column="TYPE" jdbcType="VARCHAR" property="type" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.sys.QueryFirstLog">
+		<result column="REMARK" jdbcType="CLOB" property="remark" />
+		<result column="USER_NAME" jdbcType="CLOB" property="userName" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, USER_ID, TIME, IP, TYPE, organization
+	</sql>
+	<sql id="Blob_Column_List">
+		REMARK, USER_NAME
+	</sql>
+	<!-- 根据Id查询登录日志 -->
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from sys_firstLog
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<!-- 根据用户名查询 -->
+	<select id="queryFirstLog" parameterType="java.lang.String" resultType="com.kqds.entity.sys.QueryFirstLog">
+		select
+			<include refid="Base_Column_List" />
+			,
+			<include refid="Blob_Column_List" />
+		from sys_firstLog
+		where USER_NAME = #{userName,jdbcType=VARCHAR}
+	</select>
+	<!-- 根据Id删除登录日志 -->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from sys_firstLog
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<!-- 首次登录插入一条登录日志   用以验证是否为首次登录 -->
+	<insert id="saveQueryLog" parameterType="com.kqds.entity.sys.QueryFirstLog">
+		insert into sys_firstLog (SEQ_ID, USER_ID, TIME,
+		IP, TYPE, organization,
+		REMARK, USER_NAME)
+		values (#{seqId,jdbcType=VARCHAR},
+		#{userId,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP},
+		#{ip,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR},
+		#{remark,jdbcType=CLOB},
+		#{userName,jdbcType=CLOB})
+	</insert>
+</mapper>

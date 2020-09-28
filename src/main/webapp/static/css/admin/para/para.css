@@ -1,0 +1,185 @@
+@CHARSET "UTF-8";
+html,body,.container{
+	width:100%;
+	height:100%;
+}
+a{
+	text-decoration:none;
+	color:#333;
+}
+a:hover{
+	text-decoration:none;
+}
+.container{
+	padding:10px 0 70px;
+	overflow:auto;
+}
+.tableContent{/*table布局 */
+	margin:0 auto;
+	border-collapse:separate;
+	font-size:13px;
+}
+.relative{
+	position:relative;
+}
+
+.tableContent span.impText{/*必填信息*/
+	display:block;
+	text-align:right;
+	padding:0 10px 0 5px;
+	color:#FA6406;
+	/* color:#a94442; */
+}
+.tableContent span.comText{/*普通信息 */
+	display:block;
+	text-align:right;
+	padding:0 10px 0 5px;
+}
+
+.tableContent tr{/*行高 用来调整行与行之间的距离 */
+	height:42px;
+}
+.tableContent tr>td:nth-child(3){/*第三列与第二列之间间距30px*/
+	
+}
+select,input[type="text"]{/*普通select input 占td的80% */
+	width:200px;
+	box-sizing:border-box;
+	color:#333;
+}
+select{padding-left:3px;}
+input[type="text"]{padding-left:5px;}
+input[type="text"]:focus,select:focus,textarea:focus{
+    box-shadow: 0 0 8px rgb(49, 165, 247);
+    border-color:transparent;
+}
+
+textarea{
+	width:100%;
+	min-height:30px;
+	font-size:13px;
+	border-radius:4px;
+	color:#333;
+	padding-left:5px;
+}
+tr.textareaTr3{	/* 行为3 的 textarea行高 */
+	height:94px;
+}
+
+tr.textareaTr1{	/* 行数1 的 textarea行高 */
+	height:50px;
+}
+									/*底部固定定位的div 存放三个按钮*/
+.fixedBottomDiv{
+	position:fixed;
+	bottom:0; 
+	margin-top:20px;
+	width:100%;
+	box-sizing:border-box;
+	background:#fff;
+	height:50px;
+	text-align:center;
+	padding-top:10px;
+	border-top:1px solid #ddd;
+}
+.BottomDiv{
+	position:fixed;
+	margin-top:20px;
+	width:100%;
+	box-sizing:border-box;
+	background:#fff;
+	height:50px;
+	text-align:center;
+}
+.BottomDiv>.aBtn{/* 清空 确认 取消 按钮样式 */
+	display:inline-block;
+	color:#00a6c0;
+	background:#fff;
+	height:28px;
+	width:90px;
+	line-height:28px;
+	border-radius:16px;
+	text-align:center;
+	padding:0 5px;
+	border:1px solid #00a6c0;
+	margin:0 10px;
+	font-size:13px;
+}
+.BottomDiv>.aBtn:hover{
+	cursor:pointer;
+	color:#fff;
+	background:#0E7CC9;
+}
+.fixedBottomDiv>.aBtn{/* 清空 确认 取消 按钮样式 */
+	display:inline-block;
+	color:#00A6C0;
+	background:#fff;
+	height:28px;
+	width:90px;
+	line-height:28px;
+	border-radius:16px;
+	text-align:center;
+	padding:0 5px;
+	border:1px solid #00A6C0;
+	margin:0 10px;
+	font-size:13px;
+}
+.fixedBottomDiv>.search{
+	color:#fff;
+	background:#00A6C0;
+}
+.fixedBottomDiv>.aBtn:hover{
+	cursor:pointer;
+	color:#fff;
+	background:#00A6C0;
+}
+
+input[type="radio"]:hover{/* 鼠标移入指针的效果 */
+	cursor:pointer;
+}
+
+
+										/*表单验证的样式修改*/
+
+.form-group{	/*所有提示文本 的样式  */
+	margin:0;
+}
+.form-group i.form-control-feedback{	/*覆盖了框架提供form-control-feedback 本身的部分样式*/
+	top:0;
+	right:-31px;
+}
+.form-group small.help-block{/*所有提示文本 的样式  */
+    margin:0;
+    height: 12px;
+    position: absolute;
+    top: 29px;
+    left: 10px;
+    font-size:11px;
+    /* font-size:12px; */
+}
+.promptText{	/* 提示文本得样式   跟在 Input后面的橘色文字 */
+	color:tomato;
+	height:28px;
+	line-height:28px;
+	padding:0 12px;
+	
+}
+.powerText{/* 权限选项 文本 */
+	position:relative;
+	top:-3px;
+	cursor:pointer;
+}
+#table{
+	border:1px solid #ddd;
+	padding-bottom:20px;
+}
+#table th{
+	color:#fff;
+	background:#00a6c0;
+	font-size:14px;
+	border-left:1px solid #fff;
+}
+#table td{
+	text-align:center;
+	/* border-right:1px solid #ddd; */
+}

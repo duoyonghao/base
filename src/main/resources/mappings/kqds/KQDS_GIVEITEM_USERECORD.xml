@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_GIVEITEM_USERECORD">
+
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsGiveitemUserecord">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="usercode" jdbcType="VARCHAR" property="usercode" />
+		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="memberno" jdbcType="VARCHAR" property="memberno" />
+		<result column="itemno" jdbcType="VARCHAR" property="itemno" />
+		<result column="itemname" jdbcType="VARCHAR" property="itemname" />
+		<result column="unit" jdbcType="VARCHAR" property="unit" />
+		<result column="unitprice" jdbcType="VARCHAR" property="unitprice" />
+		<result column="zsnum" jdbcType="VARCHAR" property="zsnum" />
+		<result column="synum" jdbcType="VARCHAR" property="synum" />
+		<result column="nownum" jdbcType="VARCHAR" property="nownum" />
+		<result column="doctor" jdbcType="VARCHAR" property="doctor" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="cztime" jdbcType="VARCHAR" property="cztime" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="nurse" jdbcType="VARCHAR" property="nurse" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, createuser, createtime, usercode, username, memberno, itemno, itemname, unit,
+		unitprice, zsnum, synum, nownum, doctor, status, cztime, organization, nurse
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_GIVEITEM_USERECORD
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_GIVEITEM_USERECORD
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsGiveitemUserecord">
+		insert into KQDS_GIVEITEM_USERECORD (SEQ_ID, createuser, createtime,
+		usercode, username, memberno,
+		itemno, itemname, unit,
+		unitprice, zsnum,
+		synum,
+		nownum, doctor, status,
+		cztime, organization, nurse
+		)
+		values (#{seqId,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{usercode,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{memberno,jdbcType=VARCHAR},
+		#{itemno,jdbcType=VARCHAR}, #{itemname,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR},
+		#{unitprice,jdbcType=VARCHAR}, #{zsnum,jdbcType=VARCHAR}, #{synum,jdbcType=VARCHAR},
+		#{nownum,jdbcType=VARCHAR}, #{doctor,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+		#{cztime,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, #{nurse,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsGiveitemUserecord">
+		insert into KQDS_GIVEITEM_USERECORD
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="usercode != null">
+				usercode,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="memberno != null">
+				memberno,
+			</if>
+			<if test="itemno != null">
+				itemno,
+			</if>
+			<if test="itemname != null">
+				itemname,
+			</if>
+			<if test="unit != null">
+				unit,
+			</if>
+			<if test="unitprice != null">
+				unitprice,
+			</if>
+			<if test="zsnum != null">
+				zsnum,
+			</if>
+			<if test="synum != null">
+				synum,
+			</if>
+			<if test="nownum != null">
+				nownum,
+			</if>
+			<if test="doctor != null">
+				doctor,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="cztime != null">
+				cztime,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="nurse != null">
+				nurse,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="memberno != null">
+				#{memberno,jdbcType=VARCHAR},
+			</if>
+			<if test="itemno != null">
+				#{itemno,jdbcType=VARCHAR},
+			</if>
+			<if test="itemname != null">
+				#{itemname,jdbcType=VARCHAR},
+			</if>
+			<if test="unit != null">
+				#{unit,jdbcType=VARCHAR},
+			</if>
+			<if test="unitprice != null">
+				#{unitprice,jdbcType=VARCHAR},
+			</if>
+			<if test="zsnum != null">
+				#{zsnum,jdbcType=VARCHAR},
+			</if>
+			<if test="synum != null">
+				#{synum,jdbcType=VARCHAR},
+			</if>
+			<if test="nownum != null">
+				#{nownum,jdbcType=VARCHAR},
+			</if>
+			<if test="doctor != null">
+				#{doctor,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="cztime != null">
+				#{cztime,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="nurse != null">
+				#{nurse,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsGiveitemUserecord">
+		update KQDS_GIVEITEM_USERECORD
+		<set>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				usercode = #{usercode,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="memberno != null">
+				memberno = #{memberno,jdbcType=VARCHAR},
+			</if>
+			<if test="itemno != null">
+				itemno = #{itemno,jdbcType=VARCHAR},
+			</if>
+			<if test="itemname != null">
+				itemname = #{itemname,jdbcType=VARCHAR},
+			</if>
+			<if test="unit != null">
+				unit = #{unit,jdbcType=VARCHAR},
+			</if>
+			<if test="unitprice != null">
+				unitprice = #{unitprice,jdbcType=VARCHAR},
+			</if>
+			<if test="zsnum != null">
+				zsnum = #{zsnum,jdbcType=VARCHAR},
+			</if>
+			<if test="synum != null">
+				synum = #{synum,jdbcType=VARCHAR},
+			</if>
+			<if test="nownum != null">
+				nownum = #{nownum,jdbcType=VARCHAR},
+			</if>
+			<if test="doctor != null">
+				doctor = #{doctor,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="cztime != null">
+				cztime = #{cztime,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="nurse != null">
+				nurse = #{nurse,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsGiveitemUserecord">
+		update KQDS_GIVEITEM_USERECORD
+		set createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		usercode = #{usercode,jdbcType=VARCHAR},
+		username = #{username,jdbcType=VARCHAR},
+		memberno = #{memberno,jdbcType=VARCHAR},
+		itemno = #{itemno,jdbcType=VARCHAR},
+		itemname =
+		#{itemname,jdbcType=VARCHAR},
+		unit = #{unit,jdbcType=VARCHAR},
+		unitprice = #{unitprice,jdbcType=VARCHAR},
+		zsnum = #{zsnum,jdbcType=VARCHAR},
+		synum = #{synum,jdbcType=VARCHAR},
+		nownum
+		= #{nownum,jdbcType=VARCHAR},
+		doctor = #{doctor,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		cztime = #{cztime,jdbcType=VARCHAR},
+		organization =
+		#{organization,jdbcType=VARCHAR},
+		nurse = #{nurse,jdbcType=VARCHAR}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_GIVEITEM_USERECORD
+	</sql>
+	<select id="selectCountByMap" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsGiveitemUserecord">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+
+
+	<select id="selectWithPage" parameterType="map" resultType="json">
+		select
+		m.status,
+		m.cztime,
+		m.seq_id,
+		m.usercode,
+		m.username,
+		m.itemno,
+		m.itemname,
+		m.unit,
+		m.unitprice,
+		m.zsnum,
+		m.synum,
+		m.nownum,
+		m.memberno,
+		per3.user_name as nurse,
+		m.doctor as doctorid,
+		per2.user_name as doctor,
+		per1.user_name as createuser,
+		m.createtime
+		from KQDS_GIVEITEM_USERECORD m
+		LEFT JOIN KQDS_UserDocument u on u.usercode = m.usercode
+		LEFT JOIN SYS_PERSON per1
+		on per1.SEQ_ID = m.createuser
+		LEFT JOIN SYS_PERSON per2 on per2.SEQ_ID = m.doctor
+		LEFT JOIN SYS_PERSON per3 on per3.SEQ_ID = m.nurse
+		where 1=1
+		<if test="memberno != null and memberno !='' ">
+			and m.memberno=#{memberno}
+		</if>
+		<if test="starttime != null and starttime !='' ">
+			and m.createtime <![CDATA[ >= ]]>
+			#{starttime}
+		</if>
+		<if test="endtime != null and endtime !='' ">
+			and m.createtime <![CDATA[ <= ]]>
+			#{endtime}
+		</if>
+		<if test="usercode != null and usercode !='' ">
+			and m.usercode =#{usercode}
+		</if>
+		<if test="doctor != null and doctor !='' ">
+			and m.doctor =#{doctor}
+		</if>
+		<if test="nurse != null and nurse !='' ">
+			and m.nurse =#{nurse}
+		</if>
+		<if test="queryInput != null and queryInput !='' ">
+			and (m.username like '%' + #{queryInput} + '%' or u.pym like '%' + #{queryInput} + '%' or m.itemname like '%' + #{queryInput} + '%' )
+		</if>
+		ORDER BY m.CreateTime asc
+	</select>
+	<select id="getCountByItemnos" parameterType="java.lang.String" resultType="int">
+		select count(1) from KQDS_GIVEITEM_USERECORD where itemno in (${_parameter})
+	</select>
+
+</mapper>

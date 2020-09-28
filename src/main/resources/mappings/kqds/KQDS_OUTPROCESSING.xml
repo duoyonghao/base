@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="KQDS_OUTPROCESSING">
+
+	<resultMap id="BaseResultMap" type="com.kqds.entity.base.KqdsOutprocessing">
+		<id column="SEQ_ID" jdbcType="VARCHAR" property="seqId" />
+		<result column="createuser" jdbcType="VARCHAR" property="createuser" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="wjgxmbh" jdbcType="VARCHAR" property="wjgxmbh" />
+		<result column="wjgmc" jdbcType="VARCHAR" property="wjgmc" />
+		<result column="wjgfl" jdbcType="VARCHAR" property="wjgfl" />
+		<result column="dj" jdbcType="VARCHAR" property="dj" />
+		<result column="dw" jdbcType="VARCHAR" property="dw" />
+		<result column="dysfxm" jdbcType="VARCHAR" property="dysfxm" />
+		<result column="basetype" jdbcType="VARCHAR" property="basetype" />
+		<result column="mrjgc" jdbcType="VARCHAR" property="mrjgc" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="nexttype" jdbcType="VARCHAR" property="nexttype" />
+		<result column="organization" jdbcType="VARCHAR" property="organization" />
+		<result column="useflag" jdbcType="INTEGER" property="useflag" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SEQ_ID, createuser, createtime, wjgxmbh, wjgmc, wjgfl, dj, dw, dysfxm, basetype,
+		mrjgc, remark, nexttype, organization, useflag
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from KQDS_OUTPROCESSING
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from KQDS_OUTPROCESSING
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.kqds.entity.base.KqdsOutprocessing">
+		insert into KQDS_OUTPROCESSING (SEQ_ID, createuser, createtime,
+		wjgxmbh, wjgmc, wjgfl,
+		dj, dw, dysfxm, basetype,
+		mrjgc, remark, nexttype,
+		organization, useflag)
+		values (#{seqId,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+		#{wjgxmbh,jdbcType=VARCHAR}, #{wjgmc,jdbcType=VARCHAR},
+		#{wjgfl,jdbcType=VARCHAR},
+		#{dj,jdbcType=VARCHAR}, #{dw,jdbcType=VARCHAR}, #{dysfxm,jdbcType=VARCHAR}, #{basetype,jdbcType=VARCHAR},
+		#{mrjgc,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR}, #{nexttype,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR}, #{useflag,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.kqds.entity.base.KqdsOutprocessing">
+		insert into KQDS_OUTPROCESSING
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				SEQ_ID,
+			</if>
+			<if test="createuser != null">
+				createuser,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="wjgxmbh != null">
+				wjgxmbh,
+			</if>
+			<if test="wjgmc != null">
+				wjgmc,
+			</if>
+			<if test="wjgfl != null">
+				wjgfl,
+			</if>
+			<if test="dj != null">
+				dj,
+			</if>
+			<if test="dw != null">
+				dw,
+			</if>
+			<if test="dysfxm != null">
+				dysfxm,
+			</if>
+			<if test="basetype != null">
+				basetype,
+			</if>
+			<if test="mrjgc != null">
+				mrjgc,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="nexttype != null">
+				nexttype,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="useflag != null">
+				useflag,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="seqId != null">
+				#{seqId,jdbcType=VARCHAR},
+			</if>
+			<if test="createuser != null">
+				#{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="wjgxmbh != null">
+				#{wjgxmbh,jdbcType=VARCHAR},
+			</if>
+			<if test="wjgmc != null">
+				#{wjgmc,jdbcType=VARCHAR},
+			</if>
+			<if test="wjgfl != null">
+				#{wjgfl,jdbcType=VARCHAR},
+			</if>
+			<if test="dj != null">
+				#{dj,jdbcType=VARCHAR},
+			</if>
+			<if test="dw != null">
+				#{dw,jdbcType=VARCHAR},
+			</if>
+			<if test="dysfxm != null">
+				#{dysfxm,jdbcType=VARCHAR},
+			</if>
+			<if test="basetype != null">
+				#{basetype,jdbcType=VARCHAR},
+			</if>
+			<if test="mrjgc != null">
+				#{mrjgc,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="nexttype != null">
+				#{nexttype,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="useflag != null">
+				#{useflag,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.kqds.entity.base.KqdsOutprocessing">
+		update KQDS_OUTPROCESSING
+		<set>
+			<if test="createuser != null">
+				createuser = #{createuser,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="wjgxmbh != null">
+				wjgxmbh = #{wjgxmbh,jdbcType=VARCHAR},
+			</if>
+			<if test="wjgmc != null">
+				wjgmc = #{wjgmc,jdbcType=VARCHAR},
+			</if>
+			<if test="wjgfl != null">
+				wjgfl = #{wjgfl,jdbcType=VARCHAR},
+			</if>
+			<if test="dj != null">
+				dj = #{dj,jdbcType=VARCHAR},
+			</if>
+			<if test="dw != null">
+				dw = #{dw,jdbcType=VARCHAR},
+			</if>
+			<if test="dysfxm != null">
+				dysfxm = #{dysfxm,jdbcType=VARCHAR},
+			</if>
+			<if test="basetype != null">
+				basetype = #{basetype,jdbcType=VARCHAR},
+			</if>
+			<if test="mrjgc != null">
+				mrjgc = #{mrjgc,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="nexttype != null">
+				nexttype = #{nexttype,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="useflag != null">
+				useflag = #{useflag,jdbcType=INTEGER},
+			</if>
+		</set>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.kqds.entity.base.KqdsOutprocessing">
+		update KQDS_OUTPROCESSING
+		set createuser = #{createuser,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=VARCHAR},
+		wjgxmbh =
+		#{wjgxmbh,jdbcType=VARCHAR},
+		wjgmc = #{wjgmc,jdbcType=VARCHAR},
+		wjgfl = #{wjgfl,jdbcType=VARCHAR},
+		dj = #{dj,jdbcType=VARCHAR},
+		dw = #{dw,jdbcType=VARCHAR},
+		dysfxm =
+		#{dysfxm,jdbcType=VARCHAR},
+		basetype = #{basetype,jdbcType=VARCHAR},
+		mrjgc = #{mrjgc,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		nexttype = #{nexttype,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR},
+		useflag = #{useflag,jdbcType=INTEGER}
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+	</update>
+
+	<!--#################################### auto create ################################# -->
+
+	<!--表名 -->
+	<sql id="tableName">
+		KQDS_OUTPROCESSING
+	</sql>
+
+	<select id="selectCountByMap" parameterType="map" resultType="int">
+		select
+		count(1)
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="selectBeanListByMap" parameterType="map" resultType="KqdsOutprocessing">
+		select
+		<include refid="Base_Column_List" />
+		from
+		<include refid="tableName"></include>
+		where 1=1
+		<foreach collection="params" index="key" item="val" open="" close="" separator=" ">  <!-- separator为空格 -->
+			and ${key} = #{val}
+		</foreach>
+	</select>
+
+	<select id="getItemnosBySeqIds" parameterType="java.lang.String" resultType="json">
+		select wjgxmbh from KQDS_OUTPROCESSING where seq_id in(#{_parameter})
+	</select>
+	<select id="getItemListByTypeCodes" parameterType="map" resultType="json">
+		select seq_id,wjgxmbh,wjgfl from KQDS_OUTPROCESSING where 1=1
+		<if test="wjgfl != null and wjgfl !='' ">
+			and wjgfl in (${wjgfl})
+		</if>
+		<if test="organization != null and organization !='' ">
+			and organization = #{organization}
+		</if>
+	</select>
+	<select id="getjgItemListByType" parameterType="map" resultType="KqdsOutprocessing">
+		select * from KQDS_OUTPROCESSING where wjgfl = #{wjgfl}
+		<if test="organization != null and organization !='' ">
+			and organization = #{organization}
+		</if>
+		<if test="isadd != null and isadd !='' ">
+			and useflag = 0
+		</if>
+		<if test="search != null and search !='' ">
+			and wjgmc like '%' + #{search} + '%'
+		</if>
+	</select>
+	<select id="countjgItemListByType" parameterType="map" resultType="int">
+		select count(1) from KQDS_OUTPROCESSING where wjgfl = #{wjgfl}
+		<if test="organization != null and organization !='' ">
+			and organization = #{organization}
+		</if>
+		<if test="isadd != null and isadd !='' ">
+			and useflag = 0
+		</if>
+		<if test="search != null and search !='' ">
+			and wjgmc like '%' + #{search} + '%'
+		</if>
+	</select>
+	<select id="selectWithPage" parameterType="map" resultType="json">
+		select
+		t.seq_id,
+		u.name as factoryname,
+		t.useflag,
+		tp.typename,
+		tcode.dict_name as basetypename,
+		cit.dict_name as nexttpename,
+		item.treatitemname,
+		t.wjgmc,
+		t.dj,
+		t.dw,
+		t.remark
+		from
+		KQDS_OUTPROCESSING t
+		LEFT JOIN KQDS_OUTPROCESSING_UNIT u on u.code = t.mrjgc
+		LEFT JOIN KQDS_OUTPROCESSING_TYPE tp on tp.typeno = t.wjgfl
+		LEFT JOIN SYS_DICT cit on t.nexttype =
+		cit.seq_id
+		LEFT JOIN SYS_DICT tcode on t.basetype = tcode.dict_code
+		LEFT JOIN KQDS_TREATITEM item on t.dysfxm = item.treatitemno
+		where 1=1
+		<if test="organization != null and organization !='' ">
+			and t.organization = #{organization}
+		</if>
+		<if test="mrjgc != null and mrjgc !='' ">
+			and t.mrjgc = #{mrjgc}
+		</if>
+		<if test="wjgfl != null and wjgfl !='' ">
+			and t.wjgfl = #{wjgfl}
+		</if>
+		<if test="wjgmc != null and wjgmc !='' ">
+			and t.wjgmc like '%' + #{wjgmc} + '%'
+		</if>
+		ORDER BY t.createtime
+	</select>
+	<select id="selectByitem" parameterType="map" resultType="json">
+		select
+		t.*,
+		u.name as factoryname,
+		tp.typename,
+		tcode.dict_name as basetypename,
+		cit.dict_name as nexttpename,
+		item.treatitemname
+		from KQDS_OutProcessing t
+		LEFT JOIN
+		KQDS_OUTPROCESSING_UNIT u on u.code = t.mrjgc
+		LEFT JOIN KQDS_OUTPROCESSING_TYPE tp on tp.typeno = t.wjgfl and tp.processingfactory = t.mrjgc
+		LEFT JOIN SYS_DICT cit on t.nexttype =
+		cit.seq_id
+		LEFT JOIN SYS_DICT tcode on t.basetype = tcode.dict_code
+		LEFT JOIN KQDS_TREATITEM item on t.dysfxm = item.treatitemno
+		where 1=1
+		<if test="wjgxmbh != null and wjgxmbh !='' ">
+			and t.wjgxmbh = #{wjgxmbh}
+		</if>
+		<if test="factoryId != null and factoryId !='' ">
+			and t.mrjgc = #{factoryId}
+		</if>
+	</select>
+	<select id="countByCode" parameterType="java.lang.String" resultType="int">
+		select count(1) from KQDS_OutProcessing where wjgxmbh =#{_parameter}
+	</select>
+
+</mapper>

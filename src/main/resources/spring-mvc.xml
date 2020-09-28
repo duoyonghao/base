@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+      http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
+      http://www.springframework.org/schema/context  
+      http://www.springframework.org/schema/context/spring-context.xsd  
+      http://www.springframework.org/schema/aop 
+	  http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+      http://www.springframework.org/schema/mvc  
+      http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+	<mvc:annotation-driven enable-matrix-variables="true"></mvc:annotation-driven>
+	<!-- 加载配置属性文件 -->
+
+	<!-- 注解扫描的包 -->
+
+	<!-- 开启controller注解支持 -->
+	<context:component-scan base-package="com.kqds.controller.**,com.kqds.util.**,com.hudh.**.controller" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	<mvc:default-servlet-handler />
+	<!-- 静态资源映射 -->
+	<mvc:resources location="/static/" mapping="/static/**" />
+	<mvc:resources location="/inc/" mapping="/inc/**" />
+	<mvc:resources location="/upload/" mapping="/upload/**" />
+	<mvc:resources location="/model/" mapping="/model/**" />
+	<!-- 不拦截Html，用于微信页面 -->
+	<mvc:resources location="/" mapping="/**/*.html"/>
+
+	<mvc:interceptors>
+		<!-- 检查用户权限，对于部分不需要权限的路径进行排除 -->
+		<mvc:interceptor>
+			<!-- 先匹配所有路径，然后排除不需要检查的路径 -->
+			<mvc:mapping path="/**/**" />
+			<!-- 与登录相关的请求 -->
+			<mvc:exclude-mapping path="/YZPersonAct/getMaxuser.act" />
+			<mvc:exclude-mapping path="/ChainAct/getHosList.act" />
+			<mvc:exclude-mapping path="/YZDictAct/getListByParentCode.act" />
+			<mvc:exclude-mapping path="/YZSystemAct/doLoginIn.act" />
+			<mvc:exclude-mapping path="/YZSystemAct/checkOnline.act" />
+			<mvc:exclude-mapping path="/YZSystemAct/doLogout.act" />
+			<mvc:exclude-mapping path="/YZSystemAct/getButtonList.act" />
+			<mvc:exclude-mapping path="/index4" />
+			<!-- 微信服务-->
+			<mvc:exclude-mapping path="/wechat" />
+			<mvc:exclude-mapping path="/YZDictWeChatAct/*.act" />
+			<mvc:exclude-mapping path="/FileUploadAct/*.act" />
+			<mvc:exclude-mapping path="/WXBingLiAct/*.act" />
+			<mvc:exclude-mapping path="/WXCostOrderAct/*.act" />
+			<mvc:exclude-mapping path="/WXFansAct/*.act" />
+			<mvc:exclude-mapping path="/WXNewsAct/*.act" />
+			<mvc:exclude-mapping path="/WXNewsItemAct/*.act" />
+			<mvc:exclude-mapping path="/KqdsOrderAct/*.act" />
+			<mvc:exclude-mapping path="/WXOrderAct/*.act" />
+			<mvc:exclude-mapping path="/WXQuickMsgAct/*.act" />
+			<mvc:exclude-mapping path="/WXReceiveTextAct/*.act" />
+			<mvc:exclude-mapping path="/WXSocketAct/*.act" />
+			<mvc:exclude-mapping path="/WXTemplateItemAct/*.act" />
+			<mvc:exclude-mapping path="/WXTemplateMsgAct/*.act" />
+			<mvc:exclude-mapping path="/WXUserDocAct/*.act" />
+			<!-- 以下是静态资源 -->
+			<mvc:exclude-mapping path="/static/**" />
+			<mvc:exclude-mapping path="/inc/**" />
+			<mvc:exclude-mapping path="/upload/**" />
+			<mvc:exclude-mapping path="/model/**" />
+			<!-- 不拦截Html，用于微信页面 -->
+			<mvc:exclude-mapping path="/**/*.html" />
+			<!-- 用户是否已经登录的检查 -->
+			<bean id="loginInterceptor" class="com.kqds.interceptor.LoginInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+
+	<!--<bean id="privilegeSynchronizer" class="com.kqds.core.global.PrivilegeSynchronizer"></bean>
+	<bean id="orderPrivilegeSynchronizer" class="com.kqds.core.global.OrderPrivilegeSynchronizer"></bean>-->
+
+	<!-- 视图解释类 -->
+	<!-- 配置SpringMVC的视图解析器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+	</bean>
+
+	<!-- 拦截器 -->
+	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> <property name="defaultEncoding" value="utf-8"></property> <property name="maxUploadSize" 
+		value="10485760000"></property>最大上传文件大小,单位为字节 <property name="maxInMemorySize" value="10960"></property> </bean> -->
+
+
+	<bean id="multipartResolver" class="com.kqds.util.sys.spring.MyMultipartResolver">
+		<!-- url中带有uploadAttach1的http请求就不会被multipartResolver先解析 -->
+		<property name="excludeUrls" value="FileUploadAct/uploadFile.act" />
+		<property name="defaultEncoding" value="utf-8"></property>
+		<!-- 最大上传文件大小,单位为字节 -->
+		<property name="maxUploadSize" value="10485760000"></property>
+		<property name="maxInMemorySize" value="10960"></property>
+	</bean>
+
+
+	<!-- json解析器 配合responsebody -->
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/html; charset=UTF-8</value>
+							<value>application/json;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/html; charset=UTF-8</value>
+							<value>application/json;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+</beans>
