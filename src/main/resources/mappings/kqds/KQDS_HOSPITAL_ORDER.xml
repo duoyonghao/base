@@ -501,6 +501,7 @@
         h.isdelete,
         h.delreason,
         u.PhoneNumber1,
+        u.IDCardNo,
         u.createtime jdsj,
         per0.user_name AS kefu,
         u.doorstatus zdoorstatus

@@ -133,6 +133,7 @@ input[type="text"]:focus, select:focus, textarea:focus {
 		            <a id="clearmenzhen" href="javascript:void(0);" class="kqdsCommonBtn">清空</a>
 					<a id="query" href="javascript:void(0);" class="kqdsSearchBtn">查询</a>
 		            <a id="mzyy_scbb" href="javascript:void(0);" onclick="exportTable()" class="kqdsCommonBtn hidden">生成报表</a>
+					<a id="mzyy_bdxx" href="javascript:void(0);" onclick="enteringInformation()" class="kqdsCommonBtn">补录证件</a>
 		        </div>
 	    		<ul class="conditions">
 	    			<li>
@@ -237,7 +238,6 @@ var menuid = "<%=menuid%>";
 var qxnameArr = ['mzyy_scbb','hfzx_scbb'];
 var func = ['exportTable'];
 var isClick = true;
-
 $(function() {
 	$("input[type='text']").attr("autocomplete","off");  //去掉input输入框的历史记录
     //获取当前页面所有按钮##现在此方法 ## syp 17-5-2
@@ -265,8 +265,8 @@ $(function() {
     
     //获取当前日期
     nowday = getNowFormatDate();
-    $("#starttime").val(nowday + " 00:00");
-    $("#endtime").val(nowday + " 23:59");
+    $("#starttime").val(nowday);
+    $("#endtime").val(nowday);
 
     //绑定两个时间选择框的chage时间
     $("#starttime,#endtime").change(function() {	
@@ -324,7 +324,12 @@ $(function() {
         setTableHeaderWidth(".tableBox");
     });
 });
-
+function refresh(){
+	//加载内容
+	$('#table1').bootstrapTable('refresh', {
+		'url': pageurl1
+	});
+}
 /**
  * 获取当前门诊的所有部门列表 搜索单独加载selectpicker 2019/11/19 lutian
  */
@@ -413,7 +418,21 @@ function getIdSelections() {
         return row;
     });
 }
-
+function enteringInformation(){
+	selectedrows = getIdSelections();
+	if (selectedrows.length == 0 || selectedrows.length > 1) {
+		layer.alert('请勾选患者选择框，选择需要补录证件信息的患者(单选)' );
+	} else {
+		layer.open({
+			type: 2,
+			title: '补录证件',
+			shadeClose: false,
+			shade: 0.6,
+			area: ['50%', '98%'],
+			content: contextPath+'/KQDS_enteringInformationAct/setCertificate.act?menuid='+"<%=menuid%>"
+		});
+	}
+}
 //指定客服
 function setKeFu() {
     selectedrows = getIdSelections();
@@ -643,6 +662,19 @@ function inittablemenzhen() {
                 }
             }
         },
+			{
+				title: '身份证号',
+				field: 'idcardno',
+				align: 'center',
+				sortable: true,
+				formatter: function(value, row, index) {
+					if (value) {
+						return '<span class="name" title="' + value + '">' + value + '</span>';
+					} else {
+						return '-';
+					}
+				}
+			},
         {
             title: '咨询/医生',
             field: 'askperson',

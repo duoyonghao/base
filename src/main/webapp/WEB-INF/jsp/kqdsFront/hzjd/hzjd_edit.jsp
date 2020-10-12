@@ -421,108 +421,107 @@
 						</td>
 					</tr>
 				</tbody>
-			</table>	
+			</table>
+			<div class="test hide">
+				<h1 style="text-align:center;color:#5555FF;">身份证阅读器USB接入测试页面</h1>
+
+				<table border="0" width="50%" cellpadding="0" cellspacing="0" style="padding-left:100px;">
+					<tr>
+						<td><input type="button" value="连接" onclick="connect()"></td>
+						<td><input type="button" value="状态" onclick="getStatus()"></td>
+						<td><input type="button" value="读卡" onclick="readCert()"></td>
+						<td><input type="button" value="断开" onclick="disconnect()"></td>
+						<td><input type="button" value="读IC卡序列号" onclick="readICCardSN()"></td>
+						<td><input type="button" value="读身份证物理卡号" onclick="readIDCardSN()"></td>
+					</tr>
+				</table>
+				<table border="0" width="100%" cellpadding="0" cellspacing="10">
+					<tr>
+						<td align="right">读卡时间：</td>
+						<td><input type="text" id="timeElapsed" size="49" style="width:400px;" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td align="right">数字签名：</td>
+						<td><input type="text" id="signature" size="49" style="width:400px;" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td align="right">厂家标识：</td>
+						<td><input type="text" id="venderId" size="49" style="width:400px;" readonly="readonly"></td>
+					</tr>
+					<td align="right">卡类型：</td>
+					<td><input type="text" id="certType" size="49" style="width:400px;" readonly="readonly">(取值为“1”(表示“中国居民身份证”)或“50”(表示“外国永久居留身份证”))
+					</td>
+					</tr>
+					<tr>
+						<td align="right">中/英姓名：</td>
+						<td><input type="text" id="partyName" size="49" style="width:400px;" readonly="readonly">(要求中间，两头都没有空格)</td>
+					</tr>
+					<tr>
+						<td align="right">性别：</td>
+						<td><input type="text" id="gender" size="49" style="width:400px;" readonly="readonly">(取值为“1”（表示“男”）或“0”（表示“女”）)
+						</td>
+					</tr>
+					<tr>
+						<td align="right">民族/国籍：</td>
+						<td><input type="text" id="nation" size="49" style="width:400px;" readonly="readonly">(汉字即可)</td>
+					</tr>
+					<tr>
+						<td align="right">出生日期：</td>
+						<td><input type="text" id="bornDay" size="49" style="width:400px;" readonly="readonly">(要求格式为:yyyyMMdd，长度为8)
+						</td>
+					</tr>
+					<tr>
+						<td align="right">住址：</td>
+						<td><input type="text" id="certAddress" size="49" style="width:400px;" readonly="readonly">(外国人永久居留身份证地址为“空”)
+						</td>
+					</tr>
+					<tr>
+						<td align="right">身份证号：</td>
+						<td><input type="text" id="certNumber" size="49" style="color:#FF0000;width:400px;" readonly="readonly">(居民身份号码，长度18位)
+						</td>
+					</tr>
+					<tr>
+						<td align="right">签发机关：</td>
+						<td><input type="text" id="certOrg" size="49" style="width:400px;" readonly="readonly">(外国永久居留身份证签发机关为“机关代码”)
+						</td>
+					</tr>
+					<tr>
+						<td align="right">开始期限：</td>
+						<td><input type="text" id="effDate" size="49" style="width:400px;" readonly="readonly">(要求格式为:yyyyMMdd，长度为8)
+						</td>
+					</tr>
+					<tr>
+						<td align="right">结束期限：</td>
+						<td><input type="text" id="expDate" size="49" style="width:400px;" readonly="readonly">(要求格式为:yyyyMMdd，长度为8，或者是“长期”)
+						</td>
+					</tr>
+					<tr>
+						<td align="right">结果：</td>
+						<td><textarea id="result" rows="8" cols="47" style="width:400px;" readonly="readonly"></textarea></td>
+					</tr>
+					<tr>
+						<td align="right">照片：</td>
+						<td><img id="headPic" style="height: 126px; width: 102px" align="top" />
+							<img id="photoDisplay" style="width:341px; height:443px;"/>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<object id="CertCtl" type="application/cert-reader" width="0" height="0">
+				<object classid="clsid:30516390-004F-40B9-9FC6-C9096B59262E" id="CertCtl" width="0" height="0">
+					<object ID="CertCtl" classid="30516390-004F-40B9-9FC6-C9096B59262E" TYPE="application/cert-reader" width=0
+							height=0>
+						<!--<p style="color:#FF0000;">控件不可用，可能未正确安装控件及驱动，或者控件未启用。</p>-->
+					</object>
+				</object>
+			</object>
 		</form>
-		
 		<div class="fixedBottomDiv"><!--底部三个按钮所在父元素 固定在底部样式  -->
 			<button class="kqdsSearchBtn" onclick="submitu()" type="text">保存</button>
 			<button class="kqdsSearchBtn" onclick="readCert()" type="button">读取身份证信息</button>
 		</div>
 	</div>
-<div class="test hide">
-	<h1 style="text-align:center;color:#5555FF;">身份证阅读器USB接入测试页面</h1>
-
-<table border="0" width="50%" cellpadding="0" cellspacing="0" style="padding-left:100px;">
-    <tr>
-        <td><input type="button" value="连接" onclick="connect()"></td>
-        <td><input type="button" value="状态" onclick="getStatus()"></td>
-        <td><input type="button" value="读卡" onclick="readCert()"></td>
-        <td><input type="button" value="断开" onclick="disconnect()"></td>
-		<td><input type="button" value="读IC卡序列号" onclick="readICCardSN()"></td>
-		<td><input type="button" value="读身份证物理卡号" onclick="readIDCardSN()"></td>
-    </tr>
-</table>
-<table border="0" width="100%" cellpadding="0" cellspacing="10">
-    <tr>
-        <td align="right">读卡时间：</td>
-        <td><input type="text" id="timeElapsed" size="49" style="width:400px;" readonly="readonly"></td>
-    </tr>
-    <tr>
-        <td align="right">数字签名：</td>
-        <td><input type="text" id="signature" size="49" style="width:400px;" readonly="readonly"></td>
-    </tr>
-    <tr>
-        <td align="right">厂家标识：</td>
-        <td><input type="text" id="venderId" size="49" style="width:400px;" readonly="readonly"></td>
-    </tr>
-    <td align="right">卡类型：</td>
-    <td><input type="text" id="certType" size="49" style="width:400px;" readonly="readonly">(取值为“1”(表示“中国居民身份证”)或“50”(表示“外国永久居留身份证”))
-    </td>
-    </tr>
-    <tr>
-        <td align="right">中/英姓名：</td>
-        <td><input type="text" id="partyName" size="49" style="width:400px;" readonly="readonly">(要求中间，两头都没有空格)</td>
-    </tr>
-    <tr>
-        <td align="right">性别：</td>
-        <td><input type="text" id="gender" size="49" style="width:400px;" readonly="readonly">(取值为“1”（表示“男”）或“0”（表示“女”）)
-        </td>
-    </tr>
-    <tr>
-        <td align="right">民族/国籍：</td>
-        <td><input type="text" id="nation" size="49" style="width:400px;" readonly="readonly">(汉字即可)</td>
-    </tr>
-    <tr>
-        <td align="right">出生日期：</td>
-        <td><input type="text" id="bornDay" size="49" style="width:400px;" readonly="readonly">(要求格式为:yyyyMMdd，长度为8)
-        </td>
-    </tr>
-    <tr>
-        <td align="right">住址：</td>
-        <td><input type="text" id="certAddress" size="49" style="width:400px;" readonly="readonly">(外国人永久居留身份证地址为“空”)
-        </td>
-    </tr>
-    <tr>
-        <td align="right">身份证号：</td>
-        <td><input type="text" id="certNumber" size="49" style="color:#FF0000;width:400px;" readonly="readonly">(居民身份号码，长度18位)
-        </td>
-    </tr>
-    <tr>
-        <td align="right">签发机关：</td>
-        <td><input type="text" id="certOrg" size="49" style="width:400px;" readonly="readonly">(外国永久居留身份证签发机关为“机关代码”)
-        </td>
-    </tr>
-    <tr>
-        <td align="right">开始期限：</td>
-        <td><input type="text" id="effDate" size="49" style="width:400px;" readonly="readonly">(要求格式为:yyyyMMdd，长度为8)
-        </td>
-    </tr>
-    <tr>
-        <td align="right">结束期限：</td>
-        <td><input type="text" id="expDate" size="49" style="width:400px;" readonly="readonly">(要求格式为:yyyyMMdd，长度为8，或者是“长期”)
-        </td>
-    </tr>
-    <tr>
-        <td align="right">结果：</td>
-        <td><textarea id="result" rows="8" cols="47" style="width:400px;" readonly="readonly"></textarea></td>
-    </tr>
-    <tr>
-        <td align="right">照片：</td>
-        <td><img id="headPic" style="height: 126px; width: 102px" align="top" />
-            <img id="photoDisplay" style="width:341px; height:443px;"/>
-        </td>
-    </tr>
-</table>
-</div>
-
-<object id="CertCtl" type="application/cert-reader" width="0" height="0">
-    <object classid="clsid:30516390-004F-40B9-9FC6-C9096B59262E" id="CertCtl" width="0" height="0">
-        <object ID="CertCtl" classid="30516390-004F-40B9-9FC6-C9096B59262E" TYPE="application/cert-reader" width=0
-                height=0>
-            <!--<p style="color:#FF0000;">控件不可用，可能未正确安装控件及驱动，或者控件未启用。</p>-->
-        </object>
-    </object>
-</object>
 </body>
 <script type="text/javascript">
 //### 这个变量声明在下面，hzjd.js调用不到

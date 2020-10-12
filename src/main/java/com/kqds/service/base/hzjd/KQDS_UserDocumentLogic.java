@@ -2449,4 +2449,8 @@ public class KQDS_UserDocumentLogic extends BaseLogic {
             return jobj;
         }
     }
+
+    public void update(KqdsUserdocument dp) throws Exception {
+        dao.update(TableNameUtil.KQDS_USERDOCUMENT+".update",dp);
+    }
 }

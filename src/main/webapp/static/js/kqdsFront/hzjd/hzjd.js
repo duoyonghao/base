@@ -736,10 +736,10 @@ function openPatientTag() {
     
 }
 
-$('#town').on('change', function(){
+/*$('#town').on('change', function(){
 	 var bootstrapValidator = $("#defaultForm").data('bootstrapValidator');  
 	 bootstrapValidator.updateStatus('town', 'NOT_VALIDATED').validateField('town'); //错误提示信息变了  
-});
+});*/
 //选择患者生日 自动计算年龄
 function changeAge() {
     var birdate = $('#birthday').val();

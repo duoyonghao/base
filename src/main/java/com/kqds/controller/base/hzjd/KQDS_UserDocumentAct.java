@@ -3678,4 +3678,20 @@ public class KQDS_UserDocumentAct {
         }
         return null;
     }
+    @RequestMapping("/update.act")
+    public String update(HttpServletRequest request, HttpServletResponse response) throws Exception {
+         KqdsUserdocument dp = new KqdsUserdocument();
+        YZPerson person = SessionUtil.getLoginPerson(request);
+        try{
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            BeanUtils.populate(dp,request.getParameterMap());
+            logic.update(dp);
+            BcjlUtil.LogBcjlWithUserCode(BcjlUtil.MODIFY, BcjlUtil.KQDS_USERDOCUMENT, dp, dp.getUsercode(),
+                    TableNameUtil.KQDS_USERDOCUMENT, request);
+            YZUtility.DEAL_SUCCESS(null,"补录成功",response,logger);
+        }catch (Exception e){
+            YZUtility.DEAL_ERROR(e.getMessage(), true, e, response, logger);
+        }
+        return null;
+    }
 }
