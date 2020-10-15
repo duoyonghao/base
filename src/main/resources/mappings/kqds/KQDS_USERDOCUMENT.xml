@@ -4202,4 +4202,54 @@ WHERE
         and isdelete=0
         ORDER BY createtime DESC
     </select>
+    <update id="update" parameterType="com.kqds.entity.base.KqdsUserdocument">
+        update KQDS_UserDocument
+        set
+        <if test="username != null">
+            UserName = #{username,jdbcType=VARCHAR},
+        </if>
+        <if test="sex != null">
+            Sex = #{sex,jdbcType=VARCHAR},
+        </if>
+        <if test="birthday != null">
+            BirthDay = #{birthday,jdbcType=VARCHAR},
+        </if>
+        <if test="age != null">
+            Age = #{age,jdbcType=INTEGER},
+        </if>
+        <if test="idcardno != null">
+            IDCardNo = #{idcardno,jdbcType=VARCHAR},
+        </if>
+        <if test="phonenumber1 != null">
+            PhoneNumber1 = #{phonenumber1,jdbcType=VARCHAR},
+        </if>
+        <if test="phonenumber2 != null">
+            PhoneNumber2 = #{phonenumber2,jdbcType=VARCHAR},
+        </if>
+        <if test="dress != null">
+            Dress = #{dress,jdbcType=VARCHAR},
+        </if>
+        <if test="province != null">
+            Province = #{province,jdbcType=VARCHAR},
+        </if>
+        <if test="city != null">
+            City = #{city,jdbcType=VARCHAR},
+        </if>
+        <if test="area != null">
+            area = #{area,jdbcType=VARCHAR},
+        </if>
+        <if test="town != null">
+            town = #{town,jdbcType=VARCHAR},
+        </if>
+        <if test="address != null">
+            Address = #{address,jdbcType=VARCHAR},
+        </if>
+        <if test="emergencyContact != null">
+            emergencyContact = #{emergencyContact,jdbcType=VARCHAR},
+        </if>
+        <if test="emergencyPhone != null">
+            emergencyPhone = #{emergencyPhone,jdbcType=VARCHAR}
+        </if>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+    </update>
 </mapper>
