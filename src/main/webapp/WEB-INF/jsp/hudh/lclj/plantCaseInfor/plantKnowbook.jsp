@@ -310,6 +310,7 @@
 			<option value="韩国Dentium种植体">韩国Dentium种植体</option>
 			<option value="美国HIOSSEN种植体">美国HIOSSEN种植体</option>
 			<option value="德国ICX种植体">德国ICX种植体</option>
+			<option value="德国Templant种植体">德国Templant种植体</option>
 			<option value="瑞典Nobel-Replace种植体">瑞典Nobel-Replace种植体</option>
 			<option value="瑞典Nobel-Active种植体">瑞典Nobel-Active种植体</option>
 			<option value="德国Camlog种植体">德国Camlog种植体</option>

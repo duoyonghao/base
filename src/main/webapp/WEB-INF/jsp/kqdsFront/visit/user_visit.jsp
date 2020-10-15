@@ -244,6 +244,7 @@ input[type=text],.kv .kv-v input[type=text]{padding:0 10px;width:100px;height: 2
                <a href="javascript:void(0);" id="tjhfjh" class="kqdsCommonBtn hide" onclick="goAddVisitPlan()">添加回访计划</a>
                <a href="javascript:void(0);" class="kqdsCommonBtn" id="clear" onclick="clearc()">清空</a> 
                <a href="javascript:void(0);" class="kqdsSearchBtn" id="query" onclick="refresh()">查询</a>
+				<a href="javascript:void(0);" class="kqdsSearchBtn" id="" onclick="exportTable()">生成报表</a>
 	        </div>
    		</div>
         

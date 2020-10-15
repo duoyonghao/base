@@ -281,6 +281,9 @@ function hospitalOrderTable(type, tabId) {
                     if (Number(row.arrearage)>0) {
                         iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/arrearage.jpg/>';
                     }
+                    if (Number(row.increase)>0) {
+                        iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/increase.jpg/>';
+                    }
                     return iconhtml == "" ? "-" : iconhtml;
                 }
             },
@@ -552,6 +555,9 @@ function netOrderTable(type, tabId) {
                     }
                     if (Number(row.arrearage)>0) {
                         iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/arrearage.jpg/>';
+                    }
+                    if (Number(row.increase)>0) {
+                        iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/increase.jpg/>';
                     }
                     return iconhtml == "" ? "-" : iconhtml;
                 }
@@ -845,6 +851,9 @@ function getOrderlist(status, type, tabId) {
                     }
                     if (Number(row.arrearage)>0) {
                         iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/arrearage.jpg/>';
+                    }
+                    if (Number(row.increase)>0) {
+                        iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/increase.jpg/>';
                     }
                     return iconhtml == "" ? "-" : iconhtml;
                 }
@@ -1173,6 +1182,9 @@ function getPayOrderlist(type, tabId) {
                     }
                     if (Number(row.arrearage)>0) {
                         iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/arrearage.jpg/>';
+                    }
+                    if (Number(row.increase)>0) {
+                        iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/increase.jpg/>';
                     }
                     return iconhtml == "" ? "-" : iconhtml;
                 }
@@ -1652,6 +1664,9 @@ function initTable(status, type, recesort, tabId) {
                     }
                     if (Number(row.arrearage)>0) {
                         iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/arrearage.jpg/>';
+                    }
+                    if (Number(row.increase)>0) {
+                        iconhtml += '<img class="contagion" src= ' + contextPath + '/static/image/kqdsFront/tag/increase.jpg/>';
                     }
                     return iconhtml == "" ? "-" : iconhtml;
                 }

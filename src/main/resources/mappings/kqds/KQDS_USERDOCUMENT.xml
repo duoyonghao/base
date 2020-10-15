@@ -66,6 +66,7 @@
         <result column="accepttool" jdbcType="VARCHAR" property="accepttool"/>
         <result column="arrearage" jdbcType="VARCHAR" property="arrearage"/>
         <result column="vip" jdbcType="INTEGER" property="vip"/>
+        <result column="increase" jdbcType="INTEGER" property="increase"/>
     </resultMap>
     <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kqds.entity.base.KqdsUserdocument">
         <result column="barcode" jdbcType="CLOB" property="barcode"/>
@@ -82,7 +83,7 @@
 		organization, medicalhistory, drugllergy, remark, experience, habit, email, type,
 		xueli, qq, doctor, important, nexttype, totalpay, developer, doorstatus, glr, glrremark,
 		xgr, xgtime, town, kefu, usersort, openid, bindstatus, pym, integral, blcode, familyship, area, hobby, activity, introduce,iscreateLclj,clipAddress,
-		area, hobby, activity, introduce, iscreateLclj,accepttool,headPic, photoDisplay,emergencyContact,emergencyPhone,arrearage,vip
+		area, hobby, activity, introduce, iscreateLclj,accepttool,headPic, photoDisplay,emergencyContact,emergencyPhone,arrearage,vip,increase
 	</sql>
     <sql id="Blob_Column_List">
 		barcode
@@ -1040,7 +1041,8 @@
 	pro.dict_name AS professionname,
 	okdi1.dict_name AS devchannelname,
 	hztype.dict_name AS nexttypename,
-	u.familyship
+	u.familyship,
+	u.increase
 FROM
 	KQDS_USERDOCUMENT AS u
 	LEFT JOIN SYS_DICT okdi1 ON okdi1.seq_id = u.devchannel
@@ -1290,7 +1292,8 @@ WHERE
         <if test="querytype != null and querytype !='' ">
             and (per2.seq_id in (${querytype})
             OR per3.seq_id IN (${querytype})
-            OR per4.seq_id IN (${querytype}))
+            OR per4.seq_id IN (${querytype})
+            or u.kefu = #{kefu})
         </if>
         <if test="type != null and type !='' ">
             and u.type = #{type}
@@ -1346,6 +1349,7 @@ WHERE
         u.openid,
         u.bindstatus,
         u.kefu,
+        u.increase,
         p.USER_NAME as kefuname,
         reg.createtime as regcreatetime
         from KQDS_USERDOCUMENT as u
@@ -2990,7 +2994,7 @@ WHERE
         u.xgr, u.xgtime, u.town, u.kefu, u.usersort, u.openid, u.bindstatus, u.pym, u.integral, u.blcode, u.familyship,
         u.area,
         u.hobby, u.activity, u.introduce,u.iscreateLclj,u.clipAddress,u.area, u.hobby, u.activity, u.introduce,
-        u.iscreateLclj,
+        u.iscreateLclj,u.increase,
         u.accepttool,u.headPic, u.photoDisplay,u.emergencyContact,u.emergencyPhone,u.barcode,p.user_name as
         createusername from KQDS_USERDOCUMENT u
         LEFT JOIN SYS_PERSON p on p.SEQ_ID = u.CreateUser
@@ -3295,7 +3299,7 @@ WHERE
 		CreateTime,CreateUser,isdelete,organization,medicalhistory,drugllergy,remark,experience,habit,
 		email,xueli,qq,doctor,important,totalpay,developer,barcode,doorstatus,glr,glrremark,
 		xgr,xgtime,town,usersort,openid,bindstatus,pym,integral,blcode,iscreateLclj,familyship,
-		area,hobby,activity,introduce,invoice
+		area,hobby,activity,introduce,invoice,increase
 		from KQDS_USERDOCUMENT where UserCode in (${_parameter})
 	</select>
 
@@ -4006,6 +4010,7 @@ WHERE
         a.AREA_NAME,
         s.STREET_NAME,
         u.kefu,
+        u.increase,
         p5.USER_NAME as kefuname
         from KQDS_USERDOCUMENT as u
         left join (
@@ -4197,4 +4202,54 @@ WHERE
         and isdelete=0
         ORDER BY createtime DESC
     </select>
+    <update id="update" parameterType="com.kqds.entity.base.KqdsUserdocument">
+        update KQDS_UserDocument
+        set
+        <if test="username != null">
+            UserName = #{username,jdbcType=VARCHAR},
+        </if>
+        <if test="sex != null">
+            Sex = #{sex,jdbcType=VARCHAR},
+        </if>
+        <if test="birthday != null">
+            BirthDay = #{birthday,jdbcType=VARCHAR},
+        </if>
+        <if test="age != null">
+            Age = #{age,jdbcType=INTEGER},
+        </if>
+        <if test="idcardno != null">
+            IDCardNo = #{idcardno,jdbcType=VARCHAR},
+        </if>
+        <if test="phonenumber1 != null">
+            PhoneNumber1 = #{phonenumber1,jdbcType=VARCHAR},
+        </if>
+        <if test="phonenumber2 != null">
+            PhoneNumber2 = #{phonenumber2,jdbcType=VARCHAR},
+        </if>
+        <if test="dress != null">
+            Dress = #{dress,jdbcType=VARCHAR},
+        </if>
+        <if test="province != null">
+            Province = #{province,jdbcType=VARCHAR},
+        </if>
+        <if test="city != null">
+            City = #{city,jdbcType=VARCHAR},
+        </if>
+        <if test="area != null">
+            area = #{area,jdbcType=VARCHAR},
+        </if>
+        <if test="town != null">
+            town = #{town,jdbcType=VARCHAR},
+        </if>
+        <if test="address != null">
+            Address = #{address,jdbcType=VARCHAR},
+        </if>
+        <if test="emergencyContact != null">
+            emergencyContact = #{emergencyContact,jdbcType=VARCHAR},
+        </if>
+        <if test="emergencyPhone != null">
+            emergencyPhone = #{emergencyPhone,jdbcType=VARCHAR}
+        </if>
+		where SEQ_ID = #{seqId,jdbcType=VARCHAR}
+    </update>
 </mapper>

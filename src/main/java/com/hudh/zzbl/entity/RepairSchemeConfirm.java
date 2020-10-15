@@ -262,6 +262,16 @@ public class RepairSchemeConfirm implements Serializable {
     private String zimmerrightup;
     private String zimmerrightdown;
 
+    private String etleftup;//新增牙位图
+    private String etleftdown;
+    private String etrightup;
+    private String etrightdown;
+
+    private String bbleftup;//新增牙位图
+    private String bbleftdown;
+    private String bbrightup;
+    private String bbrightdown;
+
     public String getNobelpmcleftup() {
 		return nobelpmcleftup;
 	}
@@ -874,4 +884,67 @@ public class RepairSchemeConfirm implements Serializable {
 		this.status = status;
 	}
 
+    public String getEtleftup() {
+        return etleftup;
+    }
+
+    public void setEtleftup(String etleftup) {
+        this.etleftup = etleftup;
+    }
+
+    public String getEtleftdown() {
+        return etleftdown;
+    }
+
+    public void setEtleftdown(String etleftdown) {
+        this.etleftdown = etleftdown;
+    }
+
+    public String getEtrightup() {
+        return etrightup;
+    }
+
+    public void setEtrightup(String etrightup) {
+        this.etrightup = etrightup;
+    }
+
+    public String getEtrightdown() {
+        return etrightdown;
+    }
+
+    public void setEtrightdown(String etrightdown) {
+        this.etrightdown = etrightdown;
+    }
+
+    public String getBbleftup() {
+        return bbleftup;
+    }
+
+    public void setBbleftup(String bbleftup) {
+        this.bbleftup = bbleftup;
+    }
+
+    public String getBbleftdown() {
+        return bbleftdown;
+    }
+
+    public void setBbleftdown(String bbleftdown) {
+        this.bbleftdown = bbleftdown;
+    }
+
+    public String getBbrightup() {
+        return bbrightup;
+    }
+
+    public void setBbrightup(String bbrightup) {
+        this.bbrightup = bbrightup;
+    }
+
+    public String getBbrightdown() {
+        return bbrightdown;
+    }
+
+    public void setBbrightdown(String bbrightdown) {
+        this.bbrightdown = bbrightdown;
+    }
 }

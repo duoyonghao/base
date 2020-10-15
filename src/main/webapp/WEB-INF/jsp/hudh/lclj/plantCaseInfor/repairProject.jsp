@@ -142,7 +142,7 @@
 </style>
 <body>
 <!--startprint-->
-<div id="repair_continer" class="container-fluid twopage" style="border:1px solid red;">
+<div id="repair_continer" class="container-fluid twopage">
 
     <!-- 标题 -->
     <div class="row">
@@ -248,6 +248,30 @@
                                 <!-- 上下牙位图 -->
                                 <div class="toothMapdiv_B">
                                     <span>ICX</span>
+                                    <ul class="tooth_map">
+                                        <li>
+                                            <input id="icxleftup" onblur="TextLengthCheck(this.id,10);"
+                                                   class="tooth_input" type="text">
+                                        </li>
+                                        <li>
+                                            <input id="icxrightup" onblur="TextLengthCheck(this.id,10);"
+                                                   class="tooth_input" type="text">
+                                        </li>
+                                        <li>
+                                            <input id="icxleftdown" onblur="TextLengthCheck(this.id,10);"
+                                                   class="tooth_input" type="text">
+                                        </li>
+                                        <li>
+                                            <input id="icxrightdown" onblur="TextLengthCheck(this.id,10);"
+                                                   class="tooth_input" type="text">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <!-- 上下牙位图 -->
+                                <div class="toothMapdiv_B">
+                                    <span>Templant</span>
                                     <ul class="tooth_map">
                                         <li>
                                             <input id="icxleftup" onblur="TextLengthCheck(this.id,10);"
@@ -391,30 +415,6 @@
                             <li>
                                 <!-- 上下牙位图 -->
                                 <div class="toothMapdiv_B">
-                                    <span>B&B</span>
-                                    <ul class="tooth_map">
-                                        <li>
-                                            <input id="bandbleftup" onblur="TextLengthCheck(this.id,10);"
-                                                   class="tooth_input" type="text">
-                                        </li>
-                                        <li>
-                                            <input id="bandbrightup" onblur="TextLengthCheck(this.id,10);"
-                                                   class="tooth_input" type="text">
-                                        </li>
-                                        <li>
-                                            <input id="bandbleftdown" onblur="TextLengthCheck(this.id,10);"
-                                                   class="tooth_input" type="text">
-                                        </li>
-                                        <li>
-                                            <input id="bandbrightdown" onblur="TextLengthCheck(this.id,10);"
-                                                   class="tooth_input" type="text">
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <!-- 上下牙位图 -->
-                                <div class="toothMapdiv_B">
                                     <span>ET</span>
                                     <ul class="tooth_map">
                                         <li>
@@ -431,6 +431,30 @@
                                         </li>
                                         <li>
                                             <input id="etrightdown" onblur="TextLengthCheck(this.id,10);"
+                                                   class="tooth_input" type="text">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <!-- 上下牙位图 -->
+                                <div class="toothMapdiv_B">
+                                    <span>B&B</span>
+                                    <ul class="tooth_map">
+                                        <li>
+                                            <input id="bbleftup" onblur="TextLengthCheck(this.id,10);"
+                                                   class="tooth_input" type="text">
+                                        </li>
+                                        <li>
+                                            <input id="bbrightup" onblur="TextLengthCheck(this.id,10);"
+                                                   class="tooth_input" type="text">
+                                        </li>
+                                        <li>
+                                            <input id="bbleftdown" onblur="TextLengthCheck(this.id,10);"
+                                                   class="tooth_input" type="text">
+                                        </li>
+                                        <li>
+                                            <input id="bbrightdown" onblur="TextLengthCheck(this.id,10);"
                                                    class="tooth_input" type="text">
                                         </li>
                                     </ul>
@@ -1248,16 +1272,16 @@
         var zimmerrightup = $("#zimmerrightup").val();
         var zimmerleftdown = $("#zimmerleftdown").val();
         var zimmerrightdown = $("#zimmerrightdown").val();
-        //B&B
-        var bandbleftup = $("#bandbleftup").val();
-        var bandbrightup = $("#bandbrightup").val();
-        var bandbleftdown = $("#bandbleftdown").val();
-        var bandbrightdown = $("#bandbrightdown").val();
         //ET
         var etleftup = $("#etleftup").val();
         var etrightup = $("#etrightup").val();
         var etleftdown = $("#etleftdown").val();
         var etrightdown = $("#etrightdown").val();
+        //B&B
+        var bbleftup = $("#bbleftup").val();
+        var bbrightup = $("#bbrightup").val();
+        var bbleftdown = $("#bbleftdown").val();
+        var bbrightdown = $("#bbrightdown").val();
 //			var boneCollagen = $("#boneCollagen").val();
         var rbrdLeftUp = $("#rbrdleftup").val();
         var rbrdRigthUp = $("#rbrdrigthup").val();
@@ -1350,14 +1374,14 @@
             zimmerleftdown: zimmerleftdown,
             zimmerrightup: zimmerrightup,
             zimmerrightdown: zimmerrightdown,
-            bandbleftup : bandbleftup,
-            bandbrightup : bandbrightup,
-            bandbleftdown : bandbleftdown,
-            bandbrightdown : bandbrightdown,
-            etleftup : etleftup,
-            etrightup : etrightup,
-            etleftdown : etleftdown,
-            etrightdown : etrightdown,
+            etleftup: etleftup,
+            etleftdown: etleftdown,
+            etrightup: etrightup,
+            etrightdown: etrightdown,
+            bbleftup: bbleftup,
+            bbleftdown: bbleftdown,
+            bbrightup: bbrightup,
+            bbrightdown: bbrightdown,
             rbrdLeftUp: rbrdLeftUp,
             rbrdRigthUp: rbrdRigthUp,
             rbrdLeftDown: rbrdLeftDown,
@@ -1466,16 +1490,16 @@
         var zimmerrightup = $("#zimmerrightup").val();
         var zimmerleftdown = $("#zimmerleftdown").val();
         var zimmerrightdown = $("#zimmerrightdown").val();
-        //B&B
-        var bandbleftup = $("#bandbleftup").val();
-        var bandbrightup = $("#bandbrightup").val();
-        var bandbleftdown = $("#bandbleftdown").val();
-        var bandbrightdown = $("#bandbrightdown").val();
         //ET
         var etleftup = $("#etleftup").val();
         var etrightup = $("#etrightup").val();
         var etleftdown = $("#etleftdown").val();
         var etrightdown = $("#etrightdown").val();
+        //B&B
+        var bbleftup = $("#bbleftup").val();
+        var bbrightup = $("#bbrightup").val();
+        var bbleftdown = $("#bbleftdown").val();
+        var bbrightdown = $("#bbrightdown").val();
 //			var boneCollagen = $("#boneCollagen").val();
         var rbrdLeftUp = $("#rbrdleftup").val();
         var rbrdRigthUp = $("#rbrdrigthup").val();
@@ -1568,14 +1592,14 @@
             zimmerleftdown: zimmerleftdown,
             zimmerrightup: zimmerrightup,
             zimmerrightdown: zimmerrightdown,
-            bandbleftup : bandbleftup,
-            bandbrightup : bandbrightup,
-            bandbleftdown : bandbleftdown,
-            bandbrightdown : bandbrightdown,
-            etleftup : etleftup,
-            etrightup : etrightup,
-            etleftdown : etleftdown,
-            etrightdown : etrightdown,
+            etleftup: etleftup,
+            etleftdown: etleftdown,
+            etrightup: etrightup,
+            etrightdown: etrightdown,
+            bbleftup: bbleftup,
+            bbleftdown: bbleftdown,
+            bbrightup: bbrightup,
+            bbrightdown: bbrightdown,
             rbrdLeftUp: rbrdLeftUp,
             rbrdRigthUp: rbrdRigthUp,
             rbrdLeftDown: rbrdLeftDown,

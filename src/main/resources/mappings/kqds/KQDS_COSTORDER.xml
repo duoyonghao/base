@@ -1130,7 +1130,8 @@
         u.familyship,
         u.iscreateLclj,
         u.arrearage,
-        u.contagion
+        u.contagion,
+        u.increase
         from KQDS_COSTORDER cost
         LEFT JOIN KQDS_UserDocument u on cost.usercode = u.UserCode
         LEFT JOIN KQDS_PAYCOST p on cost.costno = p.costno
@@ -1531,7 +1532,8 @@
         u.familyship,
         u.iscreateLclj,
         u.arrearage,
-        u.contagion
+        u.contagion,
+        u.increase
         from KQDS_COSTORDER c
         LEFT JOIN KQDS_REG reg on reg.SEQ_ID = c.regno
         LEFT JOIN KQDS_UserDocument u on c.usercode = u.UserCode

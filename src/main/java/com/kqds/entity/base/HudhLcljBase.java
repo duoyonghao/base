@@ -101,6 +101,23 @@ public class HudhLcljBase {
 
     private String pmcrightdown;
 
+    private String etleftup;
+
+    private String etrightup;
+
+    private String etleftdown;
+
+    private String etrightdown;
+
+    private String bbleftup;
+
+    private String bbrightup;
+
+    private String bbleftdown;
+
+    private String bbrightdown;
+
+
     private String temporarytleftup;
 
     private String temporarytrightup;
@@ -1273,5 +1290,69 @@ public class HudhLcljBase {
 
     public void setThreetoothextractionrightdown(String threetoothextractionrightdown) {
         this.threetoothextractionrightdown = threetoothextractionrightdown;
+    }
+
+    public String getEtleftup() {
+        return etleftup;
+    }
+
+    public void setEtleftup(String etleftup) {
+        this.etleftup = etleftup;
+    }
+
+    public String getEtrightup() {
+        return etrightup;
+    }
+
+    public void setEtrightup(String etrightup) {
+        this.etrightup = etrightup;
+    }
+
+    public String getEtleftdown() {
+        return etleftdown;
+    }
+
+    public void setEtleftdown(String etleftdown) {
+        this.etleftdown = etleftdown;
+    }
+
+    public String getEtrightdown() {
+        return etrightdown;
+    }
+
+    public void setEtrightdown(String etrightdown) {
+        this.etrightdown = etrightdown;
+    }
+
+    public String getBbleftup() {
+        return bbleftup;
+    }
+
+    public void setBbleftup(String bbleftup) {
+        this.bbleftup = bbleftup;
+    }
+
+    public String getBbrightup() {
+        return bbrightup;
+    }
+
+    public void setBbrightup(String bbrightup) {
+        this.bbrightup = bbrightup;
+    }
+
+    public String getBbleftdown() {
+        return bbleftdown;
+    }
+
+    public void setBbleftdown(String bbleftdown) {
+        this.bbleftdown = bbleftdown;
+    }
+
+    public String getBbrightdown() {
+        return bbrightdown;
+    }
+
+    public void setBbrightdown(String bbrightdown) {
+        this.bbrightdown = bbrightdown;
     }
 }

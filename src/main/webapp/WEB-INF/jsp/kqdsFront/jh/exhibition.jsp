@@ -365,7 +365,7 @@ function showVideo(){
      //判断当前浏览器是否支持WebSocket
      if ('WebSocket' in window) {
     	 if('<%=ChainUtil.getCurrentOrganization(request)%>'=='HUDH'){
-    	     websocket = new WebSocket("ws://192.168.1.138:10001/base/WSwebsocket");
+    	     websocket = new WebSocket("ws://192.168.3.123:8080/base/WSwebsocket");
    		 }else{
    			 websocket = new WebSocket("ws://192.168.1.138:11111/base/WSwebsocket");
    		 }

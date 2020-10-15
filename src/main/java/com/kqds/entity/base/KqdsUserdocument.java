@@ -160,6 +160,8 @@ public class KqdsUserdocument implements Serializable {
 
     private int vip;//vip标识 1是介绍人 0是被介绍人
 
+    private int increase;//增标识 1有 0没有
+
     public String getContagion() {
         return contagion;
     }
@@ -833,5 +835,13 @@ public class KqdsUserdocument implements Serializable {
 
     public void setVip(int vip) {
         this.vip = vip;
+    }
+
+    public int getIncrease() {
+        return increase;
+    }
+
+    public void setIncrease(int increase) {
+        this.increase = increase;
     }
 }

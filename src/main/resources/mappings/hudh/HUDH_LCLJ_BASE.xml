@@ -52,6 +52,14 @@
     <result column="pmcrightup" jdbcType="VARCHAR" property="pmcrightup" />
     <result column="pmcleftdown" jdbcType="VARCHAR" property="pmcleftdown" />
     <result column="pmcrightdown" jdbcType="VARCHAR" property="pmcrightdown" />
+    <result column="etleftup" jdbcType="VARCHAR" property="etleftup" />
+    <result column="etrightup" jdbcType="VARCHAR" property="etrightup" />
+    <result column="etleftdown" jdbcType="VARCHAR" property="etleftdown" />
+    <result column="etrightdown" jdbcType="VARCHAR" property="etrightdown" />
+    <result column="bbleftup" jdbcType="VARCHAR" property="bbleftup" />
+    <result column="bbrightup" jdbcType="VARCHAR" property="bbrightup" />
+    <result column="bbleftdown" jdbcType="VARCHAR" property="bbleftdown" />
+    <result column="bbrightdown" jdbcType="VARCHAR" property="bbrightdown" />
     <result column="temporarytleftup" jdbcType="VARCHAR" property="temporarytleftup" />
     <result column="temporarytrightup" jdbcType="VARCHAR" property="temporarytrightup" />
     <result column="temporarytleftdown" jdbcType="VARCHAR" property="temporarytleftdown" />
@@ -212,7 +220,8 @@
     dentalimplantrightup, dentalimplantleftdown, dentalimplantrightdown, entiretyrepairleftup, entiretyrepairrightup,
     entiretyrepairleftdown, entiretyrepairrightdown,plantingsystemselect,plantextureselect,repair_planguan,
     twotoothextractionleftup,twotoothextractionrightup,twotoothextractionleftdown,twotoothextractionrightdown,
-    threetoothextractionleftup,threetoothextractionrightup,threetoothextractionleftdown,threetoothextractionrightdown
+    threetoothextractionleftup,threetoothextractionrightup,threetoothextractionleftdown,threetoothextractionrightdown,
+    etleftup,etrightup,etleftdown,etrightdown,bbleftup,bbrightup,bbleftdown,bbrightdown
   </sql>
   <sql id="Blob_Column_List">
     treatmentparts1, treatmentparts2, treatmentparts3, requirerestor
@@ -276,7 +285,8 @@
       twodentalimplantleftdown,twodentalimplantrightdown,dentalimplantleftup,dentalimplantrightup,dentalimplantleftdown,
       dentalimplantrightdown,entiretyrepairleftup,entiretyrepairrightup,entiretyrepairleftdown,entiretyrepairrightdown,
       plantingsystemselect,plantextureselect,repair_planguan,twotoothextractionleftup,twotoothextractionrightup,twotoothextractionleftdown,twotoothextractionrightdown,
-    threetoothextractionleftup,threetoothextractionrightup,threetoothextractionleftdown,threetoothextractionrightdown
+    threetoothextractionleftup,threetoothextractionrightup,threetoothextractionleftdown,threetoothextractionrightdown,
+    etleftup,etrightup,etleftdown,etrightdown,bbleftup,bbrightup,bbleftdown,bbrightdown
 		from HUDH_LCLJ_BASE
 		where LcljId = #{lcljid,jdbcType=VARCHAR}
         ORDER by createtime ASC
@@ -320,7 +330,8 @@
       twodentalimplantleftdown,twodentalimplantrightdown,dentalimplantleftup,dentalimplantrightup,dentalimplantleftdown,
       dentalimplantrightdown,entiretyrepairleftup,entiretyrepairrightup,entiretyrepairleftdown,entiretyrepairrightdown,
       plantingsystemselect,plantextureselect,repair_planguan,twotoothextractionleftup,twotoothextractionrightup,twotoothextractionleftdown,twotoothextractionrightdown,
-    threetoothextractionleftup,threetoothextractionrightup,threetoothextractionleftdown,threetoothextractionrightdown)
+    threetoothextractionleftup,threetoothextractionrightup,threetoothextractionleftdown,threetoothextractionrightdown,
+    etleftup,etrightup,etleftdown,etrightdown,bbleftup,bbrightup,bbleftdown,bbrightdown)
     values (#{id,jdbcType=VARCHAR}, #{usercode,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
       #{lcljid,jdbcType=VARCHAR}, #{lcljnum,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, 
       #{createuser,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, #{consultationOpinion,jdbcType=VARCHAR}, 
@@ -362,7 +373,9 @@
       #{dentalimplantrightdown,jdbcType=VARCHAR},#{entiretyrepairleftup,jdbcType=VARCHAR},#{entiretyrepairrightup,jdbcType=VARCHAR},#{entiretyrepairleftdown,jdbcType=VARCHAR},#{entiretyrepairrightdown,jdbcType=VARCHAR},
       #{plantingsystemselect,jdbcType=VARCHAR},#{plantextureselect,jdbcType=VARCHAR},#{repairPlanguan,jdbcType=VARCHAR},#{twotoothextractionleftup,jdbcType=VARCHAR},#{twotoothextractionrightup,jdbcType=VARCHAR},
       #{twotoothextractionleftdown,jdbcType=VARCHAR},#{twotoothextractionrightdown,jdbcType=VARCHAR},#{threetoothextractionleftup,jdbcType=VARCHAR},#{threetoothextractionrightup,jdbcType=VARCHAR},
-      #{threetoothextractionleftdown,jdbcType=VARCHAR},#{threetoothextractionrightdown,jdbcType=VARCHAR})
+      #{threetoothextractionleftdown,jdbcType=VARCHAR},#{threetoothextractionrightdown,jdbcType=VARCHAR},
+      #{etleftup,jdbcType=VARCHAR},#{etrightup,jdbcType=VARCHAR},#{etleftdown,jdbcType=VARCHAR},#{etrightdown,jdbcType=VARCHAR},
+      #{bbleftup,jdbcType=VARCHAR},#{bbrightup,jdbcType=VARCHAR},#{bbleftdown,jdbcType=VARCHAR},#{bbrightdown,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.kqds.entity.base.HudhLcljBase">
         insert into HUDH_LCLJ_BASE
@@ -749,6 +762,30 @@
       <if test="threetoothextractionrightdown != null">
         threetoothextractionrightdown,
       </if>
+      <if test="etleftup != null">
+        etleftup,
+      </if>
+      <if test="etrightup != null">
+        etrightup,
+      </if>
+      <if test="etleftdown != null">
+        etleftdown,
+      </if>
+      <if test="etrightdown != null">
+        etrightdown,
+      </if>
+      <if test="bbleftup != null">
+        bbleftup,
+      </if>
+      <if test="bbrightup != null">
+        bbrightup,
+      </if>
+      <if test="bbleftdown != null">
+        bbleftdown,
+      </if>
+      <if test="bbrightdown != null">
+        bbrightdown
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -1131,6 +1168,30 @@
       </if>
       <if test="threetoothextractionrightdown != null">
         #{threetoothextractionrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="etleftup != null">
+        #{etleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="etrightup != null">
+        #{etrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="etleftdown != null">
+        #{etleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="etrightdown != null">
+        #{etrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="bbleftup != null">
+        #{bbleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrightup != null">
+        #{bbrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="bbleftdown != null">
+        #{bbleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrightdown != null">
+        #{bbrightdown,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -1524,6 +1585,30 @@
       <if test="threetoothextractionrightdown != null">
         threetoothextractionrightdown=#{threetoothextractionrightdown,jdbcType=VARCHAR},
       </if>
+      <if test="etleftup != null">
+        etleftup=#{etleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="etrightup != null">
+        etrightup=#{etrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="etleftdown != null">
+        etleftdown=#{etleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="etrightdown != null">
+        etrightdown=#{etrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="bbleftup != null">
+        bbleftup=#{bbleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrightup != null">
+        bbrightup=#{bbrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="bbleftdown != null">
+        bbleftdown=#{bbleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrightdown != null">
+        bbrightdown=#{bbrightdown,jdbcType=VARCHAR},
+      </if>
     </trim>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -1657,7 +1742,15 @@
       threetoothextractionleftup=#{threetoothextractionleftup,jdbcType=VARCHAR},
       threetoothextractionrightup=#{threetoothextractionrightup,jdbcType=VARCHAR},
       threetoothextractionleftdown=#{threetoothextractionleftdown,jdbcType=VARCHAR},
-      threetoothextractionrightdown=#{threetoothextractionrightdown,jdbcType=VARCHAR}
+      threetoothextractionrightdown=#{threetoothextractionrightdown,jdbcType=VARCHAR},
+      etleftup=#{etleftup,jdbcType=VARCHAR},
+      etrightup=#{etrightup,jdbcType=VARCHAR},
+      etleftdown=#{etleftdown,jdbcType=VARCHAR},
+      etrightdown=#{etrightdown,jdbcType=VARCHAR},
+      bbleftup=#{bbleftup,jdbcType=VARCHAR},
+      bbrightup=#{bbrightup,jdbcType=VARCHAR},
+      bbleftdown=#{bbleftdown,jdbcType=VARCHAR},
+      bbrightdown=#{bbrightdown,jdbcType=VARCHAR},
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -2022,6 +2115,30 @@
       </if>
       <if test="threetoothextractionrightdown != null">
         threetoothextractionrightdown=#{threetoothextractionrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="etleftup != null">
+        etleftup=#{etleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="etrightup != null">
+        etrightup=#{etrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="etleftdown != null">
+        etleftdown=#{etleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="etrightdown != null">
+        etrightdown=#{etrightdown,jdbcType=VARCHAR},
+      </if>
+      <if test="bbleftup != null">
+        bbleftup=#{bbleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrightup != null">
+        bbrightup=#{bbrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="bbleftdown != null">
+        bbleftdown=#{bbleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="bbrightdown != null">
+        bbrightdown=#{bbrightdown,jdbcType=VARCHAR},
       </if>
     </trim>
     <if test="id != null">

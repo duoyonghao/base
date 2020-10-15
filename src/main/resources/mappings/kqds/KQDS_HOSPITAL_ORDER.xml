@@ -644,7 +644,8 @@
         u.iscreatelclj,
         u.contagion,
         u.arrearage,
-        u.familyship
+        u.familyship,
+        u.increase
         from KQDS_HOSPITAL_ORDER h
         left join KQDS_UserDocument u on u.usercode = h.usercode
         LEFT JOIN SYS_DEPT

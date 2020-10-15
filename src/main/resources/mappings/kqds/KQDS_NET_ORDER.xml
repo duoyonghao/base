@@ -1130,7 +1130,8 @@
         u.familyship,
         u.iscreateLclj,
         u.arrearage,
-        u.contagion
+        u.contagion,
+        u.increase
         from KQDS_NET_ORDER n
         LEFT JOIN KQDS_UserDocument u on u.usercode = n.usercode
         LEFT JOIN SYS_PERSON per4 on per4.SEQ_ID = u.kefu

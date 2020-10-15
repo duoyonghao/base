@@ -872,7 +872,7 @@ function submitu(){
 	//if (!flag) {
     //     return false;
     // } 
-	var emergencyContact = $("#emergencyContact").val();
+	/*var emergencyContact = $("#emergencyContact").val();
 	if(!emergencyContact){
 		layer.alert('紧急联系人必须填写！' );
 		return false;
@@ -882,7 +882,7 @@ function submitu(){
 	if(!emergencyPhone){
 		layer.alert('紧急联系人电话必须填写！' );
 		return false;
-	}
+	}*/
 
 	var username = $("#username").val();
 	if(!username){

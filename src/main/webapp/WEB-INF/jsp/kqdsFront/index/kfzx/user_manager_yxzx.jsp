@@ -539,7 +539,7 @@ function exportTable() {
 			fieldnameArr.push($(this).children()[0].innerText);//获取字段中文
 		}
 	});
-	var param  = JsontoUrldata(queryParams());
+	var param  = JsontoUrldata(queryParamsB());
 	location.href = pageurl+"?flag=exportTable&fieldArr="+JSON.stringify(fieldArr)+"&fieldnameArr="+JSON.stringify(fieldnameArr)+"&"+param;
 }
 function refresh(){
@@ -572,6 +572,27 @@ function queryParams(params) {
         queryinput: $('#queryInput').val()
     };
     return temp;
+}
+function queryParamsB(params) {
+	var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+		organization:$("#organization").val(),
+		type: 1,
+		jdtime1: $('#jdtime1').val(),
+		jdtime2: $('#jdtime2').val(),
+		shouli: $('#shouli').val(),
+		gongju: $('#gongju').val(),
+		devchannel: $('#devchannel').val(),
+		nexttype: $('#nexttype').val(),
+		yytime1: $('#yytime1').val(),
+		yytime2: $('#yytime2').val(),
+		xiangmu: $('#xiangmu').val(),
+		important: $('#important').val(),
+		yewu: $('#yewu').val(),
+		doorstatus: $('#doorstatus').val(),
+		cjstatus: $('#cjstatus').val(),
+		queryinput: $('#queryInput').val()
+	};
+	return temp;
 }
 //点击查询
 function querySC() {

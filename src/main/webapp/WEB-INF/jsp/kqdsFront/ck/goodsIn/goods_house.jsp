@@ -137,7 +137,7 @@ $(function() {
 	if(type=="0"){
 		$("#add").hide();
 	}
-	pageurl = pageurl + "?sshouse=" + sshouse;
+	pageurl = pageurl + "&sshouse=" + sshouse;
     initTable(pageurl); //加载表格
     //查询
     $('#query').on('click',

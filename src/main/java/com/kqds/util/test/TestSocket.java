@@ -19,7 +19,7 @@ public class TestSocket {
 		String uri="";
 
 		if(message.contains("HUDH")){
-			uri = "ws://192.168.1.138:10001/base/WSwebsocket";
+			uri = "ws://192.168.3.123:8080/base/WSwebsocket";
 		}else if(message.contains("HUDX")){
 			uri = "ws://192.168.1.138:11111/base/WSwebsocket";
 		}

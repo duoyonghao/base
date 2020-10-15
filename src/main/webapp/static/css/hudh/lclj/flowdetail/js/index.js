@@ -1742,7 +1742,7 @@ var buttonFun = {
 								
 								"operation_time" : operation_time,
 								"preoperation_one_houres" : preoperation_one_houres,
-								"preoperative_verification" : preoperative_verification,
+								//"preoperative_verification" : preoperative_verification,
 								"abutment_station" : abutment_station,
 								"healing_cap_station" : healing_cap_station,
 								"postoperation_user_deugs" : postoperation_user_deugs,

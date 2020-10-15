@@ -850,7 +850,7 @@
 
 
             <div class="row" style="margin-right:0;margin-left:0;">
-                <div style="border-top:1px solid #b3b3b3;height: 200px;">
+                <div style="border-top:1px solid #b3b3b3;height: 300px;">
                     <div style="float: left;border-right: 1px solid #b3b3b3;width: 20%;height: 100%;">
                         <span class="" style="line-height: 213px;margin-left: 54px;">种植系统</span>
                     </div>
@@ -1180,6 +1180,90 @@
                                                         </li>
                                                         <li>
                                                             <input id="pmcrightdown"
+                                                                   onblur="TextLengthCheck(this.id,10);"
+                                                                   class="tooth_input" type="text">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div style="width: 24%;display: inline-block;margin-left: 8px;">
+                            <ul class="loseTooth_option" style="display: inline-grid;">
+                                <li>
+                                    <input name="bicon" id="ET" type="checkbox" value="ET " /><label
+                                        for="ET">ET </label>
+                                </li>
+                                <li>
+                                    <label for="spreoperative">
+                                        <div id="diagnosis_continer" class="container-fluid">
+                                            <div class="row">
+                                                <!-- 牙位图 -->
+                                                <div class="zl_toothMapdiv">
+                                                    <ul class="tooth_map"
+                                                        style="width: 100%;height: 45px;margin-left: 1%;">
+                                                        <li>
+                                                            <input id="etleftup"
+                                                                   onblur="TextLengthCheck(this.id,10);"
+                                                                   class="tooth_input" type="text">
+                                                        </li>
+                                                        <li>
+                                                            <input id="etrightup"
+                                                                   onblur="TextLengthCheck(this.id,10);"
+                                                                   class="tooth_input" type="text">
+                                                        </li>
+                                                        <li>
+                                                            <input id="etleftdown"
+                                                                   onblur="TextLengthCheck(this.id,10);"
+                                                                   class="tooth_input" type="text">
+                                                        </li>
+                                                        <li>
+                                                            <input id="etrightdown"
+                                                                   onblur="TextLengthCheck(this.id,10);"
+                                                                   class="tooth_input" type="text">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div style="width:24%;display: inline-block;">
+                            <ul class="loseTooth_option" style="display: inline-grid;">
+                                <li>
+                                    <input name="bicon" id="B&B" type="checkbox" value="B&B " /><label
+                                        for="B&B">B&B </label>
+                                </li>
+                                <li>
+                                    <label for="spreoperative">
+                                        <div id="diagnosis_continer" class="container-fluid">
+                                            <div class="row">
+                                                <!-- 牙位图 -->
+                                                <div class="zl_toothMapdiv">
+                                                    <ul class="tooth_map"
+                                                        style="width: 100%;height: 45px;margin-left: 1%;">
+                                                        <li>
+                                                            <input id="bbleftup"
+                                                                   onblur="TextLengthCheck(this.id,10);"
+                                                                   class="tooth_input" type="text">
+                                                        </li>
+                                                        <li>
+                                                            <input id="bbrightup"
+                                                                   onblur="TextLengthCheck(this.id,10);"
+                                                                   class="tooth_input" type="text">
+                                                        </li>
+                                                        <li>
+                                                            <input id="bbleftdown"
+                                                                   onblur="TextLengthCheck(this.id,10);"
+                                                                   class="tooth_input" type="text">
+                                                        </li>
+                                                        <li>
+                                                            <input id="bbrightdown"
                                                                    onblur="TextLengthCheck(this.id,10);"
                                                                    class="tooth_input" type="text">
                                                         </li>
@@ -2140,7 +2224,7 @@
                                     <ul class="loseTooth_option">
                                         <li>
                                             <input name="repair" id="longqiao" type="checkbox"
-                                                   value=" 马龙桥+氧化锆冠  " /><label for="longqiao"> 马龙桥+氧化锆冠 </label>
+                                                   value="马龙桥+氧化锆冠" /><label for="longqiao"> 马龙桥+氧化锆冠 </label>
                                         </li>
                                         <li>
                                             <input name="repair" id="cadcam" type="checkbox"
@@ -2634,7 +2718,7 @@
                 $("#patient_site").text(r.provincename + r.cityname + r.townname + r.streetName);
             }
         });
-        //console.log(form,"form")
+        console.log(form,"form")
         if(form){
             $("#consent_saveBtn").css("display","none");//隐藏保存按钮
             $("#consent_updateBtn").css("display","inline-block");//显示修改按钮
@@ -3140,6 +3224,15 @@
             pmcrightup:$("#pmcrightup").val(),
             pmcleftdown:$("#pmcleftdown").val(),
             pmcrightdown:$("#pmcrightdown").val(),
+            etleftup:$("#etleftup").val(),
+            etrightup:$("#etrightup").val(),
+            etleftdown:$("#etleftdown").val(),
+            etrightdown:$("#etrightdown").val(),
+            bbleftup:$("#bbleftup").val(),
+            bbrightup:$("#bbrightup").val(),
+            bbleftdown:$("#bbleftdown").val(),
+            bbrightdown:$("#bbrightdown").val(),
+
             temporarytleftup:$("#temporarytleftup").val(),
             temporarytrightup:$("#temporarytrightup").val(),
             temporarytleftdown:$("#temporarytleftdown").val(),
@@ -3181,6 +3274,7 @@
             entiretyrepairrightup:$("#entiretyrepairrightup").val(),
             entiretyrepairleftdown:$("#entiretyrepairleftdown").val(),
             entiretyrepairrightdown:$("#entiretyrepairrightdown").val(),
+
             operationDoctorsignature :signature,//手术医生签名
             repairDoctorsignature : repairSignature,//修复医生签名
             patientsignature : patientsignature,//患者签名
@@ -3425,6 +3519,15 @@
             pmcrightup:$("#pmcrightup").val(),
             pmcleftdown:$("#pmcleftdown").val(),
             pmcrightdown:$("#pmcrightdown").val(),
+            etleftup:$("#etleftup").val(),
+            etrightup:$("#etrightup").val(),
+            etleftdown:$("#etleftdown").val(),
+            etrightdown:$("#etrightdown").val(),
+            bbleftup:$("#bbleftup").val(),
+            bbrightup:$("#bbrightup").val(),
+            bbleftdown:$("#bbleftdown").val(),
+            bbrightdown:$("#bbrightdown").val(),
+
             temporarytleftup:$("#temporarytleftup").val(),
             temporarytrightup:$("#temporarytrightup").val(),
             temporarytleftdown:$("#temporarytleftdown").val(),

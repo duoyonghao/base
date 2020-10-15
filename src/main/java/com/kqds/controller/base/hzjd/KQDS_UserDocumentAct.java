@@ -1941,6 +1941,7 @@ public class KQDS_UserDocumentAct {
             String regsort = request.getParameter("regsort");// 挂号分类
             String organization = request.getParameter("organization");
             String querydata = request.getParameter("querydata");
+            YZPerson person = SessionUtil.getLoginPerson(request);
             // 可见人员过滤
             String visualstaff = SessionUtil.getVisualstaff(request);
             // 封装参数到实体类
@@ -1956,6 +1957,9 @@ public class KQDS_UserDocumentAct {
             map.put("isdelete", "0");
             if (!YZUtility.isNullorEmpty(querydata)) {
                 map.put("querydata", querydata);
+            }
+            if(!YZUtility.isNullorEmpty(person.getSeqId())){
+                map.put("kefu",person.getSeqId());
             }
             boolean search = null != searchField && null != searchValue && !"".equals(searchValue)
                     && !"".equals(searchField);

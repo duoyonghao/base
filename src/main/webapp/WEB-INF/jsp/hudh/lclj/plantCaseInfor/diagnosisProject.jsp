@@ -669,6 +669,14 @@
                                     <li style="width:14%;">
                                         <!-- 选项框 -->
                                         <div class="zl_optiondiv">
+                                            <input type="checkbox" value="Templant" name="implantsystem" id="implantsystemB"
+                                                   style="vertical-align: text-bottom;"/>
+                                            <label for="implantsystemB">Templant</label>
+                                        </div>
+                                    </li>
+                                    <li style="width:14%;">
+                                        <!-- 选项框 -->
+                                        <div class="zl_optiondiv">
                                             <input type="checkbox" value="camlog" name="implantsystem"
                                                    id="implantsystemC" style="vertical-align: text-bottom;"/>
                                             <label for="implantsystemC">camlog</label>
@@ -719,6 +727,21 @@
                                         <div class="zl_optiondiv">
                                             <input type="checkbox" value="Pmc" name="implantsystem" id="Pmc" style="vertical-align: text-bottom;"/>
                                             <label for="Pmc">Pmc</label>
+                                        </div>
+                                    </li>
+                                    <li style="width:14%;">
+                                        <!-- 选项框 -->
+                                        <div class="zl_optiondiv">
+                                            <input type="checkbox" value="ET" name="implantsystem"
+                                                   id="ET" style="vertical-align: text-bottom;"/>
+                                            <label for="ET">ET</label>
+                                        </div>
+                                    </li>
+                                    <li style="width:14%;">
+                                        <!-- 选项框 -->
+                                        <div class="zl_optiondiv">
+                                            <input type="checkbox" value="B&B" name="implantsystem" id="B&B" style="vertical-align: text-bottom;"/>
+                                            <label for="B&B">B&B</label>
                                         </div>
                                     </li>
                                     <li id="implantsystemotherDiv" style="width:20%;">

@@ -90,6 +90,14 @@
         <result column="zimmerleftdown" property="zimmerleftdown" jdbcType="VARCHAR"/>
         <result column="zimmerrightup" property="zimmerrightup" jdbcType="VARCHAR"/>
         <result column="zimmerrightdown" property="zimmerrightdown" jdbcType="VARCHAR"/>
+        <result column="etleftup" property="etleftup" jdbcType="VARCHAR"/>
+        <result column="etleftdown" property="etleftdown" jdbcType="VARCHAR"/>
+        <result column="etrightup" property="etrightup" jdbcType="VARCHAR"/>
+        <result column="etrightdown" property="etrightdown" jdbcType="VARCHAR"/>
+        <result column="bbleftup" property="bbleftup" jdbcType="VARCHAR"/>
+        <result column="bbleftdown" property="bbleftdown" jdbcType="VARCHAR"/>
+        <result column="bbrightup" property="bbrightup" jdbcType="VARCHAR"/>
+        <result column="bbrightdown" property="bbrightdown" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
     SEQ_ID, createtime, createuser, id, order_number, tprgLeftUp, tprgLeftDown, tprgRightUp, 
@@ -106,7 +114,8 @@
     localPlantRightUp, localPlantRightDown, localPlantSelect, requireRestor, organization,
     operationDoctorTime, serviceTime, servicesignature, operationDoctorsignature, repairDoctorsignature,
     patientsignature, username, sex, age, patientTime, doctorTime, nobelpmcleftup, nobelpmcleftdown,
-    nobelpmcrightup, nobelpmcrightdown, zimmerleftup, zimmerleftdown, zimmerrightup, zimmerrightdown,status
+    nobelpmcrightup, nobelpmcrightdown, zimmerleftup, zimmerleftdown, zimmerrightup, zimmerrightdown,status,
+    etleftup,etleftdown,etrightup,etrightdown,bbleftup,bbleftdown,bbrightup,bbrightdown
   </sql>
     <select id="findRepairInforById" resultType="json" parameterType="java.lang.String">
         select
@@ -164,7 +173,8 @@
       requireRestor, organization,operationDoctorTime, serviceTime, 
       servicesignature, operationDoctorsignature, repairDoctorsignature,
       patientsignature, username, sex, age, patientTime, doctorTime, nobelpmcleftup, nobelpmcleftdown,
-    nobelpmcrightup, nobelpmcrightdown, zimmerleftup, zimmerleftdown, zimmerrightup, zimmerrightdown,status)
+    nobelpmcrightup, nobelpmcrightdown, zimmerleftup, zimmerleftdown, zimmerrightup, zimmerrightdown,status,
+    etleftup,etleftdown,etrightup,etrightdown,bbleftup,bbleftdown,bbrightup,bbrightdown)
     values (#{seqId,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, 
       #{id,jdbcType=VARCHAR}, #{order_number,jdbcType=VARCHAR}, #{tprgleftup,jdbcType=VARCHAR}, 
       #{tprgleftdown,jdbcType=VARCHAR}, #{tprgrightup,jdbcType=VARCHAR}, #{tprgrightdown,jdbcType=VARCHAR}, 
@@ -194,7 +204,9 @@
       , #{repairDoctorsignature,jdbcType=VARCHAR}, #{patientsignature,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
        #{sex,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, #{patientTime,jdbcType=VARCHAR}, #{doctorTime,jdbcType=VARCHAR}, 
        #{nobelpmcleftup,jdbcType=VARCHAR}, #{nobelpmcleftdown,jdbcType=VARCHAR}, #{nobelpmcrightup,jdbcType=VARCHAR}, #{nobelpmcrightdown,jdbcType=VARCHAR}, 
-       #{zimmerleftup,jdbcType=VARCHAR}, #{zimmerleftdown,jdbcType=VARCHAR}, #{zimmerrightup,jdbcType=VARCHAR}, #{zimmerrightdown,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR}
+       #{zimmerleftup,jdbcType=VARCHAR}, #{zimmerleftdown,jdbcType=VARCHAR}, #{zimmerrightup,jdbcType=VARCHAR}, #{zimmerrightdown,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},
+       #{etleftup,jdbcType=VARCHAR},#{etleftdown,jdbcType=VARCHAR},#{etrightup,jdbcType=VARCHAR},#{etrightdown,jdbcType=VARCHAR},
+       #{bbleftup,jdbcType=VARCHAR},#{bbleftdown,jdbcType=VARCHAR},#{bbrightup,jdbcType=VARCHAR},#{bbrightdown,jdbcType=VARCHAR}
       )
   </insert>
     <insert id="insertSelective" parameterType="com.hudh.zzbl.entity.RepairSchemeConfirm">
@@ -401,6 +413,30 @@
             <if test="organization != null">
                 organization,
             </if>
+            <if test="etleftup != null">
+                etleftup,
+            </if>
+            <if test="etleftdown != null">
+                etleftdown,
+            </if>
+            <if test="etrightup != null">
+                etrightup,
+            </if>
+            <if test="etrightdown != null">
+                etrightdown,
+            </if>
+            <if test="bbleftup != null">
+                bbleftup,
+            </if>
+            <if test="bbleftdown != null">
+                bbleftdown,
+            </if>
+            <if test="bbrightup != null">
+                bbrightup,
+            </if>
+            <if test="bbrightdown != null">
+                bbrightdown,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="seqId != null">
@@ -603,6 +639,30 @@
             </if>
             <if test="organization != null">
                 #{organization,jdbcType=VARCHAR},
+            </if>
+            <if test="etleftup != null">
+                #{etleftup,jdbcType=VARCHAR},
+            </if>
+            <if test="etleftdown != null">
+                #{etleftdown,jdbcType=VARCHAR},
+            </if>
+            <if test="etrightup != null">
+                #{etrightup,jdbcType=VARCHAR},
+            </if>
+            <if test="etrightdown != null">
+                #{etrightdown,jdbcType=VARCHAR},
+            </if>
+            <if test="bbleftup != null">
+                #{bbleftup,jdbcType=VARCHAR},
+            </if>
+            <if test="bbleftdown != null">
+                #{bbleftdown,jdbcType=VARCHAR},
+            </if>
+            <if test="bbrightup != null">
+                #{bbrightup,jdbcType=VARCHAR},
+            </if>
+            <if test="bbrightdown != null">
+                #{bbrightdown,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -834,6 +894,30 @@
             <if test="patientsignature != null">
                 patientsignature = #{patientsignature,jdbcType=VARCHAR},
             </if>
+            <if test="etleftup != null">
+                etleftup = #{etleftup,jdbcType=VARCHAR},
+            </if>
+            <if test="etleftdown != null">
+                etleftdown = #{etleftdown,jdbcType=VARCHAR},
+            </if>
+            <if test="etrightup != null">
+                etrightup = #{etrightup,jdbcType=VARCHAR},
+            </if>
+            <if test="etrightdown != null">
+                etrightdown = #{etrightdown,jdbcType=VARCHAR},
+            </if>
+            <if test="bbleftup != null">
+                bbleftup = #{bbleftup,jdbcType=VARCHAR},
+            </if>
+            <if test="bbleftdown != null">
+                bbleftdown = #{bbleftdown,jdbcType=VARCHAR},
+            </if>
+            <if test="bbrightup != null">
+                bbrightup = #{bbrightup,jdbcType=VARCHAR},
+            </if>
+            <if test="bbrightdown != null">
+                bbrightdown = #{bbrightdown,jdbcType=VARCHAR},
+            </if>
         </set>
         where SEQ_ID = #{seqId,jdbcType=VARCHAR}
     </update>
@@ -904,7 +988,15 @@
       localPlantRightDown = #{localplantrightdown,jdbcType=VARCHAR},
       localPlantSelect = #{localplantselect,jdbcType=VARCHAR},
       requireRestor = #{requirerestor,jdbcType=VARCHAR},
-      organization = #{organization,jdbcType=VARCHAR}
+      organization = #{organization,jdbcType=VARCHAR},
+    etleftup = #{etleftup,jdbcType=VARCHAR},
+    etleftdown = #{etleftdown,jdbcType=VARCHAR},
+    etrightup = #{etrightup,jdbcType=VARCHAR},
+    etrightdown = #{etrightdown,jdbcType=VARCHAR},
+    bbleftup = #{bbleftup,jdbcType=VARCHAR},
+    bbleftdown = #{bbleftdown,jdbcType=VARCHAR},
+    bbrightup = #{bbrightup,jdbcType=VARCHAR},
+    bbrightdown = #{bbrightdown,jdbcType=VARCHAR}
     where SEQ_ID = #{seqId,jdbcType=VARCHAR}
   </update>
     <update id="selectedRepairProjectInfor" parameterType="map">
