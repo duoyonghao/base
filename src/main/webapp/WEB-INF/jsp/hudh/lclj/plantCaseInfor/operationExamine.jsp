@@ -200,7 +200,10 @@
   	    color:black;  
   	    opacity: 1;  
   	    -webkit-text-fill-color: black;  
- 	} 
+ 	}
+	#consent_updateBtn{
+		outline: none;
+	}
 </style>
 </head>
 <body style="padding: 0% 3%;">
@@ -282,6 +285,7 @@
 	<!-- 按钮 -->
 	<div class="btns">
 		<button id="consent_saveBtn" onclick="save()">保存</button>
+		<button id="consent_updateBtn" style="display: none;" class="consent_updateBtn" onclick="update()">修改表单</button>
 		<button id="print_Btn" onclick="myPreviewAll()">打印本页内容</button>
 	</div>
 	
@@ -298,6 +302,7 @@
 		//var id= window.parent.patientObj.id;	//选中患者id
 		//var order_number= window.parent.patientObj.orderNumber;//选中患者order_number
 		var menuid=window.parent.menuid;//左侧菜单id
+		var updataid;
 		$(function(){
 			var userAgent = navigator.userAgent; 
 		    if (userAgent.indexOf("iPad") > -1){
@@ -305,7 +310,7 @@
 		    }
 
 			if(window.parent.onclickrowOobj){
-				console.log("临床对象3+-"+JSON.stringify(window.parent.onclickrowOobj));
+				//console.log("临床对象3+-"+JSON.stringify(window.parent.onclickrowOobj));
 				id= window.parent.onclickrowOobj.seqid;
 				order_number= window.parent.onclickrowOobj.orderNumber;
 				username= window.parent.onclickrowOobj.username;
@@ -432,10 +437,13 @@
 					//console.log(JSON.stringify(result)+"--------------添加成功后查询数据");
 					/* 判断是否已经填写过内容 */
 					if(result.seqId){
+						updataid=result.seqId;
 						$("#consent_saveBtn").css("display","none");//隐藏保存按钮
+						$("#consent_updateBtn").css("display", "inline-block");//显示修改按钮
 						$("#operation_alltext").html(result.operationalltext);//改变后内容赋值
-						$("input").attr("disabled","disabled");//查看信息的时候禁止在填写
-						$("#operation_alltext").removeAttr("contenteditable");
+						//$("input").attr("disabled","disabled");//查看信息的时候禁止在填写
+						$("input").attr("onchange","changeValue(this)");
+						//$("#operation_alltext").removeAttr("contenteditable");
 						//赋值 
 						for(var key in result){
 							if(key=="operation_alltext"){
@@ -521,7 +529,6 @@
 		        	 doctorSignature : signature,//手术医生签名
 		        	 signaturetime : signaturetime,//签名日期
 		        	 operation_alltext : operation_alltext //修改后全部文字
-		        	 
 				},
 				success:function(result){
 					/* layer.alert('提交成功', function(index) {
@@ -544,7 +551,98 @@
 				}
 		  });
 		}
-	
+		// 修改方法
+		function update(){
+			var patient_name = $("#patient_name").val();//患者姓名
+			var patient_sex = $("#patient_sex").val();//患者性别
+			var patient_age = $("#patient_age").val();//患者年龄
+			var blood_pressure= $("#blood_pressure").val();//血压
+			var pulse = $("#pulse").val(); //脉搏
+			var blood_glucose = $("#blood_glucose").val(); //血糖
+			var cruor_function = $("#cruor_function").val(); //凝血功能
+			var infectious_diseases = $("#infectious_diseases").val();//感染性疾病
+			var consultation_opinion = $("#consultation_opinion").val();//会诊意见
+			var pullout_tooth = $("#pullout_tooth").val();//拔牙位
+			var plant_tooth = $("#plant_tooth").val();//种植牙位
+// 	2019.7.29   更改拔牙位、种植牙位展示start
+			var upleftToothBitOne = $("#uplefttoothbitone").val();
+			var uperRightToothBitOne = $("#uperrighttoothbitone").val();
+			var leftLowerToothBitOne = $("#leftlowertoothbitone").val();
+			var lowRightToothBitOne = $("#lowrighttoothbitone").val();
+			var upleftToothBitTwo = $("#uplefttoothbittwo").val();
+			var uperRightToothBitTwo = $("#uperrighttoothbittwo").val();
+			var leftLowerToothBitTwo = $("#leftlowertoothbittwo").val();
+			var lowRightToothBitTwo = $("#lowrighttoothbittwo").val();
+// 	end
+			var assist_operation = $("#assist_operation").val();//辅助手术
+			var plant_system = $("#plant_system").val();//种植系统
+			var nurseSignature = $("#nurseSignature").val();//手术护士签名
+			//var doctorSignature = $("#doctorSignature").val();// 手术医生签名
+			var operation_alltext=$("#operation_alltext").html();//修改后全部文字
+			var signaturetime=$("#signaturetime").val();//签名日期
+			//console.log("签名时间===="+signaturetime);
+			var url = contextPath + '';
+
+			var parms={
+				seqId:updataid,
+				id :  id, //临床路径ID
+				order_number :  order_number, //节点编号
+				username :patient_name,//患者姓名
+				sex : patient_sex,//患者性别
+				age : patient_age,//患者年龄
+				blood_pressure :blood_pressure,//血压
+				pulse : pulse,//脉搏
+				blood_glucose : blood_glucose,//血糖
+				cruor_function :cruor_function,//凝血功能
+				infectious_diseases : infectious_diseases,//感染性疾病
+				consultation_opinion : consultation_opinion,//会诊意见
+				pullout_tooth :pullout_tooth,//拔牙位
+				plant_tooth : plant_tooth,//种植牙位
+// 2019.7.29   更改拔牙位、种植牙位展示start
+				upleftToothBitOne : upleftToothBitOne,
+				uperRightToothBitOne : uperRightToothBitOne,
+				leftLowerToothBitOne : leftLowerToothBitOne,
+				lowRightToothBitOne : lowRightToothBitOne,
+				upleftToothBitTwo : upleftToothBitTwo,
+				uperRightToothBitTwo : uperRightToothBitTwo,
+				leftLowerToothBitTwo : leftLowerToothBitTwo,
+				lowRightToothBitTwo : lowRightToothBitTwo,
+// 		       end
+				assist_operation : assist_operation,//辅助手术
+				plant_system :plant_system,//种植系统
+				nurseSignature : nurseSignature,//手术护士签名
+				doctorSignature : signature,//手术医生签名
+				signaturetime : signaturetime,//签名日期
+				operation_alltext : operation_alltext //修改后全部文字
+			};
+			console.log(JSON.stringify(parms)+"-------------parms");
+			return;
+			$.ajax({
+				url: url,
+				type:"POST",
+				dataType:"json",
+				data : parms,
+				success:function(result){
+					if(result.retMsrg>0){
+						layer.alert("修改成功！", {
+							end: function() {
+								window.parent.location.reload(); //刷新父页面
+								var frameindex = parent.layer.getFrameIndex(window.name);
+								parent.layer.close(frameindex); //再执行关闭
+							}
+						});
+					}else{
+						layer.alert("修改失败！");
+					}
+
+				}
+			});
+		}
+		// input随着输入改变value属性值
+		function changeValue(obj){
+			$(obj).attr("value",$(obj).val());
+		}
+
 		/* 打印页面方法 */
 		function myPreviewAll(){
 			if(doctorstatus&&signature==""){

@@ -36,6 +36,12 @@
 <link rel="stylesheet" type="text/css" href="<%=contextPath%>/static/plugin/zTreeStyle/zTreeStyle.css" rel="stylesheet" >
 <link rel="stylesheet" type="text/css" href="<%=contextPath%>/static/css/admin/admin.css">
 </head>
+<style type="text/css">
+	.btn-group > .btn:first-child {
+		margin-left: 0;
+		width: 200px;
+	}
+</style>
 
 <body>
 	
@@ -62,18 +68,19 @@
 								<input type="text" name="userName" id="userName"></div>
 						</td>
 					</tr>
-					
+
 					<tr>
 						<td>	<!--impText必填项样式  -->
 							<span class="impText">主角色</span>
 						</td>
 						<td>
 							<div class="form-group">
-								<select class="select2 priv" id="userPriv" name="userPriv">	<!--.sel_short_inp_long select与input组合时的样式  -->
-								</select>
-							</div>	
+<%--								<select class="select2 priv" id="userPriv" name="userPriv">	<!--.sel_short_inp_long select与input组合时的样式  -->--%>
+<%--								</select>--%>
+								<select class="select2 priv" id="userPriv" name="userPriv" data-live-search="true" title="请选择"></select>
+							</div>
 						</td>
-						<td>	
+						<td>
 							<span class="comText">辅助角色</span>
 						</td>
 						<td>
@@ -83,7 +90,7 @@
 							</div>
 						</td>
 					</tr>
-					
+
 					<tr>
 						<td>
 							<span class="impText">部门</span>
@@ -98,7 +105,7 @@
 							<span class="comText">共用部门</span> <!-- 添加人员到东西院共用部门 -->
 						</td>
 						<td>
-							<select class="selectpicker show-tick form-control"  id="xy_dept" name="xy_dept">
+							<select class="selectpicker show-tick form-control"  id="xy_dept" data-live-search="true" name="xy_dept">
 							</select>
 						</td>
 						<!-- <td>
@@ -109,7 +116,7 @@
 							</select>
 						</td> -->
 					</tr>
-					
+
 					<tr>
 						<td> 	<!--impText必填项样式  -->
 							<span class="impText">排序号</span>
@@ -121,7 +128,7 @@
 							</div>
 						</td>
 					</tr>
-					
+
 					<%
 						if("1".equals(is_open_record_func)){
 							%>
@@ -146,7 +153,7 @@
 							<%
 						}
 					%>
-					
+
 					<tr>
 						<td>
 							<span class="comText">权限控制</span>
@@ -157,12 +164,12 @@
 						</td>
 					</tr>
 					<tr>
-						
+
 					</tr>
 				</tbody>
-			</table>	
+			</table>
 		</form>
-		
+
 		<div class="fixedBottomDiv"><!--底部三个按钮所在父元素 固定在底部样式  -->
 			<div class="clear2"></div>
          	<a class="kqdsCommonBtn" id="submit">确 定</a>
@@ -201,21 +208,23 @@ $(function() {
     getDetail();
 
     $("#seqId").val(static_personId); // 主键
-    
+
 	// 根据deptid 选中弄下拉框
     $("#deptId").val(static_deptid);
     // 获取所选的部门，根据部门编号，下拉角色
     initSomeInfoByDetpId();
-    
+
     $('#deptId').change(function() {
     	// 获取部门值
     	static_deptid = $(this).val();
     	$("#deptId").val(static_deptid);
     	$("#userPriv").empty(); // 一个清空
     	$('#userPrivOtherEdit').selectpicker('destroy'); // 一个销毁，这个不能清空
-    	
+
     	initSomeInfoByDetpId();
 	});
+
+	$('#userPriv').selectpicker("refresh");//主角色初始化刷新
 });
 
 function initSomeInfoByDetpId(){
@@ -227,14 +236,14 @@ function initSomeInfoByDetpId(){
 	        $("#userPriv").attr("org",deptCode);
 	    }
 	    intPrivSelectByClassWithCommon(); // 角色下拉框
-	    
+
 	    if(static_userPriv){
 	    	$("#userPriv").val(static_userPriv);
 	    }
 		if(static_userPrivOther){
 			kqds_setMultiSelectVal("userPrivOtherEdit", static_userPrivOther);
 	    }
-	    
+
 	}else{
 		layer.alert('请先选择所属门诊/部门' );
 	}
@@ -355,7 +364,7 @@ function getDetail() {
     		}else{
     			$(this).removeAttr("checked");
     		}
-    		
+
 		}); */
     }
 }
@@ -390,7 +399,7 @@ function submitForm() {
         layer.alert('部门不能为空' );
         return false;
     }
-    
+
     var testz = /^\d+(\.\d+)?$/;
 	if(!testz.test(userNo)){
 		layer.alert('排序号需为整数' );
