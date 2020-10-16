@@ -503,7 +503,8 @@
         u.PhoneNumber1,
         u.createtime jdsj,
         per0.user_name AS kefu,
-        u.doorstatus zdoorstatus
+        u.doorstatus zdoorstatus,
+        u.iscreatelclj
         from KQDS_HOSPITAL_ORDER h
         LEFT JOIN KQDS_UserDocument u on u.usercode = h.usercode
         LEFT JOIN SYS_PERSON per1 on per1.SEQ_ID = h.askperson

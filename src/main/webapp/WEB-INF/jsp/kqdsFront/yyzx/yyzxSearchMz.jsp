@@ -772,6 +772,20 @@ function inittablemenzhen() {
                 }
             }
         },
+		{
+			title: '患者标识',
+			field: 'iscreatelclj',
+			align: 'center',
+			sortable: true,
+			formatter: function (value, row, index) {
+				//console.log("网电预约=" + JSON.stringify(row));
+				var iconhtml = "";
+				if (value != "" && value != null) {
+					iconhtml += '<img class="iscreatelclj" src= ' + contextPath + '/static/image/kqdsFront/tag/clinical.jpg/>';
+				}
+				return iconhtml == "" ? "-" : iconhtml;
+			}
+		},
         {
             title: '取消人',
             field: 'delperson',
