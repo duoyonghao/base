@@ -262,25 +262,52 @@ public class KQDS_Ck_Goods_OutLogic extends BaseLogic {
 					throw new Exception("不存在商品");
 				}
 				KqdsCkGoods goods = list.get(0);
-				if (goods.getNums() < detail.getOutnum()) {
-					throw new Exception("库存不足");
+				if(dp.getType().equals("2")){
+					if (goods.getNum() < detail.getOutnum()) {
+						throw new Exception(detail.getGoodscode()+"库存不足");
+					}
+					// 更新 商品表 单价 及 金额
+					// 金额 = 原金额 - 出库金额
+					// 单价 = 商品表剩余金额/剩余库存
+					BigDecimal kcmoney = new BigDecimal(0);
+					if(goods.getKcmoneys()!=null){
+						kcmoney = goods.getKcmoneys().subtract(money);
+					}
+					//BigDecimal kcmoney = goods.getKcmoney().subtract(detail.getCkmoney());
+					BigDecimal goodsprice = null;
+					if (goods.getNum() == 0) {// 出库后，库存为0
+						goodsprice = BigDecimal.ZERO;
+						goods.setKcmoneys(BigDecimal.ZERO);
+					} else {
+						if(kcmoney != null){
+							goodsprice = kcmoney.divide(new BigDecimal(goods.getNum()), 3, RoundingMode.HALF_EVEN).setScale(3, BigDecimal.ROUND_HALF_DOWN);
+						}
+					}
+					goods.setNum(syNum);
+					goods.setKcmoneys(kcmoney);
+					goods.setGoodsprices(goodsprice);
+				}else {
+					if (goods.getNums() < detail.getOutnum()) {
+						throw new Exception("库存不足");
+					}
+					goods.setNums(syNum);
+					//goods.setNums(goods.getNums() - detail.getOutnum());
+					// 更新 商品表 单价 及 金额
+					// 金额 = 原金额 - 出库金额
+					// 单价 = 商品表剩余金额/剩余库存
+					BigDecimal kcmoney = goods.getKcmoney().subtract(money);
+					//BigDecimal kcmoney = goods.getKcmoney().subtract(detail.getCkmoney());
+					goods.setKcmoney(kcmoney);
+					BigDecimal goodsprice = null;
+					if (goods.getNums() == 0) {// 出库后，库存为0
+						goodsprice = BigDecimal.ZERO;
+						goods.setKcmoney(BigDecimal.ZERO);
+					} else {
+						goodsprice = kcmoney.divide(new BigDecimal(goods.getNums()), 3, RoundingMode.HALF_EVEN).setScale(3, BigDecimal.ROUND_HALF_DOWN);
+					}
+					goods.setGoodsprice(goodsprice);
+
 				}
-				goods.setNums(syNum);
-				//goods.setNums(goods.getNums() - detail.getOutnum());
-				// 更新 商品表 单价 及 金额
-				// 金额 = 原金额 - 出库金额
-				// 单价 = 商品表剩余金额/剩余库存
-				BigDecimal kcmoney = goods.getKcmoney().subtract(money);
-				//BigDecimal kcmoney = goods.getKcmoney().subtract(detail.getCkmoney());
-				goods.setKcmoney(kcmoney);
-				BigDecimal goodsprice = null;
-				if (goods.getNums() == 0) {// 出库后，库存为0
-					goodsprice = BigDecimal.ZERO;
-					goods.setKcmoney(BigDecimal.ZERO);
-				} else {
-					goodsprice = kcmoney.divide(new BigDecimal(goods.getNums()), 3, RoundingMode.HALF_EVEN).setScale(3, BigDecimal.ROUND_HALF_DOWN);
-				}
-				goods.setGoodsprice(goodsprice);
 				dao.updateSingleUUID(TableNameUtil.KQDS_CK_GOODS, goods);
 			}
 		}
@@ -320,43 +347,88 @@ public class KQDS_Ck_Goods_OutLogic extends BaseLogic {
 			}
 			//修改入库明细表
 			List<KqdsCkGoods> gList=new ArrayList<KqdsCkGoods>();
-			if(cList.size()==1){
-				KqdsCkGoods goods=new KqdsCkGoods();
-				goods.setGoodsdetailid(cList.get(0).getGoodsuuid());
-				goods.setKcmoney(cList.get(0).getCkmoney());
-				goods.setNums(cList.get(0).getOutnum());
-				goods.setNumsexport(cList.get(0).getPhnum());
-				int nums=goods.getNums();
-				int phnum=cList.get(0).getPhnum();
-				if(nums==phnum){
-					goods.setGoodsprice(new BigDecimal(0));
-				}else{
-					goods.setGoodsprice(new BigDecimal(1));
-				}
-				gList.add(goods);
-			}else{
-				for (int i = 0; i < cList.size(); i++) {
-					BigDecimal kcmoney= cList.get(i).getCkmoney();
-					int nums=cList.get(i).getOutnum();
-					int numsexport=cList.get(i).getPhnum();
-					for (int j = 0; j < cList.size(); j++) {
-						if(i!=j&&cList.get(i).getGoodsuuid().equals(cList.get(j).getGoodsuuid())){
-							kcmoney=kcmoney.add(cList.get(j).getCkmoney());
-							nums=nums+cList.get(j).getOutnum();
-							numsexport=numsexport+cList.get(j).getPhnum();
-						}
-					}
+			if(dp.getType().equals("2")){
+				if(cList.size()==1){
 					KqdsCkGoods goods=new KqdsCkGoods();
-					goods.setGoodsdetailid(cList.get(i).getGoodsuuid());
-					goods.setKcmoney(kcmoney);
-					goods.setNums(nums);
-					goods.setNumsexport(numsexport);
-					if(nums==numsexport){
+					goods.setGoodsdetailid(cList.get(0).getGoodsuuid());
+					goods.setKcmoneys(cList.get(0).getCkmoney());
+					goods.setNum(cList.get(0).getOutnum());
+					goods.setNumsexport(cList.get(0).getPhnum());
+					int nums=goods.getNum();
+					int phnum=cList.get(0).getPhnum();
+					if(nums==phnum){
+						goods.setGoodsprices(new BigDecimal(0));
+					}else{
+						goods.setGoodsprices(new BigDecimal(1));
+					}
+					gList.add(goods);
+				}else{
+					for (int i = 0; i < cList.size(); i++) {
+						BigDecimal kcmoney= cList.get(i).getCkmoney();
+						int nums=cList.get(i).getOutnum();
+						int numsexport = 0;
+						if(cList.get(i).getPhnum() != null){
+							numsexport = cList.get(i).getPhnum();
+						}
+						for (int j = 0; j < cList.size(); j++) {
+							if(i!=j&&cList.get(i).getGoodsuuid().equals(cList.get(j).getGoodsuuid())){
+								kcmoney=kcmoney.add(cList.get(j).getCkmoney());
+								nums=nums+cList.get(j).getOutnum();
+								numsexport=numsexport+cList.get(j).getPhnum();
+							}
+						}
+						KqdsCkGoods goods=new KqdsCkGoods();
+						goods.setGoodsdetailid(cList.get(i).getGoodsuuid());
+						goods.setKcmoneys(kcmoney);
+						goods.setNum(nums);
+						goods.setNumsexport(numsexport);
+						if(nums==numsexport){
+							goods.setGoodsprices(new BigDecimal(0));
+						}else{
+							goods.setGoodsprices(new BigDecimal(1));
+						}
+						gList.add(goods);
+					}
+				}
+			}else{
+				if(cList.size()==1){
+					KqdsCkGoods goods=new KqdsCkGoods();
+					goods.setGoodsdetailid(cList.get(0).getGoodsuuid());
+					goods.setKcmoney(cList.get(0).getCkmoney());
+					goods.setNums(cList.get(0).getOutnum());
+					goods.setNumsexport(cList.get(0).getPhnum());
+					int nums=goods.getNums();
+					int phnum=cList.get(0).getPhnum();
+					if(nums==phnum){
 						goods.setGoodsprice(new BigDecimal(0));
 					}else{
 						goods.setGoodsprice(new BigDecimal(1));
 					}
 					gList.add(goods);
+				}else{
+					for (int i = 0; i < cList.size(); i++) {
+						BigDecimal kcmoney= cList.get(i).getCkmoney();
+						int nums=cList.get(i).getOutnum();
+						int numsexport=cList.get(i).getPhnum();
+						for (int j = 0; j < cList.size(); j++) {
+							if(i!=j&&cList.get(i).getGoodsuuid().equals(cList.get(j).getGoodsuuid())){
+								kcmoney=kcmoney.add(cList.get(j).getCkmoney());
+								nums=nums+cList.get(j).getOutnum();
+								numsexport=numsexport+cList.get(j).getPhnum();
+							}
+						}
+						KqdsCkGoods goods=new KqdsCkGoods();
+						goods.setGoodsdetailid(cList.get(i).getGoodsuuid());
+						goods.setKcmoney(kcmoney);
+						goods.setNums(nums);
+						goods.setNumsexport(numsexport);
+						if(nums==numsexport){
+							goods.setGoodsprice(new BigDecimal(0));
+						}else{
+							goods.setGoodsprice(new BigDecimal(1));
+						}
+						gList.add(goods);
+					}
 				}
 			}
 			if(bList.size()>0){
@@ -365,22 +437,37 @@ public class KQDS_Ck_Goods_OutLogic extends BaseLogic {
 			}
 			if(iList.size()>0){
 				//修改入库明细表数据
-				dao.batchUpdate(TableNameUtil.KQDS_CK_GOODS_IN_DETAIL+".updateGoodsInDetailByNumList", iList);	
-				
+				dao.batchUpdate(TableNameUtil.KQDS_CK_GOODS_IN_DETAIL+".updateGoodsInDetailByNumList", iList);
+
 			}
-			if(gList.size()==1){
-				dao.batchUpdate(TableNameUtil.KQDS_CK_GOODS+".updateGoodsByNumList", gList);
-			}else if(gList.size()>1){
-				//批量修改仓库表数据
-				List<KqdsCkGoods> hList=new ArrayList<KqdsCkGoods>();
-				for (KqdsCkGoods kqdsCkGoods : gList) {
-			      boolean b = hList.stream().anyMatch(k -> k.getGoodsdetailid().equals(kqdsCkGoods.getGoodsdetailid()));
-			      if (!b) {
-			    	  hList.add(kqdsCkGoods);
-			      }
+			if(dp.getType().equals("2")){
+				if(gList.size()==1){
+					dao.batchUpdate(TableNameUtil.KQDS_CK_GOODS+".updateGoodsByNumLists", gList);
+				}else if(gList.size()>1){
+					List<KqdsCkGoods> hList=new ArrayList<KqdsCkGoods>();
+					for (KqdsCkGoods kqdsCkGoods : gList) {
+						boolean b = hList.stream().anyMatch(k -> k.getGoodsdetailid().equals(kqdsCkGoods.getGoodsdetailid()));
+						if (!b) {
+							hList.add(kqdsCkGoods);
+						}
+					}
+					//批量修改仓库表数据
+					dao.batchUpdate(TableNameUtil.KQDS_CK_GOODS+".updateGoodsByNumLists", hList);
 				}
-				
-				dao.batchUpdate(TableNameUtil.KQDS_CK_GOODS+".updateGoodsByNumList", hList);
+			}else{
+				if(gList.size()==1){
+					dao.batchUpdate(TableNameUtil.KQDS_CK_GOODS+".updateGoodsByNumList", gList);
+				}else if(gList.size()>1){
+					//批量修改仓库表数据
+					List<KqdsCkGoods> hList=new ArrayList<KqdsCkGoods>();
+					for (KqdsCkGoods kqdsCkGoods : gList) {
+						boolean b = hList.stream().anyMatch(k -> k.getGoodsdetailid().equals(kqdsCkGoods.getGoodsdetailid()));
+						if (!b) {
+							hList.add(kqdsCkGoods);
+						}
+					}
+					dao.batchUpdate(TableNameUtil.KQDS_CK_GOODS+".updateGoodsByNumList", hList);
+				}
 			}
 		}
 	}

@@ -1,11 +1,7 @@
 package com.hudh.lclj.service.impl;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -287,6 +283,59 @@ public class FlowOperateServiceImpl implements IFlowOperateService {
 					nextWork.setFlowStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_YWC);
 					nextWork.setCreatetime(HUDHUtil.getCurrentTime(HUDHStaticVar.DATE_FORMAT_YMDHMS24));
 				}else {
+//					String createtime=HUDHUtil.getCurrentTime(HUDHStaticVar.DATE_FORMAT_YMDHMS24);
+//					//添加到期提醒时间 根据nodeLimit判断时间
+//					String nodelimit=nextNode.getNodeLimit();
+//					if(!"0".equals(nodelimit)){
+//						int day=0;
+//						if(nodelimit.contains("术后")){
+//							//当节点名称为二期时需要在术后时间进行判断
+//							//查询手术创建时间
+//							Map<String,String> map=new HashMap<String,String>();
+//							map.put("order_number",currentWork.getOrderNumber());
+//							map.put("nodeid","Surtre");
+//							createtime=lcljWorkListDao.findCreatetimeWorkListByNode(map);
+//						}
+//						//其他则可以根据createtime提交时间进行判断填写
+//						//如果后缀是天
+//						if(nodelimit.contains("月")){
+//							//如果后缀是天
+//							String[] nodelist = nodelimit.split("后");
+//							for (String node : nodelist) {
+//								if(node.contains("个")){
+//									String[] nodelist1 = node.split("个");
+//									day=Integer.parseInt(nodelist1[0])*30;
+//								}
+//							}
+//						}else if(nodelimit.contains("周")){
+//							//后缀是周
+//							String[] nodelist = nodelimit.split("后");
+//							for (String node : nodelist) {
+//								if(node.contains("-")){
+//									String[] nodelist1 = node.split("-");
+//									day=Integer.parseInt(nodelist1[0])*7;
+//								}
+//							}
+//						}else if(nodelimit.contains("天")){
+//							//如果后缀是天
+//							String[] nodelist = nodelimit.split("后");
+//							for (String node : nodelist) {
+//								if(node.contains("-")){
+//									String[] nodelist1 = node.split("-");
+//									day=Integer.parseInt(nodelist1[0]);
+//								}
+//							}
+//						}
+//						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//						Date date=sdf.parse(createtime);
+//						Calendar calendar=Calendar.getInstance();
+//						calendar.setTime(date);
+//						calendar.add(Calendar.DATE, day);
+//						Date date2=calendar.getTime();
+//						String dateFormat=sdf.format(date2);
+//						nextWork.setDateDue(dateFormat);
+//						nextWork.setRepairPhysician(request.getParameter("repairPhysician"));
+//					}
 					nextWork.setNodeStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_JXZ);
 					nextWork.setFlowStatus(StaticVar.HUDH_LCLJ_FLOWSTA_INTEGER_JXZ);
 				}

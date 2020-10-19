@@ -587,9 +587,9 @@ public class FlowServiceImpl implements IFlowService {
 		dataMap.put("status", status);
 		lcljOptRecodeDao.updateRemarkStus(dataMap);
 	}
-	
+
 	@Override
-	public List<KqdsReg> findRegListByBlcode(String orderNumber) throws Exception{
+	public List<JSONObject> findRegListByBlcode(String orderNumber) throws Exception{
 		//根据手术编号获取患者病历号
 		List<JSONObject> flowTrackList = lcljTrackDao.findLcljOrderTrackByOrderNumber(orderNumber);
 		if(null != flowTrackList && flowTrackList.size() > 0) {
@@ -598,23 +598,34 @@ public class FlowServiceImpl implements IFlowService {
 			Map<String,String> tempMap = new HashMap<String,String>();
 			tempMap.put("usercode", blCode);
 			//dataMap.put("params", tempMap);
-			List<KqdsReg> list = new ArrayList<KqdsReg>();
+			List<JSONObject> list = new ArrayList<JSONObject>();
+//			List<JSONObject> list1 = new ArrayList<JSONObject>();
 			list = lcljTrackDao.findRegListByBlcode(tempMap);
+			//plant_physician种植医生
+			//repair_physician修复医生
+			//挂号和种植或修复医生相同的展示
+//			if(list.size() > 0){
+//				for(JSONObject kqdsReg : list) {
+//					if(kqdsReg.getString("doctor").equals(flowTrackList.get(0).getString("plant_physician"))||kqdsReg.getString("doctor").equals(flowTrackList.get(0).getString("repair_physician"))){
+//						list1.add(kqdsReg);
+//					}
+//				}
+//			}
 			//将就诊分类和挂号分类换成对应的中文描述
 			/*for(KqdsReg kqdsReg : list) {
 				kqdsReg.setRecesort(SysDictUtil.getInstance().getSysDictList().get(kqdsReg.getRecesort()).getDictName());//就诊分类
 				kqdsReg.setRegsort(SysDictUtil.getInstance().getSysDictList().get(kqdsReg.getRegsort()).getDictName());//挂号分类
-				if(kqdsReg.getDoctor()!=null && !kqdsReg.getDoctor().equals("")){					
+				if(kqdsReg.getDoctor()!=null && !kqdsReg.getDoctor().equals("")){
 					kqdsReg.setDoctor(SysPersonUtil.getInstance().getSysPersonList().get(kqdsReg.getDoctor()).getUserName());//种植医生
 				}
-				if(!kqdsReg.getRepairdoctor().equals("") && !kqdsReg.getRepairdoctor().equals(null)){					
+				if(!kqdsReg.getRepairdoctor().equals("") && !kqdsReg.getRepairdoctor().equals(null)){
 					kqdsReg.setRepairdoctor(SysPersonUtil.getInstance().getSysPersonList().get(kqdsReg.getRepairdoctor()).getUserName());//修复医生
 				}
 			}*/
 			return list;
 		}
 		return null;
-		
+
 	}
 
 	@Override

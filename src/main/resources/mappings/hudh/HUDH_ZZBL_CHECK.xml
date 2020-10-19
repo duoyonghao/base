@@ -54,7 +54,7 @@
     <result column="diagnosis" property="diagnosis" jdbcType="VARCHAR" />
     <result column="others" property="others" jdbcType="VARCHAR" />
     <result column="organization" property="organization" jdbcType="VARCHAR" />
-    
+
     <result column="alveloarBoneResorptionLeftUp" property="alveloarBoneResorptionLeftUp" jdbcType="VARCHAR" />
     <result column="alveloarBoneResorptionRightUp" property="alveloarBoneResorptionRightUp" jdbcType="VARCHAR" />
     <result column="alveloarBoneResorptionLeftDown" property="alveloarBoneResorptionLeftDown" jdbcType="VARCHAR" />
@@ -65,7 +65,7 @@
     <result column="periodontal_lesionRightDown" property="periodontal_lesionRightDown" jdbcType="VARCHAR" />
     <result column="doctor_signatory" property="doctor_signatory" jdbcType="VARCHAR" />
     <result column="doctorTime" property="doctorTime" jdbcType="VARCHAR" />
-    
+
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="patientsignature" property="patientsignature" jdbcType="VARCHAR" />
     <result column="doctorsignature" property="doctorsignature" jdbcType="VARCHAR" />
@@ -74,38 +74,38 @@
     <result column="sex" property="sex" jdbcType="VARCHAR" />
     <result column="age" property="age" jdbcType="VARCHAR" />
     <result column="diagnosisothers" property="diagnosisothers" jdbcType="VARCHAR" />
-
+    <result column="nurse" property="nurse" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    SEQ_ID, createtime, createuser, id, order_number, physical_assessment, consultation_opinion, 
-    stomatology_check, occlusion_situation, interarch_distance, repaire_type, periodontal_condition, 
-    teethMissLeftUp, teethMissLeftDown, teethMissRightUp, teethMissRightDown, reasonMissTeeth, 
-    dentalCaryLeftUp, dentalCaryLeftDown, dentalCaryRightUp, dentalCaryRightDown, timeMissTeeth, 
-    residualRootLeftUp, residualRootLeftDown, residualRootRightUp, residualRootRightDown, 
-    mucosaCondition, teethMoveOneLeftUp, teethMoveOneLeftDown, teethMoveOneRightUp, teethMoveOneRightDown, 
-    teethMoveTwoLeftUp, teethMoveTwoLeftDown, teethMoveTwoRightUp, teethMoveTwoRightDown, 
-    teethMoveThreeLeftUp, teethMoveThreeLeftDown, teethMoveThreeRightUp, teethMoveThreeRightDown, 
-    xrayShowsLeftUp, xrayShowsLeftDown, xrayShowsRightUp, xrayShowsRightDown, fromMaxillarySinusFloor, 
-    fromNasalFloor, fromInferiorDentalNerve, alveloarCrestWidths, alveloarBoneResorption, 
-    periodontal_lesion, diagnosis, others,organization, alveloarBoneResorptionLeftUp, alveloarBoneResorptionRightUp, 
+    SEQ_ID, createtime, createuser, id, order_number, physical_assessment, consultation_opinion,
+    stomatology_check, occlusion_situation, interarch_distance, repaire_type, periodontal_condition,
+    teethMissLeftUp, teethMissLeftDown, teethMissRightUp, teethMissRightDown, reasonMissTeeth,
+    dentalCaryLeftUp, dentalCaryLeftDown, dentalCaryRightUp, dentalCaryRightDown, timeMissTeeth,
+    residualRootLeftUp, residualRootLeftDown, residualRootRightUp, residualRootRightDown,
+    mucosaCondition, teethMoveOneLeftUp, teethMoveOneLeftDown, teethMoveOneRightUp, teethMoveOneRightDown,
+    teethMoveTwoLeftUp, teethMoveTwoLeftDown, teethMoveTwoRightUp, teethMoveTwoRightDown,
+    teethMoveThreeLeftUp, teethMoveThreeLeftDown, teethMoveThreeRightUp, teethMoveThreeRightDown,
+    xrayShowsLeftUp, xrayShowsLeftDown, xrayShowsRightUp, xrayShowsRightDown, fromMaxillarySinusFloor,
+    fromNasalFloor, fromInferiorDentalNerve, alveloarCrestWidths, alveloarBoneResorption,
+    periodontal_lesion, diagnosis, others,organization, alveloarBoneResorptionLeftUp, alveloarBoneResorptionRightUp,
     alveloarBoneResorptionLeftDown, alveloarBoneResorptionRightDown, periodontal_lesionLeftUp, periodontal_lesionRightUp,
-    periodontal_lesionLeftDown, periodontal_lesionRightDown, doctor_signatory,doctorTime, remark, patientsignature, 
-    doctorsignature, moduloDesign, username, sex, age,status,diagnosisothers
+    periodontal_lesionLeftDown, periodontal_lesionRightDown, doctor_signatory,doctorTime, remark, patientsignature,
+    doctorsignature, moduloDesign, username, sex, age,status,diagnosisothers,nurse
   </sql>
   <select id="findZzblOprationById" resultType="json" parameterType="java.lang.String" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from HUDH_ZZBL_CHECK
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <select id="selectZzblCheckById" parameterType="String" resultType="com.hudh.zzbl.entity.ZzblCheck">
-  	select 
+    select
     <include refid="Base_Column_List" />
     from HUDH_ZZBL_CHECK
     where SEQ_ID = #{id,jdbcType=VARCHAR}
   </select>
   <select id="findAllZzblInfor" parameterType="java.lang.String" resultType="json">
-  	select 
+    select
     <include refid="Base_Column_List" />
     from HUDH_ZZBL_CHECK
   </select>
@@ -114,62 +114,63 @@
     where SEQ_ID = #{seqId,jdbcType=VARCHAR}
   </delete>
   <insert id="insertZzblCheck" parameterType="com.hudh.zzbl.entity.ZzblCheck" >
-    insert into HUDH_ZZBL_CHECK (SEQ_ID, createtime, createuser, 
-      id, order_number, physical_assessment, 
-      consultation_opinion, stomatology_check, 
-      occlusion_situation, interarch_distance, 
-      repaire_type, periodontal_condition, teethMissLeftUp, 
-      teethMissLeftDown, teethMissRightUp, teethMissRightDown, 
-      reasonMissTeeth, dentalCaryLeftUp, dentalCaryLeftDown, 
-      dentalCaryRightUp, dentalCaryRightDown, 
-      timeMissTeeth, residualRootLeftUp, residualRootLeftDown, 
-      residualRootRightUp, residualRootRightDown,
-      mucosaCondition, teethMoveOneLeftUp, teethMoveOneLeftDown, 
-      teethMoveOneRightUp, teethMoveOneRightDown,
-      teethMoveTwoLeftUp, teethMoveTwoLeftDown, 
-      teethMoveTwoRightUp, teethMoveTwoRightDown,
-      teethMoveThreeLeftUp, teethMoveThreeLeftDown, 
-      teethMoveThreeRightUp, teethMoveThreeRightDown,
-      xrayShowsLeftUp, xrayShowsLeftDown, xrayShowsRightUp, 
-      xrayShowsRightDown, fromMaxillarySinusFloor, 
-      fromNasalFloor, fromInferiorDentalNerve, 
-      alveloarCrestWidths, alveloarBoneResorption,
-      periodontal_lesion, diagnosis, others, 
-      organization, alveloarBoneResorptionLeftUp, alveloarBoneResorptionRightUp,
+    insert into HUDH_ZZBL_CHECK (SEQ_ID, createtime, createuser,
+    id, order_number, physical_assessment,
+    consultation_opinion, stomatology_check,
+    occlusion_situation, interarch_distance,
+    repaire_type, periodontal_condition, teethMissLeftUp,
+    teethMissLeftDown, teethMissRightUp, teethMissRightDown,
+    reasonMissTeeth, dentalCaryLeftUp, dentalCaryLeftDown,
+    dentalCaryRightUp, dentalCaryRightDown,
+    timeMissTeeth, residualRootLeftUp, residualRootLeftDown,
+    residualRootRightUp, residualRootRightDown,
+    mucosaCondition, teethMoveOneLeftUp, teethMoveOneLeftDown,
+    teethMoveOneRightUp, teethMoveOneRightDown,
+    teethMoveTwoLeftUp, teethMoveTwoLeftDown,
+    teethMoveTwoRightUp, teethMoveTwoRightDown,
+    teethMoveThreeLeftUp, teethMoveThreeLeftDown,
+    teethMoveThreeRightUp, teethMoveThreeRightDown,
+    xrayShowsLeftUp, xrayShowsLeftDown, xrayShowsRightUp,
+    xrayShowsRightDown, fromMaxillarySinusFloor,
+    fromNasalFloor, fromInferiorDentalNerve,
+    alveloarCrestWidths, alveloarBoneResorption,
+    periodontal_lesion, diagnosis, others,
+    organization, alveloarBoneResorptionLeftUp, alveloarBoneResorptionRightUp,
     alveloarBoneResorptionLeftDown, alveloarBoneResorptionRightDown, periodontal_lesionLeftUp, periodontal_lesionRightUp,
     periodontal_lesionLeftDown, periodontal_lesionRightDown, doctor_signatory,doctorTime
-    , remark, patientsignature, doctorsignature, moduloDesign, username, sex, age,status,diagnosisothers)
-    values (#{SEQ_ID,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, 
-      #{id,jdbcType=VARCHAR}, #{order_number,jdbcType=VARCHAR}, #{physical_assessment,jdbcType=VARCHAR}, 
-      #{consultation_opinion,jdbcType=VARCHAR}, #{stomatology_check,jdbcType=VARCHAR}, 
-      #{occlusion_situation,jdbcType=VARCHAR}, #{interarch_distance,jdbcType=VARCHAR}, 
-      #{repaire_type,jdbcType=VARCHAR}, #{periodontal_condition,jdbcType=VARCHAR}, #{teethMissLeftUp,jdbcType=VARCHAR}, 
-      #{teethMissLeftDown,jdbcType=VARCHAR}, #{teethMissRightUp,jdbcType=VARCHAR}, #{teethMissRightDown,jdbcType=VARCHAR}, 
-      #{reasonMissTeeth,jdbcType=VARCHAR}, #{dentalCaryLeftUp,jdbcType=VARCHAR}, #{dentalCaryLeftDown,jdbcType=VARCHAR}, 
-      #{dentalCaryRightUp,jdbcType=VARCHAR}, #{dentalCaryRightDown,jdbcType=VARCHAR}, 
-      #{timeMissTeeth,jdbcType=VARCHAR}, #{residualRootLeftUp,jdbcType=VARCHAR}, #{residualRootLeftDown,jdbcType=VARCHAR}, 
-      #{residualRootRightUp,jdbcType=VARCHAR}, #{residualRootRightDown,jdbcType=VARCHAR},
-      #{mucosaCondition,jdbcType=VARCHAR}, #{teethMoveOneLeftUp,jdbcType=VARCHAR}, #{teethMoveOneLeftDown,jdbcType=VARCHAR}, 
-      #{teethMoveOneRightUp,jdbcType=VARCHAR}, #{teethMoveOneRightDown,jdbcType=VARCHAR},
-      #{teethMoveTwoLeftUp,jdbcType=VARCHAR}, #{teethMoveTwoLeftDown,jdbcType=VARCHAR}, 
-      #{teethMoveTwoRightUp,jdbcType=VARCHAR}, #{teethMoveTwoRightDown,jdbcType=VARCHAR},
-      #{teethMoveThreeLeftUp,jdbcType=VARCHAR}, #{teethMoveThreeLeftDown,jdbcType=VARCHAR}, 
-      #{teethMoveThreeRightUp,jdbcType=VARCHAR}, #{teethMoveThreeRightDown,jdbcType=VARCHAR},
-      #{xrayShowsLeftUp,jdbcType=VARCHAR}, #{xrayShowsLeftDown,jdbcType=VARCHAR}, #{xrayShowsRightUp,jdbcType=VARCHAR}, 
-      #{xrayShowsRightDown,jdbcType=VARCHAR}, #{fromMaxillarySinusFloor,jdbcType=VARCHAR}, 
-      #{fromNasalFloor,jdbcType=VARCHAR}, #{fromInferiorDentalNerve,jdbcType=VARCHAR}, 
-      #{alveloarCrestWidths,jdbcType=VARCHAR}, #{alveloarBoneResorption,jdbcType=VARCHAR},
-      #{periodontal_lesion,jdbcType=VARCHAR}, #{diagnosis,jdbcType=VARCHAR}, #{others,jdbcType=VARCHAR}, 
-      #{organization,jdbcType=VARCHAR},
-      #{alveloarBoneResorptionLeftUp,jdbcType=VARCHAR},#{alveloarBoneResorptionRightUp,jdbcType=VARCHAR},
-      #{alveloarBoneResorptionLeftDown,jdbcType=VARCHAR},#{alveloarBoneResorptionRightDown,jdbcType=VARCHAR},
-      #{periodontal_lesionLeftUp,jdbcType=VARCHAR},#{periodontal_lesionRightUp,jdbcType=VARCHAR},
-      #{periodontal_lesionLeftDown,jdbcType=VARCHAR},#{periodontal_lesionRightDown,jdbcType=VARCHAR},
-      #{doctor_signatory,jdbcType=VARCHAR},#{doctorTime,jdbcType=VARCHAR}
-      ,#{remark,jdbcType=VARCHAR},#{patientsignature,jdbcType=VARCHAR},#{doctorsignature,jdbcType=VARCHAR},
-      #{moduloDesign,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
-      #{sex,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{diagnosisothers,jdbcType=VARCHAR}
-      )
+    , remark, patientsignature, doctorsignature, moduloDesign, username, sex, age,status,diagnosisothers,nurse)
+    values (#{SEQ_ID,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR},
+    #{id,jdbcType=VARCHAR}, #{order_number,jdbcType=VARCHAR}, #{physical_assessment,jdbcType=VARCHAR},
+    #{consultation_opinion,jdbcType=VARCHAR}, #{stomatology_check,jdbcType=VARCHAR},
+    #{occlusion_situation,jdbcType=VARCHAR}, #{interarch_distance,jdbcType=VARCHAR},
+    #{repaire_type,jdbcType=VARCHAR}, #{periodontal_condition,jdbcType=VARCHAR}, #{teethMissLeftUp,jdbcType=VARCHAR},
+    #{teethMissLeftDown,jdbcType=VARCHAR}, #{teethMissRightUp,jdbcType=VARCHAR}, #{teethMissRightDown,jdbcType=VARCHAR},
+    #{reasonMissTeeth,jdbcType=VARCHAR}, #{dentalCaryLeftUp,jdbcType=VARCHAR}, #{dentalCaryLeftDown,jdbcType=VARCHAR},
+    #{dentalCaryRightUp,jdbcType=VARCHAR}, #{dentalCaryRightDown,jdbcType=VARCHAR},
+    #{timeMissTeeth,jdbcType=VARCHAR}, #{residualRootLeftUp,jdbcType=VARCHAR}, #{residualRootLeftDown,jdbcType=VARCHAR},
+    #{residualRootRightUp,jdbcType=VARCHAR}, #{residualRootRightDown,jdbcType=VARCHAR},
+    #{mucosaCondition,jdbcType=VARCHAR}, #{teethMoveOneLeftUp,jdbcType=VARCHAR}, #{teethMoveOneLeftDown,jdbcType=VARCHAR},
+    #{teethMoveOneRightUp,jdbcType=VARCHAR}, #{teethMoveOneRightDown,jdbcType=VARCHAR},
+    #{teethMoveTwoLeftUp,jdbcType=VARCHAR}, #{teethMoveTwoLeftDown,jdbcType=VARCHAR},
+    #{teethMoveTwoRightUp,jdbcType=VARCHAR}, #{teethMoveTwoRightDown,jdbcType=VARCHAR},
+    #{teethMoveThreeLeftUp,jdbcType=VARCHAR}, #{teethMoveThreeLeftDown,jdbcType=VARCHAR},
+    #{teethMoveThreeRightUp,jdbcType=VARCHAR}, #{teethMoveThreeRightDown,jdbcType=VARCHAR},
+    #{xrayShowsLeftUp,jdbcType=VARCHAR}, #{xrayShowsLeftDown,jdbcType=VARCHAR}, #{xrayShowsRightUp,jdbcType=VARCHAR},
+    #{xrayShowsRightDown,jdbcType=VARCHAR}, #{fromMaxillarySinusFloor,jdbcType=VARCHAR},
+    #{fromNasalFloor,jdbcType=VARCHAR}, #{fromInferiorDentalNerve,jdbcType=VARCHAR},
+    #{alveloarCrestWidths,jdbcType=VARCHAR}, #{alveloarBoneResorption,jdbcType=VARCHAR},
+    #{periodontal_lesion,jdbcType=VARCHAR}, #{diagnosis,jdbcType=VARCHAR}, #{others,jdbcType=VARCHAR},
+    #{organization,jdbcType=VARCHAR},
+    #{alveloarBoneResorptionLeftUp,jdbcType=VARCHAR},#{alveloarBoneResorptionRightUp,jdbcType=VARCHAR},
+    #{alveloarBoneResorptionLeftDown,jdbcType=VARCHAR},#{alveloarBoneResorptionRightDown,jdbcType=VARCHAR},
+    #{periodontal_lesionLeftUp,jdbcType=VARCHAR},#{periodontal_lesionRightUp,jdbcType=VARCHAR},
+    #{periodontal_lesionLeftDown,jdbcType=VARCHAR},#{periodontal_lesionRightDown,jdbcType=VARCHAR},
+    #{doctor_signatory,jdbcType=VARCHAR},#{doctorTime,jdbcType=VARCHAR}
+    ,#{remark,jdbcType=VARCHAR},#{patientsignature,jdbcType=VARCHAR},#{doctorsignature,jdbcType=VARCHAR},
+    #{moduloDesign,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
+    #{sex,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{diagnosisothers,jdbcType=VARCHAR},
+    #{nurse,jdbcType=VARCHAR}
+    )
   </insert>
   <insert id="insertSelective" parameterType="com.hudh.zzbl.entity.ZzblCheck" >
     insert into HUDH_ZZBL_CHECK
@@ -387,6 +388,9 @@
       <if test="diagnosisothers != null" >
         diagnosisothers,
       </if>
+      <if test="nurse != null" >
+        nurse,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="seqId != null" >
@@ -600,7 +604,10 @@
         #{status,jdbcType=VARCHAR},
       </if>
       <if test="diagnosisothers != null" >
-        #{diagnosisothers,jdbcType=VARCHAR}
+        #{diagnosisothers,jdbcType=VARCHAR},
+      </if>
+      <if test="nurse != null" >
+        #{nurse,jdbcType=VARCHAR}
       </if>
     </trim>
   </insert>
@@ -778,6 +785,9 @@
       <if test="diagnosisothers != null" >
         diagnosisothers = #{diagnosisothers,jdbcType=VARCHAR},
       </if>
+      <if test="nurse != null" >
+        nurse = #{nurse,jdbcType=VARCHAR}
+      </if>
     </set>
     where SEQ_ID = #{SEQ_ID,jdbcType=VARCHAR}
   </update>
@@ -833,15 +843,18 @@
       periodontal_lesion = #{periodontalLesion,jdbcType=VARCHAR},
       diagnosis = #{diagnosis,jdbcType=VARCHAR},
       others = #{others,jdbcType=VARCHAR},
+      doctor_signatory = #{doctor_signatory,jdbcType=VARCHAR},
+      diagnosisothers = #{diagnosisothers,jdbcType=VARCHAR},
+      nurse = #{nurse,jdbcType=VARCHAR},
       organization = #{organization,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-    <update id="selectedExamineDiagnoseInfor" parameterType="map">
-  	UPDATE HUDH_ZZBL_CHECK
-	  	<set>
-	  		status = #{status}
-	  	</set>
-	 Where 1=1
-	 AND SEQ_ID = #{id}
+  <update id="selectedExamineDiagnoseInfor" parameterType="map">
+    UPDATE HUDH_ZZBL_CHECK
+    <set>
+      status = #{status}
+    </set>
+    Where 1=1
+    AND SEQ_ID = #{id}
   </update>
 </mapper>

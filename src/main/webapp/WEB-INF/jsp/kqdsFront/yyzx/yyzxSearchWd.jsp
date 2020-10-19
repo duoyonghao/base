@@ -481,7 +481,7 @@ function exportTable() {
 				var a = document.createElement('a');
 				//var headerName = xhr.getResponseHeader("Content-disposition");
 				//var fileName = decodeURIComponent(headerName).substring(20);
-				a.download = "费用查询";
+				a.download = "网电预约查询";
 				a.href = URL.createObjectURL(blob);
 				$("body").append(a);    // 修复firefox中无法触发click
 				a.click();

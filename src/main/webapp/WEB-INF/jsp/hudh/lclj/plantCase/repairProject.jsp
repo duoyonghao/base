@@ -262,46 +262,22 @@
                             <li>
                                 <!-- 上下牙位图 -->
                                 <div class="toothMapdiv_B">
-                                    <span>ICX</span>
-                                    <ul class="tooth_map">
-                                        <li>
-                                            <input id="icxleftup" onblur="TextLengthCheck(this.id,10);"
-                                                   class="tooth_input" type="text">
-                                        </li>
-                                        <li>
-                                            <input id="icxrightup" onblur="TextLengthCheck(this.id,10);"
-                                                   class="tooth_input" type="text">
-                                        </li>
-                                        <li>
-                                            <input id="icxleftdown" onblur="TextLengthCheck(this.id,10);"
-                                                   class="tooth_input" type="text">
-                                        </li>
-                                        <li>
-                                            <input id="icxrightdown" onblur="TextLengthCheck(this.id,10);"
-                                                   class="tooth_input" type="text">
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <!-- 上下牙位图 -->
-                                <div class="toothMapdiv_B">
                                     <span>Templant</span>
                                     <ul class="tooth_map">
                                         <li>
-                                            <input id="icxleftup" onblur="TextLengthCheck(this.id,10);"
+                                            <input id="templantleftup" onblur="TextLengthCheck(this.id,10);"
                                                    class="tooth_input" type="text">
                                         </li>
                                         <li>
-                                            <input id="icxrightup" onblur="TextLengthCheck(this.id,10);"
+                                            <input id="templantrightup" onblur="TextLengthCheck(this.id,10);"
                                                    class="tooth_input" type="text">
                                         </li>
                                         <li>
-                                            <input id="icxleftdown" onblur="TextLengthCheck(this.id,10);"
+                                            <input id="templantleftdown" onblur="TextLengthCheck(this.id,10);"
                                                    class="tooth_input" type="text">
                                         </li>
                                         <li>
-                                            <input id="icxrightdown" onblur="TextLengthCheck(this.id,10);"
+                                            <input id="templantrightdown" onblur="TextLengthCheck(this.id,10);"
                                                    class="tooth_input" type="text">
                                         </li>
                                     </ul>
@@ -470,6 +446,30 @@
                                         </li>
                                         <li>
                                             <input id="bbrightdown" onblur="TextLengthCheck(this.id,10);"
+                                                   class="tooth_input" type="text">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li  id="icxli" style="pointer-events: none;">
+                                <!-- 上下牙位图 -->
+                                <div class="toothMapdiv_B">
+                                    <span>ICX</span>
+                                    <ul class="tooth_map">
+                                        <li>
+                                            <input id="icxleftup" onblur="TextLengthCheck(this.id,10);"
+                                                   class="tooth_input" type="text">
+                                        </li>
+                                        <li>
+                                            <input id="icxrightup" onblur="TextLengthCheck(this.id,10);"
+                                                   class="tooth_input" type="text">
+                                        </li>
+                                        <li>
+                                            <input id="icxleftdown" onblur="TextLengthCheck(this.id,10);"
+                                                   class="tooth_input" type="text">
+                                        </li>
+                                        <li>
+                                            <input id="icxrightdown" onblur="TextLengthCheck(this.id,10);"
                                                    class="tooth_input" type="text">
                                         </li>
                                     </ul>
@@ -1063,6 +1063,10 @@
         var icxRightUp = $("#icxrightup").val();
         var icxLeftDown = $("#icxleftdown").val();
         var icxRightDown = $("#icxrightdown").val();
+        var templantLeftUp = $("#templantleftup").val();
+        var templantRightUp = $("#templantrightup").val();
+        var templantLeftDown = $("#templantleftdown").val();
+        var templantRightDown = $("#templantrightdown").val();
 //			var implantAssistantSurgery = showImplantAssistantSurgery();
         var nobelActiveLeftUp = $("#nobelactiveleftup").val();
         var nobelActiveRightUp = $("#nobelactiverightup").val();
@@ -1170,6 +1174,10 @@
             icxRightUp: icxRightUp,
             icxLeftDown: icxLeftDown,
             icxRightDown: icxRightDown,
+            templantLeftUp: templantLeftUp,
+            templantRightUp: templantRightUp,
+            templantLeftDown: templantLeftDown,
+            templantRightDown: templantRightDown,
             nobelActiveLeftUp: nobelActiveLeftUp,
             nobelActiveRightUp: nobelActiveRightUp,
             nobelActiveLeftDown: nobelActiveLeftDown,
@@ -1281,6 +1289,10 @@
         var icxRightUp = $("#icxrightup").val();
         var icxLeftDown = $("#icxleftdown").val();
         var icxRightDown = $("#icxrightdown").val();
+        var templantLeftUp = $("#templantleftup").val();
+        var templantRightUp = $("#templantrightup").val();
+        var templantLeftDown = $("#templantleftdown").val();
+        var templantRightDown = $("#templantrightdown").val();
 //			var implantAssistantSurgery = showImplantAssistantSurgery();
         var nobelActiveLeftUp = $("#nobelactiveleftup").val();
         var nobelActiveRightUp = $("#nobelactiverightup").val();
@@ -1388,6 +1400,10 @@
             icxRightUp: icxRightUp,
             icxLeftDown: icxLeftDown,
             icxRightDown: icxRightDown,
+            templantLeftUp: templantLeftUp,
+            templantRightUp: templantRightUp,
+            templantLeftDown: templantLeftDown,
+            templantRightDown: templantRightDown,
             nobelActiveLeftUp: nobelActiveLeftUp,
             nobelActiveRightUp: nobelActiveRightUp,
             nobelActiveLeftDown: nobelActiveLeftDown,
@@ -1523,6 +1539,7 @@
         $("input").removeAttr("placeholder");
         $("#requirerestor").css("display", "none");
         $("#replaceBox").css("display", "block");
+        $("#icxli").css("display", "none");
         bdhtml = window.document.body.innerHTML;
         sprnstr = "<!--startprint-->";
         eprnstr = "<!--endprint-->";

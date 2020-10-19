@@ -34,7 +34,7 @@
 		margin: auto;
 	}
 	.kqds_table1 td{
-	  	padding: 3px 2px 5px 2px; 
+	  	padding: 3px 2px 5px 2px;
 	}
 	.kqds_table1 select {
 	    height: 28px;
@@ -60,7 +60,7 @@
 	.formBox{
 		width:100%;
 		overflow:auto;
-	} 
+	}
 	.searchWrap {
 	    padding: 10px 10px 8px 10px;
 	}
@@ -134,12 +134,12 @@
 		          </div>
 	        </div>
 	        <div class="tableBox">
-		    	<table style="width: 100%"> 
+		    	<table style="width: 100%">
 		       			<tr>
 		 				<td width="30%"><span style="color:#00A6C0;">共有记录<lable id="total1">0</lable>条</span></td>
 		 				<td width="30%"><span style="color:#00A6C0;">数量小计：<lable id="innumall">0</lable></span></td>
 		 				<td width="30%"><span style="color:#00A6C0;">金额小计：<lable id="rkmoneyall">0</lable></span></td>
-		       		</tr> 
+		       		</tr>
 		       	</table>
    			 </div>
 	    </div>
@@ -180,14 +180,14 @@
 						<label>领料人：</label>
 						<div class="kv-v">
 							 <input type="hidden" name="llr" id="llr" class="form-control" />
-							 <input type="text"   id="llrDesc" name="llrDesc" placeholder="领料人" readonly style="width: 130px;"onClick="javascript:single_select_user(['llr', 'llrDesc'],'single');"  ></input>	
+							 <input type="text"   id="llrDesc" name="llrDesc" placeholder="领料人" readonly style="width: 130px;"onClick="javascript:single_select_user(['llr', 'llrDesc'],'single');"  ></input>
 						</div>
 					</div>
 					<div class="kv ">
 						<label>领用医生：</label>
 						<div class="kv-v">
 							<input type="hidden" name="sqdoctor" id="sqdoctor" class="form-control" />
-							<input type="text"   id="sqdoctorDesc" name="sqdoctorDesc" placeholder="领料医生" readonly style="width: 130px;"onClick="javascript:single_select_user(['sqdoctor', 'sqdoctorDesc'],'single');"  ></input>	
+							<input type="text"   id="sqdoctorDesc" name="sqdoctorDesc" placeholder="领料医生" readonly style="width: 130px;"onClick="javascript:single_select_user(['sqdoctor', 'sqdoctorDesc'],'single');"  ></input>
 						</div>
 					</div>
 					<div class="kv" >
@@ -198,10 +198,10 @@
 					</div>
 					<div class="kv" >
 						<a href="javascript:void(0);" onclick="xzhw()" class="kqdsCommonBtn">选择商品</a>
-					</div>	
+					</div>
 					<div class="kv" >
 						<a href="javascript:void(0);" onclick="save()" class="kqdsSearchBtn">保&nbsp;&nbsp;存</a>
-					</div>					
+					</div>
                 </div>
 	        </div>
 	    </div>
@@ -215,9 +215,9 @@
 <script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/util.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/bootstrap/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/js/bootstrap/bootstrap/bootstrap-datetimepicker.zh-CN.js" charset="utf-8" ></script>
-<script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/ck/ck.js"></script> 
+<script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/ck/ck.js"></script>
 <script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/select2.js"></script>
-<script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/ck/keyout.js"></script> 
+<script type="text/javascript" src="<%=contextPath%>/static/js/kqdsFront/ck/keyout.js"></script>
 <script type="text/javascript">
 var contextPath = "<%=contextPath%>";
 var goodsinid = "<%=goodsinid%>";
@@ -245,7 +245,7 @@ $(function() {
     });
     nowday = getNowFormatDate();
     $("#cktime").val(nowday);
-    
+
     /* 计算并设置table的高度 */
     resizeTableHeight();
     /*页面大小改变时 计算并设置table的高度 */
@@ -271,7 +271,7 @@ function resizeTableHeight(){
 $("#outhouse").change(function() {
 	$('#table').find('tbody').html("");
 	$("#total1").html(0);
-}); 
+});
 //从货物列表页面（goosd_house.jsp），调用改方法
 function addDoodsDetail(detail){
 	 //显示条数
@@ -281,7 +281,7 @@ function addDoodsDetail(detail){
 	 for(var i=0;i<detail.length;i++){
 	var tablehtml = "";
 	tdindex=detail[i].irows;
-     
+
 	 tablehtml += "<tr>";
 	 //操作0
      tablehtml += '<td style="width:60px;"><a href="javascript:void(0);" mce_href="javascript:void(0);" onclick="deltr(this)" id="'+tdindex+'"><span style="color:red;">删除</span></a></td>';
@@ -321,7 +321,7 @@ function addDoodsDetail(detail){
  	 tablehtml += '<td style="display:none;"><span id="price'+tdindex+'">'+detail[i].goodsprice+'</span></td>';
  	 //下标18
  	 tablehtml += '<td style="display:none;"><span id="index'+tdindex+'">'+tdindex+'</span></td>';
-    
+
  	 tablehtml += "</tr>";
  	 $('#table').find('tbody').append(tablehtml);
  	 initChukuNum(tdindex,detail[i].goodsid);  // 初始化出库批号
@@ -357,7 +357,7 @@ function initChukuNum(tdindex,goodsid){
                 $("#phnum"+tdindex).val(list[0].phnum); //批号数量
                 var phlength =$("#ph"+tdindex).find("option").length;
                 if(phlength>1){
-                	$("#add"+tdindex).removeAttr("disabled","disabled"); 
+                	$("#add"+tdindex).removeAttr("disabled","disabled");
                 }
             }
         }
@@ -398,7 +398,7 @@ function deltr(obj) {
 		});
 	}else if(i>j){
 		$("#add"+j).removeAttr("disabled","disabled");
-		$("#ph"+j).removeAttr("disabled","disabled"); 
+		$("#ph"+j).removeAttr("disabled","disabled");
 		$("#index"+j).html(j);
 		document.getElementById('table').deleteRow(k);
 	    updatexj();
@@ -438,7 +438,7 @@ function checknums(id,i){
 	if(id == "outnum"){
 		if(judgeSign(outnums)==false){
 			 layer.alert('出库数量必须为正整数！', {
-		              
+
 		     });
 			 $("#outnum"+i).val(0);
 			 $("#ckmoney"+i).html("");
@@ -447,14 +447,14 @@ function checknums(id,i){
 			if(phnum!=null){
 				if(Number(outnums)>Number(phnum)&&phlength==1){
 					 layer.alert('库存不足！', {
-				              
+
 				     });
 					 $("#outnum"+i).val(0);
 					 $("#ckmoney"+i).html("");
 					 return false;
 				}else if(Number(outnums)>Number(nums)){
 					layer.alert('库存不足！', {
-			              
+
 				     });
 					 $("#outnum"+i).val(0);
 					 $("#ckmoney"+i).html("");
@@ -463,13 +463,13 @@ function checknums(id,i){
 			}else{
 				if(Number(outnums)>Number(nums)){
 				 layer.alert('库存不足！', {
-			              
+
 			     });
 				 $("#outnum"+i).val(0);
 				 $("#ckmoney"+i).html("");
 				 return false;
 			}}
-			
+
 		}
 	}
 	var url = contextPath + '/KQDS_Ck_Goods_OutAct/findGoodsprice.act?type=2';
@@ -498,11 +498,11 @@ function checknums(id,i){
 				    	var numlistSpan=$("#outnum"+i).parent("td").find("span.numlist");
 				    	numlistSpan.remove();
 				    	$("#outnum"+i).parent().append(appendHtml);
-				    	if($("#goodsprice"+i).val()==0){
+				    	//if($("#goodsprice"+i).val()==0){
 			        		$("#ckmoney"+i).val(Number(r.ckmoney).toFixed(3));
-			        	}
+			        	//}
 				       	$("#goodsprice"+i).val(Number(r.goodsprice).toFixed(3));
-				       	$("#ph"+i).attr("disabled","disabled"); 
+				       	$("#ph"+i).attr("disabled","disabled");
 				       	$("#add"+i).attr("disabled","disabled");
 				       	addDeatil(i);
 						layer.close(index);
@@ -527,9 +527,9 @@ function checknums(id,i){
 						    }var numlistSpan=$("#outnum"+i).parent("td").find("span.numlist");
 					    	numlistSpan.remove();
 					    	$("#outnum"+i).parent().append(appendHtml);
-				        	if($("#goodsprice"+i).val()==0){
+				        	//if($("#goodsprice"+i).val()==0){
 				        		$("#ckmoney"+i).val(Number(r.ckmoney).toFixed(3));
-				        	}
+				        	//}
 				        	$("#goodsprice"+i).val(Number(r.goodsprice).toFixed(3));
 				        	updatexj();
 							layer.close(index);
@@ -538,7 +538,7 @@ function checknums(id,i){
 			  });
 		}else{
 			layer.alert('出库数量多于批号数量！', {
-	              
+
 		     });
 			 $("#outnum"+i).val(0);
 			 $("#ckmoney"+i).html("");
@@ -562,9 +562,9 @@ function checknums(id,i){
 			    	var numlistSpan=$("#outnum"+i).parent("td").find("span.numlist");
 			    	numlistSpan.remove();
 			    	$("#outnum"+i).parent().append(appendHtml);
-		        	if($("#goodsprice"+i).val()==0){
+		        	//if($("#goodsprice"+i).val()==0){
 		        		$("#ckmoney"+i).val(Number(r.ckmoney).toFixed(3));
-		        	}
+		        	//}
 		        	$("#goodsprice"+i).val(Number(r.goodsprice).toFixed(3));
 		        	updatexj();
 		         }
@@ -581,9 +581,9 @@ function checknums(id,i){
 				    var numlistSpan=$("#outnum"+i).parent("td").find("span.numlist");
 				    numlistSpan.remove();
 				    $("#outnum"+i).parent().append(appendHtml);
-		        	if($("#goodsprice"+i).val()==0){
+		        	//if($("#goodsprice"+i).val()==0){
 		        		$("#ckmoney"+i).val(r.ckmoney);
-		        	}
+		        	//}
 		        	$("#goodsprice"+i).val(r.goodsprice);
 		        	updatexj();
 		         }
@@ -636,7 +636,7 @@ function save() {
     if (outtype == "" || outtype == null) {
         layer.alert('请选择出库方式' );
         return false;
-    } 
+    }
 	/* if (outhouse == "" || outhouse == null) {
         layer.alert('请选择发货仓库' );
         return false;
@@ -689,7 +689,7 @@ function save() {
  							msg = "出库数量应为整数";
  	               			return false;
  	               		}
- 	               	} 
+ 	               	}
  	               	var pp=JSON.parse(numlist);
  	               	if(pp.length>0){
  	               		for (var i = 0; i < pp.length; i++) {
@@ -704,13 +704,13 @@ function save() {
                 }  else if ($(this).index() == 12) {
                     //出库备注
                 	paramDetail.sqremark = $(this).find("input").val();
-                } else if ($(this).index() == 14) {//新增 
+                } else if ($(this).index() == 14) {//新增
                     //出库商品批号
                 	paramDetail.ph = $(this).find("select option:selected").text();
-                } else if ($(this).index() == 15) {//新增 
-                    //出库商品批号数量 
+                } else if ($(this).index() == 15) {//新增
+                    //出库商品批号数量
                 	paramDetail.phnum = $(this).find("input").val();
-                } 
+                }
                 paramDetail.type = type;
             });
             list.push(paramDetail);
@@ -718,7 +718,7 @@ function save() {
     });
     if(!flag){
     	   layer.alert(msg, {
-                 
+
            });
            return false;
     }
@@ -754,14 +754,14 @@ function save() {
     function() {},
     function(r) {
         if (r.retState == "0") {
-            layer.alert('保存成功', { 
+            layer.alert('保存成功', {
                 end: function() {
                 	saveGoodsGjTx();
                 	var conidnex =layer.confirm('是否打印出库单？', {
     		 		    btn: ['打印','关闭'] //按钮
     				}, function(){
     				    layer.close(conidnex);
-    				    openDayin($("#outcode").val());	
+    				    openDayin($("#outcode").val());
 //     				   	parent.layer.close(frameindex); //再执行关闭
    			      		$('#table').find('tbody').html("");
    			      		$("#total1").html(0);
@@ -772,38 +772,38 @@ function save() {
     				});
                 }
             });
-        } else if(r.retState == "100"){ 
+        } else if(r.retState == "100"){
         	$("#outcode").val(gettimestr());
     	    layer.alert('出库单号已存在，系统已自动重新获取，请重新保存。', {
-	               
+
 	        });
-	 
+
         }else {
             layer.alert('保存失败');
         }
     },
     function(r) {
     	 if (r.status == 200) {
-             layer.alert('保存成功', { 
+             layer.alert('保存成功', {
                  end: function() {
                  	saveGoodsGjTx();
                  	var conidnex =layer.confirm('是否打印出库单？', {
      		 		    btn: ['打印','关闭'] //按钮
      				}, function(){
      				    layer.close(conidnex);
-     				    openDayin($("#outcode").val());	
+     				    openDayin($("#outcode").val());
      				   	parent.layer.close(frameindex); //再执行关闭
      				}, function(){
      					parent.layer.close(frameindex); //再执行关闭
      				});
                  }
              });
-         } else if(r.retState == "100"){ 
+         } else if(r.retState == "100"){
          	$("#outcode").val(gettimestr());
      	    layer.alert('出库单号已存在，系统已自动重新获取，请重新保存。', {
- 	               
+
  	        });
- 	 
+
          }else {
              layer.alert('保存失败');
          }
@@ -838,7 +838,7 @@ function selectAllPh(obj,tdindex) {
 	}
 }
 function addDeatil(index){
-	$("#ph"+index).attr("disabled","disabled"); 
+	$("#ph"+index).attr("disabled","disabled");
 	$("#add"+index).attr("disabled","disabled");
 	tdindex = $("#table").find("tbody").find("tr").length;
 	tdindex++;

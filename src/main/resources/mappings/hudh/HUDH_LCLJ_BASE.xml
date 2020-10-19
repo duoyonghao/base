@@ -32,6 +32,10 @@
     <result column="icxrightup" jdbcType="VARCHAR" property="icxrightup" />
     <result column="icxleftdown" jdbcType="VARCHAR" property="icxleftdown" />
     <result column="icxrightdown" jdbcType="VARCHAR" property="icxrightdown" />
+    <result column="templantleftup" jdbcType="VARCHAR" property="templantleftup" />
+    <result column="templantrightup" jdbcType="VARCHAR" property="templantrightup" />
+    <result column="templantleftdown" jdbcType="VARCHAR" property="templantleftdown" />
+    <result column="templantrightdown" jdbcType="VARCHAR" property="templantrightdown" />
     <result column="camlogleftup" jdbcType="VARCHAR" property="camlogleftup" />
     <result column="camlogrightup" jdbcType="VARCHAR" property="camlogrightup" />
     <result column="camlogleftdown" jdbcType="VARCHAR" property="camlogleftdown" />
@@ -140,7 +144,7 @@
     <result column="treatmentparts3" jdbcType="LONGVARCHAR" property="treatmentparts3" />
     <result column="requirerestor" jdbcType="LONGVARCHAR" property="requirerestor" />
   </resultMap>
- <sql id="Example_Where_Clause">
+  <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
         <if test="criteria.valid">
@@ -199,20 +203,20 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, usercode, username, LcljId, LcljNum, createtime, createuser, organization, consultation_opinion, 
-    promise, patienttime, operationdoctortime, doctortime, patienttime1, extractionleftup, 
-    extractionrightup, extractionleftdown, extractionrightdown, dentiumleftup, dentiumrightup, 
-    dentiumleftdown, dentiumrightdown, hiossenleftup, hiossenrightup, hiossenleftdown, 
-    hiossenrightdown, icxleftup, icxrightup, icxleftdown, icxrightdown, camlogleftup, 
-    camlogrightup, camlogleftdown, camlogrightdown, zimmerleftup, zimmerrightup, zimmerleftdown, 
-    zimmerrightdown, nobelccleftup, nobelccrightup, nobelccleftdown, nobelccrightdown, 
-    nobelactiveleftup, nobelactiverightup, nobelactiveleftdown, nobelactiverightdown, 
-    pmcleftup, pmcrightup, pmcleftdown, pmcrightdown, temporarytleftup, temporarytrightup, 
-    temporarytleftdown, temporarytrightdown, commonleftup, commonrightup, commonleftdown, 
-    commonrightdown, instantlyleftup, instantlyrightup, instantlyleftdown, instantlyrightdown, 
-    atonceleftup, atoncerightup, atonceleftdown, atoncerightdown, imagingleftup, imagingrightup, 
-    imagingleftdown, imagingrightdown, lianguanleftup, lianguanrightup, lianguanleftdown, 
-    lianguanrightdown, preoperatives, bicon, abutment, paraoperative, modus, repair, 
+    id, usercode, username, LcljId, LcljNum, createtime, createuser, organization, consultation_opinion,
+    promise, patienttime, operationdoctortime, doctortime, patienttime1, extractionleftup,
+    extractionrightup, extractionleftdown, extractionrightdown, dentiumleftup, dentiumrightup,
+    dentiumleftdown, dentiumrightdown, hiossenleftup, hiossenrightup, hiossenleftdown,
+    hiossenrightdown, icxleftup, icxrightup, icxleftdown, icxrightdown, camlogleftup,
+    camlogrightup, camlogleftdown, camlogrightdown, zimmerleftup, zimmerrightup, zimmerleftdown,
+    zimmerrightdown, nobelccleftup, nobelccrightup, nobelccleftdown, nobelccrightdown,
+    nobelactiveleftup, nobelactiverightup, nobelactiveleftdown, nobelactiverightdown,
+    pmcleftup, pmcrightup, pmcleftdown, pmcrightdown, temporarytleftup, temporarytrightup,
+    temporarytleftdown, temporarytrightdown, commonleftup, commonrightup, commonleftdown,
+    commonrightdown, instantlyleftup, instantlyrightup, instantlyleftdown, instantlyrightdown,
+    atonceleftup, atoncerightup, atonceleftdown, atoncerightdown, imagingleftup, imagingrightup,
+    imagingleftdown, imagingrightdown, lianguanleftup, lianguanrightup, lianguanleftdown,
+    lianguanrightdown, preoperatives, bicon, abutment, paraoperative, modus, repair,
     alternative, clinical,bonemeal,ossein,periost,one,pathtype,deep,appointmenttime,wzy,accord,operationDoctorsignature,
     repairDoctorsignature,patientsignature,patientsignature1,status,onedentalimplantleftup,
     onedentalimplantrightup, onedentalimplantleftdown, onedentalimplantrightdown, twodentalimplantleftup,
@@ -221,7 +225,8 @@
     entiretyrepairleftdown, entiretyrepairrightdown,plantingsystemselect,plantextureselect,repair_planguan,
     twotoothextractionleftup,twotoothextractionrightup,twotoothextractionleftdown,twotoothextractionrightdown,
     threetoothextractionleftup,threetoothextractionrightup,threetoothextractionleftdown,threetoothextractionrightdown,
-    etleftup,etrightup,etleftdown,etrightdown,bbleftup,bbrightup,bbleftdown,bbrightdown
+    etleftup,etrightup,etleftdown,etrightdown,bbleftup,bbrightup,bbleftdown,bbrightdown,templantleftup,
+    templantrightup,templantleftdown,templantrightdown
   </sql>
   <sql id="Blob_Column_List">
     treatmentparts1, treatmentparts2, treatmentparts3, requirerestor
@@ -262,123 +267,126 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultType="json">
-		select
-		 id AS seq_id, usercode, username, LcljId, LcljNum, createtime, createuser, organization, consultation_opinion,
-      promise, patienttime, operationdoctortime, doctortime, patienttime1, extractionleftup,
-      extractionrightup, extractionleftdown, extractionrightdown, dentiumleftup, dentiumrightup,
-      dentiumleftdown, dentiumrightdown, hiossenleftup, hiossenrightup, hiossenleftdown,
-      hiossenrightdown, icxleftup, icxrightup, icxleftdown, icxrightdown, camlogleftup,
-      camlogrightup, camlogleftdown, camlogrightdown, zimmerleftup, zimmerrightup, zimmerleftdown,
-      zimmerrightdown, nobelccleftup, nobelccrightup, nobelccleftdown, nobelccrightdown,
-      nobelactiveleftup, nobelactiverightup, nobelactiveleftdown, nobelactiverightdown,
-      pmcleftup, pmcrightup, pmcleftdown, pmcrightdown, temporarytleftup, temporarytrightup,
-      temporarytleftdown, temporarytrightdown, commonleftup, commonrightup, commonleftdown,
-      commonrightdown, instantlyleftup, instantlyrightup, instantlyleftdown, instantlyrightdown,
-      atonceleftup, atoncerightup, atonceleftdown, atoncerightdown, imagingleftup, imagingrightup,
-      imagingleftdown, imagingrightdown, lianguanleftup, lianguanrightup, lianguanleftdown,
-      lianguanrightdown, preoperatives, bicon, abutment, paraoperative, modus, repair,
-      alternative, clinical,bonemeal,ossein,periost,one,pathtype,deep,appointmenttime,wzy,accord,operationDoctorsignature,
-      repairDoctorsignature,patientsignature,patientsignature1,status,onedentalimplantleftup,onedentalimplantrightup,
-      onedentalimplantleftdown,onedentalimplantrightdown,twodentalimplantleftup,twodentalimplantrightup,
-      twodentalimplantleftdown,twodentalimplantrightdown,dentalimplantleftup,dentalimplantrightup,dentalimplantleftdown,
-      dentalimplantrightdown,entiretyrepairleftup,entiretyrepairrightup,entiretyrepairleftdown,entiretyrepairrightdown,
-      plantingsystemselect,plantextureselect,repair_planguan,twotoothextractionleftup,twotoothextractionrightup,twotoothextractionleftdown,twotoothextractionrightdown,
+    select
+    id AS seq_id, usercode, username, LcljId, LcljNum, createtime, createuser, organization, consultation_opinion,
+    promise, patienttime, operationdoctortime, doctortime, patienttime1, extractionleftup,
+    extractionrightup, extractionleftdown, extractionrightdown, dentiumleftup, dentiumrightup,
+    dentiumleftdown, dentiumrightdown, hiossenleftup, hiossenrightup, hiossenleftdown,
+    hiossenrightdown, icxleftup, icxrightup, icxleftdown, icxrightdown, camlogleftup,
+    camlogrightup, camlogleftdown, camlogrightdown, zimmerleftup, zimmerrightup, zimmerleftdown,
+    zimmerrightdown, nobelccleftup, nobelccrightup, nobelccleftdown, nobelccrightdown,
+    nobelactiveleftup, nobelactiverightup, nobelactiveleftdown, nobelactiverightdown,
+    pmcleftup, pmcrightup, pmcleftdown, pmcrightdown, temporarytleftup, temporarytrightup,
+    temporarytleftdown, temporarytrightdown, commonleftup, commonrightup, commonleftdown,
+    commonrightdown, instantlyleftup, instantlyrightup, instantlyleftdown, instantlyrightdown,
+    atonceleftup, atoncerightup, atonceleftdown, atoncerightdown, imagingleftup, imagingrightup,
+    imagingleftdown, imagingrightdown, lianguanleftup, lianguanrightup, lianguanleftdown,
+    lianguanrightdown, preoperatives, bicon, abutment, paraoperative, modus, repair,
+    alternative, clinical,bonemeal,ossein,periost,one,pathtype,deep,appointmenttime,wzy,accord,operationDoctorsignature,
+    repairDoctorsignature,patientsignature,patientsignature1,status,onedentalimplantleftup,onedentalimplantrightup,
+    onedentalimplantleftdown,onedentalimplantrightdown,twodentalimplantleftup,twodentalimplantrightup,
+    twodentalimplantleftdown,twodentalimplantrightdown,dentalimplantleftup,dentalimplantrightup,dentalimplantleftdown,
+    dentalimplantrightdown,entiretyrepairleftup,entiretyrepairrightup,entiretyrepairleftdown,entiretyrepairrightdown,
+    plantingsystemselect,plantextureselect,repair_planguan,twotoothextractionleftup,twotoothextractionrightup,twotoothextractionleftdown,twotoothextractionrightdown,
     threetoothextractionleftup,threetoothextractionrightup,threetoothextractionleftdown,threetoothextractionrightdown,
-    etleftup,etrightup,etleftdown,etrightdown,bbleftup,bbrightup,bbleftdown,bbrightdown
-		from HUDH_LCLJ_BASE
-		where LcljId = #{lcljid,jdbcType=VARCHAR}
-        ORDER by createtime ASC
-	</select>
-	
+    etleftup,etrightup,etleftdown,etrightdown,bbleftup,bbrightup,bbleftdown,bbrightdown,templantleftup,
+    templantrightup,templantleftdown,templantrightdown
+    from HUDH_LCLJ_BASE
+    where LcljId = #{lcljid,jdbcType=VARCHAR}
+    ORDER by createtime ASC
+  </select>
+
   <insert id="insert" parameterType="com.kqds.entity.base.HudhLcljBase">
-    insert into HUDH_LCLJ_BASE (id, usercode, username, 
-      LcljId, LcljNum, createtime, 
-      createuser, organization, consultation_opinion, 
-      promise, patienttime, operationdoctortime, 
-      doctortime, patienttime1, extractionleftup, 
-      extractionrightup, extractionleftdown, 
-      extractionrightdown, dentiumleftup, dentiumrightup, 
-      dentiumleftdown, dentiumrightdown, hiossenleftup, 
-      hiossenrightup, hiossenleftdown, hiossenrightdown, 
-      icxleftup, icxrightup, icxleftdown, 
-      icxrightdown, camlogleftup, camlogrightup, 
-      camlogleftdown, camlogrightdown, zimmerleftup, 
-      zimmerrightup, zimmerleftdown, zimmerrightdown, 
-      nobelccleftup, nobelccrightup, nobelccleftdown, 
-      nobelccrightdown, nobelactiveleftup, nobelactiverightup, 
-      nobelactiveleftdown, nobelactiverightdown, 
-      pmcleftup, pmcrightup, pmcleftdown, 
-      pmcrightdown, temporarytleftup, temporarytrightup, 
-      temporarytleftdown, temporarytrightdown, 
-      commonleftup, commonrightup, commonleftdown, 
-      commonrightdown, instantlyleftup, instantlyrightup, 
-      instantlyleftdown, instantlyrightdown, 
-      atonceleftup, atoncerightup, atonceleftdown, 
-      atoncerightdown, imagingleftup, imagingrightup, 
-      imagingleftdown, imagingrightdown, lianguanleftup, 
-      lianguanrightup, lianguanleftdown, lianguanrightdown, 
-      preoperatives, bicon, abutment, 
-      paraoperative, modus, repair, 
-      alternative, clinical, treatmentparts1, 
-      treatmentparts2, treatmentparts3, 
-      requirerestor,bonemeal,ossein,periost,one,pathtype,deep,appointmenttime,wzy,accord,operationDoctorsignature,
+    insert into HUDH_LCLJ_BASE (id, usercode, username,
+    LcljId, LcljNum, createtime,
+    createuser, organization, consultation_opinion,
+    promise, patienttime, operationdoctortime,
+    doctortime, patienttime1, extractionleftup,
+    extractionrightup, extractionleftdown,
+    extractionrightdown, dentiumleftup, dentiumrightup,
+    dentiumleftdown, dentiumrightdown, hiossenleftup,
+    hiossenrightup, hiossenleftdown, hiossenrightdown,
+    icxleftup, icxrightup, icxleftdown,
+    icxrightdown, camlogleftup, camlogrightup,
+    camlogleftdown, camlogrightdown, zimmerleftup,
+    zimmerrightup, zimmerleftdown, zimmerrightdown,
+    nobelccleftup, nobelccrightup, nobelccleftdown,
+    nobelccrightdown, nobelactiveleftup, nobelactiverightup,
+    nobelactiveleftdown, nobelactiverightdown,
+    pmcleftup, pmcrightup, pmcleftdown,
+    pmcrightdown, temporarytleftup, temporarytrightup,
+    temporarytleftdown, temporarytrightdown,
+    commonleftup, commonrightup, commonleftdown,
+    commonrightdown, instantlyleftup, instantlyrightup,
+    instantlyleftdown, instantlyrightdown,
+    atonceleftup, atoncerightup, atonceleftdown,
+    atoncerightdown, imagingleftup, imagingrightup,
+    imagingleftdown, imagingrightdown, lianguanleftup,
+    lianguanrightup, lianguanleftdown, lianguanrightdown,
+    preoperatives, bicon, abutment,
+    paraoperative, modus, repair,
+    alternative, clinical, treatmentparts1,
+    treatmentparts2, treatmentparts3,
+    requirerestor,bonemeal,ossein,periost,one,pathtype,deep,appointmenttime,wzy,accord,operationDoctorsignature,
     repairDoctorsignature,patientsignature,patientsignature1,status,
     onedentalimplantleftup,onedentalimplantrightup,
-      onedentalimplantleftdown,onedentalimplantrightdown,twodentalimplantleftup,twodentalimplantrightup,
-      twodentalimplantleftdown,twodentalimplantrightdown,dentalimplantleftup,dentalimplantrightup,dentalimplantleftdown,
-      dentalimplantrightdown,entiretyrepairleftup,entiretyrepairrightup,entiretyrepairleftdown,entiretyrepairrightdown,
-      plantingsystemselect,plantextureselect,repair_planguan,twotoothextractionleftup,twotoothextractionrightup,twotoothextractionleftdown,twotoothextractionrightdown,
+    onedentalimplantleftdown,onedentalimplantrightdown,twodentalimplantleftup,twodentalimplantrightup,
+    twodentalimplantleftdown,twodentalimplantrightdown,dentalimplantleftup,dentalimplantrightup,dentalimplantleftdown,
+    dentalimplantrightdown,entiretyrepairleftup,entiretyrepairrightup,entiretyrepairleftdown,entiretyrepairrightdown,
+    plantingsystemselect,plantextureselect,repair_planguan,twotoothextractionleftup,twotoothextractionrightup,twotoothextractionleftdown,twotoothextractionrightdown,
     threetoothextractionleftup,threetoothextractionrightup,threetoothextractionleftdown,threetoothextractionrightdown,
-    etleftup,etrightup,etleftdown,etrightdown,bbleftup,bbrightup,bbleftdown,bbrightdown)
-    values (#{id,jdbcType=VARCHAR}, #{usercode,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
-      #{lcljid,jdbcType=VARCHAR}, #{lcljnum,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, 
-      #{createuser,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, #{consultationOpinion,jdbcType=VARCHAR}, 
-      #{promise,jdbcType=VARCHAR}, #{patienttime,jdbcType=VARCHAR}, #{operationdoctortime,jdbcType=VARCHAR}, 
-      #{doctortime,jdbcType=VARCHAR}, #{patienttime1,jdbcType=VARCHAR}, #{extractionleftup,jdbcType=VARCHAR}, 
-      #{extractionrightup,jdbcType=VARCHAR}, #{extractionleftdown,jdbcType=VARCHAR}, 
-      #{extractionrightdown,jdbcType=VARCHAR}, #{dentiumleftup,jdbcType=VARCHAR}, #{dentiumrightup,jdbcType=VARCHAR}, 
-      #{dentiumleftdown,jdbcType=VARCHAR}, #{dentiumrightdown,jdbcType=VARCHAR}, #{hiossenleftup,jdbcType=VARCHAR}, 
-      #{hiossenrightup,jdbcType=VARCHAR}, #{hiossenleftdown,jdbcType=VARCHAR}, #{hiossenrightdown,jdbcType=VARCHAR}, 
-      #{icxleftup,jdbcType=VARCHAR}, #{icxrightup,jdbcType=VARCHAR}, #{icxleftdown,jdbcType=VARCHAR}, 
-      #{icxrightdown,jdbcType=VARCHAR}, #{camlogleftup,jdbcType=VARCHAR}, #{camlogrightup,jdbcType=VARCHAR}, 
-      #{camlogleftdown,jdbcType=VARCHAR}, #{camlogrightdown,jdbcType=VARCHAR}, #{zimmerleftup,jdbcType=VARCHAR}, 
-      #{zimmerrightup,jdbcType=VARCHAR}, #{zimmerleftdown,jdbcType=VARCHAR}, #{zimmerrightdown,jdbcType=VARCHAR}, 
-      #{nobelccleftup,jdbcType=VARCHAR}, #{nobelccrightup,jdbcType=VARCHAR}, #{nobelccleftdown,jdbcType=VARCHAR}, 
-      #{nobelccrightdown,jdbcType=VARCHAR}, #{nobelactiveleftup,jdbcType=VARCHAR}, #{nobelactiverightup,jdbcType=VARCHAR}, 
-      #{nobelactiveleftdown,jdbcType=VARCHAR}, #{nobelactiverightdown,jdbcType=VARCHAR}, 
-      #{pmcleftup,jdbcType=VARCHAR}, #{pmcrightup,jdbcType=VARCHAR}, #{pmcleftdown,jdbcType=VARCHAR}, 
-      #{pmcrightdown,jdbcType=VARCHAR}, #{temporarytleftup,jdbcType=VARCHAR}, #{temporarytrightup,jdbcType=VARCHAR}, 
-      #{temporarytleftdown,jdbcType=VARCHAR}, #{temporarytrightdown,jdbcType=VARCHAR}, 
-      #{commonleftup,jdbcType=VARCHAR}, #{commonrightup,jdbcType=VARCHAR}, #{commonleftdown,jdbcType=VARCHAR}, 
-      #{commonrightdown,jdbcType=VARCHAR}, #{instantlyleftup,jdbcType=VARCHAR}, #{instantlyrightup,jdbcType=VARCHAR}, 
-      #{instantlyleftdown,jdbcType=VARCHAR}, #{instantlyrightdown,jdbcType=VARCHAR}, 
-      #{atonceleftup,jdbcType=VARCHAR}, #{atoncerightup,jdbcType=VARCHAR}, #{atonceleftdown,jdbcType=VARCHAR}, 
-      #{atoncerightdown,jdbcType=VARCHAR}, #{imagingleftup,jdbcType=VARCHAR}, #{imagingrightup,jdbcType=VARCHAR}, 
-      #{imagingleftdown,jdbcType=VARCHAR}, #{imagingrightdown,jdbcType=VARCHAR}, #{lianguanleftup,jdbcType=VARCHAR}, 
-      #{lianguanrightup,jdbcType=VARCHAR}, #{lianguanleftdown,jdbcType=VARCHAR}, #{lianguanrightdown,jdbcType=VARCHAR}, 
-      #{preoperatives,jdbcType=VARCHAR}, #{bicon,jdbcType=VARCHAR}, #{abutment,jdbcType=VARCHAR}, 
-      #{paraoperative,jdbcType=VARCHAR}, #{modus,jdbcType=VARCHAR}, #{repair,jdbcType=VARCHAR}, 
-      #{alternative,jdbcType=VARCHAR}, #{clinical,jdbcType=VARCHAR}, #{treatmentparts1,jdbcType=LONGVARCHAR}, 
-      #{treatmentparts2,jdbcType=LONGVARCHAR}, #{treatmentparts3,jdbcType=LONGVARCHAR}, 
-      #{requirerestor,jdbcType=LONGVARCHAR},#{bonemeal,jdbcType=VARCHAR},#{ossein,jdbcType=VARCHAR},
-      #{periost,jdbcType=VARCHAR},#{one,jdbcType=VARCHAR},#{pathtype,jdbcType=VARCHAR},#{deep,jdbcType=VARCHAR},
-      #{appointmenttime,jdbcType=VARCHAR},#{wzy,jdbcType=VARCHAR},#{accord,jdbcType=VARCHAR},
-      #{operationDoctorsignature,jdbcType=VARCHAR},#{repairDoctorsignature,jdbcType=VARCHAR},
-      #{patientsignature,jdbcType=VARCHAR},#{patientsignature1,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},
-      #{onedentalimplantleftup,jdbcType=VARCHAR},#{onedentalimplantrightup,jdbcType=VARCHAR},
-      #{onedentalimplantleftdown,jdbcType=VARCHAR},#{onedentalimplantrightdown,jdbcType=VARCHAR},#{twodentalimplantleftup,jdbcType=VARCHAR},#{twodentalimplantrightup,jdbcType=VARCHAR},
-      #{twodentalimplantleftdown,jdbcType=VARCHAR},#{twodentalimplantrightdown,jdbcType=VARCHAR},#{dentalimplantleftup,jdbcType=VARCHAR},#{dentalimplantrightup,jdbcType=VARCHAR},#{dentalimplantleftdown,jdbcType=VARCHAR},
-      #{dentalimplantrightdown,jdbcType=VARCHAR},#{entiretyrepairleftup,jdbcType=VARCHAR},#{entiretyrepairrightup,jdbcType=VARCHAR},#{entiretyrepairleftdown,jdbcType=VARCHAR},#{entiretyrepairrightdown,jdbcType=VARCHAR},
-      #{plantingsystemselect,jdbcType=VARCHAR},#{plantextureselect,jdbcType=VARCHAR},#{repairPlanguan,jdbcType=VARCHAR},#{twotoothextractionleftup,jdbcType=VARCHAR},#{twotoothextractionrightup,jdbcType=VARCHAR},
-      #{twotoothextractionleftdown,jdbcType=VARCHAR},#{twotoothextractionrightdown,jdbcType=VARCHAR},#{threetoothextractionleftup,jdbcType=VARCHAR},#{threetoothextractionrightup,jdbcType=VARCHAR},
-      #{threetoothextractionleftdown,jdbcType=VARCHAR},#{threetoothextractionrightdown,jdbcType=VARCHAR},
-      #{etleftup,jdbcType=VARCHAR},#{etrightup,jdbcType=VARCHAR},#{etleftdown,jdbcType=VARCHAR},#{etrightdown,jdbcType=VARCHAR},
-      #{bbleftup,jdbcType=VARCHAR},#{bbrightup,jdbcType=VARCHAR},#{bbleftdown,jdbcType=VARCHAR},#{bbrightdown,jdbcType=VARCHAR})
+    etleftup,etrightup,etleftdown,etrightdown,bbleftup,bbrightup,bbleftdown,bbrightdown,templantleftup,
+    templantrightup,templantleftdown,templantrightdown)
+    values (#{id,jdbcType=VARCHAR}, #{usercode,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
+    #{lcljid,jdbcType=VARCHAR}, #{lcljnum,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR},
+    #{createuser,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, #{consultationOpinion,jdbcType=VARCHAR},
+    #{promise,jdbcType=VARCHAR}, #{patienttime,jdbcType=VARCHAR}, #{operationdoctortime,jdbcType=VARCHAR},
+    #{doctortime,jdbcType=VARCHAR}, #{patienttime1,jdbcType=VARCHAR}, #{extractionleftup,jdbcType=VARCHAR},
+    #{extractionrightup,jdbcType=VARCHAR}, #{extractionleftdown,jdbcType=VARCHAR},
+    #{extractionrightdown,jdbcType=VARCHAR}, #{dentiumleftup,jdbcType=VARCHAR}, #{dentiumrightup,jdbcType=VARCHAR},
+    #{dentiumleftdown,jdbcType=VARCHAR}, #{dentiumrightdown,jdbcType=VARCHAR}, #{hiossenleftup,jdbcType=VARCHAR},
+    #{hiossenrightup,jdbcType=VARCHAR}, #{hiossenleftdown,jdbcType=VARCHAR}, #{hiossenrightdown,jdbcType=VARCHAR},
+    #{icxleftup,jdbcType=VARCHAR}, #{icxrightup,jdbcType=VARCHAR}, #{icxleftdown,jdbcType=VARCHAR},
+    #{icxrightdown,jdbcType=VARCHAR}, #{camlogleftup,jdbcType=VARCHAR}, #{camlogrightup,jdbcType=VARCHAR},
+    #{camlogleftdown,jdbcType=VARCHAR}, #{camlogrightdown,jdbcType=VARCHAR}, #{zimmerleftup,jdbcType=VARCHAR},
+    #{zimmerrightup,jdbcType=VARCHAR}, #{zimmerleftdown,jdbcType=VARCHAR}, #{zimmerrightdown,jdbcType=VARCHAR},
+    #{nobelccleftup,jdbcType=VARCHAR}, #{nobelccrightup,jdbcType=VARCHAR}, #{nobelccleftdown,jdbcType=VARCHAR},
+    #{nobelccrightdown,jdbcType=VARCHAR}, #{nobelactiveleftup,jdbcType=VARCHAR}, #{nobelactiverightup,jdbcType=VARCHAR},
+    #{nobelactiveleftdown,jdbcType=VARCHAR}, #{nobelactiverightdown,jdbcType=VARCHAR},
+    #{pmcleftup,jdbcType=VARCHAR}, #{pmcrightup,jdbcType=VARCHAR}, #{pmcleftdown,jdbcType=VARCHAR},
+    #{pmcrightdown,jdbcType=VARCHAR}, #{temporarytleftup,jdbcType=VARCHAR}, #{temporarytrightup,jdbcType=VARCHAR},
+    #{temporarytleftdown,jdbcType=VARCHAR}, #{temporarytrightdown,jdbcType=VARCHAR},
+    #{commonleftup,jdbcType=VARCHAR}, #{commonrightup,jdbcType=VARCHAR}, #{commonleftdown,jdbcType=VARCHAR},
+    #{commonrightdown,jdbcType=VARCHAR}, #{instantlyleftup,jdbcType=VARCHAR}, #{instantlyrightup,jdbcType=VARCHAR},
+    #{instantlyleftdown,jdbcType=VARCHAR}, #{instantlyrightdown,jdbcType=VARCHAR},
+    #{atonceleftup,jdbcType=VARCHAR}, #{atoncerightup,jdbcType=VARCHAR}, #{atonceleftdown,jdbcType=VARCHAR},
+    #{atoncerightdown,jdbcType=VARCHAR}, #{imagingleftup,jdbcType=VARCHAR}, #{imagingrightup,jdbcType=VARCHAR},
+    #{imagingleftdown,jdbcType=VARCHAR}, #{imagingrightdown,jdbcType=VARCHAR}, #{lianguanleftup,jdbcType=VARCHAR},
+    #{lianguanrightup,jdbcType=VARCHAR}, #{lianguanleftdown,jdbcType=VARCHAR}, #{lianguanrightdown,jdbcType=VARCHAR},
+    #{preoperatives,jdbcType=VARCHAR}, #{bicon,jdbcType=VARCHAR}, #{abutment,jdbcType=VARCHAR},
+    #{paraoperative,jdbcType=VARCHAR}, #{modus,jdbcType=VARCHAR}, #{repair,jdbcType=VARCHAR},
+    #{alternative,jdbcType=VARCHAR}, #{clinical,jdbcType=VARCHAR}, #{treatmentparts1,jdbcType=LONGVARCHAR},
+    #{treatmentparts2,jdbcType=LONGVARCHAR}, #{treatmentparts3,jdbcType=LONGVARCHAR},
+    #{requirerestor,jdbcType=LONGVARCHAR},#{bonemeal,jdbcType=VARCHAR},#{ossein,jdbcType=VARCHAR},
+    #{periost,jdbcType=VARCHAR},#{one,jdbcType=VARCHAR},#{pathtype,jdbcType=VARCHAR},#{deep,jdbcType=VARCHAR},
+    #{appointmenttime,jdbcType=VARCHAR},#{wzy,jdbcType=VARCHAR},#{accord,jdbcType=VARCHAR},
+    #{operationDoctorsignature,jdbcType=VARCHAR},#{repairDoctorsignature,jdbcType=VARCHAR},
+    #{patientsignature,jdbcType=VARCHAR},#{patientsignature1,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},
+    #{onedentalimplantleftup,jdbcType=VARCHAR},#{onedentalimplantrightup,jdbcType=VARCHAR},
+    #{onedentalimplantleftdown,jdbcType=VARCHAR},#{onedentalimplantrightdown,jdbcType=VARCHAR},#{twodentalimplantleftup,jdbcType=VARCHAR},#{twodentalimplantrightup,jdbcType=VARCHAR},
+    #{twodentalimplantleftdown,jdbcType=VARCHAR},#{twodentalimplantrightdown,jdbcType=VARCHAR},#{dentalimplantleftup,jdbcType=VARCHAR},#{dentalimplantrightup,jdbcType=VARCHAR},#{dentalimplantleftdown,jdbcType=VARCHAR},
+    #{dentalimplantrightdown,jdbcType=VARCHAR},#{entiretyrepairleftup,jdbcType=VARCHAR},#{entiretyrepairrightup,jdbcType=VARCHAR},#{entiretyrepairleftdown,jdbcType=VARCHAR},#{entiretyrepairrightdown,jdbcType=VARCHAR},
+    #{plantingsystemselect,jdbcType=VARCHAR},#{plantextureselect,jdbcType=VARCHAR},#{repairPlanguan,jdbcType=VARCHAR},#{twotoothextractionleftup,jdbcType=VARCHAR},#{twotoothextractionrightup,jdbcType=VARCHAR},
+    #{twotoothextractionleftdown,jdbcType=VARCHAR},#{twotoothextractionrightdown,jdbcType=VARCHAR},#{threetoothextractionleftup,jdbcType=VARCHAR},#{threetoothextractionrightup,jdbcType=VARCHAR},
+    #{threetoothextractionleftdown,jdbcType=VARCHAR},#{threetoothextractionrightdown,jdbcType=VARCHAR},
+    #{etleftup,jdbcType=VARCHAR},#{etrightup,jdbcType=VARCHAR},#{etleftdown,jdbcType=VARCHAR},#{etrightdown,jdbcType=VARCHAR},
+    #{bbleftup,jdbcType=VARCHAR},#{bbrightup,jdbcType=VARCHAR},#{bbleftdown,jdbcType=VARCHAR},#{bbrightdown,jdbcType=VARCHAR},
+    #{templantleftup,jdbcType=VARCHAR},#{templantrightup,jdbcType=VARCHAR},#{templantleftdown,jdbcType=VARCHAR},#{templantrightdown,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.kqds.entity.base.HudhLcljBase">
-        insert into HUDH_LCLJ_BASE
+    insert into HUDH_LCLJ_BASE
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -784,7 +792,19 @@
         bbleftdown,
       </if>
       <if test="bbrightdown != null">
-        bbrightdown
+        bbrightdown,
+      </if>
+      <if test="templantleftup != null">
+        templantleftup,
+      </if>
+      <if test="templantrightup != null">
+        templantrightup,
+      </if>
+      <if test="templantleftdown != null">
+        templantleftdown,
+      </if>
+      <if test="templantrightdown != null">
+        templantrightdown
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -1193,6 +1213,18 @@
       <if test="bbrightdown != null">
         #{bbrightdown,jdbcType=VARCHAR},
       </if>
+      <if test="templantleftup != null">
+        #{templantleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="templantrightup != null">
+        #{templantrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="templantleftdown != null">
+        #{templantleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="templantrightdown != null">
+        #{templantrightdown,jdbcType=VARCHAR}
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.kqds.entity.base.HudhLcljBase" resultType="java.lang.Long">
@@ -1201,7 +1233,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-   <update id="updateByExampleSelective" parameterType="map">
+  <update id="updateByExampleSelective" parameterType="map">
     update HUDH_LCLJ_BASE
     <trim prefix="set" suffixOverrides=",">
       <if test="id != null">
@@ -1609,6 +1641,18 @@
       <if test="bbrightdown != null">
         bbrightdown=#{bbrightdown,jdbcType=VARCHAR},
       </if>
+      <if test="templantleftup != null">
+        templantleftup=#{templantleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="templantrightup != null">
+        templantrightup=#{templantrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="templantleftdown != null">
+        templantleftdown=#{templantleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="templantrightdown != null">
+        templantrightdown=#{templantrightdown,jdbcType=VARCHAR}
+      </if>
     </trim>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -1617,140 +1661,144 @@
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update HUDH_LCLJ_BASE
     set id = #{id,jdbcType=VARCHAR},
-      usercode = #{usercode,jdbcType=VARCHAR},
-      username = #{username,jdbcType=VARCHAR},
-      LcljId = #{lcljid,jdbcType=VARCHAR},
-      LcljNum = #{lcljnum,jdbcType=VARCHAR},
-      createtime = #{createtime,jdbcType=VARCHAR},
-      createuser = #{createuser,jdbcType=VARCHAR},
-      organization = #{organization,jdbcType=VARCHAR},
-      consultation_opinion = #{consultationOpinion,jdbcType=VARCHAR},
-      promise = #{promise,jdbcType=VARCHAR},
-      patienttime = #{patienttime,jdbcType=VARCHAR},
-      operationdoctortime = #{operationdoctortime,jdbcType=VARCHAR},
-      doctortime = #{doctortime,jdbcType=VARCHAR},
-      patienttime1 = #{patienttime1,jdbcType=VARCHAR},
-      extractionleftup = #{extractionleftup,jdbcType=VARCHAR},
-      extractionrightup = #{extractionrightup,jdbcType=VARCHAR},
-      extractionleftdown = #{extractionleftdown,jdbcType=VARCHAR},
-      extractionrightdown = #{extractionrightdown,jdbcType=VARCHAR},
-      dentiumleftup = #{dentiumleftup,jdbcType=VARCHAR},
-      dentiumrightup = #{dentiumrightup,jdbcType=VARCHAR},
-      dentiumleftdown = #{dentiumleftdown,jdbcType=VARCHAR},
-      dentiumrightdown = #{dentiumrightdown,jdbcType=VARCHAR},
-      hiossenleftup = #{hiossenleftup,jdbcType=VARCHAR},
-      hiossenrightup = #{hiossenrightup,jdbcType=VARCHAR},
-      hiossenleftdown = #{hiossenleftdown,jdbcType=VARCHAR},
-      hiossenrightdown = #{hiossenrightdown,jdbcType=VARCHAR},
-      icxleftup = #{icxleftup,jdbcType=VARCHAR},
-      icxrightup = #{icxrightup,jdbcType=VARCHAR},
-      icxleftdown = #{icxleftdown,jdbcType=VARCHAR},
-      icxrightdown = #{icxrightdown,jdbcType=VARCHAR},
-      camlogleftup = #{camlogleftup,jdbcType=VARCHAR},
-      camlogrightup = #{camlogrightup,jdbcType=VARCHAR},
-      camlogleftdown = #{camlogleftdown,jdbcType=VARCHAR},
-      camlogrightdown = #{camlogrightdown,jdbcType=VARCHAR},
-      zimmerleftup = #{zimmerleftup,jdbcType=VARCHAR},
-      zimmerrightup = #{zimmerrightup,jdbcType=VARCHAR},
-      zimmerleftdown = #{zimmerleftdown,jdbcType=VARCHAR},
-      zimmerrightdown = #{zimmerrightdown,jdbcType=VARCHAR},
-      nobelccleftup = #{nobelccleftup,jdbcType=VARCHAR},
-      nobelccrightup = #{nobelccrightup,jdbcType=VARCHAR},
-      nobelccleftdown = #{nobelccleftdown,jdbcType=VARCHAR},
-      nobelccrightdown = #{nobelccrightdown,jdbcType=VARCHAR},
-      nobelactiveleftup = #{nobelactiveleftup,jdbcType=VARCHAR},
-      nobelactiverightup = #{nobelactiverightup,jdbcType=VARCHAR},
-      nobelactiveleftdown = #{nobelactiveleftdown,jdbcType=VARCHAR},
-      nobelactiverightdown = #{nobelactiverightdown,jdbcType=VARCHAR},
-      pmcleftup = #{pmcleftup,jdbcType=VARCHAR},
-      pmcrightup = #{pmcrightup,jdbcType=VARCHAR},
-      pmcleftdown = #{pmcleftdown,jdbcType=VARCHAR},
-      pmcrightdown = #{pmcrightdown,jdbcType=VARCHAR},
-      temporarytleftup = #{temporarytleftup,jdbcType=VARCHAR},
-      temporarytrightup = #{temporarytrightup,jdbcType=VARCHAR},
-      temporarytleftdown = #{temporarytleftdown,jdbcType=VARCHAR},
-      temporarytrightdown = #{temporarytrightdown,jdbcType=VARCHAR},
-      commonleftup = #{commonleftup,jdbcType=VARCHAR},
-      commonrightup = #{commonrightup,jdbcType=VARCHAR},
-      commonleftdown = #{commonleftdown,jdbcType=VARCHAR},
-      commonrightdown = #{commonrightdown,jdbcType=VARCHAR},
-      instantlyleftup = #{instantlyleftup,jdbcType=VARCHAR},
-      instantlyrightup = #{instantlyrightup,jdbcType=VARCHAR},
-      instantlyleftdown = #{instantlyleftdown,jdbcType=VARCHAR},
-      instantlyrightdown = #{instantlyrightdown,jdbcType=VARCHAR},
-      atonceleftup = #{atonceleftup,jdbcType=VARCHAR},
-      atoncerightup = #{atoncerightup,jdbcType=VARCHAR},
-      atonceleftdown = #{atonceleftdown,jdbcType=VARCHAR},
-      atoncerightdown = #{atoncerightdown,jdbcType=VARCHAR},
-      imagingleftup = #{imagingleftup,jdbcType=VARCHAR},
-      imagingrightup = #{imagingrightup,jdbcType=VARCHAR},
-      imagingleftdown = #{imagingleftdown,jdbcType=VARCHAR},
-      imagingrightdown = #{imagingrightdown,jdbcType=VARCHAR},
-      lianguanleftup = #{lianguanleftup,jdbcType=VARCHAR},
-      lianguanrightup = #{lianguanrightup,jdbcType=VARCHAR},
-      lianguanleftdown = #{lianguanleftdown,jdbcType=VARCHAR},
-      lianguanrightdown = #{lianguanrightdown,jdbcType=VARCHAR},
-      preoperatives = #{preoperatives,jdbcType=VARCHAR},
-      bicon = #{bicon,jdbcType=VARCHAR},
-      abutment = #{abutment,jdbcType=VARCHAR},
-      paraoperative = #{paraoperative,jdbcType=VARCHAR},
-      modus = #{modus,jdbcType=VARCHAR},
-      repair = #{repair,jdbcType=VARCHAR},
-      alternative = #{alternative,jdbcType=VARCHAR},
-      clinical = #{clinical,jdbcType=VARCHAR},
-      treatmentparts1 = #{treatmentparts1,jdbcType=LONGVARCHAR},
-      treatmentparts2 = #{treatmentparts2,jdbcType=LONGVARCHAR},
-      treatmentparts3 = #{treatmentparts3,jdbcType=LONGVARCHAR},
-      requirerestor = #{requirerestor,jdbcType=LONGVARCHAR},
-      bonemeal = #{bonemeal,jdbcType=VARCHAR},
-      ossein = #{ossein,jdbcType=VARCHAR},
-      periost = #{periost,jdbcType=VARCHAR},
-      one = #{one,jdbcType=VARCHAR},
-      pathtype = #{pathtype,jdbcType=VARCHAR},
-      deep = #{deep,jdbcType=VARCHAR},
-      appointmenttime = #{appointmenttime,jdbcType=VARCHAR},
-      wzy = #{wzy,jdbcType=VARCHAR},
-      accord = #{accord,jdbcType=VARCHAR},
-      operationDoctorsignature = #{operationDoctorsignature,jdbcType=VARCHAR},
-      repairDoctorsignature = #{repairDoctorsignature,jdbcType=VARCHAR},
-      patientsignature = #{patientsignature,jdbcType=VARCHAR},
-      patientsignature1 = #{patientsignature1,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR},
-      onedentalimplantleftup = #{onedentalimplantleftup,jdbcType=VARCHAR},
-      onedentalimplantrightup = #{onedentalimplantrightup,jdbcType=VARCHAR},
-      onedentalimplantleftdown = #{onedentalimplantleftdown,jdbcType=VARCHAR},
-      onedentalimplantrightdown = #{onedentalimplantrightdown,jdbcType=VARCHAR},
-      twodentalimplantleftup = #{twodentalimplantleftup,jdbcType=VARCHAR},
-      twodentalimplantrightup = #{twodentalimplantrightup,jdbcType=VARCHAR},
-      twodentalimplantleftdown = #{twodentalimplantleftdown,jdbcType=VARCHAR},
-      twodentalimplantrightdown = #{twodentalimplantrightdown,jdbcType=VARCHAR},
-      dentalimplantleftup = #{dentalimplantleftup,jdbcType=VARCHAR},
-      dentalimplantrightup = #{dentalimplantrightup,jdbcType=VARCHAR},
-      dentalimplantleftdown = #{dentalimplantleftdown,jdbcType=VARCHAR},
-      dentalimplantrightdown = #{dentalimplantrightdown,jdbcType=VARCHAR},
-      entiretyrepairleftup = #{entiretyrepairleftup,jdbcType=VARCHAR},
-      entiretyrepairrightup = #{entiretyrepairrightup,jdbcType=VARCHAR},
-      entiretyrepairleftdown = #{entiretyrepairleftdown,jdbcType=VARCHAR},
-      entiretyrepairrightdown = #{entiretyrepairrightdown,jdbcType=VARCHAR},
-      plantingsystemselect = #{plantingsystemselect,jdbcType=VARCHAR},
-      plantextureselect = #{plantextureselect,jdbcType=VARCHAR},
-      repair_planguan = #{repairPlanguan,jdbcType=VARCHAR},
-      twotoothextractionleftup= #{twotoothextractionleftup,jdbcType=VARCHAR},
-      twotoothextractionrightup=#{twotoothextractionrightup,jdbcType=VARCHAR},
-      twotoothextractionleftdown=#{twotoothextractionleftdown,jdbcType=VARCHAR},
-      twotoothextractionrightdown=#{twotoothextractionrightdown,jdbcType=VARCHAR},
-      threetoothextractionleftup=#{threetoothextractionleftup,jdbcType=VARCHAR},
-      threetoothextractionrightup=#{threetoothextractionrightup,jdbcType=VARCHAR},
-      threetoothextractionleftdown=#{threetoothextractionleftdown,jdbcType=VARCHAR},
-      threetoothextractionrightdown=#{threetoothextractionrightdown,jdbcType=VARCHAR},
-      etleftup=#{etleftup,jdbcType=VARCHAR},
-      etrightup=#{etrightup,jdbcType=VARCHAR},
-      etleftdown=#{etleftdown,jdbcType=VARCHAR},
-      etrightdown=#{etrightdown,jdbcType=VARCHAR},
-      bbleftup=#{bbleftup,jdbcType=VARCHAR},
-      bbrightup=#{bbrightup,jdbcType=VARCHAR},
-      bbleftdown=#{bbleftdown,jdbcType=VARCHAR},
-      bbrightdown=#{bbrightdown,jdbcType=VARCHAR},
+    usercode = #{usercode,jdbcType=VARCHAR},
+    username = #{username,jdbcType=VARCHAR},
+    LcljId = #{lcljid,jdbcType=VARCHAR},
+    LcljNum = #{lcljnum,jdbcType=VARCHAR},
+    createtime = #{createtime,jdbcType=VARCHAR},
+    createuser = #{createuser,jdbcType=VARCHAR},
+    organization = #{organization,jdbcType=VARCHAR},
+    consultation_opinion = #{consultationOpinion,jdbcType=VARCHAR},
+    promise = #{promise,jdbcType=VARCHAR},
+    patienttime = #{patienttime,jdbcType=VARCHAR},
+    operationdoctortime = #{operationdoctortime,jdbcType=VARCHAR},
+    doctortime = #{doctortime,jdbcType=VARCHAR},
+    patienttime1 = #{patienttime1,jdbcType=VARCHAR},
+    extractionleftup = #{extractionleftup,jdbcType=VARCHAR},
+    extractionrightup = #{extractionrightup,jdbcType=VARCHAR},
+    extractionleftdown = #{extractionleftdown,jdbcType=VARCHAR},
+    extractionrightdown = #{extractionrightdown,jdbcType=VARCHAR},
+    dentiumleftup = #{dentiumleftup,jdbcType=VARCHAR},
+    dentiumrightup = #{dentiumrightup,jdbcType=VARCHAR},
+    dentiumleftdown = #{dentiumleftdown,jdbcType=VARCHAR},
+    dentiumrightdown = #{dentiumrightdown,jdbcType=VARCHAR},
+    hiossenleftup = #{hiossenleftup,jdbcType=VARCHAR},
+    hiossenrightup = #{hiossenrightup,jdbcType=VARCHAR},
+    hiossenleftdown = #{hiossenleftdown,jdbcType=VARCHAR},
+    hiossenrightdown = #{hiossenrightdown,jdbcType=VARCHAR},
+    icxleftup = #{icxleftup,jdbcType=VARCHAR},
+    icxrightup = #{icxrightup,jdbcType=VARCHAR},
+    icxleftdown = #{icxleftdown,jdbcType=VARCHAR},
+    icxrightdown = #{icxrightdown,jdbcType=VARCHAR},
+    camlogleftup = #{camlogleftup,jdbcType=VARCHAR},
+    camlogrightup = #{camlogrightup,jdbcType=VARCHAR},
+    camlogleftdown = #{camlogleftdown,jdbcType=VARCHAR},
+    camlogrightdown = #{camlogrightdown,jdbcType=VARCHAR},
+    zimmerleftup = #{zimmerleftup,jdbcType=VARCHAR},
+    zimmerrightup = #{zimmerrightup,jdbcType=VARCHAR},
+    zimmerleftdown = #{zimmerleftdown,jdbcType=VARCHAR},
+    zimmerrightdown = #{zimmerrightdown,jdbcType=VARCHAR},
+    nobelccleftup = #{nobelccleftup,jdbcType=VARCHAR},
+    nobelccrightup = #{nobelccrightup,jdbcType=VARCHAR},
+    nobelccleftdown = #{nobelccleftdown,jdbcType=VARCHAR},
+    nobelccrightdown = #{nobelccrightdown,jdbcType=VARCHAR},
+    nobelactiveleftup = #{nobelactiveleftup,jdbcType=VARCHAR},
+    nobelactiverightup = #{nobelactiverightup,jdbcType=VARCHAR},
+    nobelactiveleftdown = #{nobelactiveleftdown,jdbcType=VARCHAR},
+    nobelactiverightdown = #{nobelactiverightdown,jdbcType=VARCHAR},
+    pmcleftup = #{pmcleftup,jdbcType=VARCHAR},
+    pmcrightup = #{pmcrightup,jdbcType=VARCHAR},
+    pmcleftdown = #{pmcleftdown,jdbcType=VARCHAR},
+    pmcrightdown = #{pmcrightdown,jdbcType=VARCHAR},
+    temporarytleftup = #{temporarytleftup,jdbcType=VARCHAR},
+    temporarytrightup = #{temporarytrightup,jdbcType=VARCHAR},
+    temporarytleftdown = #{temporarytleftdown,jdbcType=VARCHAR},
+    temporarytrightdown = #{temporarytrightdown,jdbcType=VARCHAR},
+    commonleftup = #{commonleftup,jdbcType=VARCHAR},
+    commonrightup = #{commonrightup,jdbcType=VARCHAR},
+    commonleftdown = #{commonleftdown,jdbcType=VARCHAR},
+    commonrightdown = #{commonrightdown,jdbcType=VARCHAR},
+    instantlyleftup = #{instantlyleftup,jdbcType=VARCHAR},
+    instantlyrightup = #{instantlyrightup,jdbcType=VARCHAR},
+    instantlyleftdown = #{instantlyleftdown,jdbcType=VARCHAR},
+    instantlyrightdown = #{instantlyrightdown,jdbcType=VARCHAR},
+    atonceleftup = #{atonceleftup,jdbcType=VARCHAR},
+    atoncerightup = #{atoncerightup,jdbcType=VARCHAR},
+    atonceleftdown = #{atonceleftdown,jdbcType=VARCHAR},
+    atoncerightdown = #{atoncerightdown,jdbcType=VARCHAR},
+    imagingleftup = #{imagingleftup,jdbcType=VARCHAR},
+    imagingrightup = #{imagingrightup,jdbcType=VARCHAR},
+    imagingleftdown = #{imagingleftdown,jdbcType=VARCHAR},
+    imagingrightdown = #{imagingrightdown,jdbcType=VARCHAR},
+    lianguanleftup = #{lianguanleftup,jdbcType=VARCHAR},
+    lianguanrightup = #{lianguanrightup,jdbcType=VARCHAR},
+    lianguanleftdown = #{lianguanleftdown,jdbcType=VARCHAR},
+    lianguanrightdown = #{lianguanrightdown,jdbcType=VARCHAR},
+    preoperatives = #{preoperatives,jdbcType=VARCHAR},
+    bicon = #{bicon,jdbcType=VARCHAR},
+    abutment = #{abutment,jdbcType=VARCHAR},
+    paraoperative = #{paraoperative,jdbcType=VARCHAR},
+    modus = #{modus,jdbcType=VARCHAR},
+    repair = #{repair,jdbcType=VARCHAR},
+    alternative = #{alternative,jdbcType=VARCHAR},
+    clinical = #{clinical,jdbcType=VARCHAR},
+    treatmentparts1 = #{treatmentparts1,jdbcType=LONGVARCHAR},
+    treatmentparts2 = #{treatmentparts2,jdbcType=LONGVARCHAR},
+    treatmentparts3 = #{treatmentparts3,jdbcType=LONGVARCHAR},
+    requirerestor = #{requirerestor,jdbcType=LONGVARCHAR},
+    bonemeal = #{bonemeal,jdbcType=VARCHAR},
+    ossein = #{ossein,jdbcType=VARCHAR},
+    periost = #{periost,jdbcType=VARCHAR},
+    one = #{one,jdbcType=VARCHAR},
+    pathtype = #{pathtype,jdbcType=VARCHAR},
+    deep = #{deep,jdbcType=VARCHAR},
+    appointmenttime = #{appointmenttime,jdbcType=VARCHAR},
+    wzy = #{wzy,jdbcType=VARCHAR},
+    accord = #{accord,jdbcType=VARCHAR},
+    operationDoctorsignature = #{operationDoctorsignature,jdbcType=VARCHAR},
+    repairDoctorsignature = #{repairDoctorsignature,jdbcType=VARCHAR},
+    patientsignature = #{patientsignature,jdbcType=VARCHAR},
+    patientsignature1 = #{patientsignature1,jdbcType=VARCHAR},
+    status = #{status,jdbcType=VARCHAR},
+    onedentalimplantleftup = #{onedentalimplantleftup,jdbcType=VARCHAR},
+    onedentalimplantrightup = #{onedentalimplantrightup,jdbcType=VARCHAR},
+    onedentalimplantleftdown = #{onedentalimplantleftdown,jdbcType=VARCHAR},
+    onedentalimplantrightdown = #{onedentalimplantrightdown,jdbcType=VARCHAR},
+    twodentalimplantleftup = #{twodentalimplantleftup,jdbcType=VARCHAR},
+    twodentalimplantrightup = #{twodentalimplantrightup,jdbcType=VARCHAR},
+    twodentalimplantleftdown = #{twodentalimplantleftdown,jdbcType=VARCHAR},
+    twodentalimplantrightdown = #{twodentalimplantrightdown,jdbcType=VARCHAR},
+    dentalimplantleftup = #{dentalimplantleftup,jdbcType=VARCHAR},
+    dentalimplantrightup = #{dentalimplantrightup,jdbcType=VARCHAR},
+    dentalimplantleftdown = #{dentalimplantleftdown,jdbcType=VARCHAR},
+    dentalimplantrightdown = #{dentalimplantrightdown,jdbcType=VARCHAR},
+    entiretyrepairleftup = #{entiretyrepairleftup,jdbcType=VARCHAR},
+    entiretyrepairrightup = #{entiretyrepairrightup,jdbcType=VARCHAR},
+    entiretyrepairleftdown = #{entiretyrepairleftdown,jdbcType=VARCHAR},
+    entiretyrepairrightdown = #{entiretyrepairrightdown,jdbcType=VARCHAR},
+    plantingsystemselect = #{plantingsystemselect,jdbcType=VARCHAR},
+    plantextureselect = #{plantextureselect,jdbcType=VARCHAR},
+    repair_planguan = #{repairPlanguan,jdbcType=VARCHAR},
+    twotoothextractionleftup= #{twotoothextractionleftup,jdbcType=VARCHAR},
+    twotoothextractionrightup=#{twotoothextractionrightup,jdbcType=VARCHAR},
+    twotoothextractionleftdown=#{twotoothextractionleftdown,jdbcType=VARCHAR},
+    twotoothextractionrightdown=#{twotoothextractionrightdown,jdbcType=VARCHAR},
+    threetoothextractionleftup=#{threetoothextractionleftup,jdbcType=VARCHAR},
+    threetoothextractionrightup=#{threetoothextractionrightup,jdbcType=VARCHAR},
+    threetoothextractionleftdown=#{threetoothextractionleftdown,jdbcType=VARCHAR},
+    threetoothextractionrightdown=#{threetoothextractionrightdown,jdbcType=VARCHAR},
+    etleftup=#{etleftup,jdbcType=VARCHAR},
+    etrightup=#{etrightup,jdbcType=VARCHAR},
+    etleftdown=#{etleftdown,jdbcType=VARCHAR},
+    etrightdown=#{etrightdown,jdbcType=VARCHAR},
+    bbleftup=#{bbleftup,jdbcType=VARCHAR},
+    bbrightup=#{bbrightup,jdbcType=VARCHAR},
+    bbleftdown=#{bbleftdown,jdbcType=VARCHAR},
+    bbrightdown=#{bbrightdown,jdbcType=VARCHAR},
+    templantleftup=#{templantleftup,jdbcType=VARCHAR},
+    templantrightup=#{templantrightup,jdbcType=VARCHAR},
+    templantleftdown=#{templantleftdown,jdbcType=VARCHAR},
+    templantrightdown=#{templantrightdown,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -2140,9 +2188,21 @@
       <if test="bbrightdown != null">
         bbrightdown=#{bbrightdown,jdbcType=VARCHAR},
       </if>
+      <if test="templantleftup != null">
+        templantleftup=#{templantleftup,jdbcType=VARCHAR},
+      </if>
+      <if test="templantrightup != null">
+        templantrightup=#{templantrightup,jdbcType=VARCHAR},
+      </if>
+      <if test="templantleftdown != null">
+        templantleftdown=#{templantleftdown,jdbcType=VARCHAR},
+      </if>
+      <if test="templantrightdown != null">
+        templantrightdown=#{templantrightdown,jdbcType=VARCHAR}
+      </if>
     </trim>
     <if test="id != null">
-     where id = #{id,jdbcType=VARCHAR}
+      where id = #{id,jdbcType=VARCHAR}
     </if>
   </update>
 

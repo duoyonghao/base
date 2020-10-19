@@ -76,6 +76,13 @@
     <div class="formBox">
         <form id="form1">
             <div class="kv">
+                <label>原客服</label>
+                <div class="kv-v">
+                    <input type="hidden" name="oldaskperson" id="oldaskperson"  />
+                    <input type="text" class="greyInput"  id="oldaskpersonDesc" name="oldaskpersonDesc"  readonly  ></input>
+                </div>
+            </div>
+            <div class="kv">
                 <label>客服人员</label>
                 <div class="kv-v">
                     <select id="kf_select" data-live-search="true">
@@ -113,6 +120,7 @@
     var contextPath = "<%=contextPath %>";
     var onclickrowOobj = window.parent.onclickrowOobj;
     $(function () {
+        $("#oldaskpersonDesc").val(onclickrowOobj.kefuname);
         //初始化咨询师下拉框
         initSysUserByDeptId($("#kf_select"), "consumer", "");
         $('#kf_select').selectpicker({});

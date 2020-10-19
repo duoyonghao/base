@@ -661,15 +661,7 @@
                                     <li style="width:14%;">
                                         <!-- 选项框 -->
                                         <div class="zl_optiondiv">
-                                            <input type="checkbox" value="ICX" name="implantsystem" id="implantsystemB"
-                                                   style="vertical-align: text-bottom;"/>
-                                            <label for="implantsystemB">ICX</label>
-                                        </div>
-                                    </li>
-                                    <li style="width:14%;">
-                                        <!-- 选项框 -->
-                                        <div class="zl_optiondiv">
-                                            <input type="checkbox" value="Templant" name="implantsystem" id="implantsystemB"
+                                            <input type="checkbox" value="templant" name="implantsystem" id="Templant"
                                                    style="vertical-align: text-bottom;"/>
                                             <label for="implantsystemB">Templant</label>
                                         </div>
@@ -682,14 +674,14 @@
                                             <label for="implantsystemC">camlog</label>
                                         </div>
                                     </li>
-<%--                                    <li style="width:12%;">--%>
-<%--                                        <!-- 选项框 -->--%>
-<%--                                        <div class="zl_optiondiv">--%>
-<%--                                            <input type="checkbox" value="DT" name="implantsystem" id="implantsystemD"--%>
-<%--                                                   style="vertical-align: text-bottom;"/>--%>
-<%--                                            <label for="implantsystemD">DT</label>--%>
-<%--                                        </div>--%>
-<%--                                    </li>--%>
+                                    <%--                                    <li style="width:12%;">--%>
+                                    <%--                                        <!-- 选项框 -->--%>
+                                    <%--                                        <div class="zl_optiondiv">--%>
+                                    <%--                                            <input type="checkbox" value="DT" name="implantsystem" id="implantsystemD"--%>
+                                    <%--                                                   style="vertical-align: text-bottom;"/>--%>
+                                    <%--                                            <label for="implantsystemD">DT</label>--%>
+                                    <%--                                        </div>--%>
+                                    <%--                                    </li>--%>
                                     <li style="width:14%;">
                                         <!-- 选项框 -->
                                         <div class="zl_optiondiv">
@@ -742,6 +734,14 @@
                                         <div class="zl_optiondiv">
                                             <input type="checkbox" value="B&B" name="implantsystem" id="B&B" style="vertical-align: text-bottom;"/>
                                             <label for="B&B">B&B</label>
+                                        </div>
+                                    </li>
+                                    <li id="icxli" style="width:14%;">
+                                        <!-- 选项框 -->
+                                        <div class="zl_optiondiv">
+                                            <input type="checkbox" value="ICX" name="implantsystem" id="implantsystemB"
+                                                   style="vertical-align: text-bottom;"/>
+                                            <label for="implantsystemB">ICX</label>
                                         </div>
                                     </li>
                                     <li id="implantsystemotherDiv" style="width:20%;">
@@ -1441,7 +1441,7 @@
         if (!doctorTime) {
             $("#doctortime").css('display', 'none')
         }
-
+        $("#icxli").css('display', 'none')
 
         bdhtml = window.document.body.innerHTML;
         sprnstr = "<!--startprint-->";

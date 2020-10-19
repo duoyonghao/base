@@ -61,6 +61,14 @@ public class HudhLcljBase {
 
     private String icxrightdown;
 
+    private String templantleftup;
+
+    private String templantrightup;
+
+    private String templantleftdown;
+
+    private String templantrightdown;
+
     private String camlogleftup;
 
     private String camlogrightup;
@@ -1354,5 +1362,37 @@ public class HudhLcljBase {
 
     public void setBbrightdown(String bbrightdown) {
         this.bbrightdown = bbrightdown;
+    }
+
+    public String getTemplantleftup() {
+        return templantleftup;
+    }
+
+    public void setTemplantleftup(String templantleftup) {
+        this.templantleftup = templantleftup;
+    }
+
+    public String getTemplantrightup() {
+        return templantrightup;
+    }
+
+    public void setTemplantrightup(String templantrightup) {
+        this.templantrightup = templantrightup;
+    }
+
+    public String getTemplantleftdown() {
+        return templantleftdown;
+    }
+
+    public void setTemplantleftdown(String templantleftdown) {
+        this.templantleftdown = templantleftdown;
+    }
+
+    public String getTemplantrightdown() {
+        return templantrightdown;
+    }
+
+    public void setTemplantrightdown(String templantrightdown) {
+        this.templantrightdown = templantrightdown;
     }
 }

@@ -286,9 +286,9 @@ public class LcljTrackDao {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<KqdsReg> findRegListByBlcode(Map<String,String> map)  throws Exception {
+	public List<JSONObject> findRegListByBlcode(Map<String,String> map)  throws Exception {
 		@SuppressWarnings("unchecked")
-		List<KqdsReg> list = (List<KqdsReg>) dao.findForList("KQDS_REG.selectRegByusercode", map);
+		List<JSONObject> list = (List<JSONObject>) dao.findForList("KQDS_REG.selectRegByusercode", map);
 		return list;
 	}
 	

@@ -2051,8 +2051,8 @@
             title: '患者建档',
             shadeClose: false,
             shade: 0.6,
-            area: ['740px', '90%'],
-            content: contextPath + '/KqdsUserdocumentMergeRecordAct/toHzjd_NetPlantDept.act'
+            area: ['740px', '90%'],//KqdsUserdocumentMergeRecordAct/toHzjd_NetPlantDept.act
+            content: contextPath + '/KQDS_UserDocumentAct/toHzjd_zxzl.act'
         });
     }
 

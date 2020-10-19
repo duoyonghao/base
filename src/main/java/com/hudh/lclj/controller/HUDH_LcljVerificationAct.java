@@ -16,6 +16,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.hudh.lclj.service.ILcljOperationNodeInforService;
 import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,6 +52,9 @@ public class HUDH_LcljVerificationAct {
 	
 	@Autowired
 	private HUDH_LcljVerificationSheetService logic;
+
+	@Autowired
+	private ILcljOperationNodeInforService inforService;
 	
 	@RequestMapping(value = "/toRemindAssessor.act")
 	public ModelAndView toRemindAssessor(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -133,12 +137,27 @@ public class HUDH_LcljVerificationAct {
 			if(!YZUtility.isNullorEmpty(status)){
 				map.put("status", status);
 			}
+			//查询审核
 			List<JSONObject> list = logic.getCheckRecord(map, person);
-			for (JSONObject jsonO : list) {
-				String nodename = jsonO.getString("nodename");
-				String nodelimit = jsonO.getString("nodelimit");
-				jsonO.put("name", nodename + "(" + nodelimit + ")");
+			//查询备注
+			if(list.size() > 0){
+				String orderNumber=list.get(0).getString("order_number");
+				map.put("order_number",orderNumber);
+				List<JSONObject> remarkList = inforService.findOperationNodeInforByCancelTimeHospital(map);
+				for (JSONObject jsonO : list) {
+					String nodename = jsonO.getString("nodename");
+					String nodelimit = jsonO.getString("nodelimit");
+					jsonO.put("name", nodename + "(" + nodelimit + ")");
+					if(remarkList.size() > 0){
+						for (JSONObject json : remarkList) {
+							if(jsonO.getString("nodeid").equals(json.getString("nodeid"))&&jsonO.getString("nodename").equals(json.getString("nodename"))){
+								jsonO.put("lcljremark", json.getString("remark"));
+							}
+						}
+					}
+				}
 			}
+
 			YZUtility.RETURN_LIST(list, response, logger);
 		} catch (Exception e) {
 			// TODO: handle exception

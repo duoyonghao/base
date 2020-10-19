@@ -1001,7 +1001,7 @@
                 shadeClose: false,
                 shade: 0.6,
                 area: ['90%', '90%'],
-                content: contextPath + '/KQDS_UserDocumentAct/toZzIndex.act?usercode=' + onclickrowOobj.usercode
+                content: contextPath + '/KQDS_UserDocumentAct/toZzAddWin.act?usercode=' + onclickrowOobj.usercode
             });
         } else {//批量转诊咨询
             layer.open({

@@ -22,6 +22,10 @@ public class LcljWorklist {
 	private String viewUrl; //当前节点的操作路径
 	private String flowCode; //流程code
 	private Integer overdue; //是否超期 0：否  1：是
+
+	private String dateDue; //到期提醒时间
+	private String repairPhysician; //修复医生 根据医生和到期时间进行节点的提醒
+
 	public String getId() {
 		return id;
 	}
@@ -117,5 +121,21 @@ public class LcljWorklist {
 	}
 	public void setOverdue(Integer overdue) {
 		this.overdue = overdue;
+	}
+
+	public String getDateDue() {
+		return dateDue;
+	}
+
+	public void setDateDue(String dateDue) {
+		this.dateDue = dateDue;
+	}
+
+	public String getRepairPhysician() {
+		return repairPhysician;
+	}
+
+	public void setRepairPhysician(String repairPhysician) {
+		this.repairPhysician = repairPhysician;
 	}
 }

@@ -247,46 +247,22 @@
                             <li>
                                 <!-- 上下牙位图 -->
                                 <div class="toothMapdiv_B">
-                                    <span>ICX</span>
-                                    <ul class="tooth_map">
-                                        <li>
-                                            <input id="icxleftup" onblur="TextLengthCheck(this.id,10);"
-                                                   class="tooth_input" type="text">
-                                        </li>
-                                        <li>
-                                            <input id="icxrightup" onblur="TextLengthCheck(this.id,10);"
-                                                   class="tooth_input" type="text">
-                                        </li>
-                                        <li>
-                                            <input id="icxleftdown" onblur="TextLengthCheck(this.id,10);"
-                                                   class="tooth_input" type="text">
-                                        </li>
-                                        <li>
-                                            <input id="icxrightdown" onblur="TextLengthCheck(this.id,10);"
-                                                   class="tooth_input" type="text">
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <!-- 上下牙位图 -->
-                                <div class="toothMapdiv_B">
                                     <span>Templant</span>
                                     <ul class="tooth_map">
                                         <li>
-                                            <input id="icxleftup" onblur="TextLengthCheck(this.id,10);"
+                                            <input id="templantleftup" onblur="TextLengthCheck(this.id,10);"
                                                    class="tooth_input" type="text">
                                         </li>
                                         <li>
-                                            <input id="icxrightup" onblur="TextLengthCheck(this.id,10);"
+                                            <input id="templantrightup" onblur="TextLengthCheck(this.id,10);"
                                                    class="tooth_input" type="text">
                                         </li>
                                         <li>
-                                            <input id="icxleftdown" onblur="TextLengthCheck(this.id,10);"
+                                            <input id="templantleftdown" onblur="TextLengthCheck(this.id,10);"
                                                    class="tooth_input" type="text">
                                         </li>
                                         <li>
-                                            <input id="icxrightdown" onblur="TextLengthCheck(this.id,10);"
+                                            <input id="templantrightdown" onblur="TextLengthCheck(this.id,10);"
                                                    class="tooth_input" type="text">
                                         </li>
                                     </ul>
@@ -455,6 +431,30 @@
                                         </li>
                                         <li>
                                             <input id="bbrightdown" onblur="TextLengthCheck(this.id,10);"
+                                                   class="tooth_input" type="text">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li id="icxli"><%-- style="pointer-events: none;" display: none;--%>
+                                <!-- 上下牙位图 -->
+                                <div class="toothMapdiv_B">
+                                    <span>ICX</span>
+                                    <ul class="tooth_map">
+                                        <li>
+                                            <input id="icxleftup" onblur="TextLengthCheck(this.id,10);"
+                                                   class="tooth_input" type="text">
+                                        </li>
+                                        <li>
+                                            <input id="icxrightup" onblur="TextLengthCheck(this.id,10);"
+                                                   class="tooth_input" type="text">
+                                        </li>
+                                        <li>
+                                            <input id="icxleftdown" onblur="TextLengthCheck(this.id,10);"
+                                                   class="tooth_input" type="text">
+                                        </li>
+                                        <li>
+                                            <input id="icxrightdown" onblur="TextLengthCheck(this.id,10);"
                                                    class="tooth_input" type="text">
                                         </li>
                                     </ul>
@@ -1030,85 +1030,85 @@
             }
         }
         getButtonAllCurPage(menuid);
-            /*var url = contextPath + '/HUDH_RepairSchemeConfirmAct/findRepairInforById.act';
-            $.ajax({
-                url: url,
-                type: "POST",
-                dataType: "json",
-                data: {
-                    id: id, //临床路径ID
-                    order_number: order_number
-                },
-                success: function (result) {
-                    //console.log(JSON.stringify(result)+"--------------添加成功后查询数据");
-                    //caseId=result.seqId;  //病历id
-                    var result;
-                    if (seqidFather) {
-                        for (var i = 0; i < result.length; i++) {
-                            if (seqidFather == result[i].seqId) {
-                                result = result[i];
-                            }
+        /*var url = contextPath + '/HUDH_RepairSchemeConfirmAct/findRepairInforById.act';
+        $.ajax({
+            url: url,
+            type: "POST",
+            dataType: "json",
+            data: {
+                id: id, //临床路径ID
+                order_number: order_number
+            },
+            success: function (result) {
+                //console.log(JSON.stringify(result)+"--------------添加成功后查询数据");
+                //caseId=result.seqId;  //病历id
+                var result;
+                if (seqidFather) {
+                    for (var i = 0; i < result.length; i++) {
+                        if (seqidFather == result[i].seqId) {
+                            result = result[i];
                         }
                     }
-                    caseId = seqidFather;  //修改病历id
-                    /!* 判断是否已经填写过内容 *!/
-                    if (result.id) {
-                        $("#consent_saveBtn").css("display", "none");//隐藏保存按钮
-                        $("#consent_updateBtn").css("display", "inline-block");//显示修改按钮
-                        //赋值
-                        for (var key in result) {
-                            //console.log(key+"-------------"+result[key]);
-                            $("#" + key).attr("value", result[key]);// 填框赋值
-                            $("#requirerestor").text(result["requirerestor"]);//textarea赋值
-                            $("#requirerestor").trigger("keyup");
-                            $("#replaceBox").text(result["requirerestor"]);//textarea替换框赋值
-                            if (result[key].indexOf(";") > 0) {
-                                var checkboxVal = result[key];//拼接多选框的值
-                                var checkboxValArr = checkboxVal.split(";");//将字符串转为数组
-                                for (var i = 0; i < checkboxValArr.length; i++) {
-                                    $("input[name=" + key + "]").each(function () {
-                                        if ($(this).val() == checkboxValArr[i]) {
-                                            $(this).attr("checked", "checked");
-                                        }
-                                    })
-                                }
-                            }
-                            //牙位图赋值
-                            if (result[key].indexOf(",") > 0) {
-                                var toothPlaceVal = result[key];//拼接多选框的值
-                                var toothPlaceValArr = toothPlaceVal.split(",");//将字符串转为数组
-                                var newtoothPlaceVal = toothPlaceValArr.join("");
-                                //console.log(newtoothPlaceVal+"---------去掉牙位图逗号");
-                                $("#" + key).attr("value", newtoothPlaceVal);// 填框赋值
-                            }
-                        }
-                        //$("input").attr("disabled","disabled");//查看信息的时候禁止在填写
-                        signature = result.operationdoctorsignature;
-                        if (signature != "") {
-                            $("#img").attr('src', signature);
-                            doctorstatus = false;
-                        } else {
-                            $("#img").attr('display', 'none');
-                        }
-                        repairSignature = result.repairdoctorsignature;
-                        if (repairSignature != "") {
-                            $("#repairImg").attr('src', repairSignature);
-                            repairdoctorstatus = false;
-                        } else {
-                            $("#repairImg").attr('display', 'none');
-                        }
-                        patientsignature = result.patientsignature;
-                        if (patientsignature != "") {
-                            $("#patientimg").attr('src', patientsignature);
-                            patientstatus = false;
-                        } else {
-                            $("#patientimg").attr('display', 'none');
-                        }
-                    }
-                    //获取当前页面所有按钮
-                    getButtonAllCurPage(menuid);
                 }
-            });*/
+                caseId = seqidFather;  //修改病历id
+                /!* 判断是否已经填写过内容 *!/
+                if (result.id) {
+                    $("#consent_saveBtn").css("display", "none");//隐藏保存按钮
+                    $("#consent_updateBtn").css("display", "inline-block");//显示修改按钮
+                    //赋值
+                    for (var key in result) {
+                        //console.log(key+"-------------"+result[key]);
+                        $("#" + key).attr("value", result[key]);// 填框赋值
+                        $("#requirerestor").text(result["requirerestor"]);//textarea赋值
+                        $("#requirerestor").trigger("keyup");
+                        $("#replaceBox").text(result["requirerestor"]);//textarea替换框赋值
+                        if (result[key].indexOf(";") > 0) {
+                            var checkboxVal = result[key];//拼接多选框的值
+                            var checkboxValArr = checkboxVal.split(";");//将字符串转为数组
+                            for (var i = 0; i < checkboxValArr.length; i++) {
+                                $("input[name=" + key + "]").each(function () {
+                                    if ($(this).val() == checkboxValArr[i]) {
+                                        $(this).attr("checked", "checked");
+                                    }
+                                })
+                            }
+                        }
+                        //牙位图赋值
+                        if (result[key].indexOf(",") > 0) {
+                            var toothPlaceVal = result[key];//拼接多选框的值
+                            var toothPlaceValArr = toothPlaceVal.split(",");//将字符串转为数组
+                            var newtoothPlaceVal = toothPlaceValArr.join("");
+                            //console.log(newtoothPlaceVal+"---------去掉牙位图逗号");
+                            $("#" + key).attr("value", newtoothPlaceVal);// 填框赋值
+                        }
+                    }
+                    //$("input").attr("disabled","disabled");//查看信息的时候禁止在填写
+                    signature = result.operationdoctorsignature;
+                    if (signature != "") {
+                        $("#img").attr('src', signature);
+                        doctorstatus = false;
+                    } else {
+                        $("#img").attr('display', 'none');
+                    }
+                    repairSignature = result.repairdoctorsignature;
+                    if (repairSignature != "") {
+                        $("#repairImg").attr('src', repairSignature);
+                        repairdoctorstatus = false;
+                    } else {
+                        $("#repairImg").attr('display', 'none');
+                    }
+                    patientsignature = result.patientsignature;
+                    if (patientsignature != "") {
+                        $("#patientimg").attr('src', patientsignature);
+                        patientstatus = false;
+                    } else {
+                        $("#patientimg").attr('display', 'none');
+                    }
+                }
+                //获取当前页面所有按钮
+                getButtonAllCurPage(menuid);
+            }
+        });*/
     }
     //获取url中的参数
     function getUrlParam(name) {
@@ -1247,6 +1247,10 @@
         var icxRightUp = $("#icxrightup").val();
         var icxLeftDown = $("#icxleftdown").val();
         var icxRightDown = $("#icxrightdown").val();
+        var templantLeftUp = $("#templantleftup").val();
+        var templantRightUp = $("#templantrightup").val();
+        var templantLeftDown = $("#templantleftdown").val();
+        var templantRightDown = $("#templantrightdown").val();
 //			var implantAssistantSurgery = showImplantAssistantSurgery();
         var nobelActiveLeftUp = $("#nobelactiveleftup").val();
         var nobelActiveRightUp = $("#nobelactiverightup").val();
@@ -1354,6 +1358,10 @@
             icxRightUp: icxRightUp,
             icxLeftDown: icxLeftDown,
             icxRightDown: icxRightDown,
+            templantLeftUp: templantLeftUp,
+            templantRightUp: templantRightUp,
+            templantLeftDown: templantLeftDown,
+            templantRightDown: templantRightDown,
             nobelActiveLeftUp: nobelActiveLeftUp,
             nobelActiveRightUp: nobelActiveRightUp,
             nobelActiveLeftDown: nobelActiveLeftDown,
@@ -1465,6 +1473,10 @@
         var icxRightUp = $("#icxrightup").val();
         var icxLeftDown = $("#icxleftdown").val();
         var icxRightDown = $("#icxrightdown").val();
+        var templantLeftUp = $("#templantleftup").val();
+        var templantRightUp = $("#templantrightup").val();
+        var templantLeftDown = $("#templantleftdown").val();
+        var templantRightDown = $("#templantrightdown").val();
 //			var implantAssistantSurgery = showImplantAssistantSurgery();
         var nobelActiveLeftUp = $("#nobelactiveleftup").val();
         var nobelActiveRightUp = $("#nobelactiverightup").val();
@@ -1572,6 +1584,10 @@
             icxRightUp: icxRightUp,
             icxLeftDown: icxLeftDown,
             icxRightDown: icxRightDown,
+            templantLeftUp: templantLeftUp,
+            templantRightUp: templantRightUp,
+            templantLeftDown: templantLeftDown,
+            templantRightDown: templantRightDown,
             nobelActiveLeftUp: nobelActiveLeftUp,
             nobelActiveRightUp: nobelActiveRightUp,
             nobelActiveLeftDown: nobelActiveLeftDown,
@@ -1751,6 +1767,7 @@
 
         $("#requirerestor").css("display", "none");
         $("#replaceBox").css("display", "block");
+        $("#icxli").css("display", "none");
         bdhtml = window.document.body.innerHTML;
         sprnstr = "<!--startprint-->";
         eprnstr = "<!--endprint-->";

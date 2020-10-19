@@ -180,7 +180,7 @@
 	}
 	#content #consent_signature>.signature_time>.signature_box{
 		width:100%;
-/* 		height:80px; */
+		/* 		height:80px; */
 	}
 	#content #consent_signature>.signature_time>.signature_box>span{
 		font-weight: bold;
@@ -200,13 +200,13 @@
 		margin-top: 40px;
 	}
 	#content .btns button{
-    	background-color: #00A6C0;
-    	font-weight: normal;
-    	color: white;
-    	border: 0px;
-    	border-radius: 5px;
-    	padding: 0px 20px;
-    	letter-spacing: 1px;
+		background-color: #00A6C0;
+		font-weight: normal;
+		color: white;
+		border: 0px;
+		border-radius: 5px;
+		padding: 0px 20px;
+		letter-spacing: 1px;
 	}
 	#content .btns #consent_saveBtn{
 		margin-right: 30px;
@@ -234,18 +234,18 @@
 		margin-bottom: 2%;
 	}
 	h2{
-    	margin-top: 0px; 
-     	margin-bottom: 0px; 
+		margin-top: 0px;
+		margin-bottom: 0px;
 	}
 	/* 	必填项 */
 	.colorRed {
-	    color: #d10c0c;
-	    font-size: 20px;
-	    margin-right: 5px;
+		color: #d10c0c;
+		font-size: 20px;
+		margin-right: 5px;
 	}
 	.inputheight{
 		height: 100%!important;
-		border: 1px solid #e5e5e5!important;		
+		border: 1px solid #e5e5e5!important;
 	}
 	.inputstyle{
 		vertical-align:text-bottom;
@@ -254,41 +254,41 @@
 		min-width: 120px;
 		font-size: 14px;
 		/* padding-right: 10px; */
-	    color: #757575;
-	    /* margin-top: 9px; */
-	    text-align: left;
-	    /* padding-left: 5px; */
-	    height: 30px;
-	    background-color: transparent; 
-	    /* border: 1px solid #c3c3c3; */
-	    /* vertical-align: middle; */
-	    -webkit-appearance: none;
-	    outline: none;
+		color: #757575;
+		/* margin-top: 9px; */
+		text-align: left;
+		/* padding-left: 5px; */
+		height: 30px;
+		background-color: transparent;
+		/* border: 1px solid #c3c3c3; */
+		/* vertical-align: middle; */
+		-webkit-appearance: none;
+		outline: none;
 	}
 	textarea{
 		min-height: auto!important;
 	}
 	/* 种植体系select */
 	.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
-		width: 180px; 
+		width: 180px;
 	}
 	.selectTag .btn-default{
 		height: 30px;
-	    line-height: 30px;
-	    font-size: 14px;
-	    padding: 0px 30px 0px 5px;
+		line-height: 30px;
+		font-size: 14px;
+		padding: 0px 30px 0px 5px;
 	}
 	/* 种植体系赋值 */
 	.plantingsystemselectText{
 		/* display: inline-block; */
 		display:none;
 		border-bottom: 1px solid black;
-	    min-width: 100px;
-	    height: 28px;
-	    line-height: 28px;
-	    font-size: 15px;
-	    vertical-align: middle;
-	    padding: 0px 8px;
+		min-width: 100px;
+		height: 28px;
+		line-height: 28px;
+		font-size: 15px;
+		vertical-align: middle;
+		padding: 0px 8px;
 	}
 	@page{
 		size:205mm 285mm;
@@ -309,7 +309,6 @@
 			<option value="韩国Osstem种植体">韩国Osstem种植体</option>
 			<option value="韩国Dentium种植体">韩国Dentium种植体</option>
 			<option value="美国HIOSSEN种植体">美国HIOSSEN种植体</option>
-			<option value="德国ICX种植体">德国ICX种植体</option>
 			<option value="德国Templant种植体">德国Templant种植体</option>
 			<option value="瑞典Nobel-Replace种植体">瑞典Nobel-Replace种植体</option>
 			<option value="瑞典Nobel-Active种植体">瑞典Nobel-Active种植体</option>
@@ -318,6 +317,7 @@
 			<option value="美国Zimmer">美国Zimmer</option>
 			<option value="意大利B&B种植体">意大利B&B种植体</option>
 			<option value="美国ET种植体">美国ET种植体</option>
+			<option value="德国ICX种植体">德国ICX种植体</option>
 		</select>
 		<!-- <span onblur="importTextLengthCheck(this.id,50);" id="plantingsystem" class="textAuto_element span" contenteditable="true"></span> --><font class="top">、<!-- 型号</font><span onblur="importTextLengthCheck(this.id,50);" id="modelnumber" class="textAuto_element span" contenteditable="true"> --></span><font class="top">首次种植牙位为</font>
 		<ul class="tooth_map">

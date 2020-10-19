@@ -16,7 +16,7 @@ public class LcljWorkListDao {
 	
 	/**
 	 * 创建流程
-	 * @param ykzzType
+	 * @param LcljWorklist
 	 * @return
 	 * @throws Exception
 	 */
@@ -26,7 +26,7 @@ public class LcljWorkListDao {
 	
 	/**
 	 * 根据临床路径编号查找当前实例下的待办
-	 * @param ykzzType
+	 * @param LcljWorklist
 	 * @return
 	 * @throws Exception
 	 */
@@ -38,7 +38,7 @@ public class LcljWorkListDao {
 	
 	/**
 	 * 根据编号更新流程信息（提交下一步时待办更新成已办）
-	 * @param ykzzType
+	 * @param LcljWorklist
 	 * @return
 	 * @throws Exception
 	 */
@@ -48,7 +48,7 @@ public class LcljWorkListDao {
 	
 	/**
 	 * 根据临床路径编号查找当前实例所有记录
-	 * @param ykzzType
+	 * @param orderNumber
 	 * @return
 	 * @throws Exception
 	 */
@@ -60,7 +60,7 @@ public class LcljWorkListDao {
 	
 	/**
 	 * 根据临床路径编号查找当前实例所有记录
-	 * @param ykzzType
+	 * @param dataMap
 	 * @return
 	 * @throws Exception
 	 */
@@ -72,7 +72,7 @@ public class LcljWorkListDao {
 	
 	/**
 	 * 获取所有的流程实例记录
-	 * @param ykzzType
+	 * @param
 	 * @return
 	 * @throws Exception
 	 */
@@ -84,7 +84,7 @@ public class LcljWorkListDao {
 	
 	/**
 	 * 改变流程记录的超期状态
-	 * @param ykzzType
+	 * @param dataMap
 	 * @return
 	 * @throws Exception
 	 */
@@ -94,7 +94,7 @@ public class LcljWorkListDao {
 	
 	/**
 	 * 退回时获取以前办理时保存的业务数据
-	 * @param ykzzType
+	 * @param dataMap
 	 * @return
 	 * @throws Exception
 	 */
@@ -103,5 +103,9 @@ public class LcljWorkListDao {
 		LcljWorklist lcljWorklist = (LcljWorklist) dao.findForObject("HUDH_LCLJ_WORKLIST.selectHadWorkData", dataMap);
 		return lcljWorklist;
 	}
-	
+
+	public String findCreatetimeWorkListByNode(Map<String,String> dataMap) throws Exception{
+		String createtime = (String) dao.findForObject("HUDH_LCLJ_WORKLIST.findCreatetimeWorkListByNode", dataMap);
+		return createtime;
+	}
 }

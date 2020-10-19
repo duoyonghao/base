@@ -706,23 +706,23 @@
                     </tr>
                     <tr>
                         <td class="table_width2">
-                                <div class='div_with2 placeholder' sid="ycjkd">
-                                    <textarea name='ycjkd'  cols='2' placeholder='对应牙位'></textarea>
-                                    <ul class="tooth_map" style="margin-left: 30px;">
-                                        <li>
-                                            <input id="ycjkdleftup" class="tooth_input" type="text">
-                                        </li>
-                                        <li>
-                                            <input id="ycjkdrightup" class="tooth_input" type="text">
-                                        </li>
-                                        <li>
-                                            <input id="ycjkdleftdown" class="tooth_input" type="text">
-                                        </li>
-                                        <li>
-                                            <input id="ycjkdrightdown" class="tooth_input" type="text">
-                                        </li>
-                                    </ul>
-                                </div>
+                            <div class='div_with2 placeholder' sid="ycjkd">
+                                <textarea name='ycjkd'  cols='2' placeholder='对应牙位'></textarea>
+                                <ul class="tooth_map" style="margin-left: 30px;">
+                                    <li>
+                                        <input id="ycjkdleftup" class="tooth_input" type="text">
+                                    </li>
+                                    <li>
+                                        <input id="ycjkdrightup" class="tooth_input" type="text">
+                                    </li>
+                                    <li>
+                                        <input id="ycjkdleftdown" class="tooth_input" type="text">
+                                    </li>
+                                    <li>
+                                        <input id="ycjkdrightdown" class="tooth_input" type="text">
+                                    </li>
+                                </ul>
+                            </div>
                         </td>
                         <td colspan="3" class="problemitem table_width3">
                             <span class="" id="ycjkd">牙槽嵴宽度</span><input class="border_bottom" id="alveolarcrest" type="text" onblur="TextLengthCheck(this.id,2);"/>mm
@@ -750,92 +750,99 @@
                             <span class="" id="ycsjg">距下牙槽神经管 </span><input class="border_bottom" id="residualcrown" type="text" onblur="TextLengthCheck(this.id,2);"/>mm
                         </td>
                     </tr>
-            </table>
+                </table>
+            </div>
         </div>
-    </div>
         <!-- 诊断 -->
         <div class="row content">
-    <div class="col-md-12 col-sm-12 colDefined">
-        <span class="smalltitle"><font>●</font>诊断</span>
-        <table id="medicalCertificateBox" class="contentItem contentItem2" border="1" width="100%">
-            <tr id="">
-<%--                <td style='text-align:center'>--%>
-<%--                    <div class='div_with placeholder' sid="yqs69">--%>
-<%--                        <textarea name="yqs69"  cols='2' placeholder='对应牙位'></textarea>--%>
-<%--                        <ul class='tooth_map' style='margin-left: 30px;'>--%>
-<%--                            <li><input id='yqs69leftup' class='tooth_input' type='text'/></li>--%>
-<%--                            <li><input id='yqs69rightup' class='tooth_input' type='text'/></li>--%>
-<%--                            <li><input id='yqs69leftdown' class='tooth_input' type='text'/></li>--%>
-<%--                            <li><input id='yqs69rightdown' class='tooth_input' type='text'/></li>--%>
-<%--                        </ul>--%>
-<%--                    </div>--%>
-<%--                </td>--%>
-                <td class='problemitem table_width2' id="diagnosisCheckbox">
-<%--                    <span id='yqs69' class='hidden'>诊断</span>--%>
-                    <div class="zl_optiondiv">
-                        <input name="diagnosis" id="diagnosisA" value="0" type="checkbox"/>
-                        <label for="diagnosisA">牙列缺失</label>
-                    </div>
-                    <div class="zl_optiondiv">
-                        <input name="diagnosis" id="diagnosisB" value="1" type="checkbox"/>
-                        <label for="diagnosisB">牙列缺损</label>
-                    </div>
-                    <div class="zl_optiondiv">
-                        <input name="diagnosis" id="diagnosisC" value="2" type="checkbox"/>
-                        <label for="diagnosisC">牙体缺损</label>
-                    </div>
-                    <div class="zl_optiondiv" style="min-width:35%;">
-                        <input name="diagnosis" id="diagnosisD" value="3" type="checkbox"/>
-                        <label for="diagnosisD">其他</label>
-                        <input style='width:60%;font-size: 16px;text-align:center;border:none;border-bottom:1px solid black;' id='other' value="" onblur='TextLengthCheck(this.id,20);'>
-                    </div>
-                </td>
-                <%--<td style='text-align:center'>
-                    <div class='div_with placeholder' sid="qt213">
-                        <textarea name="qt213"  cols='2' placeholder='对应牙位'></textarea>
-                        <ul class='tooth_map' style='margin-left: 30px;'>
-                            <li><input id='qt213leftup' class='tooth_input' type='text'/></li>
-                            <li><input id='qt213rightup' class='tooth_input' type='text'/></li>
-                            <li><input id='qt213leftdown' class='tooth_input' type='text'/></li>
-                            <li><input id='qt213rightdown' class='tooth_input' type='text'/></li>
-                        </ul>
-                    </div>
-                </td>
-                <td class='problemitem table_width2'>
-                    <span id='qt213' class=''>其他</span>
-                    <input style='width:60%;font-size: 16px;text-align:center;border:none' id='other' value="" onblur='TextLengthCheck(this.id,6);'>
-                </td>--%>
-            </tr>
-        </table>
-    </div>
-</div>
+            <div class="col-md-12 col-sm-12 colDefined">
+                <span class="smalltitle"><font>●</font>诊断</span>
+                <table id="medicalCertificateBox" class="contentItem contentItem2" border="1" width="100%">
+                    <tr id="">
+                        <%--                <td style='text-align:center'>--%>
+                        <%--                    <div class='div_with placeholder' sid="yqs69">--%>
+                        <%--                        <textarea name="yqs69"  cols='2' placeholder='对应牙位'></textarea>--%>
+                        <%--                        <ul class='tooth_map' style='margin-left: 30px;'>--%>
+                        <%--                            <li><input id='yqs69leftup' class='tooth_input' type='text'/></li>--%>
+                        <%--                            <li><input id='yqs69rightup' class='tooth_input' type='text'/></li>--%>
+                        <%--                            <li><input id='yqs69leftdown' class='tooth_input' type='text'/></li>--%>
+                        <%--                            <li><input id='yqs69rightdown' class='tooth_input' type='text'/></li>--%>
+                        <%--                        </ul>--%>
+                        <%--                    </div>--%>
+                        <%--                </td>--%>
+                        <td class='problemitem table_width2' id="diagnosisCheckbox">
+                            <%--                    <span id='yqs69' class='hidden'>诊断</span>--%>
+                            <div class="zl_optiondiv">
+                                <input name="diagnosis" id="diagnosisA" value="0" type="checkbox"/>
+                                <label for="diagnosisA">牙列缺失</label>
+                            </div>
+                            <div class="zl_optiondiv">
+                                <input name="diagnosis" id="diagnosisB" value="1" type="checkbox"/>
+                                <label for="diagnosisB">牙列缺损</label>
+                            </div>
+                            <div class="zl_optiondiv">
+                                <input name="diagnosis" id="diagnosisC" value="2" type="checkbox"/>
+                                <label for="diagnosisC">牙体缺损</label>
+                            </div>
+                            <div class="zl_optiondiv" style="min-width:35%;">
+                                <input name="diagnosis" id="diagnosisD" value="3" type="checkbox"/>
+                                <label for="diagnosisD">其他</label>
+                                <input style='width:60%;font-size: 16px;text-align:center;border:none;border-bottom:1px solid black;' id='other' value="" onblur='TextLengthCheck(this.id,20);'>
+                            </div>
+                        </td>
+                        <%--<td style='text-align:center'>
+                            <div class='div_with placeholder' sid="qt213">
+                                <textarea name="qt213"  cols='2' placeholder='对应牙位'></textarea>
+                                <ul class='tooth_map' style='margin-left: 30px;'>
+                                    <li><input id='qt213leftup' class='tooth_input' type='text'/></li>
+                                    <li><input id='qt213rightup' class='tooth_input' type='text'/></li>
+                                    <li><input id='qt213leftdown' class='tooth_input' type='text'/></li>
+                                    <li><input id='qt213rightdown' class='tooth_input' type='text'/></li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td class='problemitem table_width2'>
+                            <span id='qt213' class=''>其他</span>
+                            <input style='width:60%;font-size: 16px;text-align:center;border:none' id='other' value="" onblur='TextLengthCheck(this.id,6);'>
+                        </td>--%>
+                    </tr>
+                </table>
+            </div>
+        </div>
         <!-- 手术签名 -->
         <div class="consent_signature">
-    <!-- 患者签名 -->
-    <div class="signature_time" style="float: left;display: none">
-        <div class="signature_box">
-            <span id="patientSignature" style="margin-top: 8px;line-height: 50px;font-size: 16px">患者签名:</span>
-            <img id="patientimg" style="width:156px;height:auto;"/>
+            <!-- 患者签名 -->
+            <div class="signature_time" style="float: left;display: none">
+                <div class="signature_box">
+                    <span id="patientSignature" style="margin-top: 8px;line-height: 50px;font-size: 16px">患者签名:</span>
+                    <img id="patientimg" style="width:156px;height:auto;"/>
+                </div>
+                <input id="patienttime" type="text" class="patienttime consent_time inputhidden" readonly="readonly" placeholder="请选择日期"/>
+            </div>
+            <!-- 会诊护士 -->
+            <div class="signature_time" style="float: left;">
+                <div class="signature_box">
+                    <span style="margin-top: 8px;line-height: 50px;font-size: 16px">会诊室护士:</span>
+                    <input id="nurse" class="inputhidden" type="text" style="font-size: 15px;"/>
+                </div>
+            </div>
+            <!-- 医生签名 -->
+            <div class="signature_time" style="float: right;">
+                <div class="signature_box">
+                    <span id="doctorSignature" style="line-height: 50px;font-size: 16px">种植医生签名:</span>
+                    <img id="doctorimg" style="width:156px;height:auto;"/>
+                </div>
+                <input id="doctortime" type="text" class="doctortime consent_time inputhidden" readonly="readonly" placeholder="请选择日期"/>
+            </div>
         </div>
-        <input id="patienttime" type="text" class="patienttime consent_time inputhidden" readonly="readonly" placeholder="请选择日期"/>
     </div>
-    <!-- 医生签名 -->
-    <div class="signature_time" style="float: right;">
-        <div class="signature_box">
-            <span id="doctorSignature" style="line-height: 50px;font-size: 16px">种植医生签名:</span>
-            <img id="doctorimg" style="width:156px;height:auto;"/>
-        </div>
-        <input id="doctortime" type="text" class="doctortime consent_time inputhidden" readonly="readonly" placeholder="请选择日期"/>
-    </div>
-</div>
-    </div>
-<!--endprint-->
+    <!--endprint-->
     <!-- 按钮 -->
     <div class="btns">
-    <button id="consent_saveBtn" onclick="save()">保存</button>
-    <button id="consent_updateBtn" style="display: none;" class="consent_updateBtn hidden" onclick="update()">修改表单</button>
-    <button id="print_Btn" onclick="myPreviewAll()">打印本页内容</button>
-</div>
+        <button id="consent_saveBtn" onclick="save()">保存</button>
+        <button id="consent_updateBtn" style="display: none;" class="consent_updateBtn hidden" onclick="update()">修改表单</button>
+        <button id="print_Btn" onclick="myPreviewAll()">打印本页内容</button>
+    </div>
 </div>
 </body>
 <%--</body>--%>
@@ -896,7 +903,7 @@
         initBlockToothMap("conditionToothBox");
         pro("toothConditionBox",conditionData);
         //pro("medicalCertificateBox",certificateData);
-       // $("textarea").addClass("hidden");
+        // $("textarea").addClass("hidden");
         $(".div_with .tooth_map").addClass("hidden");
         $(".div_with2 .tooth_map").addClass("hidden");
         $(".div_with3 .tooth_map").addClass("hidden");
@@ -1008,7 +1015,7 @@
         var url = contextPath + "/YZDictAct/getDiseaseByCode.act?id=bqfl67&code=zdqk594";
         $.axse(url, null,
             function(data) {
-            //console.log(JSON.stringify(data)+"-----------各项目问题数据");
+                //console.log(JSON.stringify(data)+"-----------各项目问题数据");
                 // a=2;
                 conditionData=data.conditionData;
                 certificateData=data.certificateData;
@@ -1120,11 +1127,11 @@
     function saveToothLooseInput(){
         var toothLooseItem={};
         $(".toothLooseNextBox").nextAll().find("td:odd").find("div ul li").each(function(j,el){
-                var item=$(el).find("input").attr("id");
-                if(item!=undefined){
-                    var itemInput=$("#"+item).val();
-                    toothLooseItem[item]=itemInput;
-                }
+            var item=$(el).find("input").attr("id");
+            if(item!=undefined){
+                var itemInput=$("#"+item).val();
+                toothLooseItem[item]=itemInput;
+            }
         })
         return toothLooseItem;
     }
@@ -1279,6 +1286,11 @@
         // //签字时间
         var patienttime = $("#patienttime").val();//患者签字时间
         var doctortime = $("#doctortime").val();//医生签字时间
+        var nurse=$("#nurse").val();//会诊护士
+        if (nurse ==''){
+            layer.alert('请填写会诊室护士！');
+            return false;
+        }
         anodontism=JSON.stringify(anodontism);
         toothConditionInput=JSON.stringify(toothConditionInput);
         imageExaminationInput=JSON.stringify(imageExaminationInput);
@@ -1335,7 +1347,8 @@
             doctorSignature :  signature,
             patientTime:patienttime,
             doctorTime:doctortime,
-            diagnosis:diagnosis
+            diagnosis:diagnosis,
+            nurse:nurse
         };
         //console.log(JSON.stringify(param)+"------------保存参数");
         var url = contextPath + '/HUDH_MedicalRecordsAct/installData.act';
@@ -1402,6 +1415,11 @@
         // //签字时间
         var patienttime = $("#patienttime").val();//患者签字时间
         var doctortime = $("#doctortime").val();//医生签字时间
+        var nurse=$("#nurse").val();//会诊护士
+        if (nurse ==''){
+            layer.alert('请填写会诊护士！');
+            return false;
+        }
         anodontism=JSON.stringify(anodontism);
         toothConditionInput=JSON.stringify(toothConditionInput);
         imageExaminationInput=JSON.stringify(imageExaminationInput);
@@ -1460,7 +1478,8 @@
             doctorSignature :  signature,
             patientTime:patienttime,
             doctorTime:doctortime,
-            diagnosis:diagnosis
+            diagnosis:diagnosis,
+            nurse:nurse
         };
         //       console.log(JSON.stringify(param)+"-----------修改param");
 // 	    return;
@@ -1668,15 +1687,15 @@
         //window.document.body.innerHTML=bdhtml; // 恢复页面
         //window.location.reload();
     }
-// 字段备注新增内容
-//     onedu--牙位牙松动textarea
-//     twodu--牙位整体情况input十字架
-//     threedu--牙位影像学检查input十字架
-//     anodontism--牙位牙松动和牙缺失input十字架
-//     onebone--牙缺失textarea
-//     twobone--距鼻底
-//     threebone--牙槽嵴宽度
-//     fourbone--牙位诊断input十字架
+    // 字段备注新增内容
+    //     onedu--牙位牙松动textarea
+    //     twodu--牙位整体情况input十字架
+    //     threedu--牙位影像学检查input十字架
+    //     anodontism--牙位牙松动和牙缺失input十字架
+    //     onebone--牙缺失textarea
+    //     twobone--距鼻底
+    //     threebone--牙槽嵴宽度
+    //     fourbone--牙位诊断input十字架
 
 </script>
 </html>

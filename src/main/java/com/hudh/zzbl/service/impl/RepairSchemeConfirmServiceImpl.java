@@ -45,7 +45,11 @@ public class RepairSchemeConfirmServiceImpl implements IRepairSchemeConfirmServi
 	    String icxleftdown = request.getParameter("icxLeftDown");
 	    String icxrightup = request.getParameter("icxRightUp");
 	    String icxrightdown = request.getParameter("icxRightDown");
-	    String nobelactiveleftup = request.getParameter("nobelActiveLeftUp");
+		String templantleftup = request.getParameter("templantLeftUp");
+		String templantleftdown = request.getParameter("templantLeftDown");
+		String templantrightup = request.getParameter("templantRightUp");
+		String templantrightdown = request.getParameter("templantRightDown");
+		String nobelactiveleftup = request.getParameter("nobelActiveLeftUp");
 	    String nobelactiveleftdown = request.getParameter("nobelActiveLeftDown");
 	    String nobelactiverightup = request.getParameter("nobelActiveRightUp");
 	    String nobelactiverightdown = request.getParameter("nobelActiveRightDown");
@@ -164,6 +168,10 @@ public class RepairSchemeConfirmServiceImpl implements IRepairSchemeConfirmServi
 	    dp.setIcxleftdown(icxleftdown);
 	    dp.setIcxrightup(icxrightup);
 	    dp.setIcxrightdown(icxrightdown);
+		dp.setTemplantleftup(templantleftup);
+		dp.setTemplantleftdown(templantleftdown);
+		dp.setTemplantrightup(templantrightup);
+		dp.setTemplantrightdown(templantrightdown);
 	    dp.setNobelactiveleftup(nobelactiveleftup);
 	    dp.setNobelactiveleftdown(nobelactiveleftdown);
 	    dp.setNobelactiverightup(nobelactiverightup);
@@ -244,7 +252,11 @@ public class RepairSchemeConfirmServiceImpl implements IRepairSchemeConfirmServi
 	    String icxleftdown = request.getParameter("icxLeftDown");
 	    String icxrightup = request.getParameter("icxRightUp");
 	    String icxrightdown = request.getParameter("icxRightDown");
-	    String nobelactiveleftup = request.getParameter("nobelActiveLeftUp");
+		String templantleftup = request.getParameter("templantLeftUp");
+		String templantleftdown = request.getParameter("templantLeftDown");
+		String templantrightup = request.getParameter("templantRightUp");
+		String templantrightdown = request.getParameter("templantRightDown");
+		String nobelactiveleftup = request.getParameter("nobelActiveLeftUp");
 	    String nobelactiveleftdown = request.getParameter("nobelActiveLeftDown");
 	    String nobelactiverightup = request.getParameter("nobelActiveRightUp");
 	    String nobelactiverightdown = request.getParameter("nobelActiveRightDown");
@@ -364,6 +376,10 @@ public class RepairSchemeConfirmServiceImpl implements IRepairSchemeConfirmServi
 	    dp.setIcxleftdown(icxleftdown);
 	    dp.setIcxrightup(icxrightup);
 	    dp.setIcxrightdown(icxrightdown);
+		dp.setTemplantleftup(templantleftup);
+		dp.setTemplantleftdown(templantleftdown);
+		dp.setTemplantrightup(templantrightup);
+		dp.setTemplantrightdown(templantrightdown);
 	    dp.setNobelactiveleftup(nobelactiveleftup);
 	    dp.setNobelactiveleftdown(nobelactiveleftdown);
 	    dp.setNobelactiverightup(nobelactiverightup);

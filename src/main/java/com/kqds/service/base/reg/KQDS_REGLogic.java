@@ -1768,8 +1768,8 @@ public class KQDS_REGLogic extends BaseLogic {
         return (JSONObject) dao.findForObject(TableNameUtil.KQDS_REG + ".findRegByregNo", regno);
     }
 
-    public String selectExistByUsercode(Map<String, String> map) throws Exception {
-        String createtime = (String) dao.findForObject(TableNameUtil.KQDS_REG + ".selectExistByUsercode", map);
+    public JSONObject selectExistByUsercode(Map<String, String> map) throws Exception {
+        JSONObject createtime = (JSONObject) dao.findForObject(TableNameUtil.KQDS_REG + ".selectExistByUsercode", map);
         return createtime;
     }
 

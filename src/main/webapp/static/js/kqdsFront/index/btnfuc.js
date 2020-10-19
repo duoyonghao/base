@@ -106,7 +106,7 @@ function static_btnfucDeal(name, requrl, isParentOpen) {
                 shadeClose: false,
                 shade: 0.6,
                 area: ['90%', '600px'],
-                content: contextPath + '/KQDS_UserDocumentAct/toZzIndex.act?usercode=' + onclickrowOobj.usercode,
+                content: contextPath + '/KQDS_UserDocumentAct/toZzAddWin.act?usercode=' + onclickrowOobj.usercode,
                 // iframe的url
                 cancel: function () {
                     // 默认打开等待治疗列表

@@ -78,4 +78,8 @@ public interface ILcljOperationNodeInforService {
 	  * @dateTime:2019年7月27日 上午11:11:52
 	 */
 	void cancelTimeHospital(String order_number,String nodeId) throws Exception;
+
+
+	public List<JSONObject> findOperationNodeInforByCancelTimeHospital(Map<String,String> dataMap) throws Exception ;
+
 }

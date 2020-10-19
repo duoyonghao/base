@@ -659,23 +659,14 @@
                                             <label for="implantsystemA">Nobel-Active</label>
                                         </div>
                                     </li>
-                                    <li style="width:14%; display: none">
+                                    <li style="width:14%;">
                                         <!-- 选项框 -->
                                         <div class="zl_optiondiv">
-                                            <input type="checkbox" value="ICX" name="implantsystem" id="implantsystemB"
+                                            <input type="checkbox" value="templant" name="implantsystem" id="Templant"
                                                    style="vertical-align: text-bottom;"/>
-                                            <label for="implantsystemB">ICX</label>
+                                            <label for="implantsystemB">Templant</label>
                                         </div>
                                     </li>
-                                    <li style="width:14%;">
-                                    <!-- 选项框 -->
-                                    <div class="zl_optiondiv">
-                                        <input type="checkbox" value="Templant" name="implantsystem" id="implantsystemB"
-                                               style="vertical-align: text-bottom;"/>
-                                        <label for="implantsystemB">Templant</label>
-                                    </div>
-                                </li>
-
                                     <li style="width:14%;">
                                         <!-- 选项框 -->
                                         <div class="zl_optiondiv">
@@ -724,20 +715,20 @@
                                             <label for="Dentium">Dentium</label>
                                         </div>
                                     </li>
-<%--                                    <li style="width:12%;">--%>
-<%--                                        <!-- 选项框 -->--%>
-<%--                                        <div class="zl_optiondiv">--%>
-<%--                                            <input type="checkbox" value="B&B" name="implantsystem" id="BB" style="vertical-align: text-bottom;"/>--%>
-<%--                                            <label for="Dentium">B&B</label>--%>
-<%--                                        </div>--%>
-<%--                                    </li>--%>
-<%--                                    <li style="width:12%;">--%>
-<%--                                        <!-- 选项框 -->--%>
-<%--                                        <div class="zl_optiondiv">--%>
-<%--                                            <input type="checkbox" value="ET" name="implantsystem" id="ET" style="vertical-align: text-bottom;"/>--%>
-<%--                                            <label for="Dentium">ET</label>--%>
-<%--                                        </div>--%>
-<%--                                    </li>--%>
+                                    <%--                                    <li style="width:12%;">--%>
+                                    <%--                                        <!-- 选项框 -->--%>
+                                    <%--                                        <div class="zl_optiondiv">--%>
+                                    <%--                                            <input type="checkbox" value="B&B" name="implantsystem" id="BB" style="vertical-align: text-bottom;"/>--%>
+                                    <%--                                            <label for="Dentium">B&B</label>--%>
+                                    <%--                                        </div>--%>
+                                    <%--                                    </li>--%>
+                                    <%--                                    <li style="width:12%;">--%>
+                                    <%--                                        <!-- 选项框 -->--%>
+                                    <%--                                        <div class="zl_optiondiv">--%>
+                                    <%--                                            <input type="checkbox" value="ET" name="implantsystem" id="ET" style="vertical-align: text-bottom;"/>--%>
+                                    <%--                                            <label for="Dentium">ET</label>--%>
+                                    <%--                                        </div>--%>
+                                    <%--                                    </li>--%>
                                     <li style="width:16%;">
                                         <!-- 选项框 -->
                                         <div class="zl_optiondiv">
@@ -758,6 +749,14 @@
                                         <div class="zl_optiondiv">
                                             <input type="checkbox" value="B&B" name="implantsystem" id="B&B" style="vertical-align: text-bottom;"/>
                                             <label for="B&B">B&B</label>
+                                        </div>
+                                    </li>
+                                    <li id="icxli" style="width:14%;">
+                                        <!-- 选项框 -->
+                                        <div class="zl_optiondiv">
+                                            <input type="checkbox" value="ICX" name="implantsystem" id="implantsystemB"
+                                                   style="vertical-align: text-bottom;"/>
+                                            <label for="implantsystemB">ICX</label>
                                         </div>
                                     </li>
                                     <li id="implantsystemotherDiv" style="width:20%;">
@@ -1359,7 +1358,7 @@
         if (!doctorTime) {
             $("#doctortime").css('display', 'none')
         }
-
+        $("#icxli").css('display', 'none')
         bdhtml = window.document.body.innerHTML;
         sprnstr = "<!--startprint-->";
         eprnstr = "<!--endprint-->";

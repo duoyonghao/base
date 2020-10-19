@@ -112,6 +112,8 @@ public class HudhSpecialitycheck {
 
 	private String diagnosis;//诊断牙齿情况
 
+	private String nurse;//会诊护士
+
 	public String getOthers() {
 		return others;
 	}
@@ -1030,6 +1032,14 @@ public class HudhSpecialitycheck {
 
 	public void setDiagnosis(String diagnosis) {
 		this.diagnosis = diagnosis;
+	}
+
+	public String getNurse() {
+		return nurse;
+	}
+
+	public void setNurse(String nurse) {
+		this.nurse = nurse;
 	}
 
 	@Override

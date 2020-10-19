@@ -297,36 +297,52 @@ function initFlow(){
 					         success: function(data){
 					           	if(data.status=="未挂号"){
 					           		registrationStatus+=1;
-								    layer.alert("患者未挂号，请挂号后操作当前节点！");
-								    $("#lclj_tj").attr("disabled",true).css("background","#b0b0b0").css("cursor","not-allowed");
-									$("#lclj_by").attr("disabled",true).css("background","#b0b0b0").css("cursor","not-allowed");
-								    return false;
-								}
-					         }
-					    });
-					}else if(nodeLists[i+1].stus=="0"){
-						//判断是否挂号
-						var url = contextPath + '/KQDS_REGAct/selectExistByUsercode.act';
-						$.ajax({
-					         type: "post",
-					         url: url,
-					         data: {usercode : result.blcode},
-					         dataType: "json",
-					         async:false,
-					         success: function(data){
-					           	if(data.status=="未挂号"){
-					           		registrationStatus+=1;
-								    layer.alert("患者未挂号，请挂号后操作当前节点！");
-								    $("#lclj_tj").attr("disabled",true).css("background","#b0b0b0").css("cursor","not-allowed");
-									$("#lclj_by").attr("disabled",true).css("background","#b0b0b0").css("cursor","not-allowed");
-								    return false;
-								}
-					         }
-					    });
-					}
-				}
-			}		
-			if(registrationStatus==0){
+                                    if (Number(data.arrearage)>0){
+                                        layer.alert("患者有欠费且未挂号，请挂号后操作当前节点！");
+                                    }else{
+                                        layer.alert("患者未挂号，请挂号后操作当前节点！");
+                                    }
+                                    $("#lclj_tj").attr("disabled",true).css("background","#b0b0b0").css("cursor","not-allowed");
+                                    $("#lclj_by").attr("disabled",true).css("background","#b0b0b0").css("cursor","not-allowed");
+                                    return false;
+                                }else{
+                                    if (Number(data.arrearage)>0){
+                                        layer.alert("患者有欠费！");
+                                    }
+                                }
+                             }
+                        });
+                    }else if(nodeLists[i+1].stus=="0"){
+                        //判断是否挂号
+                        var url = contextPath + '/KQDS_REGAct/selectExistByUsercode.act';
+                        $.ajax({
+                            type: "post",
+                            url: url,
+                            data: {usercode : result.blcode},
+                            dataType: "json",
+                            async:false,
+                            success: function(data){
+                                if(data.status=="未挂号"){
+                                    registrationStatus+=1;
+                                    if (Number(data.arrearage)>0){
+                                        layer.alert("患者有欠费且未挂号，请挂号后操作当前节点！");
+                                    }else{
+                                        layer.alert("患者未挂号，请挂号后操作当前节点！");
+                                    }
+                                    $("#lclj_tj").attr("disabled",true).css("background","#b0b0b0").css("cursor","not-allowed");
+                                    $("#lclj_by").attr("disabled",true).css("background","#b0b0b0").css("cursor","not-allowed");
+                                    return false;
+                                }else{
+                                    if (Number(data.arrearage)>0){
+                                        layer.alert("患者有欠费！");
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+            if(registrationStatus==0){
 				$("#lclj_tj").attr("disabled",false).css("background","#00A6C0").css("cursor","pointer");
 				$("#lclj_by").attr("disabled",false).css("background","#00A6C0").css("cursor","pointer");
 			}
@@ -1670,7 +1686,7 @@ var buttonFun = {
                 }
 			}
 
-			//植体是否松动左上
+            //植体是否松动左上
 			var extractionleftup_l = $(window.frames["myiframe"].document).find("input[name='extractionleftup_l']").val();
 			var extractionleftup_r = $(window.frames["myiframe"].document).find("input[name='extractionleftup_r']").val();
 			var extractionleftdown_l = $(window.frames["myiframe"].document).find("input[name='extractionleftdown_l']").val();
@@ -1679,7 +1695,7 @@ var buttonFun = {
 			var extractionleftup1_r = $(window.frames["myiframe"].document).find("input[name='extractionleftup1_r']").val();
 			var extractionleftdown1_l = $(window.frames["myiframe"].document).find("input[name='extractionleftdown1_l']").val();
 			var extractionleftdown1_r = $(window.frames["myiframe"].document).find("input[name='extractionrightdown1_r']").val();
-
+            var repairPhysician=$("#repair_physician span").text();
 			var flag = true;
 			layer.alert('确认当前节点操作已全部完成', {
 				  closeBtn: 0    // 是否显示关闭按钮
@@ -1801,7 +1817,8 @@ var buttonFun = {
 								"intraoperativeMedication" : intraoperativeMedication,
 								"enterLclj" : enterLclj,
 								"nodeName" : nodeName,
-								"wearTeeth" : wearteeth
+								"wearTeeth" : wearteeth,
+                                "repairPhysician":repairPhysician
 							},
 							success:function(result){
 								/*layer.alert('提交成功', function(index) {

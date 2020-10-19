@@ -134,12 +134,12 @@ public class LcljOperationNodeInforDao {
 	  * @dateTime:2019年8月4日 下午1:48:57
 	 */
 	@SuppressWarnings("unchecked")
-	public JSONObject findOperationNodeInforByCancelTimeHospital(String next_hospital_time, String visit_time, String order_number) throws Exception {
-		Map<String, String> dataMap = new HashMap<String, String>();
-		dataMap.put("next_hospital_time", next_hospital_time);
-		dataMap.put("visit_time", visit_time);
-		dataMap.put("order_number", order_number);
-		JSONObject jsonObject = (JSONObject) dao.findForObject("HUDH_LCLJ_OPERATION_NODE_INFOR.findOperationNodeInforByCancelTimeHospital", dataMap);
+	public List<JSONObject> findOperationNodeInforByCancelTimeHospital(Map<String, String> dataMap) throws Exception {
+//		Map<String, String> dataMap = new HashMap<String, String>();
+//		dataMap.put("next_hospital_time", next_hospital_time);
+//		dataMap.put("visit_time", visit_time);
+//		dataMap.put("order_number", order_number);
+		List<JSONObject> jsonObject = (List<JSONObject>) dao.findForList("HUDH_LCLJ_OPERATION_NODE_INFOR.findOperationNodeInforByCancelTimeHospital", dataMap);
 		return jsonObject;
 	}
 	

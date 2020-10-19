@@ -296,7 +296,11 @@ public class LcljOperationNodeInforServiceImpl implements ILcljOperationNodeInfo
 		// TODO Auto-generated method stub
 		lcljOperationNodeInforDao.cancelTimeHospital(order_number, nodeId);
 	}
-	
-	
+
+	@Override
+	public List<JSONObject> findOperationNodeInforByCancelTimeHospital(Map<String,String> dataMap) throws Exception {
+		List<JSONObject> list = lcljOperationNodeInforDao.findOperationNodeInforByCancelTimeHospital(dataMap);
+		return list;
+	}
 	
 }

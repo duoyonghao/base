@@ -86,7 +86,7 @@ public interface IFlowService {
 	 /**
 	  * 查找患者下的所有挂号信息按时间倒叙排列
 	  */
-	 List<KqdsReg> findRegListByBlcode(String orderNumber) throws Exception;
+	 List<JSONObject> findRegListByBlcode(String orderNumber) throws Exception;
 	 
 	 /**
 	  * 根据条件精确查询临床路径患者信息

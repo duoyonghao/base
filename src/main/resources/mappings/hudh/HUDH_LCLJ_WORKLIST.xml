@@ -18,60 +18,201 @@
 		<result column="viewUrl" jdbcType="VARCHAR" property="viewUrl" />
 		<result column="flowCode" jdbcType="VARCHAR" property="flowCode" />
 		<result column="overdue" jdbcType="VARCHAR" property="overdue" />
+		<result column="date_due" jdbcType="VARCHAR" property="dateDue" />
+		<result column="repair_physician" jdbcType="VARCHAR" property="repairPhysician" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, nodeId, nodeName, nodeStatus ,flowStatus ,dataId ,order_number ,flowInfo ,operate ,examine , createtime,creator ,organization ,viewUrl ,flowCode ,overdue
+		id, nodeId, nodeName, nodeStatus ,flowStatus ,dataId ,order_number ,flowInfo ,operate ,examine , createtime,creator ,organization ,viewUrl ,flowCode ,overdue,date_due,repair_physician
 	</sql>
-	
+
 	<insert id="insertWorkList" parameterType="com.hudh.lclj.entity.LcljWorklist">
-		insert into HUDH_LCLJ_WORKLIST (id, nodeId, nodeName, nodeStatus ,flowStatus ,dataId ,order_number ,flowInfo ,operate ,examine , createtime,creator ,organization ,viewUrl ,flowCode ,overdue)
-		values (#{id,jdbcType=VARCHAR}, #{nodeId,jdbcType=VARCHAR}, #{nodeName,jdbcType=VARCHAR},
-		#{nodeStatus,jdbcType=INTEGER},#{flowStatus,jdbcType=INTEGER},#{dataId,jdbcType=VARCHAR},
-		#{orderNumber,jdbcType=VARCHAR},#{flowInfo,jdbcType=CLOB},#{operate,jdbcType=VARCHAR},
-		#{examine,jdbcType=INTEGER},#{createtime,jdbcType=VARCHAR},#{creator,jdbcType=VARCHAR},
-		#{organization,jdbcType=VARCHAR},#{viewUrl,jdbcType=VARCHAR},#{flowCode,jdbcType=VARCHAR},#{overdue,jdbcType=VARCHAR})
+		insert into HUDH_LCLJ_WORKLIST
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="nodeId != null">
+				nodeId,
+			</if>
+			<if test="nodeName != null">
+				nodeName,
+			</if>
+			<if test="nodeStatus != null">
+				nodeStatus,
+			</if>
+			<if test="flowStatus != null">
+				flowStatus,
+			</if>
+			<if test="dataId != null">
+				dataId,
+			</if>
+			<if test="orderNumber != null">
+				order_number,
+			</if>
+			<if test="flowInfo != null">
+				flowInfo,
+			</if>
+			<if test="operate != null">
+				operate,
+			</if>
+			<if test="examine != null">
+				examine,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="creator != null">
+				creator,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="viewUrl != null">
+				viewUrl,
+			</if>
+			<if test="flowCode != null">
+				flowCode,
+			</if>
+			<if test="overdue != null">
+				overdue,
+			</if>
+			<if test="dateDue != null">
+				date_due,
+			</if>
+			<if test="repairPhysician != null">
+				repair_physician,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="nodeId != null">
+				#{nodeId,jdbcType=VARCHAR},
+			</if>
+			<if test="nodeName != null">
+				#{nodeName,jdbcType=VARCHAR},
+			</if>
+			<if test="nodeStatus != null">
+				#{nodeStatus,jdbcType=INTEGER},
+			</if>
+			<if test="flowStatus != null">
+				#{flowStatus,jdbcType=INTEGER},
+			</if>
+			<if test="dataId != null">
+				#{dataId,jdbcType=VARCHAR},
+			</if>
+			<if test="orderNumber != null">
+				#{orderNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="flowInfo != null">
+				#{flowInfo,jdbcType=CLOB},
+			</if>
+			<if test="operate != null">
+				#{operate,jdbcType=VARCHAR},
+			</if>
+			<if test="examine != null">
+				#{examine,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="creator != null">
+				#{creator,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="viewUrl != null">
+				#{viewUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="flowCode != null">
+				#{flowCode,jdbcType=VARCHAR},
+			</if>
+			<if test="overdue != null">
+				#{overdue,jdbcType=VARCHAR},
+			</if>
+			<if test="dateDue != null">
+				#{dateDue,jdbcType=VARCHAR},
+			</if>
+			<if test="repairPhysician != null">
+				#{repairPhysician,jdbcType=VARCHAR},
+			</if>
+		</trim>
 	</insert>
-	
+
 	<select id="findWorkByOrderNumber" resultType="com.hudh.lclj.entity.LcljWorklist">
 		select
-		<include refid="Base_Column_List" /> 
+		<include refid="Base_Column_List" />
 		from HUDH_LCLJ_WORKLIST
 		where order_number = #{orderNumber} and nodeStatus = 1 and flowStatus = 1
 	</select>
-	
+
 	<update id="updateWorkByOrderNumber" parameterType="com.hudh.lclj.entity.LcljWorklist">
 		update HUDH_LCLJ_WORKLIST set nodeStatus=#{nodeStatus,jdbcType=INTEGER},
-		operate=#{operate,jdbcType=VARCHAR}, createtime=#{createtime,jdbcType=VARCHAR}, creator=#{creator,jdbcType=VARCHAR},dataId=#{dataId,jdbcType=VARCHAR} 
+		operate=#{operate,jdbcType=VARCHAR}, createtime=#{createtime,jdbcType=VARCHAR}, creator=#{creator,jdbcType=VARCHAR},dataId=#{dataId,jdbcType=VARCHAR}
 		where order_number=#{orderNumber,jdbcType=VARCHAR} and nodeStatus = 1
 	</update>
-	
+
 	<select id="findHadWorkList" resultType="com.hudh.lclj.entity.LcljWorklist">
 		select
-		<include refid="Base_Column_List" /> 
+		<include refid="Base_Column_List" />
 		from HUDH_LCLJ_WORKLIST
 		where order_number = #{orderNumber}
 	</select>
-	
+
 	<select id="findHadWorkByOrderNumberAndNodeId" resultType="com.hudh.lclj.entity.LcljWorklist" parameterType="map">
 		select
-		<include refid="Base_Column_List" /> 
+		<include refid="Base_Column_List" />
 		from HUDH_LCLJ_WORKLIST
 		where order_number = #{ordNumber} and nodeId = #{nodeId} order by createtime desc
 	</select>
-	
+
 	<select id="findAllWorkList" resultType="com.hudh.lclj.entity.LcljWorklist">
 		select
-		<include refid="Base_Column_List" /> 
+		<include refid="Base_Column_List" />
 		from HUDH_LCLJ_WORKLIST ORDER BY createtime DESC
 	</select>
-	
+
 	<select id="updateOverdueStatus">
-		update HUDH_LCLJ_WORKLIST set 
+		update HUDH_LCLJ_WORKLIST set
 		overdue = #{overdue} where id = #{id}
 	</select>
-	
+
 	<select id="selectHadWorkData" resultMap="WorklistMap">
 		select top(1) * from HUDH_LCLJ_WORKLIST where order_number = #{orderNumber} AND nodeId = #{nodeId} ORDER BY createtime DESC
 	</select>
-	
+
+	<select id="findCreatetimeWorkListByNode" resultType="String" parameterType="map">
+		select top 1
+		createtime
+		from HUDH_LCLJ_WORKLIST
+		where nodeStatus=2 and nodeId=#{nodeid} and order_number=#{order_number}
+		ORDER BY createtime DESC
+	</select>
+
+	<select id="findCreatetimeListWorkListByNode" resultType="json" parameterType="java.util.List">
+		select
+		createtime,nodeId,order_number,nodeName
+		from HUDH_LCLJ_WORKLIST
+		where 1=1
+		and nodeStatus=2
+		and
+		<foreach collection="list" index="index" item="node" open="(" close=")" separator="or">
+			nodeId=#{node.nodeid} and order_number=#{node.order_number}
+		</foreach>
+	</select>
+
+	<select id="findLcljWarnNumByPerson" resultType="int" parameterType="map">
+		select
+		COUNT(id) as num
+		from HUDH_LCLJ_WORKLIST a
+		LEFT JOIN sys_person s ON s.USER_ID = a.repair_physician
+		where nodeStatus=1
+		and nodeId !='End'
+		<if test="querytype != null or querytype !='' ">
+			and ( s.SEQ_ID in (${querytype}))
+		</if>
+		and date_due <![CDATA[ <= ]]>#{dateDue}
+	</select>
 </mapper>

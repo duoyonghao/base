@@ -154,6 +154,14 @@ public class RepairSchemeConfirm implements Serializable {
 
     private String icxrightdown;
 
+    private String templantleftup;
+
+    private String templantleftdown;
+
+    private String templantrightup;
+
+    private String templantrightdown;
+
     private String nobelactiveleftup;
 
     private String nobelactiveleftdown;
@@ -946,5 +954,37 @@ public class RepairSchemeConfirm implements Serializable {
 
     public void setBbrightdown(String bbrightdown) {
         this.bbrightdown = bbrightdown;
+    }
+
+    public String getTemplantleftup() {
+        return templantleftup;
+    }
+
+    public void setTemplantleftup(String templantleftup) {
+        this.templantleftup = templantleftup;
+    }
+
+    public String getTemplantleftdown() {
+        return templantleftdown;
+    }
+
+    public void setTemplantleftdown(String templantleftdown) {
+        this.templantleftdown = templantleftdown;
+    }
+
+    public String getTemplantrightup() {
+        return templantrightup;
+    }
+
+    public void setTemplantrightup(String templantrightup) {
+        this.templantrightup = templantrightup;
+    }
+
+    public String getTemplantrightdown() {
+        return templantrightdown;
+    }
+
+    public void setTemplantrightdown(String templantrightdown) {
+        this.templantrightdown = templantrightdown;
     }
 }

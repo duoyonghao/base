@@ -377,7 +377,7 @@ public class HUDH_FlowAct {
         String orderNumber = request.getParameter("orderNumber"); //编号
         try {
             if (YZUtility.isNotNullOrEmpty(orderNumber)) {
-                List<KqdsReg> data = flowService.findRegListByBlcode(orderNumber);
+                List<JSONObject> data = flowService.findRegListByBlcode(orderNumber);
                 JSONObject jo = new JSONObject();
                 jo.put("regs", JSON.toJSON(data));
                 YZUtility.DEAL_SUCCESS(jo, null, response, logger);

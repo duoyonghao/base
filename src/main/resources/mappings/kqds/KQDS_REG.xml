@@ -2228,11 +2228,12 @@
             #{endtime}
         </if>
     </select>
-    <select id="selectExistByUsercode" parameterType="java.util.Map" resultType="java.lang.String">
-        select Top 1 createtime from KQDS_REG
+    <select id="selectExistByUsercode" parameterType="java.util.Map" resultType="json">
+        select Top 1 r.createtime,u.arrearage from KQDS_REG r
+        LEFT join KQDS_UserDocument u on u.usercode=r.usercode
         where
-        usercode=#{usercode}
-        order by createtime desc
+        r.usercode=#{usercode}
+        order by r.createtime desc
         <!-- and createtime <![CDATA[ >= ]]> #{starttime} -->
         <!-- and createtime <![CDATA[ <= ]]> #{endtime} -->
     </select>

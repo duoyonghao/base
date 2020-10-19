@@ -404,8 +404,11 @@
         e.id as workListId,
         e.order_number as orderNumber,
         e.nodeName,
+        e.nodeId,
         e.flowStatus,
+        e.flowInfo,
         f.flowname,
+        c.arrearage,
         c.UserImpress
         FROM HUDH_LCLJ_ORDERTRACK a
         LEFT JOIN KQDS_UserDocument c ON a.blcode = c.UserCode
@@ -416,6 +419,9 @@
         LEFT JOIN HUDH_LCLJ_FLOW_CONFIG f ON f.flowcode = a.flowcode <!-- 查询具体路径名称 -->
         WHERE 1=1
         and isobsolete = 0 <!-- 过滤作废的数据 -->
+        <if test="dateDue != null and dateDue !=''">
+            and e.date_due <![CDATA[ <= ]]> #{dateDue}
+        </if>
         <if test="nodename != null and nodename !=''">
             and e.order_number in (SELECT a.order_number from (
             SELECT

@@ -2,6 +2,7 @@ package com.kqds.controller.base.reg;
 
 // 合并测试
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -1550,39 +1551,47 @@ public class KQDS_REGAct {
 		try {
 			String status="未挂号";
 			String usercode=request.getParameter("usercode");
+			BigDecimal arrearage=new BigDecimal(0);
 			if(usercode!=null&&usercode!=""){
 				Map<String,String> map= new HashMap<String,String>();
 				map.put("usercode", usercode);
-				String createtime=logic.selectExistByUsercode(map);
-				if(createtime!=null&&!createtime.equals("")){
-					String date = YZUtility.getDateStr(new Date());
-					
-					Calendar calendar = Calendar.getInstance(); //得到日历
-					calendar.setTime(new Date());//把当前时间赋给日历
-					calendar.add(Calendar.DAY_OF_MONTH, -1);  //设置为前一天
-					Date dBefore = calendar.getTime();   //得到前一天的时间
-					String date1=YZUtility.getDateStr(dBefore);
-					if(createtime.substring(0, 10).equals(date)||createtime.substring(0, 10).equals(date1)){
-				        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			           Date dateStart = format.parse(createtime);
-			           int endDay=(int) (new Date().getTime()/1000);
-			           int startDay = (int) (dateStart.getTime() / 1000);
-			           if((endDay-startDay)<=129600){
-			        	   status="已挂号";
-			           }else{
-			        	   status="未挂号";
-			           }
-					}else{ 
-						status="未挂号";
-			        }
-				}else{
+				JSONObject json=logic.selectExistByUsercode(map);
+				if(json==null||json.size() == 0){
 					status="未挂号";
+				}else {
+					String createtime = json.getString("createtime");
+					arrearage = new BigDecimal(json.getString("arrearage"));
+					if (createtime != null && !createtime.equals("")) {
+						String date = YZUtility.getDateStr(new Date());
+
+						Calendar calendar = Calendar.getInstance(); //得到日历
+						calendar.setTime(new Date());//把当前时间赋给日历
+						calendar.add(Calendar.DAY_OF_MONTH, -1);  //设置为前一天
+						Date dBefore = calendar.getTime();   //得到前一天的时间
+						String date1 = YZUtility.getDateStr(dBefore);
+						if (createtime.substring(0, 10).equals(date) || createtime.substring(0, 10).equals(date1)) {
+							SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+							Date dateStart = format.parse(createtime);
+							int endDay = (int) (new Date().getTime() / 1000);
+							int startDay = (int) (dateStart.getTime() / 1000);
+							if ((endDay - startDay) <= 129600) {
+								status = "已挂号";
+							} else {
+								status = "未挂号";
+							}
+						} else {
+							status = "未挂号";
+						}
+					} else {
+						status = "未挂号";
+					}
 				}
 			}else{
 				status="未挂号";
 			}
 			JSONObject json=new JSONObject();
 			json.put("status", status);
+			json.put("arrearage",arrearage);
 			YZUtility.DEAL_SUCCESS(json, null, response, logger);
 		} catch (Exception e) {
 			YZUtility.DEAL_ERROR(null, false, e, response, logger);
