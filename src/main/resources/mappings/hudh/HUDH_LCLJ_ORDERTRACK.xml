@@ -693,7 +693,7 @@
 		left join bs_city c on c.CITY_CODE = u.city
 		left join bs_area a on a.AREA_CODE = u.area
 		left join bs_street s on s.STREET_CODE = u.town
-		left join (select createtime,usercode from KQDS_REG where recesort = '20') reg on reg.usercode=u.usercode
+		left join (select createtime,usercode from KQDS_REG where recesort = '20' and del=0) reg on reg.usercode=u.usercode
 		where u.usercode=#{_parameter}
 	</select>
     <!-- 修改多选表单的选中标识字段 -->
