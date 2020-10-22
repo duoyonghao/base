@@ -147,4 +147,11 @@ public interface ILcljService {
 	  * @dateTime:2019年5月28日 上午11:02:29
 	  */  
 	JSONObject findPreoperativeVerification(String lcljId) throws Exception;
+
+	/**
+	 *
+	 * @param pVerification
+	 * @throws Exception
+	 */
+	void updatePreoperativeVerification(PreoperativeVerification pVerification) throws Exception;
 }

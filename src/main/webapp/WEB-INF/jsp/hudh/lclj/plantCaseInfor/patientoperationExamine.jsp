@@ -478,7 +478,7 @@
 <!-- 按钮 -->
 <div class="btns">
 	<button id="consent_saveBtn" onclick="save()" style="height: 33px;" readonly="readonly">保存</button>
-	<button id="consent_updateBtn" style="display: none;" class="consent_updateBtn hidden" onclick="update()">修改表单</button>
+	<button id="consent_updateBtn" style="display: none;" class="consent_updateBtn" onclick="update()">修改表单</button>
 	<button id="print_Btn" onclick="myPreviewAll()" style="height: 33px;" readonly="readonly">打印本页内容</button>
 </div>
 </div>

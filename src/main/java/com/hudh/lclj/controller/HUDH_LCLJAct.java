@@ -453,11 +453,11 @@ public class HUDH_LCLJAct {
    			YZUtility.DEAL_SUCCESS(findPreoperativeVerification, "已填写，请勿重复填写！", response, logger);
    		}else{  			
    			int preoperativeVerification = lcljService.savePreoperativeVerification(pVerification);
-   			YZUtility.DEAL_SUCCESS(null, ""+preoperativeVerification, response, logger);
+   			YZUtility.DEAL_SUCCESS(null, "术前核查单保存成功!"+preoperativeVerification, response, logger);
    		}
 	} catch (Exception e) {
 		// TODO: handle exception
-		YZUtility.DEAL_ERROR(null, false, e, response, logger);
+		YZUtility.DEAL_ERROR("术前核查单保存成功!", false, e, response, logger);
 	}
 				return null;
 	}
@@ -495,8 +495,9 @@ public class HUDH_LCLJAct {
 	  * @return: String
 	  * @dateTime:2019年7月13日 上午10:04:09
 	 */
+	@RequestMapping("/updatePreoperativeVerification.act")
 	public String updatePreoperativeVerification(HttpServletRequest request,HttpServletResponse response)throws Exception{
-		String SEQ_ID = YZUtility.getUUID();
+		String SEQ_ID = request.getParameter("seqId");
 		String lcljId = request.getParameter("id");
 		String order_number = request.getParameter("order_number");
 		String patient_name = request.getParameter("username");
@@ -512,80 +513,89 @@ public class HUDH_LCLJAct {
 		String plant_tooth = request.getParameter("plant_tooth");
 		String assist_operation = request.getParameter("assist_operation");
 		String plant_system = request.getParameter("plant_system");
-		String nurseSignature = request.getParameter("nurseSignature");
-		String doctorSignature = request.getParameter("doctorSignature");
 		String signaturetime = request.getParameter("signaturetime");
 		String operation_alltext = request.getParameter("operation_alltext");
+
+		//牙位
+		String upleftToothBitOne = request.getParameter("upleftToothBitOne");
+		String uperRightToothBitOne = request.getParameter("uperRightToothBitOne");
+		String leftLowerToothBitOne = request.getParameter("leftLowerToothBitOne");
+		String lowRightToothBitOne = request.getParameter("lowRightToothBitOne");
+		String upleftToothBitTwo = request.getParameter("upleftToothBitTwo");
+		String uperRightToothBitTwo = request.getParameter("uperRightToothBitTwo");
+		String leftLowerToothBitTwo = request.getParameter("leftLowerToothBitTwo");
+		String lowRightToothBitTwo = request.getParameter("lowRightToothBitTwo");
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-		String createtime = df.format(new Date());
-		
 		PreoperativeVerification pVerification = new PreoperativeVerification();
-		if(!lcljId.equals(null) && !lcljId.equals("")){
+		try {
+
+		if(lcljId != null && !lcljId.equals("")){
 			 pVerification.setLclj_Id(lcljId);
 		}
-		if(!order_number.equals(null) && !order_number.equals("")){
+		if(order_number != null){
 			 pVerification.setOrder_number(order_number);	
 				}
-		if(!patient_name.equals(null) && !patient_name.equals("")){
+		if(patient_name != null){
 			 pVerification.setPatient_name(patient_name);
 		}
-		if(!patient_sex.equals(null) && !patient_sex.equals("")){
+		if(patient_sex != null){
 			 pVerification.setPatient_sex(patient_sex);
 		}
-		if(!patient_age.equals(null) && !patient_age.equals("")){
+		if(patient_age != null){
 			 pVerification.setPatient_age(patient_age);
 		}
-		if(!blood_pressure.equals(null) && !blood_pressure.equals("")){
+		if(blood_pressure != null){
 		     pVerification.setBlood_pressure(blood_pressure);
 		}
-		if(!pulse.equals(null) && !pulse.equals("")){
+		if(pulse != null){
 			 pVerification.setPulse(pulse);
 		}
-		if(!blood_glucose.equals(null) && !blood_glucose.equals("")){
+		if(blood_glucose != null){
 			 pVerification.setBlood_glucose(blood_glucose);
 			 
 		}
-		if(!cruor_function.equals(null) && !cruor_function.equals("")){
+		if(cruor_function != null){
 			 pVerification.setCruor_function(cruor_function);		
 				}
-		if(!infectious_diseases.equals(null) && !infectious_diseases.equals("")){
+		if(infectious_diseases != null){
 			 pVerification.setInfectious_diseases(infectious_diseases);
 		}
-		if(!consultation_opinion.equals(null) && !consultation_opinion.equals("")){
+		if(consultation_opinion != null){
 			 pVerification.setConsultation_opinion(consultation_opinion);
 		}
-		if(!pullout_tooth.equals(null) && !pullout_tooth.equals("")){
+		if(pullout_tooth != null){
 			 pVerification.setPullout_tooth(pullout_tooth);
 		}
-		if(!plant_tooth.equals(null) && !plant_tooth.equals("")){
+		if(plant_tooth != null){
 			 pVerification.setPlant_tooth(plant_tooth);	
 		}
-		if(!assist_operation.equals(null) && !assist_operation.equals("")){
+		if(assist_operation != null){
 			 pVerification.setAssist_operation(assist_operation);
-		}if(!plant_system.equals(null) && !plant_system.equals("")){
+		}
+		if(plant_system != null){
 			 pVerification.setPlant_system(plant_system);
 		}
-		if(!nurseSignature.equals(null) && !nurseSignature.equals("")){
-			 pVerification.setNurseSignature(nurseSignature);		
-				}
-		if(!doctorSignature.equals(null) && !doctorSignature.equals("")){
-			 pVerification.setDoctorSignature(doctorSignature);
-		}
-		if(!signaturetime.equals(null) && !signaturetime.equals("")){
+		if(signaturetime != null){
 			 pVerification.setSignaturetime(signaturetime);
 		}
-		if(!operation_alltext.equals(null) && !operation_alltext.equals("")){
+		if(operation_alltext != null){
 			 pVerification.setOperationAlltext(operation_alltext);
 		}
-		if(!createtime.equals(null) && !createtime.equals("")){
-			pVerification.setCreatetime(createtime);
-		}
-		 try {
-		
-			YZUtility.DEAL_SUCCESS_VALID(true, response);
+		pVerification.setUpleftToothBitOne(upleftToothBitOne);
+		pVerification.setUperRightToothBitOne(uperRightToothBitOne);
+		pVerification.setUperRightToothBitTwo(uperRightToothBitTwo);
+		pVerification.setUpleftToothBitOne(upleftToothBitOne);
+		pVerification.setUpleftToothBitTwo(upleftToothBitTwo);
+		pVerification.setLeftLowerToothBitOne(leftLowerToothBitOne);
+		pVerification.setLeftLowerToothBitTwo(leftLowerToothBitTwo);
+		pVerification.setLowRightToothBitOne(lowRightToothBitOne);
+		pVerification.setLowRightToothBitTwo(lowRightToothBitTwo);
+		pVerification.setSEQ_ID(SEQ_ID);
+		lcljService.updatePreoperativeVerification(pVerification);
+			YZUtility.DEAL_SUCCESS(null,"术前核查单修改成功!", response,logger);
 		} catch (Exception e) {
 			// TODO: handle exception
-			YZUtility.DEAL_ERROR(null, false, e, response, logger);
+			YZUtility.DEAL_ERROR("术前核查单修改失败!", false, e, response, logger);
 		}
 		return null;
 	}
