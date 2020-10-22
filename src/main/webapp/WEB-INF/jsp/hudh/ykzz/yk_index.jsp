@@ -573,7 +573,7 @@ function exportTable() {
 				var a = document.createElement('a');
 				//var headerName = xhr.getResponseHeader("Content-disposition");
 				//var fileName = decodeURIComponent(headerName).substring(20);
-				a.download = "发药明细";
+				a.download = "药品清单";
 				a.href = URL.createObjectURL(blob);
 				$("body").append(a);    // 修复firefox中无法触发click
 				a.click();
