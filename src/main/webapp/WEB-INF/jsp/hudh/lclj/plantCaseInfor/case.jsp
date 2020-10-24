@@ -3452,7 +3452,7 @@
             //treatmentparts3:$("#treatmentparts3").text(),
             //consultationOpinion:$("input[name='consultation_opinion']:checked").val(),
             deep:$("input[name='deep']:checked").val(),
-            //one:$("input[name='one']:checked").val(),
+            one:$("input[name='one']:checked").val(),
             preoperatives:preoperativesPlan(),
             bicon:biconPlan(),
             //abutment:abutmentPlan(),
