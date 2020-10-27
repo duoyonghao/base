@@ -1749,7 +1749,7 @@
                         <div style="width: 80%;float: right;">
                             <ul class="loseTooth_option" style="margin-left:10px;">
                                 <li style="line-height: 50px;margin-right:10px;">
-                                    <input name="one" id="one" type="radio" value="1" /><label for="one">有</label>
+                                    <input name="one" id="one1" type="radio" value="1" /><label for="one1">有</label>
                                 </li>
 
                                 <li style="line-height: 50px;margin-right:10px;">
