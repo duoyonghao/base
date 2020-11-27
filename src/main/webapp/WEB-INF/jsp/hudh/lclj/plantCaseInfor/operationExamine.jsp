@@ -531,22 +531,13 @@
 		        	 operation_alltext : operation_alltext //修改后全部文字
 				},
 				success:function(result){
-					/* layer.alert('提交成功', function(index) {
-						window.parent.location.reload(); //刷新父页面
-						var frameindex = parent.layer.getFrameIndex(window.name);
-		                parent.layer.close(frameindex); // 再执行关闭
-					}) */
-					if(result.retMsrg>0){
-                        layer.alert("保存成功！", {
-                            end: function() {
-                                window.parent.location.reload(); //刷新父页面
-                                var frameindex = parent.layer.getFrameIndex(window.name);
-                                parent.layer.close(frameindex); //再执行关闭
-                            }
-                        });
-					}else{
-                        layer.alert("保存失败！");
-					}
+					layer.alert(result.retMsrg, {
+						end: function() {
+							window.parent.location.reload(); //刷新父页面
+							var frameindex = parent.layer.getFrameIndex(window.name);
+							parent.layer.close(frameindex); //再执行关闭
+						}
+					});
 
 				}
 		  });
@@ -581,7 +572,7 @@
 			var operation_alltext=$("#operation_alltext").html();//修改后全部文字
 			var signaturetime=$("#signaturetime").val();//签名日期
 			//console.log("签名时间===="+signaturetime);
-			var url = contextPath + '';
+			var url = contextPath + '/HUDH_LCLJAct/updatePreoperativeVerification.act';
 
 			var parms={
 				seqId:updataid,
@@ -615,25 +606,22 @@
 				signaturetime : signaturetime,//签名日期
 				operation_alltext : operation_alltext //修改后全部文字
 			};
-			console.log(JSON.stringify(parms)+"-------------parms");
-			return;
+			//console.log(JSON.stringify(parms)+"-------------parms");
+			//return;
 			$.ajax({
 				url: url,
 				type:"POST",
 				dataType:"json",
 				data : parms,
 				success:function(result){
-					if(result.retMsrg>0){
-						layer.alert("修改成功！", {
+					//console.log(JSON.stringify(result)+"-----");
+						layer.alert(result.retMsrg, {
 							end: function() {
 								window.parent.location.reload(); //刷新父页面
 								var frameindex = parent.layer.getFrameIndex(window.name);
 								parent.layer.close(frameindex); //再执行关闭
 							}
 						});
-					}else{
-						layer.alert("修改失败！");
-					}
 
 				}
 			});

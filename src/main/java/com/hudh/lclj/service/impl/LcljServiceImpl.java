@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.kqds.util.sys.TableNameUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -538,5 +539,15 @@ public class LcljServiceImpl implements ILcljService {
 	public JSONObject findPreoperativeVerification(String lcljId) throws Exception {
 		return lcljTrackDao.findPreoperativeVerification(lcljId);
 	}
-	
+
+	/**
+	 *
+	 * @param pVerification
+	 * @throws Exception
+	 */
+	@Override
+	public void updatePreoperativeVerification(PreoperativeVerification pVerification) throws Exception {
+		dao.update("HUDH_LCLJ_preoperativeVerification.updatePreoperative",pVerification);
+	}
+
 }

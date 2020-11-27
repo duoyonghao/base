@@ -1052,7 +1052,8 @@
         a.createuser,
         per1.user_name as createusername,
         a.createtime,
-        odept.dept_name as organizationname
+        odept.dept_name as organizationname,
+        u.iscreatelclj
         from KQDS_NET_ORDER a
         LEFT JOIN SYS_DEPT odept on
         odept.dept_code = a.organization and odept.dept_parent = '0'
@@ -1064,6 +1065,7 @@
         LEFT JOIN SYS_DICT kcit3 on a.accepttype = kcit3.seq_id
         LEFT JOIN SYS_DICT
         kcit4 on a.accepttool = kcit4.seq_id
+        left join KQDS_UserDocument u on u.usercode = a.usercode
         where 1=1
         <if test="createtime != null and createtime !='' ">
             a.createtime like '%' + #{createtime} + '%'

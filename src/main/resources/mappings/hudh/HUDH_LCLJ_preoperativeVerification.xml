@@ -66,4 +66,79 @@
 			HUDH_LCLJ_preoperativeVerification
 		where lclj_Id = #{lcljId,jdbcType=VARCHAR}
 	</select>
+
+	<update id="updatePreoperative" parameterType="com.hudh.lclj.entity.PreoperativeVerification">
+		update HUDH_LCLJ_preoperativeVerification set
+		<if test = "patient_name != null">
+			patient_name = #{patient_name,jdbcType=VARCHAR},
+		</if>
+		<if test="patient_sex != null">
+			patient_sex = #{patient_sex,jdbcType=VARCHAR},
+		</if>
+		<if test="patient_age != null">
+			patient_age = #{patient_age,jdbcType=VARCHAR},
+		</if>
+		<if test="blood_pressure != null">
+			blood_pressure = #{blood_pressure,jdbcType=VARCHAR},
+		</if>
+		<if test="pulse != null">
+			pulse = #{pulse,jdbcType=VARCHAR},
+		</if>
+		<if test="blood_glucose != null">
+			blood_glucose = #{blood_glucose,jdbcType=VARCHAR},
+		</if>
+		<if test="cruor_function != null">
+			cruor_function = #{cruor_function,jdbcType=VARCHAR},
+		</if>
+		<if test="infectious_diseases != null">
+			infectious_diseases = #{infectious_diseases,jdbcType=VARCHAR},
+		</if>
+		<if test="consultation_opinion != null">
+			consultation_opinion = #{consultation_opinion,jdbcType=VARCHAR},
+		</if>
+		<if test="pullout_tooth != null">
+			pullout_tooth = #{pullout_tooth,jdbcType=VARCHAR},
+		</if>
+		<if test="plant_tooth != null">
+			plant_tooth = #{plant_tooth,jdbcType=VARCHAR},
+		</if>
+		<if test="assist_operation != null">
+			assist_operation = #{assist_operation,jdbcType=VARCHAR},
+		</if>
+		<if test="plant_system != null">
+			plant_system = #{plant_system,jdbcType=VARCHAR},
+		</if>
+		<if test="operationAlltext != null">
+			operationAlltext = #{operationAlltext,jdbcType=VARCHAR},
+		</if>
+		<if test="signaturetime != null">
+			signaturetime = #{signaturetime},
+		</if>
+		<if test="upleftToothBitOne != null">
+			upleftToothBitOne = #{upleftToothBitOne,jdbcType=VARCHAR},
+		</if>
+		<if test="uperRightToothBitOne != null">
+			uperRightToothBitOne = #{uperRightToothBitOne,jdbcType=VARCHAR},
+		</if>
+		<if test="leftLowerToothBitOne != null">
+			leftLowerToothBitOne = #{leftLowerToothBitOne,jdbcType=VARCHAR},
+		</if>
+		<if test="lowRightToothBitOne != null">
+			lowRightToothBitOne = #{lowRightToothBitOne,jdbcType=VARCHAR},
+		</if>
+		<if test="upleftToothBitTwo != null">
+			upleftToothBitTwo = #{upleftToothBitTwo,jdbcType=VARCHAR},
+		</if>
+		<if test="uperRightToothBitTwo != null">
+			uperRightToothBitTwo = #{uperRightToothBitTwo,jdbcType=VARCHAR},
+		</if>
+		<if test="leftLowerToothBitTwo != null">
+			leftLowerToothBitTwo = #{leftLowerToothBitTwo,jdbcType=VARCHAR},
+		</if>
+		<if test="lowRightToothBitTwo != null">
+			lowRightToothBitTwo = #{lowRightToothBitTwo,jdbcType=VARCHAR}
+		</if>
+		 WHERE SEQ_ID = #{SEQ_ID}
+
+	</update>
 </mapper>
