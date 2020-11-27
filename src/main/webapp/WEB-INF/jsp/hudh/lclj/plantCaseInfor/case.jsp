@@ -1594,6 +1594,10 @@
                                         <input name="paraoperative" id="bioOss2" type="checkbox"
                                                value="Bio-oss2" /><label for="bioOss2">Bio-oss</label>
                                     </li>
+                                    <li>
+                                        <input name="paraoperative" id="hiao3" type="checkbox"
+                                               value="海奥" /><label for="hiao3">海奥</label>
+                                    </li>
                                     <li>)</li>
                                     <li>
                                 </ul>
